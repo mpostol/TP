@@ -53,6 +53,10 @@
     <Compile Include="InterfaceExample.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\AssemblyModel.cs" />
+    <Compile Include="Reflection\ClassModel.cs" />
+    <Compile Include="Reflection\MethodModel.cs" />
+    <Compile Include="Reflection\NamespaceModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
