@@ -7,8 +7,8 @@
     <ProjectGuid>{D22F8E11-330E-4421-BD0D-45BC8E3BDD96}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lecture</RootNamespace>
-    <AssemblyName>Lecture</AssemblyName>
+    <RootNamespace>TP.Lecture</RootNamespace>
+    <AssemblyName>TPLecture</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
