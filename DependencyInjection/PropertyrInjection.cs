@@ -31,7 +31,7 @@ namespace TP.DependencyInjection
     {
       TraceSource.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
     }
-    public ITraceSource TraceSource { private get; set; }
+    public ITraceSource TraceSource { get; set; }
 
   }
 }
