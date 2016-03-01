@@ -1,3 +1,5 @@
-TestResults/
-Lecture/bin/
-Lesson2UnitTest/bin/
+Lecture/TestResults/
+Lecture/Lecture/bin/
+Lecture/Lecture/obj/
+Lecture/Lesson2UnitTest/bin/
+Lecture/Lesson2UnitTest/obj/
