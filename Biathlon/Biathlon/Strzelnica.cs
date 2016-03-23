@@ -5,8 +5,13 @@ namespace Biathlon
 {
     public class Strzelnica
     {
-        public Strzelnica()
+        private OdlegloscPunktow Odleglosc;
+
+        public Strzelnica(OdlegloscPunktow odleglosc)
         {
+            if (odleglosc == null)
+                throw new ArgumentNullException(nameof(odleglosc));
+            Odleglosc = odleglosc;
         }
 
         public Punkt SzukajPierwszegoNajblizszego(Punkt zadany, double promien)
@@ -23,7 +28,8 @@ namespace Biathlon
 
         public bool SprawdzTrafienie(Punkt punkt, Punkt zadany, double promien)
         {
-            throw new NotImplementedException();
+            double dystans = Odleglosc.ObliczOdleglosc(punkt, zadany);
+            return (dystans <= promien);
         }
 
         public bool KoniecSprawdzania(Punkt punkt)

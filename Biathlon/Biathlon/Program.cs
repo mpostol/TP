@@ -1,4 +1,5 @@
 ﻿using Biathlon.Pomiary;
+using MetrykiLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,14 @@ namespace Biathlon
             Punkt zadany = WczytajPunktPoczatkowy();
             double promien = 3.0;
 
-            Strzelnica st = new Strzelnica();
-            Punkt znaleziony = st.SzukajPierwszegoNajblizszego(zadany, promien);
+            // Kompozycja obiektów z użyciem wstrzykiwania zależności (Dependency Injection)
+            IMiaraOdleglosci miara = new MetrykaEuklidesowa();
+            OdlegloscPunktow odleglosc = new OdlegloscPunktow(miara);
+            Strzelnica st = new Strzelnica(odleglosc);
 
+            Punkt znaleziony = st.SzukajPierwszegoNajblizszego(zadany, promien);
             SprawdzTrafienie(znaleziony);
+            Console.ReadLine();
         }
 
         private static Punkt WczytajPunktPoczatkowy()

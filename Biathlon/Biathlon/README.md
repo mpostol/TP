@@ -39,8 +39,14 @@ Ten sposób realizacji określa _zależność wymaganą_ - nie da się utworzyć
 
 Zawiera algorytm poszukiwania punktów, metodę sprawdzania warunku końca pętli oraz sprawdzanie trafienia w zakresie nie większym niż podany promień od zadanego punktu.
 
-Na tym etapie klasa nie ma jeszcze zależności od obiektu `OdlegloscPunktow`, a więc nie ma też poprawnej implementacji metody sprawdzającej trafienie:
+Klasa ta ma zależność od obiektu `OdlegloscPunktow`, który jest przekazywany z użyciem techniki **wstrzykiwania zależności** poprzez parametr konstruktora:
 
 ```C#
-SprawdzTrafienie(Punkt punkt, Punkt zadany, double promien)
+public Strzelnica(OdlegloscPunktow odleglosc)
+```
+
+Przekazany obiekt klasy `OdlegloscPunktow` wykorzystywany jest w metodzie sprawdzającej trafienie:
+
+```C#
+public bool SprawdzTrafienie(Punkt punkt, Punkt zadany, double promien)
 ```
