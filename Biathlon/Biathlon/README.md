@@ -1,7 +1,7 @@
 ﻿# Biathlon
 
 Projekt aplikacji konsolowej realizującej zadanie analizy punktów reprezentujących strzały do celu na strzelnicy.
-Zawiera moduł obliczeń odległości pomiędzy obiektami typu `Punkt`.
+Zawiera moduł obliczeń odległości pomiędzy obiektami typu `Punkt`, oraz klasę `Strzelnica` z algorytmem poszukiwania punktu dającego trafienie w okolicy punktu zadanego.
 
 ## Główne elementy
 
@@ -34,3 +34,13 @@ public OdlegloscPunktow(IMiaraOdleglosci miernik)
 ```
 
 Ten sposób realizacji określa _zależność wymaganą_ - nie da się utworzyć obiektu klasy `OdlegloscPunktow` bez przekazania obiektu, bo bez niego nie będzie wiadomo jak obliczać odległość.
+
+### `Strzelnica`
+
+Zawiera algorytm poszukiwania punktów, metodę sprawdzania warunku końca pętli oraz sprawdzanie trafienia w zakresie nie większym niż podany promień od zadanego punktu.
+
+Na tym etapie klasa nie ma jeszcze zależności od obiektu `OdlegloscPunktow`, a więc nie ma też poprawnej implementacji metody sprawdzającej trafienie:
+
+```C#
+SprawdzTrafienie(Punkt punkt, Punkt zadany, double promien)
+```
