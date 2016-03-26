@@ -20,17 +20,27 @@ This is the POCO type class ([Plain Old CLR Object](https://en.wikipedia.org/wik
 
 This class was designed in the style of [adapter](https://en.wikipedia.org/wiki/Adapter_pattern) design pattern. It contains one main method:
 
-`` `C #
+```C#
 double CalculateDistance(Point p1, Point p2)
-`` `
+```
 
 Its aim is to match the `CalculateDistance(double [] a, double [] b)` method from interface `IDistanceMetric` to be able to perform calculations on different data type.
 In this case, the method `CalculateDistance` operates on two objects of type `Point`, not like in the library **MetricsLib**, where classes' methods operate on two n-dimensional vectors.
 
 `PointsDistance` class uses **[Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection)** technique to pass the object used in calculating distances. `IDistanceMetric` implementation is passed as a parameter to the constructor:
 
-`` `C #
+```C#
 public PointsDistance(IDistanceMetric gauge)
-`` `
+```
 
 This way defines _required dependency_ - you cannot create an object of a class `PointsDistance` without passing correct object, because without it you will not know how to calculate the distance.
+
+### `ShootingRange`
+
+Includes algorithm for searching of points, the method for checking condition of the end of the loop and checking the hits in the range not greater than a specified radius from the target point.
+
+At this stage, the class is not yet depending on the `PointsDistance` object, so there is no proper implementation of the method that should check the hit:
+
+```C#
+bool TargetHit(Point point, Point target, double radius))
+```
