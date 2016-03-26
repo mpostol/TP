@@ -9,8 +9,13 @@ namespace Biathlon
 {
     public class ShootingRange
     {
-        public ShootingRange()
+        private PointsDistance Distance;
+
+        public ShootingRange(PointsDistance distance)
         {
+            if (distance == null)
+                throw new ArgumentNullException(nameof(distance));
+            Distance = distance;
         }
 
         public Point SearchFirstNearest(Point target, double radius)
@@ -27,7 +32,8 @@ namespace Biathlon
 
         public bool TargetHit(Point point, Point target, double radius)
         {
-            throw new NotImplementedException();
+            double distance = Distance.CalculateDistance(point, target);
+            return (distance <= radius);
         }
 
         public bool FinishChecking(Point point)

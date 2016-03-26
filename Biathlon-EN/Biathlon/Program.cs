@@ -1,4 +1,5 @@
 ﻿using Biathlon.Measurements;
+using MetricsLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,16 @@ namespace Biathlon
             Point target = ReadInitialPoint();
             double radius = 3.0;
 
-            ShootingRange sr = new ShootingRange();
+            // Composition root (for normal program run)
+            // Compose objects here using Dependency Injection
+            IDistanceMetric metric = new EuclideanDistance();
+            PointsDistance distance = new PointsDistance(metric);
+            ShootingRange sr = new ShootingRange(distance);
+
             Point found = sr.SearchFirstNearest(target, radius);
 
             CheckHit(found);
+            Console.ReadLine();
         }
 
         private static Point ReadInitialPoint()

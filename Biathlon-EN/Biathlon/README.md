@@ -39,7 +39,13 @@ This way defines _required dependency_ - you cannot create an object of a class 
 
 Includes algorithm for searching of points, the method for checking condition of the end of the loop and checking the hits in the range not greater than a specified radius from the target point.
 
-At this stage, the class is not yet depending on the `PointsDistance` object, so there is no proper implementation of the method that should check the hit:
+This class has a dependency on the `PointsDistance` object, which is passed using **dependency injection** technique as parameter of constructor:
+
+```C#
+public ShootingRange(PointsDistance distance)
+```
+
+Passed object of class `PointsDistance` is used in the method that checks the hit:
 
 ```C#
 bool TargetHit(Point point, Point target, double radius))
