@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AnonymousTypes.cs" />
     <Compile Include="BasicTypesStruct.cs" />
+    <Compile Include="DelegateExample.cs" />
     <Compile Include="FileExample.cs" />
     <Compile Include="FromClause.cs" />
     <Compile Include="InterfaceExample.cs" />
