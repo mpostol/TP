@@ -63,6 +63,7 @@
     <Compile Include="FromClauseUnitTest.cs" />
     <Compile Include="AnonymousTypesUnitTest.cs" />
     <Compile Include="DelegateExampleUnitTest.cs" />
+    <Compile Include="ExtensionMethodsUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lecture\Lecture.csproj">
