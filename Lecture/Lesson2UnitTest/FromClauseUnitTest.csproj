@@ -64,6 +64,7 @@
     <Compile Include="AnonymousTypesUnitTest.cs" />
     <Compile Include="DelegateExampleUnitTest.cs" />
     <Compile Include="ExtensionMethodsUnitTest.cs" />
+    <Compile Include="GenericsUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lecture\Lecture.csproj">

@@ -53,6 +53,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FileExample.cs" />
     <Compile Include="FromClause.cs" />
+    <Compile Include="Generics.cs" />
     <Compile Include="InterfaceExample.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
