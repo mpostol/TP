@@ -15,6 +15,14 @@ namespace TP.Lecture.UnitTest
       Assert.AreEqual<int>(3, _TestString.WordCount()); //To enable extension methods for a particular type, the definition must be visible.
       Assert.AreEqual<int>(3, ExtensionMethods.WordCount(_TestString)); //Typical method call can also be in use.
     }
+    [TestMethod]
+    public void SequentialCallTestMethod()
+    {
+      string _TestString = "Hello Extension Methods";
+      int _WordCountResult = _TestString.WordCount();
+      Assert.AreEqual<int>(3, _WordCountResult);
+      Assert.AreEqual<int>(-3, _WordCountResult.MethodA());
+    }
     /// <summary>
     /// Mies the test method.
     /// </summary>
@@ -42,6 +50,8 @@ namespace TP.Lecture.UnitTest
       Assert.AreEqual<int>(1, (int)c.MethodA(1));           // C.MethodA(object)
       Assert.AreSame(_inputString, c.MethodA(_inputString));     // C.MethodA(object)
       Assert.AreNotSame(new AnyClass(), c.MethodA(new AnyClass()));
+
+      //How to use it 
     }
     private class AnyClass
     {

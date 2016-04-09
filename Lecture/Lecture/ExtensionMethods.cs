@@ -13,7 +13,10 @@ namespace TP.Lecture
     {
       return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
     }
-
+    public static int MethodA(this int i)
+    {
+      return -i;
+    }
     /// <summary>
     /// Determines whether [contains] [the specified value].
     /// </summary>
