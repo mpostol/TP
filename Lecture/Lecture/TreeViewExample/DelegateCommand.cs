@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace TP.Lecture
+namespace TP.Lecture.TreeViewExample
 {
     public class DelegateCommand : ICommand
     {

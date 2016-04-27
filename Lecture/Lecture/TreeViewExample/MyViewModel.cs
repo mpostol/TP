@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
-namespace TP.Lecture
+namespace TP.Lecture.TreeViewExample
 {
     class MyViewModel: INotifyPropertyChanged
     {
