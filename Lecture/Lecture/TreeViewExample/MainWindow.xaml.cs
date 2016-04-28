@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Microsoft.Win32;
 
-namespace TP.Lecture
+namespace TP.Lecture.TreeViewExample
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
