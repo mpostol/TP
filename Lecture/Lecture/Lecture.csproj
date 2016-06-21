@@ -67,6 +67,10 @@
     <Compile Include="Reflection\ClassModel.cs" />
     <Compile Include="Reflection\MethodModel.cs" />
     <Compile Include="Reflection\NamespaceModel.cs" />
+    <Compile Include="Serialization\CustomSerialization.cs" />
+    <Compile Include="Serialization\IStylesheetNameProvider.cs" />
+    <Compile Include="Serialization\StaticClass.cs" />
+    <Compile Include="Serialization\XmlFile.cs" />
     <Compile Include="TreeViewExample\DelegateCommand.cs" />
     <Compile Include="TreeViewExample\ITreeViewItem.cs" />
     <Compile Include="TreeViewExample\MainWindow.xaml.cs">

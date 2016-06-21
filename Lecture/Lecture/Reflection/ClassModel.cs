@@ -28,7 +28,7 @@ namespace TP.Lecture.Reflection
             set
             {
                 _baseType = value;
-                OnPropertyChanged("BaseType");
+                 OnPropertyChanged("BaseType");
             }
         }
         private ClassModel _baseType;

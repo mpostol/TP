@@ -46,6 +46,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -56,6 +57,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Instrumentation\CustomData\catalog.cs">
+      <DependentUpon>catalog.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Instrumentation\CustomData\catalog.xsd.cs">
+      <DependentUpon>catalog.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LinqExtensionsUnitTest.cs" />
     <Compile Include="Reflection\ModelUnitTest.cs" />
     <Compile Include="StructUnitTest.cs" />
@@ -65,6 +72,7 @@
     <Compile Include="DelegateExampleUnitTest.cs" />
     <Compile Include="ExtensionMethodsUnitTest.cs" />
     <Compile Include="GenericsUnitTest.cs" />
+    <Compile Include="SerializationUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lecture\Lecture.csproj">
@@ -73,6 +81,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Instrumentation\CustomData\catalog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Instrumentation\CustomData\catalog.xslt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
