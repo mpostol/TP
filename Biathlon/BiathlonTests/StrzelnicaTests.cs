@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Biathlon;
 using Biathlon.Pomiary;
 using MetrykiLib;
+using BiathlonTests.InOut;
+using System.Collections.Generic;
 
 namespace BiathlonUnitTests
 {
@@ -111,5 +113,58 @@ namespace BiathlonUnitTests
             Punkt zadany = new Punkt(13.5, 14.5);
             Assert.IsFalse(cut.SprawdzTrafienie(p, zadany, 2.0));
         }
+
+        [TestMethod]
+        public void StrzelnicaSzukajPierwszegoNajblizszego_pudlo_gdy_0_0_pierwsze()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 0.0, 0.0 }))
+            {
+                Punkt zadany = new Punkt(3.5, 4.5);
+                Punkt wynik = cut.SzukajPierwszegoNajblizszego(zadany, 3.0);
+
+                Assert.IsNull(wynik);
+            }
+        }
+
+        [TestMethod]
+        public void StrzelnicaSzukajPierwszegoNajblizszego_pudlo_gdy_promien_2_odleglosc_duza()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 3.0, 4.0, 0.0, 0.0 }))
+            {
+                Punkt zadany = new Punkt(13.5, 14.5);
+                Punkt wynik = cut.SzukajPierwszegoNajblizszego(zadany, 2.0);
+
+                Assert.IsNull(wynik);
+            }
+        }
+
+        [TestMethod]
+        public void StrzelnicaSzukajPierwszegoNajblizszego_trafienie_pierwszego()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 3.0, 4.0, 0.0, 0.0 }))
+            {
+                Punkt zadany = new Punkt(3.5, 4.5);
+                Punkt wynik = cut.SzukajPierwszegoNajblizszego(zadany, 3.0);
+
+                Assert.IsNotNull(wynik);
+                Assert.AreEqual(3.0, wynik.X);
+                Assert.AreEqual(4.0, wynik.Y);
+            }
+        }
+
+        [TestMethod]
+        public void StrzelnicaSzukajPierwszegoNajblizszego_trafienie_trzeciego()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 10.0, 1.0, -2, -10, 3.0, 4.0, 0.0, 0.0 }))
+            {
+                Punkt zadany = new Punkt(3.5, 4.5);
+                Punkt wynik = cut.SzukajPierwszegoNajblizszego(zadany, 3.0);
+
+                Assert.IsNotNull(wynik);
+                Assert.AreEqual(3.0, wynik.X);
+                Assert.AreEqual(4.0, wynik.Y);
+            }
+        }
+
     }
 }
