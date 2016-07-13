@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Biathlon;
 using Biathlon.Measurements;
 using MetricsLib;
+using BiathlonTests.InOut;
+using System.Collections.Generic;
 
 namespace BiathlonTests
 {
@@ -110,6 +112,58 @@ namespace BiathlonTests
             Point p = new Point(3.0, 4.0);
             Point target = new Point(13.5, 14.5);
             Assert.IsFalse(cut.TargetHit(p, target, 2.0));
+        }
+
+        [TestMethod]
+        public void ShootingRangeSearchFirstNearest_miss_when_0_0_first()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 0.0, 0.0 }))
+            {
+                Point p = new Point(3.5, 4.5);
+                Point result = cut.SearchFirstNearest(p, 3.0);
+
+                Assert.IsNull(result);
+            }
+        }
+
+        [TestMethod]
+        public void ShootingRangeSearchFirstNearest_miss_when_radius_2_distance_large()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 3.0, 4.0, 0.0, 0.0 }))
+            {
+                Point p = new Point(13.5, 14.5);
+                Point result = cut.SearchFirstNearest(p, 2.0);
+
+                Assert.IsNull(result);
+            }
+        }
+
+        [TestMethod]
+        public void ShootingRangeSearchFirstNearest_hit_first()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 3.0, 4.0, 0.0, 0.0 }))
+            {
+                Point p = new Point(3.5, 4.5);
+                Point result = cut.SearchFirstNearest(p, 3.0);
+
+                Assert.IsNotNull(result);
+                Assert.AreEqual(3.0, result.X);
+                Assert.AreEqual(4.0, result.Y);
+            }
+        }
+
+        [TestMethod]
+        public void ShootingRangeSearchFirstNearest_hit_third()
+        {
+            using (ConsoleInput cin = new ConsoleInput(new List<Double> { 10.0, 1.0, -2, -10, 3.0, 4.0, 0.0, 0.0 }))
+            {
+                Point p = new Point(3.5, 4.5);
+                Point result = cut.SearchFirstNearest(p, 3.0);
+
+                Assert.IsNotNull(result);
+                Assert.AreEqual(3.0, result.X);
+                Assert.AreEqual(4.0, result.Y);
+            }
         }
     }
 }
