@@ -89,3 +89,21 @@ Project settings:
     * `~PersonService()` - unused, commented-out finalizer (to be used only in special cases)
     * `Dispose()` - implementation of a method of `IDisposable` interface
 
+## LinqToSqlLibTests
+
+Contains unit tests for `LinqToSqlLib` and provides empty database `UnitTestData.mdf` with expected schema.
+
+Project settings:
+
+* `Settings.settings` - manually added file with definition of setting `UnitTestDataConnectionString`
+  that points to `UnitTestData.mdf` in the same project
+
+## LinqToSqlApp
+
+Contains sample console application that uses `LinqToSqlLib` and provides database `PersonData.mdf` with expected schema
+and example data.
+
+Project settings:
+
+* `Settings.settings` - manually added file with definition of setting `PersonDataConnectionString`
+  that points to `PersonData.mdf` in the same project
