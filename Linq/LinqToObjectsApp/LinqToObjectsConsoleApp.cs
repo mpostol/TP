@@ -15,7 +15,7 @@ namespace LinqToObjectsApp
         {
             PrepareData();
 
-            Person[] all = service.GetAllPersons();
+            Person[] all = service.GetAllPersons().ToArray<Person>();
             Display("All persons", all);
 
             Console.WriteLine();
