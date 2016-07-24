@@ -1,14 +1,10 @@
 ﻿using NUnit.Framework;
-using LinqToObjectsLib;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LinqToObjectsLib.Tests
 {
-    [TestFixture()]
+  [TestFixture()]
     public class DataServiceTests
     {
         // Class under test.
@@ -23,7 +19,7 @@ namespace LinqToObjectsLib.Tests
         [Test]
         public void DataService_AfterCreation_CollectionIsEmpty()
         {
-            Person[] initialData = service.GetAllPersons();
+            Person[] initialData = service.GetAllPersons().ToArray<Person>();
             Assert.That(initialData.Length, Is.EqualTo(0));
         }
 
@@ -32,7 +28,7 @@ namespace LinqToObjectsLib.Tests
         {
             Person person = new Person();
             service.AddPerson(person);
-            Person[] data = service.GetAllPersons();
+            Person[] data = service.GetAllPersons().ToArray<Person>();
             Assert.That(data.Length, Is.EqualTo(1));
             Assert.That(person, Is.SameAs(data[0]));
         }
@@ -45,7 +41,7 @@ namespace LinqToObjectsLib.Tests
             {
                 service.AddPerson(p);
             }
-            Person[] dataAfterAdding = service.GetAllPersons();
+            Person[] dataAfterAdding = service.GetAllPersons().ToArray<Person>();
             Assert.That(dataAfterAdding, Has.Length.EqualTo(input.Length));
         }
 
@@ -66,7 +62,7 @@ namespace LinqToObjectsLib.Tests
         public void FilterPersonsByLastName_UseForEach_FindTwoPersons()
         {
             PrepareData();
-            Person[] filtered = service.FilterPersonsByLastName_ForEach("Person");
+            Person[] filtered = service.FilterPersonsByLastName_ForEach("Person").ToArray<Person>();
             Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
             Assert.That(filtered.Length, Is.EqualTo(2));
         }
@@ -75,7 +71,7 @@ namespace LinqToObjectsLib.Tests
         public void FilterPersonsByLastName_UseExtensionMethod_FindTwoPersons()
         {
             PrepareData();
-            Person[] filtered = service.FilterPersonsByLastName_ExtensionMethod("Person");
+            Person[] filtered = service.FilterPersonsByLastName_ExtensionMethod("Person").ToArray<Person>();
             Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
             Assert.That(filtered.Length, Is.EqualTo(2));
         }
@@ -84,7 +80,7 @@ namespace LinqToObjectsLib.Tests
         public void FilterPersonsByLastName_UseLinq_FindTwoPersons()
         {
             PrepareData();
-            Person[] filtered = service.FilterPersonsByLastName("Person");
+            Person[] filtered = service.FilterPersonsByLastName("Person").ToArray<Person>();
             Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
             Assert.That(filtered.Length, Is.EqualTo(2));
         }
