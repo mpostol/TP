@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LinqToObjectsLib;
 using System;
 using System.Collections.Generic;
@@ -8,52 +8,75 @@ using System.Threading.Tasks;
 
 namespace LinqToObjectsLib.Tests
 {
-    [TestFixture()]
+    [TestClass]
     public class DataServiceTests
     {
         // Class under test.
         private DataService service;
 
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
             service = new DataService();
         }
 
-        [Test]
+        [TestMethod]
         public void DataService_AfterCreation_CollectionIsEmpty()
         {
             IEnumerable<Person> initialData = service.GetAllPersons();
-            Assert.That(initialData.Count(), Is.EqualTo(0));
+            Assert.AreEqual(0, initialData.Count());
         }
 
-        [Test]
+        [TestMethod]
         public void AddPerson_AddedPerson_IsTheFirstAndOnlyOneInCollection()
         {
             Person person = new Person();
             service.AddPerson(person);
             IEnumerable<Person> data = service.GetAllPersons();
-            Assert.That(data.Count(), Is.EqualTo(1));
-            Assert.That(person, Is.SameAs(data.First()));
+            Assert.AreEqual(1, data.Count());
+            Assert.AreSame(data.First(), person);
         }
 
-        [Test, TestCaseSource("GetAllPersonsTest_InputCases")]
-        public void GetAllPersons_AfterAddingPersonsFromArray_CountShouldBeEqual(Person[] input)
+        [TestMethod]
+        public void GetAllPersons_AfterAdding0PersonsFromArray_CountShouldBeEqual()
         {
-            Assume.That(input.Count(), Is.GreaterThan(1));
-            foreach (Person p in input)
-            {
-                service.AddPerson(p);
-            }
+            Person[] input = GetAllPersonsTest_InputCases[0];
+            AddPersonsFromArray(input);
             IEnumerable<Person> dataAfterAdding = service.GetAllPersons();
-            Assert.That(dataAfterAdding, Has.Count.EqualTo(input.Count()));
+            Assert.AreEqual(input.Length, dataAfterAdding.Count());
         }
 
-        static object[] GetAllPersonsTest_InputCases = new Person[][] {
+        [TestMethod]
+        public void GetAllPersons_AfterAdding2PersonsFromArray_CountShouldBeEqual()
+        {
+            Person[] input = GetAllPersonsTest_InputCases[1];
+            AddPersonsFromArray(input);
+            IEnumerable<Person> dataAfterAdding = service.GetAllPersons();
+            Assert.AreEqual(input.Length, dataAfterAdding.Count());
+        }
+
+        [TestMethod]
+        public void GetAllPersons_AfterAdding3PersonsFromArray_CountShouldBeEqual()
+        {
+            Person[] input = GetAllPersonsTest_InputCases[2];
+            AddPersonsFromArray(input);
+            IEnumerable<Person> dataAfterAdding = service.GetAllPersons();
+            Assert.AreEqual(input.Length, dataAfterAdding.Count());
+        }
+
+        static Person[][] GetAllPersonsTest_InputCases = new Person[][] {
             new Person[] { },
             new Person[] { new Person("A", "One", 1), new Person("B", "Two", 2) },
             new Person[] { new Person("A", "One", 1), new Person("B", "Two", 2), new Person("C", "Three", 3) },
         };
+
+        private void AddPersonsFromArray(Person[] input)
+        {
+            foreach (Person p in input)
+            {
+                service.AddPerson(p);
+            }
+        }
 
         private void PrepareData()
         {
@@ -62,42 +85,67 @@ namespace LinqToObjectsLib.Tests
             service.AddPerson(new Person("Mister", "Clever", 42));
         }
 
-        [Test]
+        [TestMethod]
         public void FilterPersonsByLastName_UseForEach_FindTwoPersons()
         {
             PrepareData();
             IEnumerable<Person> filtered = service.FilterPersonsByLastName_ForEach("Person");
-            Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
-            Assert.That(filtered.Count(), Is.EqualTo(2));
+            foreach (Person p in filtered)
+                Assert.AreEqual("Person", p.LastName);
+            Assert.AreEqual(2, filtered.Count());
         }
 
-        [Test]
+        [TestMethod]
         public void FilterPersonsByLastName_UseExtensionMethod_FindTwoPersons()
         {
             PrepareData();
             IEnumerable<Person> filtered = service.FilterPersonsByLastName_ExtensionMethod("Person");
-            Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
-            Assert.That(filtered.Count(), Is.EqualTo(2));
+            foreach (Person p in filtered)
+                Assert.AreEqual("Person", p.LastName);
+            Assert.AreEqual(2, filtered.Count());
         }
 
-        [Test]
+        [TestMethod]
         public void FilterPersonsByLastName_UseLinq_FindTwoPersons()
         {
             PrepareData();
             IEnumerable<Person> filtered = service.FilterPersonsByLastName("Person");
-            Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
-            Assert.That(filtered.Count(), Is.EqualTo(2));
+            foreach (Person p in filtered)
+                Assert.AreEqual("Person", p.LastName);
+            Assert.AreEqual(2, filtered.Count());
         }
 
-        [TestCase(25, ExpectedResult = 2)]
-        [TestCase(40, ExpectedResult = 1)]
-        [TestCase(99, ExpectedResult = 0)]
-        public int FilterPersonsByMinAge_CheckExpectedCount_GivenMinAge(int minAge)
+        [TestMethod]
+        public void FilterPersonsByMinAge_CheckExpectedCount_GivenMinAge_25()
         {
+            const int minAge = 25, expectedCount = 2;
             PrepareData();
             IEnumerable<Person> filtered = service.FilterPersonsByMinAge(minAge);
-            Assert.That(filtered, Has.All.Property("Age").GreaterThanOrEqualTo(minAge));
-            return filtered.Count();
+            foreach (Person p in filtered)
+                Assert.IsTrue(p.Age >= minAge);
+            Assert.AreEqual(expectedCount, filtered.Count());
+        }
+
+        [TestMethod]
+        public void FilterPersonsByMinAge_CheckExpectedCount_GivenMinAge_40()
+        {
+            const int minAge = 40, expectedCount = 1;
+            PrepareData();
+            IEnumerable<Person> filtered = service.FilterPersonsByMinAge(minAge);
+            foreach (Person p in filtered)
+                Assert.IsTrue(p.Age >= minAge);
+            Assert.AreEqual(expectedCount, filtered.Count());
+        }
+
+        [TestMethod]
+        public void FilterPersonsByMinAge_CheckExpectedCount_GivenMinAge_99()
+        {
+            const int minAge = 99, expectedCount = 0;
+            PrepareData();
+            IEnumerable<Person> filtered = service.FilterPersonsByMinAge(minAge);
+            foreach (Person p in filtered)
+                Assert.IsTrue(p.Age >= minAge);
+            Assert.AreEqual(expectedCount, filtered.Count());
         }
     }
 }

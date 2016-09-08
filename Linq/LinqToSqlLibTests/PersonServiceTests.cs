@@ -1,6 +1,6 @@
 ﻿#define PRINT_PERSONS  //uncomment to print persons to the console in tests that call PrintPersons()
 
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LinqToSqlLib;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LinqToSqlLib.Tests
 {
-    [TestFixture()]
+    [TestClass]
     public class PersonServiceTests
     {
         // Connection string defined in LinqToSqlLibTests project settings.
@@ -18,13 +18,13 @@ namespace LinqToSqlLib.Tests
 
         PersonService service;
 
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
             service = new PersonService(connectionString);
         }
 
-        [TearDown]
+        [TestCleanup]
         public void CleanUp()
         {
             // Vital for ensuring that table is empty after each test
@@ -53,81 +53,83 @@ namespace LinqToSqlLib.Tests
 #endif
         }
 
-        [Test]
+        [TestMethod]
         public void PersonService_AfterCreation_DataShouldBeEmpty()
         {
             IEnumerable<Person> initialData = service.GetAllPersons();
-            Assert.That(initialData.Count(), Is.EqualTo(0));
+            Assert.AreEqual(0, initialData.Count());
         }
 
-        [Test]
+        [TestMethod]
         public void AddPerson_AddedEntity_ShouldBeTheOnlyOneAndCorrectEntity()
         {
             CreatePersons(1, "Person", 33);
             IEnumerable<Person> data = service.GetAllPersons();
             PrintPersons(data);
 
-            Assert.That(data.Count(), Is.EqualTo(1));
-            Assert.That(data.First().PersonId, Is.Not.Null);
-            Assert.That(data.First().PersonId, Is.Not.EqualTo(0));
+            Assert.AreEqual(1, data.Count());
+            Assert.IsNotNull(data.First().PersonId);
+            Assert.AreNotEqual(0, data.First().PersonId);
         }
 
-        [Test]
+        [TestMethod]
         public void GetAllPersons_ExpectCorrectEntities_WithIncreasingPersonId()
         {
-            CreatePersons(3, "Person", 20);
-            CreatePersons(2, "Smith", 11);
+            CreatePersons(3, "Person", startAge: 20);
+            CreatePersons(2, "Smith", startAge: 11);
             IEnumerable<Person> data = service.GetAllPersons();
             PrintPersons(data);
 
-            Assert.That(data.Count(), Is.EqualTo(3 + 2));
-            Assert.That(data, Has.All.Property("PersonId").Not.Null);
+            Assert.AreEqual(3 + 2, data.Count());
+            foreach (Person p in data)
+                Assert.IsNotNull(p.PersonId);
             for (int i = 1; i < data.Count(); i++)
-            {
-                Assert.That(data.ElementAt(i - 1).PersonId, Is.LessThan(data.ElementAt(i).PersonId));
-            }
+                Assert.IsTrue(data.ElementAt(i - 1).PersonId < data.ElementAt(i).PersonId);
         }
 
-        [Test]
+        [TestMethod]
         public void FilterPersonsByLastName_FilterTwoSmith_OutOfFivePersons()
         {
-            CreatePersons(3, "Person", 20);
-            CreatePersons(2, "Smith", 11);
+            CreatePersons(3, "Person", startAge: 20);
+            CreatePersons(2, "Smith", startAge: 11);
             IEnumerable<Person> data = service.FilterPersonsByLastName("Smith");
             PrintPersons(data);
 
-            Assert.That(data.Count(), Is.EqualTo(2));
-            Assert.That(data, Has.All.Property("LastName").EqualTo("Smith"));
+            Assert.AreEqual(2, data.Count());
+            foreach (Person p in data)
+                Assert.AreEqual("Smith", p.LastName);
         }
 
-        [Test]
+        [TestMethod]
         public void FilterPersonsByMinAge_FindTwoPersonsInAge25OrMore()
         {
-            CreatePersons(3, "Person", 20, 5); // ages: 20, 25, 30
-            CreatePersons(2, "Smith", 11, 2); // ages: 11, 13
+            CreatePersons(3, "Person", startAge: 20, ageStep: 5); // ages: 20, 25, 30
+            CreatePersons(2, "Smith", startAge: 11, ageStep: 2); // ages: 11, 13
             IEnumerable<Person> filtered = service.FilterPersonsByMinAge(25);
             PrintPersons(filtered);
 
-            Assert.That(filtered.Count, Is.EqualTo(2));
-            Assert.That(filtered, Has.All.Property("Age").GreaterThanOrEqualTo(25));
+            Assert.AreEqual(2, filtered.Count());
+            foreach (Person p in filtered)
+                Assert.IsTrue(p.Age >= 25);
         }
 
-        [Test]
+        [TestMethod]
         public void ChangeAgeThenFilterPersonsByMinAge_FindFourPersonsInAge25OrMore()
         {
-            CreatePersons(3, "Person", 20, 5); // ages: 20, 25, 30 - will become 20+13, 25+13, 30+13
-            CreatePersons(2, "Smith", 11, 2); // ages: 11, 13 - will become 11+13 = 24, 13+13 = 26
-            IEnumerable<Person> filtered = service.ChangeAgeThenFilterPersonsByMinAge(13, 25);
+            CreatePersons(3, "Person", startAge: 20, ageStep: 5); // ages: 20, 25, 30 - will become 20+13, 25+13, 30+13
+            CreatePersons(2, "Smith", startAge: 11, ageStep: 2); // ages: 11, 13 - will become 11+13 = 24, 13+13 = 26
+            IEnumerable<Person> filtered = service.ChangeAgeThenFilterPersonsByMinAge(change: 13, minAge: 25);
             PrintPersons(filtered);
 
-            Assert.That(filtered.Count, Is.EqualTo(4));
-            Assert.That(filtered, Has.All.Property("Age").GreaterThanOrEqualTo(25));
+            Assert.AreEqual(4, filtered.Count());
+            foreach (Person p in filtered)
+                Assert.IsTrue(p.Age >= 25);
         }
 
-        [Test]
+        [TestMethod]
         public void ChangeAgeThenFilterPersonsByMinAge_MakeOlderThenYounger_OriginalAgeShouldBeRestored()
         {
-            CreatePersons(3, "Young", 20, 5);
+            CreatePersons(3, "Young", startAge: 20, ageStep: 5);
             IEnumerable<Person> persons = service.GetAllPersons();
             int[] originalAge = new int[persons.Count()];
             for (int i = 0; i < persons.Count(); i++)
@@ -135,14 +137,15 @@ namespace LinqToSqlLib.Tests
                 originalAge[i] = persons.ElementAt(i).Age;
             }
 
-            IEnumerable<Person> oldPersons = service.ChangeAgeThenFilterPersonsByMinAge(100, 120);
-            Assert.That(oldPersons.Count, Is.EqualTo(persons.Count()));
-            Assert.That(oldPersons, Has.All.Property("Age").GreaterThanOrEqualTo(120));
+            IEnumerable<Person> oldPersons = service.ChangeAgeThenFilterPersonsByMinAge(change: 100, minAge: 120);
+            Assert.AreEqual(persons.Count(), oldPersons.Count());
+            foreach (Person p in oldPersons)
+                Assert.IsTrue(p.Age >= 120);
 
-            IEnumerable<Person> youngPersons = service.ChangeAgeThenFilterPersonsByMinAge(-100, 20).ToArray();
-            Assert.That(youngPersons.Count, Is.EqualTo(persons.Count()));
-            Assert.That(youngPersons, Has.All.Property("Age").GreaterThanOrEqualTo(20));
-            Assert.That(youngPersons, Has.All.Property("Age").LessThan(100));
+            IEnumerable<Person> youngPersons = service.ChangeAgeThenFilterPersonsByMinAge(change: -100, minAge: 20).ToArray();
+            Assert.AreEqual(persons.Count(), youngPersons.Count());
+            foreach (Person p in youngPersons)
+                Assert.IsTrue(p.Age >= 20 && p.Age < 100);
 
             int[] finalAge = new int[youngPersons.Count()];
             for (int i = 0; i < youngPersons.Count(); i++)
@@ -154,11 +157,11 @@ namespace LinqToSqlLib.Tests
             PrintPersons(youngPersons);
         }
 
-        //[Ignore("assume that Dispose just works")]
-        [Test]
+        // Ignore, or comment out [TestMethod] below
+        //[TestMethod]
         public void Dispose_DoNotReallyTest_AssumeThatDisposeJustWorks()
         {
-            Assert.Pass();
+            Assert.Inconclusive();
         }
     }
 }
