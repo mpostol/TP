@@ -29,12 +29,12 @@ namespace LinqToObjectsLib
 
         /// <summary>
         /// Retrieves a copy of all objects references from underlying collection,
-        /// as array of Persons, so original collection stays unmodified.
+        /// as enumerable source of Persons, so original collection stays unmodified.
         /// </summary>
-        /// <returns>Array of all Person objects from collection.</returns>
-        public Person[] GetAllPersons()
+        /// <returns>Enumerable source of all Person objects from collection.</returns>
+        public IEnumerable<Person> GetAllPersons()
         {
-            return persons.ToArray();
+            return new List<Person>(persons);
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace LinqToObjectsLib
         /// iteration over collection and .Equals() call for strings.
         /// </summary>
         /// <param name="lastName">Value of Person's last name - used for direct comparison in .Equals() calls.</param>
-        /// <returns>Array of Person objects that match given last name.</returns>
-        public Person[] FilterPersonsByLastName_ForEach(string lastName)
+        /// <returns>Enumerable source of Person objects that match given last name.</returns>
+        public IEnumerable<Person> FilterPersonsByLastName_ForEach(string lastName)
         {
             List<Person> result = new List<Person>();
             foreach (Person p in persons)
@@ -51,7 +51,7 @@ namespace LinqToObjectsLib
                 if (p.LastName.Equals(lastName))
                     result.Add(p);
             }
-            return result.ToArray();
+            return result;
         }
 
         /// <summary>
@@ -59,14 +59,18 @@ namespace LinqToObjectsLib
         /// extension method .Where() and lambda predicate to match each object.
         /// </summary>
         /// <param name="lastName">Value of Person's last name - used for direct comparison in .Equals() calls.</param>
-        /// <returns>Array of Person objects that match given last name.</returns>
-        public Person[] FilterPersonsByLastName_ExtensionMethod(string lastName)
+        /// <returns>Enumerable source of Person objects that match given last name.</returns>
+        public IEnumerable<Person> FilterPersonsByLastName_ExtensionMethod(string lastName)
         {
-            IEnumerable<Person> expr = persons.Where(
-                /*Predicate*/
+            IEnumerable<Person> expression = persons.Where(
+                /* Short one-line predicates are typically written as expression lambda: */
+                p => p.LastName.Equals(lastName)
+                /* The same predicate written as statement lambda:
+                 * (statemenet lambdas are similar to anonymous methods, which are BTW. discouraged)
                 (Person p) => { return p.LastName.Equals(lastName); }
+                */
             );
-            return expr.ToArray();
+            return expression;
         }
 
         /// <summary>
@@ -74,29 +78,29 @@ namespace LinqToObjectsLib
         /// LINQ to Objects expression.
         /// </summary>
         /// <param name="lastName">Value of Person's last name - used for direct comparison in .Equals() calls.</param>
-        /// <returns>Array of Person objects that match given last name.</returns>
-        public Person[] FilterPersonsByLastName(string lastName)
+        /// <returns>Enumerable source of Person objects that match given last name.</returns>
+        public IEnumerable<Person> FilterPersonsByLastName(string lastName)
         {
             //System.Linq.Enumerable.WhereListIterator
-            IEnumerable<Person> linq =
+            IEnumerable<Person> expression =
                 from Person p in persons
                 where p.LastName.Equals(lastName)
                 select p;
-            return linq.ToArray();
+            return expression;
         }
 
         /// <summary>
         /// Filters Person objects by minimum age.
         /// </summary>
         /// <param name="minAge">Minimum age of a Person to match.</param>
-        /// <returns>IEnumerable of Person objects that match or exceed given minimum age.</returns>
+        /// <returns>Enumerable source of Person objects that match or exceed given minimum age.</returns>
         public IEnumerable<Person> FilterPersonsByMinAge(int minAge)
         {
-            IEnumerable<Person> linq =
+            IEnumerable<Person> expression =
                 from Person p in persons
                 where p.Age >= minAge
                 select p;
-            return linq.ToArray();
+            return expression;
         }
     }
 }

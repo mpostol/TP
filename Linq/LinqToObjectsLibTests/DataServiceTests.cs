@@ -23,8 +23,8 @@ namespace LinqToObjectsLib.Tests
         [Test]
         public void DataService_AfterCreation_CollectionIsEmpty()
         {
-            Person[] initialData = service.GetAllPersons();
-            Assert.That(initialData.Length, Is.EqualTo(0));
+            IEnumerable<Person> initialData = service.GetAllPersons();
+            Assert.That(initialData.Count(), Is.EqualTo(0));
         }
 
         [Test]
@@ -32,21 +32,21 @@ namespace LinqToObjectsLib.Tests
         {
             Person person = new Person();
             service.AddPerson(person);
-            Person[] data = service.GetAllPersons();
-            Assert.That(data.Length, Is.EqualTo(1));
-            Assert.That(person, Is.SameAs(data[0]));
+            IEnumerable<Person> data = service.GetAllPersons();
+            Assert.That(data.Count(), Is.EqualTo(1));
+            Assert.That(person, Is.SameAs(data.First()));
         }
 
         [Test, TestCaseSource("GetAllPersonsTest_InputCases")]
-        public void GetAllPersons_AfterAddingPersonsFromArray_LengthShouldBeEqual(Person[] input)
+        public void GetAllPersons_AfterAddingPersonsFromArray_CountShouldBeEqual(Person[] input)
         {
-            Assume.That(input.Length, Is.GreaterThan(1));
+            Assume.That(input.Count(), Is.GreaterThan(1));
             foreach (Person p in input)
             {
                 service.AddPerson(p);
             }
-            Person[] dataAfterAdding = service.GetAllPersons();
-            Assert.That(dataAfterAdding, Has.Length.EqualTo(input.Length));
+            IEnumerable<Person> dataAfterAdding = service.GetAllPersons();
+            Assert.That(dataAfterAdding, Has.Count.EqualTo(input.Count()));
         }
 
         static object[] GetAllPersonsTest_InputCases = new Person[][] {
@@ -66,27 +66,27 @@ namespace LinqToObjectsLib.Tests
         public void FilterPersonsByLastName_UseForEach_FindTwoPersons()
         {
             PrepareData();
-            Person[] filtered = service.FilterPersonsByLastName_ForEach("Person");
+            IEnumerable<Person> filtered = service.FilterPersonsByLastName_ForEach("Person");
             Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
-            Assert.That(filtered.Length, Is.EqualTo(2));
+            Assert.That(filtered.Count(), Is.EqualTo(2));
         }
 
         [Test]
         public void FilterPersonsByLastName_UseExtensionMethod_FindTwoPersons()
         {
             PrepareData();
-            Person[] filtered = service.FilterPersonsByLastName_ExtensionMethod("Person");
+            IEnumerable<Person> filtered = service.FilterPersonsByLastName_ExtensionMethod("Person");
             Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
-            Assert.That(filtered.Length, Is.EqualTo(2));
+            Assert.That(filtered.Count(), Is.EqualTo(2));
         }
 
         [Test]
         public void FilterPersonsByLastName_UseLinq_FindTwoPersons()
         {
             PrepareData();
-            Person[] filtered = service.FilterPersonsByLastName("Person");
+            IEnumerable<Person> filtered = service.FilterPersonsByLastName("Person");
             Assert.That(filtered, Has.All.Property("LastName").EqualTo("Person"));
-            Assert.That(filtered.Length, Is.EqualTo(2));
+            Assert.That(filtered.Count(), Is.EqualTo(2));
         }
 
         [TestCase(25, ExpectedResult = 2)]

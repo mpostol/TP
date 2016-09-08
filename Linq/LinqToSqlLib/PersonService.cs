@@ -37,26 +37,26 @@ namespace LinqToSqlLib
         }
 
         /// <summary>
-        /// Retrieves all Person entities as array of Persons, using database context.
+        /// Retrieves all Person entities as list of Persons, using database context.
         /// </summary>
-        /// <returns>Array of all Person entities read from database context.</returns>
-        public Person[] GetAllPersons()
+        /// <returns>List of all Person entities read from database context.</returns>
+        public List<Person> GetAllPersons()
         {
-            return context.Persons.ToArray();
+            return context.Persons.ToList();
         }
 
         /// <summary>
         /// Retrieves Person entities filtered by last name, using LINQ and database context.
         /// </summary>
         /// <param name="lastName">Value of Person's last name - used for direct comparison in .Equals() calls.</param>
-        /// <returns>Array of Person entities that match given last name.</returns>
-        public Person[] FilterPersonsByLastName(string lastName)
+        /// <returns>Queryable source of Person entities that match given last name.</returns>
+        public IQueryable<Person> FilterPersonsByLastName(string lastName)
         {
-            IQueryable<Person> linq =
+            IQueryable<Person> expression =
                 from Person p in context.Persons
                 where p.LastName.Equals(lastName)
                 select p;
-            return linq.ToArray();
+            return expression;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace LinqToSqlLib
         /// for example when .Enumerator(), .ToArray() or .ToList() is called upon the expression.
         /// </summary>
         /// <param name="minAge">Minimum age of a Person to match.</param>
-        /// <returns>LINQ expression as IQueryable&lt;Person&gt;.</returns>
+        /// <returns>LINQ expression as queryable source of Person objects.</returns>
         internal IQueryable<Person> PreparePersonsByMinAgeLinq(int minAge)
         {
             return
@@ -79,11 +79,11 @@ namespace LinqToSqlLib
         /// Retrieves Person entities filtered by minimum age, using LINQ and database context.
         /// </summary>
         /// <param name="minAge">Minimum age of a Person to match.</param>
-        /// <returns>Array of Person entities that match or exceed given minimum age.</returns>
+        /// <returns>Enumerable source of Person entities that match or exceed given minimum age.</returns>
         public IEnumerable<Person> FilterPersonsByMinAge(int minAge)
         {
             IQueryable<Person> linq = PreparePersonsByMinAgeLinq(minAge);
-            return linq.ToList();
+            return linq;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace LinqToSqlLib
         /// </summary>
         /// <param name="change">Number of years (positive or negative) to add to age of each Person.</param>
         /// <param name="minAge">Minimum age of a Person to match.</param>
-        /// <returns>Array of Person entities that match or exceed given minimum age.</returns>
+        /// <returns>Enumerable source of Person entities that match or exceed given minimum age.</returns>
         public IEnumerable<Person> ChangeAgeThenFilterPersonsByMinAge(int change, int minAge)
         {
             IQueryable<Person> linq = PreparePersonsByMinAgeLinq(minAge);

@@ -16,7 +16,7 @@ namespace LinqToSqlApp
 
             using (PersonService service = new PersonService(connectionString))
             {
-                Person[] all = service.GetAllPersons();
+                IEnumerable<Person> all = service.GetAllPersons();
                 Display("Everyone", all);
 
                 Console.WriteLine();

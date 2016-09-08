@@ -15,7 +15,7 @@ namespace LinqToObjectsApp
         {
             PrepareData();
 
-            Person[] all = service.GetAllPersons();
+            IEnumerable<Person> all = service.GetAllPersons();
             Display("All persons", all);
 
             Console.WriteLine();

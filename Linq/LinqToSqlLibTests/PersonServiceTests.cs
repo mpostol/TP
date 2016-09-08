@@ -56,20 +56,20 @@ namespace LinqToSqlLib.Tests
         [Test]
         public void PersonService_AfterCreation_DataShouldBeEmpty()
         {
-            Person[] initialData = service.GetAllPersons();
-            Assert.That(initialData.Length, Is.EqualTo(0));
+            IEnumerable<Person> initialData = service.GetAllPersons();
+            Assert.That(initialData.Count(), Is.EqualTo(0));
         }
 
         [Test]
         public void AddPerson_AddedEntity_ShouldBeTheOnlyOneAndCorrectEntity()
         {
             CreatePersons(1, "Person", 33);
-            Person[] data = service.GetAllPersons();
+            IEnumerable<Person> data = service.GetAllPersons();
             PrintPersons(data);
 
-            Assert.That(data.Length, Is.EqualTo(1));
-            Assert.That(data[0].PersonId, Is.Not.Null);
-            Assert.That(data[0].PersonId, Is.Not.EqualTo(0));
+            Assert.That(data.Count(), Is.EqualTo(1));
+            Assert.That(data.First().PersonId, Is.Not.Null);
+            Assert.That(data.First().PersonId, Is.Not.EqualTo(0));
         }
 
         [Test]
@@ -77,14 +77,14 @@ namespace LinqToSqlLib.Tests
         {
             CreatePersons(3, "Person", 20);
             CreatePersons(2, "Smith", 11);
-            Person[] data = service.GetAllPersons();
+            IEnumerable<Person> data = service.GetAllPersons();
             PrintPersons(data);
 
-            Assert.That(data.Length, Is.EqualTo(3 + 2));
+            Assert.That(data.Count(), Is.EqualTo(3 + 2));
             Assert.That(data, Has.All.Property("PersonId").Not.Null);
-            for (int i = 1; i < data.Length; i++)
+            for (int i = 1; i < data.Count(); i++)
             {
-                Assert.That(data[i - 1].PersonId, Is.LessThan(data[i].PersonId));
+                Assert.That(data.ElementAt(i - 1).PersonId, Is.LessThan(data.ElementAt(i).PersonId));
             }
         }
 
@@ -93,10 +93,10 @@ namespace LinqToSqlLib.Tests
         {
             CreatePersons(3, "Person", 20);
             CreatePersons(2, "Smith", 11);
-            Person[] data = service.FilterPersonsByLastName("Smith");
+            IEnumerable<Person> data = service.FilterPersonsByLastName("Smith");
             PrintPersons(data);
 
-            Assert.That(data.Length, Is.EqualTo(2));
+            Assert.That(data.Count(), Is.EqualTo(2));
             Assert.That(data, Has.All.Property("LastName").EqualTo("Smith"));
         }
 
@@ -128,26 +128,26 @@ namespace LinqToSqlLib.Tests
         public void ChangeAgeThenFilterPersonsByMinAge_MakeOlderThenYounger_OriginalAgeShouldBeRestored()
         {
             CreatePersons(3, "Young", 20, 5);
-            Person[] persons = service.GetAllPersons();
-            int[] originalAge = new int[persons.Length];
-            for (int i = 0; i < persons.Length; i++)
+            IEnumerable<Person> persons = service.GetAllPersons();
+            int[] originalAge = new int[persons.Count()];
+            for (int i = 0; i < persons.Count(); i++)
             {
-                originalAge[i] = persons[i].Age;
+                originalAge[i] = persons.ElementAt(i).Age;
             }
 
             IEnumerable<Person> oldPersons = service.ChangeAgeThenFilterPersonsByMinAge(100, 120);
-            Assert.That(oldPersons.Count, Is.EqualTo(persons.Length));
+            Assert.That(oldPersons.Count, Is.EqualTo(persons.Count()));
             Assert.That(oldPersons, Has.All.Property("Age").GreaterThanOrEqualTo(120));
 
-            Person[] youngPersons = service.ChangeAgeThenFilterPersonsByMinAge(-100, 20).ToArray();
-            Assert.That(youngPersons.Count, Is.EqualTo(persons.Length));
+            IEnumerable<Person> youngPersons = service.ChangeAgeThenFilterPersonsByMinAge(-100, 20).ToArray();
+            Assert.That(youngPersons.Count, Is.EqualTo(persons.Count()));
             Assert.That(youngPersons, Has.All.Property("Age").GreaterThanOrEqualTo(20));
             Assert.That(youngPersons, Has.All.Property("Age").LessThan(100));
 
-            int[] finalAge = new int[youngPersons.Length];
-            for (int i = 0; i < youngPersons.Length; i++)
+            int[] finalAge = new int[youngPersons.Count()];
+            for (int i = 0; i < youngPersons.Count(); i++)
             {
-                finalAge[i] = youngPersons[i].Age;
+                finalAge[i] = youngPersons.ElementAt(i).Age;
             }
             CollectionAssert.AreEqual(originalAge, finalAge);
 
