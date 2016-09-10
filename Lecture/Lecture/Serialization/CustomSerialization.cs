@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TP.Lecture.Serialization
 {
   /// <summary>
-  /// Class DynamicClass - Demonstrates custom serialization approach
+  /// Class CustomSerialization - Demonstrates custom serialization approach
   /// </summary>
   /// <seealso cref="System.Runtime.Serialization.ISerializable" />
   public class CustomSerialization : ISerializable

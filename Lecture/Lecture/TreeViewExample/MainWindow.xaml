@@ -6,22 +6,21 @@
         xmlns:local="clr-namespace:TP.Lecture.TreeViewExample"
         mc:Ignorable="d"
         Title="Aplikacja" Height="350" Width="525">
-    <Grid>
-        <TreeView Name="TreeView" Margin="312,19,8,23" RenderTransformOrigin="0.5,0.5" ItemsSource="{Binding  HierarchicalAreas}">
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
-                    <TextBlock Text="{Binding Path=Name}" Margin="0,0,4,0" />
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-            <TreeView.ItemContainerStyle>
-                <Style TargetType="TreeViewItem">
-                    <Setter Property="IsExpanded" Value="{Binding isExpanded, Mode=TwoWay}" />
-                </Style>
-            </TreeView.ItemContainerStyle>
-        </TreeView>
-
-        <Button x:Name="LoadDLL" Content="Show TreeView" Visibility="{Binding ChangeControlVisibility,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"  Command="{Binding Click_Button}" HorizontalAlignment="Left" Margin="82,150,0,0" VerticalAlignment="Top" Width="133" Height="86" />
-        <TextBox Text="{Binding Mode=OneWay,Path=PathVariable,UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="25" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="257"/>
-        <Button x:Name="Browse" Content="Browse" Command="{Binding Click_Browse}" HorizontalAlignment="Left" Margin="192,78,0,0" VerticalAlignment="Top" Width="75"/>
-    </Grid>
+  <Grid>
+    <TreeView Name="TreeView" Margin="312,19,8,23" RenderTransformOrigin="0.5,0.5" ItemsSource="{Binding  HierarchicalAreas}">
+      <TreeView.ItemTemplate>
+        <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+          <TextBlock Text="{Binding Path=Name}" Margin="0,0,4,0" />
+        </HierarchicalDataTemplate>
+      </TreeView.ItemTemplate>
+      <TreeView.ItemContainerStyle>
+        <Style TargetType="TreeViewItem">
+          <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+        </Style>
+      </TreeView.ItemContainerStyle>
+    </TreeView>
+    <Button x:Name="LoadDLL" Content="Show TreeView" Visibility="{Binding ChangeControlVisibility,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"  Command="{Binding Click_Button}" HorizontalAlignment="Left" Margin="82,150,0,0" VerticalAlignment="Top" Width="133" Height="86" />
+    <TextBox Text="{Binding Mode=OneWay,Path=PathVariable,UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="25" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="257"/>
+    <Button x:Name="Browse" Content="Browse" Command="{Binding Click_Browse}" HorizontalAlignment="Left" Margin="192,78,0,0" VerticalAlignment="Top" Width="75"/>
+  </Grid>
 </Window>

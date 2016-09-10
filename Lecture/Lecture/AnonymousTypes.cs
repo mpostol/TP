@@ -20,7 +20,7 @@ namespace TP.Lecture
     dynamic v = new { Amount = 108, Message = "Hello" };
 
     /// <summary>
-    /// Anonymouses types compatybility.
+    /// Anonymous types compatibility.
     /// </summary>
     /// <returns>System.String.</returns>
     public string AnonymousTypesMyTestMethod2()
