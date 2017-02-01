@@ -3,7 +3,7 @@
   /// <summary>
   /// Class StaticClass - demonstrates:
   ///   - initialization issues for static class
-  ///   - castom serialization
+  ///   - custom serialization
   ///   - state representation
   ///   - API representation
   /// </summary>
@@ -58,7 +58,7 @@
       return (m_Field11 + m_Field12) / 2;
     }
 
-    #region static
+    #region private
     private static double m_Field11 = 0;
     private static double m_Field12 = 0;
     #endregion

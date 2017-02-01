@@ -31,8 +31,7 @@ namespace TP.Lecture
     /// <returns>System.String.</returns>
     public string FromClauseExample2()
     {
-      // Example #1: var is optional because 
-      // the select clause specifies a string 
+      // Example #1: var is optional because the select clause specifies a string 
       string[] words = new string[] { "apple", "strawberry", "grape", "peach", "banana" };
       //var wordQuery = from word in words
       IEnumerable<string> wordQuery = from word in words
