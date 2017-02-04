@@ -10,6 +10,10 @@ Lecture/Lesson2UnitTest/obj/
 /DependencyInjection/DependencyInjectionUnitTest/bin
 /DependencyInjection/DependencyInjectionUnitTest/obj
 /DependencyInjection/TestResults
-/Lecture/TestResults
-/Presenting working data outside the application/C#/bin
+/MVVMExample/.vs
+/MVVMExample/MVVMExample.UnitTest/bin
+/MVVMExample/MVVMExample.UnitTest/obj
+/MVVMExample/MVVMExample/obj
+/MVVMExample/MVVMExample/bin
+/MVVMExample/packages
 /Lecture/.vs
