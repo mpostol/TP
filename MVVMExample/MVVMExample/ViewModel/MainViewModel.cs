@@ -1,23 +1,15 @@
 
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-
+using TP.MVVMExample.MVVMLight;
 
 namespace TP.MVVMExample.ViewModel
 {
   /// <summary>
   /// This class contains properties that the <see cref="MainWindow"/> can data bind to.
-  /// <para>
-  /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-  /// </para>
-  /// <para>
-  /// See http://www.galasoft.ch/mvvm
-  /// </para>
   /// </summary>
-  public class MainViewModel : ViewModelBase
+  internal class MainViewModel : ViewModelBase
   {
 
     #region constructors
@@ -42,7 +34,7 @@ namespace TP.MVVMExample.ViewModel
       set
       {
         m_Users = value;
-        RaisePropertyChanged("Users");
+        RaisePropertyChanged();
       }
     }
     public User CurrentUser
@@ -54,7 +46,7 @@ namespace TP.MVVMExample.ViewModel
       set
       {
         m_CurrentUser = value;
-        RaisePropertyChanged("CurrentUser");
+        RaisePropertyChanged();
       }
     }
     public string ActionText
@@ -64,7 +56,7 @@ namespace TP.MVVMExample.ViewModel
       {
         m_ActionText = value;
         MyCommand.RaiseCanExecuteChanged();
-        RaisePropertyChanged("ActionText");
+        RaisePropertyChanged();
       }
     }
     public RelayCommand MyCommand

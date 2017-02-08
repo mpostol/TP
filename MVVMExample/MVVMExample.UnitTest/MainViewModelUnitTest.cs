@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TP.MVVMExample.ViewModel;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Windows;
+using TP.MVVMExample.ViewModel;
 
 namespace TP.MVVMExample.UnitTest
 {
@@ -18,7 +18,6 @@ namespace TP.MVVMExample.UnitTest
       Assert.IsNotNull(_vm.Users);
       Assert.IsNotNull(_vm.CurrentUser);
       Assert.IsTrue(_vm.MyCommand.CanExecute(null));
-      Assert.IsFalse(_vm.IsInDesignMode);
     }
     [TestMethod]
     public void MyCommandTest()
