@@ -19,8 +19,8 @@ namespace TP.MVVMExample.ViewModel
     /// </summary>
     public MainViewModel()
     {
-      DataLayer = new DataLayer();
-      MyCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
+      FetchDataCommend = new RelayCommand(() => DataLayer = new DataLayer());
+      DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
       m_ActionText = "Text to be displayed on the popup";
     }
     #endregion
@@ -53,15 +53,22 @@ namespace TP.MVVMExample.ViewModel
       set
       {
         m_ActionText = value;
-        MyCommand.RaiseCanExecuteChanged();
+        DisplayTextCommand.RaiseCanExecuteChanged();
         RaisePropertyChanged();
       }
     }
-    public RelayCommand MyCommand
+    public RelayCommand DisplayTextCommand
     {
       get;
       private set;
     }
+    /// <summary>
+    /// Gets the commend responsible to fetch data.
+    /// </summary>
+    public RelayCommand FetchDataCommend
+    {
+      get; private set;
+    } 
     #endregion
 
     #region Unit test instrumentation
@@ -81,7 +88,7 @@ namespace TP.MVVMExample.ViewModel
       {
         m_DataLayer = value; Users = new ObservableCollection<User>(value.User);
       }
-    } 
+    }
     #endregion
 
     #region Private stuff

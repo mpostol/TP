@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TP.MVVMExample"
         xmlns:vm="clr-namespace:TP.MVVMExample.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="Auto">
   <Window.Resources>
     <vm:MainViewModel x:Key="UserViewModel" />
   </Window.Resources>
@@ -20,7 +20,7 @@
       <RowDefinition/>
       <RowDefinition/>
     </Grid.RowDefinitions>
-    <ListBox ItemsSource="{Binding Users}" SelectedItem="{Binding CurrentUser}">
+    <ListBox ItemsSource="{Binding Users}" SelectedItem="{Binding CurrentUser}" Grid.Column="0" Grid.Row="0">
       <ListBox.ItemTemplate>
         <DataTemplate>
           <StackPanel Orientation="Vertical">
@@ -31,9 +31,17 @@
         </DataTemplate>
       </ListBox.ItemTemplate>
     </ListBox>
-    <Button Content="Click to display text below" Grid.Column="0" Grid.Row="1" Command="{Binding MyCommand}"/>
-    <TextBox Text="{Binding ActionText}" Grid.Column="0" Grid.Row="2"/>
-    <TextBox Text="{Binding CurrentUser.Name}" Grid.Column="1" Grid.Row="1" />
-    <TextBox Text="{Binding CurrentUser.Age}" Grid.Column="1" Grid.Row="2" />
+    <Grid Grid.Column="1" Grid.Row="0">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <TextBox Text="{Binding CurrentUser.Name}" Grid.Column="0" Grid.Row="0" />
+      <TextBox Text="{Binding CurrentUser.Age}" Grid.Column="0" Grid.Row="1" />
+    </Grid>
+    <Button Content="Fetch data" Grid.Column="0" Grid.Row="1" Command="{Binding FetchDataCommend}"/>
+    <TextBlock Text="Click the button above to load new data" Grid.Column="0" Grid.Row="2" Width="Auto"/>
+    <Button Content="Click to display text below" Grid.Column="1" Grid.Row="1" Command="{Binding DisplayTextCommand}"/>
+    <TextBox Text="{Binding ActionText}" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" />
   </Grid>
 </Window>
