@@ -1,6 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Windows;
+using TP.MVVMExample.Model;
 using TP.MVVMExample.ViewModel;
 
 namespace TP.MVVMExample.UnitTest
@@ -16,7 +18,7 @@ namespace TP.MVVMExample.UnitTest
       Assert.IsNotNull(_vm.MessageBoxShowDelegate);
       Assert.IsNotNull(_vm.MyCommand);
       Assert.IsNotNull(_vm.Users);
-      Assert.IsNotNull(_vm.CurrentUser);
+      Assert.IsNull(_vm.CurrentUser);
       Assert.IsTrue(_vm.MyCommand.CanExecute(null));
     }
     [TestMethod]
@@ -45,7 +47,16 @@ namespace TP.MVVMExample.UnitTest
       Assert.IsTrue(_vm.MyCommand.CanExecute(null));
       _vm.ActionText = String.Empty;
       Assert.IsFalse(_vm.MyCommand.CanExecute(null));
-
+    }
+    [TestMethod]
+    public void DataLayerTestMethod()
+    {
+      DataLayer _dl = new DataLayer();
+      MainViewModel _vm = new MainViewModel();
+      Assert.IsNotNull(_vm.DataLayer);
+      Assert.AreNotSame(_vm.DataLayer, _dl);
+      _vm.DataLayer = _dl;
+      Assert.AreSame(_vm.DataLayer, _dl);
     }
   }
 }

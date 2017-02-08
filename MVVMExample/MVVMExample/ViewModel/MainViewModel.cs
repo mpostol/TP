@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using TP.MVVMExample.Model;
 using TP.MVVMExample.MVVMLight;
 
 namespace TP.MVVMExample.ViewModel
@@ -18,12 +19,9 @@ namespace TP.MVVMExample.ViewModel
     /// </summary>
     public MainViewModel()
     {
+      DataLayer = new DataLayer();
       MyCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
       m_ActionText = "Text to be displayed on the popup";
-      Users = new ObservableCollection<User>();
-      Users.Add(new User() { Age = 21, Name = "Jan", Active = true });
-      Users.Add(new User() { Age = 22, Name = "Stefan", Active = false });
-      CurrentUser = Users[0];
     }
     #endregion
 
@@ -76,9 +74,18 @@ namespace TP.MVVMExample.ViewModel
     /// </remarks>
     /// <value>The message box show delegate.</value>
     internal Func<string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult> MessageBoxShowDelegate { get; set; } = MessageBox.Show;
+    internal DataLayer DataLayer
+    {
+      get { return m_DataLayer; }
+      set
+      {
+        m_DataLayer = value; Users = new ObservableCollection<User>(value.User);
+      }
+    } 
     #endregion
 
     #region Private stuff
+    private DataLayer m_DataLayer;
     private User m_CurrentUser;
     private string m_ActionText;
     private ObservableCollection<User> m_Users;
