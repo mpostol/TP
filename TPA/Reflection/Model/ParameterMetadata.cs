@@ -1,16 +1,18 @@
-﻿//Copyright (C) Microsoft Corporation.  All rights reserved.
-
+﻿
 namespace TPA.Reflection.Model
 {
   internal class ParameterMetadata
   {
-    private string name;
-    private TypeMetadata typeMetadata;
 
     public ParameterMetadata(string name, TypeMetadata typeMetadata)
     {
-      this.name = name;
-      this.typeMetadata = typeMetadata;
+      this.m_Name = name;
+      this.m_TypeMetadata = typeMetadata;
     }
+    
+    //private vars
+    private string m_Name;
+    private TypeMetadata m_TypeMetadata;
+
   }
 }

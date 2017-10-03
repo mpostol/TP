@@ -1,30 +1,26 @@
-﻿//Copyright (C) Microsoft Corporation.  All rights reserved.
-
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace TPA.Reflection.Model
 {
-  internal class AssemblyMetadata
+  public class AssemblyMetadata
   {
-    private string name;
-    private IEnumerable<NamespaceMetadata> enumerable;
 
-    private AssemblyMetadata(string name, IEnumerable<NamespaceMetadata> enumerable)
+    internal AssemblyMetadata(Assembly assembly)
     {
-      this.name = name;
-      this.enumerable = enumerable;
+      m_Name = assembly.ManifestModule.Name;
+      m_Namespaces = from Type _type in assembly.GetTypes()
+                     where _type.GetVisible()
+                     group _type by _type.GetNamespace() into _group
+                     orderby _group.Key
+                     select new NamespaceMetadata(_group.Key, _group);
     }
-    internal static AssemblyMetadata EmitAssembly(Assembly assembly)
-    {
-      return new AssemblyMetadata(assembly.ManifestModule.Name,
-                  from type in assembly.GetTypes()
-                  where type.GetVisible()
-                  group type by TypeMetadata.GetNamespace(type) into g
-                  orderby g.Key
-                  select NamespaceMetadata.EmitNamespace(g.Key, g));
-    }
+
+    private string m_Name;
+    private IEnumerable<NamespaceMetadata> m_Namespaces;
 
   }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Reflection;
 
 namespace TPA.Reflection.Model
@@ -14,5 +15,11 @@ namespace TPA.Reflection.Model
     {
       return method != null && (method.IsPublic || method.IsFamily || method.IsFamilyAndAssembly);
     }
+    internal static string GetNamespace(this Type type)
+    {
+      string ns = type.Namespace;
+      return ns != null ? ns : string.Empty;
+    }
+
   }
 }

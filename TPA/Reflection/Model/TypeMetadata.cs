@@ -1,38 +1,15 @@
-﻿//Copyright (C) Microsoft Corporation.  All rights reserved.
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace TPA.Reflection.Model
 {
   internal class TypeMetadata
   {
-    private string m_typeName;
-    private string m_NamespaceName;
-    private TypeMetadata m_BaseType;
-    private IEnumerable<TypeMetadata> m_GenericArguments;
-    private Tuple<AccessLevel, SealedEnum, AbstractENum> m_Modifiers;
-    private TypeKind m_TypeKind;
-    private IEnumerable<TypeMetadata> m_ImplementedInterfaces;
-    private IEnumerable<TypeMetadata> m_NestedTypes;
-    private IEnumerable<PropertyMetadata> m_Properties;
-    private TypeMetadata m_DeclaringType;
-    private IEnumerable<MethodMetadata> m_Methods;
-    private IEnumerable<MethodMetadata> m_Constructors;
 
-
-    public TypeMetadata(string typeName, string namespaceName)
-    {
-      m_typeName = typeName;
-      m_NamespaceName = namespaceName;
-    }
-    public TypeMetadata(string typeName, string namespaceName, IEnumerable<TypeMetadata> genericArguments) : this(typeName, namespaceName)
-    {
-      m_GenericArguments = genericArguments;
-    }
-    private TypeMetadata(Type type)
+    #region constructors
+    internal TypeMetadata(Type type)
     {
       m_typeName = type.Name;
       m_DeclaringType = EmitDeclaringType(type.DeclaringType);
@@ -45,39 +22,54 @@ namespace TPA.Reflection.Model
       m_BaseType = EmitExtends(type);
       m_Properties = PropertyMetadata.EmitProperties(type.GetProperties());
       m_TypeKind = GetTypeKind(type);
+      m_Attributes = type.GetCustomAttributes(false).Cast<Attribute>();
     }
-    internal static TypeMetadata EmitType(Type type)
+    #endregion
+
+    #region API
+    internal enum TypeKind
     {
-      return new TypeMetadata(type);
+      EnumType, StructType, InterfaceType, ClassType
     }
     internal static TypeMetadata EmitReference(Type type)
     {
       if (!type.IsGenericType)
-        return new TypeMetadata(type.Name, GetNamespace(type));
+        return new TypeMetadata(type.Name, type.GetNamespace());
       else
-        return new TypeMetadata(type.Name, GetNamespace(type), EmitGenericArguments(type.GetGenericArguments()));
+        return new TypeMetadata(type.Name, type.GetNamespace(), EmitGenericArguments(type.GetGenericArguments()));
     }
-    internal static IEnumerable<TypeMetadata> EmitGenericArguments(IEnumerable<Type> args)
+    internal static IEnumerable<TypeMetadata> EmitGenericArguments(IEnumerable<Type> arguments)
     {
-      return from Type arg in args select EmitReference(arg);
+      return from Type _argument in arguments select EmitReference(_argument);
     }
-    internal static string GetNamespace(Type type)
+    #endregion
+
+    #region private
+    //vars
+    private string m_typeName;
+    private string m_NamespaceName;
+    private TypeMetadata m_BaseType;
+    private IEnumerable<TypeMetadata> m_GenericArguments;
+    private Tuple<AccessLevel, SealedEnum, AbstractENum> m_Modifiers;
+    private TypeKind m_TypeKind;
+    private IEnumerable<Attribute> m_Attributes;
+    private IEnumerable<TypeMetadata> m_ImplementedInterfaces;
+    private IEnumerable<TypeMetadata> m_NestedTypes;
+    private IEnumerable<PropertyMetadata> m_Properties;
+    private TypeMetadata m_DeclaringType;
+    private IEnumerable<MethodMetadata> m_Methods;
+    private IEnumerable<MethodMetadata> m_Constructors;
+    //constructors
+    private TypeMetadata(string typeName, string namespaceName)
     {
-      string ns = type.Namespace;
-      return ns != null ? ns : string.Empty;
+      m_typeName = typeName;
+      m_NamespaceName = namespaceName;
     }
-    internal static TypeMetadata EmitReturnType(MethodBase method)
+    private TypeMetadata(string typeName, string namespaceName, IEnumerable<TypeMetadata> genericArguments) : this(typeName, namespaceName)
     {
-      MethodInfo methodInfo = method as MethodInfo;
-      if (methodInfo == null)
-        return null;
-      return EmitReference(methodInfo.ReturnType);
+      m_GenericArguments = genericArguments;
     }
-    internal static IEnumerable<ParameterMetadata> EmitParameters(IEnumerable<ParameterInfo> parms)
-    {
-      return from parm in parms
-             select new ParameterMetadata(parm.Name, EmitReference(parm.ParameterType));
-    }
+    //methods
     private TypeMetadata EmitDeclaringType(Type declaringType)
     {
       if (declaringType == null)
@@ -88,7 +80,7 @@ namespace TPA.Reflection.Model
     {
       return from _type in nestedTypes
              where _type.GetVisible()
-             select EmitType(_type);
+             select new TypeMetadata(_type);
     }
     private IEnumerable<TypeMetadata> EmitImplements(IEnumerable<Type> interfaces)
     {
@@ -126,6 +118,7 @@ namespace TPA.Reflection.Model
         return null;
       return EmitReference(baseType);
     }
+    #endregion
 
   }
 }

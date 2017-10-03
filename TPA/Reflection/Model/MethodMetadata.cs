@@ -1,5 +1,4 @@
-﻿//Copyright (C) Microsoft Corporation.  All rights reserved.
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,30 +10,43 @@ namespace TPA.Reflection.Model
   internal class MethodMetadata
   {
 
-    private string name;
-    private IEnumerable<TypeMetadata> enumerable1;
-    private Tuple<AccessLevel, AbstractENum, StaticEnum, VirtualEnum> m_Modifiers;
-    private TypeMetadata typeMetadata;
-    private bool m_Extension;
-    private IEnumerable<ParameterMetadata> enumerable2;
-
-    public MethodMetadata(MethodBase method, IEnumerable<TypeMetadata> enumerable1, TypeMetadata typeMetadata, IEnumerable<ParameterMetadata> enumerable2)
-    {
-      this.name = method.Name;
-      this.enumerable1 = enumerable1;
-      this.typeMetadata = typeMetadata;
-      this.enumerable2 = enumerable2;
-      m_Modifiers = EmitModifiers(method);
-      this.m_Extension = EmitExtension(method);
-    }
     internal static IEnumerable<MethodMetadata> EmitMethods(IEnumerable<MethodBase> methods)
     {
       return from MethodBase _currentMethod in methods
              where _currentMethod.GetVisible()
-             select new MethodMetadata(_currentMethod,
-                          !_currentMethod.IsGenericMethodDefinition ? null : TypeMetadata.EmitGenericArguments(_currentMethod.GetGenericArguments()),
-                          TypeMetadata.EmitReturnType(_currentMethod),
-                          TypeMetadata.EmitParameters(_currentMethod.GetParameters()));
+             select new MethodMetadata(_currentMethod);
+    }
+
+    #region private
+    //vars
+    private string m_Name;
+    private IEnumerable<TypeMetadata> m_GenericArguments;
+    private Tuple<AccessLevel, AbstractENum, StaticEnum, VirtualEnum> m_Modifiers;
+    private TypeMetadata m_ReturnType;
+    private bool m_Extension;
+    private IEnumerable<ParameterMetadata> m_Parameters;
+    //constructor
+    private MethodMetadata(MethodBase method)
+    {
+      m_Name = method.Name;
+      m_GenericArguments = !method.IsGenericMethodDefinition ? null : TypeMetadata.EmitGenericArguments(method.GetGenericArguments());
+      m_ReturnType = EmitReturnType(method);
+      m_Parameters = EmitParameters(method.GetParameters());
+      m_Modifiers = EmitModifiers(method);
+      m_Extension = EmitExtension(method);
+    }
+    //methods
+    private static IEnumerable<ParameterMetadata> EmitParameters(IEnumerable<ParameterInfo> parms)
+    {
+      return from parm in parms
+             select new ParameterMetadata(parm.Name, TypeMetadata.EmitReference(parm.ParameterType));
+    }
+    private static TypeMetadata EmitReturnType(MethodBase method)
+    {
+      MethodInfo methodInfo = method as MethodInfo;
+      if (methodInfo == null)
+        return null;
+      return TypeMetadata.EmitReference(methodInfo.ReturnType);
     }
     private static bool EmitExtension(MethodBase method)
     {
@@ -60,6 +72,7 @@ namespace TPA.Reflection.Model
         _virtual = VirtualEnum.Virtual;
       return new Tuple<AccessLevel, AbstractENum, StaticEnum, VirtualEnum>(_access, _abstract, _static, _virtual);
     }
+    #endregion
 
   }
 }

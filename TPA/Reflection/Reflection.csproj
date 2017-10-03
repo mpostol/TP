@@ -49,7 +49,6 @@
     <Compile Include="Model\SealedEnum.cs" />
     <Compile Include="Model\NamespaceMetadata.cs" />
     <Compile Include="Model\StaticEnum.cs" />
-    <Compile Include="Model\TypeKind.cs" />
     <Compile Include="Model\TypeMetadata.cs" />
     <Compile Include="Model\VirtualEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
