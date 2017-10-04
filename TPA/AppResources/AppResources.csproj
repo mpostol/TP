@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{80CD9772-8724-40D4-AC68-4148FBE05E82}</ProjectGuid>
+    <ProjectGuid>{8BA5C9B2-71C5-4F4A-A368-DEC60202C544}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TPA.Reflection</RootNamespace>
-    <AssemblyName>TPA.Reflection</AssemblyName>
+    <RootNamespace>AppResources</RootNamespace>
+    <AssemblyName>AppResources</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,27 +40,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LocalizedDescriptionAttribute.cs" />
-    <Compile Include="Model\AbstractENum.cs" />
-    <Compile Include="Model\AccessLevel.cs" />
-    <Compile Include="Model\ExtensionMethods.cs" />
-    <Compile Include="Model\MethodMetadata.cs" />
-    <Compile Include="Model\ParameterMetadata.cs" />
-    <Compile Include="Model\PropertyMetadata.cs" />
-    <Compile Include="Model\SealedEnum.cs" />
-    <Compile Include="Model\NamespaceMetadata.cs" />
-    <Compile Include="Model\StaticEnum.cs" />
-    <Compile Include="Model\TypeMetadata.cs" />
-    <Compile Include="Model\VirtualEnum.cs" />
+    <Compile Include="DefaultAppResourcesProxy.cs" />
+    <Compile Include="Interfaces\IAppResourcesProxy.cs" />
+    <Compile Include="Interfaces\ICultureInfoProvider.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AppResources.pl-PL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.pl-PL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AppResourcesProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflector.cs" />
-    <Compile Include="Model\AssemblyMetadata.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppResources\AppResources.csproj">
-      <Project>{8ba5c9b2-71c5-4f4a-a368-dec60202c544}</Project>
-      <Name>AppResources</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Resources\AppResources.pl-PL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
