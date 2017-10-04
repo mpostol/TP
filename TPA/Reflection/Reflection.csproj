@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalizedDescription.cs" />
     <Compile Include="Model\AbstractENum.cs" />
     <Compile Include="Model\AccessLevel.cs" />
     <Compile Include="Model\ExtensionMethods.cs" />
