@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using AppResources;
+using AppResources.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TPA.Reflection.UnitTest.Providers;
 
@@ -11,12 +12,17 @@ namespace TPA.Reflection.UnitTest
     [TestClass]
     public class LocalizedDescriptionUnitTest
     {
-        [TestMethod]
-        public void TestWhetherAttributesAreBeingLocalizedProperly()
+        [DataRow(null,DisplayName = "Current culture")]
+        [DataRow("pl-PL",DisplayName = "pl-PL culture")]
+        [DataRow("en-GB",DisplayName = "en-GB culture")]
+        [DataTestMethod]
+        public void TestWhetherAttributesAreBeingLocalizedProperly(string testCulture)
         {
-
-            var resourceProxy = new AppResourcesProxy(new CustomCultureProvider(CultureInfo.GetCultureInfo("pl-PL")));
-            //TODO I'm not sure about this, can I do this any better?
+            //choose culture based on given test case
+            ICultureInfoProvider cultureProvider = new CustomCultureProvider(string.IsNullOrEmpty(testCulture)
+                ? CultureInfo.CurrentCulture
+                : CultureInfo.GetCultureInfo(testCulture));
+            IAppResourcesProxy resourceProxy = new AppResourcesProxy(cultureProvider);
             LocalizedDescriptionAttribute.ResourcesProxy = resourceProxy;
             
             //obtain properties
