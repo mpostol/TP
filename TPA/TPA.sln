@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reflection", "Reflection\Reflection.csproj", "{80CD9772-8724-40D4-AC68-4148FBE05E82}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "W1", "W1", "{AAC7BE50-98B2-42C9-BA48-6E6E7CBED5BF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "W1_Framework", "W1_Framework", "{AAC7BE50-98B2-42C9-BA48-6E6E7CBED5BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationArchitecture", "ApplicationArchitecture\ApplicationArchitecture.csproj", "{79C1349A-1EAF-467F-9290-DA7FAD5E49E5}"
 EndProject
@@ -132,6 +132,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{80CD9772-8724-40D4-AC68-4148FBE05E82} = {AAC7BE50-98B2-42C9-BA48-6E6E7CBED5BF}
 		{79C1349A-1EAF-467F-9290-DA7FAD5E49E5} = {AAC7BE50-98B2-42C9-BA48-6E6E7CBED5BF}
+		{CDA41113-3731-4ABC-B2CC-1CD5736DE6DF} = {AAC7BE50-98B2-42C9-BA48-6E6E7CBED5BF}
 		{8BA5C9B2-71C5-4F4A-A368-DEC60202C544} = {AAC7BE50-98B2-42C9-BA48-6E6E7CBED5BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
