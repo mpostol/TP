@@ -50,11 +50,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocalizedDescriptionUnitTest.cs" />
+    <Compile Include="Providers\CustomCultureProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppResources\AppResources.csproj">
+      <Project>{8ba5c9b2-71c5-4f4a-a368-dec60202c544}</Project>
+      <Name>AppResources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reflection\Reflection.csproj">
       <Project>{80cd9772-8724-40d4-ac68-4148fbe05e82}</Project>
       <Name>Reflection</Name>
