@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{1D7414EE-46F7-42E9-9814-85AC5B62E5BB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2EA63196-46AD-4D8B-AF6E-7D7E4CB85D59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjectionUnitTest", "DependencyInjectionUnitTest\DependencyInjectionUnitTest.csproj", "{56613A6C-8A77-437F-A3AD-114556C07745}"
 EndProject
@@ -33,7 +31,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{56613A6C-8A77-437F-A3AD-114556C07745} = {2EA63196-46AD-4D8B-AF6E-7D7E4CB85D59}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC9F6F1D-DB4D-4349-8442-B9176F5C88E6}
 	EndGlobalSection
 EndGlobal

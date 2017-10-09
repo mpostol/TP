@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 
 namespace TPA.ApplicationArchitecture.Data
 {
   class Linq2SQL
   {
+    public void Connect()
+    {
+      Console.WriteLine("Text to write");
+    }
   }
 }
