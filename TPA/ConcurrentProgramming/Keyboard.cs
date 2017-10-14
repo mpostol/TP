@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -9,6 +8,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
     public class Keyboard : IDisposable
     {
+        public event ReadKeyFromKeyboardBufferCompletedEventHandler ReadKeyFromKeyboardBufferCompleted;
 
         public Keyboard()
         {
@@ -29,6 +29,52 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
             m_AutoResetEvent.WaitOne();
             _tcs.SetResult(_charBuffer.Dequeue());
             return _tcs.Task;
+        }
+
+        public void ReadKeyFromKeyboardBufferAsyncUsingEAP()
+        {
+            char result = default;
+            AutoResetEvent autoResetEvent = new AutoResetEvent(false);
+
+            void Callback(object state)
+            {
+                try
+                {
+                    result = ReadKeyFromKeyboardBuffer();
+                }
+                finally
+                {
+                    autoResetEvent.Set();
+                }
+            }
+
+            ThreadPool.QueueUserWorkItem(Callback);
+            autoResetEvent.WaitOne();
+            autoResetEvent.Close();
+
+            ReadKeyFromKeyboardBufferCompleted?.Invoke(this, new ReadKeyFromKeyboardBufferCompletedEventArgs { Result = result });
+        }
+
+        public IAsyncResult BeginReadKeyFromKeyboardBuffer(AsyncCallback callback, object parameter)
+        {
+            _caller = ReadKeyFromKeyboardBuffer;
+
+            return _caller.BeginInvoke(callback, parameter);
+        }
+
+        public char EndReadKeyFromKeyboardBuffer(IAsyncResult result)
+        {
+            return _caller.EndInvoke(result);
+        }
+
+        private char ReadKeyFromKeyboardBuffer()
+        {
+            if (_charBuffer.Any())
+                return _charBuffer.Dequeue();
+
+            m_AutoResetEvent.WaitOne();
+
+            return _charBuffer.Dequeue();
         }
 
         #region IDisposable Support
@@ -57,6 +103,10 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
         private Timer m_Timer;
         private Random m_Random = new Random();
+
+        private delegate char AsyncMethodCaller();
+        private AsyncMethodCaller _caller;
+
         private void GenerateChar(object state)
         {
             _charBuffer.Enqueue((char)m_Random.Next('a', 'z'));
