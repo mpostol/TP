@@ -1,52 +1,68 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
-    public class Keyboard
+    public class Keyboard : IDisposable
     {
-        private readonly Queue<char> _charBuffer = new Queue<char>();
-        private readonly AutoResetEvent _autoResetEvent = new AutoResetEvent(false);
-        private Timer _timer;
 
-        public void StartTyping()
+        public Keyboard()
         {
-            _timer = new Timer(GenerateChar, _autoResetEvent, 1500, 200);
+            m_Timer = new Timer(GenerateChar, m_AutoResetEvent, 1500, 200);
         }
-
-        public void StopTyping()
-        {
-            _timer.Dispose();
-            _charBuffer.Clear();
-        }
-
         public Task<char> ReadKeyFromKeyboardBufferAsync()
         {
-            TaskCompletionSource<char> tcs = new TaskCompletionSource<char>();
-
+            TaskCompletionSource<char> _tcs = new TaskCompletionSource<char>();
+            //raise condition 
             if (_charBuffer.Any())
             {
-                tcs.SetResult(_charBuffer.Dequeue());
-                return tcs.Task;
+                _tcs.SetResult(_charBuffer.Dequeue());
+                return _tcs.Task;
             }
-
-            _autoResetEvent.WaitOne();
-
-            tcs.SetResult(_charBuffer.Dequeue());
-
-            return tcs.Task;
+            //
+            //if the GenerateChar is called here we will wait forever.
+            //A race condition exists when the success of your program depends on the uncontrolled order of completion of two independent threads. 
+            m_AutoResetEvent.WaitOne();
+            _tcs.SetResult(_charBuffer.Dequeue());
+            return _tcs.Task;
         }
 
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposedValue)
+                return;
+            if (disposing)
+            {
+                m_Timer.Dispose();
+                _charBuffer.Clear();
+            }
+            disposedValue = true;
+        }
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+        }
+        #endregion
+
+        #region private
+        private readonly Queue<char> _charBuffer = new Queue<char>();
+        private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
+        private Timer m_Timer;
+        private Random m_Random = new Random();
         private void GenerateChar(object state)
         {
-            Random r = new Random();
-            _charBuffer.Enqueue((char) r.Next('a', 'z'));
-            _autoResetEvent.Set();
+            _charBuffer.Enqueue((char)m_Random.Next('a', 'z'));
+            m_AutoResetEvent.Set();
         }
+        #endregion
+
     }
 }
