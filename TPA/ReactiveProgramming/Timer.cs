@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Reactive.Linq;
 
 namespace TPA.AsynchronousBehavior.ReactiveProgramming
@@ -10,16 +11,12 @@ namespace TPA.AsynchronousBehavior.ReactiveProgramming
         {
             Counter = counter;
         }
-
         public long Counter
         {
             get;
             private set;
         }
     }
-
-    public delegate void TickEventHandler(object sender, TickEventArgs e);
-
     public class Timer
     {
         public Timer(TimeSpan period)
@@ -27,28 +24,30 @@ namespace TPA.AsynchronousBehavior.ReactiveProgramming
             Period = period;
         }
 
+        #region API
+        public event EventHandler<TickEventArgs> Tick;
+        //What happens after recalling Start ??
         public void Start()
         {
             // Create observable when needed
-            _timerObservable = Observable
-                .Interval(Period);
-            _timerObservable.Subscribe(c => RaiseTick(c));
+            m_TimerObservable = Observable.Interval(Period);
+            //_ret is never used
+            IDisposable _ret = m_TimerObservable.Subscribe(c => RaiseTick(c));
         }
-
-        private void RaiseTick(long counter)
-        {
-            // Make safe call
-            Tick?.Invoke(this, new TickEventArgs(counter));
-        }
-
-        public event TickEventHandler Tick;
-
         public TimeSpan Period
         {
             get;
             private set;
         }
+        #endregion
 
-        private IObservable<long> _timerObservable;
+        #region private
+        private IObservable<long> m_TimerObservable;
+        private void RaiseTick(long counter)
+        {
+            // Make safe call
+            Tick?.Invoke(this, new TickEventArgs(counter));
+        }
+        #endregion
     }
 }

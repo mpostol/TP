@@ -17,7 +17,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         public Task<char> ReadKeyFromKeyboardBufferAsync()
         {
             TaskCompletionSource<char> _tcs = new TaskCompletionSource<char>();
-            //raise condition 
+            //race condition
             if (_charBuffer.Any())
             {
                 _tcs.SetResult(_charBuffer.Dequeue());
