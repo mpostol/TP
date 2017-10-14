@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Threading\Threading.csproj">
-      <Project>{DFC5D3B3-CBE7-4CCF-90C3-DE657ECAEBC1}</Project>
+      <Project>{dfc5d3b3-cbe7-4ccf-90c3-de657ecaebc1}</Project>
       <Name>Threading</Name>
     </ProjectReference>
   </ItemGroup>
