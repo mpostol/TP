@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,18 +16,21 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         }
         public Task<char> ReadKeyFromKeyboardBufferAsync()
         {
+            char result;
             TaskCompletionSource<char> _tcs = new TaskCompletionSource<char>();
             //raise condition 
             if (_charBuffer.Any())
             {
-                _tcs.SetResult(_charBuffer.Dequeue());
+                _charBuffer.TryDequeue(out result);
+                _tcs.SetResult(result);
                 return _tcs.Task;
             }
             //
             //if the GenerateChar is called here we will wait forever.
             //A race condition exists when the success of your program depends on the uncontrolled order of completion of two independent threads. 
             m_AutoResetEvent.WaitOne();
-            _tcs.SetResult(_charBuffer.Dequeue());
+            _charBuffer.TryDequeue(out result);
+            _tcs.SetResult(result);
             return _tcs.Task;
         }
 
@@ -69,12 +72,18 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 
         private char ReadKeyFromKeyboardBuffer()
         {
+            char result;
+
             if (_charBuffer.Any())
-                return _charBuffer.Dequeue();
+            {
+                _charBuffer.TryDequeue(out result);
+                return result;
+            }
 
             m_AutoResetEvent.WaitOne();
 
-            return _charBuffer.Dequeue();
+            _charBuffer.TryDequeue(out result);
+            return result;
         }
 
         #region IDisposable Support
@@ -86,7 +95,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
             if (disposing)
             {
                 m_Timer.Dispose();
-                _charBuffer.Clear();
             }
             disposedValue = true;
         }
@@ -99,7 +107,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         #endregion
 
         #region private
-        private readonly Queue<char> _charBuffer = new Queue<char>();
+        private readonly ConcurrentQueue<char> _charBuffer = new ConcurrentQueue<char>();
         private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
         private Timer m_Timer;
         private Random m_Random = new Random();
