@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reflection", "Reflection\Reflection.csproj", "{80CD9772-8724-40D4-AC68-4148FBE05E82}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading", "Threading\Threading.csproj", "{DFC5D3B3-CBE7-4CCF-90C3-DE657ECAEBC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentProgramming", "ConcurrentProgramming\ConcurrentProgramming.csproj", "{3DD9ED95-DCE2-4B63-9CBE-1E158ED8B785}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingUnitTest", "ThreadingUnitTest\ThreadingUnitTest.csproj", "{6F7EA6FF-3876-489A-AF5A-DD19429D2905}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentProgrammingUnitTest", "ConcurrentProgrammingUnitTest\ConcurrentProgrammingUnitTest.csproj", "{0CA22DC8-E8B9-4708-A735-3AB44340F4A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
