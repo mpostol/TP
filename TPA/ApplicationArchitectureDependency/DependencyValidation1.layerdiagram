@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="fae2f600-d63a-441a-95d3-c45bfa09f389" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="a679ed11-94f8-4165-a4c8-d2ab5df2cc74" name="Presentation">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="9996d927-03d6-4b56-bf58-860ba3052006" direction="Forward">
+          <layerMoniker Id="c21914aa-25dc-421f-bf3d-976267ec0c1c" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="0f06659b-d973-4a00-a62e-5389c346fd9d" name="TPA.ApplicationArchitecture.Presentation">
+          <references>
+            <reference Id="1d3cb616-7d8f-44db-9718-7c1cc7c8bd19" name="TPA.ApplicationArchitecture.Presentation">
+              <ArtifactNode Label="TPA.ApplicationArchitecture.Presentation" Category="CodeSchema_Namespace" Id="(Namespace=TPA.ApplicationArchitecture.Presentation)" />
+              <ExpandedNode Id="(Namespace=TPA.ApplicationArchitecture.Presentation)" Label="TPA.ApplicationArchitecture.Presentation" Category="CodeSchema_Namespace">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="c21914aa-25dc-421f-bf3d-976267ec0c1c" name="BusinesLogic">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="7b4daedc-3820-4ff2-bdba-ff7d79b08741" direction="Forward">
+          <layerMoniker Id="34268409-81de-43ae-831d-1e480406aeb8" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="c4cb61b3-5505-417b-94a7-303ef5d31cf3" name="TPA.ApplicationArchitecture.BusinessLogic&#xD;&#xA;">
+          <references>
+            <reference Id="6d3c6d4e-183b-4545-b466-dcb8b2f4440d" name="TPA.ApplicationArchitecture.BusinessLogic">
+              <ArtifactNode Label="TPA.ApplicationArchitecture.BusinessLogic" Category="CodeSchema_Namespace" Id="(Namespace=TPA.ApplicationArchitecture.BusinessLogic)" />
+              <ExpandedNode Id="(Namespace=TPA.ApplicationArchitecture.BusinessLogic)" Label="TPA.ApplicationArchitecture.BusinessLogic" Category="CodeSchema_Namespace">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="34268409-81de-43ae-831d-1e480406aeb8" name="Data">
+      <childLayers>
+        <layer Id="c87008d6-fc44-4b89-9deb-8a7b094fa513" name="TPA.ApplicationArchitecture.Data">
+          <references>
+            <reference Id="7ead7b69-4742-45db-8360-0b40745c260b" name="TPA.ApplicationArchitecture.Data">
+              <ArtifactNode Label="TPA.ApplicationArchitecture.Data" Category="CodeSchema_Namespace" Id="(Namespace=TPA.ApplicationArchitecture.Data)" />
+              <ExpandedNode Id="(Namespace=TPA.ApplicationArchitecture.Data)" Label="TPA.ApplicationArchitecture.Data" Category="CodeSchema_Namespace">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+      </childLayers>
+    </layer>
+  </layers>
+</layerModel>

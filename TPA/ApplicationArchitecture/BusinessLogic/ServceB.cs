@@ -1,4 +1,4 @@
-﻿namespace TPA.ApplicationArchitecture.BusinesLogic
+﻿namespace TPA.ApplicationArchitecture.BusinessLogic
 {
   class ServiceB
   {

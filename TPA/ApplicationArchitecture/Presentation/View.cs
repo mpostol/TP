@@ -1,11 +1,11 @@
 ﻿
 using System;
 using System.Reflection;
-using TPA.ApplicationArchitecture.BusinesLogic;
+using TPA.ApplicationArchitecture.BusinessLogic;
 
 namespace TPA.ApplicationArchitecture.Presentation
 {
-  class View
+    class View
   {
     public View()
     {

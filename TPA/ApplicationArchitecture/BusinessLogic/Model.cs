@@ -1,7 +1,7 @@
 ﻿
 using TPA.ApplicationArchitecture.Data;
 
-namespace TPA.ApplicationArchitecture.BusinesLogic
+namespace TPA.ApplicationArchitecture.BusinessLogic
 {
   class Model
   {
