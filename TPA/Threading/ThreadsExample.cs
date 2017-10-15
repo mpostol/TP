@@ -46,14 +46,9 @@ namespace TPA.AsynchronousBehavior.Threading
         }
         private void ThreadFuncWithMonitor(object parameter)
         {
-            Monitor.Enter(m_SyncObject);
-            try
+            lock (m_SyncObject)
             {
                 DataProcessingSimulator();
-            }
-            finally
-            {
-                Monitor.Exit(m_SyncObject);
             }
         }
         private void DataProcessingSimulator()
