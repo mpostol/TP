@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Execution\CreateInstance.cs" />
+    <Compile Include="ITraceSource.cs" />
     <Compile Include="LocalizedDescriptionAttribute.cs" />
     <Compile Include="Model\AbstractENum.cs" />
     <Compile Include="Model\AccessLevel.cs" />
