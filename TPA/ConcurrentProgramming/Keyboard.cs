@@ -16,16 +16,22 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         {
             m_Timer = new Timer(GenerateChar, m_AutoResetEvent, 1500, 200);
         }
-        //TODO ist is not async method 
+
         public Task<char> ReadKeyFromKeyboardBufferAsync()
         {
-            char result;
             TaskCompletionSource<char> _tcs = new TaskCompletionSource<char>();
             m_AutoResetEvent.WaitOne();
             Debug.Assert(_charBuffer.Any<Char>());
-            _charBuffer.TryDequeue(out result);
-            _tcs.SetResult(result);
-            return _tcs.Task;
+
+            RegisteredWaitHandle _waitHandle = ThreadPool.RegisterWaitForSingleObject(m_AutoResetEvent, (state, timedOut) =>
+            {
+                _charBuffer.TryDequeue(out char _result);
+                _tcs.SetResult(_result);
+            }, null, Timeout.Infinite, true);
+
+            Task<char> _task = _tcs.Task;
+            _task.ContinueWith(task => _waitHandle.Unregister(null));
+            return _task;
         }
         public void ReadKeyFromKeyboardBufferAsyncUsingEAP()
         {
@@ -58,10 +64,9 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         }
         private char ReadKeyFromKeyboardBuffer()
         {
-            char result;
             m_AutoResetEvent.WaitOne();
             Debug.Assert(_charBuffer.Any<Char>());
-            _charBuffer.TryDequeue(out result);
+            _charBuffer.TryDequeue(out char result);
             return result;
         }
 

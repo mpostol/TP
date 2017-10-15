@@ -12,13 +12,13 @@ namespace ConcurrentProgrammingUnitTest
     {
 
         [TestMethod]
-        public void CheckWhetherKeyboardGeneratesKeystrokes()
+        public async Task CheckWhetherKeyboardGeneratesKeystrokes()
         {
             using (Keyboard _keyboard = new Keyboard())
             {
                 List<char> _chars = new List<char>();
                 for (int i = 0; i < 3; i++)
-                    _chars.Add(_keyboard.ReadKeyFromKeyboardBufferAsync().Result);
+                    _chars.Add(await _keyboard.ReadKeyFromKeyboardBufferAsync());
                 Assert.IsTrue(_chars.Count == 3);
             }
         }
