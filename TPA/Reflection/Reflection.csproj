@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DynamicType\DynamicExampleClass.cs" />
     <Compile Include="Execution\CreateInstance.cs" />
     <Compile Include="ITraceSource.cs" />
     <Compile Include="LocalizedDescriptionAttribute.cs" />
