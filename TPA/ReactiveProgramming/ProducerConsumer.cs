@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -9,135 +9,219 @@ using TPA.AsynchronousBehavior.ReactiveProgramming;
 
 namespace ReactiveProgrammingUnitTest
 {
-    public class ProducedEventArgs<objectType> : EventArgs
+    public enum BufferState
     {
-        public ProducedEventArgs(objectType producedItem)
-        {
-            ProducedItem = producedItem;
-        }
-        public objectType ProducedItem
-        {
-            get;
-            private set;
-        }
+        Empty,
+        Mediate,
+        Full
     }
-    public class ConsumedEventArgs<objectType> : EventArgs
+
+    public class BufferInfo<TProduct>
     {
-        public ConsumedEventArgs(objectType consumedItem)
+        public BufferInfo(BufferState state, TProduct topProduct)
         {
-            ConsumedItem = consumedItem;
+            State = state;
+            TopProduct = topProduct;
         }
-        public objectType ConsumedItem
-        {
-            get;
-            private set;
-        }
-    }
-    public class Producer<ProductType>
-    {
-        // We want to produce item each period of time
-        public Producer(TimeSpan period)
-        {
-            Period = period;
-        }
-        // Lets produce items into reactive subject
-        public void Start(Subject<ProductType> subject, Func<ProductType> createProduct)
-        {
-            _subject = subject;
-            _timer = new Timer(Period);
-            IObservable<EventPattern<TickEventArgs>> timerTickObservable = Observable.FromEventPattern<TickEventArgs>(_timer, "Tick");
-            // Each time timer ticks, we emit new object
-            _subscriber = timerTickObservable.Subscribe(onNext: _ =>
-            {
-                ProductType obj = createProduct();
-                _subject.OnNext(obj);
-                RaiseProduced(obj);
-            });
-            // Setup complete, lets start timer
-            _timer.Start();
-        }
-        public void Stop()
-        {
-            // We have to dispose subscriber in order to stop producing process
-            _subscriber.Dispose();
-        }
-        // Safe call
-        private void RaiseProduced(ProductType obj)
-        {
-            Produced?.Invoke(this, new ProducedEventArgs<ProductType>(obj));
-        }
-        public event EventHandler<ProducedEventArgs<ProductType>> Produced;
-        public TimeSpan Period
+
+        public BufferState State
         {
             get;
             private set;
         }
 
-        #region private
-        private Timer _timer;
-        private Subject<ProductType> _subject;
-        private IDisposable _subscriber;
-        #endregion
-    }
-    public class Consumer<ProductType>
-    {
-        // We want to consume items from observable
-        public void Start(IObservable<ProductType> observable)
-        {
-            _subscriber = observable.Subscribe(onNext: o => RaiseConsumed(o));
-        }
-        public void Stop()
-        {
-            // We have to dispose subscriber in order to stop consuming process
-            _subscriber.Dispose();
-        }
-        // Safe call
-        public event EventHandler<ConsumedEventArgs<ProductType>> Consumed;
-        public List<object> Results
+        public TProduct TopProduct
         {
             get;
-        } = new List<object>();
-        private IDisposable _subscriber;
-        private void RaiseConsumed(ProductType obj)
-        {
-            Results.Add(obj);
-            Consumed?.Invoke(this, new ConsumedEventArgs<ProductType>(obj));
+            private set;
         }
     }
-    public class ProducerConsumer
+
+    public class ProducedEventArgs<TProduct>
     {
-        // Lets start producer and consumer process asynchronously for provided duration
-        public async Task StartAsync(TimeSpan duration)
+        public ProducedEventArgs(TProduct product)
         {
-            foreach (Consumer<int> consumer in Consumers)
-                consumer.Start(_subject);
-            foreach (Producer<int> producer in Producers)
-                producer.Start(_subject, () => 1);
-            // Consumers and producers setup complete, lets wait for some time
-            await Task.Delay(duration);
-            foreach (Producer<int> producer in Producers)
-                producer.Stop();
-            // We want to notify observers that all data have been emitted 
-            _subject.OnCompleted();
-            foreach (Consumer<int> consumer in Consumers)
-                consumer.Stop();
+            Product = product;
         }
-        public IObservable<int> Observable
+
+        public TProduct Product
         {
-            get
+            get;
+            private set;
+        }
+    }
+
+    public class ConsumedEventArgs<TProduct>
+    {
+        public ConsumedEventArgs(TProduct product)
+        {
+            Product = product;
+        }
+
+        public TProduct Product
+        {
+            get;
+            private set;
+        }
+    }
+
+    public delegate void ProducedEventHandler<TProduct>(object sender, ProducedEventArgs<TProduct> e);
+    public delegate void ConsumedEventHandler<TProduct>(object sender, ConsumedEventArgs<TProduct> e);
+
+    public class Producer<TProduct>
+    {
+        public Producer(Func<TProduct> produce)
+        {
+            Produce = produce;
+        }
+
+        public void Start(IObservable<BufferInfo<TProduct>> bufferInfoObservable, ISubject<TProduct> productSubject)
+        {
+            _subscriber = bufferInfoObservable
+                .Where(s => s.State != BufferState.Full)
+                .Subscribe(onNext: _ =>
+                {
+                    TProduct product = Produce();
+                    productSubject.OnNext(product);
+                    RaiseProduced(product);
+                });
+        }
+
+        public void Stop()
+        {
+            _subscriber.Dispose();
+        }
+
+        private void RaiseProduced(TProduct product)
+        {
+            Produced?.Invoke(this, new ProducedEventArgs<TProduct>(product));
+        }
+
+        public event ProducedEventHandler<TProduct> Produced;
+
+        public Func<TProduct> Produce
+        {
+            get;
+            private set;
+        }
+
+        private IDisposable _subscriber;
+    }
+
+    public class Consumer<TProduct>
+    {
+        public void Start(IObservable<BufferInfo<TProduct>> bufferStateObservable)
+        {
+            _subscriber = bufferStateObservable
+                .Where(s => s.State != BufferState.Empty)
+                .Select(s => s.TopProduct)
+                .Subscribe(p => RaiseConsumed(p));
+        }
+
+        public void Stop()
+        {
+            _subscriber.Dispose();
+        }
+
+        private void RaiseConsumed(TProduct product)
+        {
+            Consumed?.Invoke(this, new ConsumedEventArgs<TProduct>(product));
+        }
+
+        public event ConsumedEventHandler<TProduct> Consumed;
+
+        private IDisposable _subscriber;
+    }
+
+    public class ProducerConsumer<TProduct>
+    {
+        public ProducerConsumer(Producer<TProduct> producer, Consumer<TProduct> consumer, int bufferCapacity)
+        {
+            Producer = producer;
+            Consumer = consumer;
+            BufferCapacity = bufferCapacity;
+        }
+
+        public void Start(TimeSpan producerEmissionPeriod, TimeSpan consumerEmissionPeriod)
+        {
+            ISubject<TProduct> productSubject = new Subject<TProduct>();
+            IObservable<TProduct> producedObservable = productSubject;
+            IObservable<BufferInfo<TProduct>> consumerStateObservable = Observable
+                .Interval(consumerEmissionPeriod)
+                .Select(_ => GenerateBufferInfo(true));
+            IObservable<BufferInfo<TProduct>> producerStateObservable = Observable
+                .Interval(producerEmissionPeriod)
+                .Select(_ => GenerateBufferInfo());
+            _subscriber = producedObservable.Subscribe(p => EnqueueToBuffer(p));
+            Producer.Start(producerStateObservable, productSubject);
+            Consumer.Start(consumerStateObservable);
+        }
+
+        public void Stop()
+        {
+            _subscriber.Dispose();
+            Producer.Stop();
+            Consumer.Stop();
+        }
+
+        private void EnqueueToBuffer(TProduct product)
+        {
+            lock (_bufferLockObject)
             {
-                return _subject;
+                _buffer.Enqueue(product);
             }
         }
-        public List<Producer<int>> Producers
-        {
-            get;
-        } = new List<Producer<int>>();
 
-        public List<Consumer<int>> Consumers
+        private BufferInfo<TProduct> GenerateBufferInfo(bool dequeueAfter = false)
+        {
+            lock (_bufferLockObject)
+            {
+                int bufferSize = _buffer.Count;
+                BufferState bufferState;
+                TProduct bufferTopProduct;
+
+                if (bufferSize == 0)
+                {
+                    bufferTopProduct = default(TProduct);
+                    bufferState = BufferState.Empty;
+                }
+                else
+                {
+                    bufferTopProduct = _buffer.Peek();
+                    bufferState = bufferSize == BufferCapacity ? BufferState.Full : BufferState.Mediate;
+                }
+
+                BufferInfo<TProduct> bufferInfo = new BufferInfo<TProduct>(bufferState, bufferTopProduct);
+
+                if (dequeueAfter && bufferSize >= 1)
+                {
+                    _buffer.Dequeue();
+                }
+
+                return bufferInfo;
+            }
+        }
+
+        public Producer<TProduct> Producer
         {
             get;
-        } = new List<Consumer<int>>();
-        private Subject<int> _subject = new Subject<int>();
+            private set;
+        }
+
+        public Consumer<TProduct> Consumer
+        {
+            get;
+            private set;
+        }
+
+        public int BufferCapacity
+        {
+            get;
+            private set;
+        }
+
+        private Queue<TProduct> _buffer = new Queue<TProduct>();
+        private object _bufferLockObject = new object();
+        private IDisposable _subscriber;
     }
 }
