@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGeneration\CSharpCodeFactory.cs" />
+    <Compile Include="CodeGeneration\DynamicMethodFactory.cs" />
     <Compile Include="DynamicType\DynamicExampleClass.cs" />
     <Compile Include="DynamicType\ReadOnlyFile.cs" />
     <Compile Include="Execution\CreateInstance.cs" />
