@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace TPA.AsynchronousBehavior.Threading
 {
@@ -13,6 +15,7 @@ namespace TPA.AsynchronousBehavior.Threading
         public bool IsConsistent { get; private set; } = true;
         public void StartThreads(bool useMonitor)
         {
+            Thread[] m_Threads = new Thread[2];
             for (int i = 0; i < m_Threads.Length; i++)
             {
                 if (useMonitor)
@@ -35,7 +38,17 @@ namespace TPA.AsynchronousBehavior.Threading
             //wait for threads
             Thread.Sleep(1000);
         }
-        private readonly Thread[] m_Threads = new Thread[2];
+        public void StartThreadsUsingTask(bool useMonitor)
+        {
+            List<Task> _tasksInProgress = new List<Task>();
+            for (int i = 0; i < 2; i++)
+                if (useMonitor)
+                    Task.Run( () => ThreadFuncWithMonitor(useMonitor));
+                else
+                    Task.Run(() => ThreadFunc(useMonitor));
+            //wait for threads
+            Task.WaitAll(_tasksInProgress.ToArray());
+        }
         private readonly object m_SyncObject = new object();
         private int m_IntegerA = 0;
         private int m_IntegerB = 0;
