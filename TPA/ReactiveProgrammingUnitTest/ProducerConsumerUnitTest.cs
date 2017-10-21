@@ -13,47 +13,20 @@ namespace ReactiveProgrammingUnitTest
     [TestClass]
     public class ProducerConsumerUnitTest
     {
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _producer = new Producer<int>(() => ++_counter);
-            _consumer = new Consumer<int>();
-            _producerConsumer = new ProducerConsumer<int>(_producer, _consumer, 2);
-        }
-
         [TestMethod]
-        public async Task CheckWhetherProducerProducesWell()
+        public async Task CheckWheterProducesWell()
         {
-            List<int> expectedProducedItems = new List<int> { 1, 2, 3 };
-            List<int> producedItems = new List<int>();
-            IObservable<EventPattern<ProducedEventArgs<int>>> producedObservable = Observable
-                .FromEventPattern<ProducedEventArgs<int>>(_producer, "Produced");
-            IDisposable subscriber = producedObservable.Subscribe(e => producedItems.Add(e.EventArgs.Product));
-            _producerConsumer.Start(TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(6));
-            await Task.Delay(TimeSpan.FromSeconds(10));
-            _producerConsumer.Stop();
-            subscriber.Dispose();
-            Assert.IsTrue(expectedProducedItems.SequenceEqual(producedItems));
+            TimeSpan period = TimeSpan.FromMilliseconds(100);
+            int counter = 1;
+            List<int> expectedProducts = new List<int> { 1, 2, 3 };
+            IObservable<bool> consumerMock = Observable
+                .Interval(period)
+                .Select(_ => true)
+                .Take(3);
+            Producer<int> producer = new Producer<int>(() => counter++, period, 2);
+            consumerMock.Subscribe(producer);
+            IList<int> products = await producer.Take(3).ToList();
+            Assert.IsTrue(expectedProducts.SequenceEqual(products));
         }
-
-        [TestMethod]
-        public async Task CheckWhetherConsumerConsumesWell()
-        {
-            List<int> expectedConsumedItems = new List<int> { 1, 2, 3 };
-            List<int> consumedItems = new List<int>();
-            IObservable<EventPattern<ConsumedEventArgs<int>>> consumedObservable = Observable
-                .FromEventPattern<ConsumedEventArgs<int>>(_consumer, "Consumed");
-            IDisposable subscriber = consumedObservable.Subscribe(e => consumedItems.Add(e.EventArgs.Product));
-            _producerConsumer.Start(TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3));
-            await Task.Delay(TimeSpan.FromSeconds(10));
-            _producerConsumer.Stop();
-            subscriber.Dispose();
-            Assert.IsTrue(expectedConsumedItems.SequenceEqual(consumedItems));
-        }
-
-        private int _counter = 0;
-        private Producer<int> _producer;
-        private Consumer<int> _consumer;
-        private ProducerConsumer<int> _producerConsumer;
     }
 }
