@@ -31,7 +31,6 @@ namespace TPA.Reflection.UnitTest.CodeGeneration
             _sample.GenerateCSharpCode(_outputFileName);
             FileInfo _createdFile = new FileInfo(_outputFileName);
             Assert.IsTrue(_createdFile.Exists);
-            Assert.AreEqual<long>(1948, _createdFile.Length);
             using (StreamReader _reader = new StreamReader(_createdFile.Name))
                 Console.Write(_reader.ReadToEnd());
         }
