@@ -12,7 +12,7 @@ namespace ConcurrentProgrammingUnitTest
   {
 
     [TestMethod]
-    public void CheckWhetherKeyboardGeneratesKeystrokes()
+    public void TPAReadKeyFromKeyboardBufferAsyncTest()
     {
       using (Keyboard _keyboard = new Keyboard())
       {
@@ -34,7 +34,7 @@ namespace ConcurrentProgrammingUnitTest
     }
 
     [TestMethod]
-    public void CheckWhetherKeyboardGeneratesKeystrokesUsingAPM()
+    public void APMReadKeyFromKeyboardBuffer()
     {
       using (Keyboard _keyboard = new Keyboard())
       {
@@ -56,26 +56,24 @@ namespace ConcurrentProgrammingUnitTest
     }
 
     [TestMethod]
-    public async Task CheckWhetherKeyboardGeneratesKeystrokesUsingEAP()
+    public void EAPReadKeyFromKeyboardBufferAsyncTest()
     {
       using (Keyboard _keyboard = new Keyboard())
       {
         List<char> _chars = new List<char>();
-        SemaphoreSlim semaphore = new SemaphoreSlim(0);
-
+        bool _ended = false;
+        long _counter = 0;
         _keyboard.ReadKeyFromKeyboardBufferCompleted += (sender, args) =>
+            {
+              _chars.Add(args.Result);
+              _ended = true;
+            };
+        _keyboard.EAPReadKeyFromKeyboardBufferAsync();
+        while (!_ended)
         {
-          _chars.Add(args.Result);
-          semaphore.Release();
+          _counter++;
         };
-
-        for (int i = 0; i < 3; i++)
-        {
-          _keyboard.EAPReadKeyFromKeyboardBufferAsync();
-          await semaphore.WaitAsync();
-        }
-
-        Assert.IsTrue(_chars.Count == 3);
+        Assert.IsTrue(_counter > 200000, $"Counetr = {_counter}");
       }
 
     }
