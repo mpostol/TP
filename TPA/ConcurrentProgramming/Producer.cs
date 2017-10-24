@@ -9,29 +9,31 @@ using System.Threading.Tasks;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
-  public class Keyboard : IDisposable
+  public class Producer<T> : IDisposable
   {
 
-    public Keyboard()
+    public Producer(IProductFactory<T> factory)
     {
+
+      m_CriticalSection = new CriticalSection<T>(factory);
       m_Timer = new Timer(x => m_CriticalSection.GenerateChar(), null, 0, 200);
     }
 
     #region Task-based Asynchronous Pattern (TAP)
-    public async Task<char> TPAReadKeyFromKeyboardBufferAsync()
+    public async Task<T> TPAReadKeyFromKeyboardBufferAsync()
     {
-      return await Task<char>.Run(() => m_CriticalSection.ReadKeyFromKeyboardBuffer());
+      return await Task<T>.Run(() => m_CriticalSection.ReadKeyFromKeyboardBuffer());
     }
     #endregion
 
     #region Event-based Asynchronous Pattern (EAP)
-    public event EventHandler<ReadKeyFromKeyboardBufferCompletedEventArgs> ReadKeyFromKeyboardBufferCompleted;
+    public event EventHandler<InstanceCreationCompletedEventArgs<T>> ReadKeyFromKeyboardBufferCompleted;
     public void EAPReadKeyFromKeyboardBufferAsync()
     {
       ThreadPool.QueueUserWorkItem(x =>
           {
-            char _char = m_CriticalSection.ReadKeyFromKeyboardBuffer();
-            ReadKeyFromKeyboardBufferCompleted?.Invoke(this, new ReadKeyFromKeyboardBufferCompletedEventArgs { Result = _char });
+            T _char = m_CriticalSection.ReadKeyFromKeyboardBuffer();
+            ReadKeyFromKeyboardBufferCompleted?.Invoke(this, new InstanceCreationCompletedEventArgs<T>(_char));
           }
       );
     }
@@ -43,7 +45,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       m_Caller = m_CriticalSection.ReadKeyFromKeyboardBuffer;
       return m_Caller.BeginInvoke(callback, parameter);
     }
-    public char EndReadKeyFromKeyboardBuffer(IAsyncResult result)
+    public T EndReadKeyFromKeyboardBuffer(IAsyncResult result)
     {
       return m_Caller.EndInvoke(result);
     }
@@ -71,41 +73,46 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
     #endregion
 
     #region private
-    private delegate char AsyncMethodCaller();
+    private delegate T AsyncMethodCaller();
     private Timer m_Timer;
     private AsyncMethodCaller m_Caller;
-    private CriticalSection m_CriticalSection = new CriticalSection();
+    private CriticalSection<T> m_CriticalSection;
 
     [Synchronization(true)]
-    class CriticalSection : IDisposable
+    class CriticalSection<T> : IDisposable
     {
-
+      public CriticalSection(IProductFactory<T> factory)
+      {
+        if (factory == null)
+          throw new ArgumentNullException(nameof(factory));
+        m_Factory = factory;
+      }
       internal void GenerateChar()
       {
-        _charBuffer.Enqueue((char)m_Random.Next('a', 'z'));
-        if (_charBuffer.Count == 1)
+        m_charBuffer.Enqueue(m_Factory.Create());
+        if (m_charBuffer.Count == 1)
           m_AutoResetEvent.Set();
       }
-      internal char ReadKeyFromKeyboardBuffer()
+      internal T ReadKeyFromKeyboardBuffer()
       {
-        if (_charBuffer.Count == 0)
+        if (m_charBuffer.Count == 0)
           m_AutoResetEvent.WaitOne(-1, true);
-        else if (_charBuffer.Count == 1)
+        else if (m_charBuffer.Count == 1)
           m_AutoResetEvent.Reset();
-        Debug.Assert(_charBuffer.Any<Char>());
-        return _charBuffer.Dequeue();
+        Debug.Assert(m_charBuffer.Any<T>());
+        return m_charBuffer.Dequeue();
       }
 
       public void Dispose()
       {
         m_AutoResetEvent.Dispose();
       }
-      private readonly Queue<char> _charBuffer = new Queue<char>();
-      private Random m_Random = new Random();
+      private IProductFactory<T> m_Factory;
+      private readonly Queue<T> m_charBuffer = new Queue<T>();
       private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
     }
 
-    #endregion    
+    #endregion
 
   }
 }

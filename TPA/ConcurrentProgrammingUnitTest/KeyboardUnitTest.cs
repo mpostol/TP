@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TPA.AsynchronousBehavior.ConcurrentProgramming;
 
 namespace ConcurrentProgrammingUnitTest
@@ -14,18 +13,18 @@ namespace ConcurrentProgrammingUnitTest
     [TestMethod]
     public void TPAReadKeyFromKeyboardBufferAsyncTest()
     {
-      using (Keyboard _keyboard = new Keyboard())
+      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>( new ProductFactory()))
       {
-        List<char> _chars = new List<char>();
+        List<TestingClass> _chars = new List<TestingClass>();
         long _counter = 0;
         for (int i = 0; i < 3; i++)
         {
-          Task<char> _workToDo = _keyboard.TPAReadKeyFromKeyboardBufferAsync();
+          Task<TestingClass> _workToDo = _keyboard.TPAReadKeyFromKeyboardBufferAsync();
           while (_workToDo.Status != TaskStatus.RanToCompletion)
           {
             _counter++;
           };
-          char _lastChar = _workToDo.Result;
+          TestingClass _lastChar = _workToDo.Result;
           _chars.Add(_lastChar);
         }
         Assert.AreEqual<int>(3, _chars.Count);
@@ -36,9 +35,9 @@ namespace ConcurrentProgrammingUnitTest
     [TestMethod]
     public void APMReadKeyFromKeyboardBuffer()
     {
-      using (Keyboard _keyboard = new Keyboard())
+      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
       {
-        List<char> _chars = new List<char>();
+        List<TestingClass> _chars = new List<TestingClass>();
         long _counter = 0;
         for (int i = 0; i < 3; i++)
         {
@@ -58,9 +57,9 @@ namespace ConcurrentProgrammingUnitTest
     [TestMethod]
     public void EAPReadKeyFromKeyboardBufferAsyncTest()
     {
-      using (Keyboard _keyboard = new Keyboard())
+      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
       {
-        List<char> _chars = new List<char>();
+        List<TestingClass> _chars = new List<TestingClass>();
         bool _ended = false;
         long _counter = 0;
         _keyboard.ReadKeyFromKeyboardBufferCompleted += (sender, args) =>
@@ -77,5 +76,13 @@ namespace ConcurrentProgrammingUnitTest
       }
 
     }
+    private class ProductFactory : IProductFactory<TestingClass>
+    {
+      public TestingClass Create()
+      {
+        return new TestingClass();
+      }
+    }
+    private class TestingClass { }
   }
 }
