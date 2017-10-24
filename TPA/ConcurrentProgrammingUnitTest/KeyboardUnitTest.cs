@@ -2,9 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TPA.AsynchronousBehavior.ConcurrentProgramming;
 
-namespace ConcurrentProgrammingUnitTest
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
   [TestClass]
   public class KeyboardUnitTest

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CriticalSectionExample.cs" />
     <Compile Include="Producer.cs" />
     <Compile Include="ProductFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TPA.AsynchronousBehavior.Threading
+namespace TPA.AsynchronousBehavior.ConcurrentProgrammin
 {
   public class CriticalSectionExample
   {

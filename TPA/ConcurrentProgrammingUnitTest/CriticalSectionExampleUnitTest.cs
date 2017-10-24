@@ -1,8 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPA.AsynchronousBehavior.Threading;
+﻿
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TPA.AsynchronousBehavior.ConcurrentProgrammin;
 
-namespace ThreadingUnitTest
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
+
   [TestClass]
   public class CriticalSectionExampleUnitTest
   {
