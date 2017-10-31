@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
 {
 
@@ -8,6 +10,9 @@ namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
   }
   public class AdvancedLogger : ILogger
   {
-    public void Log(string msg) { }
+    public void Log(string msg)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
