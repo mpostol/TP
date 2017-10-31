@@ -1,68 +1,87 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPA.AsynchronousBehavior.ConcurrentProgramming;
 
-namespace ConcurrentProgrammingUnitTest
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
-    [TestClass]
-    public class KeyboardUnitTest
+  [TestClass]
+  public class KeyboardUnitTest
+  {
+
+    [TestMethod]
+    public void TPAReadKeyFromKeyboardBufferAsyncTest()
     {
-
-        [TestMethod]
-        public async Task CheckWhetherKeyboardGeneratesKeystrokes()
+      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>( new ProductFactory()))
+      {
+        List<TestingClass> _chars = new List<TestingClass>();
+        long _counter = 0;
+        for (int i = 0; i < 3; i++)
         {
-            using (Keyboard _keyboard = new Keyboard())
-            {
-                List<char> _chars = new List<char>();
-                for (int i = 0; i < 3; i++)
-                    _chars.Add(await _keyboard.ReadKeyFromKeyboardBufferAsync());
-                Assert.IsTrue(_chars.Count == 3);
-            }
+          Task<TestingClass> _workToDo = _keyboard.TPAReadKeyFromKeyboardBufferAsync();
+          while (_workToDo.Status != TaskStatus.RanToCompletion)
+          {
+            _counter++;
+          };
+          TestingClass _lastChar = _workToDo.Result;
+          _chars.Add(_lastChar);
         }
-
-        [TestMethod]
-        public void CheckWhetherKeyboardGeneratesKeystrokesUsingAPM()
-        {
-            using (Keyboard _keyboard = new Keyboard())
-            {
-                List<char> _chars = new List<char>();
-
-                for (int i = 0; i < 3; i++)
-                {
-                    IAsyncResult asyncResult = _keyboard.BeginReadKeyFromKeyboardBuffer(null, null);
-                    _chars.Add(_keyboard.EndReadKeyFromKeyboardBuffer(asyncResult));
-                }
-
-                Assert.IsTrue(_chars.Count == 3);
-            }
-        }
-
-        [TestMethod]
-        public async Task CheckWhetherKeyboardGeneratesKeystrokesUsingEAP()
-        {
-            using (Keyboard _keyboard = new Keyboard())
-            {
-                List<char> _chars = new List<char>();
-                SemaphoreSlim semaphore = new SemaphoreSlim(0);
-
-                _keyboard.ReadKeyFromKeyboardBufferCompleted += (sender, args) =>
-                {
-                    _chars.Add(args.Result);
-                    semaphore.Release();
-                };
-
-                for (int i = 0; i < 3; i++)
-                {
-                    _keyboard.ReadKeyFromKeyboardBufferAsyncUsingEAP();
-                    await semaphore.WaitAsync();
-                }
-
-                Assert.IsTrue(_chars.Count == 3);
-            }
-
-        }
+        Assert.AreEqual<int>(3, _chars.Count);
+        Assert.IsTrue(_counter > 1000000);
+      }
     }
+
+    [TestMethod]
+    public void APMReadKeyFromKeyboardBuffer()
+    {
+      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
+      {
+        List<TestingClass> _chars = new List<TestingClass>();
+        long _counter = 0;
+        for (int i = 0; i < 3; i++)
+        {
+          bool _ended = false;
+          IAsyncResult asyncResult = _keyboard.BeginReadKeyFromKeyboardBuffer(x => _ended = true, null);
+          while (!_ended)
+          {
+            _counter++;
+          };
+          _chars.Add(_keyboard.EndReadKeyFromKeyboardBuffer(asyncResult));
+        }
+        Assert.AreEqual<int>(3, _chars.Count);
+        Assert.IsTrue(_counter > 1000000);
+      }
+    }
+
+    [TestMethod]
+    public void EAPReadKeyFromKeyboardBufferAsyncTest()
+    {
+      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
+      {
+        List<TestingClass> _chars = new List<TestingClass>();
+        bool _ended = false;
+        long _counter = 0;
+        _keyboard.ReadKeyFromKeyboardBufferCompleted += (sender, args) =>
+            {
+              _chars.Add(args.Result);
+              _ended = true;
+            };
+        _keyboard.EAPReadKeyFromKeyboardBufferAsync();
+        while (!_ended)
+        {
+          _counter++;
+        };
+        Assert.IsTrue(_counter > 100000, $"Counetr = {_counter}");
+      }
+
+    }
+    private class ProductFactory : IProductFactory<TestingClass>
+    {
+      public TestingClass Create()
+      {
+        return new TestingClass();
+      }
+    }
+    private class TestingClass { }
+  }
 }
