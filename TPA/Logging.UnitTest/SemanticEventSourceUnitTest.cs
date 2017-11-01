@@ -21,19 +21,24 @@ namespace TPA.Logging.UnitTest
     {
       EventEntry _lastEvent = null;
       ObservableEventListener listener = new ObservableEventListener();
-      listener.CreateSink(x => _lastEvent = x);
-      listener.EnableEvents(SemanticEventSource.Log, EventLevel.LogAlways, Keywords.All);
+      using (SinkSubscription<CustomSink> _subscription = listener.CreateSink(x => _lastEvent = x))
+      {
+        Assert.IsNotNull(_subscription.Sink);
 
-      Assert.IsNull(_lastEvent);
-      SemanticEventUser _logUser = new SemanticEventUser();
-      _logUser.LogFailure();
-      Assert.IsNotNull(_lastEvent);
+        listener.EnableEvents(SemanticEventSource.Log, EventLevel.LogAlways, Keywords.All);
+        Assert.IsNull(_lastEvent);
+        SemanticEventUser _logUser = new SemanticEventUser();
+        _logUser.LogFailure();
+        Assert.IsNotNull(_lastEvent);
 
-      //_lastEvent content
-      Assert.AreEqual<int>(1, _lastEvent.EventId);
-      Assert.AreEqual<Guid>(Guid.Empty, _lastEvent.ActivityId);
-      Assert.AreEqual<string>("Application Failure: LogFailure", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
-      Assert.AreEqual<string>("System.Collections.ObjectModel.ReadOnlyCollection`1[System.Object]", _lastEvent.Payload.ToString(), _lastEvent.Payload.ToString());
+        //_lastEvent content
+        Assert.AreEqual<int>(1, _lastEvent.EventId);
+        Assert.AreEqual<Guid>(Guid.Empty, _lastEvent.ActivityId);
+        Assert.AreEqual<string>("Application Failure: LogFailure", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
+        Assert.AreEqual<string>("System.Collections.ObjectModel.ReadOnlyCollection`1[System.Object]", _lastEvent.Payload.ToString(), _lastEvent.Payload.ToString());
+        Assert.AreEqual<int>(1, _lastEvent.Payload.Count);
+        Assert.AreEqual<string>("LogFailure", _lastEvent.Payload[0].ToString());
+      }
     }
   }
   public class CustomSink : IObserver<EventEntry>
