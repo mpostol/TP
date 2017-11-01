@@ -3,7 +3,7 @@ using System.Diagnostics.Tracing;
 
 namespace TPA.Logging.Consumer
 {
-  [EventSource(Name = "MyCompany")]
+  [EventSource(Name = "TPA-SemanticLogging")]
   public class SemanticEventSource : EventSource
   {
     public class Keywords
