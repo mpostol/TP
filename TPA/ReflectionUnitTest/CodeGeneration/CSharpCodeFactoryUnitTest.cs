@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPA.Reflection.CodeGeneration.SampleCodeDom;
+using TPA.Reflection.CodeGeneration;
 
 namespace TPA.Reflection.UnitTest.CodeGeneration
 {
