@@ -2,7 +2,7 @@
 using System;
 using System.Reactive.Linq;
 
-namespace TPA.AsynchronousBehavior.ReactiveProgramming
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
   public class TickEventArgs : EventArgs
   {
@@ -17,11 +17,11 @@ namespace TPA.AsynchronousBehavior.ReactiveProgramming
       private set;
     }
   }
-  public class Timer: IDisposable
+  public class ReactiveTimer: IDisposable
   {
 
     #region constructor
-    public Timer(TimeSpan period)
+    public ReactiveTimer(TimeSpan period)
     {
       Period = period;
     }
