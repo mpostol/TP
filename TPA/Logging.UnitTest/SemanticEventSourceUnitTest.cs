@@ -38,6 +38,12 @@ namespace TPA.Logging.UnitTest
         Assert.AreEqual<string>("System.Collections.ObjectModel.ReadOnlyCollection`1[System.Object]", _lastEvent.Payload.ToString(), _lastEvent.Payload.ToString());
         Assert.AreEqual<int>(1, _lastEvent.Payload.Count);
         Assert.AreEqual<string>("LogFailure", _lastEvent.Payload[0].ToString());
+        Assert.AreEqual<string>("message", _lastEvent.Schema.Payload[0]);
+
+        Assert.AreEqual<string>("Start", _lastEvent.Schema.OpcodeName);
+        Assert.AreEqual<EventOpcode>(EventOpcode.Start, _lastEvent.Schema.Opcode);
+        Assert.AreEqual<string>("Page", _lastEvent.Schema.TaskName);
+        Assert.AreEqual<EventTask>(SemanticEventSource.Tasks.Page, _lastEvent.Schema.Task);
       }
     }
   }

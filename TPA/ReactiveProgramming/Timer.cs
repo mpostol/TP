@@ -4,50 +4,89 @@ using System.Reactive.Linq;
 
 namespace TPA.AsynchronousBehavior.ReactiveProgramming
 {
-    public class TickEventArgs : EventArgs
+  public class TickEventArgs : EventArgs
+  {
+    // Lets notify current counter to subscribers
+    public TickEventArgs(long counter)
     {
-        // Lets notify current counter to subscribers
-        public TickEventArgs(long counter)
-        {
-            Counter = counter;
-        }
-        public long Counter
-        {
-            get;
-            private set;
-        }
+      Counter = counter;
     }
-    public class Timer
+    public long Counter
     {
-        public Timer(TimeSpan period)
+      get;
+      private set;
+    }
+  }
+  public class Timer: IDisposable
+  {
+
+    #region constructor
+    public Timer(TimeSpan period)
+    {
+      Period = period;
+    }
+    #endregion
+
+    #region API
+    public event EventHandler<TickEventArgs> Tick;
+    //What happens after recalling Start ??
+    public void Start()
+    {
+      // Create observable when needed
+      IObservable<long> m_TimerObservable = Observable.Interval(Period);
+      //_ret is never used
+      m_TimerSubscription = m_TimerObservable.Subscribe(c => RaiseTick(c));
+    }
+    public TimeSpan Period
+    {
+      get;
+      private set;
+    }
+    #endregion
+
+    #region private
+    IDisposable m_TimerSubscription = null;
+    private void RaiseTick(long counter)
+    {
+      // Make safe call
+      Tick?.Invoke(this, new TickEventArgs(counter));
+    }
+
+    #region IDisposable Support
+    private bool disposedValue = false; // To detect redundant calls
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!disposedValue)
+      {
+        if (disposing)
         {
-            Period = period;
+          // TODO: dispose managed state (managed objects).
         }
 
-        #region API
-        public event EventHandler<TickEventArgs> Tick;
-        //What happens after recalling Start ??
-        public void Start()
-        {
-            // Create observable when needed
-            m_TimerObservable = Observable.Interval(Period);
-            //_ret is never used
-            IDisposable _ret = m_TimerObservable.Subscribe(c => RaiseTick(c));
-        }
-        public TimeSpan Period
-        {
-            get;
-            private set;
-        }
-        #endregion
+        // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+        // TODO: set large fields to null.
 
-        #region private
-        private IObservable<long> m_TimerObservable;
-        private void RaiseTick(long counter)
-        {
-            // Make safe call
-            Tick?.Invoke(this, new TickEventArgs(counter));
-        }
-        #endregion
+        disposedValue = true;
+      }
     }
+
+    // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+    // ~Timer() {
+    //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+    //   Dispose(false);
+    // }
+
+    // This code added to correctly implement the disposable pattern.
+    public void Dispose()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(true);
+      // TODO: uncomment the following line if the finalizer is overridden above.
+      // GC.SuppressFinalize(this);
+    }
+    #endregion
+
+    #endregion
+
+  }
 }
