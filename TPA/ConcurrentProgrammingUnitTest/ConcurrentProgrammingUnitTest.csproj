@@ -48,9 +48,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CriticalSectionExampleUnitTest.cs" />
-    <Compile Include="KeyboardUnitTest.cs" />
+    <Compile Include="ProducerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
