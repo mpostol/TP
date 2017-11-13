@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
   [TestClass]
-  public class TimerUnitTest
+  public class ReactiveTimerUnitTest
   {
 
     [TestMethod]

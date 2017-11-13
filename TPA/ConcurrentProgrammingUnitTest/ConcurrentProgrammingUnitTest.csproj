@@ -60,7 +60,7 @@
     <Compile Include="CriticalSectionExampleUnitTest.cs" />
     <Compile Include="ProducerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimerUnitTest.cs" />
+    <Compile Include="ReactiveTimerUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\ApplicationArchitectureDependency\DependencyValidation1.layerdiagram">
