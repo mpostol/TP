@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming
@@ -35,7 +36,8 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       // Create observable when needed
       IObservable<long> m_TimerObservable = Observable.Interval(Period);
       //_ret is never used
-      m_TimerSubscription = m_TimerObservable.Subscribe(c => RaiseTick(c));
+      m_TimerSubscription = m_TimerObservable.ObserveOn(Scheduler.Default).Subscribe(c => RaiseTick(c));
+      //m_TimerSubscription = m_TimerObservable.ObserveOn(DispatcherScheduler.Current).Subscribe(c => RaiseTick(c));
     }
     public TimeSpan Period
     {
