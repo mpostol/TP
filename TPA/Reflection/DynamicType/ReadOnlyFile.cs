@@ -15,11 +15,8 @@ namespace TPA.Reflection.DynamicType
 
     public class ReadOnlyFile : DynamicObject
     {
-        // Store the path to the file and the initial line count value.
         private string p_filePath;
-
-        // Public constructor. Verify that file exists and store the path in 
-        // the private variable.
+        
         public ReadOnlyFile(string filePath)
         {
             if (!File.Exists(filePath))
@@ -29,19 +26,14 @@ namespace TPA.Reflection.DynamicType
 
             p_filePath = filePath;
         }
-
-        // Implement the TryGetMember method of the DynamicObject class for dynamic member calls.
+        
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {           
             result = GetPropertyValue(binder.Name);
             return result == null ? false : true;
         }
-
-        // Implement the TryInvokeMember method of the DynamicObject class for 
-        // dynamic member calls that have arguments.
-        public override bool TryInvokeMember(InvokeMemberBinder binder,
-                                             object[] args,
-                                             out object result)
+        
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
             StringSearchOption StringSearchOption = StringSearchOption.StartsWith;
             bool trimSpaces = true;
@@ -57,7 +49,10 @@ namespace TPA.Reflection.DynamicType
 
             try
             {
-                if (args.Length > 1) { trimSpaces = (bool)args[1]; }
+                if (args.Length > 1)
+                {
+                    trimSpaces = (bool)args[1];
+                }
             }
             catch
             {
@@ -83,8 +78,7 @@ namespace TPA.Reflection.DynamicType
                 while (!sr.EndOfStream)
                 {
                     line = sr.ReadLine();
-
-                    // Perform a case-insensitive search by using the specified search options.
+                    
                     testLine = line.ToUpper();
                     if (trimSpaces)
                     {
@@ -107,12 +101,14 @@ namespace TPA.Reflection.DynamicType
             }
             catch
             {
-                // Trap any exception that occurs in reading the file and return null.
                 results = null;
             }
             finally
             {
-                if (sr != null) { sr.Close(); }
+                if (sr != null)
+                {
+                    sr.Close();
+                }
             }
 
             return results;
