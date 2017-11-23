@@ -1,18 +1,19 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
   [TestClass]
-  public class KeyboardUnitTest
+  public class ProducerUnitTest
   {
 
     [TestMethod]
     public void TPAReadKeyFromKeyboardBufferAsyncTest()
     {
-      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>( new ProductFactory()))
+      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
       {
         List<TestingClass> _chars = new List<TestingClass>();
         long _counter = 0;

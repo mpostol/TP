@@ -1,8 +1,9 @@
 ﻿
 using System;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 
-namespace TPA.AsynchronousBehavior.ReactiveProgramming
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
   public class TickEventArgs : EventArgs
   {
@@ -17,11 +18,11 @@ namespace TPA.AsynchronousBehavior.ReactiveProgramming
       private set;
     }
   }
-  public class Timer: IDisposable
+  public class ReactiveTimer: IDisposable
   {
 
     #region constructor
-    public Timer(TimeSpan period)
+    public ReactiveTimer(TimeSpan period)
     {
       Period = period;
     }
@@ -35,7 +36,8 @@ namespace TPA.AsynchronousBehavior.ReactiveProgramming
       // Create observable when needed
       IObservable<long> m_TimerObservable = Observable.Interval(Period);
       //_ret is never used
-      m_TimerSubscription = m_TimerObservable.Subscribe(c => RaiseTick(c));
+      m_TimerSubscription = m_TimerObservable.ObserveOn(Scheduler.Default).Subscribe(c => RaiseTick(c));
+      //m_TimerSubscription = m_TimerObservable.ObserveOn(DispatcherScheduler.Current).Subscribe(c => RaiseTick(c));
     }
     public TimeSpan Period
     {

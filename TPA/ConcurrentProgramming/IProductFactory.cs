@@ -1,4 +1,5 @@
-﻿namespace TPA.AsynchronousBehavior.ConcurrentProgramming
+﻿
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
   public interface IProductFactory<T>
   {

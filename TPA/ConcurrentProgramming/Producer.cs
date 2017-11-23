@@ -79,9 +79,9 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
     private CriticalSection<T> m_CriticalSection;
 
     [Synchronization(true)]
-    class CriticalSection<T> : IDisposable
+    class CriticalSection<productType> : IDisposable
     {
-      public CriticalSection(IProductFactory<T> factory)
+      public CriticalSection(IProductFactory<productType> factory)
       {
         if (factory == null)
           throw new ArgumentNullException(nameof(factory));
@@ -93,13 +93,13 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         if (m_charBuffer.Count == 1)
           m_AutoResetEvent.Set();
       }
-      internal T ReadKeyFromKeyboardBuffer()
+      internal productType ReadKeyFromKeyboardBuffer()
       {
         if (m_charBuffer.Count == 0)
           m_AutoResetEvent.WaitOne(-1, true);
         else if (m_charBuffer.Count == 1)
           m_AutoResetEvent.Reset();
-        Debug.Assert(m_charBuffer.Any<T>());
+        Debug.Assert(m_charBuffer.Any<productType>());
         return m_charBuffer.Dequeue();
       }
 
@@ -107,8 +107,8 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       {
         m_AutoResetEvent.Dispose();
       }
-      private IProductFactory<T> m_Factory;
-      private readonly Queue<T> m_charBuffer = new Queue<T>();
+      private IProductFactory<productType> m_Factory;
+      private readonly Queue<productType> m_charBuffer = new Queue<productType>();
       private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
     }
 

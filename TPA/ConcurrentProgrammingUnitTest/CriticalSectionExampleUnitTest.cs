@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPA.AsynchronousBehavior.ConcurrentProgrammin;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {

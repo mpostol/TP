@@ -5,18 +5,17 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPA.AsynchronousBehavior.ReactiveProgramming;
 
-namespace ReactiveProgrammingUnitTest
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
   [TestClass]
-  public class TimerUnitTest
+  public class ReactiveTimerUnitTest
   {
 
     [TestMethod]
     public void CheckWhetherTickRaised()
     {
-      using (Timer _timer = new Timer(TimeSpan.FromSeconds(1)))
+      using (ReactiveTimer _timer = new ReactiveTimer(TimeSpan.FromSeconds(1)))
       {
         // Create observable from tick event
         IObservable<EventPattern<TickEventArgs>> tickObservable = Observable.FromEventPattern<TickEventArgs>(_timer, "Tick");
