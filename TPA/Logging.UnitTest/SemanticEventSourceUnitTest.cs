@@ -20,30 +20,53 @@ namespace TPA.Logging.UnitTest
     public void LogFailureTest()
     {
       EventEntry _lastEvent = null;
-      ObservableEventListener listener = new ObservableEventListener();
-      using (SinkSubscription<CustomSink> _subscription = listener.CreateSink(x => _lastEvent = x))
+      using (ObservableEventListener _listener = new ObservableEventListener())
       {
-        Assert.IsNotNull(_subscription.Sink);
+        using (SinkSubscription<CustomSink> _subscription = _listener.CreateSink(x => _lastEvent = x))
+        {
+          Assert.IsNotNull(_subscription.Sink);
 
-        listener.EnableEvents(SemanticEventSource.Log, EventLevel.LogAlways, Keywords.All);
-        Assert.IsNull(_lastEvent);
-        SemanticEventUser _logUser = new SemanticEventUser();
-        _logUser.LogFailure();
-        Assert.IsNotNull(_lastEvent);
+          _listener.EnableEvents(SemanticEventSource.Log, EventLevel.LogAlways, Keywords.All);
+          Assert.IsNull(_lastEvent);
+          SemanticEventUser _logUser = new SemanticEventUser();
+          _logUser.LogFailure();
+          Assert.IsNotNull(_lastEvent);
 
-        //_lastEvent content
-        Assert.AreEqual<int>(1, _lastEvent.EventId);
-        Assert.AreEqual<Guid>(Guid.Empty, _lastEvent.ActivityId);
-        Assert.AreEqual<string>("Application Failure: LogFailure", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
-        Assert.AreEqual<string>("System.Collections.ObjectModel.ReadOnlyCollection`1[System.Object]", _lastEvent.Payload.ToString(), _lastEvent.Payload.ToString());
-        Assert.AreEqual<int>(1, _lastEvent.Payload.Count);
-        Assert.AreEqual<string>("LogFailure", _lastEvent.Payload[0].ToString());
-        Assert.AreEqual<string>("message", _lastEvent.Schema.Payload[0]);
+          //_lastEvent content
+          Assert.AreEqual<int>(1, _lastEvent.EventId);
+          Assert.AreEqual<Guid>(Guid.Empty, _lastEvent.ActivityId);
+          Assert.AreEqual<string>("Application Failure: LogFailure", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
+          Assert.AreEqual<string>("System.Collections.ObjectModel.ReadOnlyCollection`1[System.Object]", _lastEvent.Payload.ToString(), _lastEvent.Payload.ToString());
+          Assert.AreEqual<int>(1, _lastEvent.Payload.Count);
+          Assert.AreEqual<string>("LogFailure", _lastEvent.Payload[0].ToString());
+          Assert.AreEqual<string>("message", _lastEvent.Schema.Payload[0]);
 
-        Assert.AreEqual<string>("Start", _lastEvent.Schema.OpcodeName);
-        Assert.AreEqual<EventOpcode>(EventOpcode.Start, _lastEvent.Schema.Opcode);
-        Assert.AreEqual<string>("Page", _lastEvent.Schema.TaskName);
-        Assert.AreEqual<EventTask>(SemanticEventSource.Tasks.Page, _lastEvent.Schema.Task);
+          Assert.AreEqual<string>("Start", _lastEvent.Schema.OpcodeName);
+          Assert.AreEqual<EventOpcode>(EventOpcode.Start, _lastEvent.Schema.Opcode);
+          Assert.AreEqual<string>("Page", _lastEvent.Schema.TaskName);
+          Assert.AreEqual<EventTask>(SemanticEventSource.Tasks.Page, _lastEvent.Schema.Task);
+        }
+        _listener.DisableEvents(SemanticEventSource.Log);
+      }
+    }
+    [TestMethod]
+    public void NamedEventSourceTest()
+    {
+      EventEntry _lastEvent = null;
+      using (ObservableEventListener _listener = new ObservableEventListener())
+      {
+        using (SinkSubscription<CustomSink> _subscription = _listener.CreateSink(x => _lastEvent = x))
+        {
+          Assert.IsNotNull(_subscription.Sink);
+
+          _listener.EnableEvents("TPA-SemanticLogging", EventLevel.LogAlways, Keywords.All);
+          Assert.IsNull(_lastEvent);
+          SemanticEventUser _logUser = new SemanticEventUser();
+          _logUser.LogFailure();
+          Assert.IsNotNull(_lastEvent);
+          Assert.AreEqual<string>("Application Failure: LogFailure", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
+
+        }
       }
     }
   }
@@ -68,7 +91,7 @@ namespace TPA.Logging.UnitTest
 
   }
 
-  public static class EmailSinkExtensions
+  public static class SinkExtensions
   {
 
     public static SinkSubscription<CustomSink> CreateSink(this IObservable<EventEntry> eventStream, Action<EventEntry> feedback)

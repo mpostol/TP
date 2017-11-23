@@ -10,16 +10,12 @@ namespace TPA.Composition.UnitTest
   [TestClass]
   public class MEFServiceLocatorUserUnitTest
   {
-    [TestMethod]
-    public void NoCompositionTestMethod1()
-    {
-      MEFServiceLocatorUser _newInstance = new MEFServiceLocatorUser();
-      Assert.IsNull(_newInstance.Logger);
-    }
+
     [TestMethod]
     public void CompositionTestMethod1()
     {
       MEFServiceLocatorUser _newInstance = new MEFServiceLocatorUser();
+      Assert.IsNull(_newInstance.Logger);
       ComposeParts(_newInstance);
       Assert.IsNotNull(_newInstance.Logger);
       _newInstance.DataProcessing();
