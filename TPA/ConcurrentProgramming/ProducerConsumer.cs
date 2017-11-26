@@ -5,11 +5,11 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
-namespace ReactiveProgrammingUnitTest
+namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
-  public class Producer<TProduct> : ISubject<bool, TProduct>
+  public class ReactiveProducerConsumer<TProduct> : ISubject<bool, TProduct>
   {
-    public Producer(Func<TProduct> produce, TimeSpan producePeriod, int bufferCapacity)
+    public ReactiveProducerConsumer(Func<TProduct> produce, TimeSpan producePeriod, int bufferCapacity)
     {
       Produce = produce;
       ProducePeriod = producePeriod;

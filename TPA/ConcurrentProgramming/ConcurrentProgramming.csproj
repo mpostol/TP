@@ -60,6 +60,7 @@
     <Compile Include="CriticalSectionExample.cs" />
     <Compile Include="Producer.cs" />
     <Compile Include="IProductFactory.cs" />
+    <Compile Include="ProducerConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InstanceCreationCompletedEventArgs.cs" />
     <Compile Include="ReactiveTimer.cs" />

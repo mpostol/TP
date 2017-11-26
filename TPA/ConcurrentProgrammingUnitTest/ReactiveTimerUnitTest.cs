@@ -18,9 +18,9 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       using (ReactiveTimer _timer = new ReactiveTimer(TimeSpan.FromSeconds(1)))
       {
         // Create observable from tick event
-        IObservable<EventPattern<TickEventArgs>> tickObservable = Observable.FromEventPattern<TickEventArgs>(_timer, "Tick");
+        IObservable<EventPattern<TickEventArgs>> _tickObservable = Observable.FromEventPattern<TickEventArgs>(_timer, "Tick");
         // Get first five tick event raises and count them
-        IObservable<long> _firstFiveTickObservable = tickObservable
+        IObservable<long> _firstFiveTickObservable = _tickObservable
           .Select(e => e.EventArgs.Counter)
           .Take(5);
         long _accumulator = 0;
