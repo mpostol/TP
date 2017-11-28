@@ -9,16 +9,19 @@ namespace TPA.Reflection.UnitTest.DynamicType
     public class DemoTypeBuilderUnitTest
     {
         [TestMethod]
-        public void TestCreateInstance()
+        public void TestcreateInstanceWithPublicField()
         {
-            object instance = DemoTypeBuilder.createInstance();
+            object instance = DemoTypeBuilder.createInstanceWithPublicField();
             Assert.IsNotNull(instance);
-            Assert.IsTrue(instance.GetType().Name == "DemoType");
 
             Type type = instance.GetType();
+            Assert.IsNotNull(type);
+            Assert.IsTrue(type.Name == "DemoType");
+            
             FieldInfo fieldInfo = type.GetField("number");
             Assert.IsNotNull(fieldInfo.GetValue(instance));
             Assert.AreEqual(fieldInfo.GetValue(instance).GetType(), typeof(int));
+            Assert.AreEqual(fieldInfo.GetValue(instance), 0);
         }
     }
 }

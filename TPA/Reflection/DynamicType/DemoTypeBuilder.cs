@@ -10,7 +10,7 @@ namespace TPA.Reflection.DynamicType
 {
     public static class DemoTypeBuilder
     {
-        public static object createInstance()
+        public static object createInstanceWithPublicField()
         {
             //specify name of dynamic assembly
             AssemblyName assemblyName = new AssemblyName("DemoAssembly");
