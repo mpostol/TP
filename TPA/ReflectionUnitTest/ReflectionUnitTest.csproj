@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CodeGeneration\CSharpCodeFactoryUnitTest.cs" />
     <Compile Include="CodeGeneration\DynamicMethodUnitTest.cs" />
+    <Compile Include="DynamicType\DemoTypeBuilderUnitTest.cs" />
     <Compile Include="DynamicType\DynamicExampleClassUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocalizedDescriptionUnitTest.cs" />
