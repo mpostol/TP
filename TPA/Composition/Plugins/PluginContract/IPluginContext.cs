@@ -1,7 +1,9 @@
-﻿namespace TPA.Composition.Plugins.PluginContract
+﻿
+namespace TPA.Composition.Plugins.PluginContract
 {
-    public interface IPluginContext
-    {
-        string Text { get; set; }
-    }
+  public interface IPluginContext
+  {
+    string Text { get; set; }
+
+  }
 }

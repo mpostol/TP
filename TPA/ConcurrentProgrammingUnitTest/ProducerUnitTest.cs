@@ -31,7 +31,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         Assert.IsTrue(_counter > 1000000);
       }
     }
-
     [TestMethod]
     public void APMReadKeyFromKeyboardBuffer()
     {
@@ -72,7 +71,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         {
           _counter++;
         };
-        Assert.IsTrue(_counter > 100000, $"Counetr = {_counter}");
+        Assert.IsTrue(_counter > 50000, $"Counetr = {_counter}");
       }
 
     }

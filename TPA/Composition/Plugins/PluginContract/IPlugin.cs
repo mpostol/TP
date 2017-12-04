@@ -1,8 +1,9 @@
-﻿namespace TPA.Composition.Plugins.PluginContract
+﻿
+namespace TPA.Composition.Plugins.PluginContract
 {
-    public interface IPlugin
-    {
-        string Name { get; }
-        void PerformAction(IPluginContext context);
-    }
+  public interface IPlugin
+  {
+    string Name { get; }
+    void PerformAction(IPluginContext context);
+  }
 }
