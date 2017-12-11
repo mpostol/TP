@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.SemanticLogging;
@@ -7,6 +8,7 @@ using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks;
 using Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TPA.Logging.Consumer;
+using TPA.Logging.UnitTest.Instrumentation;
 
 namespace TPA.Logging.UnitTest
 {
@@ -28,16 +30,16 @@ namespace TPA.Logging.UnitTest
         _subscription.Sink.EnableEvents(SemanticEventSource.Log, EventLevel.LogAlways, Keywords.All);
         Assert.IsNull(_lastEvent);
         SemanticEventUser _logUser = new SemanticEventUser();
-        _logUser.LogFailure();
+        _logUser.DataProcessing();
         Assert.IsNotNull(_lastEvent);
 
         //_lastEvent content
         Assert.AreEqual<int>(1, _lastEvent.EventId);
         Assert.AreEqual<Guid>(Guid.Empty, _lastEvent.ActivityId);
-        Assert.AreEqual<string>("Application Failure: LogFailure", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
+        Assert.AreEqual<string>("Application Failure: DataProcessing", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
         Assert.AreEqual<string>("System.Collections.ObjectModel.ReadOnlyCollection`1[System.Object]", _lastEvent.Payload.ToString(), _lastEvent.Payload.ToString());
         Assert.AreEqual<int>(1, _lastEvent.Payload.Count);
-        Assert.AreEqual<string>("LogFailure", _lastEvent.Payload[0].ToString());
+        Assert.AreEqual<string>("DataProcessing", _lastEvent.Payload[0].ToString());
         Assert.AreEqual<string>("message", _lastEvent.Schema.Payload[0]);
 
         Assert.AreEqual<string>("Start", _lastEvent.Schema.OpcodeName);
@@ -55,9 +57,28 @@ namespace TPA.Logging.UnitTest
         _subscription.Sink.EnableEvents("TPA-SemanticLogging", EventLevel.LogAlways, Keywords.All);
         Assert.IsNull(_lastEvent);
         SemanticEventUser _logUser = new SemanticEventUser();
-        _logUser.LogFailure();
+        _logUser.DataProcessing();
         Assert.IsNotNull(_lastEvent);
-        Assert.AreEqual<string>("Application Failure: LogFailure", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
+        Assert.AreEqual<string>("Application Failure: DataProcessing", _lastEvent.FormattedMessage, _lastEvent.FormattedMessage);
+      }
+    }
+    [TestMethod]
+    public void FilteredEventSourceTest()
+    {
+      const int _bufferSize = 10;
+      List<EventEntry> _lastEvent = new List<EventEntry>();
+      ObservableEventListener _listener = new ObservableEventListener();
+      IDisposable _subscription =
+        _listener.
+            FlushOnTrigger(entry => entry.Schema.Level <= EventLevel.Error, bufferSize: _bufferSize).
+            Subscribe(x => _lastEvent.Add(x));
+      using (SinkSubscription<ObservableEventListener> _sink = new SinkSubscription<ObservableEventListener>(_subscription, _listener))
+      {
+        _sink.Sink.EnableEvents(SemanticEventSource.Log, EventLevel.LogAlways, Keywords.All);
+        SemanticEventUser _logUser = new SemanticEventUser();
+
+        _logUser.LongDataProcessing();
+        Assert.AreEqual<int>(_bufferSize + 1, _lastEvent.Count);
       }
     }
     [TestMethod]
@@ -72,7 +93,7 @@ namespace TPA.Logging.UnitTest
       Assert.IsTrue(_logFile.Exists);
       Assert.AreEqual<long>(0, _logFile.Length);
       SemanticEventUser _logUser = new SemanticEventUser();
-      _logUser.LogFailure();
+      _logUser.DataProcessing();
       m_FileSubscription.Sink.FlushAsync();
       _logFile.Refresh();
       Assert.IsTrue(_logFile.Length > 100);
@@ -83,11 +104,6 @@ namespace TPA.Logging.UnitTest
   internal static class SinkExtensions
   {
 
-    public static SinkSubscription<ObservableEventListener> CreateSink(this ObservableEventListener eventStream, Action<EventEntry> feedback)
-    {
-      IDisposable subscription = eventStream.Subscribe(feedback);
-      return new SinkSubscription<ObservableEventListener>(subscription, eventStream);
-    }
     public static SinkSubscription<ObservableEventListener> CreateSink(Action<EventEntry> feedback)
     {
       ObservableEventListener _listener = new ObservableEventListener();

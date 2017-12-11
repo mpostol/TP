@@ -26,7 +26,7 @@ namespace TPA.Logging.Consumer
     /// <value>The log.</value>
     public static SemanticEventSource Log { get; } = new SemanticEventSource();
 
-    [Event(1, Message = "Application Failure: {0}", Opcode = EventOpcode.Start, Task = Tasks.Page, Level = EventLevel.Critical, Keywords = Keywords.Diagnostic)]
+    [Event(1, Message = "Application Failure: {0}", Opcode = EventOpcode.Start, Task = Tasks.Page, Level = EventLevel.Error, Keywords = Keywords.Diagnostic)]
     internal void Failure(string message)
     {
       this.WriteEvent(1, message);
