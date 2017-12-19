@@ -10,13 +10,13 @@ namespace TPA.Configuration
   {
     public static List<string> ReadAllSettings()
     {
-      NameValueCollection appSettings = ConfigurationManager.AppSettings;
-      return appSettings.AllKeys.Select<string, string>(key => appSettings[key]).ToList<string>();
+      NameValueCollection _appSettings = ConfigurationManager.AppSettings;
+      return _appSettings.AllKeys.Select<string, string>(key => _appSettings[key]).ToList<string>();
     }
     public static string ReadSetting(string key)
     {
-      NameValueCollection appSettings = ConfigurationManager.AppSettings;
-      return appSettings[key] ?? "Not Found";
+      NameValueCollection _appSettings = ConfigurationManager.AppSettings;
+      return _appSettings[key] ?? "Not Found";
     }
     public static void AddUpdateAppSettings(string key, string value)
     {

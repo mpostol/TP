@@ -14,18 +14,18 @@ namespace TPA.Composition.Plugins.Handler
     //Searching all .dll/.exe files in application directory
     public object Create(object parent, object configContext, XmlNode section)
     {
-      List<IPlugin> plugins = new List<IPlugin>();
+      List<IPlugin> _plugins = new List<IPlugin>();
       foreach (XmlNode node in section.ChildNodes)
       {
         try
         {
-          object plugObject = Activator.CreateInstance(Type.GetType(node.Attributes["type"].Value));
-          IPlugin plugin = (IPlugin)plugObject;
-          plugins.Add(plugin);
+          object _plugObject = Activator.CreateInstance(Type.GetType(node.Attributes["type"].Value));
+          IPlugin _plugin = (IPlugin)_plugObject;
+          _plugins.Add(_plugin);
         }
         catch (Exception) { }
       }
-      return plugins;
+      return _plugins;
     }
   }
 }
