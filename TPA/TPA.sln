@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reflection", "Reflection\Reflection.csproj", "{80CD9772-8724-40D4-AC68-4148FBE05E82}"
 EndProject
@@ -21,13 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentProgrammingUnitTe
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ApplicationArchitectureDependency", "ApplicationArchitectureDependency\ApplicationArchitectureDependency.modelproj", "{8765CB3F-5DA1-409E-AF8D-1D135E610971}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part4_Logging", "Part4_Logging", "{E2CFE8B5-4FDD-4F45-8A7A-64C508E08E86}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part3_Logging", "Part3_Logging", "{E2CFE8B5-4FDD-4F45-8A7A-64C508E08E86}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part2_Composition", "Part2_Composition", "{5304DF32-EA92-4D21-BD39-4389AB7A43DB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part3_DataBase", "Part3_DataBase", "{C7DE8A05-6D49-4820-ABF3-9FC892A44A72}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part4_DataBase", "Part4_DataBase", "{C7DE8A05-6D49-4820-ABF3-9FC892A44A72}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part5_Configuration", "Part5_Configuration", "{25BD5BA3-C65F-454A-B86A-6E1DA9373948}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part4_Configuration", "Part4_Configuration", "{25BD5BA3-C65F-454A-B86A-6E1DA9373948}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Composition", "Composition\Composition.csproj", "{8E42046A-D9AE-41BD-8054-0D8F1BFBA94D}"
 EndProject

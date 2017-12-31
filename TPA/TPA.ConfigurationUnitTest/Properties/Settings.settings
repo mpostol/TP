@@ -5,8 +5,5 @@
     <Setting Name="UTString" Type="System.String" Scope="Application">
       <Value Profile="(Default)">UTString</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
   </Settings>
 </SettingsFile>
