@@ -22,7 +22,6 @@ namespace TPA.Configuration.UnitTest.XmlCustomData
     private static CDDescription CreateCDDescription(int identifier)
     {
       return new CDDescription() { artist = $"artist #{identifier}", company = $"company #{identifier}", country = $"country #{identifier}", price = 123, title = $"title #{identifier}", year = 2017 };
-
     }
     internal static bool TestTestingData(catalog testingData)
     {
