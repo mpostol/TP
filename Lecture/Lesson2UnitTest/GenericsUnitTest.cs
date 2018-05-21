@@ -11,7 +11,7 @@ namespace TP.Lecture.UnitTest
     public void AfterCreatioValueTestMethod()
     {
       Generics<int> _intInstance = new Generics<int>();
-      Assert.AreEqual<int>(0, _intInstance.DefaultValue);
+      Assert.AreEqual<int>(default(int), _intInstance.DefaultValue);
     }
     [TestMethod]
     public void AfterCreatioReferenceTestMethod()
@@ -23,8 +23,8 @@ namespace TP.Lecture.UnitTest
     [TestMethod]
     public void DictionaryCreatorTestMethod()
     {
-      //SelfDictionary<AnyClass> _diction = new SelfDictionary<AnyClass>();
-      SelfDictionary<EquatableNotImplemented> _diction = new SelfDictionary<EquatableNotImplemented>();
+      //SelfDictionary<AnyClass> _dictionPrim = new SelfDictionary<AnyClass>();
+      SelfDictionary<EquatableNotImplemented> _dictionSecond = new SelfDictionary<EquatableNotImplemented>();
     }
     [TestMethod]
     [ExpectedException(typeof(NotImplementedException))]
@@ -37,6 +37,7 @@ namespace TP.Lecture.UnitTest
       Assert.AreEqual<int>(2, _dictionary.Count);
       _dictionary.ContainsKey(_EquatableNotImplementedInstance);
     }
+
     #region UT instrumentation
     private class AnyClass { }
     private class EquatableNotImplemented : System.IEquatable<EquatableNotImplemented>
@@ -46,7 +47,7 @@ namespace TP.Lecture.UnitTest
         throw new NotImplementedException();
       }
     }
-
     #endregion
+
   }
 }

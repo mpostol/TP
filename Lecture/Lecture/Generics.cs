@@ -14,7 +14,9 @@ namespace TP.Lecture
       DictionaryPropert = new Dictionary<int, ClassType>();
     }
     public ClassType GenericMethod<MethodType>(ClassType classTypeParameter)
+
     {
+      Type x = typeof(MethodType); // MethodType must represent a type.
       return classTypeParameter;
     }
     public bool GenericMethod<MethodType>(ClassType parameter1, ClassType parameter2)
