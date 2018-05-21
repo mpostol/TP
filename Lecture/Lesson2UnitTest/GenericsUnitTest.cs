@@ -37,7 +37,8 @@ namespace TP.Lecture.UnitTest
       Assert.AreEqual<int>(2, _dictionary.Count);
       _dictionary.ContainsKey(_EquatableNotImplementedInstance);
     }
-    private class AnyClass{}
+    #region UT instrumentation
+    private class AnyClass { }
     private class EquatableNotImplemented : System.IEquatable<EquatableNotImplemented>
     {
       public bool Equals(EquatableNotImplemented other)
@@ -46,5 +47,6 @@ namespace TP.Lecture.UnitTest
       }
     }
 
+    #endregion
   }
 }
