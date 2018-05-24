@@ -87,7 +87,7 @@ namespace TPA.Reflection.Model
       return from currentInterface in interfaces
              select EmitReference(currentInterface);
     }
-    private static TypeKind GetTypeKind(Type type)
+    private static TypeKind GetTypeKind(Type type) //#80 TPA: Reflection - Invalid return value of GetTypeKind() 
     {
       return type.IsEnum ? TypeKind.EnumType :
              type.IsValueType ? TypeKind.StructType :
