@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Generics.md" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="TreeViewExample\MainWindow.xaml">
