@@ -29,7 +29,7 @@ namespace TPA.Reflection.Model
     #region API
     internal enum TypeKind
     {
-      EnumType, StructType, InterfaceType, ClassType
+      None, EnumType, StructType, InterfaceType, ClassType
     }
     internal static TypeMetadata EmitReference(Type type)
     {
