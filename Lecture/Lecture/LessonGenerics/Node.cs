@@ -1,4 +1,4 @@
-﻿namespace TP.Lecture
+﻿namespace TP.Lecture.LessonGenerics
 {
   class Node<ClassA>
   {

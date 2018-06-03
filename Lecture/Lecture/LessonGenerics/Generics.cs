@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TP.Lecture
+namespace TP.Lecture.LessonGenerics
 {
   /// <summary>
   /// Class Generics - an example og generics.
