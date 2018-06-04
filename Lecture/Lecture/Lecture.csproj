@@ -61,6 +61,7 @@
     <Compile Include="FromClause.cs" />
     <Compile Include="LessonGenerics\Generics.cs" />
     <Compile Include="InterfaceExample.cs" />
+    <Compile Include="LessonGenerics\NodeObservable.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="LessonGenerics\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
