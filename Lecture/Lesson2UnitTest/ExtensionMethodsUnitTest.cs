@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TP.Lecture.LessonExtensionMethods;
 
 namespace TP.Lecture.UnitTest
 {
