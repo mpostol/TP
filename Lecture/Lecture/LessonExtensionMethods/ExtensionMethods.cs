@@ -9,7 +9,7 @@ namespace TP.Lecture.LessonExtensionMethods
     {
       return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
     }
-    public static int MethodA(this int i)
+    public static int Minus(this int i)
     {
       return -i;
     }

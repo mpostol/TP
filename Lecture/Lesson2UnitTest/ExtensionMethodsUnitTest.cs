@@ -22,7 +22,7 @@ namespace TP.Lecture.UnitTest
       string _TestString = "Hello Extension Methods";
       int _WordCountResult = _TestString.WordCount();
       Assert.AreEqual<int>(3, _WordCountResult);
-      Assert.AreEqual<int>(-3, _WordCountResult.MethodA());
+      Assert.AreEqual<int>(-3, _WordCountResult.Minus());
     }
     /// <summary>
     /// Mies the test method.
