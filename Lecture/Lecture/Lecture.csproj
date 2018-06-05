@@ -59,6 +59,7 @@
     <Compile Include="FileExample.cs" />
     <Compile Include="FromClause.cs" />
     <Compile Include="LessonExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="LessonExtensionMethods\IMyInterface.cs" />
     <Compile Include="LessonGenerics\Generics.cs" />
     <Compile Include="InterfaceExample.cs" />
     <Compile Include="LessonGenerics\NodeObservable.cs" />
@@ -82,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="LessonExtensionMethods\Readme.md" />
     <None Include="LessonGenerics\Generics.md" />
   </ItemGroup>
   <ItemGroup>

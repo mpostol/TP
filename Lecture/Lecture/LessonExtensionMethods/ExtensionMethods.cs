@@ -1,69 +1,56 @@
-﻿using System;
+﻿
+using System;
 
 namespace TP.Lecture.LessonExtensionMethods
 {
+
+  /// <summary>
+  /// Class ExtensionMethods - defines a few extension methods.
+  /// </summary>
   public static class ExtensionMethods
   {
 
+    /// <summary>
+    /// Counts words in <paramref name="str"/>.
+    /// </summary>
+    /// <param name="str">The string to be analyzed.</param>
+    /// <returns>Number of word in the string as <see cref="System.Int32"/>.</returns>
     public static int WordCount(this String str)
     {
       return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
     }
-    public static int Minus(this int i)
+    /// <summary>
+    /// Determines if the <paramref name="i"/> is even number.
+    /// </summary>
+    /// <param name="i">The value to be processed.</param>
+    /// <returns><c>true</c> if <paramref name="i"/> is even number, <c>false</c> otherwise.</returns>
+    public static bool Even(this int i)
     {
-      return -i;
+      return i % 2 == 0;
     }
     /// <summary>
-    /// Determines whether [contains] [the specified value].
+    /// Determines whether the specified <see cref="System.String"/> object occurs within the <paramref name="value"/>.
     /// </summary>
-    /// <param name="value">The value.</param>
-    /// <returns><c>true</c> if [contains] [the specified value]; otherwise, <c>false</c>.</returns>
-    /// <exception cref="System.NotImplementedException">Existing method cannot be override</exception>
+    /// <param name="value">The value to be tested.</param>
+    /// <returns><c>true</c> if the value parameter occurs within this <paramref name="value"/>, or if the <paramref name="value"/> is the empty string (""); otherwise, <c>false</c>.</returns>
+    /// <exception cref="System.NotImplementedException">An extension method with the same name and signature as an interface or class method will never be called</exception>
     public static bool Contains(this String value)
     {
-      throw new NotImplementedException("Existing method cannot be override");
+      throw new NotImplementedException("An extension method with the same name and signature as an interface or class method will never be called");
     }
-    public static int MethodA(this IMyInterface myInterface, int i)
+    /// <summary>
+    /// Allows calling the <see cref="IMyInterface.MyInterfaceMethod"/> method against the null reference.
+    /// </summary>
+    /// <param name="myInterface">An instance of the <see cref="IMyInterface"/>.</param>
+    /// <exception cref="ArgumentNullException"> - it the <paramref name="myInterface"/> is null.</exception>
+    public static void ProtectedMyInterfaceMethodCall(this IMyInterface myInterface)
     {
-      return -i;
+      if (myInterface == null)
+        throw new ArgumentNullException($"{nameof(myInterface)} cannot be null.");
+      myInterface.MyInterfaceMethod();
     }
 
-    public static string MethodA(this IMyInterface myInterface, string s)
-    {
-      return $"s={s}";
-    }
   }
-  /// <summary>
-  /// Define an interface named IMyInterface.
-  /// </summary>
-  public interface IMyInterface
-  {
-    // Any class that implements IMyInterface must define a method
-    // that matches the following signature.
-    void MethodB();
-  }
-  //public class A : IMyInterface
-  //{
 
-  //}
-  public class B : IMyInterface
-  {
-    public void MethodB()
-    {
-      throw new NotImplementedException();
-    }
-    public int MethodA(int i) { return -i; }
-  }
-  public class C : IMyInterface
-  {
-    public void MethodB()
-    {
-      throw new NotImplementedException();
-    }
-    public object MethodA(object obj)
-    {
-      return obj;
-    }
-  }
 }
 
