@@ -1,11 +1,11 @@
 ﻿namespace TP.Lecture.LessonGenerics
 {
-  class Node<ClassA>
+  public class Node<ValueTypeParameter>
   {
-    public Node<ClassA> Next { get; private set; }
-    public static Node<ClassA> First { get; private set; } = null;
-    public ClassA Value { get; private set; }
-    public Node(ClassA value)
+    public Node<ValueTypeParameter> Next { get; private set; }
+    public static Node<ValueTypeParameter> First { get; private set; } = null;
+    public ValueTypeParameter Value { get; private set; }
+    public Node(ValueTypeParameter value)
     {
       Value = value;
       Next = First;

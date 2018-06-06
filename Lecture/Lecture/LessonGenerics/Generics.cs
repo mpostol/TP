@@ -33,7 +33,6 @@ namespace TP.Lecture.LessonGenerics
     {
       return methodTypeParameter;
     }
-
   }
 
   public class SelfDictionary<Type> : Dictionary<Type, Type>
