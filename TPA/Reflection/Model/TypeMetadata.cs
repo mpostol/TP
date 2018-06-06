@@ -19,7 +19,7 @@ namespace TPA.Reflection.Model
       m_ImplementedInterfaces = EmitImplements(type.GetInterfaces());
       m_GenericArguments = !type.IsGenericTypeDefinition ? null : TypeMetadata.EmitGenericArguments(type.GetGenericArguments());
       m_Modifiers = EmitModifiers(type);
-      m_BaseType = EmitExtends(type);
+      m_BaseType = EmitExtends(type.BaseType);
       m_Properties = PropertyMetadata.EmitProperties(type.GetProperties());
       m_TypeKind = GetTypeKind(type);
       m_Attributes = type.GetCustomAttributes(false).Cast<Attribute>();
@@ -29,7 +29,7 @@ namespace TPA.Reflection.Model
     #region API
     internal enum TypeKind
     {
-      EnumType, StructType, InterfaceType, ClassType
+      None, EnumType, StructType, InterfaceType, ClassType
     }
     internal static TypeMetadata EmitReference(Type type)
     {
