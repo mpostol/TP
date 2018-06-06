@@ -29,12 +29,13 @@ namespace TP.Lecture.LessonExtensionMethods
       return i % 2 == 0;
     }
     /// <summary>
-    /// Determines whether the specified <see cref="System.String"/> object occurs within the <paramref name="value"/>.
+    /// Determines whether the specified <paramref name="value"/> object occurs within the <paramref name="sourceString" />.
     /// </summary>
-    /// <param name="value">The value to be tested.</param>
-    /// <returns><c>true</c> if the value parameter occurs within this <paramref name="value"/>, or if the <paramref name="value"/> is the empty string (""); otherwise, <c>false</c>.</returns>
+    /// <param name="sourceString">The source string.</param>
+    /// <param name="value">The string to seek.</param>
+    /// <returns><c>true</c> if the value parameter occurs within this <paramref name="value" />, or if the <paramref name="value" /> is the empty string (""); otherwise, <c>false</c>.</returns>
     /// <exception cref="System.NotImplementedException">An extension method with the same name and signature as an interface or class method will never be called</exception>
-    public static bool Contains(this String value)
+    public static bool Contains(this String sourceString, string value)
     {
       throw new NotImplementedException("An extension method with the same name and signature as an interface or class method will never be called");
     }

@@ -30,7 +30,7 @@ namespace TP.Lecture.UnitTest
     {
       string _TestString = "Hello Extension Methods";
       Assert.IsFalse(_TestString.WordCount().Even()); //To enable extension methods for a particular type, the definition must be visible.
-      Assert.AreEqual<int>(3, ExtensionMethods.WordCount(_TestString)); //Typical method call can also be in use.
+      Assert.AreEqual<int>(_TestString.WordCount(), LessonExtensionMethods.ExtensionMethods.WordCount(_TestString)); //Typical method call can also be in use.
     }
 
     /// <summary>
