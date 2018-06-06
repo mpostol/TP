@@ -19,7 +19,7 @@ namespace TPA.Reflection.Model
       m_ImplementedInterfaces = EmitImplements(type.GetInterfaces());
       m_GenericArguments = !type.IsGenericTypeDefinition ? null : TypeMetadata.EmitGenericArguments(type.GetGenericArguments());
       m_Modifiers = EmitModifiers(type);
-      m_BaseType = EmitExtends(type);
+      m_BaseType = EmitExtends(type.BaseType);
       m_Properties = PropertyMetadata.EmitProperties(type.GetProperties());
       m_TypeKind = GetTypeKind(type);
       m_Attributes = type.GetCustomAttributes(false).Cast<Attribute>();
@@ -96,7 +96,11 @@ namespace TPA.Reflection.Model
     }
     static Tuple<AccessLevel, SealedEnum, AbstractENum> EmitModifiers(Type type)
     {
+      //set defaults 
       AccessLevel _access = AccessLevel.IsPrivate;
+      AbstractENum _abstract = AbstractENum.NotAbstract;
+      SealedEnum _sealed = SealedEnum.NotSealed;
+      // check if not default 
       if (type.IsPublic)
         _access = AccessLevel.IsPublic;
       else if (type.IsNestedPublic)
@@ -105,9 +109,8 @@ namespace TPA.Reflection.Model
         _access = AccessLevel.IsProtected;
       else if (type.IsNestedFamANDAssem)
         _access = AccessLevel.IsProtectedInternal;
-      SealedEnum _sealed = SealedEnum.NotSealed;
-      if (type.IsSealed) _sealed = SealedEnum.Sealed;
-      AbstractENum _abstract = AbstractENum.NotAbstract;
+      if (type.IsSealed)
+        _sealed = SealedEnum.Sealed;
       if (type.IsAbstract)
         _abstract = AbstractENum.Abstract;
       return new Tuple<AccessLevel, SealedEnum, AbstractENum>(_access, _sealed, _abstract);
