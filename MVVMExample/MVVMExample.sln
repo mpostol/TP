@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMExample", "MVVMExample\MVVMExample.csproj", "{7465F369-E400-4B02-B602-B8A5CD112044}"
 EndProject
@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMExample.UnitTest", "MVV
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8FD593F3-47EE-4DCA-A2DD-51A56129DD98}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\PR39-CommonResources\cas.publickey.txt = ..\..\..\PR39-CommonResources\cas.publickey.txt
+		..\Lecture\README.md = ..\Lecture\README.md
 	EndProjectSection
 EndProject
 Global
@@ -28,5 +28,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F62AF172-C4B6-4673-9CAE-DE89452C3855}
 	EndGlobalSection
 EndGlobal

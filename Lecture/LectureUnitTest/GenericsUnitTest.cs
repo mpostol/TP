@@ -1,6 +1,7 @@
 ﻿
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using TP.Lecture.LessonGenerics;
 
 namespace TP.Lecture.UnitTest
 {
@@ -8,13 +9,13 @@ namespace TP.Lecture.UnitTest
   public class GenericsUnitTest
   {
     [TestMethod]
-    public void AfterCreatioValueTestMethod()
+    public void AfterCreationValueTestMethod()
     {
       Generics<int> _intInstance = new Generics<int>();
       Assert.AreEqual<int>(default(int), _intInstance.DefaultValue);
     }
     [TestMethod]
-    public void AfterCreatioReferenceTestMethod()
+    public void AfterCreationReferenceTestMethod()
     {
       Generics<AnyClass> _intInstance = new Generics<AnyClass>();
       //Assert.AreEqual<int>(0, _intInstance.DefaultValue);
