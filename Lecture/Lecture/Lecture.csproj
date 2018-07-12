@@ -56,12 +56,15 @@
     <Compile Include="AnonymousTypes.cs" />
     <Compile Include="BasicTypesStruct.cs" />
     <Compile Include="DelegateExample.cs" />
-    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FileExample.cs" />
     <Compile Include="FromClause.cs" />
-    <Compile Include="Generics.cs" />
+    <Compile Include="LessonExtensionMethods\ExtensionMethods.cs" />
+    <Compile Include="LessonExtensionMethods\IMyInterface.cs" />
+    <Compile Include="LessonGenerics\Generics.cs" />
     <Compile Include="InterfaceExample.cs" />
+    <Compile Include="LessonGenerics\NodeEnumerable.cs" />
     <Compile Include="LinqExtensions.cs" />
+    <Compile Include="LessonGenerics\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\AssemblyModel.cs" />
     <Compile Include="Reflection\ClassModel.cs" />
@@ -80,7 +83,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Generics.md" />
+    <None Include="LessonExtensionMethods\Readme.md" />
+    <None Include="LessonGenerics\Generics.md" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="TreeViewExample\MainWindow.xaml">
