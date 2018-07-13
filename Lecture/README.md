@@ -36,30 +36,30 @@ The repository is scoped to provide sound examples covering the following topics
 	3. Program robustness: exception, unit tests, environment simulation 
 2. Data semantics
  
-	4. Type and type compatibility
+	1. Type and type compatibility
 	5. Anonymous type
 	6. Partial types and methods
 	7. Generics 
 3. Data streams
 
-	8. Open, modification, close
+	1. Open, modification, close
 	9. Attributes
 	10. Reflection
 	11. Serialization
 	12. Cryptography basics
 4. Functional programming basics
 
-	13. Anonymous function and lambda expression
+	1. Anonymous function and lambda expression
 	14. Extension method
 5. Structural Data
 
-	15. LINQ query and methods syntax
+	1. LINQ query and methods syntax
 	16. LINQ to object
 	17. LINQ to SQL
 5. Graphical data
 
-	18. Delegates and events
+	1. Delegates and events
 	19. [xaml](https://docs.microsoft.com/en-us/dotnet/framework/xaml-services/)
-	20.  MVVM (Model, View, ViewModel) pattern
+	20. MVVM (Model, View, ViewModel) pattern
 
 > **NOTE**: Unit Test role is code explanation rather than testing the correctness of it. 
