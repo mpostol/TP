@@ -15,7 +15,7 @@ Let's review selected language constructs, patterns, and frameworks targeting da
 
 The aim of the course is to extend the knowledge and skills related to object-oriented programming focusing on the interoperability between the computing process and the data visualization, archiving and networking environment. Particular emphasis is placed on the identification of solutions that can serve as a certain pattern with the widest possible use over a long time horizon. Providing a long time horizon is extremely difficult for such a dynamically developing field. The author's experience comes to the rescue, which has been used by similar solutions for years, using constantly changing programming tools.
 
-In order to ensure the practical context of the discussion and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code used during the course is available in this repository. I belive that the main theses, design patterns, and scenarios used are generic in nature and may be seamlessly ported to other environments. The language and tools mentioned have been used only to embed discussions in a particular environment and to ensure that the course is very practical.
+In order to ensure the practical context of the discussion and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code used during the course is available in this repository. I believe that the main theses, design patterns, and scenarios used are generic in nature and may be seamlessly ported to other environments. The language and tools mentioned have been used only to embed discussions in a particular environment and to ensure that the course is very practical.
 
 The course discusses solutions for practical scenarios regarding various aspects of process data management, i.e. those that are input or output for the business logic of the program. In general, three types of data have been distinguished:
 
@@ -34,13 +34,13 @@ The repository is scoped to provide sound examples covering the following topics
 	1. About the course, information versus data, algorithm versus program, type - what it means
 	2. Useful assets: C# language, Visual Studio, GitHub 
 	3. Program robustness: exception, unit tests, environment simulation 
-2. Data Semantics
+2. Data semantics
  
 	4. Type and type compatibility
 	5. Anonymous type
 	6. Partial types and methods
 	7. Generics 
-3. Data Streams
+3. Data streams
 
 	8. Open, modification, close
 	9. Attributes

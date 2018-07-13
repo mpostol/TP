@@ -85,6 +85,7 @@
     <None Include="app.config" />
     <None Include="LessonExtensionMethods\Readme.md" />
     <None Include="LessonGenerics\Generics.md" />
+    <None Include="Reflection\README.MD" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="TreeViewExample\MainWindow.xaml">

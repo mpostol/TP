@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture", "Lecture\Lecture.csproj", "{D22F8E11-330E-4421-BD0D-45BC8E3BDD96}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{014A60F6-B923-40AA-B63F-E4C1D826F8C0}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LectureUnitTest", "LectureUnitTest\LectureUnitTest.csproj", "{A593265C-D539-4772-8653-730F4F09FBC8}"
 EndProject
