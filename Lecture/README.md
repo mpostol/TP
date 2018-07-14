@@ -63,3 +63,11 @@ The repository is scoped to provide sound examples covering the following topics
 	20. MVVM (Model, View, ViewModel) pattern
 
 > **NOTE**: Unit Test role is code explanation rather than testing the correctness of it. 
+
+<!--//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+-->
