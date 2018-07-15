@@ -23,7 +23,7 @@ The [Data-Intensive](Lecture/README.md) folder collects examples that can serve 
 
 The adaptive programming is presented as a catalog of language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the program against changing production environment in which it is executed.
 
-The [Data-Intensive](TPA/README.md) collects examples that can serve as a certain pattern with the widest possible use addressing the mentioned above application domain. In order to ensure the practical context and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code is available in this repository.
+The [Data-Intensive](TPA/README.md) folder collects examples that can serve as a certain pattern with the widest possible use addressing the mentioned above application domain. In order to ensure the practical context and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code is available in this repository.
 
 <!--//____________________________________________________________________________
 //
