@@ -1,8 +1,16 @@
-﻿using System;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using System;
 using System.Diagnostics;
 
 namespace TP.DependencyInjection
 {
+
   public class ConstructorInjection
   {
     public ConstructorInjection(ITraceSource traceEngine)
@@ -29,4 +37,5 @@ namespace TP.DependencyInjection
     }
     private ITraceSource m_TraceEngine;
   }
+
 }

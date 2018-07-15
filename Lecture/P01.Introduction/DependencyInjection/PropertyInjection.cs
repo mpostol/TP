@@ -1,4 +1,12 @@
-﻿using System.Diagnostics;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 3018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+
+using System.Diagnostics;
 
 namespace TP.DependencyInjection
 {
@@ -10,8 +18,7 @@ namespace TP.DependencyInjection
     /// <summary>
     /// Initializes a new instance of the <see cref="PropertyInjection"/> class.
     /// </summary>
-    public PropertyInjection()
-    { }
+    public PropertyInjection() { }
     /// <summary>
     /// Alpha example method.
     /// </summary>

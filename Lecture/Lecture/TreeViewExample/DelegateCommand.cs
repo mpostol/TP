@@ -24,6 +24,7 @@ namespace TP.Lecture.TreeViewExample
     {
       return true;
     }
+  
     public event EventHandler CanExecuteChanged;
   }
 }

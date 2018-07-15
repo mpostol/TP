@@ -1,16 +1,9 @@
-﻿// ***********************************************************************
-// Assembly         : Lecture
-// Author           : mpostol
-// Created          : 05-31-2015
+﻿//____________________________________________________________________________
 //
-// Last Modified By : mpostol
-// Last Modified On : 05-31-2015
-// ***********************************************************************
-// <copyright file="LinqExtensions.cs" company="Microsoft">
-//     Copyright © Microsoft 2014
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 using System;
 using System.Collections.Generic;
@@ -43,8 +36,7 @@ namespace TP.Lecture
     /// <returns>System.String.</returns>
     public string FromClauseExample2()
     {
-      // Example #1: var is optional because 
-      // the select clause specifies a string 
+      // Example #1: var is optional because the select clause specifies a string 
       string[] words = new string[] { "apple", "strawberry", "grape", "peach", "banana" };
       //var wordQuery = from word in words
       IEnumerable<string> wordQuery = words.Where<string>(word => word[0] == 'g'); //.Select<String, String>(word => word);
@@ -55,7 +47,6 @@ namespace TP.Lecture
         _selection.Add(s);
       return String.Join(";", _selection.ToArray());
     }
-
     /// <summary>
     /// Example #2: how to use an anonymous type in the select clause
     /// </summary>

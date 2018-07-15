@@ -23,7 +23,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-[Tt]emp]/
+
+# ignored working space for this repository 
+[Tt]emp
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -103,4 +105,3 @@ Lecture/Lesson2UnitTest/obj/
 /TPA/TestResults
 /TPA/packages
 /TPA/Reflection/*.user
-*.user
