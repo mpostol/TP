@@ -58,12 +58,6 @@
     <Compile Include="ConstructorInjectionUnitTest.cs" />
     <Compile Include="PropertyInjectionUnitTest.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DependencyInjection\DependencyInjection.csproj">
-      <Project>{1d7414ee-46f7-42e9-9814-85ac5b62e5bb}</Project>
-      <Name>DependencyInjection</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

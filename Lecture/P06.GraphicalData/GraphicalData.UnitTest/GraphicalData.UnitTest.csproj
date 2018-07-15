@@ -58,7 +58,7 @@
     <Compile Include="MainViewModelUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MVVMExample\MVVMExample.csproj">
+    <ProjectReference Include="..\GraphicalData\GraphicalData.csproj">
       <Project>{7465F369-E400-4B02-B602-B8A5CD112044}</Project>
       <Name>MVVMExample</Name>
     </ProjectReference>

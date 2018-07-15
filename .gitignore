@@ -23,6 +23,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+packages
 
 # ignored working space for this repository 
 [Tt]emp
