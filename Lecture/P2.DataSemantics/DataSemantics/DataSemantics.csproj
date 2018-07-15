@@ -7,8 +7,8 @@
     <ProjectGuid>{7875A015-D30C-431D-A2C4-7010509BDFFC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataSemantics</RootNamespace>
-    <AssemblyName>DataSemantics</AssemblyName>
+    <RootNamespace>TP.DataSemantics</RootNamespace>
+    <AssemblyName>TP.DataSemantics</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

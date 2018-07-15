@@ -7,8 +7,8 @@
     <ProjectGuid>{7465F369-E400-4B02-B602-B8A5CD112044}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TP.MVVMExample</RootNamespace>
-    <AssemblyName>TP.MVVMExample</AssemblyName>
+    <RootNamespace>TP.GraphicalData</RootNamespace>
+    <AssemblyName>TP.GraphicalData</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
