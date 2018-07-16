@@ -1,6 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Example.Xml.CustomData;
-using Example.Xml.DocumentsFactory;
+using TP.Lecture.Serialization;
 
 namespace TP.Lecture.UnitTest
 {
@@ -35,7 +42,7 @@ namespace TP.Lecture.UnitTest
       };
       string _fileName = @"Instrumentation\CustomData\catalog.xml";
       XmlFile.WriteXmlFile<Catalog>(_catalog, _fileName, System.IO.FileMode.Create);
-      Catalog _newPerson = XmlFile.ReadXmlFile<Example.Xml.CustomData.Catalog>(_fileName);
+      Catalog _newPerson = XmlFile.ReadXmlFile<Catalog>(_fileName);
       Assert.IsFalse(_catalog.cd[0].Equals(_newPerson.cd[0]));
       Assert.IsFalse(_catalog.cd[1].Equals(_newPerson.cd[1]));
 

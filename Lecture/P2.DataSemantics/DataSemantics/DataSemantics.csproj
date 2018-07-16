@@ -44,7 +44,6 @@
     <Compile Include="BasicTypesStruct.cs" />
     <Compile Include="FileExample.cs" />
     <Compile Include="InterfaceExample.cs" />
-    <Compile Include="LessonGenerics\Class1.cs" />
     <Compile Include="LessonGenerics\Generics.cs" />
     <Compile Include="LessonGenerics\Node.cs" />
     <Compile Include="LessonGenerics\NodeEnumerable.cs" />
