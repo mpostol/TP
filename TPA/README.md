@@ -15,6 +15,8 @@ Describe the problem and the motivation for undertaking the effort to solve the 
 
 ## Goal
 
+TBD
+
 <!--
 What we are going to achieve - the result or achievement toward which effort is directed.
 -->
