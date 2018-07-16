@@ -1,8 +1,14 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System;
 using System.Collections.Generic;
 
-namespace TP.Lecture.LessonGenerics
+namespace TP.DataSemantics.LessonGenerics
 {
   /// <summary>
   /// Class Generics - an example og generics.

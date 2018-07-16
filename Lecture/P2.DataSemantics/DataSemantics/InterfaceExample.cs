@@ -8,7 +8,7 @@
 using System;
 using System.Collections;
 
-namespace TP.Lecture
+namespace TP.DataSemantics
 {
   public class InterfaceExample: ICollection
   {

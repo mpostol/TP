@@ -1,8 +1,14 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) Year of Copyright, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System.Collections;
 using System.Collections.Generic;
 
-namespace TP.Lecture.LessonGenerics
+namespace TP.DataSemantics.LessonGenerics
 {
   public class NodeEnumerable<ValueTypeParameter> : Node<ValueTypeParameter>, IEnumerable<ValueTypeParameter>
   {

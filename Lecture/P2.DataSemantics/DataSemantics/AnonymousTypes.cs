@@ -1,9 +1,16 @@
-﻿//https://msdn.microsoft.com/en-us/library/vstudio/bb397696.aspx?f=255&MSPPError=-2147217396
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+//https://msdn.microsoft.com/en-us/library/vstudio/bb397696.aspx?f=255&MSPPError=-2147217396
 
 using System;
 using System.Collections.Generic;
 
-namespace TP.Lecture
+namespace TP.DataSemantics
 {
 
   public class AnonymousTypes

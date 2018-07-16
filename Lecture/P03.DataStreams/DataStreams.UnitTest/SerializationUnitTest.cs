@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Example.Xml.CustomData;
-using TP.Lecture.Serialization;
-using System.Linq;
+using Example.Xml.DocumentsFactory;
 
 namespace TP.Lecture.UnitTest
 {
@@ -36,7 +35,7 @@ namespace TP.Lecture.UnitTest
       };
       string _fileName = @"Instrumentation\CustomData\catalog.xml";
       XmlFile.WriteXmlFile<Catalog>(_catalog, _fileName, System.IO.FileMode.Create);
-      Catalog _newPerson = XmlFile.ReadXmlFile<Catalog>(_fileName);
+      Catalog _newPerson = XmlFile.ReadXmlFile<Example.Xml.CustomData.Catalog>(_fileName);
       Assert.IsFalse(_catalog.cd[0].Equals(_newPerson.cd[0]));
       Assert.IsFalse(_catalog.cd[1].Equals(_newPerson.cd[1]));
 

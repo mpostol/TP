@@ -48,7 +48,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnonymousTypesUnitTest.cs" />
+    <Compile Include="GenericsUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StructUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

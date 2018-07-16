@@ -73,6 +73,15 @@
     <Compile Include="DocumentsFactory\XmlFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\AssemblyModel.cs" />
+    <Compile Include="Reflection\ClassModel.cs" />
+    <Compile Include="Reflection\MethodModel.cs" />
+    <Compile Include="Reflection\NamespaceModel.cs" />
+    <Compile Include="Reflection\Reflector.cs" />
+    <Compile Include="Serialization\CustomSerialization.cs" />
+    <Compile Include="Serialization\IStylesheetNameProvider.cs" />
+    <Compile Include="Serialization\StaticClass.cs" />
+    <Compile Include="Serialization\XmlFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -80,6 +89,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Key.snk" />
+    <None Include="Reflection\README.MD" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

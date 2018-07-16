@@ -62,6 +62,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Introduction.UnitTest", "P0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection.Application", "P01.Introduction\DependencyInjection.Application\DependencyInjection.Application.csproj", "{39193CC0-E066-4092-8EA5-5EF6571C0839}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructuralDataUnitTest", "P05.StructuralData\StructuralDataUnitTest\StructuralDataUnitTest.csproj", "{3D981593-31C2-4985-872C-6C2AFF6156F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -148,6 +150,10 @@ Global
 		{39193CC0-E066-4092-8EA5-5EF6571C0839}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39193CC0-E066-4092-8EA5-5EF6571C0839}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39193CC0-E066-4092-8EA5-5EF6571C0839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D981593-31C2-4985-872C-6C2AFF6156F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D981593-31C2-4985-872C-6C2AFF6156F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D981593-31C2-4985-872C-6C2AFF6156F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D981593-31C2-4985-872C-6C2AFF6156F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +177,7 @@ Global
 		{1D7414EE-46F7-42E9-9814-85AC5B62E5BB} = {6592B78B-A8DB-4D58-B7D6-5E19E5BF9389}
 		{56613A6C-8A77-437F-A3AD-114556C07745} = {6592B78B-A8DB-4D58-B7D6-5E19E5BF9389}
 		{39193CC0-E066-4092-8EA5-5EF6571C0839} = {6592B78B-A8DB-4D58-B7D6-5E19E5BF9389}
+		{3D981593-31C2-4985-872C-6C2AFF6156F7} = {11C14FD7-D413-4B42-BE5B-E4DD5E9826DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65AA60A0-3E47-4570-9AAD-40AB900681D6}

@@ -1,6 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
-namespace TP.Lecture.UnitTest
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace TP.DataSemantics
 {
   [TestClass]
   public class AnonymousTypesUnitTest

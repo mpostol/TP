@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Documents Factory class File
-//  System  : Microsoft Visual C# .NET 2012
-//  $LastChangedDate: 2013-12-19 15:17:23 +0100 (Thu, 19 Dec 2013) $
-//  $Rev: 10105 $
-//  $LastChangedBy: mpostol $
-//  $URL: svn://svnserver.hq.cas.com.pl/VS/trunk/PR44-SharePoint/SharePoint/DocumentsFactory/File.cs $
-//  $Id: File.cs 10105 2013-12-19 14:17:23Z mpostol $
+﻿//____________________________________________________________________________
 //
-//  Copyright (C) 2013, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 1018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 using System;
 using System.IO;

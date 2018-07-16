@@ -1,9 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using TP.Lecture;
 
-namespace TP.Lecture.UnitTest
+namespace TP.DataSemantics
 {
   [TestClass]
   public class StructUnitTest
