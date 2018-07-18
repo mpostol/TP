@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TP.DataSemantics.LessonGenerics
+namespace TP.DataSemantics.Generics
 {
   /// <summary>
   /// Class Generics - an example og generics.

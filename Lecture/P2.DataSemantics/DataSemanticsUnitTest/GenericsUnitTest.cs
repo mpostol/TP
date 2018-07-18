@@ -7,7 +7,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using TP.DataSemantics.LessonGenerics;
+using TP.DataSemantics.Generics;
 
 namespace TP.DataSemantics
 {
@@ -24,13 +24,11 @@ namespace TP.DataSemantics
     public void AfterCreationReferenceTestMethod()
     {
       Generics<AnyClass> _intInstance = new Generics<AnyClass>();
-      //Assert.AreEqual<int>(0, _intInstance.DefaultValue);
       Assert.IsNull(_intInstance.DefaultValue);
     }
     [TestMethod]
     public void DictionaryCreatorTestMethod()
     {
-      //SelfDictionary<AnyClass> _dictionPrim = new SelfDictionary<AnyClass>();
       SelfDictionary<EquatableNotImplemented> _dictionSecond = new SelfDictionary<EquatableNotImplemented>();
     }
     [TestMethod]

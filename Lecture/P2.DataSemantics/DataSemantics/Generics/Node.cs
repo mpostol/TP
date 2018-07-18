@@ -5,7 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
-namespace TP.DataSemantics.LessonGenerics
+namespace TP.DataSemantics.Generics
 {
   public class Node<ValueTypeParameter>
   {

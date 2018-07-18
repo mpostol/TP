@@ -8,7 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace TP.DataSemantics.LessonGenerics
+namespace TP.DataSemantics.Generics
 {
   public class NodeEnumerable<ValueTypeParameter> : Node<ValueTypeParameter>, IEnumerable<ValueTypeParameter>
   {

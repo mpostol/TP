@@ -6,9 +6,9 @@
 //____________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TP.DependencyInjection.UnitTest.Instrumentation;
+using TP.Introduction.Instrumentation;
 
-namespace TP.DependencyInjection
+namespace TP.Introduction
 {
   [TestClass]
   public class ConstructorInjectionUnitTest

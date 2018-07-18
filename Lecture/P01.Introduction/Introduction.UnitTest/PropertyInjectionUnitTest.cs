@@ -8,8 +8,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
+using TP.Introduction.Instrumentation;
 
-namespace TP.DependencyInjection
+namespace TP.Introduction
 {
   [TestClass]
   public class PropertyInjectionUnitTest
