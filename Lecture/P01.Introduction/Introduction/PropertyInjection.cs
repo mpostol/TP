@@ -8,7 +8,7 @@
 
 using System.Diagnostics;
 
-namespace TP.DependencyInjection
+namespace TP.Introduction
 {
   /// <summary>
   /// Class PropertyInjection.

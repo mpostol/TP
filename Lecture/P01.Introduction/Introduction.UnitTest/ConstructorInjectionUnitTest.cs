@@ -1,7 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TP.DependencyInjection.UnitTest.Instrumentation;
 
-namespace TP.DependencyInjection.UnitTest
+namespace TP.DependencyInjection
 {
   [TestClass]
   public class ConstructorInjectionUnitTest

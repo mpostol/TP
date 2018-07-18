@@ -1,12 +1,18 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 using System;
 using System.Diagnostics;
+using TP.Introduction;
 
 namespace TP.DependencyInjection.ConsoleApplication
 {
   /// <summary>
-  /// Class ConsoleTraceSource - an example implementation of <see cref="ITraceSource"/> using <see cref="Console"/> to trace code behaviour.
+  /// Class ConsoleTraceSource - an example implementation of <see cref="ITraceSource"/> using <see cref="Console"/> to trace code behavior.
   /// </summary>
   /// <seealso cref="TP.DependencyInjection.ITraceSource" />
   internal class ConsoleTraceSource : ITraceSource

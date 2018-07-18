@@ -1,9 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TP.DependencyInjection.UnitTest.Instrumentation;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
-namespace TP.DependencyInjection.UnitTest
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Diagnostics;
+
+namespace TP.DependencyInjection
 {
   [TestClass]
   public class PropertyInjectionUnitTest
@@ -42,7 +48,6 @@ namespace TP.DependencyInjection.UnitTest
       _ConstructorInjection.Delta();
       Assert.AreEqual<int>(4, _TraceSource._callStack.Count);
     }
-
     private class DoNothingTraceSource : ITraceSource
     {
       public void TraceData(TraceEventType eventType, int id, object data)

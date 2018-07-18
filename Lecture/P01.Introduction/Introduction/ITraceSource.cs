@@ -7,7 +7,7 @@
 
 using System.Diagnostics;
 
-namespace TP.DependencyInjection
+namespace TP.Introduction
 {
   /// <summary>
   /// Interface ITraceSource - defines trace source.

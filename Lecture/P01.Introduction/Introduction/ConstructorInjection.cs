@@ -8,16 +8,14 @@
 using System;
 using System.Diagnostics;
 
-namespace TP.DependencyInjection
+namespace TP.Introduction
 {
 
   public class ConstructorInjection
   {
     public ConstructorInjection(ITraceSource traceEngine)
     {
-      if (traceEngine == null)
-        throw new ArgumentNullException(nameof(traceEngine));
-      m_TraceEngine = traceEngine;
+      m_TraceEngine = traceEngine ?? throw new ArgumentNullException(nameof(traceEngine));
     }
     public void Alpha()
     {

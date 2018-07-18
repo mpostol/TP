@@ -1,8 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace TP.DependencyInjection.UnitTest.Instrumentation
+namespace TP.Introduction.Instrumentation
 {
   internal class InMemoryTraceSource : ITraceSource
   {
