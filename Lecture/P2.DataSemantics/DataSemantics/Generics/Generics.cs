@@ -23,7 +23,6 @@ namespace TP.DataSemantics.LessonGenerics
     {
       return parameter;
     }
-
     //generic methods
     public bool Equals<MethodType>(ClassType parameter1, ClassType parameter2)
     {
