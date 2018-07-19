@@ -31,14 +31,21 @@ namespace TPA.Reflection.Execution
             m_consumerProperty = consumerProperty;
 
             dataSource.PropertyChanged += OnPropertyChangedAction;
+
+            UpdateProperty(dataSource);
         }
 
         private void OnPropertyChangedAction(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName == m_source.Name)
             {
-                m_consumerProperty.SetValue(m_consumer, m_source.GetValue(sender));
+                UpdateProperty(sender);
             }
+        }
+
+        private void UpdateProperty(object dataSource)
+        {
+            m_consumerProperty.SetValue(m_consumer, m_source.GetValue(dataSource));
         }
   }
 }
