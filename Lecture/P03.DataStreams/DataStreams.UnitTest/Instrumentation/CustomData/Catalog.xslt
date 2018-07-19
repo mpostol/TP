@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0"
-xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exml="http://tempuri.org/CreateXMLFile.xsd">
+<xsl:stylesheet version="1.0"  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exml="http://tempuri.org/CreateXMLFile.xsd">
   <xsl:template match="/">
     <html>
       <body>
@@ -12,7 +10,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
             <th>Artist</th>
             <th>Price</th>
           </tr>
-          <xsl:for-each select="exml:catalog/exml:cd">
+          <xsl:for-each select="exml:Catalog/exml:cd">
             <tr>
               <td>
                 <xsl:value-of select="exml:title"/>

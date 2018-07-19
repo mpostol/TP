@@ -49,18 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Instrumentation\CustomData\catalog.cs">
-      <DependentUpon>catalog.xsd</DependentUpon>
+    <Compile Include="Instrumentation\CustomData\Catalog.cs">
+      <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Instrumentation\CustomData\catalog.xsd.cs">
-      <DependentUpon>catalog.xsd</DependentUpon>
+    <Compile Include="Instrumentation\CustomData\Catalog.xsd.cs">
+      <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reflection\ModelUnitTest.cs" />
     <Compile Include="SerializationUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Instrumentation\CustomData\catalog.xsd">
+    <None Include="Instrumentation\CustomData\Catalog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -71,10 +71,12 @@
       <Name>DataStreams</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Instrumentation\CustomData\catalog.xslt">
+    <Content Include="Instrumentation\CustomData\catalog.xml" />
+    <Content Include="Instrumentation\CustomData\Catalog.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

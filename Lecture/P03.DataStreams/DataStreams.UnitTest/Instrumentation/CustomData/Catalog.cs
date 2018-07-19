@@ -5,7 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
-using System.Xml.Serialization;
+using System;
 
 namespace Example.Xml.CustomData
 {
@@ -14,9 +14,9 @@ namespace Example.Xml.CustomData
   /// class catalog
   /// </summary>
   [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute( AnonymousType = true )]
-  [System.Xml.Serialization.XmlRootAttribute( Namespace = "http://tempuri.org/CreateXMLFile.xsd", IsNullable = false )]
-  public partial class catalog
+  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://tempuri.org/CreateXMLFile.xsd", IsNullable = false)]
+  public partial class Catalog
   {
 
     private CDDescription[] cdField;
@@ -27,7 +27,7 @@ namespace Example.Xml.CustomData
     /// <value>
     /// The cd.
     /// </value>
-    [System.Xml.Serialization.XmlElementAttribute( "cd" )]
+    [System.Xml.Serialization.XmlElementAttribute("cd")]
     public CDDescription[] cd
     {
       get
@@ -44,21 +44,24 @@ namespace Example.Xml.CustomData
   /// class CDDescription 
   /// </summary>
   [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute( AnonymousType = true )]
-  public partial class CDDescription
+  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+  public partial class CDDescription : IEquatable<CDDescription>
   {
+
+    #region private
     private string titleField;
     private string artistField;
     private string countryField;
     private string companyField;
     private decimal priceField;
     private ushort yearField;
+    #endregion    
+
+    #region object state 
     /// <summary>
     /// Gets or sets the title.
     /// </summary>
-    /// <value>
-    /// The title.
-    /// </value>
+    /// <value>The title.</value>
     /// <uwagi />
     public string title
     {
@@ -74,9 +77,7 @@ namespace Example.Xml.CustomData
     /// <summary>
     /// Gets or sets the artist.
     /// </summary>
-    /// <value>
-    /// The artist.
-    /// </value>
+    /// <value>The artist.</value>
     public string artist
     {
       get
@@ -156,6 +157,14 @@ namespace Example.Xml.CustomData
         this.yearField = value;
       }
     }
-  }
+    #endregion
 
+    #region IEquatable<CDDescription>
+    public bool Equals(CDDescription other)
+    {
+      return ($"{other.titleField}, {other.artistField}, {other.countryField}, {other.companyField}, {other.priceField}, {other.yearField}" == $"{titleField}, {artistField}, {countryField}, {companyField}, {priceField}, {yearField}");
+    }
+    #endregion
+
+  }
 }

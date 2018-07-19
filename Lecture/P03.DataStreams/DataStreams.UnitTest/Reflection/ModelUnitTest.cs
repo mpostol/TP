@@ -14,7 +14,7 @@ namespace TP.Lecture.UnitTest.Reflection
   public class ModelUnitTest
   {
     [TestMethod]
-    public void TestMethod1()
+    public void ConstructorTest()
     {
       AssemblyModel _ass = new AssemblyModel();
       Assert.IsNotNull(_ass);

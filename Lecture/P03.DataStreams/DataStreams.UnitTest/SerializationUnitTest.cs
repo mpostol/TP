@@ -5,17 +5,17 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Example.Xml.CustomData;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TP.Lecture.Serialization;
 
-namespace TP.Lecture.UnitTest
+namespace TP.DataStreams
 {
   [TestClass]
   public class SerializationUnitTest
   {
     [TestMethod]
-    public void TestMethod1()
+    public void ReadWRiteTest()
     {
       CDDescription _cd1 = new CDDescription()
       {
@@ -35,7 +35,7 @@ namespace TP.Lecture.UnitTest
         price = 9.90M,
         year = 1988
       };
-      _cd1.Equals(_cd2);
+      Assert.IsFalse(_cd1.Equals(_cd2));
       Catalog _catalog = new Catalog
       {
         cd = new CDDescription[] { _cd1, _cd2 }
@@ -43,8 +43,8 @@ namespace TP.Lecture.UnitTest
       string _fileName = @"Instrumentation\CustomData\catalog.xml";
       XmlFile.WriteXmlFile<Catalog>(_catalog, _fileName, System.IO.FileMode.Create);
       Catalog _newPerson = XmlFile.ReadXmlFile<Catalog>(_fileName);
-      Assert.IsFalse(_catalog.cd[0].Equals(_newPerson.cd[0]));
-      Assert.IsFalse(_catalog.cd[1].Equals(_newPerson.cd[1]));
+      Assert.IsTrue(_catalog.cd[0].Equals(_newPerson.cd[0]));
+      Assert.IsTrue(_catalog.cd[1].Equals(_newPerson.cd[1]));
 
     }
   }

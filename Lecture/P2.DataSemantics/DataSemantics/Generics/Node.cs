@@ -7,6 +7,7 @@
 
 namespace TP.DataSemantics.Generics
 {
+
   public class Node<ValueTypeParameter>
   {
     public Node<ValueTypeParameter> Next { get; private set; }
@@ -19,6 +20,5 @@ namespace TP.DataSemantics.Generics
       First = this;
     }
   }
-
   
 }
