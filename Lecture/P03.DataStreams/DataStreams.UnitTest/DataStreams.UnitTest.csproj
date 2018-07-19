@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Instrumentation\CustomData\catalog.xml" />
     <Content Include="Instrumentation\CustomData\Catalog.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

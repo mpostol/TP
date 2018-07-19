@@ -1,6 +1,13 @@
-﻿using System;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
-namespace TP.Lecture
+using System;
+
+namespace TP.GraphicalData
 {
   public class DelegateExample
   {
@@ -9,7 +16,7 @@ namespace TP.Lecture
     /// <param name="x">The x.</param>
     /// <param name="y">The y.</param>
     public delegate int PerformCalculation(int x, int y);
-    public event System.EventHandler m_EventVar;
+    public event EventHandler m_EventVar;
 
     /// <summary>
     /// The perform calculation variable
