@@ -1,8 +1,14 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System;
 using System.Windows.Input;
 
-namespace TP.MVVMExample.MVVMLight
+namespace TP.GraphicalData.MVVMLight
 {
 
   /// <summary>
@@ -12,7 +18,7 @@ namespace TP.MVVMExample.MVVMLight
   /// Execute and CanExecute callback methods.
   /// </summary>
   /// <remarks>The <see cref="CommandManager"/>handles automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
-  internal class RelayCommand : ICommand
+  public class RelayCommand : ICommand
   {
 
     #region constructors

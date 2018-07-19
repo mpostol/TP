@@ -2,10 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Windows;
-using TP.MVVMExample.Model;
-using TP.MVVMExample.ViewModel;
+using TP.GraphicalData.Model;
+using TP.GraphicalData.ViewModel;
 
-namespace TP.MVVMExample.UnitTest
+namespace TP.GraphicalData
 {
   [TestClass]
   public class MainViewModelUnitTest

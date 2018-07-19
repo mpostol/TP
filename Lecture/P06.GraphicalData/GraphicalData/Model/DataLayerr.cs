@@ -1,11 +1,11 @@
 ﻿
 using System.Collections.Generic;
 
-namespace TP.MVVMExample.Model
+namespace TP.GraphicalData.Model
 {
-  internal class DataLayer
+  public class DataLayer
   {
-    internal IEnumerable<User> User
+    public IEnumerable<User> User
     {
       get
       {

@@ -1,10 +1,18 @@
-﻿using Microsoft.Win32;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using TP.GraphicalData.MVVMLight;
 
-namespace TP.Lecture.TreeViewExample
+namespace TP.GraphicalData.TreeView
 {
   /// <summary>
   /// Class MyViewModel - ViewModel implementation 
@@ -12,30 +20,20 @@ namespace TP.Lecture.TreeViewExample
   /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
   public class MyViewModel : INotifyPropertyChanged
   {
+    
     #region constructors
     public MyViewModel()
     {
-      HierarchicalAreas = new ObservableCollection<ITreeViewItem>();
-      Click_Button = new DelegateCommand(LoadDLL);
-      Click_Browse = new DelegateCommand(Browse);
+      HierarchicalAreas = new ObservableCollection<TreeViewItem>();
+      Click_Button = new RelayCommand(LoadDLL);
+      Click_Browse = new RelayCommand(Browse);
     }
     #endregion
 
     #region DataContext
-    public ObservableCollection<ITreeViewItem> HierarchicalAreas { get; set; }
-    public string PathVariable
-    {
-      get { return pathVariable; }
-      set { pathVariable = value; }
-    }
-    public Visibility ChangeControlVisibility
-    {
-      get { return _visibility; }
-      set
-      {
-        _visibility = value;
-      }
-    }
+    public ObservableCollection<TreeViewItem> HierarchicalAreas { get; set; }
+    public string PathVariable { get; set; }
+    public Visibility ChangeControlVisibility { get; set; } = Visibility.Hidden;
     public ICommand Click_Browse { get; }
     public ICommand Click_Button { get; }
     #endregion
@@ -49,16 +47,14 @@ namespace TP.Lecture.TreeViewExample
     #endregion
 
     #region private
-    private string pathVariable;
-    private Visibility _visibility = Visibility.Hidden;
     private void LoadDLL()
     {
-      if (pathVariable.Substring(pathVariable.Length - 4) == ".dll")
+      if (PathVariable.Substring(PathVariable.Length - 4) == ".dll")
         TreeViewLoaded();
     }
     private void TreeViewLoaded()
     {
-      ITreeViewItem rootItem = new ITreeViewItem { Name = pathVariable.Substring(pathVariable.LastIndexOf('\\') + 1) };
+      TreeViewItem rootItem = new TreeViewItem { Name = PathVariable.Substring(PathVariable.LastIndexOf('\\') + 1) };
       HierarchicalAreas.Add(rootItem);
     }
     private void Browse()
@@ -67,13 +63,11 @@ namespace TP.Lecture.TreeViewExample
       test.Filter = "Dynamic Library File(*.dll)| *.dll";
       test.ShowDialog();
       if (test.FileName.Length == 0)
-      {
         MessageBox.Show("No files selected");
-      }
       else
       {
-        pathVariable = test.FileName;
-        _visibility = Visibility.Visible;
+        PathVariable = test.FileName;
+        ChangeControlVisibility = Visibility.Visible;
         RaisePropertyChanged("ChangeControlVisibility");
         RaisePropertyChanged("PathVariable");
       }

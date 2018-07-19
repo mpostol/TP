@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Input;
 
-namespace TP.Lecture.TreeViewExample
+namespace TP.GraphicalData
 {
   /// <summary>
   /// Class DelegateCommand implements 

@@ -1,16 +1,23 @@
+//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using TP.MVVMExample.Model;
+using TP.GraphicalData.Model;
+using TP.GraphicalData.MVVMLight;
 using TP.MVVMExample.MVVMLight;
 
-namespace TP.MVVMExample.ViewModel
+namespace TP.GraphicalData.ViewModel
 {
   /// <summary>
   /// This class contains properties that the <see cref="MainWindow"/> can data bind to.
   /// </summary>
-  internal class MainViewModel : ViewModelBase
+  public class MainViewModel : ViewModelBase
   {
 
     #region constructors
@@ -68,7 +75,7 @@ namespace TP.MVVMExample.ViewModel
     public RelayCommand FetchDataCommend
     {
       get; private set;
-    } 
+    }
     #endregion
 
     #region Unit test instrumentation
@@ -80,8 +87,8 @@ namespace TP.MVVMExample.ViewModel
     /// using <see cref="System.Runtime.CompilerServices.InternalsVisibleToAttribute"/>.
     /// </remarks>
     /// <value>The message box show delegate.</value>
-    internal Func<string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult> MessageBoxShowDelegate { get; set; } = MessageBox.Show;
-    internal DataLayer DataLayer
+    public Func<string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult> MessageBoxShowDelegate { get; set; } = MessageBox.Show;
+    public DataLayer DataLayer
     {
       get { return m_DataLayer; }
       set

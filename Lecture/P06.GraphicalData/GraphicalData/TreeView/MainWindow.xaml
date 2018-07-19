@@ -1,11 +1,10 @@
-﻿<Window x:Class="TP.Lecture.TreeViewExample.MainWindow"
+﻿<Window x:Class="TP.GraphicalData.TreeView.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TP.Lecture.TreeViewExample"
         mc:Ignorable="d"
-        Title="Aplikacja" Height="350" Width="525">
+        Title="Application title" Height="350" Width="525">
   <Grid>
     <TreeView Name="TreeView" Margin="312,19,8,23" RenderTransformOrigin="0.5,0.5" ItemsSource="{Binding  HierarchicalAreas}">
       <TreeView.ItemTemplate>

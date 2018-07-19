@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TP.Lecture.TreeViewExample
+namespace TP.GraphicalData.TreeView
 {
   /// <summary>
   /// Interaction logic for MainWindow.xaml

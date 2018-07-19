@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace TP.MVVMExample.Model
+namespace TP.GraphicalData.Model
 {
   /// <summary>
   /// Class User - a class representing user
