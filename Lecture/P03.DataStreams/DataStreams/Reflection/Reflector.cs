@@ -1,7 +1,6 @@
 ﻿//Copyright (C) Microsoft Corporation.  All rights reserved.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -18,9 +17,9 @@ using System.Xml.Linq;
 // two phases handle similar information with different representations using 
 // the same query constructs.
 
-namespace Samples
-{   
-    public class Reflector
+namespace TP.DataStreams.Reflection
+{
+  public class Reflector
     {
         public XDocument document;
         

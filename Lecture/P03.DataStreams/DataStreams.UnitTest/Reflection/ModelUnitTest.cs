@@ -6,9 +6,8 @@
 //____________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TP.Lecture.Reflection;
 
-namespace TP.Lecture.UnitTest.Reflection
+namespace TP.DataStreams.Reflection
 {
   [TestClass]
   public class ModelUnitTest
