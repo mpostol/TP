@@ -10,14 +10,26 @@ using System.Collections.Generic;
 
 namespace TP.DataSemantics.Generics
 {
-  public class NodeEnumerable<ValueTypeParameter> : Node<ValueTypeParameter>, IEnumerable<ValueTypeParameter>
+  public class NodeEnumerable<ValueTypeParameter> : IEnumerable<ValueTypeParameter>
   {
-    public NodeEnumerable(ValueTypeParameter value) : base(value) {  }
+    public NodeEnumerable() { }
+
+    public void Add(Node<ValueTypeParameter> newNode)
+    {
+      newNode.Next = m_FirstNode;
+      m_FirstNode = newNode;
+    }
+    public Node<ValueTypeParameter> New (ValueTypeParameter value)
+    {
+      Node<ValueTypeParameter> _ret = new Node<ValueTypeParameter>();
+      Add(_ret);
+      return _ret;
+    }
 
     #region IEnumerable<TypeParameter>
     public IEnumerator<ValueTypeParameter> GetEnumerator()
     {
-      Node<ValueTypeParameter> _current = First;
+      Node<ValueTypeParameter> _current = m_FirstNode;
       while (_current != null)
       {
         ValueTypeParameter _value = _current.Value;
@@ -30,6 +42,9 @@ namespace TP.DataSemantics.Generics
       return this.GetEnumerator();
     }
     #endregion
+    
+
+    private Node<ValueTypeParameter> m_FirstNode = null;
 
   }
 
