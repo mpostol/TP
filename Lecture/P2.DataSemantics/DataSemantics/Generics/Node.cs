@@ -8,17 +8,19 @@
 namespace TP.DataSemantics.Generics
 {
 
-  public class Node<ValueTypeParameter>
+  public abstract class Node<TypeParameter>
   {
-    public Node<ValueTypeParameter> Next { get; set; }
+
+    public Node<TypeParameter> Next { get; set; }
     //public static Node<ValueTypeParameter> First { get; private set; } = null;
-    public ValueTypeParameter Value { get; private set; }
-    public Node(ValueTypeParameter value = default(ValueTypeParameter))
+    public TypeParameter Value { get; private set; }
+    protected Node(TypeParameter value = default(TypeParameter))
     {
       Value = value;
       //Next = First;
       //First = this;
     }
+
   }
   
 }

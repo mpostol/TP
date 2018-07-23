@@ -1,38 +1,42 @@
 ﻿//____________________________________________________________________________
 //
-//  Copyright (C) Year of Copyright, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace TP.DataSemantics.Generics
 {
-  public class NodeEnumerable<ValueTypeParameter> : IEnumerable<ValueTypeParameter>
+  public class NodeEnumerable<TypeParameter> : IEnumerable<TypeParameter>
+    where TypeParameter : IEquatable<TypeParameter>
   {
     public NodeEnumerable() { }
-
-    public void Add(Node<ValueTypeParameter> newNode)
+    public Node<TypeParameter> New(TypeParameter value)
     {
-      newNode.Next = m_FirstNode;
-      m_FirstNode = newNode;
-    }
-    public Node<ValueTypeParameter> New (ValueTypeParameter value)
-    {
-      Node<ValueTypeParameter> _ret = new Node<ValueTypeParameter>();
+      Node<TypeParameter> _ret = new InternalNode<TypeParameter>(value);
       Add(_ret);
       return _ret;
     }
 
-    #region IEnumerable<TypeParameter>
-    public IEnumerator<ValueTypeParameter> GetEnumerator()
+    public TypeParameter this[TypeParameter selfIndex]
     {
-      Node<ValueTypeParameter> _current = m_FirstNode;
+      get
+      {
+        return m_dictionary[selfIndex];
+      }
+    }
+
+    #region IEnumerable<TypeParameter>
+    public IEnumerator<TypeParameter> GetEnumerator()
+    {
+      Node<TypeParameter> _current = m_FirstNode;
       while (_current != null)
       {
-        ValueTypeParameter _value = _current.Value;
+        TypeParameter _value = _current.Value;
         _current = _current.Next;
         yield return _value;
       }
@@ -42,10 +46,30 @@ namespace TP.DataSemantics.Generics
       return this.GetEnumerator();
     }
     #endregion
-    
 
-    private Node<ValueTypeParameter> m_FirstNode = null;
+    private class InternalNode<ValueTypeParaTypeParametermeter> : Node<TypeParameter>
+    {
+      public InternalNode(TypeParameter value) : base(value) { }
+    }
+    private Node<TypeParameter> m_FirstNode = null;
+    private SelfDictionary<TypeParameter> m_dictionary = new SelfDictionary<TypeParameter>();
+    private void Add(Node<TypeParameter> newNode)
+    {
+      newNode.Next = m_FirstNode;
+      m_FirstNode = newNode;
+      m_dictionary.AddIfNotPresent(newNode.Value);
+    }
 
   }
 
+  public class SelfDictionary<Type> : Dictionary<Type, Type>
+    where Type : IEquatable<Type>
+  {
+    public void AddIfNotPresent(Type entity)
+    {
+      if (base.ContainsKey(entity))
+        return;
+      base.Add(entity, entity);
+    }
+  }
 }

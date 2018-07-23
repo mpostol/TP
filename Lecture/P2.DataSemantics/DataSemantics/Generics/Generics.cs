@@ -6,7 +6,6 @@
 //____________________________________________________________________________
 
 using System;
-using System.Collections.Generic;
 
 namespace TP.DataSemantics.Generics
 {
@@ -14,40 +13,26 @@ namespace TP.DataSemantics.Generics
   /// Class Generics - an example og generics.
   /// </summary>
   /// <typeparam name="ClassType">The type of the class type.</typeparam>
-  public class Generics<ClassType>
+  public static class Generics<ClassType>
   {
 
-    public ClassType DefaultValue { get; private set; } = default(ClassType);
-    public Dictionary<int, ClassType> DictionaryProperty { get; private set; } = new Dictionary<int, ClassType>();
-    public static ClassType StaticMethod(ClassType parameter)
+    public static void Swap<MethodType>(ref MethodType lhs, ref MethodType rhs)
     {
-      return parameter;
+      MethodType temp;
+      temp = lhs;
+      lhs = rhs;
+      rhs = temp;
     }
-    //generic methods
-    public bool Equals<MethodType>(ClassType parameter1, ClassType parameter2)
+
+    public static Tuple<TpeParameter, TpeParameter> SortValues<TpeParameter>(TpeParameter first, TpeParameter second)
+      where TpeParameter: IComparable<TpeParameter>
     {
-      return parameter1.Equals(parameter2);
+      if (first.CompareTo(second) <= 0)
+        return Tuple.Create<TpeParameter, TpeParameter>(first, second);
+      else
+        return Tuple.Create<TpeParameter, TpeParameter>(second, first);
     }
-    public ClassType GenericMethod<MethodType>(ClassType classTypeParameter)
-    {
-      Type _type = typeof(MethodType); // MethodType must represent a type.
-      //....
-      return classTypeParameter;
-    }
-    public MethodType GenericMethod<MethodType>(MethodType methodTypeParameter)
-    {
-      return methodTypeParameter;
-    }
+
   }
 
-  public class SelfDictionary<Type> : Dictionary<Type, Type>
-    where Type : IEquatable<Type>
-  {
-    public void AddIfNotPresent(Type entity)
-    {
-      if (base.ContainsKey(entity))
-        return;
-      base.Add(entity, entity);
-    }
-  }
 }

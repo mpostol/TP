@@ -14,23 +14,19 @@ namespace TP.DataSemantics
   [TestClass]
   public class GenericsUnitTest
   {
-    [TestMethod]
-    public void AfterCreationValueTestMethod()
-    {
-      Generics<int> _intInstance = new Generics<int>();
-      Assert.AreEqual<int>(default(int), _intInstance.DefaultValue);
-    }
-    [TestMethod]
-    public void AfterCreationReferenceTestMethod()
-    {
-      Generics<AnyClass> _intInstance = new Generics<AnyClass>();
-      Assert.IsNull(_intInstance.DefaultValue);
-    }
-    [TestMethod]
-    public void DictionaryCreatorTestMethod()
-    {
-      SelfDictionary<EquatableNotImplemented> _dictionSecond = new SelfDictionary<EquatableNotImplemented>();
-    }
+    //[TestMethod]
+    //public void AfterCreationValueTestMethod()
+    //{
+    //  Generics<int> _intInstance = new Generics<int>();
+    //  Assert.AreEqual<int>(default(int), _intInstance.DefaultValue);
+    //}
+    //[TestMethod]
+    //public void AfterCreationReferenceTestMethod()
+    //{
+    //  Generics<AnyClass> _intInstance = new Generics<AnyClass>();
+    //  Assert.IsNull(_intInstance.DefaultValue);
+    //}
+
     [TestMethod]
     [ExpectedException(typeof(NotImplementedException))]
     public void DictionaryNotImplementedExceptionTestMethod()
@@ -45,7 +41,7 @@ namespace TP.DataSemantics
 
     #region UT instrumentation
     private class AnyClass { }
-    private class EquatableNotImplemented : System.IEquatable<EquatableNotImplemented>
+    private class EquatableNotImplemented : IEquatable<EquatableNotImplemented>
     {
       public bool Equals(EquatableNotImplemented other)
       {
