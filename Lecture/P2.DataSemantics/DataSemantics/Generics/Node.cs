@@ -12,7 +12,7 @@ namespace TP.DataSemantics.Generics
   {
 
     public Node<TypeParameter> Next { get; set; }
-    //public static Node<ValueTypeParameter> First { get; private set; } = null;
+    //public static Node<TypeParameter> First { get; private set; } = null;
     public TypeParameter Value { get; private set; }
     protected Node(TypeParameter value = default(TypeParameter))
     {
