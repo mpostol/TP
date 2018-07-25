@@ -61,14 +61,4 @@ namespace TP.DataSemantics.Generics
 
   }
 
-  public class SelfDictionary<Type> : Dictionary<Type, Type>
-    where Type : IEquatable<Type>
-  {
-    public void AddIfNotPresent(Type entity)
-    {
-      if (base.ContainsKey(entity))
-        return;
-      base.Add(entity, entity);
-    }
-  }
 }
