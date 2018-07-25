@@ -44,7 +44,7 @@
     <Compile Include="AnonymousTypes.cs" />
     <Compile Include="BasicTypesStruct.cs" />
     <Compile Include="FileExample.cs" />
-    <Compile Include="Generics\Generics.cs" />
+    <Compile Include="Generics\GenericMethods.cs" />
     <Compile Include="Generics\Node.cs" />
     <Compile Include="Generics\NodeEnumerable.cs" />
     <Compile Include="InterfaceExample.cs" />

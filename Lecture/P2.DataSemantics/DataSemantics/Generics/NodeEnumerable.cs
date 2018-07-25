@@ -21,7 +21,6 @@ namespace TP.DataSemantics.Generics
       Add(_ret);
       return _ret;
     }
-
     public TypeParameter this[TypeParameter selfIndex]
     {
       get

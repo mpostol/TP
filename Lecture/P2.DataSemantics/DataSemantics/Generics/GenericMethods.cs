@@ -9,11 +9,8 @@ using System;
 
 namespace TP.DataSemantics.Generics
 {
-  /// <summary>
-  /// Class Generics - an example og generics.
-  /// </summary>
-  /// <typeparam name="ClassType">The type of the class type.</typeparam>
-  public static class Generics<ClassType>
+
+  public static class GenericMethods
   {
 
     public static void Swap<MethodType>(ref MethodType lhs, ref MethodType rhs)
@@ -23,7 +20,6 @@ namespace TP.DataSemantics.Generics
       lhs = rhs;
       rhs = temp;
     }
-
     public static Tuple<TpeParameter, TpeParameter> SortValues<TpeParameter>(TpeParameter first, TpeParameter second)
       where TpeParameter: IComparable<TpeParameter>
     {

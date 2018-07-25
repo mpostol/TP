@@ -11,21 +11,48 @@ using TP.DataSemantics.Generics;
 
 namespace TP.DataSemantics
 {
+
   [TestClass]
   public class GenericsUnitTest
   {
-    //[TestMethod]
-    //public void AfterCreationValueTestMethod()
-    //{
-    //  Generics<int> _intInstance = new Generics<int>();
-    //  Assert.AreEqual<int>(default(int), _intInstance.DefaultValue);
-    //}
-    //[TestMethod]
-    //public void AfterCreationReferenceTestMethod()
-    //{
-    //  Generics<AnyClass> _intInstance = new Generics<AnyClass>();
-    //  Assert.IsNull(_intInstance.DefaultValue);
-    //}
+
+    #region Node
+
+    [TestMethod]
+    public void ConcreteConstructorMethod()
+    {
+      DerivedNode _newNode = new DerivedNode();
+      Assert.AreEqual<double>(default(double), _newNode.Value);
+    }
+    [TestMethod]
+    public void GenericConstructorMethod()
+    {
+      DerivedNode<AnyClass> _newNode = new DerivedNode<AnyClass>();
+      Assert.AreEqual<AnyClass>(default(AnyClass), _newNode.Value);
+    }
+    //instrumentation
+    private class DerivedNode<TypeParameter> : Node<TypeParameter> { }
+    private class DerivedNode : Node<Double> { }
+    private class AnyClass { }
+
+    #endregion
+
+    #region NodeEnumerable
+    [TestMethod]
+    public void NodeEnumerableTest()
+    {
+      NodeEnumerable<string> _sequence = new NodeEnumerable<string>();
+      _sequence.New("Bob Dylan");
+      _sequence.New("Joe Bonamassa");
+      _sequence.New("Mark Knopfler");
+      _sequence.New("Dire Straits");
+      _sequence.New("Chris Rea");
+      _sequence.New("David Gilmour");
+      Assert.IsNotNull(_sequence["David Gilmour"]);
+    }
+    #endregion
+
+    #region SelfDictionary
 
     [TestMethod]
     [ExpectedException(typeof(NotImplementedException))]
@@ -38,9 +65,7 @@ namespace TP.DataSemantics
       Assert.AreEqual<int>(2, _dictionary.Count);
       _dictionary.ContainsKey(_EquatableNotImplementedInstance);
     }
-
-    #region UT instrumentation
-    private class AnyClass { }
+    //instrumentation
     private class EquatableNotImplemented : IEquatable<EquatableNotImplemented>
     {
       public bool Equals(EquatableNotImplemented other)
@@ -48,6 +73,7 @@ namespace TP.DataSemantics
         throw new NotImplementedException();
       }
     }
+
     #endregion
 
   }
