@@ -1,10 +1,10 @@
 ---
-name: Feature request
+name: DIP Feature request
 about: Data-Intensive Programming
 
 ---
 
-# Part X
+# Data-Intensive Programming - Feature Request
 
 ## Scope
 

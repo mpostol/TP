@@ -1,10 +1,10 @@
 ---
-name: Feature request
-about: adaptive / data-intensive programming
+name: AP Feature request
+about: Adaptive Programming
 
 ---
 
-# Part X
+# Adaptive Programming (AP) - Feature Request
 
 ## Scope
 
