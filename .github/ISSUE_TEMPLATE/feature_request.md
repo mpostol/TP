@@ -1,8 +1,17 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-
+about: adaptive / data-intensive programming 
 ---
+# Part X
+
+## Scope
+
+- [ ] review existing code
+- [ ] add a placeholder to the project
+- [ ] add code example  - consider merging with type compatibility
+- [ ] add unit tests
+
+## Description 
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
