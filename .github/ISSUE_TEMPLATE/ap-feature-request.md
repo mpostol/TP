@@ -1,6 +1,6 @@
 ---
-name: Feature request
-about: adaptive / data-intensive programming
+name: AP Feature Request
+about: adaptive programming
 
 ---
 

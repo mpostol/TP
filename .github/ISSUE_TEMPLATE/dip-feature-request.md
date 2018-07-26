@@ -1,6 +1,6 @@
 ---
-name: Feature request
-about: adaptive / data-intensive programming
+name: DIP Feature Request
+about: Data-Intensive Programming
 
 ---
 

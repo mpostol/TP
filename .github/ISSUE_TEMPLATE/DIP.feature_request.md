@@ -1,6 +1,7 @@
 ---
 name: Feature request
-about: Data-Intensive Programming 
+about: Data-Intensive Programming
+
 ---
 
 # Part X
