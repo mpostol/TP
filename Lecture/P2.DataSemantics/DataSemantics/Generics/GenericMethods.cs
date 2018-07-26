@@ -20,13 +20,13 @@ namespace TP.DataSemantics.Generics
       lhs = rhs;
       rhs = temp;
     }
-    public static Tuple<TpeParameter, TpeParameter> SortValues<TpeParameter>(TpeParameter first, TpeParameter second)
-      where TpeParameter: IComparable<TpeParameter>
+    public static Tuple<TypeParameter, TypeParameter> SortValues<TypeParameter>(TypeParameter first, TypeParameter second)
+      where TypeParameter: IComparable<TypeParameter>
     {
       if (first.CompareTo(second) <= 0)
-        return Tuple.Create<TpeParameter, TpeParameter>(first, second);
+        return Tuple.Create<TypeParameter, TypeParameter>(first, second);
       else
-        return Tuple.Create<TpeParameter, TpeParameter>(second, first);
+        return Tuple.Create<TypeParameter, TypeParameter>(second, first);
     }
 
   }
