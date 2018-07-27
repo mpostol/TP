@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>IDE0001,IDE0002,IDE0003</NoWarn>
+    <NoWarn>IDE0001,IDE0002,IDE0003;CS0219</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About\Types.cs" />
     <Compile Include="ConstructorInjection.cs" />
     <Compile Include="ITraceSource.cs" />
     <Compile Include="LanguageCSharp.cs" />
