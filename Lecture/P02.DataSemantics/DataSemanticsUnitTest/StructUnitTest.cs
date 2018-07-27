@@ -7,7 +7,6 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.IO;
 
 namespace TP.DataSemantics
 {
@@ -109,21 +108,5 @@ namespace TP.DataSemantics
     }
   }
 
-  [TestClass]
-  public class FileTestClass
-  {
-    [TestMethod]
-    public void FileTestMethod()
-    {
-      string _fileName = "TestFileName.txt";
-      FileExample _fileWrapper = new FileExample();
-      _fileWrapper.CreateTextFile(_fileName);
-      using (StreamReader _stream = File.OpenText(_fileName))
-      {
-        string _content = _stream.ReadToEnd();
-        Assert.AreEqual(_content, _fileWrapper.FileContent);
-      }
-    }
-
-  }
 }
+

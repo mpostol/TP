@@ -36,7 +36,7 @@ The repository is scoped to provide sound examples covering the following topics
 	6. Partial types and methods
 	7. Generics 
 3. Data streams
-	1. Open, modification, close
+	1. File and Stream Concepts
 	9. Attributes
 	10. Reflection
 	11. Serialization

@@ -58,6 +58,7 @@
     <Compile Include="Reflection\ModelUnitTest.cs" />
     <Compile Include="SerializationUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FileStreamUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Instrumentation\CustomData\Catalog.xsd">
