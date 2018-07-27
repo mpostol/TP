@@ -8,6 +8,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 
 namespace TPTP.DataStreams.FileStream
 {
@@ -20,12 +21,12 @@ namespace TPTP.DataStreams.FileStream
     /// <param name="name">The name.</param>
     public void CreateTextFile(string name)
     {
-      using (StreamWriter _stream = File.CreateText(name))
+      using (Stream _stream = File.Open(name, FileMode.OpenOrCreate, FileAccess.Write))
       {
-        FileContent = String.Format(CultureInfo.InvariantCulture, "today is {0}", DateTime.Now);
-        _stream.Write(FileContent);
+        FileContent = String.Format(CultureInfo.InvariantCulture, "Today is {0}", DateTime.Now);
+        byte[] _content = Encoding.ASCII.GetBytes(FileContent);
+        _stream.Write(_content, 0 , _content.Length);
       }
-
     }
 
     public string FileContent { get; private set; }
