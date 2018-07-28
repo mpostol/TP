@@ -15,12 +15,9 @@ namespace TPTP.DataStreams.FileStream
   public class FileExample
   {
 
-    /// <summary>
-    /// Creates or opens a file for writing UTF-8 encoded text..
-    /// </summary>
-    /// <param name="name">The name.</param>
     public void CreateTextFile(string name)
     {
+      File.Delete(name);
       using (Stream _stream = File.Open(name, FileMode.OpenOrCreate, FileAccess.Write))
       {
         FileContent = String.Format(CultureInfo.InvariantCulture, "Today is {0}", DateTime.Now);

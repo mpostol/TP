@@ -33,4 +33,3 @@ namespace TP.DataStreams
   }
 }
 
-//Message: Assert.AreEqual failed.Expected:<Today is 07/27/2018 14:51:07 ?>. Actual:<Today is 07/27/2018 14:51:07 ą>. 
