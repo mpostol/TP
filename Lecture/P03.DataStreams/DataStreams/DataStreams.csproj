@@ -78,7 +78,6 @@
     <Compile Include="Reflection\Reflector.cs" />
     <Compile Include="Serialization\CustomSerialization.cs" />
     <Compile Include="Serialization\IStylesheetNameProvider.cs" />
-    <Compile Include="Serialization\StaticClass.cs" />
     <Compile Include="Serialization\XmlFile.cs" />
   </ItemGroup>
   <ItemGroup>

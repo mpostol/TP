@@ -8,7 +8,7 @@
 using System;
 using System.Collections;
 
-namespace TP.DataSemantics
+namespace TP.DataSemantics.TypeConcept
 {
   public class InterfaceExample: ICollection
   {

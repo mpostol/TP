@@ -7,6 +7,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using TP.DataSemantics.TypeConcept;
 
 namespace TP.DataSemantics
 {

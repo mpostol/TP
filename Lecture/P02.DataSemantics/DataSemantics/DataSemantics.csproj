@@ -42,13 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnonymousTypes.cs" />
-    <Compile Include="BasicTypesStruct.cs" />
     <Compile Include="Generics\GenericMethods.cs" />
     <Compile Include="Generics\Node.cs" />
     <Compile Include="Generics\NodeEnumerable.cs" />
     <Compile Include="Generics\SelfDictionary.cs" />
-    <Compile Include="InterfaceExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeConcept\BasicTypesStruct.cs" />
+    <Compile Include="TypeConcept\InterfaceExample.cs" />
+    <Compile Include="TypeConcept\StaticClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generics\Generics.md" />
