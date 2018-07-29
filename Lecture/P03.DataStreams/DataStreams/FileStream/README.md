@@ -7,6 +7,12 @@
 //____________________________________________________________________________
 ---
 
+# Message
+
+- Each file content is a stream of bytes, consequently, it is also a stream of bits.
+- If for the bits stream an encoding (eg. ASCII, UTF-8, UTF-16, etc.)  is defined the stream is recognized as text.
+- The text becomes C# , HTML, xml, JSON, etc. document if it follows syntax and semantic rules of a selected language (compiler don't complain).
+
 # See also
 
 ## [File and Stream I/O](https://docs.microsoft.com/en-us/dotnet/standard/io/index)
