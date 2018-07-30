@@ -74,7 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\AssemblyModel.cs" />
     <Compile Include="Reflection\AttributedClass.cs" />
+    <Compile Include="Reflection\Class1.cs" />
     <Compile Include="Reflection\ClassModel.cs" />
+    <Compile Include="Reflection\AttachedProperty.cs" />
     <Compile Include="Reflection\MethodModel.cs" />
     <Compile Include="Reflection\NamespaceModel.cs" />
     <Compile Include="Reflection\Reflector.cs" />
