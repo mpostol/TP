@@ -1,5 +1,10 @@
-﻿
-using System.Configuration;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,7 +27,7 @@ namespace TPA.Configuration.UnitTest
     [TestMethod]
     public void ReadWriteTestMethod()
     {
-      Assert.Inconclusive("The test passes only once after buid because it modifies the configuration file");
+      Assert.Inconclusive("The test passes only once after build because it modifies the configuration file");
       CollectionAssert.AreEqual(new string[] { "May 5, 2014", "May 6, 2014" }, ConfigurationManagerUsage.ReadAllSettings());
       Assert.AreEqual<string>("May 5, 2014", ConfigurationManagerUsage.ReadSetting("Setting1"));
       Assert.AreEqual<string>("Not Found", ConfigurationManagerUsage.ReadSetting("NotValid"));
