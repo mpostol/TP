@@ -16,6 +16,10 @@ namespace TPA.Reflection.Execution
 
     public DataBinding(INotifyPropertyChanged dataSource, string sourcePropertyName, object consumer, string consumerPropertyName)
     {
+      if (dataSource == null)
+        throw new ArgumentNullException($"{nameof(dataSource)}", $"{nameof(dataSource)} must not be null");
+      if (consumer == null)
+        throw new ArgumentNullException($"{nameof(consumer)}", $"{nameof(consumer)} must not be null");
       PropertyInfo _sourceProperty = dataSource.GetType().GetProperty(sourcePropertyName) ?? throw new ArgumentException("No such Property in Data Source");
       PropertyInfo _consumerProperty = consumer.GetType().GetProperty(consumerPropertyName) ?? throw new ArgumentException("No such Property in Data Consumer");
       if (!_consumerProperty.PropertyType.IsAssignableFrom(_sourceProperty.PropertyType))

@@ -22,6 +22,8 @@ namespace TPA.Reflection.UnitTest
     {
       DataSource _dataSource = new DataSource();
       DataConsumer _dataConsumer = new DataConsumer();
+      Assert.ThrowsException<ArgumentNullException>(() => new DataBinding(null, StringPropName, _dataConsumer, IntPropConsumerName), "The exception must be thrown if dataSource is null");
+      Assert.ThrowsException<ArgumentNullException>(() => new DataBinding(_dataSource, StringPropName, null, IntPropConsumerName), "The exception must be thrown if consumer is null");
       Assert.ThrowsException<ArgumentException>(() => new DataBinding(_dataSource, StringPropName, _dataConsumer, IntPropConsumerName), "The exception must be thrown if properties types don't match");
       Assert.ThrowsException<ArgumentException>(() => new DataBinding(_dataSource, StringPropName + "A", _dataConsumer, IntPropConsumerName), "The exception must be thrown if property name is wrong in Data Source");
       Assert.ThrowsException<ArgumentException>(() => new DataBinding(_dataSource, StringPropName, _dataConsumer, IntPropConsumerName + "A"), "The exception must be thrown if property name is wrong in Data Consumer");
