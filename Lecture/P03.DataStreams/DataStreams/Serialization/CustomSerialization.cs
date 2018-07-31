@@ -7,7 +7,7 @@
 
 using System.Runtime.Serialization;
 
-namespace TP.Lecture.Serialization
+namespace TP.DataStreams.Serialization
 {
   /// <summary>
   /// Class CustomSerialization - Demonstrates custom serialization approach
@@ -47,14 +47,14 @@ namespace TP.Lecture.Serialization
     public CustomSerialization(SerializationInfo info, StreamingContext context)
     {
       // Reset the property value using the GetValue method.
-      MaxIncome = (double)info.GetValue("MaxIncome", typeof(double));
-      MinIncome = (double)info.GetValue("MinIncome", typeof(double));
+      MaxIncome = info.GetDouble("MaxIncome");
+      MinIncome = info.GetDouble("MinIncome");
     }
     public void GetObjectData(SerializationInfo info, StreamingContext context)
     {
       //// Use the AddValue method to specify serialized values (state of the object).
-      info.AddValue("MaxIncome", MaxIncome, typeof(double));
-      info.AddValue("MinIncome", MinIncome, typeof(double));
+      info.AddValue("MaxIncome", MaxIncome);
+      info.AddValue("MinIncome", MinIncome);
     }
     #endregion
 
