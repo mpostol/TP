@@ -7,20 +7,23 @@
 
 using System.Runtime.Serialization;
 
-namespace TP.DataStreams.Serialization
+namespace TP.DataStreams.Instrumentation
 {
+
   /// <summary>
   /// Class CustomSerialization - Demonstrates custom serialization approach
   /// </summary>
   /// <seealso cref="System.Runtime.Serialization.ISerializable" />
-  public class CustomSerialization : ISerializable
+  public class SelfControlSerialization : ISerializable
   {
 
-    public CustomSerialization(double maxIncome, double minIncome)
+    #region constructor
+    public SelfControlSerialization(double maxIncome, double minIncome)
     {
       MaxIncome = maxIncome;
       MinIncome = minIncome;
     }
+    #endregion
 
     #region API
     /// <summary>
@@ -44,7 +47,7 @@ namespace TP.DataStreams.Serialization
     #endregion
 
     #region ISerializable
-    public CustomSerialization(SerializationInfo info, StreamingContext context)
+    public SelfControlSerialization(SerializationInfo info, StreamingContext context)
     {
       // Reset the property value using the GetValue method.
       MaxIncome = info.GetDouble("MaxIncome");
