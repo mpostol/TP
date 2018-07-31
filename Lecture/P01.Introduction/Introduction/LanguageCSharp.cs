@@ -26,10 +26,7 @@ namespace TP.Introduction
   {
 
     #region constructor
-    public LanguageCSharp()
-    {
-      LanguageMethod();
-    }
+    public LanguageCSharp() { }
     #endregion
 
     #region IInterface

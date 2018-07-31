@@ -1,9 +1,16 @@
-﻿using System;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace TP.Lecture.Serialization
+namespace TP.DataStreams.Serialization
 {
   /// <summary>
   /// Provides static methods for serialization objects into XML documents and writing the XML document to a file.
@@ -30,23 +37,23 @@ namespace TP.Lecture.Serialization
     public static void WriteXmlFile<type>( type dataObject, string path, FileMode mode, string stylesheetName )
     {
       if ( string.IsNullOrEmpty( path ) )
-        throw new ArgumentNullException("path");
+        throw new ArgumentNullException(nameof(path));
       if ( string.IsNullOrEmpty( stylesheetName ) )
-        throw new ArgumentNullException( "stylesheetName" );
+        throw new ArgumentNullException( nameof(stylesheetName) );
       if ( dataObject == null )
-        throw new ArgumentNullException( "content" );
-      XmlSerializer _srlzr = new XmlSerializer( typeof( type ) );
+        throw new ArgumentNullException( nameof(dataObject) );
+      XmlSerializer _xmlSerializer = new XmlSerializer( typeof( type ) );
       XmlWriterSettings _setting = new XmlWriterSettings()
       {
         Indent = true,
         IndentChars = "  ",
         NewLineChars = "\r\n"
       };
-      using ( FileStream _docStrm = new FileStream( path, mode, FileAccess.Write ) )
-      using ( XmlWriter _writer = XmlWriter.Create( _docStrm, _setting ) )
+      using ( FileStream _docStream = new FileStream( path, mode, FileAccess.Write ) )
       {
+        XmlWriter _writer = XmlWriter.Create(_docStream, _setting);
         _writer.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + String.Format( "href=\"{0}\"", stylesheetName ) );
-        _srlzr.Serialize( _writer, dataObject );
+        _xmlSerializer.Serialize( _writer, dataObject );
       }
     }
     /// <summary>
@@ -71,12 +78,12 @@ namespace TP.Lecture.Serialization
     public static type ReadXmlFile<type>( string path )
     {
       if ( string.IsNullOrEmpty( path ) )
-        throw new ArgumentNullException("path");
+        throw new ArgumentNullException(nameof(path));
       type _content = default( type );
-      XmlSerializer _srlzr = new XmlSerializer( typeof( type ) );
+      XmlSerializer _xmlSerializer = new XmlSerializer( typeof( type ) );
       FileStream _docStream = new FileStream(path, FileMode.Open, FileAccess.Read);
       using ( XmlReader _writer = XmlReader.Create( _docStream ) )
-        _content = (type)_srlzr.Deserialize( _writer );
+        _content = (type)_xmlSerializer.Deserialize( _writer );
       return _content;
     }
     #endregion

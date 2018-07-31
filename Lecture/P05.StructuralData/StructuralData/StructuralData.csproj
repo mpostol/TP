@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="FromClause.cs" />
     <Compile Include="LinqExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

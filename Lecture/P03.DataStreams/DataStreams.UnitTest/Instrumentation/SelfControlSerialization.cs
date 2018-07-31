@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
+using System;
 using System.Runtime.Serialization;
 
 namespace TP.DataStreams.Instrumentation
@@ -14,6 +15,7 @@ namespace TP.DataStreams.Instrumentation
   /// Class CustomSerialization - Demonstrates custom serialization approach
   /// </summary>
   /// <seealso cref="System.Runtime.Serialization.ISerializable" />
+  [Serializable]
   public class SelfControlSerialization : ISerializable
   {
 
@@ -47,13 +49,13 @@ namespace TP.DataStreams.Instrumentation
     #endregion
 
     #region ISerializable
-    public SelfControlSerialization(SerializationInfo info, StreamingContext context)
+    protected SelfControlSerialization(SerializationInfo info, StreamingContext context)
     {
       // Reset the property value using the GetValue method.
       MaxIncome = info.GetDouble("MaxIncome");
       MinIncome = info.GetDouble("MinIncome");
     }
-    public void GetObjectData(SerializationInfo info, StreamingContext context)
+    public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
     {
       //// Use the AddValue method to specify serialized values (state of the object).
       info.AddValue("MaxIncome", MaxIncome);
