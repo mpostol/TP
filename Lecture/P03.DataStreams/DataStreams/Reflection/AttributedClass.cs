@@ -10,9 +10,10 @@ using System;
 namespace TP.DataStreams.Reflection
 {
 
-  [CustomAttribute(Description = "Description of the class")]
+  [CustomAttribute("Description of the class")]
   public class AttributedClass
   {
+    [Obsolete]
     public static object GetObject()
     {
       return new AttributedClass();
@@ -21,7 +22,11 @@ namespace TP.DataStreams.Reflection
   [AttributeUsage(AttributeTargets.Class)]
   public class CustomAttribute : Attribute
   {
-    public string Description { get; set; }
+    public CustomAttribute(string attributeDescription)
+    {
+      Description = attributeDescription;
+    }
+    public string Description { get; private set; }
   }
 
 }

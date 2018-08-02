@@ -18,15 +18,21 @@ namespace TP.DataStreams
     [TestMethod]
     public void CustomAttributeTest()
     {
-      CustomAttribute _attribute = new CustomAttribute() { Description = "Instance description" };
+      CustomAttribute _attribute = new CustomAttribute("Instance description");
       Assert.IsNotNull(_attribute);
       Assert.AreEqual<string>("Instance description", _attribute.Description);
     }
     [TestMethod]
+    public void ObsoleteTest()
+    {
+      object _unknownObject = AttributedClass.GetObject();
+      Assert.IsNotNull(_unknownObject);
+    }
+    [TestMethod]
     public void AttributedClassTest()
     {
-      object _unknowObject = AttributedClass.GetObject();
-      Type _objectType = _unknowObject.GetType();
+      object _unknownObject = ObjectFactory.GetObject();
+      Type _objectType = _unknownObject.GetType();
       Object[] _attribute = _objectType.GetCustomAttributes(typeof(CustomAttribute), false);
       Assert.AreEqual<int>(1, _attribute.Length);
       CustomAttribute _expectedAttribute = _attribute[0] as CustomAttribute;
@@ -46,7 +52,16 @@ namespace TP.DataStreams
       _newProperty.Value = 987654321.123;
       Assert.AreEqual<double>((double)987654321.123, _dataSource.Rewoca75);
     }
-    class MyClass
+
+    #region test instrumentation
+    private static class ObjectFactory
+    {
+      public static object GetObject()
+      {
+        return new AttributedClass();
+      }
+    }
+    private class MyClass
     {
       public double Rewoca75 { get; set; }
       public int Tohewu22 { get; set; }
@@ -54,5 +69,7 @@ namespace TP.DataStreams
       public Tuple<double, int, string> Yozoho42 { get; set; }
 
     }
+    #endregion
+
   }
 }
