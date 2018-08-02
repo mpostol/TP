@@ -31,8 +31,7 @@ namespace TP.DataStreams
     [TestMethod]
     public void AttributedClassTest()
     {
-      object _unknownObject = ObjectFactory.GetObject();
-      Type _objectType = _unknownObject.GetType();
+      Type _objectType = typeof(AttributedClass);
       Object[] _attribute = _objectType.GetCustomAttributes(typeof(CustomAttribute), false);
       Assert.AreEqual<int>(1, _attribute.Length);
       CustomAttribute _expectedAttribute = _attribute[0] as CustomAttribute;
@@ -54,13 +53,6 @@ namespace TP.DataStreams
     }
 
     #region test instrumentation
-    private static class ObjectFactory
-    {
-      public static object GetObject()
-      {
-        return new AttributedClass();
-      }
-    }
     private class MyClass
     {
       public double Rewoca75 { get; set; }
