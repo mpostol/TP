@@ -32,14 +32,20 @@ namespace TP.DataStreams
     public void AttributedClassTest()
     {
       Type _objectType = typeof(AttributedClass);
-      Object[] _attribute = _objectType.GetCustomAttributes(typeof(CustomAttribute), false);
-      Assert.AreEqual<int>(1, _attribute.Length);
-      CustomAttribute _expectedAttribute = _attribute[0] as CustomAttribute;
-      Assert.IsNotNull(_expectedAttribute);
-      Assert.AreEqual<string>("Description of the class", _expectedAttribute.Description);
+      GoTest(_objectType);
     }
     [TestMethod]
-    public void AttachedPropertyTest()
+    public void AttributedObjectTest()
+    {
+      foreach (ObjectFactory.CreationHints _item in Enum.GetValues(typeof(ObjectFactory.CreationHints)))
+      {
+        object _attributedObject = ObjectFactory.CreateObject(_item);
+        Type _objectType = _attributedObject.GetType();
+        GoTest(_objectType);
+      }
+    }
+    [TestMethod]
+    private void AttachedPropertyTest()
     {
       MyClass _dataSource = new MyClass();
       Assert.ThrowsException<ArgumentNullException>(() => new AttachedProperty<double>(null, "Rewoca75"), "The exception must be thrown if dataSource is null");
@@ -53,13 +59,39 @@ namespace TP.DataStreams
     }
 
     #region test instrumentation
+    private static void GoTest(Type _objectType)
+    {
+      Object[] _attribute = _objectType.GetCustomAttributes(typeof(CustomAttribute), false);
+      Assert.AreEqual<int>(1, _attribute.Length);
+      CustomAttribute _expectedAttribute = _attribute[0] as CustomAttribute;
+      Assert.IsNotNull(_expectedAttribute);
+      Assert.AreEqual<string>("Description of the class", _expectedAttribute.Description);
+    }
+    private static class ObjectFactory
+    {
+      internal enum CreationHints { Suxuxe12, Gipoci82 }
+      internal static object CreateObject(CreationHints hints)
+      {
+        object _return = null;
+        switch (hints)
+        {
+          case CreationHints.Suxuxe12:
+            _return = new AttributedClass();
+            break;
+          case CreationHints.Gipoci82:
+            _return = new MyClass();
+            break;
+        }
+        return _return;
+      }
+    }
+    [CustomAttribute("Description of the class")]
     private class MyClass
     {
       public double Rewoca75 { get; set; }
       public int Tohewu22 { get; set; }
       public string Vupowe51 { get; set; }
       public Tuple<double, int, string> Yozoho42 { get; set; }
-
     }
     #endregion
 
