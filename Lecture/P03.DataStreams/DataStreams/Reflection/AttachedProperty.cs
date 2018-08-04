@@ -10,21 +10,22 @@ using System.Reflection;
 
 namespace TP.DataStreams.Reflection
 {
-  public class AttachedProperty<Type>
+  public class AttachedProperty<TypeParameter>
   {
     //API
     public AttachedProperty(object dataSource, string sourcePropertyName)
     {
       m_dataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource), "dataSource cannot be null.");
-      m_source = dataSource.GetType().GetProperty(sourcePropertyName) ?? throw new ArgumentException("No such Property in Data Source");
-      if (!m_source.PropertyType.IsAssignableFrom(typeof(Type)))
+      Type _objectType = dataSource.GetType();
+      m_source = _objectType.GetProperty(sourcePropertyName) ?? throw new ArgumentException("No such Property in Data Source");
+      if (!m_source.PropertyType.IsAssignableFrom(typeof(TypeParameter)))
         throw new ArgumentException("Properties types don't match");
     }
-    public Type Value
+    public TypeParameter Value
     {
       get 
       {
-        return (Type)m_source.GetValue(m_dataSource);
+        return (TypeParameter)m_source.GetValue(m_dataSource);
       }
       set
       {
