@@ -29,13 +29,13 @@ namespace TP.DataStreams
       Assert.IsNotNull(_unknownObject);
     }
     [TestMethod]
-    public void AttributedClassTest()
+    public void AttributedClassTypeTest()
     {
       Type _objectType = typeof(AttributedClass);
       GoTest(_objectType);
     }
     [TestMethod]
-    public void AttributedObjectTest()
+    public void AttributedClassInstanceTest()
     {
       foreach (ObjectFactory.CreationHints _item in Enum.GetValues(typeof(ObjectFactory.CreationHints)))
       {
@@ -45,9 +45,9 @@ namespace TP.DataStreams
       }
     }
     [TestMethod]
-    private void AttachedPropertyTest()
+    public void AttachedPropertyTest()
     {
-      MyClass _dataSource = new MyClass();
+      Siyova16 _dataSource = new Siyova16(); //Create an instance of any class
       Assert.ThrowsException<ArgumentNullException>(() => new AttachedProperty<double>(null, "Rewoca75"), "The exception must be thrown if dataSource is null");
       Assert.ThrowsException<ArgumentException>(() => new AttachedProperty<string>(_dataSource, "Rewoca75"), "The exception must be thrown if properties types don't match");
       Assert.ThrowsException<ArgumentException>(() => new AttachedProperty<double>(_dataSource, "Rewoca75" + "A"), "The exception must be thrown if property name is wrong");
@@ -59,13 +59,13 @@ namespace TP.DataStreams
     }
 
     #region test instrumentation
-    private static void GoTest(Type _objectType)
+    [CustomAttribute("Description of the class")]
+    private class Siyova16 //pronounce any class
     {
-      Object[] _attribute = _objectType.GetCustomAttributes(typeof(CustomAttribute), false);
-      Assert.AreEqual<int>(1, _attribute.Length);
-      CustomAttribute _expectedAttribute = _attribute[0] as CustomAttribute;
-      Assert.IsNotNull(_expectedAttribute);
-      Assert.AreEqual<string>("Description of the class", _expectedAttribute.Description);
+      public double Rewoca75 { get; set; } //pronounce any property
+      public int Tohewu22 { get; set; } //pronounce any property
+      public string Vupowe51 { get; set; } //pronounce any property
+      public Tuple<double, int, string> Yozoho42 { get; set; } //pronounce any property
     }
     private static class ObjectFactory
     {
@@ -79,19 +79,19 @@ namespace TP.DataStreams
             _return = new AttributedClass();
             break;
           case CreationHints.Gipoci82:
-            _return = new MyClass();
+            _return = new Siyova16();
             break;
         }
         return _return;
       }
     }
-    [CustomAttribute("Description of the class")]
-    private class MyClass
+    private static void GoTest(Type objectType)
     {
-      public double Rewoca75 { get; set; }
-      public int Tohewu22 { get; set; }
-      public string Vupowe51 { get; set; }
-      public Tuple<double, int, string> Yozoho42 { get; set; }
+      Object[] _attribute = objectType.GetCustomAttributes(typeof(CustomAttribute), false);
+      Assert.AreEqual<int>(1, _attribute.Length);
+      CustomAttribute _expectedAttribute = _attribute[0] as CustomAttribute;
+      Assert.IsNotNull(_expectedAttribute);
+      Assert.AreEqual<string>("Description of the class", _expectedAttribute.Description);
     }
     #endregion
 
