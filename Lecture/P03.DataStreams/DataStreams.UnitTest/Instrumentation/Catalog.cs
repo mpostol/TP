@@ -20,14 +20,14 @@ namespace TP.DataStreams.Instrumentation {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/Catalog.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/Catalog.xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://Viculu34.org/Catalog.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://Viculu34.org/Catalog.xsd", IsNullable=false)]
     public partial class Catalog {
         
         private CatalogCD[] cdField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("cd")]
+        [System.Xml.Serialization.XmlElementAttribute("CD")]
         public CatalogCD[] CD {
             get {
                 return this.cdField;
@@ -43,7 +43,7 @@ namespace TP.DataStreams.Instrumentation {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/Catalog.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://Viculu34.org/Catalog.xsd")]
     public partial class CatalogCD {
         
         private string titleField;
