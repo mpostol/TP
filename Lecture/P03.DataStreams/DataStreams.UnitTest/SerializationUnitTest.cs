@@ -20,13 +20,13 @@ namespace TP.DataStreams
   public class SerializationUnitTest
   {
     [TestMethod]
-    public void SerializeTestMethod()
+    public void SelfControlSerializationTest()
     {
       ISerializable _objectToSerialize = new SelfControlSerialization(987654321.123, 123456789.987);
       CustomFormatter _formatter = new CustomFormatter();
       const string _fileName = "test.xml";
       File.Delete(_fileName);
-      using (FileStream _stream = new FileStream("test.xml", FileMode.Create))
+      using (Stream _stream = new FileStream("test.xml", FileMode.Create))
         _formatter.Serialize(_stream, _objectToSerialize);
       FileInfo _info = new FileInfo(_fileName);
       Assert.IsTrue(_info.Exists);
