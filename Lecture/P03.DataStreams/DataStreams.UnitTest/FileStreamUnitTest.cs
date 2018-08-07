@@ -7,7 +7,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using TPTP.DataStreams.FileStream;
+using TP.DataStreams.FileAndStream;
 
 namespace TP.DataStreams
 {

@@ -51,10 +51,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Instrumentation\CustomData\Catalog.cs">
+    <Compile Include="Instrumentation\Catalog.cs">
       <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Instrumentation\CustomData\Catalog.xsd.cs">
+    <Compile Include="Instrumentation\Catalog.xsd.cs">
       <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
     <Compile Include="Instrumentation\SelfControlSerialization.cs" />
@@ -64,9 +64,11 @@
     <Compile Include="ReflectionUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Instrumentation\CustomData\Catalog.xsd">
+    <None Include="Instrumentation\Catalog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Instrumentation\GoCS.cmd" />
+    <None Include="Instrumentation\GoXSD.cmd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -77,9 +79,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Instrumentation\CustomData\Catalog.xslt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Instrumentation\Catalog.xslt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

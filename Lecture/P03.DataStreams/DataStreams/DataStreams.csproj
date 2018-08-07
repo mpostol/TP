@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileStream\FileExample.cs" />
+    <Compile Include="FileAndStream\FileExample.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\AttributedClass.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Serialization\XmlFile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FileStream\README.md" />
+    <None Include="FileAndStream\README.md" />
     <None Include="Key.snk" />
     <None Include="Reflection\README.MD" />
   </ItemGroup>
