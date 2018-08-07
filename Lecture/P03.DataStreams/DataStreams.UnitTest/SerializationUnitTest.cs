@@ -47,8 +47,8 @@ namespace TP.DataStreams
       string _fileName = @"Instrumentation\catalog.xml";
       XmlFile.WriteXmlFile<Catalog>(_catalog2Write, _fileName, FileMode.Create);
       Catalog _recoveredCatalog = XmlFile.ReadXmlFile<Catalog>(_fileName);
-      Assert.IsTrue(_catalog2Write.CD[0].Equals(_recoveredCatalog.CD[0]));
-      Assert.IsTrue(_catalog2Write.CD[1].Equals(_recoveredCatalog.CD[1]));
+      Assert.IsTrue(_catalog2Write.CD[0] == _recoveredCatalog.CD[0]);
+      Assert.IsTrue(_catalog2Write.CD[1] == _recoveredCatalog.CD[1]);
 
     }
 

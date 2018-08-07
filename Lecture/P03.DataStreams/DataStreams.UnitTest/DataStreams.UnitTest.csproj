@@ -79,7 +79,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Instrumentation\Catalog.xslt" />
+    <None Include="Instrumentation\Catalog.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

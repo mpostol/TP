@@ -7,6 +7,7 @@
 
 
 using System.Diagnostics;
+using System.Xml.Serialization;
 using TP.DataStreams.Serialization;
 
 namespace TP.DataStreams.Instrumentation
@@ -16,15 +17,15 @@ namespace TP.DataStreams.Instrumentation
   /// </summary>
   public partial class Catalog : IStylesheetNameProvider
   {
+
     #region IStylesheetNameProvider Members
     /// <summary>
     /// The stylesheet name
     /// </summary>
-    public string StylesheetName
-    {
-      get { return "catalog.xslt"; }
-    }
+    [XmlIgnore]
+    public string StylesheetName { get; set; } = "catalog.xslt";
     #endregion
+
     [Conditional("DEBUG")]
     internal void AddTestingData()
     {
@@ -49,4 +50,24 @@ namespace TP.DataStreams.Instrumentation
       CD = new CatalogCD[] { _cd1, _cd2 };
     }
   }
+
+  partial class CatalogCD
+  {
+    public static bool operator ==(CatalogCD left, CatalogCD right)
+    {
+      return left.Equals(right);
+    }
+    public static bool operator !=(CatalogCD left, CatalogCD right)
+    {
+      return !left.Equals(right);
+    }
+    public override bool Equals(object obj)
+    {
+      CatalogCD _catalogCD = obj as CatalogCD;
+      if (object.ReferenceEquals(_catalogCD, null))
+        throw new System.ArgumentException(nameof(obj), "wrong parameter type");
+      return $"{Artist}, {Company}, {Country}, {Price}, {Title}" == $"{_catalogCD.Artist}, {_catalogCD.Company}, {_catalogCD.Country}, {_catalogCD.Price}, {_catalogCD.Title}";
+    }
+  }
+
 }
