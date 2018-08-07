@@ -9,7 +9,7 @@
 using System.Diagnostics;
 using TP.DataStreams.Serialization;
 
-namespace Example.Xml.CustomData
+namespace TP.DataStreams.Instrumentation
 {
   /// <summary>
   /// class catalog
@@ -28,25 +28,25 @@ namespace Example.Xml.CustomData
     [Conditional("DEBUG")]
     internal void AddTestingData()
     {
-      CDDescription _cd1 = new CDDescription()
+      CatalogCD _cd1 = new CatalogCD()
       {
-        artist = "Bob Dylan",
-        title = "Empire Burlesque",
-        country = "USA",
-        company = "Columbia",
-        price = 10.90M,
-        year = 1985,
+        Artist = "Bob Dylan",
+        Title = "Empire Burlesque",
+        Country = "USA",
+        Company = "Columbia",
+        Price = 10.90M,
+        Year = 1985,
       };
-      CDDescription _cd2 = new CDDescription
+      CatalogCD _cd2 = new CatalogCD
       {
-        title = "Hide your heart",
-        artist = "Bonnie Tyler",
-        country = "UK",
-        company = "CBS Records",
-        price = 9.90M,
-        year = 1988
+        Title = "Hide your heart",
+        Artist = "Bonnie Tyler",
+        Country = "UK",
+        Company = "CBS Records",
+        Price = 9.90M,
+        Year = 1988
       };
-      cd = new CDDescription[] { _cd1, _cd2 };
+      CD = new CatalogCD[] { _cd1, _cd2 };
     }
   }
 }

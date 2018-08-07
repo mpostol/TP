@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
-using Example.Xml.CustomData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.IO;
@@ -44,12 +43,12 @@ namespace TP.DataStreams
 #endif
       Catalog _catalog2Write = new Catalog();
       _catalog2Write.AddTestingData();
-      Assert.IsNotNull(_catalog2Write.cd);
-      string _fileName = @"Instrumentation\CustomData\catalog.xml";
+      Assert.IsNotNull(_catalog2Write.CD);
+      string _fileName = @"Instrumentation\catalog.xml";
       XmlFile.WriteXmlFile<Catalog>(_catalog2Write, _fileName, FileMode.Create);
       Catalog _recoveredCatalog = XmlFile.ReadXmlFile<Catalog>(_fileName);
-      Assert.IsTrue(_catalog2Write.cd[0].Equals(_recoveredCatalog.cd[0]));
-      Assert.IsTrue(_catalog2Write.cd[1].Equals(_recoveredCatalog.cd[1]));
+      Assert.IsTrue(_catalog2Write.CD[0].Equals(_recoveredCatalog.CD[0]));
+      Assert.IsTrue(_catalog2Write.CD[1].Equals(_recoveredCatalog.CD[1]));
 
     }
 
