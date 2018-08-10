@@ -52,15 +52,17 @@ namespace TP.DataStreams.Instrumentation
     protected SelfControlSerialization(SerializationInfo info, StreamingContext context)
     {
       // Reset the property value using the GetValue method.
-      MaxIncome = info.GetDouble("MaxIncome");
-      MinIncome = info.GetDouble("MinIncome");
+      MaxIncome = info.GetDouble(MaxIncomeKey);
+      MinIncome = info.GetDouble(MinIncomeKey);
     }
     public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
     {
-      //// Use the AddValue method to specify serialized values (state of the object).
-      info.AddValue("MaxIncome", MaxIncome);
-      info.AddValue("MinIncome", MinIncome);
+      // Use the AddValue method to specify serialized values (state of the object).
+      info.AddValue(MaxIncomeKey, MaxIncome);
+      info.AddValue(MinIncomeKey, MinIncome);
     }
+    private const string MaxIncomeKey = "MaxIncomeKey";
+    private const string MinIncomeKey = "MinIncomeKey";
     #endregion
 
   }
