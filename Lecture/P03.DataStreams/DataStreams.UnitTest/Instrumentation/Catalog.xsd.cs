@@ -66,7 +66,15 @@ namespace TP.DataStreams.Instrumentation
       CatalogCD _catalogCD = obj as CatalogCD;
       if (object.ReferenceEquals(_catalogCD, null))
         throw new System.ArgumentException(nameof(obj), "wrong parameter type");
-      return $"{Artist}, {Company}, {Country}, {Price}, {Title}" == $"{_catalogCD.Artist}, {_catalogCD.Company}, {_catalogCD.Country}, {_catalogCD.Price}, {_catalogCD.Title}";
+      return  ToString () == _catalogCD.ToString();
+    }
+    public override int GetHashCode()
+    {
+      return ToString().GetHashCode();
+    }
+    public override string ToString()
+    {
+      return $"{Artist}, {Company}, {Country}, {Price}, {Title}, {Year}";
     }
   }
 
