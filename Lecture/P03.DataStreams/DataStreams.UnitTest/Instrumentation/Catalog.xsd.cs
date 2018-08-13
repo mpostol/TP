@@ -50,7 +50,6 @@ namespace TP.DataStreams.Instrumentation
       CD = new CatalogCD[] { _cd1, _cd2 };
     }
   }
-
   partial class CatalogCD
   {
     public static bool operator ==(CatalogCD left, CatalogCD right)
@@ -66,7 +65,7 @@ namespace TP.DataStreams.Instrumentation
       CatalogCD _catalogCD = obj as CatalogCD;
       if (object.ReferenceEquals(_catalogCD, null))
         throw new System.ArgumentException(nameof(obj), "wrong parameter type");
-      return  ToString () == _catalogCD.ToString();
+      return ToString() == _catalogCD.ToString();
     }
     public override int GetHashCode()
     {

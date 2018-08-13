@@ -33,11 +33,9 @@ namespace TP.DataStreams
       string _fileContent = File.ReadAllText(_fileName, Encoding.UTF8);
       Debug.Write(_fileContent);
     }
-
     [TestMethod]
     public void ReadWRiteTest()
     {
-
 #if !DEBUG
       Assert.Inconclusive("The test can be executed only in debug configuration");
 #endif
@@ -47,9 +45,10 @@ namespace TP.DataStreams
       string _fileName = @"Instrumentation\catalog.xml";
       XmlFile.WriteXmlFile<Catalog>(_catalog2Write, _fileName, FileMode.Create);
       Catalog _recoveredCatalog = XmlFile.ReadXmlFile<Catalog>(_fileName);
+      Assert.IsNotNull(_recoveredCatalog);
+      Assert.AreEqual<int>(_catalog2Write.CD.Length, _recoveredCatalog.CD.Length);
       Assert.IsTrue(_catalog2Write.CD[0] == _recoveredCatalog.CD[0]);
       Assert.IsTrue(_catalog2Write.CD[1] == _recoveredCatalog.CD[1]);
-
     }
 
   }
