@@ -17,13 +17,13 @@ namespace TP.DataStreams.Cryptography
 
   public static class CryptographyHelpers
   {
-    public static (string Hex, string Base64) CalculateSHA256 (this string inputStream)
+    public static (string Hex, string Base64) CalculateSHA256(this string inputStream)
     {
       byte[] _inputStreamBytes = Encoding.UTF8.GetBytes(inputStream);
       using (SHA256 mySHA256 = SHA256Managed.Create())
       {
         byte[] hashValue = mySHA256.ComputeHash(_inputStreamBytes);
-        return (hashValue.ToHexString(), Convert.ToBase64String(hashValue, Base64FormattingOptions.InsertLineBreaks));
+        return (BitConverter.ToString(hashValue, 0), Convert.ToBase64String(hashValue, Base64FormattingOptions.InsertLineBreaks));
       }
     }
     public static void EncryptData(string inFileName, string outFileName, byte[] dESKey, byte[] dESIV, IProgress<long> progress)
@@ -31,29 +31,42 @@ namespace TP.DataStreams.Cryptography
       //Create the file streams to handle the input and output files.
       using (FileStream _inFileStream = new FileStream(inFileName, FileMode.Open, FileAccess.Read))
       {
-        using (FileStream _outFileStream = new FileStream(outFileName, FileMode.OpenOrCreate, FileAccess.Write))
+        FileStream _outFileStream = new FileStream(outFileName, FileMode.OpenOrCreate, FileAccess.Write);
+        _outFileStream.SetLength(0);
+        //Create variables to help with read and write.
+        byte[] _buffer = new byte[100]; //This is intermediate storage for the encryption.
+        long _bytesWritten = 0; //This is the total number of bytes written.
+        long _inFileStreamLength = _inFileStream.Length; //This is the total length of the input file.
+        int _length; //This is the number of bytes to be written at a time.
+        TripleDESCryptoServiceProvider _tripleProvider = new TripleDESCryptoServiceProvider();
+        using (CryptoStream _outCryptoStream = new CryptoStream(_outFileStream, _tripleProvider.CreateEncryptor(dESKey, dESIV), CryptoStreamMode.Write))
         {
-          _outFileStream.SetLength(0);
-          //Create variables to help with read and write.
-          byte[] _buffer = new byte[100]; //This is intermediate storage for the encryption.
-          long _bytesWritten = 0; //This is the total number of bytes written.
-          long _inFileStreamLength = _inFileStream.Length; //This is the total length of the input file.
-          int _length; //This is the number of bytes to be written at a time.
-          TripleDESCryptoServiceProvider _tripleProvider = new TripleDESCryptoServiceProvider();
-          using (CryptoStream _outCryptoStream = new CryptoStream(_outFileStream, _tripleProvider.CreateEncryptor(dESKey, dESIV), CryptoStreamMode.Write))
+          //Read from the input file, then encrypt and write to the output file.
+          while (_bytesWritten < _inFileStreamLength)
           {
-            //Read from the input file, then encrypt and write to the output file.
-            while (_bytesWritten < _inFileStreamLength)
-            {
-              _length = _inFileStream.Read(_buffer, 0, 100);
-              _outCryptoStream.Write(_buffer, 0, _length);
-              _bytesWritten = _bytesWritten + _length;
-              progress.Report(_bytesWritten);
-            }
+            _length = _inFileStream.Read(_buffer, 0, 100);
+            _outCryptoStream.Write(_buffer, 0, _length);
+            _bytesWritten = _bytesWritten + _length;
+            progress.Report(_bytesWritten);
           }
         }
       }
     }
+    /// <summary>
+    /// Creates the RSA crypto service keys.
+    /// </summary>
+    /// <returns>Returns <see cref="ValueTuple"/> containing key RSA values </returns>
+    public static (RSAParameters parameters, string publicKey, string privatePublicKeys) CreateRSACryptoServiceKeys()
+    {
+      using (RSACryptoServiceProvider _rsa = new RSACryptoServiceProvider(2048))
+      {
+        RSAParameters _parameters = _rsa.ExportParameters(true);
+        string _public = _rsa.ToXmlString(false);
+        string _both = _rsa.ToXmlString(true);
+        return (_parameters, _public, _both);
+      }
+    }
+
     /// <summary>
     /// Sign and save an XML document.
     /// </summary>
