@@ -42,7 +42,7 @@ namespace TP.DataStreams
       Catalog _catalog2Write = new Catalog();
       _catalog2Write.AddTestingData();
       Assert.IsNotNull(_catalog2Write.CD);
-      string _fileName = @"Instrumentation\catalog.xml";
+      string _fileName = @"catalog.xml";
       XmlFile.WriteXmlFile<Catalog>(_catalog2Write, _fileName, FileMode.Create);
       Catalog _recoveredCatalog = XmlFile.ReadXmlFile<Catalog>(_fileName);
       Assert.IsNotNull(_recoveredCatalog);
