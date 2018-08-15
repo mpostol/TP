@@ -31,25 +31,56 @@ namespace TP.DataStreams.Cryptography
       //Create the file streams to handle the input and output files.
       using (FileStream _inFileStream = new FileStream(inFileName, FileMode.Open, FileAccess.Read))
       {
-        FileStream _outFileStream = new FileStream(outFileName, FileMode.OpenOrCreate, FileAccess.Write);
-        _outFileStream.SetLength(0);
-        //Create variables to help with read and write.
-        byte[] _buffer = new byte[100]; //This is intermediate storage for the encryption.
+        const int _bufferLength = 100;
+        byte[] _buffer = new byte[_bufferLength]; //This is intermediate storage for the encryption.
         long _bytesWritten = 0; //This is the total number of bytes written.
-        long _inFileStreamLength = _inFileStream.Length; //This is the total length of the input file.
-        int _length; //This is the number of bytes to be written at a time.
         TripleDESCryptoServiceProvider _tripleProvider = new TripleDESCryptoServiceProvider();
+        FileStream _outFileStream = new FileStream(outFileName, FileMode.Create, FileAccess.Write);
         using (CryptoStream _outCryptoStream = new CryptoStream(_outFileStream, _tripleProvider.CreateEncryptor(dESKey, dESIV), CryptoStreamMode.Write))
         {
           //Read from the input file, then encrypt and write to the output file.
-          while (_bytesWritten < _inFileStreamLength)
+          while (true)
           {
-            _length = _inFileStream.Read(_buffer, 0, 100);
+            int _length = _inFileStream.Read(_buffer, 0, _bufferLength);
+            if (_length == 0)
+            {
+              _outCryptoStream.FlushFinalBlock();
+              _outCryptoStream.Close();
+              break;
+            }
             _outCryptoStream.Write(_buffer, 0, _length);
             _bytesWritten = _bytesWritten + _length;
             progress.Report(_bytesWritten);
           }
         }
+        _outFileStream.Close();
+      }
+    }
+    public static void DecryptData(string inCryptoFileName, string outFileName, byte[] dESKey, byte[] dESIV, IProgress<long> progress)
+    {
+      //Create the file streams to handle the input and output files.
+      using (FileStream _outFileStream = new FileStream(outFileName, FileMode.OpenOrCreate, FileAccess.Write))
+      {
+        _outFileStream.SetLength(0);
+        const int _bufferLength = 100;
+        byte[] _buffer = new byte[_bufferLength]; //This is intermediate storage for the decrypted content.
+        long _bytesWritten = 0;
+        TripleDESCryptoServiceProvider _tripleProvider = new TripleDESCryptoServiceProvider();
+        FileStream _inFileStream = new FileStream(inCryptoFileName, FileMode.Open, FileAccess.Read);
+        using (CryptoStream _inCryptoStream = new CryptoStream(_inFileStream, _tripleProvider.CreateDecryptor(dESKey, dESIV), CryptoStreamMode.Read))
+        {
+          while (true)
+          {
+            int _length = _inCryptoStream.Read(_buffer, 0, _bufferLength);
+            if (_length == 0)
+              break;
+            _outFileStream.Write(_buffer, 0, _length);
+            _bytesWritten = _bytesWritten + _length;
+            progress.Report(_bytesWritten);
+          }
+        }
+        _outFileStream.Flush();
+        _outFileStream.Close();
       }
     }
     /// <summary>

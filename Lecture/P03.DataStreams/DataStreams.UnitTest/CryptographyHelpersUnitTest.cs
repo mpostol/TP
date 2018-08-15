@@ -41,19 +41,30 @@ namespace TP.DataStreams.Cryptography
     [DeploymentItem("Instrumentation")]
     public void EncryptDataTest()
     {
+      //encrypt
       const string _inFileName = @"catalog.example.xml";
       FileInfo _inFileInfo = new FileInfo(_inFileName);
       Assert.IsTrue(_inFileInfo.Exists);
-      const string _outFileName = "encrypteDXmlFile.xml";
-      if (File.Exists(_outFileName))
-        File.Delete(_outFileName);
+      const string _encryptedFileName = "encryptedXmlFile.xml";
+      if (File.Exists(_encryptedFileName))
+        File.Delete(_encryptedFileName);
       ProgressMonitor _logger = new ProgressMonitor();
       TripleDESCryptoServiceProvider _tripleDesProvider = new TripleDESCryptoServiceProvider();
-      CryptographyHelpers.EncryptData(_inFileName, _outFileName, _tripleDesProvider.Key, _tripleDesProvider.IV, _logger);
-      Assert.AreEqual<int>(7, _logger.ReportedCycles);
-      FileInfo _outFileInfo = new FileInfo(_outFileName);
-      Assert.AreEqual<long>(_outFileInfo.Length, _inFileInfo.Length+1);
-      Assert.AreEqual<long>(_outFileInfo.Length, _logger.ReportedValue+1);
+      CryptographyHelpers.EncryptData(_inFileName, _encryptedFileName, _tripleDesProvider.Key, _tripleDesProvider.IV, _logger);
+      FileInfo _encryptedFileInfo = new FileInfo(_encryptedFileName);
+      Assert.IsTrue(_encryptedFileInfo.Exists);
+      Assert.AreEqual<long>(_inFileInfo.Length, _logger.ReportedValue);
+      //decrypt
+      const string _decryptedFileName = "decryptedXmlFile.xml";
+      if (File.Exists(_decryptedFileName))
+        File.Delete(_decryptedFileName);
+      _logger = new ProgressMonitor();
+      CryptographyHelpers.DecryptData(_encryptedFileName, _decryptedFileName, _tripleDesProvider.Key, _tripleDesProvider.IV, _logger);
+      FileInfo _decryptedFileInfo = new FileInfo(_decryptedFileName);
+      Assert.IsTrue(_decryptedFileInfo.Exists);
+      Assert.AreEqual<long>(_decryptedFileInfo.Length, _logger.ReportedValue);
+      Assert.AreEqual<long>(_decryptedFileInfo.Length, _inFileInfo.Length);
+
     }
     [TestMethod]
     public void CreateRSACryptoServiceKeysTest()
@@ -96,10 +107,8 @@ namespace TP.DataStreams.Cryptography
     private class ProgressMonitor : IProgress<long>
     {
       internal long ReportedValue = 0;
-      internal int ReportedCycles = 0;
       public void Report(long value)
       {
-        ReportedCycles++;
         ReportedValue = value;
       }
     }
