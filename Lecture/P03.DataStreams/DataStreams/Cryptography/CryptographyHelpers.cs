@@ -23,7 +23,7 @@ namespace TP.DataStreams.Cryptography
       using (SHA256 mySHA256 = SHA256Managed.Create())
       {
         byte[] hashValue = mySHA256.ComputeHash(_inputStreamBytes);
-        return (BitConverter.ToString(hashValue, 0), Convert.ToBase64String(hashValue, Base64FormattingOptions.InsertLineBreaks));
+        return (BitConverter.ToString(hashValue), Convert.ToBase64String(hashValue, Base64FormattingOptions.InsertLineBreaks));
       }
     }
     public static void EncryptData(string inFileName, string outFileName, byte[] dESKey, byte[] dESIV, IProgress<long> progress)
@@ -45,7 +45,6 @@ namespace TP.DataStreams.Cryptography
             if (_length == 0)
             {
               _outCryptoStream.FlushFinalBlock();
-              _outCryptoStream.Close();
               break;
             }
             _outCryptoStream.Write(_buffer, 0, _length);
@@ -53,7 +52,6 @@ namespace TP.DataStreams.Cryptography
             progress.Report(_bytesWritten);
           }
         }
-        _outFileStream.Close();
       }
     }
     public static void DecryptData(string inCryptoFileName, string outFileName, byte[] dESKey, byte[] dESIV, IProgress<long> progress)
@@ -79,8 +77,6 @@ namespace TP.DataStreams.Cryptography
             progress.Report(_bytesWritten);
           }
         }
-        _outFileStream.Flush();
-        _outFileStream.Close();
       }
     }
     /// <summary>
@@ -97,7 +93,6 @@ namespace TP.DataStreams.Cryptography
         return (_parameters, _public, _both);
       }
     }
-
     /// <summary>
     /// Sign and save an XML document.
     /// </summary>
@@ -106,24 +101,24 @@ namespace TP.DataStreams.Cryptography
     /// <remarks>
     /// This document cannot be verified unless the verifying code has the public key with which it was signed.
     /// </remarks>
-    public static void SignSaveXml(this XmlDocument document, string rsaKeys, string fileName)
+    public static void SignSaveXml(this XmlDocument document, string rSAKeys, string fileName)
     {
       #region Check arguments
       if (document == null)
         throw new ArgumentException($"The {nameof(document)} parameter cannot be null");
-      if (string.IsNullOrEmpty(rsaKeys))
-        throw new ArgumentException($"The {nameof(rsaKeys)} parameter cannot be null");
+      if (string.IsNullOrEmpty(rSAKeys))
+        throw new ArgumentException($"The {nameof(rSAKeys)} parameter cannot be null");
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
       #endregion
-      using (RSACryptoServiceProvider _rsaProvider = new RSACryptoServiceProvider())
+      using (RSACryptoServiceProvider _rSAProvider = new RSACryptoServiceProvider())
       {
-        _rsaProvider.FromXmlString(rsaKeys);
+        _rSAProvider.FromXmlString(rSAKeys);
         KeyInfo _keyInfo = new KeyInfo();// Add an RSAKeyValue KeyInfo (optional; helps recipient find key to validate).
-        _keyInfo.AddClause(new RSAKeyValue(_rsaProvider));
+        _keyInfo.AddClause(new RSAKeyValue(_rSAProvider));
         SignedXml _signedXml = new SignedXml(document)
         {
-          SigningKey = _rsaProvider, // Add the key to the SignedXml document.
+          SigningKey = _rSAProvider, // Add the key to the SignedXml document.
           KeyInfo = _keyInfo
         };
         Reference _reference = new Reference // Create a reference to be signed.
@@ -160,11 +155,11 @@ namespace TP.DataStreams.Cryptography
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
       #endregion
-      (XmlDocument _document, SignedXml _signedXml) = LoadsIGNEDXmlFile(fileName);
+      (XmlDocument _document, SignedXml _signedXml) = LoadsSignedXmlFile(fileName);
       using (RSACryptoServiceProvider _provider = new RSACryptoServiceProvider())
       {
         _provider.FromXmlString(rsaKeys);
-        if (!_signedXml.CheckSignature(_provider))// Check the signature and return the result.
+        if (!_signedXml.CheckSignature(_provider))// Check the signature using custom RSA keys.
           throw new CryptographicException($"Wrong signature of the document.");
       }
       return _document;
@@ -175,25 +170,12 @@ namespace TP.DataStreams.Cryptography
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
       #endregion
-      (XmlDocument _document, SignedXml _signedXml) = LoadsIGNEDXmlFile(fileName);
+      (XmlDocument _document, SignedXml _signedXml) = LoadsSignedXmlFile(fileName);
       if (!_signedXml.CheckSignature())// Check the signature and return the result.
         throw new System.Security.Cryptography.CryptographicException($"Wrong signature of the document.");
       return _document;
     }
-    private static string ToHexString(this byte[] bytes)
-    {
-      char[] c = new char[bytes.Length * 2];
-      int b;
-      for (int i = 0; i < bytes.Length; i++)
-      {
-        b = bytes[i] >> 4;
-        c[i * 2] = (char)(55 + b + (((b - 10) >> 31) & -7));
-        b = bytes[i] & 0xF;
-        c[i * 2 + 1] = (char)(55 + b + (((b - 10) >> 31) & -7));
-      }
-      return new string(c);
-    }
-    private static (XmlDocument document, SignedXml signedXml) LoadsIGNEDXmlFile(string fileName)
+    private static (XmlDocument document, SignedXml signedXml) LoadsSignedXmlFile(string fileName)
     {
       XmlDocument _document = new XmlDocument();
       _document.Load(fileName);
