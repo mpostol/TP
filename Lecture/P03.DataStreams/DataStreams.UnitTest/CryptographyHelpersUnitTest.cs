@@ -40,7 +40,7 @@ namespace TP.DataStreams.Cryptography
     }
     [TestMethod]
     [DeploymentItem("Instrumentation")]
-    public void EncryptDataTest()
+    public void EncryptDecryptDataTest()
     {
       //encrypt
       const string _inFileName = @"catalog.example.xml";
@@ -66,7 +66,7 @@ namespace TP.DataStreams.Cryptography
       Assert.IsTrue(_decryptedFileInfo.Exists);
       Assert.AreEqual<long>(_decryptedFileInfo.Length, _logger.ReportedValue);
       Assert.AreEqual<long>(_decryptedFileInfo.Length, _inFileInfo.Length);
-      //TODO Compare input and decrypted files. Must be equal. 
+      //TODO Compare input and decrypted files. Must be equal.
     }
     [TestMethod]
     public void CreateRSACryptoServiceKeysTest()

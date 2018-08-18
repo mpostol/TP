@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="catalog.xslt"?>
+<Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+         xmlns="http://Viculu34.org/Catalog.xsd"
+         >
+  <CD>
+    <Title>Empire Burlesque</Title>
+    <Artist>Bob Dylan</Artist>
+    <Country>USA</Country>
+    <Company>Columbia</Company>
+    <Price>10.90</Price>
+    <Year>1985</Year>
+  </CD>
+  <CD>
+    <Title>Hide your heart</Title>
+    <Artist>Bonnie Tyler</Artist>
+    <Country>UK</Country>
+    <Company>CBS Records</Company>
+    <Price>9.90</Price>
+    <Year>1988</Year>
+  </CD>
+</Catalog>

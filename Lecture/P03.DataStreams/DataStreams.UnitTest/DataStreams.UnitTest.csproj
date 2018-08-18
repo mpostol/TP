@@ -89,6 +89,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Instrumentation\decryptedXmlFile.xml" />
+    <Content Include="Instrumentation\encryptedXmlFile.xml" />
     <Content Include="Instrumentation\PubliKey.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
