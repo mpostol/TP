@@ -81,6 +81,7 @@
   <ItemGroup>
     <None Include="Instrumentation\catalog.example.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -91,14 +92,15 @@
   <ItemGroup>
     <Content Include="Instrumentation\decryptedXmlFile.xml" />
     <Content Include="Instrumentation\encryptedXmlFile.xml" />
-    <Content Include="Instrumentation\PubliKey.xml">
+    <Content Include="Instrumentation\SignedXmlFile.xml" />
+    <None Include="Instrumentation\PubliKey.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Instrumentation\PubliPrivateKeys.xml">
+    </None>
+    <None Include="Instrumentation\PubliPrivateKeys.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </Content>
+    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
