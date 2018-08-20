@@ -155,7 +155,7 @@ namespace TP.DataStreams.Cryptography
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
       #endregion
-      (XmlDocument _document, SignedXml _signedXml) = LoadsSignedXmlFile(fileName);
+      (XmlDocument _document, SignedXml _signedXml) = LoadSignedXmlFile(fileName);
       using (RSACryptoServiceProvider _provider = new RSACryptoServiceProvider())
       {
         _provider.FromXmlString(rsaKeys);
@@ -170,12 +170,12 @@ namespace TP.DataStreams.Cryptography
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
       #endregion
-      (XmlDocument _document, SignedXml _signedXml) = LoadsSignedXmlFile(fileName);
+      (XmlDocument _document, SignedXml _signedXml) = LoadSignedXmlFile(fileName);
       if (!_signedXml.CheckSignature())// Check the signature and return the result.
         throw new System.Security.Cryptography.CryptographicException($"Wrong signature of the document.");
       return _document;
     }
-    private static (XmlDocument document, SignedXml signedXml) LoadsSignedXmlFile(string fileName)
+    private static (XmlDocument document, SignedXml signedXml) LoadSignedXmlFile(string fileName)
     {
       XmlDocument _document = new XmlDocument();
       _document.Load(fileName);
@@ -184,6 +184,7 @@ namespace TP.DataStreams.Cryptography
       if (_nodeList.Count != 1) // There must be only one signature. Return false if 0 or more than one signatures was found.
         throw new CryptographicException($"Expected exactly one signature but the file contaons {_nodeList.Count}.");
       _signedXml.LoadXml((XmlElement)_nodeList[0]);// Load the first <signature> node.
+      _document.DocumentElement.RemoveChild(_nodeList[0]);
       return (_document, _signedXml);
     }
   }
