@@ -14,58 +14,26 @@ namespace TP.DataSemantics
   [TestClass]
   public class StructUnitTest
   {
-    private static void CoOrdsNoChange(BasicTypesStruct.CoOrdsStruct coOrds)
-    {
-      Random _rndm = new Random(DateTime.Now.Millisecond);
-      coOrds.x = _rndm.Next();
-      coOrds.y = _rndm.Next();
-    }
-    private static void CoOrdsChange(ref BasicTypesStruct.CoOrdsStruct coOrds)
-    {
-      Random _rndm = new Random(DateTime.Now.Millisecond);
-      coOrds.x = _rndm.Next();
-      coOrds.y = _rndm.Next();
-    }
-    private static void CoOrdsChange(BasicTypesStruct.CoOrdsClass coOrds)
-    {
-      Random _rndm = new Random(DateTime.Now.Millisecond);
-      coOrds.x = _rndm.Next();
-      coOrds.y = _rndm.Next();
-    }
     [TestMethod]
     public void StructTestMethod()
     {
       //value type modification 
-      BasicTypesStruct.CoOrdsStruct _bts1 = BasicTypesStruct.GetCoOrdsStruct();
-      BasicTypesStruct.CoOrdsStruct _bts2 = BasicTypesStruct.GetCoOrdsStruct();
+      CoordinatesStruct _bts1 = CoordinatesStruct.GetCoOrdsStruct();
+      CoordinatesStruct _bts2 = CoordinatesStruct.GetCoOrdsStruct();
       CoOrdsNoChange(_bts1);
-      try
-      {
-        Assert.AreSame(_bts1, _bts2);
-        Assert.Fail();
-      }
-      catch (AssertFailedException) { }
+      Assert.AreNotSame(_bts1, _bts2);
       Assert.AreEqual(_bts1, _bts2);
       Assert.IsTrue(_bts1.x == _bts2.x);
       Assert.IsTrue(_bts1.y == _bts2.y);
       //
       CoOrdsChange(ref _bts1);
-      try
-      {
-        Assert.AreSame(_bts1, _bts2);
-        Assert.Fail();
-      }
-      catch (AssertFailedException)
-      {
-
-      }
       Assert.AreNotEqual(_bts1, _bts2);
       Assert.IsTrue(_bts1.x != _bts2.x);
       Assert.IsTrue(_bts1.y != _bts2.y);
 
       //Reference type modification
-      BasicTypesStruct.CoOrdsClass _btscoc1 = new BasicTypesStruct.CoOrdsClass(1, 2);
-      BasicTypesStruct.CoOrdsClass _btscoc2 = new BasicTypesStruct.CoOrdsClass(1, 2);
+      CoordinatesClass _btscoc1 = new CoordinatesClass(1, 2);
+      CoordinatesClass _btscoc2 = new CoordinatesClass(1, 2);
       CoOrdsChange(_btscoc1);
       Assert.AreNotSame(_btscoc1, _btscoc2);
       Assert.AreNotEqual(_btscoc1, _btscoc2);
@@ -73,6 +41,23 @@ namespace TP.DataSemantics
       Assert.IsTrue(_btscoc1.y != _btscoc2.y);
 
     }
+    private static Random _randomGeneratopr = new Random(DateTime.Now.Millisecond);
+    private static void CoOrdsNoChange(CoordinatesStruct coOrds)
+    {
+      coOrds.x = _randomGeneratopr.Next();
+      coOrds.y = _randomGeneratopr.Next();
+    }
+    private static void CoOrdsChange(ref CoordinatesStruct coOrds)
+    {
+      coOrds.x = _randomGeneratopr.Next();
+      coOrds.y = _randomGeneratopr.Next();
+    }
+    private static void CoOrdsChange(CoordinatesClass coOrds)
+    {
+      coOrds.x = _randomGeneratopr.Next();
+      coOrds.y = _randomGeneratopr.Next();
+    }
+
   }
   [TestClass]
   public class InterfaceTestClass

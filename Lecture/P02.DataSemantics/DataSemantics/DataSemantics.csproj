@@ -48,9 +48,9 @@
     <Compile Include="Generics\SelfDictionary.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeConcept\BasicTypesStruct.cs" />
     <Compile Include="TypeConcept\InterfaceExample.cs" />
     <Compile Include="TypeConcept\StaticClass.cs" />
+    <Compile Include="TypeConcept\StructureVersusClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Generics\Generics.md" />
