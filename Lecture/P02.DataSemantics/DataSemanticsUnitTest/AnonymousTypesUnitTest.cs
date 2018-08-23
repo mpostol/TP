@@ -91,6 +91,73 @@ namespace TP.DataSemantics
       Assert.AreEqual(new { name = "apple", diam = 4 }, anonArray[0]);
       Assert.AreEqual(new { name = "grape", diam = 1 }, anonArray[1]);
     }
+    [TestMethod]
+    public void ValueTupleTypeTest()
+    {
+      var _anonymousVariable1 = (108, "Hello" );
+      Assert.AreEqual(108, _anonymousVariable1.Item1);
+      Assert.AreEqual("Hello", _anonymousVariable1.Item2);
+      _anonymousVariable1.Item1 = 801;
+      _anonymousVariable1.Item2 = "";
+      //_anonymousVariable1 = ( 108.0, "Hello"); //Error CS0029  Cannot implicitly convert type 'double' to 'int' 
+      //_anonymousVariable1 = ("Hello", 108); //Error CS0029  Cannot implicitly convert type 'string' to 'int'; Error CS0029  Cannot implicitly convert type 'int' to 'string' 
+      //_anonymousVariable1 = null; //Error CS0037  Cannot convert null to '(int, string)' because it is a non - nullable value type
+    }
+    [TestMethod]
+    public void TypedValueTupleTypeTest()
+    {
+      var _anonymousVariable1 = (Amount : 108, Message: "Hello");
+      Assert.AreEqual(108, _anonymousVariable1.Item1);
+      Assert.AreEqual("Hello", _anonymousVariable1.Item2);
+      _anonymousVariable1.Amount = 801;
+      _anonymousVariable1.Message = "";
+    }
+    [TestMethod]
+    public void NamedValueTupleTypeTest()
+    {
+      (int Amount, string Message) _anonymousVariable1 = (108, "Hello");
+      Assert.AreEqual(108, _anonymousVariable1.Item1);
+      Assert.AreEqual(108, _anonymousVariable1.Amount);
+      Assert.AreEqual("Hello", _anonymousVariable1.Item2);
+      Assert.AreEqual("Hello", _anonymousVariable1.Message);
+      _anonymousVariable1.Amount = 801;
+      _anonymousVariable1.Message = "";
+    }
+    public void TupleValueTypesEqalityTest()
+    {
+      (int Amount, string Message) _anonymousVariable1 = (108, "Hello");
+      (int Amount, string Message) _anonymousVariable2 = (108, "Hello");
+      //Assert.IsTrue(_anonymousVariable1 == _anonymousVariable2);//Error CS8107  Feature 'tuple equality' is not available in C# 7.0. Please use language version 7.3 or greater.
+      Assert.AreEqual(_anonymousVariable1, _anonymousVariable2);
+      Assert.AreNotSame(_anonymousVariable1, _anonymousVariable2);
+      _anonymousVariable1 = _anonymousVariable2;
+      Assert.AreSame(_anonymousVariable1, _anonymousVariable2);
+    }
+    [TestMethod]
+    public void TupleMethodTestMethod()
+    {
+      var _anonymousVariable1 = TupleClass.GetTupleValue();
+      Assert.AreEqual(108, _anonymousVariable1.Item1);
+      Assert.AreEqual("Hello", _anonymousVariable1.Item2);
+      _anonymousVariable1.Amount = 801;
+      _anonymousVariable1.Message = "";
+    }
+    [TestMethod]
+    public void MyTestMethod()
+    {
+      (int Amount, string Message) = TupleClass.GetTupleValue();
+      Assert.AreEqual(108, Amount);
+      Assert.AreEqual("Hello", Message);
+      Amount = 801;
+      Message = "";
+    }
+    private static class TupleClass
+    {
+      internal static (int Amount, string Message) GetTupleValue()
+      {
+        return (108, "Hello");
+      }
+    }
 
   }
 }
