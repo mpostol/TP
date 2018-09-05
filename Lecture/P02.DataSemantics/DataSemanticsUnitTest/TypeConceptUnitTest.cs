@@ -85,6 +85,17 @@ namespace TP.DataSemantics.TypeConcept
     private const int c_WrongIndex = 25;
     #endregion
 
+    #region StaticClass
+    [TestMethod]
+    public void MyTestMethod()
+    {
+      StaticClass.StaticClassInitializer(3.0, 1.0);
+      Assert.AreEqual(1.0, StaticClass.MinIncome);
+      Assert.AreEqual(3.0, StaticClass.MaxIncome);
+      Assert.AreEqual(2.0, StaticClass.AverageIncome);
+    }
+    #endregion
+
   }
 }
 

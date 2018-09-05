@@ -15,11 +15,8 @@ namespace TP.DataSemantics.TypeConcept
   ///   - API representation
   /// </summary>
   public static class StaticClass//: ISerializable - Error CS0714  'StaticClass': static classes cannot implement interfaces
-
   {
-
     //Initialization:
-
     /// <summary>
     /// Error CS0710  Static classes cannot have instance constructors
     /// </summary>
@@ -28,10 +25,7 @@ namespace TP.DataSemantics.TypeConcept
     /// <summary>
     /// Error CS0132	'StaticClass.StaticClass(double)': a static constructor must be parameterless  
     /// </summary>
-    //static StaticClass (double x)
-    //{
-
-    //}
+    //static StaticClass (double x) {}
     /// <summary>
     /// Static initializer of the class.
     /// </summary>
@@ -60,14 +54,5 @@ namespace TP.DataSemantics.TypeConcept
     {
       get { return (MaxIncome + MinIncome) / 2; }
     }
-    public static double AnyOperationOnLocalFields()
-    {
-      return (m_Field11 + m_Field12) / 2;
-    }
-
-    #region private
-    private static readonly double m_Field11 = 0;
-    private static readonly double m_Field12 = 0;
-    #endregion
   }
 }
