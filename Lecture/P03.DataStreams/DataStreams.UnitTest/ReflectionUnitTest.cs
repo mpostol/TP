@@ -1,4 +1,6 @@
-﻿//____________________________________________________________________________
+﻿#pragma warning disable CS0612 // Type or member is obsolete
+
+//____________________________________________________________________________
 //
 //  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
 //
@@ -97,3 +99,5 @@ namespace TP.DataStreams
 
   }
 }
+
+#pragma warning restore CS0612 // Type or member is obsolete

@@ -16,14 +16,14 @@ namespace TP.DataSemantics.TypeConcept
       x = p1;
       y = p2;
     }
-    public static CoordinatesStruct GetCoOrdsStruct()
+    public static CoordinatesStruct GetCoordinates()
     {
       CoordinatesStruct _co; //no new example
       _co.x = 1;
       _co.y = 2;
       return _co;
     }
-    public static CoordinatesStruct GetCoOrdsStruct(int p1, int p2)
+    public static CoordinatesStruct GetCoordinates(int p1, int p2)
     {
       CoordinatesStruct _co = new CoordinatesStruct(p1, p2);
       return _co;
