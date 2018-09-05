@@ -64,7 +64,7 @@ namespace LinqToObjectsLib.Tests
             Assert.AreEqual(input.Length, dataAfterAdding.Count());
         }
 
-        static Person[][] GetAllPersonsTest_InputCases = new Person[][] {
+        static readonly Person[][] GetAllPersonsTest_InputCases = new Person[][] {
             new Person[] { },
             new Person[] { new Person("A", "One", 1), new Person("B", "Two", 2) },
             new Person[] { new Person("A", "One", 1), new Person("B", "Two", 2), new Person("C", "Three", 3) },

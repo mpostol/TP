@@ -9,9 +9,11 @@ namespace TP.GraphicalData.Model
     {
       get
       {
-        List<User> Users = new List<User>();
-        Users.Add(new User() { Age = 21, Name = "Jan", Active = true });
-        Users.Add(new User() { Age = 22, Name = "Stefan", Active = false });
+        List<User> Users = new List<User>()
+        {
+          new User() { Age = 21, Name = "Jan", Active = true },
+          new User() { Age = 22, Name = "Stefan", Active = false }
+        };
         return Users;
       }
     }

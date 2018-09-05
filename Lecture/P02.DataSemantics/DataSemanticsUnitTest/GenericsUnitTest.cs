@@ -22,13 +22,13 @@ namespace TP.DataSemantics
     public void ConcreteConstructorMethod()
     {
       DerivedNode _newNode = new DerivedNode();
-      Assert.AreEqual<double>(default(double), _newNode.Value);
+      Assert.AreEqual<double>(default, _newNode.Value);
     }
     [TestMethod]
     public void GenericConstructorMethod()
     {
       DerivedNode<AnyClass> _newNode = new DerivedNode<AnyClass>();
-      Assert.AreEqual<AnyClass>(default(AnyClass), _newNode.Value);
+      Assert.AreEqual<AnyClass>(default, _newNode.Value);
     }
     //instrumentation
     private class DerivedNode<TypeParameter> : Node<TypeParameter> { }

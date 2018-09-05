@@ -11,7 +11,7 @@ namespace LinqToSqlLib.Tests
   public class PersonServiceTests
   {
     // Connection string defined in LinqToSqlLibTests project settings.
-    string connectionString = global::LinqToSqlLibTests.Properties.Settings.Default.UnitTestDataConnectionString;
+    readonly string connectionString = global::LinqToSqlLibTests.Properties.Settings.Default.UnitTestDataConnectionString;
 
     PersonService service;
 

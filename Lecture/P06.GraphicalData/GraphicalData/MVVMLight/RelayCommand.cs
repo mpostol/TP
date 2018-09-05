@@ -27,8 +27,7 @@ namespace TP.GraphicalData.MVVMLight
     /// </summary>
     /// <param name="execute">The execution logic encapsulated by the <paramref name="execute"/> delegate. </param>
     /// <exception cref="T:System.ArgumentNullException">If the <paramref name="execute"/> argument is null.</exception>
-    public RelayCommand(Action execute) : this(execute, null)
-    { }
+    public RelayCommand(Action execute) : this(execute, null) { }
     /// <summary>
     /// Initializes a new instance of the RelayCommand class.
     /// </summary>
@@ -37,9 +36,7 @@ namespace TP.GraphicalData.MVVMLight
     /// <exception cref="T:System.ArgumentNullException">If the execute argument is null.</exception>
     public RelayCommand(Action execute, Func<bool> canExecute)
     {
-      if (execute == null)
-        throw new ArgumentNullException(nameof(execute));
-      this.m_Execute = execute;
+      this.m_Execute = execute ?? throw new ArgumentNullException(nameof(execute));
       this.m_CanExecute = canExecute;
     }
     #endregion
@@ -66,7 +63,7 @@ namespace TP.GraphicalData.MVVMLight
     /// to be passed, this parameter is always ignored</param>
     public virtual void Execute(object parameter)
     {
-        this.m_Execute();
+      this.m_Execute();
     }
     /// <summary>
     /// Occurs when changes occur that affect whether the command should execute.

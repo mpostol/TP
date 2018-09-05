@@ -66,8 +66,8 @@ namespace TP.DataSemantics.TypeConcept
     }
 
     #region private
-    private static double m_Field11 = 0;
-    private static double m_Field12 = 0;
+    private static readonly double m_Field11 = 0;
+    private static readonly double m_Field12 = 0;
     #endregion
   }
 }

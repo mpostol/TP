@@ -20,7 +20,7 @@ namespace TP.GraphicalData.TreeView
   /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
   public class MyViewModel : INotifyPropertyChanged
   {
-    
+
     #region constructors
     public MyViewModel()
     {
@@ -59,8 +59,10 @@ namespace TP.GraphicalData.TreeView
     }
     private void Browse()
     {
-      OpenFileDialog test = new OpenFileDialog();
-      test.Filter = "Dynamic Library File(*.dll)| *.dll";
+      OpenFileDialog test = new OpenFileDialog()
+      {
+        Filter = "Dynamic Library File(*.dll)| *.dll"
+      };
       test.ShowDialog();
       if (test.FileName.Length == 0)
         MessageBox.Show("No files selected");

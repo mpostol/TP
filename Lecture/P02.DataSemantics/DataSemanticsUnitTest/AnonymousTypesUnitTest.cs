@@ -1,4 +1,7 @@
-﻿//____________________________________________________________________________
+﻿#pragma warning disable CS0219 // Variable is assigned but its value is never used
+#pragma warning disable IDE0033 // Use explicitly provided tuple name
+
+//____________________________________________________________________________
 //
 //  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
 //
@@ -24,8 +27,8 @@ namespace TP.DataSemantics
     [TestMethod]
     public void ClassCompatibilityTest()
     {
-      //MyClass _mc1 = null;
-      //MyClass2 _mc2 = null;
+      MyClass _mc1 = null;
+      MyClass2 _mc2 = null;
       //_mc1 = _mc2; //Error CS0029  Cannot implicitly convert type 'TP.DataSemantics.AnonymousTypesUnitTest.MyClass2' to 'TP.DataSemantics.AnonymousTypesUnitTest.MyClass'
     }
     private class MyClass { }
@@ -53,22 +56,23 @@ namespace TP.DataSemantics
     [TestMethod]
     public void VARTest()
     {
-      var _integer = 5;
+      int _integer = 5;
+      //var _integer = 5;
       //_integer = ""; //Error CS0029  Cannot implicitly convert type 'string' to 'int' 
       _integer = _integer / 2;
       Assert.AreEqual(2, _integer);
     }
     [TestMethod]
-    public void AnonymousTypeTest()
+    public void AnonymousType()
     {
-      var _anonymousVariable1 = new { Amount = 108, Message = "Hello" };
-      Assert.AreEqual(108, _anonymousVariable1.Amount);
-      Assert.AreEqual("Hello", _anonymousVariable1.Message);
-      //_anonymousVariable1 = new { Amount = 108.0, Message = "Hello" }; //Error CS0029  Cannot implicitly convert type '<anonymous type: double Amount, string Message>' to '<anonymous type: int Amount, string Message>' 
-      //_anonymousVariable1 = new { Message = "Hello", Amount = 108 }; //Error CS0029  Cannot implicitly convert type '<anonymous type: string Message, int Amount>' to '<anonymous type: int Amount, string Message>'
-      //_anonymousVariable1.Message = ""; //Error CS0200  Property or indexer '<anonymous type: int Amount, string Message>.Message' cannot be assigned to --it is read only
-      _anonymousVariable1 = null;
-      //var _anonymousVariable = null; //Error CS0815  Cannot assign<null > to an implicitly-typed variable
+      var _anonymousVariable = new { Amount = 108, Message = "Hello" };
+      Assert.AreEqual(108, _anonymousVariable.Amount);
+      Assert.AreEqual("Hello", _anonymousVariable.Message);
+      //_anonymousVariable = new { Amount = 108.0, Message = "Hello" }; //Error CS0029  Cannot implicitly convert type '<anonymous type: double Amount, string Message>' to '<anonymous type: int Amount, string Message>' 
+      //_anonymousVariable = new { Message = "Hello", Amount = 108 }; //Error CS0029  Cannot implicitly convert type '<anonymous type: string Message, int Amount>' to '<anonymous type: int Amount, string Message>'
+      //_anonymousVariable.Message = ""; //Error CS0200  Property or indexer '<anonymous type: int Amount, string Message>.Message' cannot be assigned to --it is read only
+      _anonymousVariable = null;
+      //var _newAnonymousVariable = null; //Error CS0815  Cannot assign<null > to an implicitly-typed variable
     }
     [TestMethod]
     public void AnonymousTypesCompatibilityTest()
@@ -92,11 +96,16 @@ namespace TP.DataSemantics
       Assert.AreEqual(new { name = "grape", diam = 1 }, _anonymousArray[1]);
     }
     [TestMethod]
-    public void NoNewBehaviorValuesTypeTest()
+    public void NoNewBehaviorValues()
     {
-      Tuple<int, string> _ = new Tuple<int, string>(108, "Hello");
-      ValueTuple<int, string> _valueTupleVariable = (108, "Hello" );
-      //ValueTuple<int, string> _ = ValueTuple.Create<int, string>(108, "Hello");
+      Tuple<int, string> _classTuple = new Tuple<int, string>(108, "Hello");
+      Assert.AreEqual(108, _classTuple.Item1);
+      Assert.AreEqual("Hello", _classTuple.Item2);
+      //_classTuple.Item1 = 801;
+      _classTuple = null;
+
+      ValueTuple<int, string> _valueTupleVariable = (108, "Hello");
+      ValueTuple<int, string> __ = ValueTuple.Create<int, string>(108, "Hello");
       Assert.AreEqual(108, _valueTupleVariable.Item1);
       Assert.AreEqual("Hello", _valueTupleVariable.Item2);
       _valueTupleVariable.Item1 = 801;
@@ -106,10 +115,10 @@ namespace TP.DataSemantics
       //_valueTupleVariable = null; //Error CS0037  Cannot convert null to '(int, string)' because it is a non - nullable value type
     }
     [TestMethod]
-    public void NamedFieldsValueTupleTypeTest()
+    public void NamedFieldsValueTuple()
     {
       //(int Amount, string Message) _ = (108, "Hello");
-      var _valueTupleVariable = (Amount: 108, Message: "Hello");
+      (int Amount, string Message) _valueTupleVariable = (Amount: 108, Message: "Hello");
       Assert.AreEqual(108, _valueTupleVariable.Item1);
       Assert.AreEqual(108, _valueTupleVariable.Amount);
       Assert.AreEqual("Hello", _valueTupleVariable.Item2);
@@ -118,7 +127,7 @@ namespace TP.DataSemantics
       _valueTupleVariable.Message = "";
     }
     [TestMethod]
-    public void ValueTupleEqalityTest()
+    public void ValueTupleEqality()
     {
       (int Amount, string Message) _valueTupleVariable1 = (108, "Hello");
       (int Amount, string Message) _valueTupleVariable2 = (108, "Hello");
@@ -129,7 +138,7 @@ namespace TP.DataSemantics
     [TestMethod]
     public void ValueTupleMethodTest()
     {
-      var _valueTupleVariable = TupleClass.GetValueTupleValue();
+      (int Amount, string Message) _valueTupleVariable = InstrumentationTupleClass.GetValueTupleValue();
       Assert.AreEqual(108, _valueTupleVariable.Item1);
       Assert.AreEqual("Hello", _valueTupleVariable.Item2);
       _valueTupleVariable.Amount = 801;
@@ -138,13 +147,13 @@ namespace TP.DataSemantics
     [TestMethod]
     public void ValueTupleDeconstructionMethodTest()
     {
-      (int Amount, string Message) = TupleClass.GetValueTupleValue();
+      (int Amount, string Message) = InstrumentationTupleClass.GetValueTupleValue();
       Assert.AreEqual(108, Amount);
       Assert.AreEqual("Hello", Message);
       Amount = 801;
       Message = "";
     }
-    private static class TupleClass
+    private static class InstrumentationTupleClass
     {
       internal static (int Amount, string Message) GetValueTupleValue()
       {
@@ -154,3 +163,5 @@ namespace TP.DataSemantics
 
   }
 }
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
+#pragma warning restore IDE0033 // Use explicitly provided tuple name

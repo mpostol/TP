@@ -14,8 +14,7 @@ namespace TP.GraphicalData.TreeView
   {
     public TreeViewItem()
     {
-      Children = new ObservableCollection<TreeViewItem>();
-      Children.Add(null);
+      Children = new ObservableCollection<TreeViewItem>() { null };
       this.m_WasBuilt = false;
     }
     public string Name { get; set; }

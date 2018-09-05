@@ -62,9 +62,7 @@ namespace TP.DataStreams.Instrumentation
     }
     public override bool Equals(object obj)
     {
-      CatalogCD _catalogCD = obj as CatalogCD;
-      if (object.ReferenceEquals(_catalogCD, null))
-        throw new System.ArgumentException(nameof(obj), "wrong parameter type");
+      CatalogCD _catalogCD = obj as CatalogCD ?? throw new System.ArgumentException(nameof(obj), "wrong parameter type"); 
       return ToString() == _catalogCD.ToString();
     }
     public override int GetHashCode()
