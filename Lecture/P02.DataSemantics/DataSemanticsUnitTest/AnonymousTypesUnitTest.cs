@@ -15,7 +15,7 @@ namespace TP.DataSemantics
   {
 
     [TestMethod]
-    public void WhyWeNeedTypesIntBehaviour()
+    public void WhyWeNeedTypesIntBehavior()
     {
       int _integer = 5;
       _integer = _integer / 2;
@@ -31,11 +31,11 @@ namespace TP.DataSemantics
     private class MyClass { }
     private class MyClass2 { }
     [TestMethod]
-    public void WhyWeNeedTypesDopubleBehaviour()
+    public void WhyWeNeedTypesDoubleBehavior()
     {
       Random _rdm = new Random();
-      double _divident = 5;// * _rdm.Next();
-      double _double = _divident / 2;
+      double _dividend = 5;// * _rdm.Next();
+      double _double = _dividend / 2;
       Assert.AreEqual(2.5, _double);
       object _object = 5;
       //_object += 1; //Error CS0019  Operator '+=' cannot be applied to operands of type 'object' and 'int'
