@@ -31,7 +31,7 @@ The repository is scoped to provide sound examples covering the following topics
 	2. Useful assets: C# language, Visual Studio, GitHub 
 	3. Program robustness: exception, unit tests, environment simulation 
 2. Data semantics
-	1. Type and type compatibility
+	1. Type concept
 	5. Anonymous type
 	6. Partial types and methods
 	7. Generics 

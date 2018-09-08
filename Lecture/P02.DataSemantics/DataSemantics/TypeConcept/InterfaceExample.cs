@@ -31,7 +31,6 @@ namespace TP.DataSemantics.TypeConcept
     {
       get { return m_ArrayExample.Length; }
     }
-
     /// <summary>
     /// Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection" /> is synchronized (thread safe).
     /// </summary>
@@ -40,7 +39,6 @@ namespace TP.DataSemantics.TypeConcept
     {
       get { return m_ArrayExample.IsSynchronized; }
     }
-
     /// <summary>
     /// Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection" />.
     /// </summary>

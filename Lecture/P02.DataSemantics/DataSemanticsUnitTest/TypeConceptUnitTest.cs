@@ -1,4 +1,5 @@
 ﻿#pragma warning disable CS0219 // Variable is assigned but its value is never used
+#pragma warning disable IDE0049
 //____________________________________________________________________________
 //
 //  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
@@ -19,19 +20,20 @@ namespace TP.DataSemantics.TypeConcept
     [TestMethod]
     public void WhyWeNeedTypesIntBehavior()
     {
-      int _integer = 5;
+      Int32 _integer = 5; 
       _integer = _integer / 2;
       Assert.AreEqual(2, _integer);
     }
     [TestMethod]
-    public void ClassCompatibilityTest()
+    public void ReferenceTypeCompatibilityTest()
     {
-      MyClass _mc1 = null;
-      MyClass2 _mc2 = null;
-      //_mc1 = _mc2; //Error CS0029  Cannot implicitly convert type 'TP.DataSemantics.AnonymousTypesUnitTest.MyClass2' to 'TP.DataSemantics.AnonymousTypesUnitTest.MyClass'
+      IndependentClass _reference1 = null;
+      Segment _reference2 = null;
+      Assert.AreSame(_reference1, _reference2);
+      //_reference1 = _reference2;
+      //_reference2 = _reference1;
     }
-    private class MyClass { }
-    private class MyClass2 { }
+    private class IndependentClass { }
     [TestMethod]
     public void WhyWeNeedTypesDoubleBehavior()
     {
@@ -59,24 +61,29 @@ namespace TP.DataSemantics.TypeConcept
     public void StructTestMethod()
     {
       //value type modification 
-      CoordinatesStruct _coordinate1 = CoordinatesStruct.GetCoordinates();
-      CoordinatesStruct _coordinate2 = CoordinatesStruct.GetCoordinates();
+      CoordinatesStruct _coordinate1 = CoordinatesStruct.GetCoordinates(1, 2);
+      CoordinatesStruct _coordinate2 = CoordinatesStruct.GetCoordinates(1, 2);
       CoordinatesNoChange(_coordinate1);
       Assert.AreEqual(_coordinate1, _coordinate2);
       Assert.AreEqual(_coordinate1.x, _coordinate2.x);
       Assert.AreEqual(_coordinate1.y, _coordinate2.y);
       CoordinatesChange(ref _coordinate1);
       Assert.AreNotEqual(_coordinate1, _coordinate2);
-      Assert.IsTrue(_coordinate1.x != _coordinate2.x);
-      Assert.IsTrue(_coordinate1.y != _coordinate2.y);
+      Assert.AreNotEqual(_coordinate1.x, _coordinate2.x);
+      Assert.AreNotEqual(_coordinate1.y, _coordinate2.y);
 
       //Reference type modification
-      CoordinatesClass _coordinateReference1 = new CoordinatesClass(1, 2);
+      CoordinatesClass _coordinateReference1 = null;
+      Assert.IsNull(_coordinateReference1);
+      _coordinateReference1 = new CoordinatesClass(1, 2);
       CoordinatesClass _coordinateReference2 = new CoordinatesClass(1, 2);
-      CoordinatesChange(_coordinateReference1);
+      Assert.AreEqual(_coordinateReference1.x, _coordinateReference2.x);
+      Assert.AreEqual(_coordinateReference1.y, _coordinateReference2.y);
+      Assert.AreNotEqual(_coordinateReference1, _coordinateReference2);
       Assert.AreNotSame(_coordinateReference1, _coordinateReference2);
+      CoordinatesChange(_coordinateReference1);
       Assert.AreNotEqual(_coordinateReference1.x, _coordinateReference2.x);
-      Assert.IsTrue(_coordinateReference1.y != _coordinateReference2.y);
+      Assert.AreNotEqual(_coordinateReference1.y, _coordinateReference2.y);
     }
     private static Random _randomGenerator = new Random(DateTime.Now.Millisecond);
     private static void CoordinatesNoChange(CoordinatesStruct coordinates)
@@ -125,18 +132,28 @@ namespace TP.DataSemantics.TypeConcept
     private const int c_WrongIndex = 25;
     #endregion
 
-    #region StaticClass
+    #region Static class versus singleton
     [TestMethod]
     public void StaticClassTest()
     {
+      //StaticClass _staticVariable;
       StaticClass.StaticClassInitializer(3.0, 1.0);
       Assert.AreEqual(1.0, StaticClass.MinIncome);
       Assert.AreEqual(3.0, StaticClass.MaxIncome);
       Assert.AreEqual(2.0, StaticClass.AverageIncome);
+    }
+    [TestMethod]
+    public void SingletonTest()
+    {
+      Singleton _instance1 = Singleton.SingletonInstance;
+      Singleton _instance2 = Singleton.SingletonInstance;
+      Assert.AreSame(_instance1, _instance2);
+      Assert.AreEqual(_instance1.GetHashCode(), _instance1.GetHashCode());
     }
     #endregion
 
   }
 }
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
+#pragma warning restore IDE0049 // Variable is assigned but its value is never used
 
