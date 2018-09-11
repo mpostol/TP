@@ -19,6 +19,22 @@ namespace TP.DataSemantics
     [TestMethod]
     public void VARTest()
     {
+      Random _rdm = new Random();
+      double _dividend = 5;// * _rdm.Next();
+      double _double = _dividend / 2;
+      Assert.AreEqual(2.5, _double);
+      object _object = 5;
+      //_object += 1; //Error CS0019  Operator '+=' cannot be applied to operands of type 'object' and 'int'
+      Assert.IsTrue(_object is int);
+      dynamic _dynamic = 0;
+      _dynamic += 1.0;
+      Assert.AreEqual(1, _dynamic);
+      _dynamic = "String";
+      Assert.AreEqual("String", _dynamic);
+      _dynamic += 1.5;
+      Assert.AreEqual("String1,5", _dynamic);
+      Assert.AreEqual("1,5", 1.5.ToString());
+      Assert.ThrowsException<Microsoft.CSharp.RuntimeBinder.RuntimeBinderException>(() => _dynamic /= 1);
       int _integer = 5;
       //var _integer = 5;
       //_integer = ""; //Error CS0029  Cannot implicitly convert type 'string' to 'int' 

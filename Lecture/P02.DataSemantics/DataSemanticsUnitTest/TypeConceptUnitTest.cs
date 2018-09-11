@@ -27,6 +27,7 @@ namespace TP.DataSemantics.TypeConcept
     [TestMethod]
     public void ReferenceTypeCompatibilityTest()
     {
+      CoordinatesClass _ = null;
       IndependentClass _reference1 = null;
       Segment _reference2 = null;
       Assert.AreSame(_reference1, _reference2);
@@ -37,22 +38,6 @@ namespace TP.DataSemantics.TypeConcept
     [TestMethod]
     public void WhyWeNeedTypesDoubleBehavior()
     {
-      Random _rdm = new Random();
-      double _dividend = 5;// * _rdm.Next();
-      double _double = _dividend / 2;
-      Assert.AreEqual(2.5, _double);
-      object _object = 5;
-      //_object += 1; //Error CS0019  Operator '+=' cannot be applied to operands of type 'object' and 'int'
-      Assert.IsTrue(_object is int);
-      dynamic _dynamic = 0;
-      _dynamic += 1.0;
-      Assert.AreEqual(1, _dynamic);
-      _dynamic = "String";
-      Assert.AreEqual("String", _dynamic);
-      _dynamic += 1.5;
-      Assert.AreEqual("String1,5", _dynamic);
-      Assert.AreEqual("1,5", 1.5.ToString());
-      Assert.ThrowsException<Microsoft.CSharp.RuntimeBinder.RuntimeBinderException>(() => _dynamic /= 1);
     }
     #endregion
 
@@ -85,21 +70,21 @@ namespace TP.DataSemantics.TypeConcept
       Assert.AreNotEqual(_coordinateReference1.x, _coordinateReference2.x);
       Assert.AreNotEqual(_coordinateReference1.y, _coordinateReference2.y);
     }
-    private static Random _randomGenerator = new Random(DateTime.Now.Millisecond);
+    private static Random m_RandomGenerator = new Random(DateTime.Now.Millisecond);
     private static void CoordinatesNoChange(CoordinatesStruct coordinates)
     {
-      coordinates.x = _randomGenerator.Next();
-      coordinates.y = _randomGenerator.Next();
+      coordinates.x = m_RandomGenerator.Next();
+      coordinates.y = m_RandomGenerator.Next();
     }
     private static void CoordinatesChange(ref CoordinatesStruct coordinates)
     {
-      coordinates.x = _randomGenerator.Next();
-      coordinates.y = _randomGenerator.Next();
+      coordinates.x = m_RandomGenerator.Next();
+      coordinates.y = m_RandomGenerator.Next();
     }
     private static void CoordinatesChange(CoordinatesClass coordinates)
     {
-      coordinates.x = _randomGenerator.Next();
-      coordinates.y = _randomGenerator.Next();
+      coordinates.x = m_RandomGenerator.Next();
+      coordinates.y = m_RandomGenerator.Next();
     }
     #endregion
 
