@@ -33,6 +33,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P04 Functional Programming", "P04 Functional Programming", "{83AAD2C4-59DE-46EB-9B94-C174E6622E2B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P03 Data Streams", "P03 Data Streams", "{F055CD0D-5862-49A6-ADF6-6BB5B89025AA}"
+	ProjectSection(SolutionItems) = preProject
+		P03.DataStreams\README.md = P03.DataStreams\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalData", "P06.GraphicalData\GraphicalData\GraphicalData.csproj", "{7465F369-E400-4B02-B602-B8A5CD112044}"
 EndProject

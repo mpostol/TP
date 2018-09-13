@@ -4,7 +4,7 @@
 
 File System, User Interface, XML, XSLT, HTML, XmlSerializer, Save file, Transformation, Saving text files, Local File Systems, Open and read file, XML Schema, Common File Format, Data Access, XML Serialization, XSL, Data Validation, XML Documentation, 
 
-#Executive summary
+# Executive summary
 
 This sample demonstrates how to save working data in a file containing xml document, which next can be directly presented for example in MS Word editor or Internet Explorer translated using a style sheet. It is simplest way to detach the document content from its presentation.
 

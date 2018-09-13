@@ -35,10 +35,6 @@ namespace TP.DataSemantics.TypeConcept
       //_reference2 = _reference1;
     }
     private class IndependentClass { }
-    [TestMethod]
-    public void WhyWeNeedTypesDoubleBehavior()
-    {
-    }
     #endregion
 
     #region Reference and value types
@@ -140,5 +136,4 @@ namespace TP.DataSemantics.TypeConcept
   }
 }
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
-#pragma warning restore IDE0049 // Variable is assigned but its value is never used
-
+#pragma warning restore IDE0049
