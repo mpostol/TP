@@ -47,6 +47,10 @@
     <Compile Include="Generics\NodeEnumerable.cs" />
     <Compile Include="Generics\SelfDictionary.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Partials\IPartialInterface.p1.cs" />
+    <Compile Include="Partials\IPartialInterface.p2.cs" />
+    <Compile Include="Partials\PartialClass.p1.cs" />
+    <Compile Include="Partials\PartialClass.p2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeConcept\Segment.cs" />
     <Compile Include="TypeConcept\InterfaceExample.cs" />
@@ -56,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Generics\Generics.md" />
+    <None Include="Partials\README.md" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
