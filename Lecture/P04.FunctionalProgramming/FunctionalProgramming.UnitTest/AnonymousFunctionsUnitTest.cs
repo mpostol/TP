@@ -13,22 +13,22 @@ using System.Linq.Expressions;
 namespace TP.FunctionalProgramming
 {
   [TestClass]
-  public class FunctionalProgrammingUnitTest
+  public class AnonymousFunctionsUnitTest
   {
 
     [TestMethod]
     public void NamedMethodCallBackTest()
     {
-      Lambda _newLambda = new Lambda();
+      AnonymousFunctions _newLambda = new AnonymousFunctions();
       CallBackTestClass _callBackResult = new CallBackTestClass();
       Assert.IsFalse(_callBackResult.m_TestResult);
-      _newLambda.ConsistencyCheck(new Lambda.CallBackTestDelegate(_callBackResult.CallBackTestResult));
+      _newLambda.ConsistencyCheck(new AnonymousFunctions.CallBackTestDelegate(_callBackResult.CallBackTestResult));
       Assert.IsTrue(_callBackResult.m_TestResult);
     }
     [TestMethod]
     public void LambdaCallTest()
     {
-      Lambda _newLambda = new Lambda();
+      AnonymousFunctions _newLambda = new AnonymousFunctions();
       bool _testResult = false;
       _newLambda.ConsistencyCheck((bool _result) => _testResult = _result);
       Assert.IsTrue(_testResult);
@@ -37,9 +37,9 @@ namespace TP.FunctionalProgramming
     public void AnonymousMethodTest()
     {
 
-      Lambda _newLambda = new Lambda();
+      AnonymousFunctions _newLambda = new AnonymousFunctions();
       bool _testResult = false;
-      Lambda.CallBackTestDelegate _CallBackTestResult = delegate (bool _result) { _testResult = _result; };
+      AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = delegate (bool _result) { _testResult = _result; };
       _newLambda.ConsistencyCheck(_CallBackTestResult);
       Assert.IsTrue(_testResult);
 

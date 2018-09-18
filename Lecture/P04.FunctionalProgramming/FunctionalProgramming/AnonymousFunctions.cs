@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace TP.FunctionalProgramming
 {
-  public class Lambda
+  public class AnonymousFunctions
   {
 
     internal delegate void CallBackTestDelegate( bool testResult);
