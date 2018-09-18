@@ -12,6 +12,11 @@ namespace TP.FunctionalProgramming
   public class AnonymousFunctions
   {
 
+    public static bool StringIsLongPredicate(string stringToTest)
+    {
+      return stringToTest.Length > 10;
+    }
+
     internal delegate void CallBackTestDelegate( bool testResult);
 
     [Conditional("DEBUG")]

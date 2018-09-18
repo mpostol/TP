@@ -12,16 +12,21 @@
 
 Functional programming is a style of developing the computer programs that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data. A mutable data is an object whose state can be modified after it is created. An immutable object is an object whose state cannot be modified after it is created.
 
-The most important behavior of a function in context of functional programming paradigm is that its output value depends only on the actual parameter values that are passed to the function. In other words the function behavior doesn't depend on the a local or global state. So calling a function f twice with the same value for a parameter x produces the same result f(x) each time. An example of the function following conforming to to this pardigm is
+The most important behavior of a function in the context of functional programming paradigm is that its output value depends only on the actual parameter values that are passed to the function. In other words, the function behavior doesn't depend on the local or global state. So calling a function f twice with the same value for a parameter x produces the same result f(x) each time. An example of the function following conforming to this paradigm is for example:
 
 ```
-public delegate bool Predicate<in T>(T obj);
+    public static bool StringIsLongPredicate(string stringToTest)
+    {
+      return stringToTest.Length > 10;
+    }
 ```
+This predicate returns always `true` if the current string is longer than 10.
+
 It represents the method that defines a set of criteria and determines whether the specified object meets those criteria.
 
-It eliminates side effects, which is one of the key motivations for using the functional programming approach to manage external data. In this scenario the function can be send and executed by a data management system and produce set of related data.
+It eliminates side effects, which is one of the key motivations for using the functional programming approach to manage external data. In this scenario, the function can be sent and executed by a data management system and produce a set of related data.
 
-Usually the function expressed in terms of selected language syntax must be translated to be useful and executable by the external system. To make the translation feasible the function must be syntactically embedded in an expression - a sequence of operators and operands. Before translation it must be expressed using object model in the form of an expression tree. The expression tree can be created by the compiler or grammatically using the API. 
+Usually, the function expressed in terms of selected language syntax must be translated to be useful and executable by the external system. To make the translation feasible the function must be syntactically embedded in an expression - a sequence of operators and operands. Before translation, it must be expressed using the object model in the form of an expression tree. The expression tree can be created by the compiler or grammatically using the API. 
 
 The C# compiler can generate expression trees only from expression lambdas (or single-line lambdas). It cannot parse statement lambdas (or multi-line lambdas).
 

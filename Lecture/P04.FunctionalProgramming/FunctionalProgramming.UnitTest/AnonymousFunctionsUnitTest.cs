@@ -17,6 +17,11 @@ namespace TP.FunctionalProgramming
   {
 
     [TestMethod]
+    public void StringIsLongPredicateTest()
+    {
+      Assert.IsTrue(AnonymousFunctions.StringIsLongPredicate("g5F|z*tC&yKJU$"));
+    }
+    [TestMethod]
     public void NamedMethodCallBackTest()
     {
       AnonymousFunctions _newLambda = new AnonymousFunctions();
@@ -53,7 +58,8 @@ namespace TP.FunctionalProgramming
       for (int i = 0; i < _length; i++)
         _buffer[i] = _newRandom.Next(0, 100);
       int _count = _buffer.Count((int x) => { return x >= 50; });
-      Assert.IsTrue(_count > _length / 2 - 70 && _count < _length / 2 + 70, $"{nameof(_count)}={_count}");
+      const int _tolerance = 80;
+      Assert.IsTrue(_count > _length / 2 - _tolerance && _count < _length / 2 + _tolerance, $"{nameof(_count)}={_count}");
     }
     [TestMethod]
     public void DelegateVsExpressionTest()
