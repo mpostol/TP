@@ -12,7 +12,7 @@
 
 Functional programming is a style of developing the computer programs that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data. A mutable data is an object whose state can be modified after it is created. An immutable object is an object whose state cannot be modified after it is created.
 
-The most important behavior of a function in the context of functional programming paradigm is that its output value depends only on the actual parameter values that are passed to the function. In other words, the function behavior doesn't depend on the local or global state. So calling a function f twice with the same value for a parameter x produces the same result f(x) each time. An example of the function following conforming to this paradigm is for example:
+The most important behavior of a function in the context of functional programming paradigm is that its output value depends only on the actual parameter values that are passed to while calling it. In other words, the function behavior doesn't depend on the local or global state. So calling a function f twice with the same value for a parameter x produces the same result f(x) each time. An example of the function conforming to this paradigm is for example:
 
 ```
     public static bool StringIsLongPredicate(string stringToTest)
@@ -20,7 +20,7 @@ The most important behavior of a function in the context of functional programmi
       return stringToTest.Length > 10;
     }
 ```
-This predicate returns always `true` if the current string is longer than 10.
+This predicate returns always `true` if the current string assigned to `stringToTest` is longer than 10.
 
 It represents the method that defines a set of criteria and determines whether the specified object meets those criteria.
 
