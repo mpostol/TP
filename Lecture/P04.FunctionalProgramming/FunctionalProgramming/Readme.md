@@ -25,13 +25,28 @@ Usually the function expressed in terms of selected language syntax must be tran
 
 The C# compiler can generate expression trees only from expression lambdas (or single-line lambdas). It cannot parse statement lambdas (or multi-line lambdas).
 
-To create expression trees by using the API, use the [System.Linq.Expressions.Expression](https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression?view=netframework-4.7.2) class. This class contains static factory methods that create expression tree nodes of specific types.
-
+To create expression trees by using the API, use the [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]. This class contains static factory methods that create expression tree nodes of specific types.
 
 ## Anonymous Functions 
 
 ### Lambda Expressions
 
+A lambda expression with an expression on the right side of the `=>` operator is called an expression lambda. Expression lambdas are used extensively in the construction of [Expression Trees][ET]. An expression lambda returns the result of the expression and takes the following basic form:
+```
+(input-parameters) => expression
+```
+
+Sometimes it is difficult or impossible for the compiler to infer the input types. When this occurs, you can specify the types explicitly as shown in the following example:
+
+```
+(int x, string s) => s.Length > x
+```
+
+> If you are creating expression trees that are executed outside of the .NET Framework, such as in SQL Server, you should not use method calls in lambda expressions. The methods will have no meaning outside the context of the .NET common language runtime. For example:
+
+```
+() => SomeMethod()
+```
 
 ### Anonymous Method
 
@@ -51,6 +66,9 @@ The UT located in the class `TP.Lecture.UnitTest.ExtensionMethodsUnitTest` has t
 # See also
 
 - [Anonymous Functions (C# Programming Guide)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)
-- [Expression Trees (C#)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/)
+- [Expression Trees (C#)][ET]
+- [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass] 
 - [Extension Methods \(C# Programming Guide\) on MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
+[ExpressionClass]:https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression
+[ET]:https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/index
