@@ -8,6 +8,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace TP.FunctionalProgramming
 {
@@ -24,7 +25,6 @@ namespace TP.FunctionalProgramming
       _newLambda.ConsistencyCheck(new Lambda.CallBackTestDelegate(_callBackResult.CallBackTestResult));
       Assert.IsTrue(_callBackResult.m_TestResult);
     }
-
     [TestMethod]
     public void LambdaCallTest()
     {
@@ -55,6 +55,18 @@ namespace TP.FunctionalProgramming
       int _count = _buffer.Count((int x) => { return x >= 50; });
       Assert.IsTrue(_count > _length / 2 - 70 && _count < _length / 2 + 70, $"{nameof(_count)}={_count}");
     }
+    [TestMethod]
+    public void DelegateVsExpressionTest()
+    {
+      //delegate
+      Func<int, bool> _delegateVariable = num => { return num < 5; };
+      Assert.IsTrue(_delegateVariable(4));
+      Assert.IsFalse(_delegateVariable(5));
+      //Expression
+      Expression<Func<int, bool>>  lambda = (int num) => num < 5;
+      Assert.IsTrue(lambda.Compile()(4));
+      Assert.IsFalse(lambda.Compile()(5));
+    }
     private class CallBackTestClass
     {
       internal bool m_TestResult = false;
@@ -63,7 +75,6 @@ namespace TP.FunctionalProgramming
         m_TestResult = returnResult;
       }
     }
-
 
   }
 }
