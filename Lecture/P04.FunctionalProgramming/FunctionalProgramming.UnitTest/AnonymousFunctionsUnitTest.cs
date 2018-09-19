@@ -24,30 +24,29 @@ namespace TP.FunctionalProgramming
     [TestMethod]
     public void NamedMethodCallBackTest()
     {
-      AnonymousFunctions _newLambda = new AnonymousFunctions();
+      AnonymousFunctions _newInstance = new AnonymousFunctions();
       CallBackTestClass _callBackResult = new CallBackTestClass();
       Assert.IsFalse(_callBackResult.m_TestResult);
-      _newLambda.ConsistencyCheck(new AnonymousFunctions.CallBackTestDelegate(_callBackResult.CallBackTestResult));
+      _newInstance.ConsistencyCheck(new AnonymousFunctions.CallBackTestDelegate(_callBackResult.CallBackTestResult));
       Assert.IsTrue(_callBackResult.m_TestResult);
-    }
-    [TestMethod]
-    public void LambdaCallTest()
-    {
-      AnonymousFunctions _newLambda = new AnonymousFunctions();
-      bool _testResult = false;
-      _newLambda.ConsistencyCheck((bool _result) => _testResult = _result);
-      Assert.IsTrue(_testResult);
     }
     [TestMethod]
     public void AnonymousMethodTest()
     {
-
-      AnonymousFunctions _newLambda = new AnonymousFunctions();
+      AnonymousFunctions _newInstance = new AnonymousFunctions();
       bool _testResult = false;
-      AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = delegate (bool _result) { _testResult = _result; };
-      _newLambda.ConsistencyCheck(_CallBackTestResult);
+      //AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = delegate (bool _result) { _testResult = _result; };
+      void _CallBackTestResult(bool _result) { _testResult = _result; }
+      _newInstance.ConsistencyCheck(_CallBackTestResult);
       Assert.IsTrue(_testResult);
-
+    }
+    [TestMethod]
+    public void LambdaCallTest()
+    {
+      AnonymousFunctions _newInstance = new AnonymousFunctions();
+      bool _testResult = false;
+      _newInstance.ConsistencyCheck((bool _result) => _testResult = _result);
+      Assert.IsTrue(_testResult);
     }
     [TestMethod]
     public void LambdaSyntaxTest()
@@ -65,13 +64,28 @@ namespace TP.FunctionalProgramming
     public void DelegateVsExpressionTest()
     {
       //delegate
+#pragma warning disable IDE0039 // Use local function
       Func<int, bool> _delegateVariable = num => { return num < 5; };
+#pragma warning restore IDE0039 // Use local function
       Assert.IsTrue(_delegateVariable(4));
       Assert.IsFalse(_delegateVariable(5));
       //Expression
-      Expression<Func<int, bool>>  lambda = (int num) => num < 5;
+      Expression<Func<int, bool>> lambda = (int num) => num < 5;
       Assert.IsTrue(lambda.Compile()(4));
       Assert.IsFalse(lambda.Compile()(5));
+    }
+    [TestMethod]
+    public void EventTestMethod()
+    {
+      AnonymousFunctions _newInstance = new AnonymousFunctions();
+      State _currentState = _newInstance.CurrentStateHandler.CurrentState;
+      _newInstance.OnStateChanged += (x, y) => _currentState = y;
+      Assert.AreEqual<State>(State.Idle, _currentState);
+      _newInstance.CurrentStateHandler.GoToActive();
+      Assert.AreEqual<State>(State.Active, _currentState);
+      _newInstance.CurrentStateHandler.GoToIdle();
+      Assert.AreEqual<State>(State.Idle, _currentState);
+      //_newInstance.OnStateChanged(_newInstance, _newInstance.CurrentStateHandler.CurrentState);  //Error CS0070  The event 'AnonymousFunctions.OnStateChanged' can only appear on the left hand side of += or -= (except when used from within the type 'AnonymousFunctions')
     }
     private class CallBackTestClass
     {

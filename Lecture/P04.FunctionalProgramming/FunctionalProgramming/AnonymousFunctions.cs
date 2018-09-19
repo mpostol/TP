@@ -11,12 +11,12 @@ using System.Diagnostics;
 namespace TP.FunctionalProgramming
 {
 
-  public enum State { Stanby, Working, Error };
+  public enum State { Idle, Active, Error };
   public interface IStateHandler
   {
     State CurrentState { get; }
-    void GoToStanby();
-    void GoToWorking();
+    void GoToIdle();
+    void GoToActive();
     void GoToError();
   }
   public class AnonymousFunctions
@@ -29,22 +29,22 @@ namespace TP.FunctionalProgramming
     }
     #endregion
 
-    #region state machine context
-    public AnonymousFunctions()
-    {
-      CurrentState = new StanbyHandler(this);
-    }
-    public IStateHandler CurrentState { get; private set; }
-    public event EventHandler<State> OnStateChanged;
-    #endregion
-
     #region test instrumentation
     internal delegate void CallBackTestDelegate(bool testResult);
     [Conditional("DEBUG")]
     internal void ConsistencyCheck(CallBackTestDelegate testResult)
     {
-      testResult(true);
+      testResult(CurrentStateHandler != null);
     }
+    #endregion
+
+    #region state machine context
+    public AnonymousFunctions()
+    {
+      CurrentStateHandler = new IdleHandler(this);
+    }
+    public IStateHandler CurrentStateHandler { get; private set; }
+    public event EventHandler<State> OnStateChanged;
     #endregion
 
     #region states implementation
@@ -52,53 +52,54 @@ namespace TP.FunctionalProgramming
     {
       public StateHandlerBase(AnonymousFunctions context)
       {
-        context.CurrentState = this;
-        context.OnStateChanged?.Invoke(context, CurrentState);
+        m_Context = context;
+        m_Context.CurrentStateHandler = this;
+        m_Context.OnStateChanged?.Invoke(context, CurrentState);
       }
       public abstract State CurrentState { get; }
       public virtual void GoToError()
       {
         throw new System.NotImplementedException();
       }
-      public virtual void GoToStanby()
+      public virtual void GoToIdle()
       {
         throw new System.NotImplementedException();
       }
-      public virtual void GoToWorking()
+      public virtual void GoToActive()
       {
         throw new System.NotImplementedException();
       }
       protected readonly AnonymousFunctions m_Context;
     }
-    private class StanbyHandler : StateHandlerBase
+    private class IdleHandler : StateHandlerBase
     {
-      public StanbyHandler(AnonymousFunctions context) : base(context) { }
-      public override State CurrentState => State.Stanby;
-      public override void GoToWorking()
+      public IdleHandler(AnonymousFunctions context) : base(context) { }
+      public override State CurrentState => State.Idle;
+      public override void GoToActive()
       {
-        new WorkingHandler(base.m_Context);
+        new ActiveHandler(base.m_Context);
       }
     }
-    private class WorkingHandler : StateHandlerBase
+    private class ActiveHandler : StateHandlerBase
     {
-      public WorkingHandler(AnonymousFunctions context) : base(context) { }
-      public override State CurrentState => State.Working;
+      public ActiveHandler(AnonymousFunctions context) : base(context) { }
+      public override State CurrentState => State.Active;
       public override void GoToError()
       {
         new ErrorHandler(base.m_Context);
       }
-      public override void GoToStanby()
+      public override void GoToIdle()
       {
-        new StanbyHandler(base.m_Context);
+        new IdleHandler(base.m_Context);
       }
     }
     private class ErrorHandler : StateHandlerBase
     {
       public ErrorHandler(AnonymousFunctions context) : base(context) { }
       public override State CurrentState => State.Error;
-      public override void GoToStanby()
+      public override void GoToIdle()
       {
-        new StanbyHandler(base.m_Context);
+        new IdleHandler(base.m_Context);
       }
     }
     #endregion
