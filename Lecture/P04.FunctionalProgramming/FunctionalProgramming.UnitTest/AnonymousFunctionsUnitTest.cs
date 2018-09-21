@@ -35,8 +35,8 @@ namespace TP.FunctionalProgramming
     {
       AnonymousFunctions _newInstance = new AnonymousFunctions();
       bool _testResult = false;
-      //AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = delegate (bool _result) { _testResult = _result; };
-      void _CallBackTestResult(bool _result) { _testResult = _result; }
+      AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = delegate (bool _result) { _testResult = _result; };
+      //void _CallBackTestResult(bool _result) { _testResult = _result; }
       _newInstance.ConsistencyCheck(_CallBackTestResult);
       Assert.IsTrue(_testResult);
     }
@@ -45,7 +45,7 @@ namespace TP.FunctionalProgramming
     {
       AnonymousFunctions _newInstance = new AnonymousFunctions();
       bool _testResult = false;
-      _newInstance.ConsistencyCheck((bool _result) => _testResult = _result);
+      _newInstance.ConsistencyCheck( _result => _testResult = _result);
       Assert.IsTrue(_testResult);
     }
     [TestMethod]
@@ -57,7 +57,7 @@ namespace TP.FunctionalProgramming
       for (int i = 0; i < _length; i++)
         _buffer[i] = _newRandom.Next(0, 100);
       int _count = _buffer.Count((int x) => { return x >= 50; });
-      const int _tolerance = 80;
+      const int _tolerance = 120;
       Assert.IsTrue(_count > _length / 2 - _tolerance && _count < _length / 2 + _tolerance, $"{nameof(_count)}={_count}");
     }
     [TestMethod]
