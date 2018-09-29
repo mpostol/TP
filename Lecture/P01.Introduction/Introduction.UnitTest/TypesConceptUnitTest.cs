@@ -27,9 +27,9 @@ namespace TP.Introduction
     [TestMethod]
     public void RomanToIntegerTest()
     {
-      int _interger = About.Types.RomanToInteger("IV");
+      int _interger = TypesConcept.RomanToInteger("IV");
       Assert.AreEqual(4, _interger);
-      _interger = About.Types.RomanToInteger("IVXX");
+      _interger = TypesConcept.RomanToInteger("IVXX");
       Assert.AreEqual(14, _interger);
     }
   }

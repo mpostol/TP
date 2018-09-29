@@ -7,9 +7,9 @@
 
 using System.Collections.Generic;
 
-namespace TP.Introduction.About
+namespace TP.Introduction
 {
-  public static class Types
+  public static class TypesConcept
   {
 
     public static int RomanToInteger(string roman)
