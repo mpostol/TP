@@ -11,17 +11,14 @@ namespace TP.Introduction
 {
   public static class TypesConcept
   {
-
     public static int RomanToInteger(string roman)
     {
       int number = 0;
       for (int i = 0; i < roman.Length; i++)
-      {
         if (i + 1 < roman.Length && RomanMap[roman[i]] < RomanMap[roman[i + 1]])
           number -= RomanMap[roman[i]];
         else
           number += RomanMap[roman[i]];
-      }
       return number;
     }
     private static readonly Dictionary<char, int> RomanMap = new Dictionary<char, int>()

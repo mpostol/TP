@@ -17,20 +17,20 @@ namespace TP.Introduction
     [TestMethod]
     public void TypesCompatibilityTest()
     {
-      long ArabicIntegerNumber = 4;
-      float ArabicFloatNumber = 4.0f;
-      //ArabicIntegerNumber = 4.0f;
-      ArabicFloatNumber = 4;
+      long _arabicIntegerNumber = 4;
+      float _arabicFloatNumber = 4.0f;
+      //_arabicIntegerNumber = 4.0f;
+      _arabicFloatNumber = 4;
       bool isEqual = 4 == 4.0f;
-      string RomanIntegerNumber = "IV";
+      string _romanIntegerNumber = "IV";
     }
     [TestMethod]
     public void RomanToIntegerTest()
     {
-      int _interger = TypesConcept.RomanToInteger("IV");
-      Assert.AreEqual(4, _interger);
-      _interger = TypesConcept.RomanToInteger("IVXX");
-      Assert.AreEqual(14, _interger);
+      int _integer = TypesConcept.RomanToInteger("IV");
+      Assert.AreEqual(4, _integer);
+      _integer = TypesConcept.RomanToInteger("IVXX");
+      Assert.AreEqual(14, _integer);
     }
   }
 }
