@@ -28,6 +28,10 @@ namespace TP.Introduction
       _roman.m_value = value;
       return _roman;
     }
+    public static Roman operator *(Roman value1, Roman value2)
+    {
+      return value1.m_value * value2.m_value;
+    }
     public override string ToString()
     {
       return m_value.ToString();
@@ -54,7 +58,7 @@ namespace TP.Introduction
         {'C', 100},
         {'D', 500},
         {'M', 1000}
-    }; 
+    };
     #endregion
 
   }

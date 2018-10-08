@@ -37,8 +37,8 @@ namespace TP.Introduction
     [TestMethod]
     public void RomanToStringTest()
     {
-      Roman _roman1 = "IV";
-      Assert.AreEqual<string>("4", _roman1.ToString());
+      Roman _roman = "IV";
+      Assert.AreEqual<string>("4", _roman.ToString());
     }
     [TestMethod]
     public void RomanEqualTest()
@@ -46,6 +46,19 @@ namespace TP.Introduction
       Roman _roman1 = "IV";
       Roman _roman2 = "IV";
       Assert.AreEqual(_roman1, _roman2);
+    }
+    [TestMethod]
+    public void MultiplicationOperatorTest()
+    {
+      //string
+      string _romanIntegerString1 = "IV";
+      string _romanIntegerString2 = "VI";
+      //string _multiplicationStringResult = _romanIntegerString1 * _romanIntegerString2;
+      //Roman
+      Roman _roman1 = "IV";
+      Roman _roman2 = "VI";
+      Roman _multiplicationResult = _roman1 * _roman2;
+      Assert.AreEqual<int>(24, _multiplicationResult);
     }
   }
 }
