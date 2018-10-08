@@ -12,7 +12,7 @@ namespace TP.Introduction
 {
 
   [TestClass]
-  public class TypesConceptUnitTest
+  public class RomanTypesConceptUnitTest
   {
     [TestMethod]
     public void TypesCompatibilityTest()
