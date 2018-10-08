@@ -25,12 +25,27 @@ namespace TP.Introduction
       string _romanIntegerNumber = "IV";
     }
     [TestMethod]
-    public void RomanToIntegerTest()
+    public void RomanConversionTest()
     {
-      int _integer = TypesConcept.RomanToInteger("IV");
-      Assert.AreEqual(4, _integer);
-      _integer = TypesConcept.RomanToInteger("IVXX");
-      Assert.AreEqual(14, _integer);
+      Roman _roman = "IV";
+      Assert.AreEqual<int>(4, _roman);
+      _roman = "IVXX";
+      Assert.AreEqual<int>(14, _roman);
+      _roman = 99;
+      Assert.AreEqual<int>(99, _roman);
+    }
+    [TestMethod]
+    public void RomanToStringTest()
+    {
+      Roman _roman1 = "IV";
+      Assert.AreEqual<string>("4", _roman1.ToString());
+    }
+    [TestMethod]
+    public void RomanEqualTest()
+    {
+      Roman _roman1 = "IV";
+      Roman _roman2 = "IV";
+      Assert.AreEqual(_roman1, _roman2);
     }
   }
 }

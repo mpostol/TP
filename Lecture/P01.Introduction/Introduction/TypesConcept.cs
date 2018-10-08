@@ -9,9 +9,33 @@ using System.Collections.Generic;
 
 namespace TP.Introduction
 {
-  public static class TypesConcept
+  public struct Roman
   {
-    public static int RomanToInteger(string roman)
+
+    public static implicit operator int(Roman value)
+    {
+      return value.m_value;
+    }
+    public static implicit operator Roman(string value)
+    {
+      Roman _roman;
+      _roman.m_value = RomanToInteger(value);
+      return _roman;
+    }
+    public static implicit operator Roman(int value)
+    {
+      Roman _roman;
+      _roman.m_value = value;
+      return _roman;
+    }
+    public override string ToString()
+    {
+      return m_value.ToString();
+    }
+
+    #region private
+    private int m_value;
+    private static int RomanToInteger(string roman)
     {
       int number = 0;
       for (int i = 0; i < roman.Length; i++)
@@ -30,7 +54,9 @@ namespace TP.Introduction
         {'C', 100},
         {'D', 500},
         {'M', 1000}
-    };
+    }; 
+    #endregion
+
   }
 }
 
