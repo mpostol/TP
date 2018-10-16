@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocalizedDescriptionUnitTest.cs" />
     <Compile Include="Providers\CustomCultureProvider.cs" />
+    <Compile Include="ReflectorUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\ApplicationArchitectureDependency\DependencyValidation1.layerdiagram">

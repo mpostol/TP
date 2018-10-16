@@ -4,20 +4,21 @@ using TPA.Reflection.Model;
 
 namespace TPA.Reflection
 {
-    public class Reflector
+  //TODO add UT - testing data is required
+  public class Reflector
+  {
+    public Reflector(string assemblyFile)
     {
-
-        public AssemblyMetadata m_AssemblyModel { get; private set; }
-
-        public void Reflect(string assemblyFile)
-        {
-            Assembly assembly = Assembly.LoadFrom(assemblyFile);
-            m_AssemblyModel = new AssemblyMetadata(assembly);
-        }
-
-        public void Reflect(Assembly assembly)
-        {
-            m_AssemblyModel = new AssemblyMetadata(assembly);
-        }
+      if (string.IsNullOrEmpty(assemblyFile))
+        throw new System.ArgumentNullException();
+      Assembly assembly = Assembly.LoadFrom(assemblyFile);
+      m_AssemblyModel = new AssemblyMetadata(assembly);
     }
+    public Reflector(Assembly assembly)
+    {
+      m_AssemblyModel = new AssemblyMetadata(assembly);
+    }
+    internal AssemblyMetadata m_AssemblyModel { get; private set; }
+
+  }
 }
