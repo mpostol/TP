@@ -9,9 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TPA.AsynchronousBehavior.ConcurrentProgramming</RootNamespace>
     <AssemblyName>TPA.AsynchronousBehavior.ConcurrentProgramming</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,7 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InstanceCreationCompletedEventArgs.cs" />
     <Compile Include="ReactiveTimer.cs" />
-    <Compile Include="SynchronizationAttributeExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\ApplicationArchitectureDependency\DependencyValidation1.layerdiagram">
