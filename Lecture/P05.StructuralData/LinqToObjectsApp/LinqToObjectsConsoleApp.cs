@@ -1,53 +1,47 @@
-﻿using LinqToObjectsLib;
+﻿
+//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using LinqToObjectsLib;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LinqToObjectsApp
 {
-    class LinqToObjectsConsoleApp
+  internal class LinqToObjectsConsoleApp
+  {
+    private static void Main(string[] args)
     {
-        static DataService service = new DataService();
-
-        static void Main(string[] args)
-        {
-            PrepareData();
-
-            IEnumerable<Person> all = service.GetAllPersons();
-            Display("All persons", all);
-
-            Console.WriteLine();
-
-            const string lastName = "Person";
-            const int minAge = 25;
-
-            Display("With last name '" + lastName + "' / ForEach", service.FilterPersonsByLastName_ForEach(lastName));
-            Display("With last name '" + lastName + "' / Extension", service.FilterPersonsByLastName_ExtensionMethod(lastName));
-            Display("With last name '" + lastName + "' / LINQ", service.FilterPersonsByLastName(lastName));
-
-            Console.WriteLine();
-
-            Display("After finishing studies", service.FilterPersonsByMinAge(minAge));
-
-            Console.ReadLine();
-        }
-
-        static void Display(string title, IEnumerable<Person> data)
-        {
-            Console.WriteLine("*** {0} ***", title);
-            foreach (Person p in data)
-            {
-                Console.WriteLine("Person: {0} {1}, age {2}", p.FirstName, p.LastName, p.Age);
-            }
-        }
-
-        static void PrepareData()
-        {
-            service.AddPerson(new Person("First", "Person", 20));
-            service.AddPerson(new Person("Second", "Person", 30));
-            service.AddPerson(new Person("Mister", "Clever", 42));
-        }
+      DataService _service = PrepareData();
+      IEnumerable<Person> _all = _service.GetAllPersons();
+      Display("All persons", _all);
+      Console.WriteLine();
+      const string lastName = "Person";
+      const int minAge = 25;
+      Display($"With last name '{lastName}' / ForEach", _service.FilterPersonsByLastName_ForEach(lastName));
+      Display($"With last name '{lastName}' / Extension", _service.FilterPersonsByLastName_ExtensionMethod(lastName));
+      Display($"With last name '{lastName}' / LINQ", _service.FilterPersonsByLastName(lastName));
+      Console.WriteLine();
+      Display("After finishing studies", _service.FilterPersonsByMinAge(minAge));
+      Console.ReadLine();
     }
+    private static void Display(string title, IEnumerable<Person> data)
+    {
+      Console.WriteLine($"*** {title} ***");
+      foreach (Person p in data)
+        Console.WriteLine($"Person: {p.FirstName} {p.LastName}, age {p.Age}");
+    }
+    private static DataService PrepareData()
+    {
+      DataService _service = new DataService();
+      _service.AddPerson(new Person("First", "Person", 20));
+      _service.AddPerson(new Person("Second", "Person", 30));
+      _service.AddPerson(new Person("Mister", "Clever", 42));
+      return _service;
+    }
+  }
 }
