@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InstanceCreationCompletedEventArgs.cs" />
     <Compile Include="ReactiveTimer.cs" />
+    <Compile Include="SynchronizationAttributeExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\ApplicationArchitectureDependency\DependencyValidation1.layerdiagram">
