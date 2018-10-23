@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGeneration\CSharpCodeFactoryUnitTest.cs" />
-    <Compile Include="CodeGeneration\DynamicMethodUnitTest.cs" />
+    <Compile Include="CodeGeneration\DynamicMethodFactoryUnitTest.cs" />
     <Compile Include="DataBindingTest.cs" />
     <Compile Include="DynamicType\DemoTypeBuilderUnitTest.cs" />
     <Compile Include="DynamicType\DynamicExampleClassUnitTest.cs" />

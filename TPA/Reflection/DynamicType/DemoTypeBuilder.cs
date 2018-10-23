@@ -18,10 +18,9 @@ namespace TPA.Reflection.DynamicType
   public static class DemoTypeBuilder
   {
     /// <summary>
-    /// Creates the instance with public field.
+    /// Creates an instance with public field.
     /// </summary>
-    /// <returns>System.Object.</returns>
-    //TODO Improve description
+    /// <returns>The reference to the created object.</returns>
     public static object CreateInstanceWithPublicField()
     {
       //specify name of dynamic assembly
@@ -33,19 +32,18 @@ namespace TPA.Reflection.DynamicType
       //define a public type in specified module
       TypeBuilder typeBuilder = moduleBuilder.DefineType("DemoType", TypeAttributes.Public);
       //define a public field in specified type
-      FieldBuilder fieldBuilder = typeBuilder.DefineField("m_number", typeof(int), FieldAttributes.Public);
+      FieldBuilder _fieldBuilder = typeBuilder.DefineField("m_number", typeof(int), FieldAttributes.Public);
       //load Type object for defined type
-      Type type = typeBuilder.CreateType();
+      Type _type = typeBuilder.CreateType();
       //save assembly on disk
       _assemblyBuilder.Save(assemblyName.Name + ".dll");
       //return instance of created type
-      return Activator.CreateInstance(type);
+      return Activator.CreateInstance(_type);
     }
     /// <summary>
-    /// Creates the instance with public field and default constructor.
+    /// Creates an instance with public field and default constructor.
     /// </summary>
-    /// <returns>System.Object.</returns>
-    //TODO Improve description
+    /// <returns>The reference to the created object.</returns>
     public static object CreateInstanceWithPublicFieldAndDefaultConstructor()
     {
       AssemblyName assemblyName = new AssemblyName("DemoAssembly2");
@@ -54,36 +52,34 @@ namespace TPA.Reflection.DynamicType
       TypeBuilder typeBuilder = moduleBuilder.DefineType("DemoType2", TypeAttributes.Public);
       FieldBuilder fieldBuilder = typeBuilder.DefineField("m_number", typeof(int), FieldAttributes.Public);
       //define default constructor
-      ConstructorBuilder ctor1 = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, Type.EmptyTypes);
-      ILGenerator ctor1IL = ctor1.GetILGenerator();
+      ConstructorBuilder _constructorBuilder = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, Type.EmptyTypes);
+      ILGenerator _codeGenerator = _constructorBuilder.GetILGenerator();
       //push reference to the new instance on the stack
-      ctor1IL.Emit(OpCodes.Ldarg_0);
+      _codeGenerator.Emit(OpCodes.Ldarg_0);
       //call the base class constructor
-      ctor1IL.Emit(OpCodes.Call, typeof(object).GetConstructor(Type.EmptyTypes));
+      _codeGenerator.Emit(OpCodes.Call, typeof(object).GetConstructor(Type.EmptyTypes));
       //push the instance on the stack
-      ctor1IL.Emit(OpCodes.Ldarg_0);
+      _codeGenerator.Emit(OpCodes.Ldarg_0);
       //push the default field value on the stack
-      ctor1IL.Emit(OpCodes.Ldc_I4_S, 7);
+      _codeGenerator.Emit(OpCodes.Ldc_I4_S, 7);
       //assign pushed value to the field
-      ctor1IL.Emit(OpCodes.Stfld, fieldBuilder);
-      ctor1IL.Emit(OpCodes.Ret);
-      Type type = typeBuilder.CreateType();
+      _codeGenerator.Emit(OpCodes.Stfld, fieldBuilder);
+      _codeGenerator.Emit(OpCodes.Ret);
+      Type _type = typeBuilder.CreateType();
       assemblyBuilder.Save(assemblyName.Name + ".dll");
-      return Activator.CreateInstance(type);
+      return Activator.CreateInstance(_type);
     }
     /// <summary>
-    /// Creates the instance with non default constructor and public property and private field.
+    /// Creates an instance with non default constructor and public property and private field.
     /// </summary>
-    /// <returns>System.Object.</returns>
-    //TODO Improve description
+    /// <returns>The reference to the created object.</returns>
     public static object CreateInstanceWithNonDefaultConstructorAndPublicPropertyAndPrivateField()
     {
-      AssemblyName assemblyName = new AssemblyName("DemoAssembly3");
-      AssemblyBuilder assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.RunAndSave);
-      ModuleBuilder moduleBuilder = assemblyBuilder.DefineDynamicModule(assemblyName.Name, assemblyName.Name + ".dll");
+      AssemblyName _assemblyName = new AssemblyName("DemoAssembly3");
+      AssemblyBuilder _assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(_assemblyName, AssemblyBuilderAccess.RunAndSave);
+      ModuleBuilder moduleBuilder = _assemblyBuilder.DefineDynamicModule(_assemblyName.Name, _assemblyName.Name + ".dll");
       TypeBuilder typeBuilder = moduleBuilder.DefineType("DemoType3", TypeAttributes.Public);
       FieldBuilder fieldBuilder = typeBuilder.DefineField("m_number", typeof(int), FieldAttributes.Private);
-
       //define a non-default constructor with parameters
       Type[] parameterTypes = { typeof(int) };
       ConstructorBuilder ctor1 = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, parameterTypes);
@@ -117,13 +113,12 @@ namespace TPA.Reflection.DynamicType
       //set the getter and setter methods
       propertyBuilder.SetGetMethod(getterMethodBuilder);
       propertyBuilder.SetSetMethod(setterMethodBuilder);
-      Type type = typeBuilder.CreateType();
-      assemblyBuilder.Save(assemblyName.Name + ".dll");
-      return Activator.CreateInstance(type, new object[] { 66 });
+      Type _type = typeBuilder.CreateType();
+      _assemblyBuilder.Save(_assemblyName.Name + ".dll");
+      return Activator.CreateInstance(_type, new object[] { 66 });
     }
-
     /// <summary>
-    /// Creates the instance with public method.
+    /// Creates an instance with public method.
     /// </summary>
     /// <returns>System.Object.</returns>
     //TODO Improve description

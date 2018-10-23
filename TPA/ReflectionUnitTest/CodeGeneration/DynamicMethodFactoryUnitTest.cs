@@ -5,7 +5,7 @@ using TPA.Reflection.CodeGeneration;
 namespace TPA.Reflection.UnitTest.CodeGeneration
 {
   [TestClass]
-  public class DynamicMethodUnitTest
+  public class DynamicMethodFactoryUnitTest
   {
 
     [TestMethod]

@@ -31,6 +31,7 @@ namespace TPA.Reflection.Execution
       UpdateProperty(dataSource);
     }
 
+    #region private
     private readonly PropertyInfo m_source;
     private readonly object m_consumer;
     private readonly PropertyInfo m_consumerProperty;
@@ -43,6 +44,7 @@ namespace TPA.Reflection.Execution
     {
       m_consumerProperty.SetValue(m_consumer, m_source.GetValue(dataSource));
     }
+    #endregion
 
   }
 }

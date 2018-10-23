@@ -1,7 +1,13 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TPA.Reflection.CodeGeneration;
 
 namespace TPA.Reflection.UnitTest.CodeGeneration
@@ -37,7 +43,7 @@ namespace TPA.Reflection.UnitTest.CodeGeneration
     /// <summary>
     /// The name of the file to contain the source code.
     /// </summary>
-    const string _outputFileName = "SampleCode.cs";
+    private const string _outputFileName = "SampleCode.cs";
 
   }
 }
