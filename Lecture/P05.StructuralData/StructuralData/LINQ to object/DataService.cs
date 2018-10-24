@@ -8,7 +8,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LinqToObjectsLib
+namespace TP.StructuralData.LINQ_to_object
 {
   public class DataService
   {

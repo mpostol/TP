@@ -6,10 +6,10 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
-namespace LinqToObjectsLib
+namespace TP.StructuralData.LINQ_to_object
 {
   /// <summary>
-  /// POCO (Plain Old CLR Object) class to represent person data.
+  /// Person - class to represent person data.
   /// </summary>
   public class Person
   {

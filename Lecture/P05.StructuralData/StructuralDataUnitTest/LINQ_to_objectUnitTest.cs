@@ -7,14 +7,14 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
-namespace LinqToObjectsLib.Tests
+namespace TP.StructuralData.LINQ_to_object
 {
   [TestClass]
-  public class DataServiceTests
+  public class LINQ_to_objectUnitTest
   {
-
     [TestMethod]
     public void DataService_AfterCreation_CollectionIsEmpty()
     {
@@ -112,14 +112,32 @@ namespace LinqToObjectsLib.Tests
         Assert.IsTrue(p.Age >= minAge);
       Assert.AreEqual(expectedCount, filtered.Count());
     }
+    [TestMethod]
+    public void DispalyContentTest()
+    {
+      PrepareData();
+      IEnumerable<Person> _all = m_Service.GetAllPersons();
+      Display("All persons", _all);
+      const string lastName = "Person";
+      const int minAge = 25;
+      Display($"With last name '{lastName}' / ForEach", m_Service.FilterPersonsByLastName_ForEach(lastName));
+      Display($"With last name '{lastName}' / Extension", m_Service.FilterPersonsByLastName_ExtensionMethod(lastName));
+      Display($"With last name '{lastName}' / LINQ", m_Service.FilterPersonsByLastName(lastName));
+      Display("After finishing studies", m_Service.FilterPersonsByMinAge(minAge));
+    }
 
     #region test instrumentation
-    // Class under test.
-    private DataService m_Service;
     [TestInitialize]
     public void Init()
     {
       m_Service = new DataService();
+    }
+    private DataService m_Service;
+    private static void Display(string title, IEnumerable<Person> data)
+    {
+      Debug.WriteLine($"*** {title} ***");
+      foreach (Person p in data)
+        Debug.WriteLine($"Person: {p.FirstName} {p.LastName}, age {p.Age}");
     }
     private static readonly Person[][] GetAllPersonsTest_InputCases = new Person[][] {
             new Person[] { },
@@ -138,6 +156,5 @@ namespace LinqToObjectsLib.Tests
       m_Service.AddPerson(new Person("Mister", "Clever", 42));
     }
     #endregion
-
   }
 }

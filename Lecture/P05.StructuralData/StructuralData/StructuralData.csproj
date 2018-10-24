@@ -35,9 +35,14 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="LINQ to object\DataService.cs" />
+    <Compile Include="LINQ to object\Person.cs" />
     <Compile Include="LINQQueryAndMethodsSyntax\FromClause.cs" />
     <Compile Include="LINQQueryAndMethodsSyntax\LinqExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LINQ to SQL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
