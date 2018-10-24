@@ -88,7 +88,6 @@ namespace LinqToSqlLib
     public IEnumerable<Person> ChangeAgeThenFilterPersonsByMinAge(int change, int minAge)
     {
       IQueryable<Person> linq = PreparePersonsByMinAgeLinq(minAge);
-
       // Modify the data *BEFORE* evaluating LINQ expression.
       foreach (Person p in m_Context.Persons)
         p.Age = p.Age + change;
@@ -98,7 +97,6 @@ namespace LinqToSqlLib
 
     #region IDisposable Support
     private bool disposedValue = false; // To detect redundant calls
-
     protected virtual void Dispose(bool disposing)
     {
       if (!disposedValue)
@@ -108,10 +106,8 @@ namespace LinqToSqlLib
           // Dispose managed state (managed objects).
           m_Context.Dispose();
         }
-
         // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
         // TODO: set large fields to null.
-
         disposedValue = true;
       }
     }
@@ -121,7 +117,6 @@ namespace LinqToSqlLib
     //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
     //   Dispose(false);
     // }
-
     // This code added to correctly implement the disposable pattern.
     public void Dispose()
     {
