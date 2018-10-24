@@ -1,4 +1,10 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TP.Lecture.UnitTest
@@ -14,22 +20,17 @@ namespace TP.Lecture.UnitTest
     [TestMethod]
     public void FromClauseExample1TestMethod()
     {
-      FromClause _fc = new FromClause();
-      Assert.AreEqual<string>("grape", _fc.FromClauseExample1());
+      Assert.AreEqual<string>("grape", FromClause.FromClauseExample1());
     }
-
     [TestMethod]
     public void FromClauseExample2TestMethod()
     {
-      FromClause _fc = new FromClause();
-      Assert.AreEqual<string>("grape", _fc.FromClauseExample2());
+      Assert.AreEqual<string>("grape", FromClause.FromClauseExample2());
     }
-
     [TestMethod]
     public void FromClauseExample3TestMethod()
     {
-      FromClause _fc = new FromClause();
-      Assert.AreEqual<string>("Name1:11000,00;Name3:130000,00", _fc.FromClauseExample3());
+      Assert.AreEqual<string>("Name1:11000,00;Name3:130000,00", FromClause.FromClauseExample3());
     }
 
   }

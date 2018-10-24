@@ -12,7 +12,6 @@ namespace LinqToObjectsLib
 {
   public class DataService
   {
-    private List<Person> persons;
 
     /// <summary>
     /// Constructor of DataService class, creates private underlying collection.
@@ -21,7 +20,6 @@ namespace LinqToObjectsLib
     {
       persons = new List<Person>();
     }
-
     /// <summary>
     /// Adds given person object to underlying collection.
     /// </summary>
@@ -30,7 +28,6 @@ namespace LinqToObjectsLib
     {
       persons.Add(p);
     }
-
     /// <summary>
     /// Retrieves a copy of all objects references from underlying collection,
     /// as enumerable source of Persons, so original collection stays unmodified.
@@ -40,7 +37,6 @@ namespace LinqToObjectsLib
     {
       return new List<Person>(persons);
     }
-
     /// <summary>
     /// First version of filtering Person objects by last name, that uses traditional
     /// iteration over collection and .Equals() call for strings.
@@ -55,7 +51,6 @@ namespace LinqToObjectsLib
           result.Add(p);
       return result;
     }
-
     /// <summary>
     /// Second version of filtering Person objects by last name, that uses collection's
     /// extension method .Where() and lambda predicate to match each object.
@@ -67,7 +62,6 @@ namespace LinqToObjectsLib
       IEnumerable<Person> expression = persons.Where(p => p.LastName.Equals(lastName));
       return expression;
     }
-
     /// <summary>
     /// Third and final version of filtering Person objects by last name, that uses
     /// LINQ to Objects expression.
@@ -77,13 +71,12 @@ namespace LinqToObjectsLib
     public IEnumerable<Person> FilterPersonsByLastName(string lastName)
     {
       //System.Linq.Enumerable.WhereListIterator
-      IEnumerable<Person> expression =
+      IEnumerable<Person> _expression =
           from Person p in persons
           where p.LastName.Equals(lastName)
           select p;
-      return expression;
+      return _expression;
     }
-
     /// <summary>
     /// Filters Person objects by minimum age.
     /// </summary>
@@ -91,11 +84,14 @@ namespace LinqToObjectsLib
     /// <returns>Enumerable source of Person objects that match or exceed given minimum age.</returns>
     public IEnumerable<Person> FilterPersonsByMinAge(int minAge)
     {
-      IEnumerable<Person> expression =
+      IEnumerable<Person> _expression =
           from Person p in persons
           where p.Age >= minAge
           select p;
-      return expression;
+      return _expression;
     }
+
+    private List<Person> persons;
+
   }
 }

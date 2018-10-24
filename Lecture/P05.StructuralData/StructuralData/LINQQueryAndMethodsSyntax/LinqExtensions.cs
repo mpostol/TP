@@ -18,13 +18,9 @@ namespace TP.Lecture
   {
     public string FromClauseExample1()
     {
-      // Example #1: var is optional because 
-      // the select clause specifies a string 
       string[] words = { "apple", "strawberry", "grape", "peach", "banana" };
-      //var wordQuery = from word in words
       IEnumerable<string> wordQuery = words.Where<string>(word => word[0] == 'g').Select<String, String>(word => word);
       List<string> _selection = new List<string>();
-      // Because each element in the sequence is a string, not an anonymous type, var is optional here also. 
       foreach (string s in wordQuery)
         _selection.Add(s);
       return String.Join(";", _selection.ToArray());
