@@ -52,11 +52,12 @@
   <ItemGroup>
     <Compile Include="LINQ to object\DataService.cs" />
     <Compile Include="LINQ to object\Person.cs" />
-    <Compile Include="LINQ to SQL\CDCatalog.designer.cs">
+    <Compile Include="LINQ to SQL\Catalog.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CDCatalog.dbml</DependentUpon>
+      <DependentUpon>Catalog.dbml</DependentUpon>
     </Compile>
+    <Compile Include="LINQ to SQL\DataService.cs" />
     <Compile Include="LINQQueryAndMethodsSyntax\FromClause.cs" />
     <Compile Include="LINQQueryAndMethodsSyntax\LinqExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,9 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="LINQ to SQL\CDCatalog.dbml">
+    <None Include="LINQ to SQL\Catalog.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CDCatalog.designer.cs</LastGenOutput>
+      <LastGenOutput>Catalog.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -99,10 +100,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="LINQ to SQL\CDCatalog.dbml.layout">
-      <DependentUpon>CDCatalog.dbml</DependentUpon>
+    <None Include="LINQ to SQL\Catalog.dbml.layout">
+      <DependentUpon>Catalog.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

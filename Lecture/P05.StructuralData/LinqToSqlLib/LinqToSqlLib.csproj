@@ -61,8 +61,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Persons.dbml</DependentUpon>
     </Compile>
-    <Compile Include="PersonService.cs" />
-    <Compile Include="PersonServiceHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
