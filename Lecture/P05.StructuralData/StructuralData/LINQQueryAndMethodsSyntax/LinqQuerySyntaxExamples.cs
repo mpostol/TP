@@ -13,9 +13,6 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
   public static class LinqQuerySyntaxExamples
   {
 
-    /// <summary>
-    /// From clause example
-    /// </summary>
     public static string QuerySyntax()
     {
       string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
@@ -33,9 +30,6 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
           _wordQuery.Add(_item);
       return string.Join(";", _wordQuery.ToArray());
     }
-    /// <summary>
-    /// Defered execution
-    /// </summary>DeferedExecution
     public static string DeferedExecution()
     {
       string[] _words = new string[] { "apple", "strawberry", "grape", "peach", "banana" };
@@ -45,9 +39,6 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
       _words[2] = "pear";
       return string.Join(";", _wordQuery.ToArray());
     }
-    /// <summary>
-    ///How to use an anonymous type in the select clause
-    /// </summary>
     public static string AnonymousType()
     {
       Customer[] customers = new Customer[] { new Customer() { City = "Phoenix", Name = "Name1", Revenue=11.0E3F  },
@@ -55,7 +46,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
                                               new Customer() { City = "Phoenix", Name = "Name3", Revenue=13.0E4F   },
                                               new Customer() { City = "Washington", Name = "Name4", Revenue=14.0E4F   }
       };
-      var _customerQuery = from _customer in customers // var is required because the select clause specifies an anonymous type 
+      var _customerQuery = from _customer in customers
                            where _customer.City == "Phoenix"
                            select new { _customer.Name, _customer.Revenue };
       return string.Join("; ", _customerQuery.Select(x => $"{x.Name}:{x.Revenue:F}").ToArray<string>());

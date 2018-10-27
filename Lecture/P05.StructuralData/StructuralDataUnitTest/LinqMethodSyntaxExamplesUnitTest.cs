@@ -10,11 +10,9 @@ using TP.StructuralData.LINQQueryAndMethodsSyntax;
 
 namespace TP.StructuralDataUnitTest
 {
-  /// <summary>
-  /// Class FromClauseUnitTest - unit tests for <see cref="LinqQuerySyntaxExamples"/>
-  /// </summary>
+
   [TestClass]
-  public class LinqExtensionsUnitTest
+  public class LinqMethodSyntaxExamplesUnitTest
   {
 
     [TestMethod]

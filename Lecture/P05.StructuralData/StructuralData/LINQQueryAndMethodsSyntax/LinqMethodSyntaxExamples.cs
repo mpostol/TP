@@ -11,23 +11,15 @@ using System.Linq;
 
 namespace TP.StructuralData.LINQQueryAndMethodsSyntax
 {
-  /// <summary>
-  /// Class FromClause 
-  /// </summary>
+
   public static class LinqMethodSyntaxExamples
   {
-    /// <summary>
-    /// The `From` clause example.
-    /// </summary>
     public static string MethodSyntax()
     {
       string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
       IEnumerable<string> _wordQuery = _words.Where<string>(word => word[0] == 'g').Select<String, String>(word => word);
       return String.Join(";", _wordQuery.ToArray());
     }
-    /// <summary>
-    /// Defered execution
-    /// </summary>
     public static string DeferedExecution()
     {
       string[] _words = new string[] { "apple", "strawberry", "grape", "peach", "banana" };
@@ -36,9 +28,6 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
       _words[2] = "pear";
       return String.Join(";", _wordQuery.ToArray());
     }
-    /// <summary>
-    /// How to use an anonymous type in the select clause
-    /// </summary>
     public static string AnonymousType()
     {
       Customer[] customers = new Customer[] { new Customer() { City = "Phoenix", Name = "Name1", Revenue=11.0E3F  },
