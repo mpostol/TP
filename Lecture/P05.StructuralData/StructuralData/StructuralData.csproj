@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>IDE0001,IDE0002,IDE0003,IDE0049</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,8 +59,9 @@
       <DependentUpon>Catalog.dbml</DependentUpon>
     </Compile>
     <Compile Include="LINQ to SQL\DataService.cs" />
-    <Compile Include="LINQQueryAndMethodsSyntax\FromClause.cs" />
-    <Compile Include="LINQQueryAndMethodsSyntax\LinqExtensions.cs" />
+    <Compile Include="LINQQueryAndMethodsSyntax\Customer.cs" />
+    <Compile Include="LINQQueryAndMethodsSyntax\LinqMethodSyntaxExamples.cs" />
+    <Compile Include="LINQQueryAndMethodsSyntax\LinqQuerySyntaxExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

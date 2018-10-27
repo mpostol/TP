@@ -15,6 +15,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P01 Introduction", "P01 Introduction", "{6592B78B-A8DB-4D58-B7D6-5E19E5BF9389}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P05 Structural Data", "P05 Structural Data", "{11C14FD7-D413-4B42-BE5B-E4DD5E9826DB}"
+	ProjectSection(SolutionItems) = preProject
+		P05.StructuralData\README.md = P05.StructuralData\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P06 Graphical Data", "P06 Graphical Data", "{FC29CE65-D5DB-4DE7-A25F-FD8B57E7F99D}"
 EndProject

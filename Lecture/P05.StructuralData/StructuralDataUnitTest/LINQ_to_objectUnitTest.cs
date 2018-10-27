@@ -9,8 +9,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using TP.StructuralData.LINQ_to_object;
 
-namespace TP.StructuralData.LINQ_to_object
+namespace TP.StructuralDataUnitTest
 {
   [TestClass]
   public class LINQ_to_objectUnitTest

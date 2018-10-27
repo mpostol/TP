@@ -6,13 +6,13 @@
 //____________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TP.StructuralData.LINQQueryAndMethodsSyntax;
 
-namespace TP.Lecture.UnitTest
+namespace TP.StructuralDataUnitTest
 {
   /// <summary>
-  /// Class FromClauseUnitTest - unit tests for <see cref="FromClause"/>
+  /// Class FromClauseUnitTest - unit tests for <see cref="LinqQuerySyntaxExamples"/>
   /// </summary>
-
   [TestClass]
   public class LinqExtensionsUnitTest
   {
@@ -20,22 +20,17 @@ namespace TP.Lecture.UnitTest
     [TestMethod]
     public void LinqExtensionsExample1TestMethod()
     {
-      LinqExtensions _fc = new LinqExtensions();
-      Assert.AreEqual<string>("grape", _fc.FromClauseExample1());
+      Assert.AreEqual<string>("grape", LinqMethodSyntaxExamples.MethodSyntax());
     }
-
     [TestMethod]
     public void LinqExtensionsExample2TestMethod()
     {
-      LinqExtensions _fc = new LinqExtensions();
-      Assert.AreEqual<string>("grape", _fc.FromClauseExample2());
+      Assert.AreNotEqual<string>("grape", LinqMethodSyntaxExamples.DeferedExecution());
     }
-
     [TestMethod]
     public void LinqExtensionsExample3TestMethod()
     {
-      LinqExtensions _fc = new LinqExtensions();
-      Assert.AreEqual<string>("Name1:11000,00;Name3:130000,00", _fc.FromClauseExample3());
+      Assert.AreEqual<string>("Name1:11000,00; Name3:130000,00", LinqMethodSyntaxExamples.AnonymousType());
     }
 
   }

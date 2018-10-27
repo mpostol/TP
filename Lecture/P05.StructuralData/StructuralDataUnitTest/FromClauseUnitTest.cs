@@ -6,31 +6,33 @@
 //____________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TP.StructuralData.LINQQueryAndMethodsSyntax;
 
-namespace TP.Lecture.UnitTest
+namespace TP.StructuralDataUnitTest
 {
-  /// <summary>
-  /// Class FromClauseUnitTest - unit tests for <see cref="FromClause"/>
-  /// </summary>
 
+  /// <summary>
+  /// Class FromClauseUnitTest - unit tests for <see cref="LinqQuerySyntaxExamples"/>
+  /// </summary>
   [TestClass]
   public class FromClauseUnitTest
   {
 
     [TestMethod]
-    public void FromClauseExample1TestMethod()
+    public void FromClauseExample1Test()
     {
-      Assert.AreEqual<string>("grape", FromClause.FromClauseExample1());
+      Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.QuerySyntax());
+      Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.ForeachInstructionExample());
     }
     [TestMethod]
-    public void FromClauseExample2TestMethod()
+    public void FromClauseExample2Test()
     {
-      Assert.AreEqual<string>("grape", FromClause.FromClauseExample2());
+      Assert.AreNotEqual<string>("grape", LinqQuerySyntaxExamples.DeferedExecution());
     }
     [TestMethod]
-    public void FromClauseExample3TestMethod()
+    public void FromClauseExample3Test()
     {
-      Assert.AreEqual<string>("Name1:11000,00;Name3:130000,00", FromClause.FromClauseExample3());
+      Assert.AreEqual<string>("Name1:11000,00; Name3:130000,00", LinqQuerySyntaxExamples.AnonymousType());
     }
 
   }
