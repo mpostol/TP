@@ -1,4 +1,6 @@
-# LINQ examples
+# Structural data
+
+## Introduction
 
 This solution contains two examples of using LINQ:
 
@@ -107,3 +109,8 @@ Project settings:
 
 * `Settings.settings` - manually added file with definition of setting `PersonDataConnectionString`
   that points to `PersonData.mdf` in the same project
+
+## See also
+
+- [Language Integrated Query (LINQ)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq)
+- [Query Syntax and Method Syntax in LINQ (C#)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq)

@@ -9,15 +9,17 @@ using System;
 
 namespace TP.GraphicalData
 {
+
   public class DelegateExample
   {
+
+    /// <summary>
     /// Delegate PerformCalculation - the declaration of a delegate type 
     /// </summary>
     /// <param name="x">The x.</param>
     /// <param name="y">The y.</param>
     public delegate int PerformCalculation(int x, int y);
-    public event EventHandler m_EventVar;
-
+    public event EventHandler PerformSumMethodCalled;
     /// <summary>
     /// The perform calculation variable
     /// </summary>
@@ -28,44 +30,32 @@ namespace TP.GraphicalData
     /// </summary>
     public DelegateExample()
     {
-      //Type safety
       PerformCalculationVar = new PerformCalculation(PerformSumMethod);
       PerformCalculationVar = new PerformCalculation(PerformSubtractMethod);
       //PerformCalculationVar = new PerformCalculation(PerformSubtractDoubleMethod);
     }
     public int PerformCalculationMethod(int x, int y)
     {
-      return PerformCalculationVar(x, y);
+      return (PerformCalculationVar?.Invoke(x, y)).GetValueOrDefault();
     }
     public int PerformSumMethod(int x, int y)
     {
-      EventHandler _EventVar = m_EventVar;
-      if (_EventVar != null)
-        m_EventVar?.Invoke(this, System.EventArgs.Empty);
-      checked
-      {
-        return x + y;
-      }
+      PerformSumMethodCalled?.Invoke(this, System.EventArgs.Empty);
+      checked { return x + y; }
     }
     public double PerformSumMethod(double x, double y)
     {
-      checked
-      {
-        return x + y;
-      }
+      checked { return x + y; }
     }
     public static int PerformSubtractMethod(int x, int y)
     {
-      checked
-      {
-        return x - y;
-      }
+      checked { return x - y; }
     }
     public static double PerformSubtractDoubleMethod(double x, double y)
     {
-      checked
-      { return x - y; }
+      checked { return x - y; }
     }
 
   }
+
 }
