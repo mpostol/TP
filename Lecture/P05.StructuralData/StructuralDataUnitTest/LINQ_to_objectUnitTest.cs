@@ -131,9 +131,9 @@ namespace TP.StructuralDataUnitTest
     [TestInitialize]
     public void Init()
     {
-      m_Service = new DataService();
+      m_Service = new CatalogDataContext();
     }
-    private DataService m_Service;
+    private CatalogDataContext m_Service;
     private static void Display(string title, IEnumerable<Person> data)
     {
       Debug.WriteLine($"*** {title} ***");

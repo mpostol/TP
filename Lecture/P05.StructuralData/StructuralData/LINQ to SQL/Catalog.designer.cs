@@ -30,9 +30,12 @@ namespace TP.StructuralData.LINQ_to_SQL
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCatalogCD(CatalogCD instance);
-    partial void UpdateCatalogCD(CatalogCD instance);
-    partial void DeleteCatalogCD(CatalogCD instance);
+    partial void InsertPerson(Person instance);
+    partial void UpdatePerson(Person instance);
+    partial void DeletePerson(Person instance);
+    partial void InsertCDCatalog(CDCatalog instance);
+    partial void UpdateCDCatalog(CDCatalog instance);
+    partial void DeleteCDCatalog(CDCatalog instance);
     #endregion
 		
 		public CatalogDataContext() : 
@@ -65,17 +68,187 @@ namespace TP.StructuralData.LINQ_to_SQL
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<CatalogCD> CatalogCDs
+		public System.Data.Linq.Table<Person> Persons
 		{
 			get
 			{
-				return this.GetTable<CatalogCD>();
+				return this.GetTable<Person>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CDCatalog> CDCatalogs
+		{
+			get
+			{
+				return this.GetTable<CDCatalog>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CatalogCD")]
-	public partial class CatalogCD : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Person")]
+	public partial class Person : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private int _Age;
+		
+		private EntitySet<CDCatalog> _CDCatalogs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnAgeChanging(int value);
+    partial void OnAgeChanged();
+    #endregion
+		
+		public Person()
+		{
+			this._CDCatalogs = new EntitySet<CDCatalog>(new Action<CDCatalog>(this.attach_CDCatalogs), new Action<CDCatalog>(this.detach_CDCatalogs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int NOT NULL")]
+		public int Age
+		{
+			get
+			{
+				return this._Age;
+			}
+			set
+			{
+				if ((this._Age != value))
+				{
+					this.OnAgeChanging(value);
+					this.SendPropertyChanging();
+					this._Age = value;
+					this.SendPropertyChanged("Age");
+					this.OnAgeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_CDCatalog", Storage="_CDCatalogs", ThisKey="Id", OtherKey="ArtistKey")]
+		public EntitySet<CDCatalog> CDCatalogs
+		{
+			get
+			{
+				return this._CDCatalogs;
+			}
+			set
+			{
+				this._CDCatalogs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CDCatalogs(CDCatalog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Person = this;
+		}
+		
+		private void detach_CDCatalogs(CDCatalog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Person = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CDCatalog")]
+	public partial class CDCatalog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -84,13 +257,15 @@ namespace TP.StructuralData.LINQ_to_SQL
 		
 		private string _Title;
 		
-		private string _Artist;
-		
 		private string _Country;
 		
 		private decimal _Price;
 		
 		private short _Year;
+		
+		private System.Nullable<int> _ArtistKey;
+		
+		private EntityRef<Person> _Person;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -100,22 +275,23 @@ namespace TP.StructuralData.LINQ_to_SQL
     partial void OnIdChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
-    partial void OnArtistChanging(string value);
-    partial void OnArtistChanged();
     partial void OnCountryChanging(string value);
     partial void OnCountryChanged();
     partial void OnPriceChanging(decimal value);
     partial void OnPriceChanged();
     partial void OnYearChanging(short value);
     partial void OnYearChanged();
+    partial void OnArtistKeyChanging(System.Nullable<int> value);
+    partial void OnArtistKeyChanged();
     #endregion
 		
-		public CatalogCD()
+		public CDCatalog()
 		{
+			this._Person = default(EntityRef<Person>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -151,26 +327,6 @@ namespace TP.StructuralData.LINQ_to_SQL
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Artist
-		{
-			get
-			{
-				return this._Artist;
-			}
-			set
-			{
-				if ((this._Artist != value))
-				{
-					this.OnArtistChanging(value);
-					this.SendPropertyChanging();
-					this._Artist = value;
-					this.SendPropertyChanged("Artist");
-					this.OnArtistChanged();
 				}
 			}
 		}
@@ -231,6 +387,64 @@ namespace TP.StructuralData.LINQ_to_SQL
 					this._Year = value;
 					this.SendPropertyChanged("Year");
 					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ArtistKey", DbType="Int")]
+		public System.Nullable<int> ArtistKey
+		{
+			get
+			{
+				return this._ArtistKey;
+			}
+			set
+			{
+				if ((this._ArtistKey != value))
+				{
+					if (this._Person.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnArtistKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ArtistKey = value;
+					this.SendPropertyChanged("ArtistKey");
+					this.OnArtistKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_CDCatalog", Storage="_Person", ThisKey="ArtistKey", OtherKey="Id", IsForeignKey=true)]
+		public Person Person
+		{
+			get
+			{
+				return this._Person.Entity;
+			}
+			set
+			{
+				Person previousValue = this._Person.Entity;
+				if (((previousValue != value) 
+							|| (this._Person.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Person.Entity = null;
+						previousValue.CDCatalogs.Remove(this);
+					}
+					this._Person.Entity = value;
+					if ((value != null))
+					{
+						value.CDCatalogs.Add(this);
+						this._ArtistKey = value.Id;
+					}
+					else
+					{
+						this._ArtistKey = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Person");
 				}
 			}
 		}

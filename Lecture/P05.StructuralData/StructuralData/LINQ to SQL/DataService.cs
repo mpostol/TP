@@ -28,34 +28,34 @@ namespace TP.StructuralData.LINQ_to_SQL
     /// Adds given Person entity to database context, and ultimately to database table.
     /// </summary>
     /// <param name="item">Person entity to add to database.</param>
-    public void AddCD(CatalogCD item)
+    public void AddCD(CDCatalog item)
     {
-      m_Context.CatalogCDs.InsertOnSubmit(item);
+      m_Context.CDCatalogs.InsertOnSubmit(item);
       m_Context.SubmitChanges();
     }
-    public void AddCD(IEnumerable<CatalogCD> collection)
+    public void AddCD(IEnumerable<CDCatalog> collection)
     {
-      foreach (CatalogCD _item in collection)
-        m_Context.CatalogCDs.InsertOnSubmit(_item);
+      foreach (CDCatalog _item in collection)
+        m_Context.CDCatalogs.InsertOnSubmit(_item);
       m_Context.SubmitChanges();
     }
     /// <summary>
     /// Retrieves all Person entities as list of Persons, using database context.
     /// </summary>
     /// <returns>List of all Person entities read from database context.</returns>
-    public List<CatalogCD> GetAllPersons()
+    public List<CDCatalog> GetAllPersons()
     {
-      return m_Context.CatalogCDs.ToList();
+      return m_Context.CDCatalogs.ToList();
     }
     /// <summary>
     /// Retrieves <see cref="Person"/> entities filtered by last name, using LINQ and database context.
     /// </summary>
     /// <param name="lastName">Value of Person's last name - used for direct comparison in .Equals() calls.</param>
     /// <returns>Queryable source of Person entities that match given last name.</returns>
-    public IQueryable<CatalogCD> FilterPersonsByLastName(string lastName)
+    public IQueryable<CDCatalog> FilterPersonsByLastName(string lastName)
     {
-      IQueryable<CatalogCD> expression = from CatalogCD p in m_Context.CatalogCDs
-                                         where p.Artist.Equals(lastName)
+      IQueryable<CDCatalog> expression = from CDCatalog p in m_Context.CDCatalogs
+                                         where p.ArtistKey.Equals(lastName)
                                          select p;
       return expression;
     }
@@ -67,11 +67,11 @@ namespace TP.StructuralData.LINQ_to_SQL
     /// </summary>
     /// <param name="minYear">Minimum year of a <see cref="CatalogCD"/> to match.</param>
     /// <returns>LINQ expression as queryable source of <see cref="CatalogCD"/> objects.</returns>
-    public IEnumerable<CatalogCD> PreparePersonsByMinAgeLinq(int minYear)
+    public IEnumerable<CDCatalog> PreparePersonsByMinAgeLinq(int minYear)
     {
-      return from CatalogCD p in m_Context.CatalogCDs
-             where p.Year >= minYear
-             select p;
+      return from CDCatalog _item in m_Context.CDCatalogs
+             where _item.Year >= minYear
+             select _item;
     }
     /// <summary>
     /// Modifies age for all <see cref="CatalogCD"/> entities in database, and then retrieves <see cref="CatalogCD"/> entities
@@ -80,11 +80,11 @@ namespace TP.StructuralData.LINQ_to_SQL
     /// <param name="change">Number of years (positive or negative) to add to age of each Person.</param>
     /// <param name="minYea">Minimum age of a Person to match.</param>
     /// <returns>Enumerable source of Person entities that match or exceed given minimum age.</returns>
-    public IEnumerable<CatalogCD> ChangeAgeThenFilterPersonsByMinAge(short change, int minYea)
+    public IEnumerable<CDCatalog> ChangeAgeThenFilterPersonsByMinAge(short change, int minYea)
     {
-      IEnumerable<CatalogCD> linq = PreparePersonsByMinAgeLinq(minYea);
+      IEnumerable<CDCatalog> linq = PreparePersonsByMinAgeLinq(minYea);
       // Modify the data *BEFORE* evaluating LINQ expression.
-      foreach (CatalogCD p in m_Context.CatalogCDs)
+      foreach (CDCatalog p in m_Context.CDCatalogs)
         p.Year = (short)(p.Year + change);
       m_Context.SubmitChanges();
       return linq.ToList();
@@ -96,7 +96,7 @@ namespace TP.StructuralData.LINQ_to_SQL
     public void TruncateAllPersons()
     {
       // http://stackoverflow.com/questions/1516962/linq-to-sql-how-to-quickly-clear-a-table
-      m_Context.ExecuteCommand("TRUNCATE TABLE CatalogCD");
+      m_Context.ExecuteCommand("TRUNCATE TABLE CDCatalog");
     }
 
     #region IDisposable Support

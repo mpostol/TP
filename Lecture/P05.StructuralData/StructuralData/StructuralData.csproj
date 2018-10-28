@@ -51,7 +51,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LINQ to object\DataService.cs" />
+    <Compile Include="LINQ to object\CatalogDataContext.cs" />
+    <Compile Include="LINQ to object\CDCatalog.cs" />
     <Compile Include="LINQ to object\Person.cs" />
     <Compile Include="LINQ to SQL\Catalog.designer.cs">
       <AutoGen>True</AutoGen>

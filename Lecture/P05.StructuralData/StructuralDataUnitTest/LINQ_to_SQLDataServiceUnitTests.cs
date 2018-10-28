@@ -42,14 +42,14 @@ namespace TP.StructuralDataUnitTest
     [TestMethod]
     public void PersonService_AfterCreation_DataShouldBeEmpty()
     {
-      IEnumerable<CatalogCD> initialData = m_Service.GetAllPersons();
+      IEnumerable<CDCatalog> initialData = m_Service.GetAllPersons();
       Assert.AreEqual(0, initialData.Count());
     }
     [TestMethod]
     public void AddPerson_AddedEntity_ShouldBeTheOnlyOneAndCorrectEntity()
     {
       m_Service.AddCD(CreateCatalogCD());
-      IEnumerable<CatalogCD> data = m_Service.GetAllPersons();
+      IEnumerable<CDCatalog> data = m_Service.GetAllPersons();
       PrintPersons(data);
       Assert.AreEqual(1, data.Count());
       Assert.AreNotEqual(0, data.First().Id);
@@ -59,10 +59,10 @@ namespace TP.StructuralDataUnitTest
     {
       m_Service.AddCD(CreateCatalogCD(3));
       m_Service.AddCD(CreateCatalogCD(2));
-      IEnumerable<CatalogCD> _data = m_Service.GetAllPersons();
+      IEnumerable<CDCatalog> _data = m_Service.GetAllPersons();
       PrintPersons(_data);
       Assert.AreEqual(3 + 2, _data.Count());
-      foreach (CatalogCD p in _data)
+      foreach (CDCatalog p in _data)
         Assert.IsFalse(string.IsNullOrEmpty(p.Title));
       for (int i = 1; i < _data.Count(); i++)
         Assert.IsTrue(_data.ElementAt(i - 1).Id < _data.ElementAt(i).Id);
@@ -72,10 +72,10 @@ namespace TP.StructuralDataUnitTest
     //{
     //  CreateCatalogCD(3);
     //  CreateCatalogCD(2);
-    //  IEnumerable<CatalogCD> data = m_Service.FilterPersonsByLastName("Smith");
+    //  IEnumerable<CDCatalog> data = m_Service.FilterPersonsByLastName("Smith");
     //  PrintPersons(data);
     //  Assert.AreEqual(2, data.Count());
-    //  foreach (CatalogCD p in data)
+    //  foreach (CDCatalog p in data)
     //    Assert.AreEqual("Smith", p.LastName);
     //}
     //[TestMethod]
@@ -83,10 +83,10 @@ namespace TP.StructuralDataUnitTest
     //{
     //  CreateCatalogCD(3, "Person", startAge: 20, ageStep: 5); // ages: 20, 25, 30
     //  CreateCatalogCD(2, "Smith", startAge: 11, ageStep: 2); // ages: 11, 13
-    //  IEnumerable<CatalogCD> filtered = m_Service.FilterPersonsByMinAge(25);
+    //  IEnumerable<CDCatalog> filtered = m_Service.FilterPersonsByMinAge(25);
     //  PrintPersons(filtered);
     //  Assert.AreEqual(2, filtered.Count());
-    //  foreach (CatalogCD p in filtered)
+    //  foreach (CDCatalog p in filtered)
     //    Assert.IsTrue(p.Age >= 25);
     //}
     //[TestMethod]
@@ -94,27 +94,27 @@ namespace TP.StructuralDataUnitTest
     //{
     //  CreateCatalogCD(3, "Person", startAge: 20, ageStep: 5); // ages: 20, 25, 30 - will become 20+13, 25+13, 30+13
     //  CreateCatalogCD(2, "Smith", startAge: 11, ageStep: 2); // ages: 11, 13 - will become 11+13 = 24, 13+13 = 26
-    //  IEnumerable<CatalogCD> filtered = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: 13, minAge: 25);
+    //  IEnumerable<CDCatalog> filtered = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: 13, minAge: 25);
     //  PrintPersons(filtered);
     //  Assert.AreEqual(4, filtered.Count());
-    //  foreach (CatalogCD p in filtered)
+    //  foreach (CDCatalog p in filtered)
     //    Assert.IsTrue(p.Year >= 25);
     //}
     //[TestMethod]
     //public void ChangeAgeThenFilterPersonsByMinAge_MakeOlderThenYounger_OriginalAgeShouldBeRestored()
     //{
     //  CreateCatalogCD(3, "Young", startAge: 20, ageStep: 5);
-    //  IEnumerable<CatalogCD> persons = m_Service.GetAllPersons();
+    //  IEnumerable<CDCatalog> persons = m_Service.GetAllPersons();
     //  int[] originalAge = new int[persons.Count()];
     //  for (int i = 0; i < persons.Count(); i++)
     //    originalAge[i] = persons.ElementAt(i).Year;
-    //  IEnumerable<CatalogCD> oldPersons = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: 100, minAge: 120);
+    //  IEnumerable<CDCatalog> oldPersons = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: 100, minAge: 120);
     //  Assert.AreEqual(persons.Count(), oldPersons.Count());
-    //  foreach (CatalogCD p in oldPersons)
+    //  foreach (CDCatalog p in oldPersons)
     //    Assert.IsTrue(p.Year >= 120);
-    //  IEnumerable<CatalogCD> youngPersons = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: -100, minAge: 20).ToArray();
+    //  IEnumerable<CDCatalog> youngPersons = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: -100, minAge: 20).ToArray();
     //  Assert.AreEqual(persons.Count(), youngPersons.Count());
-    //  foreach (CatalogCD p in youngPersons)
+    //  foreach (CDCatalog p in youngPersons)
     //    Assert.IsTrue(p.Year >= 20 && p.Year < 100);
     //  int[] finalAge = new int[youngPersons.Count()];
     //  for (int i = 0; i < youngPersons.Count(); i++)
@@ -155,31 +155,31 @@ namespace TP.StructuralDataUnitTest
     private readonly string m_ConnectionString = Properties.Settings.Default.UnitTestDataConnectionString;
     private DataService m_Service;
     private static int m_catalogCDIndex = 0;
-    private IEnumerable<CatalogCD> CreateCatalogCD(int count)
+    private IEnumerable<CDCatalog> CreateCatalogCD(int count)
     {
-      List<CatalogCD> _list = new List<CatalogCD>();
+      List<CDCatalog> _list = new List<CDCatalog>();
       for (int i = 0; i < count; i++)
         _list.Add(CreateCatalogCD());
       return _list;
     }
-    private CatalogCD CreateCatalogCD()
+    private CDCatalog CreateCatalogCD()
     {
       m_catalogCDIndex += 1;
-      return new CatalogCD()
+      return new CDCatalog()
       {
-        Artist = $"artist{m_catalogCDIndex}",
+        Person = new Person() { FirstName = $"FirstName{m_catalogCDIndex}", LastName = $"LastName{m_catalogCDIndex}", Age = m_catalogCDIndex },
         Country = $"country{m_catalogCDIndex}",
-        Id = m_catalogCDIndex,
+        //Id = m_catalogCDIndex,
         Price = 100 + m_catalogCDIndex,
         Title = $"title{m_catalogCDIndex}",
         Year = (short)(2000 + m_catalogCDIndex)
       };
     }
-    private void PrintPersons(IEnumerable<CatalogCD> data)
+    private void PrintPersons(IEnumerable<CDCatalog> data)
     {
 #if PRINT_PERSONS
-      foreach (CatalogCD p in data)
-        Debug.WriteLine($"Person(PersonId={p.Id}) : {p.Title} {p.Artist}, year {p.Year}");
+      foreach (CDCatalog p in data)
+        Debug.WriteLine($"Person(PersonId={p.Id}) : {p.Title} {p.Person.FirstName}, year {p.Year}");
 #endif
     }
     #endregion
