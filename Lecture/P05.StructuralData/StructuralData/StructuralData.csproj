@@ -51,6 +51,14 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="LINQ to object\Catalog.cs">
+      <DependentUpon>Catalog.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LINQ to object\Catalog.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Catalog.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LINQ to object\CatalogDataContext.cs" />
     <Compile Include="LINQ to object\CDCatalog.cs" />
     <Compile Include="LINQ to object\Person.cs" />
@@ -72,6 +80,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="LINQ to object\Catalog.xsc">
+      <DependentUpon>Catalog.xsd</DependentUpon>
+    </None>
+    <None Include="LINQ to object\Catalog.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Catalog.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="LINQ to object\Catalog.xss">
+      <DependentUpon>Catalog.xsd</DependentUpon>
+    </None>
     <None Include="LINQ to SQL\Catalog.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Catalog.designer.cs</LastGenOutput>
@@ -85,6 +104,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>

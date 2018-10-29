@@ -15,7 +15,7 @@ namespace TP.StructuralData.LINQ_to_object
   {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public uint Age { get; set; }
+    public ushort Age { get; set; }
     /// <summary>
     /// Parameterless constructor, initializes all properties with default values.
     /// </summary>
@@ -26,7 +26,7 @@ namespace TP.StructuralData.LINQ_to_object
     /// <param name="firstName">First name of new Person.</param>
     /// <param name="lastName">Last name of new Person.</param>
     /// <param name="age">Age of new Person.</param>
-    public Person(string firstName, string lastName, uint age)
+    public Person(string firstName, string lastName, ushort age)
     {
       FirstName = firstName;
       LastName = lastName;

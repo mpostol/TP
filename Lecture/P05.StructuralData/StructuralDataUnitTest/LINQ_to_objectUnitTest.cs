@@ -7,6 +7,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using TP.StructuralData.LINQ_to_object;
@@ -17,144 +18,76 @@ namespace TP.StructuralDataUnitTest
   public class LINQ_to_objectUnitTest
   {
     [TestMethod]
-    public void DataService_AfterCreation_CollectionIsEmpty()
+    public void CatalogConstructorTest()
     {
-      Assert.IsNotNull(m_Service);
-      IEnumerable<Person> _initialData = m_Service.GetAllPersons();
-      Assert.AreEqual(0, _initialData.Count());
+      using (Catalog _newCatalog = new Catalog())
+      {
+        Assert.AreEqual<int>(0, _newCatalog.Person.Count);
+        Assert.AreEqual<int>(0, _newCatalog.CDCatalogEntity.Count);
+        Assert.AreEqual<int>(1, _newCatalog.Relations.Count);
+        DataRelation _relation = _newCatalog.Relations["Person_CDCatalog"];
+        Assert.IsNotNull(_relation);
+        Assert.AreEqual<string>(_newCatalog.Person.TableName, _relation.ParentTable.TableName);
+        Assert.AreEqual<string>(_newCatalog.CDCatalogEntity.TableName, _relation.ChildTable.TableName);
+      }
     }
     [TestMethod]
-    public void AddPerson_AddedPerson_IsTheFirstAndOnlyOneInCollection()
+    public void CatalogConstructorInitialDataTest()
     {
-      Person _person = new Person();
-      m_Service.AddPerson(_person);
-      IEnumerable<Person> data = m_Service.GetAllPersons();
-      Assert.AreEqual(1, data.Count());
-      Assert.AreSame(data.First(), _person);
+      using (Catalog _newCatalog = new Catalog(PrepareData()))
+      {
+        Assert.AreEqual<int>(3, _newCatalog.Person.Count);
+        Assert.AreEqual<int>(0, _newCatalog.CDCatalogEntity.Count);
+        Assert.AreEqual<int>(1, _newCatalog.Relations.Count);
+        DataRelation _relation = _newCatalog.Relations["Person_CDCatalog"];
+        Assert.IsNotNull(_relation);
+        Assert.AreEqual<string>(_newCatalog.Person.TableName, _relation.ParentTable.TableName);
+        Assert.AreEqual<string>(_newCatalog.CDCatalogEntity.TableName, _relation.ChildTable.TableName);
+      }
     }
     [TestMethod]
-    public void GetAllPersons_AfterAdding0PersonsFromArray_CountShouldBeEqual()
+    public void FilterPersonsByLastName_ForEachTest()
     {
-      Person[] input = GetAllPersonsTest_InputCases[0];
-      AddPersonsFromArray(input);
-      IEnumerable<Person> dataAfterAdding = m_Service.GetAllPersons();
-      Assert.AreEqual(input.Length, dataAfterAdding.Count());
+      using (Catalog _newCatalog = new Catalog(PrepareData()))
+      {
+        IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_ForEach("Person");
+        foreach (Catalog.PersonRow p in _filtered)
+          Assert.AreEqual("Person", p.LastName);
+        Assert.AreEqual(2, _filtered.Count());
+      }
     }
     [TestMethod]
-    public void GetAllPersons_AfterAdding2PersonsFromArray_CountShouldBeEqual()
+    public void FilterPersonsByLastName_MethodSyntaxTest()
     {
-      Person[] input = GetAllPersonsTest_InputCases[1];
-      AddPersonsFromArray(input);
-      IEnumerable<Person> dataAfterAdding = m_Service.GetAllPersons();
-      Assert.AreEqual(input.Length, dataAfterAdding.Count());
+      using (Catalog _newCatalog = new Catalog(PrepareData()))
+      {
+        IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_MethodSyntax("Person");
+        foreach (Catalog.PersonRow p in _filtered)
+          Assert.AreEqual("Person", p.LastName);
+        Assert.AreEqual(2, _filtered.Count());
+      }
     }
     [TestMethod]
-    public void GetAllPersons_AfterAdding3PersonsFromArray_CountShouldBeEqual()
+    public void FilterPersonsByLastName_QuerySyntaxTest()
     {
-      Person[] input = GetAllPersonsTest_InputCases[2];
-      AddPersonsFromArray(input);
-      IEnumerable<Person> dataAfterAdding = m_Service.GetAllPersons();
-      Assert.AreEqual(input.Length, dataAfterAdding.Count());
-    }
-    [TestMethod]
-    public void FilterPersonsByLastName_UseForEach_FindTwoPersons()
-    {
-      PrepareData();
-      IEnumerable<Person> filtered = m_Service.FilterPersonsByLastName_ForEach("Person");
-      foreach (Person p in filtered)
-        Assert.AreEqual("Person", p.LastName);
-      Assert.AreEqual(2, filtered.Count());
-    }
-    [TestMethod]
-    public void FilterPersonsByLastName_UseExtensionMethod_FindTwoPersons()
-    {
-      PrepareData();
-      IEnumerable<Person> filtered = m_Service.FilterPersonsByLastName_ExtensionMethod("Person");
-      foreach (Person p in filtered)
-        Assert.AreEqual("Person", p.LastName);
-      Assert.AreEqual(2, filtered.Count());
-    }
-    [TestMethod]
-    public void FilterPersonsByLastName_UseLinq_FindTwoPersons()
-    {
-      PrepareData();
-      IEnumerable<Person> filtered = m_Service.FilterPersonsByLastName("Person");
-      foreach (Person p in filtered)
-        Assert.AreEqual("Person", p.LastName);
-      Assert.AreEqual(2, filtered.Count());
-    }
-    [TestMethod]
-    public void FilterPersonsByMinAge_CheckExpectedCount_GivenMinAge_25()
-    {
-      const int minAge = 25, expectedCount = 2;
-      PrepareData();
-      IEnumerable<Person> filtered = m_Service.FilterPersonsByMinAge(minAge);
-      foreach (Person p in filtered)
-        Assert.IsTrue(p.Age >= minAge);
-      Assert.AreEqual(expectedCount, filtered.Count());
-    }
-    [TestMethod]
-    public void FilterPersonsByMinAge_CheckExpectedCount_GivenMinAge_40()
-    {
-      const int minAge = 40, expectedCount = 1;
-      PrepareData();
-      IEnumerable<Person> filtered = m_Service.FilterPersonsByMinAge(minAge);
-      foreach (Person p in filtered)
-        Assert.IsTrue(p.Age >= minAge);
-      Assert.AreEqual(expectedCount, filtered.Count());
-    }
-    [TestMethod]
-    public void FilterPersonsByMinAge_CheckExpectedCount_GivenMinAge_99()
-    {
-      const int minAge = 99, expectedCount = 0;
-      PrepareData();
-      IEnumerable<Person> filtered = m_Service.FilterPersonsByMinAge(minAge);
-      foreach (Person p in filtered)
-        Assert.IsTrue(p.Age >= minAge);
-      Assert.AreEqual(expectedCount, filtered.Count());
-    }
-    [TestMethod]
-    public void DispalyContentTest()
-    {
-      PrepareData();
-      IEnumerable<Person> _all = m_Service.GetAllPersons();
-      Display("All persons", _all);
-      const string lastName = "Person";
-      const int minAge = 25;
-      Display($"With last name '{lastName}' / ForEach", m_Service.FilterPersonsByLastName_ForEach(lastName));
-      Display($"With last name '{lastName}' / Extension", m_Service.FilterPersonsByLastName_ExtensionMethod(lastName));
-      Display($"With last name '{lastName}' / LINQ", m_Service.FilterPersonsByLastName(lastName));
-      Display("After finishing studies", m_Service.FilterPersonsByMinAge(minAge));
+      using (Catalog _newCatalog = new Catalog(PrepareData()))
+      {
+        IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_QuerySyntax("Person");
+        foreach (Catalog.PersonRow p in _filtered)
+          Assert.AreEqual("Person", p.LastName);
+        Assert.AreEqual(2, _filtered.Count());
+      }
     }
 
     #region test instrumentation
-    [TestInitialize]
-    public void Init()
+    private IEnumerable<Person> PrepareData()
     {
-      m_Service = new CatalogDataContext();
-    }
-    private CatalogDataContext m_Service;
-    private static void Display(string title, IEnumerable<Person> data)
-    {
-      Debug.WriteLine($"*** {title} ***");
-      foreach (Person p in data)
-        Debug.WriteLine($"Person: {p.FirstName} {p.LastName}, age {p.Age}");
-    }
-    private static readonly Person[][] GetAllPersonsTest_InputCases = new Person[][] {
-            new Person[] { },
-            new Person[] { new Person("A", "One", 1), new Person("B", "Two", 2) },
-            new Person[] { new Person("A", "One", 1), new Person("B", "Two", 2), new Person("C", "Three", 3) },
-        };
-    private void AddPersonsFromArray(Person[] input)
-    {
-      foreach (Person p in input)
-        m_Service.AddPerson(p);
-    }
-    private void PrepareData()
-    {
-      m_Service.AddPerson(new Person("First", "Person", 20));
-      m_Service.AddPerson(new Person("Second", "Person", 30));
-      m_Service.AddPerson(new Person("Mister", "Clever", 42));
+      return new List<Person>()
+      {
+        new Person("First", "Person", 20),
+        new Person("Second", "Person", 30),
+        new Person("Mister", "Clever", 42)
+      };
     }
     #endregion
   }

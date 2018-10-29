@@ -14,13 +14,6 @@ namespace TP.StructuralData.LINQ_to_object
   {
 
     /// <summary>
-    /// Constructor of DataService class, creates private underlying collection.
-    /// </summary>
-    public CatalogDataContext()
-    {
-      Persons = new List<Person>();
-    }
-    /// <summary>
     /// Adds given person object to underlying collection.
     /// </summary>
     /// <param name="p">Person object to add to collection.</param>
