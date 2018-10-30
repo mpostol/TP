@@ -10,7 +10,7 @@
     <Shape ID="DesignTable:Person" ZOrder="2" X="836" Y="217" Height="105" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="101" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:Person_CDCatalog" ZOrder="1" LineWidth="11">
+    <Connector ID="DesignRelation:ArtistRelation" ZOrder="1" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>836</X>

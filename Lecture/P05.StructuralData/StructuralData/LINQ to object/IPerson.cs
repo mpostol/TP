@@ -7,7 +7,7 @@
 
 using System.Collections.Generic;
 
-namespace TP.StructuralData.LINQ_to_object
+namespace TP.StructuralData
 {
   public interface IPerson
   {

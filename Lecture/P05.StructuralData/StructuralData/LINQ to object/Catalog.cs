@@ -10,8 +10,17 @@ using System.Linq;
 
 namespace TP.StructuralData.LINQ_to_object
 {
+  /// <summary>
+  /// Class Catalog.
+  /// Implements the <see cref="System.Data.DataSet" />
+  /// </summary>
+  /// <seealso cref="System.Data.DataSet" />
   public partial class Catalog
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Catalog"/> class.
+    /// </summary>
+    /// <param name="persons">The persons cd's to be added to the catalog.</param>
     public Catalog(IEnumerable<IPerson> persons) : this()
     {
       foreach (IPerson _item in persons)
@@ -21,6 +30,11 @@ namespace TP.StructuralData.LINQ_to_object
           this.CDCatalogEntity.AddCDCatalogEntityRow(_cdEntity.Title, _newPersonROw, _cdEntity.Country, _cdEntity.Price, _cdEntity.Year);
       }
     }
+    /// <summary>
+    /// Class PersonDataTable.
+    /// Implements the <see cref="System.Data.TypedTableBase{TP.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
+    /// </summary>
+    /// <seealso cref="System.Data.TypedTableBase{TP.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
     public partial class PersonDataTable
     {
       public IEnumerable<PersonRow> FilterPersonsByLastName_ForEach(string lastName)
@@ -34,8 +48,7 @@ namespace TP.StructuralData.LINQ_to_object
       /// <summary>
       /// It uses extension method .Where() and lambda predicate to match each object.
       /// </summary>
-      /// <param name="lastName">Value of Person's last name - used for direct comparison in .Equals() calls.</param>
-      /// <returns>Enumerable source of Person objects that match given last name.</returns>
+      /// <param name="lastName">Person's last name.</param>
       public IEnumerable<PersonRow> FilterPersonsByLastName_MethodSyntax(string lastName)
       {
         return this.Where(_person => _person.LastName.Equals(lastName));

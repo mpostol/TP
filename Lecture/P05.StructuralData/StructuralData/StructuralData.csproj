@@ -59,10 +59,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="LINQ to object\CDCatalog.cs" />
     <Compile Include="LINQ to object\ICDCatalog.cs" />
     <Compile Include="LINQ to object\IPerson.cs" />
-    <Compile Include="LINQ to object\Person.cs" />
     <Compile Include="LINQ to SQL\Catalog.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

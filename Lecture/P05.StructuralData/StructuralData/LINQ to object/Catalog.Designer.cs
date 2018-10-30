@@ -28,7 +28,7 @@ namespace TP.StructuralData.LINQ_to_object {
         
         private PersonDataTable tablePerson;
         
-        private global::System.Data.DataRelation relationPerson_CDCatalog;
+        private global::System.Data.DataRelation relationArtistRelation;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -220,7 +220,7 @@ namespace TP.StructuralData.LINQ_to_object {
                     this.tablePerson.InitVars();
                 }
             }
-            this.relationPerson_CDCatalog = this.Relations["Person_CDCatalog"];
+            this.relationArtistRelation = this.Relations["ArtistRelation"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -235,10 +235,10 @@ namespace TP.StructuralData.LINQ_to_object {
             base.Tables.Add(this.tableCDCatalogEntity);
             this.tablePerson = new PersonDataTable();
             base.Tables.Add(this.tablePerson);
-            this.relationPerson_CDCatalog = new global::System.Data.DataRelation("Person_CDCatalog", new global::System.Data.DataColumn[] {
+            this.relationArtistRelation = new global::System.Data.DataRelation("ArtistRelation", new global::System.Data.DataColumn[] {
                         this.tablePerson.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableCDCatalogEntity.PersonColumn}, false);
-            this.Relations.Add(this.relationPerson_CDCatalog);
+            this.Relations.Add(this.relationArtistRelation);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -451,7 +451,7 @@ namespace TP.StructuralData.LINQ_to_object {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CDCatalogEntityRow AddCDCatalogEntityRow(string Title, PersonRow parentPersonRowByPerson_CDCatalog, string Country, decimal Price, ushort Year) {
+            public CDCatalogEntityRow AddCDCatalogEntityRow(string Title, PersonRow parentPersonRowByArtistRelation, string Country, decimal Price, ushort Year) {
                 CDCatalogEntityRow rowCDCatalogEntityRow = ((CDCatalogEntityRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -460,8 +460,8 @@ namespace TP.StructuralData.LINQ_to_object {
                         Country,
                         Price,
                         Year};
-                if ((parentPersonRowByPerson_CDCatalog != null)) {
-                    columnValuesArray[2] = parentPersonRowByPerson_CDCatalog[0];
+                if ((parentPersonRowByArtistRelation != null)) {
+                    columnValuesArray[2] = parentPersonRowByArtistRelation[0];
                 }
                 rowCDCatalogEntityRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCDCatalogEntityRow);
@@ -1061,10 +1061,10 @@ namespace TP.StructuralData.LINQ_to_object {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public PersonRow PersonRow {
                 get {
-                    return ((PersonRow)(this.GetParentRow(this.Table.ParentRelations["Person_CDCatalog"])));
+                    return ((PersonRow)(this.GetParentRow(this.Table.ParentRelations["ArtistRelation"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Person_CDCatalog"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["ArtistRelation"]);
                 }
             }
             
@@ -1224,11 +1224,11 @@ namespace TP.StructuralData.LINQ_to_object {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CDCatalogEntityRow[] GetCDCatalogRows() {
-                if ((this.Table.ChildRelations["Person_CDCatalog"] == null)) {
+                if ((this.Table.ChildRelations["ArtistRelation"] == null)) {
                     return new CDCatalogEntityRow[0];
                 }
                 else {
-                    return ((CDCatalogEntityRow[])(base.GetChildRows(this.Table.ChildRelations["Person_CDCatalog"])));
+                    return ((CDCatalogEntityRow[])(base.GetChildRows(this.Table.ChildRelations["ArtistRelation"])));
                 }
             }
         }

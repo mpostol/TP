@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Instrumentation\TestDataGenerator.cs" />
     <Compile Include="LinqMethodSyntaxExamplesUnitTest.cs" />
     <Compile Include="LinqQuerySyntaxExamplesUnitTest.cs" />
     <Compile Include="LINQ_to_SQLDataServiceUnitTests.cs" />
