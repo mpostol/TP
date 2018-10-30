@@ -12,20 +12,24 @@ namespace TP.StructuralData.LINQ_to_object
 {
   public partial class Catalog
   {
-    public Catalog(IEnumerable<Person> persons) : this()
+    public Catalog(IEnumerable<IPerson> persons) : this()
     {
-      foreach (Person _item in persons)
-        Person.AddPersonRow(_item.FirstName, _item.LastName, _item.Age);
+      foreach (IPerson _item in persons)
+      {
+        PersonRow _newPersonROw = Person.AddPersonRow(_item.FirstName, _item.LastName, _item.Age);
+        foreach (ICDCatalog _cdEntity in _item.CDs)
+          this.CDCatalogEntity.AddCDCatalogEntityRow(_cdEntity.Title, _newPersonROw, _cdEntity.Country, _cdEntity.Price, _cdEntity.Year);
+      }
     }
     public partial class PersonDataTable
     {
       public IEnumerable<PersonRow> FilterPersonsByLastName_ForEach(string lastName)
       {
-        List<PersonRow> result = new List<PersonRow>();
+        List<PersonRow> _result = new List<PersonRow>();
         foreach (PersonRow _row in this)
           if (_row.LastName.Equals(lastName))
-            result.Add(_row);
-        return result;
+            _result.Add(_row);
+        return _result;
       }
       /// <summary>
       /// It uses extension method .Where() and lambda predicate to match each object.
@@ -34,7 +38,7 @@ namespace TP.StructuralData.LINQ_to_object
       /// <returns>Enumerable source of Person objects that match given last name.</returns>
       public IEnumerable<PersonRow> FilterPersonsByLastName_MethodSyntax(string lastName)
       {
-        return this.Where(p => p.LastName.Equals(lastName));
+        return this.Where(_person => _person.LastName.Equals(lastName));
       }
       /// <summary>
       /// It uses LINQ to Objects expression.
@@ -42,9 +46,9 @@ namespace TP.StructuralData.LINQ_to_object
       /// <param name="lastName">Person's last name.</param>
       public IEnumerable<PersonRow> FilterPersonsByLastName_QuerySyntax(string lastName)
       {
-        return from p in this
-               where p.LastName.Equals(lastName)
-               select p;
+        return from _person in this
+               where _person.LastName.Equals(lastName)
+               select _person;
       }
     }
   }
