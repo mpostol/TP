@@ -33,9 +33,9 @@ namespace TP.StructuralData.LINQ_to_SQL
     partial void InsertPerson(Person instance);
     partial void UpdatePerson(Person instance);
     partial void DeletePerson(Person instance);
-    partial void InsertCDCatalog(CDCatalog instance);
-    partial void UpdateCDCatalog(CDCatalog instance);
-    partial void DeleteCDCatalog(CDCatalog instance);
+    partial void InsertCDCatalogEntity(CDCatalogEntity instance);
+    partial void UpdateCDCatalogEntity(CDCatalogEntity instance);
+    partial void DeleteCDCatalogEntity(CDCatalogEntity instance);
     #endregion
 		
 		public CatalogDataContext() : 
@@ -76,11 +76,11 @@ namespace TP.StructuralData.LINQ_to_SQL
 			}
 		}
 		
-		public System.Data.Linq.Table<CDCatalog> CDCatalogs
+		public System.Data.Linq.Table<CDCatalogEntity> CDCatalogEntities
 		{
 			get
 			{
-				return this.GetTable<CDCatalog>();
+				return this.GetTable<CDCatalogEntity>();
 			}
 		}
 	}
@@ -99,7 +99,7 @@ namespace TP.StructuralData.LINQ_to_SQL
 		
 		private int _Age;
 		
-		private EntitySet<CDCatalog> _CDCatalogs;
+		private EntitySet<CDCatalogEntity> _CDCatalogEntities;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -117,7 +117,7 @@ namespace TP.StructuralData.LINQ_to_SQL
 		
 		public Person()
 		{
-			this._CDCatalogs = new EntitySet<CDCatalog>(new Action<CDCatalog>(this.attach_CDCatalogs), new Action<CDCatalog>(this.detach_CDCatalogs));
+			this._CDCatalogEntities = new EntitySet<CDCatalogEntity>(new Action<CDCatalogEntity>(this.attach_CDCatalogEntities), new Action<CDCatalogEntity>(this.detach_CDCatalogEntities));
 			OnCreated();
 		}
 		
@@ -201,16 +201,16 @@ namespace TP.StructuralData.LINQ_to_SQL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_CDCatalog", Storage="_CDCatalogs", ThisKey="Id", OtherKey="ArtistKey")]
-		public EntitySet<CDCatalog> CDCatalogs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_CDCatalogEntity", Storage="_CDCatalogEntities", ThisKey="Id", OtherKey="ArtistKey")]
+		public EntitySet<CDCatalogEntity> CDCatalogEntities
 		{
 			get
 			{
-				return this._CDCatalogs;
+				return this._CDCatalogEntities;
 			}
 			set
 			{
-				this._CDCatalogs.Assign(value);
+				this._CDCatalogEntities.Assign(value);
 			}
 		}
 		
@@ -234,21 +234,21 @@ namespace TP.StructuralData.LINQ_to_SQL
 			}
 		}
 		
-		private void attach_CDCatalogs(CDCatalog entity)
+		private void attach_CDCatalogEntities(CDCatalogEntity entity)
 		{
 			this.SendPropertyChanging();
 			entity.Person = this;
 		}
 		
-		private void detach_CDCatalogs(CDCatalog entity)
+		private void detach_CDCatalogEntities(CDCatalogEntity entity)
 		{
 			this.SendPropertyChanging();
 			entity.Person = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CDCatalog")]
-	public partial class CDCatalog : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CDCatalogEntity")]
+	public partial class CDCatalogEntity : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -285,7 +285,7 @@ namespace TP.StructuralData.LINQ_to_SQL
     partial void OnArtistKeyChanged();
     #endregion
 		
-		public CDCatalog()
+		public CDCatalogEntity()
 		{
 			this._Person = default(EntityRef<Person>);
 			OnCreated();
@@ -415,7 +415,7 @@ namespace TP.StructuralData.LINQ_to_SQL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_CDCatalog", Storage="_Person", ThisKey="ArtistKey", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Person_CDCatalogEntity", Storage="_Person", ThisKey="ArtistKey", OtherKey="Id", IsForeignKey=true)]
 		public Person Person
 		{
 			get
@@ -432,12 +432,12 @@ namespace TP.StructuralData.LINQ_to_SQL
 					if ((previousValue != null))
 					{
 						this._Person.Entity = null;
-						previousValue.CDCatalogs.Remove(this);
+						previousValue.CDCatalogEntities.Remove(this);
 					}
 					this._Person.Entity = value;
 					if ((value != null))
 					{
-						value.CDCatalogs.Add(this);
+						value.CDCatalogEntities.Add(this);
 						this._ArtistKey = value.Id;
 					}
 					else

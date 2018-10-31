@@ -8,174 +8,132 @@
 #define PRINT_PERSONS  //uncomment to print persons to the console in tests that call PrintPersons()
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Data.Linq.Mapping;
+using System.IO;
 using System.Linq;
 using TP.StructuralData.LINQ_to_SQL;
+using TP.StructuralDataUnitTest.Instrumentation;
 
 namespace TP.StructuralDataUnitTest
 {
   [TestClass]
-  public class PersonServiceTests
+  [DeploymentItem(@"Instrumentation\CDCatalog.mdf", @"Instrumentation")]
+  public class LINQ_to_SQLDataServiceUnitTests
   {
 
-    [TestInitialize]
-    public void Initialize()
+    [TestMethod]
+    public void CatalogConstructorTest()
     {
-      m_Service = new DataService(m_ConnectionString);
-    }
-    [TestCleanup]
-    public void CleanUp()
-    {
-      // Vital for ensuring that table is empty after each test
-      m_Service.TruncateAllPersons();
-      // Release database context
-      m_Service.Dispose();
+      FileInfo _databaseFile = new FileInfo(@"Instrumentation\CDCatalog.mdf");
+      Assert.IsTrue(_databaseFile.Exists, $"{Environment.CurrentDirectory}");
+      using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
+      {
+        Assert.IsNotNull(_newCatalog.Connection);
+        Assert.AreEqual<int>(0, _newCatalog.Persons.Count());
+        Assert.AreEqual<int>(0, _newCatalog.CDCatalogEntities.Count());
+        try
+        {
+          _newCatalog.AddContent(TestDataGenerator.PrepareData());
+          Assert.AreEqual<int>(3, _newCatalog.Persons.Count());
+          Assert.AreEqual<int>(15, _newCatalog.CDCatalogEntities.Count());
+        }
+        finally
+        {
+          _newCatalog.TruncateAllData();
+        }
+      }
     }
     [TestMethod]
-    public void PersonService_AfterCreation_DataShouldBeEmpty()
+    public void FilterPersonsByLastName_ForEachTest()
     {
-      IEnumerable<CDCatalog> initialData = m_Service.GetAllPersons();
-      Assert.AreEqual(0, initialData.Count());
+      using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
+      {
+        try
+        {
+          _newCatalog.AddContent(TestDataGenerator.PrepareData());
+          IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_ForEach("Person");
+          Type _returnedType = _filtered.GetType();
+          Assert.AreEqual<string>("System.Collections.Generic.List`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
+          Assert.AreEqual<string>("System.Collections.Generic.List`1[TP.StructuralData.LINQ_to_SQL.Person]", _filtered.ToString(), _filtered.ToString());
+          Assert.AreEqual(2, _filtered.Count());
+          foreach (Person p in _filtered)
+            Assert.AreEqual("Person", p.LastName);
+        }
+        finally
+        {
+          _newCatalog.TruncateAllData();
+        }
+      }
     }
     [TestMethod]
-    public void AddPerson_AddedEntity_ShouldBeTheOnlyOneAndCorrectEntity()
+    public void FilterPersonsByLastName_MethodSyntaxTest()
     {
-      m_Service.AddCD(CreateCatalogCD());
-      IEnumerable<CDCatalog> data = m_Service.GetAllPersons();
-      PrintPersons(data);
-      Assert.AreEqual(1, data.Count());
-      Assert.AreNotEqual(0, data.First().Id);
+      using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
+      {
+        try
+        {
+          _newCatalog.AddContent(TestDataGenerator.PrepareData());
+          IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_MethodSyntax("Person");
+          Type _returnedType = _filtered.GetType();
+          Assert.AreEqual<string>("System.Data.Linq.DataQuery`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
+          Assert.AreEqual<string>("SELECT [t0].[Id], [t0].[FirstName], [t0].[LastName], [t0].[Age]\r\nFROM [dbo].[Person] AS [t0]\r\nWHERE [t0].[LastName] = @p0", _filtered.ToString().Trim());
+          Assert.AreEqual(2, _filtered.Count());
+          foreach (Person p in _filtered)
+            Assert.AreEqual("Person", p.LastName);
+        }
+        finally
+        {
+          _newCatalog.TruncateAllData();
+        }
+      }
     }
     [TestMethod]
-    public void GetAllPersons_ExpectCorrectEntities_WithIncreasingPersonId()
+    public void FilterPersonsByLastName_QuerySyntaxTest()
     {
-      m_Service.AddCD(CreateCatalogCD(3));
-      m_Service.AddCD(CreateCatalogCD(2));
-      IEnumerable<CDCatalog> _data = m_Service.GetAllPersons();
-      PrintPersons(_data);
-      Assert.AreEqual(3 + 2, _data.Count());
-      foreach (CDCatalog p in _data)
-        Assert.IsFalse(string.IsNullOrEmpty(p.Title));
-      for (int i = 1; i < _data.Count(); i++)
-        Assert.IsTrue(_data.ElementAt(i - 1).Id < _data.ElementAt(i).Id);
+      using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
+      {
+        try
+        {
+          _newCatalog.AddContent(TestDataGenerator.PrepareData());
+          IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_QuerySyntax("Person");
+          Type _returnedType = _filtered.GetType();
+          Assert.AreEqual<string>("System.Data.Linq.DataQuery`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
+          Assert.AreEqual<string>("SELECT [t0].[Id], [t0].[FirstName], [t0].[LastName], [t0].[Age]\r\nFROM [dbo].[Person] AS [t0]\r\nWHERE [t0].[LastName] = @p0", _filtered.ToString().Trim());
+          Assert.AreEqual(2, _filtered.Count());
+          foreach (Person p in _filtered)
+            Assert.AreEqual("Person", p.LastName);
+        }
+        finally
+        {
+          _newCatalog.TruncateAllData();
+        }
+      }
     }
-    //[TestMethod]
-    //public void FilterPersonsByLastName_FilterTwoSmith_OutOfFivePersons()
-    //{
-    //  CreateCatalogCD(3);
-    //  CreateCatalogCD(2);
-    //  IEnumerable<CDCatalog> data = m_Service.FilterPersonsByLastName("Smith");
-    //  PrintPersons(data);
-    //  Assert.AreEqual(2, data.Count());
-    //  foreach (CDCatalog p in data)
-    //    Assert.AreEqual("Smith", p.LastName);
-    //}
-    //[TestMethod]
-    //public void FilterPersonsByMinAge_FindTwoPersonsInAge25OrMore()
-    //{
-    //  CreateCatalogCD(3, "Person", startAge: 20, ageStep: 5); // ages: 20, 25, 30
-    //  CreateCatalogCD(2, "Smith", startAge: 11, ageStep: 2); // ages: 11, 13
-    //  IEnumerable<CDCatalog> filtered = m_Service.FilterPersonsByMinAge(25);
-    //  PrintPersons(filtered);
-    //  Assert.AreEqual(2, filtered.Count());
-    //  foreach (CDCatalog p in filtered)
-    //    Assert.IsTrue(p.Age >= 25);
-    //}
-    //[TestMethod]
-    //public void ChangeAgeThenFilterPersonsByMinAge_FindFourPersonsInAge25OrMore()
-    //{
-    //  CreateCatalogCD(3, "Person", startAge: 20, ageStep: 5); // ages: 20, 25, 30 - will become 20+13, 25+13, 30+13
-    //  CreateCatalogCD(2, "Smith", startAge: 11, ageStep: 2); // ages: 11, 13 - will become 11+13 = 24, 13+13 = 26
-    //  IEnumerable<CDCatalog> filtered = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: 13, minAge: 25);
-    //  PrintPersons(filtered);
-    //  Assert.AreEqual(4, filtered.Count());
-    //  foreach (CDCatalog p in filtered)
-    //    Assert.IsTrue(p.Year >= 25);
-    //}
-    //[TestMethod]
-    //public void ChangeAgeThenFilterPersonsByMinAge_MakeOlderThenYounger_OriginalAgeShouldBeRestored()
-    //{
-    //  CreateCatalogCD(3, "Young", startAge: 20, ageStep: 5);
-    //  IEnumerable<CDCatalog> persons = m_Service.GetAllPersons();
-    //  int[] originalAge = new int[persons.Count()];
-    //  for (int i = 0; i < persons.Count(); i++)
-    //    originalAge[i] = persons.ElementAt(i).Year;
-    //  IEnumerable<CDCatalog> oldPersons = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: 100, minAge: 120);
-    //  Assert.AreEqual(persons.Count(), oldPersons.Count());
-    //  foreach (CDCatalog p in oldPersons)
-    //    Assert.IsTrue(p.Year >= 120);
-    //  IEnumerable<CDCatalog> youngPersons = m_Service.ChangeAgeThenFilterPersonsByMinAge(change: -100, minAge: 20).ToArray();
-    //  Assert.AreEqual(persons.Count(), youngPersons.Count());
-    //  foreach (CDCatalog p in youngPersons)
-    //    Assert.IsTrue(p.Year >= 20 && p.Year < 100);
-    //  int[] finalAge = new int[youngPersons.Count()];
-    //  for (int i = 0; i < youngPersons.Count(); i++)
-    //    finalAge[i] = youngPersons.ElementAt(i).Year;
-    //  CollectionAssert.AreEqual(originalAge, finalAge);
-    //  PrintPersons(youngPersons);
-    //}
-    //TODO review; it is from LinqToSqlApp
-    //private static void Main(string[] args)
-    //{
-    //// Connection string defined in LinqToSqlApp project settings.
-    //string connectionString = global::LinqToSqlApp.Properties.Settings.Default.PersonDataConnectionString;
-    //using (PersonService service = new PersonService(connectionString))
-    //{
-    //  IEnumerable<Person> all = service.GetAllPersons();
-    //  Display("Everyone", all);
-    //  Console.WriteLine();
-    //  const string lastName = "Kowalski";
-    //  const int minAge = 25;
-    //  const int change = 11;
-    //  Display("With last name '" + lastName + "'", service.FilterPersonsByLastName(lastName));
-    //  Console.WriteLine();
-    //  Display("After finishing studies", service.FilterPersonsByMinAge(minAge));
-    //  Display("Forward " + change + " years", service.ChangeAgeThenFilterPersonsByMinAge(change, minAge));
-    //  Display("And back " + change + " years", service.ChangeAgeThenFilterPersonsByMinAge(-change, minAge));
-    //}
-    //Console.ReadLine();
-    //}
-    //private static void Display(string title, IEnumerable<Person> data)
-    //{
-    //  Console.WriteLine("*** {0} ***", title);
-    //  foreach (Person p in data)
-    //    Console.WriteLine("Person: {0} {1}, age {2}", p.FirstName, p.LastName, p.Age);
-    //}
+    [TestMethod]
+    public void ObjectRelationalMappingMTest()
+    {
+      //CatalogDataContext
+      object[] _attributes = typeof(CatalogDataContext).GetCustomAttributes(false);
+      Assert.AreEqual<int>(1, _attributes.Length);
+      Assert.IsInstanceOfType(_attributes[0], typeof(DatabaseAttribute));
+      Assert.AreEqual<string>("CDCatalog", ((DatabaseAttribute)_attributes[0]).Name);
+      //CDCatalogEntity
+      _attributes = typeof(CDCatalogEntity).GetCustomAttributes(false);
+      Assert.AreEqual<int>(1, _attributes.Length);
+      Assert.IsInstanceOfType(_attributes[0], typeof(TableAttribute));
+      Assert.AreEqual<string>("dbo.CDCatalogEntity", ((TableAttribute)_attributes[0]).Name);
+      //Person
+      _attributes = typeof(Person).GetCustomAttributes(false);
+      Assert.AreEqual<int>(1, _attributes.Length);
+      Assert.IsInstanceOfType(_attributes[0], typeof(TableAttribute));
+      Assert.AreEqual<string>("dbo.Person", ((TableAttribute)_attributes[0]).Name);
+    }
 
     #region instrumentation
     // Connection string defined in LinqToSqlLibTests project settings.
     private readonly string m_ConnectionString = Properties.Settings.Default.UnitTestDataConnectionString;
-    private DataService m_Service;
-    private static int m_catalogCDIndex = 0;
-    private IEnumerable<CDCatalog> CreateCatalogCD(int count)
-    {
-      List<CDCatalog> _list = new List<CDCatalog>();
-      for (int i = 0; i < count; i++)
-        _list.Add(CreateCatalogCD());
-      return _list;
-    }
-    private CDCatalog CreateCatalogCD()
-    {
-      m_catalogCDIndex += 1;
-      return new CDCatalog()
-      {
-        Person = new Person() { FirstName = $"FirstName{m_catalogCDIndex}", LastName = $"LastName{m_catalogCDIndex}", Age = m_catalogCDIndex },
-        Country = $"country{m_catalogCDIndex}",
-        //Id = m_catalogCDIndex,
-        Price = 100 + m_catalogCDIndex,
-        Title = $"title{m_catalogCDIndex}",
-        Year = (short)(2000 + m_catalogCDIndex)
-      };
-    }
-    private void PrintPersons(IEnumerable<CDCatalog> data)
-    {
-#if PRINT_PERSONS
-      foreach (CDCatalog p in data)
-        Debug.WriteLine($"Person(PersonId={p.Id}) : {p.Title} {p.Person.FirstName}, year {p.Year}");
-#endif
-    }
     #endregion
-
   }
 }

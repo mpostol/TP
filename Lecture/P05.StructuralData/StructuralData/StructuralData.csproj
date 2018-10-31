@@ -51,6 +51,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ICDCatalog.cs" />
+    <Compile Include="IPerson.cs" />
     <Compile Include="LINQ to object\Catalog.cs">
       <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
@@ -59,14 +61,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
-    <Compile Include="LINQ to object\ICDCatalog.cs" />
-    <Compile Include="LINQ to object\IPerson.cs" />
+    <Compile Include="LINQ to SQL\Catalog.cs">
+      <DependentUpon>Catalog.dbml</DependentUpon>
+    </Compile>
     <Compile Include="LINQ to SQL\Catalog.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Catalog.dbml</DependentUpon>
     </Compile>
-    <Compile Include="LINQ to SQL\DataService.cs" />
     <Compile Include="LINQQueryAndMethodsSyntax\Customer.cs" />
     <Compile Include="LINQQueryAndMethodsSyntax\LinqMethodSyntaxExamples.cs" />
     <Compile Include="LINQQueryAndMethodsSyntax\LinqQuerySyntaxExamples.cs" />

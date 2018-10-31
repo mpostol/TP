@@ -14,14 +14,10 @@ namespace TP.StructuralData.LINQ_to_object
   /// Class Catalog.
   /// Implements the <see cref="System.Data.DataSet" />
   /// </summary>
-  /// <seealso cref="System.Data.DataSet" />
   public partial class Catalog
   {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Catalog"/> class.
-    /// </summary>
-    /// <param name="persons">The persons cd's to be added to the catalog.</param>
-    public Catalog(IEnumerable<IPerson> persons) : this()
+
+    public void AddContent(IEnumerable<IPerson> persons)
     {
       foreach (IPerson _item in persons)
       {
@@ -37,6 +33,10 @@ namespace TP.StructuralData.LINQ_to_object
     /// <seealso cref="System.Data.TypedTableBase{TP.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
     public partial class PersonDataTable
     {
+      /// <summary>
+      /// It uses foreach instruction for the filtering purpose.
+      /// </summary>
+      /// <param name="lastName">Person's last name.</param>
       public IEnumerable<PersonRow> FilterPersonsByLastName_ForEach(string lastName)
       {
         List<PersonRow> _result = new List<PersonRow>();
@@ -46,7 +46,7 @@ namespace TP.StructuralData.LINQ_to_object
         return _result;
       }
       /// <summary>
-      /// It uses extension method .Where() and lambda predicate to match each object.
+      /// It uses the <see cref="Enumerable.Where"/> extension method and lambda predicate to match each object.
       /// </summary>
       /// <param name="lastName">Person's last name.</param>
       public IEnumerable<PersonRow> FilterPersonsByLastName_MethodSyntax(string lastName)
