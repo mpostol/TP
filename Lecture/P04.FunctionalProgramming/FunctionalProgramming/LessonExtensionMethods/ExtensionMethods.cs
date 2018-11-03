@@ -21,7 +21,7 @@ namespace TP.Lecture.LessonExtensionMethods
     /// </summary>
     /// <param name="str">The string to be analyzed.</param>
     /// <returns>Number of word in the string as <see cref="System.Int32"/>.</returns>
-    public static int WordCount(this String str)
+    public static int WordCount(this string str)
     {
       return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
     }
@@ -41,7 +41,7 @@ namespace TP.Lecture.LessonExtensionMethods
     /// <param name="value">The string to seek.</param>
     /// <returns><c>true</c> if the value parameter occurs within this <paramref name="value" />, or if the <paramref name="value" /> is the empty string (""); otherwise, <c>false</c>.</returns>
     /// <exception cref="System.NotImplementedException">An extension method with the same name and signature as an interface or class method will never be called</exception>
-    public static bool Contains(this String sourceString, string value)
+    public static bool Contains(this string sourceString, string value)
     {
       throw new NotImplementedException("An extension method with the same name and signature as an interface or class method will never be called");
     }

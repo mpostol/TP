@@ -27,12 +27,12 @@ namespace TP.DataSemantics.Partials
       Assert.ThrowsException<System.NotImplementedException>(() => _newObject.PartialMethodCall());
     }
     [TestMethod]
-    public void AttribuitesTest()
+    public void AttributesTest()
     {
       PartialClass _newObject = new PartialClass();
       Type _partialClassType = _newObject.GetType();
-      object[] _atributes = _partialClassType.GetCustomAttributes(false);
-      Assert.AreEqual(1, _atributes.Length);
+      object[] _attributes = _partialClassType.GetCustomAttributes(false);
+      Assert.AreEqual(1, _attributes.Length);
     }
   }
 }
