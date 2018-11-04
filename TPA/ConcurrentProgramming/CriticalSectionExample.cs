@@ -1,4 +1,10 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -8,17 +14,18 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
   public class CriticalSectionExample
   {
+    #region To be moved to UT
     public void StartThreads(bool useMonitor)
     {
-      Thread[] m_Threads = new Thread[2];
-      for (int i = 0; i < m_Threads.Length; i++)
+      Thread[] _Threads = new Thread[2];
+      for (int i = 0; i < _Threads.Length; i++)
         if (useMonitor)
-          m_Threads[i] = new Thread(ThreadFuncWithMonitor);
+          _Threads[i] = new Thread(ThreadFuncWithMonitor);
         else
-          m_Threads[i] = new Thread(ThreadFunc);
-      foreach (Thread _thread in m_Threads)
+          _Threads[i] = new Thread(ThreadFunc);
+      foreach (Thread _thread in _Threads)
         _thread.Start();
-      foreach (Thread _thread in m_Threads)
+      foreach (Thread _thread in _Threads)
         _thread.Join();
     }
     public void StartThreadsUsingThreadPool(bool useMonitor)
@@ -41,118 +48,79 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         else
           Task.Run(() => ThreadFunc(useMonitor));
       //wait for threads
+      //TODO _tasksInProgress is always empty.
       Task.WaitAll(_tasksInProgress.ToArray());
-    }
+    } 
+    #endregion
 
     #region Monitor methods
-    public int LockedNumber; // variable used to demonstrate 
-                             // how monitors works
-
+    public int LockedNumber; // variable used to demonstrate how monitors works
     public void NoMonitorMethod(object state)
     {
-      for (int i = 0;
-        i < 1000000;
-        ++i)
-      {
+      for (int i = 0; i < 1000000; ++i)
         ++LockedNumber;
-      }
     }
-
     public void MonitorMethod(object state)
     {
       bool lockWasTaken = false;
       try
       {
-        System.Threading.Monitor.Enter
-          (this, ref lockWasTaken);
-        for (int i = 0;
-          i < 1000000;
-          ++i)
-        {
+        Monitor.Enter(this, ref lockWasTaken);
+        for (int i = 0; i < 1000000; ++i)
           ++LockedNumber;
-        }
       }
       finally
       {
         if (lockWasTaken)
-          System.Threading.Monitor.Exit(this);
+          Monitor.Exit(this);
       }
     }
-
     public void LockMethod(object state)
     {
       lock (this)
       {
-        for (int i = 0;
-            i < 1000000;
-            ++i)
-        {
+        for (int i = 0; i < 1000000; ++i)
           ++LockedNumber;
-        }
       }
     }
-
     public void MonitorMethodWithTimeout(object state)
     {
-      bool[] paramsObjects = state as bool[]; // a flag used for testing
-      bool lockWasTaken = false;
+      bool[] _parametersObjects = state as bool[]; // a flag used for testing
+      bool _lockWasTaken = false;
       const int timeout = 1000; // 1 second
       try
       {
-        System.Threading.Monitor.TryEnter
-            (this, timeout, ref lockWasTaken);
-        if (lockWasTaken)
-        {
-          System.Threading.Thread.Sleep(2000); // 2 seconds
-        }
+        Monitor.TryEnter(this, timeout, ref _lockWasTaken);
+        if (_lockWasTaken)
+          Thread.Sleep(2000); // 2 seconds
       }
       finally
       {
-        if (lockWasTaken)
-          System.Threading.Monitor.Exit(this);
+        if (_lockWasTaken)
+          Monitor.Exit(this);
         else
-          paramsObjects[0] = true;
+          _parametersObjects[0] = true;
       }
     }
-
-    // IMPORTANT: explaining the difference
-    //            between ready queue 
-    //            and waiting queue
+    // IMPORTANT: explaining the difference between ready queue and waiting queue
     public void WaitMethod(object state)
     {
       lock (this)
       {
-        for (int i = 0;
-          i < 1000000;
-          ++i)
-        {
+        for (int i = 0; i < 1000000; ++i)
           ++LockedNumber;
-        }
         System.Threading.Monitor.Wait(this);
-        for (int i = 0;
-          i < 2000000;
-          ++i)
-        {
+        for (int i = 0; i < 2000000; ++i)
           --LockedNumber;
-        }
       }
     }
-
     public void PulseMethod(object state)
     {
       lock (this)
       {
-        for (int i = 0;
-          i < 1000000;
-          ++i)
-        {
+        for (int i = 0; i < 1000000; ++i)
           ++LockedNumber;
-        }
         System.Threading.Monitor.Pulse(this);
-        // Pulse sends a signal to the first
-        // thread in waiting queue;
-        // PulseAll sends signals to all of them
-        // Signaled threads queue up in ready queue
       }
     }
     #endregion
