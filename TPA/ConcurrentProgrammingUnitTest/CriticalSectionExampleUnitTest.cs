@@ -93,9 +93,9 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       SynchronizationAttributeExample _example = new SynchronizationAttributeExample();
       ThreadPool.QueueUserWorkItem(_example.NoMonitorMethod);
       ThreadPool.QueueUserWorkItem(_example.NoMonitorMethod);
-      Thread.Sleep(SleepTime); // wait for threads
-      const int _expectedCycles = 2 * 1000000; // twice the number of iterations
-      Assert.AreEqual(_expectedCycles, _example.LockedNumber);
+      Thread.Sleep(300); // wait for threads
+      const int _expectedCycles = 2 * 10; // twice the number of iterations
+      Assert.AreEqual(_expectedCycles, _example.LockedNumber, $"{_example.LockedNumber}");
     }
 
     private const int SleepTime = 512; // ms

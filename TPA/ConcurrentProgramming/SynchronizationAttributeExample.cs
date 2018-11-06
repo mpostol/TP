@@ -17,8 +17,12 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 
     public void NoMonitorMethod(object state)
     {
-      for (int i = 0; i < 1000000; ++i)
-        ++LockedNumber;
+      for (int i = 0; i < 10; ++i)
+      {
+        long _privateVar = LockedNumber;
+        System.Threading.Thread.Sleep(10);
+        LockedNumber = ++_privateVar;
+      }
     }
   }
 }
