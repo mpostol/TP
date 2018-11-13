@@ -1,8 +1,14 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
@@ -13,67 +19,59 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
     [TestMethod]
     public void TPAReadKeyFromKeyboardBufferAsyncTest()
     {
-      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
+      using (Producer<TestingClass> _producer = new Producer<TestingClass>(new ProductFactory()))
       {
-        List<TestingClass> _chars = new List<TestingClass>();
+        List<TestingClass> _products = new List<TestingClass>();
         long _counter = 0;
         for (int i = 0; i < 3; i++)
         {
-          Task<TestingClass> _workToDo = _keyboard.TPAReadKeyFromKeyboardBufferAsync();
+          Task<TestingClass> _workToDo = _producer.TPAReadKeyFromKeyboardBufferAsync();
           while (_workToDo.Status != TaskStatus.RanToCompletion)
-          {
             _counter++;
-          };
           TestingClass _lastChar = _workToDo.Result;
-          _chars.Add(_lastChar);
+          _products.Add(_lastChar);
         }
-        Assert.AreEqual<int>(3, _chars.Count);
+        Assert.AreEqual<int>(3, _products.Count);
         Assert.IsTrue(_counter > 1000000);
       }
     }
     [TestMethod]
     public void APMReadKeyFromKeyboardBuffer()
     {
-      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
+      using (Producer<TestingClass> _producer = new Producer<TestingClass>(new ProductFactory()))
       {
-        List<TestingClass> _chars = new List<TestingClass>();
+        List<TestingClass> _products = new List<TestingClass>();
         long _counter = 0;
         for (int i = 0; i < 3; i++)
         {
           bool _ended = false;
-          IAsyncResult asyncResult = _keyboard.BeginReadKeyFromKeyboardBuffer(x => _ended = true, null);
+          IAsyncResult asyncResult = _producer.BeginReadKeyFromKeyboardBuffer(x => _ended = true, null);
           while (!_ended)
-          {
             _counter++;
-          };
-          _chars.Add(_keyboard.EndReadKeyFromKeyboardBuffer(asyncResult));
+          _products.Add(_producer.EndReadKeyFromKeyboardBuffer(asyncResult));
         }
-        Assert.AreEqual<int>(3, _chars.Count);
+        Assert.AreEqual<int>(3, _products.Count);
         Assert.IsTrue(_counter > 1000000);
       }
     }
-
     [TestMethod]
     public void EAPReadKeyFromKeyboardBufferAsyncTest()
     {
-      using (Producer<TestingClass> _keyboard = new Producer<TestingClass>(new ProductFactory()))
+      using (Producer<TestingClass> _producer = new Producer<TestingClass>(new ProductFactory()))
       {
-        List<TestingClass> _chars = new List<TestingClass>();
+        List<TestingClass> _products = new List<TestingClass>();
         bool _ended = false;
         long _counter = 0;
-        _keyboard.ReadKeyFromKeyboardBufferCompleted += (sender, args) =>
+        _producer.ReadKeyFromKeyboardBufferCompleted += (sender, args) =>
             {
-              _chars.Add(args.Result);
+              _products.Add(args.Result);
               _ended = true;
             };
-        _keyboard.EAPReadKeyFromKeyboardBufferAsync();
+        _producer.EAPReadKeyFromKeyboardBufferAsync();
         while (!_ended)
-        {
           _counter++;
-        };
-        Assert.IsTrue(_counter > 50000, $"Counetr = {_counter}");
+        Assert.IsTrue(_counter > 50000, $"Counter = {_counter}");
       }
-
     }
     private class ProductFactory : IProductFactory<TestingClass>
     {

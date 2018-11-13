@@ -1,4 +1,10 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +20,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 
     public Producer(IProductFactory<T> factory)
     {
-
       m_CriticalSection = new CriticalSection<T>(factory);
       m_Timer = new Timer(x => m_CriticalSection.GenerateChar(), null, 0, 200);
     }
@@ -83,24 +88,22 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
     {
       public CriticalSection(IProductFactory<productType> factory)
       {
-        if (factory == null)
-          throw new ArgumentNullException(nameof(factory));
-        m_Factory = factory;
+        m_Factory = factory ?? throw new ArgumentNullException(nameof(factory));
       }
       internal void GenerateChar()
       {
-        m_charBuffer.Enqueue(m_Factory.Create());
-        if (m_charBuffer.Count == 1)
+        m_productsBuffer.Enqueue(m_Factory.Create());
+        if (m_productsBuffer.Count == 1)
           m_AutoResetEvent.Set();
       }
       internal productType ReadKeyFromKeyboardBuffer()
       {
-        if (m_charBuffer.Count == 0)
+        if (m_productsBuffer.Count == 0)
           m_AutoResetEvent.WaitOne(-1, true);
-        else if (m_charBuffer.Count == 1)
+        else if (m_productsBuffer.Count == 1)
           m_AutoResetEvent.Reset();
-        Debug.Assert(m_charBuffer.Any<productType>());
-        return m_charBuffer.Dequeue();
+        Debug.Assert(m_productsBuffer.Any<productType>());
+        return m_productsBuffer.Dequeue();
       }
 
       public void Dispose()
@@ -108,7 +111,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         m_AutoResetEvent.Dispose();
       }
       private IProductFactory<productType> m_Factory;
-      private readonly Queue<productType> m_charBuffer = new Queue<productType>();
+      private readonly Queue<productType> m_productsBuffer = new Queue<productType>();
       private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
     }
 

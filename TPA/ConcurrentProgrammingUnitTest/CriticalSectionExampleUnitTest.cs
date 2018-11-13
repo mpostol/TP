@@ -14,38 +14,39 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
   [TestClass]
   public class CriticalSectionExampleUnitTest
   {
-    [TestInitialize]
-    public void TestInitialize()
-    {
-      m_ThreadsExample = new CriticalSectionExample();
-    }
+
     [TestMethod]
     public void CheckWhetherThreadsAreNotSynchronized()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       m_ThreadsExample.StartThreads(false);
       Assert.IsFalse(m_ThreadsExample.IsConsistent);
     }
     [TestMethod]
     public void CheckWhetherThreadsAreSynchronized()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       m_ThreadsExample.StartThreads(true);
-      Assert.IsFalse(m_ThreadsExample.IsConsistent);
+      Assert.IsTrue(m_ThreadsExample.IsConsistent);
     }
     [TestMethod]
     public void CheckWhetherThreadsUsingThreadPoolAreNotSynchronized()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       m_ThreadsExample.StartThreadsUsingThreadPool(false);
       Assert.IsFalse(m_ThreadsExample.IsConsistent);
     }
     [TestMethod]
     public void CheckWhetherThreadsUsingThreadPoolAreSynchronized()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       m_ThreadsExample.StartThreadsUsingThreadPool(true);
-      Assert.IsFalse(m_ThreadsExample.IsConsistent);
+      Assert.IsTrue(m_ThreadsExample.IsConsistent);
     }
     [TestMethod]
     public void MonitorMethodTest()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethod);
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethod);
       Thread.Sleep(SleepTime); // wait for threads
@@ -55,6 +56,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
     [TestMethod]
     public void LockMethodTest()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.LockMethod);
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.LockMethod);
       Thread.Sleep(SleepTime); // wait for threads
@@ -63,6 +65,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
     [TestMethod]
     public void NoMonitorMethodTest()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.NoMonitorMethod);
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.NoMonitorMethod);
       Thread.Sleep(SleepTime); // wait for threads
@@ -71,6 +74,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
     [TestMethod]
     public void MonitorMethodWithTimeoutTest()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       object tab = new bool[] { false };
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethodWithTimeout, tab);
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethodWithTimeout, tab); 
@@ -81,6 +85,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
     [TestMethod]
     public void WaitPulseMethodsTest()
     {
+      CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.WaitMethod);
       Thread.Sleep(SleepTime);
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.PulseMethod);
@@ -99,7 +104,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
     }
 
     private const int SleepTime = 512; // ms
-    private CriticalSectionExample m_ThreadsExample;
 
   }
 }
