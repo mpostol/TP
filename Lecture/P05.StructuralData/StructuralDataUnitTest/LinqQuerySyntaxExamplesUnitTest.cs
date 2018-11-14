@@ -24,7 +24,7 @@ namespace TP.StructuralDataUnitTest
     [TestMethod]
     public void FromClauseExample2Test()
     {
-      Assert.AreNotEqual<string>("grape", LinqQuerySyntaxExamples.DeferedExecution());
+      Assert.AreNotEqual<string>("grape", LinqQuerySyntaxExamples.LinqQuerySyntax());
     }
     [TestMethod]
     public void FromClauseExample3Test()

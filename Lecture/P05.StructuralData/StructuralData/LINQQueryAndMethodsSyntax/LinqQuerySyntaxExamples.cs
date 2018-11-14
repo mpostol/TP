@@ -30,7 +30,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
           _wordQuery.Add(_item);
       return string.Join(";", _wordQuery.ToArray());
     }
-    public static string DeferedExecution()
+    public static string LinqQuerySyntax()
     {
       string[] _words = new string[] { "apple", "strawberry", "grape", "peach", "banana" };
       IEnumerable<string> _wordQuery = from word in _words

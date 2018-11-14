@@ -46,14 +46,6 @@ namespace TP.StructuralData.LINQ_to_object
         return _result;
       }
       /// <summary>
-      /// It uses the <see cref="Enumerable.Where"/> extension method and lambda predicate to match each object.
-      /// </summary>
-      /// <param name="lastName">Person's last name.</param>
-      public IEnumerable<PersonRow> FilterPersonsByLastName_MethodSyntax(string lastName)
-      {
-        return this.Where(_person => _person.LastName.Equals(lastName));
-      }
-      /// <summary>
       /// It uses LINQ to Objects expression.
       /// </summary>
       /// <param name="lastName">Person's last name.</param>
@@ -62,6 +54,14 @@ namespace TP.StructuralData.LINQ_to_object
         return from _person in this
                where _person.LastName.Equals(lastName)
                select _person;
+      }
+      /// <summary>
+      /// It uses the <see cref="Enumerable.Where"/> extension method and lambda predicate to match each object.
+      /// </summary>
+      /// <param name="lastName">Person's last name.</param>
+      public IEnumerable<PersonRow> FilterPersonsByLastName_MethodSyntax(string lastName)
+      {
+        return this.Where(_person => _person.LastName.Equals(lastName));
       }
     }
   }

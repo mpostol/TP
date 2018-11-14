@@ -23,7 +23,7 @@ namespace TP.StructuralDataUnitTest
     [TestMethod]
     public void LinqExtensionsExample2TestMethod()
     {
-      Assert.AreNotEqual<string>("grape", LinqMethodSyntaxExamples.DeferedExecution());
+      Assert.AreNotEqual<string>("grape", LinqMethodSyntaxExamples.LinqMethodSyntax());
     }
     [TestMethod]
     public void LinqExtensionsExample3TestMethod()
