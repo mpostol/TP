@@ -19,12 +19,12 @@ namespace TP.StructuralDataUnitTest
     public void FromClauseExample1Test()
     {
       Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.QuerySyntax());
-      Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.ForeachInstructionExample());
+      Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.ForeachExample());
     }
     [TestMethod]
     public void FromClauseExample2Test()
     {
-      Assert.AreEqual<string>(string.Empty, LinqQuerySyntaxExamples.LinqQuerySyntax());
+      Assert.AreEqual<string>(string.Empty, LinqQuerySyntaxExamples.QuerySyntaxSideEffect());
     }
     [TestMethod]
     public void FromClauseExample3Test()

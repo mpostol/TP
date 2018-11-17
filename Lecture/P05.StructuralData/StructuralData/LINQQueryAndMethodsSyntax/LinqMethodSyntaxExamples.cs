@@ -20,7 +20,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
       IEnumerable<string> _wordQuery = _words.Where<string>(word => word[0] == 'g').Select<String, String>(word => word);
       return String.Join(";", _wordQuery.ToArray());
     }
-    public static string LinqMethodSyntax()
+    public static string MethodSyntaxSideEffect()
     {
       string[] _words = new string[] { "apple", "strawberry", "grape", "peach", "banana" };
       //IEnumerable<string> _wordQuery = from word in _words where word[0] == 'g' select word;

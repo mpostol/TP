@@ -13,15 +13,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
   public static class LinqQuerySyntaxExamples
   {
 
-    public static string QuerySyntax()
-    {
-      string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
-      IEnumerable<string> _wordQuery = from word in _words
-                                       where word[0] == 'g'
-                                       select word;
-      return string.Join(";", _wordQuery.ToArray());
-    }
-    public static string ForeachInstructionExample()
+    public static string ForeachExample()
     {
       string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
       List<string> _wordQuery = new List<string>();
@@ -30,7 +22,16 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
           _wordQuery.Add(_item);
       return string.Join(";", _wordQuery.ToArray());
     }
-    public static string LinqQuerySyntax()
+    public static string QuerySyntax()
+    {
+      string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
+      IEnumerable<string> _wordQuery = from word in _words
+                                       where word[0] == 'g'
+                                       select word;
+      return string.Join(";", _wordQuery.ToArray());
+    }
+
+    public static string QuerySyntaxSideEffect()
     {
       string[] _words = new string[] { "apple", "strawberry", "grape", "peach", "banana" };
       IEnumerable<string> _wordQuery = from word in _words
