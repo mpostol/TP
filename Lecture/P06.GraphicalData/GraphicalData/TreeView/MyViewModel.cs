@@ -18,7 +18,7 @@ namespace TP.GraphicalData.TreeView
   /// Class MyViewModel - ViewModel implementation 
   /// </summary>
   /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-  public class MyViewModel : INotifyPropertyChanged
+  public class MyViewModel : ViewModelBase
   {
 
     #region constructors
@@ -36,14 +36,6 @@ namespace TP.GraphicalData.TreeView
     public Visibility ChangeControlVisibility { get; set; } = Visibility.Hidden;
     public ICommand Click_Browse { get; }
     public ICommand Click_Button { get; }
-    #endregion
-
-    #region INotifyPropertyChanged
-    public event PropertyChangedEventHandler PropertyChanged;
-    private void RaisePropertyChanged(string propertyName_)
-    {
-      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName_));
-    }
     #endregion
 
     #region private

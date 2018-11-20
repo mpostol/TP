@@ -20,14 +20,14 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       Produce = produce;
       ProducePeriod = producePeriod;
       BufferCapacity = bufferCapacity;
-      _produceSubscriber = Observable
+      m_ProduceSubscriber = Observable
           .Interval(ProducePeriod)
           .Synchronize(_bufferLockObject)
           .Subscribe(_ => ProduceToBuffer());
     }
     public void OnCompleted()
     {
-      _produceSubscriber.Dispose();
+      m_ProduceSubscriber.Dispose();
     }
     public void OnError(Exception error) { }
     public void OnNext(bool value)
@@ -85,7 +85,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       private set;
     }
 
-    private IDisposable _produceSubscriber;
+    private IDisposable m_ProduceSubscriber;
     private Queue<TProduct> _buffer = new Queue<TProduct>();
     private object _bufferLockObject = new object();
     private bool _productRequested = false;

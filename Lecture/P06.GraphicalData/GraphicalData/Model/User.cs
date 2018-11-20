@@ -1,5 +1,9 @@
-﻿
-using System;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 namespace TP.GraphicalData.Model
 {
@@ -22,7 +26,7 @@ namespace TP.GraphicalData.Model
     /// Gets or sets the active.
     /// </summary>
     /// <value>The active.</value>
-    public Boolean Active { get; set; }
+    public bool Active { get; set; }
     /// <summary>
     /// Returns a <see cref="System.String" /> that represents this instance.
     /// </summary>

@@ -1,4 +1,10 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
@@ -34,9 +40,9 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
     public void Start()
     {
       // Create observable when needed
-      IObservable<long> m_TimerObservable = Observable.Interval(Period);
-      m_TimerSubscription = m_TimerObservable.ObserveOn(Scheduler.Default).Subscribe(c => RaiseTick(c));
-      //m_TimerSubscription = m_TimerObservable.ObserveOn(DispatcherScheduler.Current).Subscribe(c => RaiseTick(c));
+      IObservable<long> _TimerObservable = Observable.Interval(Period);
+      m_TimerSubscription = _TimerObservable.ObserveOn(Scheduler.Default).Subscribe(c => RaiseTick(c));
+      //m_TimerSubscription = _TimerObservable.ObserveOn(DispatcherScheduler.Current).Subscribe(c => RaiseTick(c));
     }
     public TimeSpan Period
     {
@@ -63,10 +69,8 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         {
           // TODO: dispose managed state (managed objects).
         }
-
         // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
         // TODO: set large fields to null.
-
         disposedValue = true;
       }
     }
@@ -86,7 +90,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       // GC.SuppressFinalize(this);
     }
     #endregion
-
     #endregion
 
   }

@@ -9,7 +9,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TP.MVVMExample.MVVMLight
+namespace TP.GraphicalData.MVVMLight
 {
   public class ViewModelBase : INotifyPropertyChanged
   {
@@ -25,7 +25,7 @@ namespace TP.MVVMExample.MVVMLight
     /// <param name="propertyName">(optional) The name of the property that changed.
     /// The <see cref="CallerMemberName"/> allows you to obtain the method or property name of the caller to the method.
     /// </param>
-    internal virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+    protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
     {
       this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
