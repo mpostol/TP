@@ -8,6 +8,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using TP.StructuralData.Data;
 
 namespace TP.StructuralData.LINQ_to_SQL
 {

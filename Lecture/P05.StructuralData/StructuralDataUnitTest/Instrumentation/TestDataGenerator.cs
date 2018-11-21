@@ -6,7 +6,7 @@
 //____________________________________________________________________________
 
 using System.Collections.Generic;
-using TP.StructuralData;
+using TP.StructuralData.Data;
 
 namespace TP.StructuralDataUnitTest.Instrumentation
 {

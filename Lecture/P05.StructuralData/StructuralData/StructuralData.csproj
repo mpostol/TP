@@ -51,8 +51,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ICDCatalog.cs" />
-    <Compile Include="IPerson.cs" />
+    <Compile Include="Data\Class1.cs" />
+    <Compile Include="Data\ICDCatalog.cs" />
+    <Compile Include="Data\IPerson.cs" />
     <Compile Include="LINQ to object\Catalog.cs">
       <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
@@ -129,5 +130,6 @@
       <DependentUpon>Catalog.dbml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
