@@ -11,18 +11,18 @@ namespace TPA.ApplicationArchitecture.Data
         /*TODO:
         + class 
         + structure
-        - nested class
+        + nested class
         + static class
-        - enum
+        + enum
         + inheritance
         + abstact class
         + interface
-        - delegate
+        + delegate
         + attribute
         + property
         + field
         + circular reference
-        - generic class
+        + generic class
         */
         public static int StaticField;
         public static int StaticProperty { get; set; }

@@ -45,7 +45,19 @@
     <Compile Include="BusinessLogic\ServiceA.cs" />
     <Compile Include="BusinessLogic\ServiceC.cs" />
     <Compile Include="BusinessLogic\ViewModel.cs" />
+    <Compile Include="Data\AbstractClass.cs" />
+    <Compile Include="Data\CircularReference\Student.cs" />
+    <Compile Include="Data\CircularReference\Teacher.cs" />
+    <Compile Include="Data\ClassWithAttribute.cs" />
+    <Compile Include="Data\DerivedClass.cs" />
+    <Compile Include="Data\Enum.cs" />
+    <Compile Include="Data\GenericClass.cs" />
+    <Compile Include="Data\IExample.cs" />
+    <Compile Include="Data\ImplementationOfIExample.cs" />
     <Compile Include="Data\Linq2SQL.cs" />
+    <Compile Include="Data\OuterClass.cs" />
+    <Compile Include="Data\StaticClass.cs" />
+    <Compile Include="Data\Structure.cs" />
     <Compile Include="Presentation\View.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,5 +74,6 @@
     <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
     <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
