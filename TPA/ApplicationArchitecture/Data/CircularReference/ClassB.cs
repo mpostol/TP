@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TPA.ApplicationArchitecture.Data.CircularReference
 {
-    public class Student
+    public class ClassB
     {
-        public List<Teacher> Teachers;
+        public ClassA ClassA { get; set; } = new ClassA();
     }
 }
