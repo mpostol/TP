@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Data\ICDCatalog.cs" />
     <Compile Include="Data\IPerson.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LINQ to object\Catalog.cs">
       <DependentUpon>Catalog.xsd</DependentUpon>
     </Compile>
