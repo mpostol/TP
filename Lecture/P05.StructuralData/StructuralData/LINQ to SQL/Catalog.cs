@@ -48,15 +48,22 @@ namespace TP.StructuralData.LINQ_to_SQL
           _result.Add(_row);
       return _result;
     }
-    public IEnumerable<Person> FilterPersonsByLastName_MethodSyntax(string lastName)
-    {
-      return this.Persons.Where(_person => _person.LastName.Equals(lastName));
-    }
     public IEnumerable<Person> FilterPersonsByLastName_QuerySyntax(string lastName)
     {
       return from _person in this.Persons
              where _person.LastName.Equals(lastName)
              select _person;
+    }
+    public string FilterPersonsByLastName_AnonymousType(string lastName)
+    {
+      var _firstNames = from _person in this.Persons
+                        select new { _person.FirstName };
+      return string.Join(", ", _firstNames.Select(x => x.FirstName).ToArray<string>());
+    }
+
+    public IEnumerable<Person> FilterPersonsByLastName_MethodSyntax(string lastName)
+    {
+      return this.Persons.Where(_person => _person.LastName.Equals(lastName));
     }
     /// <summary>
     /// Helper method to quickly remove all entities from the table.

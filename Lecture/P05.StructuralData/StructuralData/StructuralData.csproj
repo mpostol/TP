@@ -51,7 +51,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\Class1.cs" />
     <Compile Include="Data\ICDCatalog.cs" />
     <Compile Include="Data\IPerson.cs" />
     <Compile Include="LINQ to object\Catalog.cs">

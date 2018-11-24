@@ -5,8 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
-#define PRINT_PERSONS  //uncomment to print persons to the console in tests that call PrintPersons()
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -104,6 +102,23 @@ namespace TP.StructuralDataUnitTest
           Assert.AreEqual(2, _filtered.Count());
           foreach (Person p in _filtered)
             Assert.AreEqual("Person", p.LastName);
+        }
+        finally
+        {
+          _newCatalog.TruncateAllData();
+        }
+      }
+    }
+    [TestMethod]
+    public void FilterPersonsByLastName_AnonymousTypeClass()
+    {
+      using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
+      {
+        try
+        {
+          _newCatalog.AddContent(TestDataGenerator.PrepareData());
+          string _filtered = _newCatalog.FilterPersonsByLastName_AnonymousType("Person");
+          Assert.AreEqual("First, Second, Mister", _filtered);
         }
         finally
         {
