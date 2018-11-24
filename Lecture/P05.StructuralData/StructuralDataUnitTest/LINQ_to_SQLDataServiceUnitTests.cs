@@ -21,11 +21,22 @@ namespace TP.StructuralDataUnitTest
   public class LINQ_to_SQLDataServiceUnitTests
   {
 
+    [TestInitialize]
+    public void TestInitializeMethod()
+    {
+      string _DBRelativePath = @"Instrumentation\CDCatalog.mdf";
+      string _TestingWorkingFolder = Environment.CurrentDirectory;
+      string _DBPath = Path.Combine(_TestingWorkingFolder, _DBRelativePath);
+      FileInfo _databaseFile = new FileInfo(_DBPath);
+      Assert.IsTrue(_databaseFile.Exists, $"{Environment.CurrentDirectory}");
+      Assert.AreEqual<int>(0, m_InitializationCounter);
+      m_InitializationCounter++;
+      m_ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={_DBPath};Integrated Security = True; Connect Timeout = 30;";
+    }
+    private int m_InitializationCounter = 0;
     [TestMethod]
     public void CatalogConstructorTest()
     {
-      FileInfo _databaseFile = new FileInfo(@"Instrumentation\CDCatalog.mdf");
-      Assert.IsTrue(_databaseFile.Exists, $"{Environment.CurrentDirectory}");
       using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
       {
         Assert.IsNotNull(_newCatalog.Connection);
@@ -148,7 +159,7 @@ namespace TP.StructuralDataUnitTest
 
     #region instrumentation
     // Connection string defined in LinqToSqlLibTests project settings.
-    private readonly string m_ConnectionString = Properties.Settings.Default.UnitTestDataConnectionString;
+    private string m_ConnectionString;
     #endregion
   }
 }
