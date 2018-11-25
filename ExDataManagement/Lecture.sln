@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		..\README.md = ..\README.md
-		..\TPA\README.md = ..\TPA\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\S10-CommonResources\Common\Common.csproj", "{E7CB1D42-CECB-4E2A-BC20-D8FA655B2F11}"

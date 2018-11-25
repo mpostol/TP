@@ -1,8 +1,8 @@
-# C# Data-intensive Programming [*DRAFT*]
+# C# External Data-intensive Programming
 
 ## Key words:
 
-education, training, data management, information processing, data processing
+education, training, external data, data management, information processing, data processing
 
 ## Subject
 
@@ -16,11 +16,13 @@ The aim of the course is to extend knowledge and skills related to object-orient
 
 In order to ensure the practical context of the discussion and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code used during the course is available in this repository. I believe that the proposed principles, design patterns, and scenarios are generic in nature and may be seamlessly ported to other environments. The language and tools mentioned above have been used only to embed the discussion in a particular environment and to ensure that the course is very practical.
 
-The course discusses solutions for practical scenarios regarding various aspects of process data management, i.e. those that are input or output for the business logic of the program. In general, three classes of data have been distinguished:
+The course discusses solutions for practical scenarios regarding various aspects of process data management, i.e. those that are input or output for the business logic of the program. In general, three classes of an external data have been distinguished:
 
 - **streaming**: files, network packets
 - **structural**: databases
 - **graphical**: Graphical User Interface (GUI)
+
+The external data is recognized as the data we must pull or push from outside of the process hosting the computer program.
 
 ## Scope
 
