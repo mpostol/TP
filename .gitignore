@@ -23,6 +23,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+TestResults
 packages
 
 # ignored working space for this repository 
@@ -34,11 +35,6 @@ packages
 #wwwroot/
 
 ExDataManagement/.vs
-ExDataManagement/TestResults/
-ExDataManagement/ExDataManagement/bin/
-ExDataManagement/ExDataManagement/obj/
-ExDataManagement/Lesson2UnitTest/bin/
-/AdaptiveProgramming/TestResults
 /AdaptiveProgramming/packages
 /AdaptiveProgramming/Reflection/*.user
 *_i.c
