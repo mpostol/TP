@@ -23,6 +23,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+TestResults
 packages
 
 # ignored working space for this repository 
@@ -33,11 +34,9 @@ packages
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
-Lecture/.vs
-Lecture/TestResults/
-Lecture/Lecture/bin/
-Lecture/Lecture/obj/
-Lecture/Lesson2UnitTest/bin/
+ExDataManagement/.vs
+/AdaptiveProgramming/packages
+/AdaptiveProgramming/Reflection/*.user
 *_i.c
 *_p.c
 *_i.h
@@ -89,20 +88,4 @@ $tf/
 
 # Guidance Automation Toolkit
 *.gpState
-Lecture/Lesson2UnitTest/obj/
-/DependencyInjection/DependencyInjection/bin
-/DependencyInjection/DependencyInjection/obj
-/DependencyInjection/DependencyInjectionConsoleApplication/bin
-/DependencyInjection/DependencyInjectionConsoleApplication/obj
-/DependencyInjection/DependencyInjectionUnitTest/bin
-/DependencyInjection/DependencyInjectionUnitTest/obj
-/DependencyInjection/TestResults
-/MVVMExample/.vs
-/MVVMExample/MVVMExample.UnitTest/bin
-/MVVMExample/MVVMExample.UnitTest/obj
-/MVVMExample/MVVMExample/obj
-/MVVMExample/MVVMExample/bin
-/MVVMExample/packages
-/TPA/TestResults
-/TPA/packages
-/TPA/Reflection/*.user
+

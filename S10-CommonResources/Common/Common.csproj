@@ -43,9 +43,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Lecture\README.md">
-      <Link>README.md</Link>
-    </None>
     <None Include="CodeHeader.snippet">
       <SubType>Designer</SubType>
     </None>
