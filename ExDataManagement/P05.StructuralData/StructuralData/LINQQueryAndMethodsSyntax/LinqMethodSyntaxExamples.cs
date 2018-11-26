@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace TP.StructuralData.LINQQueryAndMethodsSyntax
@@ -36,7 +37,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
                                               new Customer() { City = "Washington", Name = "Name4", Revenue=14.0E4F   }
       };
       var _customerQuery = customers.Where(_customer => _customer.City == "Phoenix").Select(_customer => new { _customer.Name, _customer.Revenue });
-      return String.Join("; ", _customerQuery.Select(x => $"{x.Name}:{x.Revenue:F}").ToArray<string>());
+      return String.Join("; ", _customerQuery.Select(x => $"{x.Name}:{x.Revenue.ToString("F", CultureInfo.InvariantCulture)}").ToArray<string>());
     }
 
   }

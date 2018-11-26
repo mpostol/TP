@@ -16,19 +16,19 @@ namespace TP.StructuralDataUnitTest
   {
 
     [TestMethod]
-    public void LinqExtensionsExample1TestMethod()
+    public void MethodSyntaxTest()
     {
       Assert.AreEqual<string>("grape", LinqMethodSyntaxExamples.MethodSyntax());
     }
     [TestMethod]
-    public void LinqExtensionsExample2TestMethod()
+    public void MethodSyntaxSideEffectTest()
     {
       Assert.AreEqual<string>(string.Empty, LinqMethodSyntaxExamples.MethodSyntaxSideEffect());
     }
     [TestMethod]
-    public void LinqExtensionsExample3TestMethod()
+    public void AnonymousTypeTest()
     {
-      Assert.AreEqual<string>("Name1:11000,00; Name3:130000,00", LinqMethodSyntaxExamples.AnonymousType());
+      Assert.AreEqual<string>("Name1:11000.00; Name3:130000.00", LinqMethodSyntaxExamples.AnonymousType());
     }
 
   }

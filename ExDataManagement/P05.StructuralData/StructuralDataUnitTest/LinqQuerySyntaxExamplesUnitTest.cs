@@ -16,20 +16,20 @@ namespace TP.StructuralDataUnitTest
   {
 
     [TestMethod]
-    public void FromClauseExample1Test()
+    public void QuerySyntaxForeachExampleTest()
     {
       Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.QuerySyntax());
       Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.ForeachExample());
     }
     [TestMethod]
-    public void FromClauseExample2Test()
+    public void QuerySyntaxSideEffectTest()
     {
       Assert.AreEqual<string>(string.Empty, LinqQuerySyntaxExamples.QuerySyntaxSideEffect());
     }
     [TestMethod]
-    public void FromClauseExample3Test()
+    public void AnonymousTypeTest()
     {
-      Assert.AreEqual<string>("Name1:11000,00; Name3:130000,00", LinqQuerySyntaxExamples.AnonymousType());
+      Assert.AreEqual<string>("Name1:11000.00; Name3:130000.00", LinqQuerySyntaxExamples.AnonymousType());
     }
 
   }
