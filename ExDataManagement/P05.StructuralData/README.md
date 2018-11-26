@@ -1,5 +1,7 @@
 # Structural data
 
+> NOTE: this document is under development: [The `P05.StructuralData\README.md` must be update #136](https://github.com/mpostol/TP/issues/136)
+
 ## Introduction
 
 This solution contains two examples of using LINQ:
