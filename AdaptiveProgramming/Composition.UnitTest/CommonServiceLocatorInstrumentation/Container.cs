@@ -1,11 +1,18 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
 {
-  internal class Container : CommonServiceLocator.ServiceLocatorImplBase
+  internal class Container : ServiceLocatorImplBase
   {
 
     public Container(IEnumerable<object> list)
@@ -13,7 +20,7 @@ namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
       m_ObjectsContainer = list;
     }
 
-    private readonly IEnumerable<object> m_ObjectsContainer;
+    #region ServiceLocatorImplBase
     protected override object DoGetInstance(Type requestedType, string key)
     {
       return String.IsNullOrEmpty(key) ? m_ObjectsContainer.First(o => requestedType.IsAssignableFrom(o.GetType()))
@@ -23,5 +30,9 @@ namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
     {
       return m_ObjectsContainer.Where(o => requestedType.IsAssignableFrom(o.GetType()));
     }
+    #endregion
+
+    private readonly IEnumerable<object> m_ObjectsContainer;
+
   }
 }

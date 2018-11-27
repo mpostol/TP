@@ -1,7 +1,13 @@
-﻿
-using System;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using CommonServiceLocator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
 
 namespace TPA.Composition.UnitTest
@@ -24,28 +30,30 @@ namespace TPA.Composition.UnitTest
     {
       object[] _services = new object[]
         {
-          new Logger(),
+          Logger.LoggerInstance,
           new AdvancedLogger(),
           new NullReferenceException()
         };
+      Logger.LoggerInstance.MemoryLog.Clear();
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.IsNotNull(_newUser);
       _newUser.DataProcessing();
+      Assert.AreEqual<int>(1, Logger.LoggerInstance.MemoryLog.Count);
     }
     [TestMethod]
     public void AdvancedLoggerLogTest()
     {
       object[] _services = new object[]
         {
-          new Logger(),
+          Logger.LoggerInstance,
           new AdvancedLogger(),
           new NullReferenceException()
         };
+      Logger.LoggerInstance.MemoryLog.Clear();
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.IsNotNull(_newUser);
       _newUser.DataProcessing(typeof(AdvancedLogger).FullName);
+      Assert.AreEqual<int>(0, Logger.LoggerInstance.MemoryLog.Count);
     }
     [TestMethod]
     [ExpectedException(typeof(ActivationException))]
@@ -53,13 +61,12 @@ namespace TPA.Composition.UnitTest
     {
       object[] _services = new object[]
         {
-          new Logger(),
+          Logger.LoggerInstance,
           new AdvancedLogger(),
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.IsNotNull(_newUser);
       _newUser.DataProcessing("Random Text");
     }
     [TestMethod]
@@ -68,13 +75,12 @@ namespace TPA.Composition.UnitTest
     {
       object[] _services = new object[]
         {
-          new Logger(),
+          Logger.LoggerInstance,
           new AdvancedLogger(),
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.IsNotNull(_newUser);
       _newUser.DataProcessingNullReferenceException();
     }
 

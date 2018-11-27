@@ -8,7 +8,7 @@ namespace TPA.Composition
 
     public void DataProcessing()
     {
-      if (Logger == null)
+      if (Logger != null)
         Logger.Log("Executing DataProcessingWithSimpleLog");
     }
 

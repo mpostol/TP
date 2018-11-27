@@ -1,12 +1,18 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
 
 namespace TPA.Composition.UnitTest
 {
+
   [TestClass]
   public class MEFServiceLocatorUserUnitTest
   {
@@ -19,6 +25,7 @@ namespace TPA.Composition.UnitTest
       ComposeParts(_newInstance);
       Assert.IsNotNull(_newInstance.Logger);
       _newInstance.DataProcessing();
+      Assert.IsFalse(string.IsNullOrEmpty(MEFILogger.LastLog));
     }
     private void ComposeParts(object attributedParts)
     {
@@ -33,6 +40,10 @@ namespace TPA.Composition.UnitTest
     private CompositionContainer m_Container = null;
   }
   [Export(typeof(ILogger))]
-  public class MEFILogger : Logger { }
+  public class MEFILogger : ILogger
+  {
+    internal static string LastLog { get; private set; }
+    public void Log(string msg) { LastLog = msg; }
+  }
 
 }
