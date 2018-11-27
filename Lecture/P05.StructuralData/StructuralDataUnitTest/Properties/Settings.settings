@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TP.StructuralDataUnitTest.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="UnitTestDataConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\git\TP\Lecture\P05.StructuralData\StructuralDataUnitTest\Instrumentation\CDCatalog.mdf;Integrated Security=True;Connect Timeout=30</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>

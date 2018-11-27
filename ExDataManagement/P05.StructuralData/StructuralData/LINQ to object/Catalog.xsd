@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Catalog" targetNamespace="http://Viculu34.org/Catalog.xsd" xmlns:mstns="http://Viculu34.org/Catalog.xsd" xmlns="http://Viculu34.org/Catalog.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Catalog" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:Prefix="tempuri" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Catalog" msprop:Generator_UserDSName="Catalog">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CDCatalogEntity" msdata:Locale="" msprop:Generator_TableClassName="CDCatalogEntityDataTable" msprop:Generator_TableVarName="tableCDCatalogEntity" msprop:Generator_RowChangedName="CDCatalogEntityRowChanged" msprop:Generator_TablePropName="CDCatalogEntity" msprop:Generator_RowDeletingName="CDCatalogEntityRowDeleting" msprop:Generator_RowChangingName="CDCatalogEntityRowChanging" msprop:Generator_RowEvHandlerName="CDCatalogEntityRowChangeEventHandler" msprop:Generator_RowDeletedName="CDCatalogEntityRowDeleted" msprop:Generator_RowClassName="CDCatalogEntityRow" msprop:Generator_UserTableName="CDCatalogEntity" msprop:Generator_RowEvArgName="CDCatalogEntityRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" type="xs:string" minOccurs="0" />
+              <xs:element name="Person" msprop:Generator_ColumnVarNameInTable="columnPerson" msprop:Generator_ColumnPropNameInRow="Person" msprop:Generator_ColumnPropNameInTable="PersonColumn" msprop:Generator_UserColumnName="Person" type="xs:int" minOccurs="0" />
+              <xs:element name="Country" msprop:Generator_ColumnVarNameInTable="columnCountry" msprop:Generator_ColumnPropNameInRow="Country" msprop:Generator_ColumnPropNameInTable="CountryColumn" msprop:Generator_UserColumnName="Country" type="xs:string" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_UserColumnName="Year" type="xs:unsignedShort" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Person" msdata:Locale="" msprop:Generator_TableClassName="PersonDataTable" msprop:Generator_TableVarName="tablePerson" msprop:Generator_RowChangedName="PersonRowChanged" msprop:Generator_TablePropName="Person" msprop:Generator_RowDeletingName="PersonRowDeleting" msprop:Generator_RowChangingName="PersonRowChanging" msprop:Generator_RowEvHandlerName="PersonRowChangeEventHandler" msprop:Generator_RowDeletedName="PersonRowDeleted" msprop:Generator_RowClassName="PersonRow" msprop:Generator_UserTableName="Person" msprop:Generator_RowEvArgName="PersonRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" minOccurs="0" />
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:unsignedShort" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="CDCatalogKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CDCatalogEntity" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="PersonKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Person" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="ArtistRelation" msdata:parent="Person" msdata:child="CDCatalogEntity" msdata:parentkey="Id" msdata:childkey="Person" msprop:Generator_UserChildTable="CDCatalogEntity" msprop:Generator_ChildPropName="GetCDCatalogRows" msprop:Generator_UserRelationName="ArtistRelation" msprop:Generator_ParentPropName="PersonRow" msprop:Generator_RelationVarName="relationArtistRelation" msprop:Generator_UserParentTable="Person" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

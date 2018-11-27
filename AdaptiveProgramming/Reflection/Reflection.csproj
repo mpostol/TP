@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80CD9772-8724-40D4-AC68-4148FBE05E82}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TPA.Reflection</RootNamespace>
+    <AssemblyName>TPA.Reflection</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeGeneration\CSharpCodeFactory.cs" />
+    <Compile Include="CodeGeneration\DynamicMethodFactory.cs" />
+    <Compile Include="DynamicType\DemoTypeBuilder.cs" />
+    <Compile Include="DynamicType\DynamicExampleClass.cs" />
+    <Compile Include="DynamicType\ReadOnlyFile.cs" />
+    <Compile Include="Execution\CreateInstance.cs" />
+    <Compile Include="Execution\DataBinding.cs" />
+    <Compile Include="ITraceSource.cs" />
+    <Compile Include="LocalizedDescriptionAttribute.cs" />
+    <Compile Include="Model\AbstractENum.cs" />
+    <Compile Include="Model\AccessLevel.cs" />
+    <Compile Include="Model\ExtensionMethods.cs" />
+    <Compile Include="Model\MethodMetadata.cs" />
+    <Compile Include="Model\ParameterMetadata.cs" />
+    <Compile Include="Model\PropertyMetadata.cs" />
+    <Compile Include="Model\SealedEnum.cs" />
+    <Compile Include="Model\NamespaceMetadata.cs" />
+    <Compile Include="Model\StaticEnum.cs" />
+    <Compile Include="Model\TypeMetadata.cs" />
+    <Compile Include="Model\VirtualEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflector.cs" />
+    <Compile Include="Model\AssemblyMetadata.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppResources\AppResources.csproj">
+      <Project>{8ba5c9b2-71c5-4f4a-a368-dec60202c544}</Project>
+      <Name>AppResources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\ApplicationArchitectureDependency\DependencyValidation1.layerdiagram">
+      <Link>DependencyValidation1.layerdiagram</Link>
+      <Visible>False</Visible>
+    </AdditionalFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CDCatalog" Class="CatalogDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\git\TP\Lecture\P05.StructuralData\StructuralDataUnitTest\Instrumentation\CDCatalog.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="TP.StructuralData.Properties.Settings" SettingsPropertyName="CDCatalogConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Person" Member="Persons">
+    <Type Name="Person">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Person_CDCatalogEntity" Member="CDCatalogEntities" ThisKey="Id" OtherKey="ArtistKey" Type="CDCatalogEntity" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CDCatalogEntity" Member="CDCatalogEntities">
+    <Type Name="CDCatalogEntity">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Year" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Person_CDCatalogEntity" Member="Person" ThisKey="ArtistKey" OtherKey="Id" Type="Person" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
