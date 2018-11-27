@@ -10,7 +10,6 @@ namespace TPA.ApplicationArchitecture.Data
     public class DerivedClass : AbstractClass
     {
         public int FieldInDerivedClass;
-        //public delegate Structure GetStructure();
 
         public override void AbstractMethod() { }
 

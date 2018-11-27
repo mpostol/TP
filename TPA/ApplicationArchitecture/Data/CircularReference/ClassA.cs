@@ -8,6 +8,6 @@ namespace TPA.ApplicationArchitecture.Data.CircularReference
 {
     public class ClassA
     {
-        public ClassB ClassB { get; set; } = new ClassB();
+        public ClassB ClassB { get; set; }
     }
 }
