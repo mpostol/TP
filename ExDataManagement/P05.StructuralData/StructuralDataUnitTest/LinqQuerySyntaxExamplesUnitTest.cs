@@ -18,8 +18,8 @@ namespace TP.StructuralDataUnitTest
     [TestMethod]
     public void QuerySyntaxForeachExampleTest()
     {
-      Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.QuerySyntax());
       Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.ForeachExample());
+      Assert.AreEqual<string>("grape", LinqQuerySyntaxExamples.QuerySyntax());
     }
     [TestMethod]
     public void QuerySyntaxSideEffectTest()
