@@ -34,9 +34,7 @@ namespace TP.GraphicalData
     {
       DelegateExample _newInstance = new DelegateExample();
       _newInstance.PerformCalculationVar = _newInstance.PerformSumMethod;
-      //Multicast #1
       _newInstance.PerformCalculationVar = new DelegateExample.PerformCalculation(_newInstance.PerformSumMethod) + new DelegateExample.PerformCalculation(DelegateExample.PerformSubtractMethod);
-      //Multicast #1
       _newInstance.PerformCalculationVar = new DelegateExample.PerformCalculation(PerformSumMethod);
       _newInstance.PerformCalculationVar += new DelegateExample.PerformCalculation(DelegateExample.PerformSubtractMethod);
       Assert.AreEqual<int>(-1, _newInstance.PerformCalculationMethod(1, 2));

@@ -32,7 +32,7 @@ namespace TP.GraphicalData
     {
       PerformCalculationVar = new PerformCalculation(PerformSumMethod);
       PerformCalculationVar = new PerformCalculation(PerformSubtractMethod);
-      //PerformCalculationVar = new PerformCalculation(PerformSubtractDoubleMethod);
+      //PerformCalculationVar = new PerformCalculation(PerformSubtractDoubleMethod); //No overload for 'DelegateExample.PerformSubtractDoubleMethod(double, double)' matches delegate 'DelegateExample.PerformCalculation'
     }
     public int PerformCalculationMethod(int x, int y)
     {
@@ -57,5 +57,4 @@ namespace TP.GraphicalData
     }
 
   }
-
 }
