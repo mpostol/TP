@@ -4,17 +4,8 @@
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
-//____________________________________________________________________________
-//
-//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
-//
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
 
-using Microsoft.Win32;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows;
 using System.Windows.Input;
 using TP.GraphicalData.MVVMLight;
 
@@ -30,48 +21,25 @@ namespace TP.GraphicalData.TreeView
     #region constructors
     public TreeViewViewModel()
     {
-      HierarchicalAreas = new ObservableCollection<TreeViewItem>();
-      Click_Button = new RelayCommand(LoadDLL);
+      Click_Button = new RelayCommand(AddRoot, () => true);
       Click_Browse = new RelayCommand(Browse);
     }
     #endregion
 
     #region DataContext
-    public ObservableCollection<TreeViewItem> HierarchicalAreas { get; set; }
+    public ObservableCollection<TreeViewModelItem> HierarchicalAreas { get; set; } = new ObservableCollection<TreeViewModelItem>();
     public string PathVariable { get; set; }
-    public Visibility ChangeControlVisibility { get; set; } = Visibility.Hidden;
     public ICommand Click_Browse { get; }
     public ICommand Click_Button { get; }
     #endregion
 
     #region private
-    private void LoadDLL()
+    private void AddRoot()
     {
-      if (PathVariable.Substring(PathVariable.Length - 4) == ".dll")
-        TreeViewLoaded();
+      TreeViewModelItem _rootItem = new RootTreeViewItem();
+      HierarchicalAreas.Add(_rootItem);
     }
-    private void TreeViewLoaded()
-    {
-      TreeViewItem rootItem = new TreeViewItem { Name = PathVariable.Substring(PathVariable.LastIndexOf('\\') + 1) };
-      HierarchicalAreas.Add(rootItem);
-    }
-    private void Browse()
-    {
-      OpenFileDialog test = new OpenFileDialog()
-      {
-        Filter = "Dynamic Library File(*.dll)| *.dll"
-      };
-      test.ShowDialog();
-      if (test.FileName.Length == 0)
-        MessageBox.Show("No files selected");
-      else
-      {
-        PathVariable = test.FileName;
-        ChangeControlVisibility = Visibility.Visible;
-        RaisePropertyChanged("ChangeControlVisibility");
-        RaisePropertyChanged("PathVariable");
-      }
-    }
+    private void Browse() { }
     #endregion
 
   }

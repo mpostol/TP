@@ -7,21 +7,18 @@
 
 using System;
 using System.Collections.ObjectModel;
+using TP.GraphicalData.MVVMLight;
 
 namespace TP.GraphicalData.TreeView
 {
-  public class TreeViewItem
+  public class TreeViewModelItem : ViewModelBase
   {
-    public TreeViewItem()
-    {
-      Children = new ObservableCollection<TreeViewItem>() { null };
-      this.m_WasBuilt = false;
-    }
+
     public string Name { get; set; }
-    public ObservableCollection<TreeViewItem> Children { get; set; }
-    public bool IsExpanded
+    public ObservableCollection<TreeViewModelItem> Children { get; } = new ObservableCollection<TreeViewModelItem>() { null };
+    public bool TreeViewItemIsExpanded
     {
-      get { return m_IsExpanded; }
+      get => m_IsExpanded;
       set
       {
         m_IsExpanded = value;
@@ -30,16 +27,18 @@ namespace TP.GraphicalData.TreeView
         Children.Clear();
         BuildMyself();
         m_WasBuilt = true;
+        RaisePropertyChanged();
       }
     }
 
-    private bool m_WasBuilt;
-    private bool m_IsExpanded;
+    private bool m_WasBuilt = false;
+    private bool m_IsExpanded = false;
+    private static Random m_Random = new Random();
     private void BuildMyself()
     {
-      Random random = new Random();
-      for (int i = 0; i < random.Next(7); i++)
-        this.Children.Add(new TreeViewItem() { Name = "sample" + i });
+      int _numberOfChildren = Math.Max(1, m_Random.Next(7));
+      for (int i = 0; i < _numberOfChildren; i++)
+        this.Children.Add(new TreeViewModelItem() { Name = $"sample{i}" });
     }
 
   }

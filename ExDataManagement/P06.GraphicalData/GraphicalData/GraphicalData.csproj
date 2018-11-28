@@ -65,6 +65,7 @@
     <Compile Include="MVVMLight\RelayCommand.cs" />
     <Compile Include="MVVMLight\ViewModelBase.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="TreeView\RootTreeViewItem.cs" />
     <Compile Include="TreeView\TreeViewItem.cs" />
     <Compile Include="TreeView\TreeViewMainWindow.xaml.cs">
       <DependentUpon>TreeViewMainWindow.xaml</DependentUpon>

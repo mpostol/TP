@@ -17,6 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P05 Structural Data", "P05 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P06 Graphical Data", "P06 Graphical Data", "{FC29CE65-D5DB-4DE7-A25F-FD8B57E7F99D}"
+	ProjectSection(SolutionItems) = preProject
+		ExDataManagement\P06.GraphicalData\Readme.md = ExDataManagement\P06.GraphicalData\Readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P02 Data Semantics", "P02 Data Semantics", "{1226668D-7283-4485-A6D1-6A4CEF46FC6B}"
 EndProject

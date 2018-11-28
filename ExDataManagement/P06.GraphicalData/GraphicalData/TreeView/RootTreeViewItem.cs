@@ -5,18 +5,13 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
-using System.Windows;
-
 namespace TP.GraphicalData.TreeView
 {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class TreeViewMainWindow : Window
+  public class RootTreeViewItem : TreeViewModelItem
   {
-    public TreeViewMainWindow()
+    public RootTreeViewItem()
     {
-      InitializeComponent();
+      Name = "Root";
     }
   }
 }
