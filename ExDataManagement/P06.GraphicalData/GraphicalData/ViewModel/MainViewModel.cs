@@ -25,6 +25,7 @@ namespace TP.GraphicalData.ViewModel
     /// </summary>
     public MainViewModel()
     {
+      ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
       FetchDataCommend = new RelayCommand(() => DataLayer = new DataLayer());
       DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
       m_ActionText = "Text to be displayed on the popup";
@@ -75,6 +76,11 @@ namespace TP.GraphicalData.ViewModel
     {
       get; private set;
     }
+    public RelayCommand ShowTreeViewMainWindowCommend
+    {
+      get; private set;
+    }
+
     #endregion
 
     #region Unit test instrumentation
@@ -105,6 +111,11 @@ namespace TP.GraphicalData.ViewModel
     private void ShowPopupWindow()
     {
       MessageBoxShowDelegate(ActionText, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+    private void ShowTreeViewMainWindow()
+    {
+      TreeView.TreeViewMainWindow _treeViewWindow = new TreeView.TreeViewMainWindow();
+      _treeViewWindow.Show();
     }
     #endregion
 

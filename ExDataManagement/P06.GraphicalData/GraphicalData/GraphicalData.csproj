@@ -65,11 +65,11 @@
     <Compile Include="MVVMLight\RelayCommand.cs" />
     <Compile Include="MVVMLight\ViewModelBase.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="TreeView\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TreeView\MyViewModel.cs" />
     <Compile Include="TreeView\TreeViewItem.cs" />
+    <Compile Include="TreeView\TreeViewMainWindow.xaml.cs">
+      <DependentUpon>TreeViewMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\TreeViewViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -83,7 +83,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TreeView\MainWindow.xaml">
+    <Page Include="TreeView\TreeViewMainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

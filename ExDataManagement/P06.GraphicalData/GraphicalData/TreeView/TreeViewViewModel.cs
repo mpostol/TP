@@ -4,6 +4,12 @@
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
+//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
@@ -18,11 +24,11 @@ namespace TP.GraphicalData.TreeView
   /// Class MyViewModel - ViewModel implementation 
   /// </summary>
   /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-  public class MyViewModel : ViewModelBase
+  public class TreeViewViewModel : ViewModelBase
   {
 
     #region constructors
-    public MyViewModel()
+    public TreeViewViewModel()
     {
       HierarchicalAreas = new ObservableCollection<TreeViewItem>();
       Click_Button = new RelayCommand(LoadDLL);

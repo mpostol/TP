@@ -12,13 +12,12 @@ namespace TP.GraphicalData.TreeView
   /// <summary>
   /// Interaction logic for MainWindow.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class TreeViewMainWindow : Window
   {
 
-    public MainWindow()
+    public TreeViewMainWindow()
     {
       InitializeComponent();
-      DataContext = new MyViewModel();
     }
 
   }
