@@ -1,4 +1,4 @@
-# C# Adaptive Programming [*DRAFT*]
+# C# Adaptive Programming (AP) [*DRAFT*]
 
 ## Key words:
 
