@@ -1,4 +1,4 @@
-# C# External Data-intensive Programming
+# C# External Data-intensive Programming (ExDM)
 
 ## Key words:
 
