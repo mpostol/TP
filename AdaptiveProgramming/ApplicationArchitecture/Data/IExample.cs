@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 namespace TPA.ApplicationArchitecture.Data
 {
-    public interface IExample
-    {
-        void MethodA();
-        float MethodB();
-    }
+  public interface IExample
+  {
+
+    void MethodA();
+    float MethodB();
+
+  }
 }

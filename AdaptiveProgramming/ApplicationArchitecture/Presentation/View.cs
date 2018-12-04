@@ -1,18 +1,24 @@
-﻿
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
+
 using System;
 using System.Reflection;
 using TPA.ApplicationArchitecture.BusinessLogic;
 
 namespace TPA.ApplicationArchitecture.Presentation
 {
-    class View
+  internal class View
   {
     public View()
     {
       Console.WriteLine($"Starting View Rel {Assembly.GetExecutingAssembly().GetName().Version}");
     }
 
-    ViewModel ViewModel { get; set; }
+    private ViewModel ViewModel { get; set; }
 
   }
 }

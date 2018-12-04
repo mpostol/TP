@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//____________________________________________________________________________
+//
+//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
+//____________________________________________________________________________
 
 namespace TPA.ApplicationArchitecture.Data
 {
-    enum Enum
-    {
-        Value1,
-        Value2
-    }
+  internal enum Enum
+  {
+    Value1,
+    Value2
+  }
 }
