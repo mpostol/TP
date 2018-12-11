@@ -54,20 +54,19 @@ namespace TP.StructuralData.LINQ_to_SQL
              where _person.LastName.Equals(lastName)
              select _person;
     }
+    public IEnumerable<Person> FilterPersonsByLastName_MethodSyntax(string lastName)
+    {
+      return this.Persons.Where(_person => _person.LastName.Equals(lastName));
+    }
     public string FilterPersonsByLastName_AnonymousType(string lastName)
     {
       var _firstNames = from _person in this.Persons
                         select new { _person.FirstName };
       return string.Join(", ", _firstNames.Select(x => x.FirstName).ToArray<string>());
     }
-
-    public IEnumerable<Person> FilterPersonsByLastName_MethodSyntax(string lastName)
-    {
-      return this.Persons.Where(_person => _person.LastName.Equals(lastName));
-    }
     /// <summary>
     /// Helper method to quickly remove all entities from the table.
-    /// This method is intended to be used in unit tests so it is marked by the <see cref="Conditional"/> attribute and implemented for the "DEBUG" configuration.
+    /// This method is intended to be used in unit tests so it is marked by the <see cref="Conditional"/> attribute and implemented for the "DEBUG" configuration only.
     /// </summary>
     [Conditional("DEBUG")]
     public void TruncateAllData()
