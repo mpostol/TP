@@ -16,8 +16,8 @@ namespace TPA.Reflection.Model
     }
 
     #region private
-    private string m_Name;
-    private TypeMetadata m_TypeMetadata;
+    internal string m_Name;
+    internal TypeMetadata m_TypeMetadata;
     private PropertyMetadata(string propertyName, TypeMetadata propertyType)
     {
       m_Name = propertyName;

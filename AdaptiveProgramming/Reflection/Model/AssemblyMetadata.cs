@@ -19,8 +19,8 @@ namespace TPA.Reflection.Model
                      select new NamespaceMetadata(_group.Key, _group);
     }
 
-    private string m_Name;
-    private IEnumerable<NamespaceMetadata> m_Namespaces;
+    internal string m_Name;
+    internal IEnumerable<NamespaceMetadata> m_Namespaces;
 
   }
 }

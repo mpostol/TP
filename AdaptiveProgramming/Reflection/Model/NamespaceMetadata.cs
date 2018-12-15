@@ -14,8 +14,8 @@ namespace TPA.Reflection.Model
       m_Types = from type in types orderby type.Name select new TypeMetadata(type);
     }
 
-    private string m_NamespaceName;
-    private IEnumerable<TypeMetadata> m_Types;
+    internal string m_NamespaceName;
+    internal IEnumerable<TypeMetadata> m_Types;
 
   }
 }
