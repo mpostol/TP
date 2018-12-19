@@ -30,7 +30,7 @@ namespace TPA.Logging.UnitTest.Instrumentation
                   {
                     if (shouldFlush(newItem))
                     {
-                      foreach (var buffered in _buffer.TakeAll())
+                      foreach (T buffered in _buffer.TakeAll())
                         observer.OnNext(buffered);
                       observer.OnNext(newItem);
                     }

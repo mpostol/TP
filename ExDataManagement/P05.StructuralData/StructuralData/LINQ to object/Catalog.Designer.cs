@@ -229,6 +229,7 @@ namespace TP.StructuralData.LINQ_to_object {
             this.DataSetName = "Catalog";
             this.Prefix = "tempuri";
             this.Namespace = "http://Viculu34.org/Catalog.xsd";
+            this.Locale = new global::System.Globalization.CultureInfo("");
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableCDCatalogEntity = new CDCatalogEntityDataTable();

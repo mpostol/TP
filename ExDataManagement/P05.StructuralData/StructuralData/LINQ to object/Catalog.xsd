@@ -9,10 +9,10 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Catalog" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:Prefix="tempuri" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Catalog" msprop:Generator_UserDSName="Catalog">
+  <xs:element name="Catalog" msdata:IsDataSet="true" msdata:Locale="" msdata:Prefix="tempuri" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Catalog" msprop:Generator_UserDSName="Catalog">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CDCatalogEntity" msdata:Locale="" msprop:Generator_TableClassName="CDCatalogEntityDataTable" msprop:Generator_TableVarName="tableCDCatalogEntity" msprop:Generator_RowChangedName="CDCatalogEntityRowChanged" msprop:Generator_TablePropName="CDCatalogEntity" msprop:Generator_RowDeletingName="CDCatalogEntityRowDeleting" msprop:Generator_RowChangingName="CDCatalogEntityRowChanging" msprop:Generator_RowEvHandlerName="CDCatalogEntityRowChangeEventHandler" msprop:Generator_RowDeletedName="CDCatalogEntityRowDeleted" msprop:Generator_RowClassName="CDCatalogEntityRow" msprop:Generator_UserTableName="CDCatalogEntity" msprop:Generator_RowEvArgName="CDCatalogEntityRowChangeEvent">
+        <xs:element name="CDCatalogEntity" msdata:Locale="" msprop:Generator_TableClassName="CDCatalogEntityDataTable" msprop:Generator_TableVarName="tableCDCatalogEntity" msprop:Generator_TablePropName="CDCatalogEntity" msprop:Generator_RowDeletingName="CDCatalogEntityRowDeleting" msprop:Generator_RowChangingName="CDCatalogEntityRowChanging" msprop:Generator_RowEvHandlerName="CDCatalogEntityRowChangeEventHandler" msprop:Generator_RowDeletedName="CDCatalogEntityRowDeleted" msprop:Generator_UserTableName="CDCatalogEntity" msprop:Generator_RowChangedName="CDCatalogEntityRowChanged" msprop:Generator_RowEvArgName="CDCatalogEntityRowChangeEvent" msprop:Generator_RowClassName="CDCatalogEntityRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -24,7 +24,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Person" msdata:Locale="" msprop:Generator_TableClassName="PersonDataTable" msprop:Generator_TableVarName="tablePerson" msprop:Generator_RowChangedName="PersonRowChanged" msprop:Generator_TablePropName="Person" msprop:Generator_RowDeletingName="PersonRowDeleting" msprop:Generator_RowChangingName="PersonRowChanging" msprop:Generator_RowEvHandlerName="PersonRowChangeEventHandler" msprop:Generator_RowDeletedName="PersonRowDeleted" msprop:Generator_RowClassName="PersonRow" msprop:Generator_UserTableName="Person" msprop:Generator_RowEvArgName="PersonRowChangeEvent">
+        <xs:element name="Person" msdata:Locale="" msprop:Generator_TableClassName="PersonDataTable" msprop:Generator_TableVarName="tablePerson" msprop:Generator_TablePropName="Person" msprop:Generator_RowDeletingName="PersonRowDeleting" msprop:Generator_RowChangingName="PersonRowChanging" msprop:Generator_RowEvHandlerName="PersonRowChangeEventHandler" msprop:Generator_RowDeletedName="PersonRowDeleted" msprop:Generator_UserTableName="Person" msprop:Generator_RowChangedName="PersonRowChanged" msprop:Generator_RowEvArgName="PersonRowChangeEvent" msprop:Generator_RowClassName="PersonRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -47,7 +47,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="ArtistRelation" msdata:parent="Person" msdata:child="CDCatalogEntity" msdata:parentkey="Id" msdata:childkey="Person" msprop:Generator_UserChildTable="CDCatalogEntity" msprop:Generator_ChildPropName="GetCDCatalogRows" msprop:Generator_UserRelationName="ArtistRelation" msprop:Generator_ParentPropName="PersonRow" msprop:Generator_RelationVarName="relationArtistRelation" msprop:Generator_UserParentTable="Person" />
+      <msdata:Relationship name="ArtistRelation" msdata:parent="Person" msdata:child="CDCatalogEntity" msdata:parentkey="Id" msdata:childkey="Person" msprop:Generator_UserChildTable="CDCatalogEntity" msprop:Generator_ChildPropName="GetCDCatalogRows" msprop:Generator_UserRelationName="ArtistRelation" msprop:Generator_RelationVarName="relationArtistRelation" msprop:Generator_UserParentTable="Person" msprop:Generator_ParentPropName="PersonRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

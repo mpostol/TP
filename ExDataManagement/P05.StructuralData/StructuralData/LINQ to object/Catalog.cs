@@ -17,7 +17,7 @@ namespace TP.StructuralData.LINQ_to_object
   /// </summary>
   public partial class Catalog
   {
-    
+
     public void AddContent(IEnumerable<IPerson> persons)
     {
       foreach (IPerson _item in persons)
