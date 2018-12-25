@@ -21,19 +21,16 @@ namespace TP.StructuralDataUnitTest
   public class LINQ_to_SQLDataServiceUnitTests
   {
 
-    [TestInitialize]
-    public void TestInitializeMethod()
+    [ClassInitialize]
+    public static void ClassInitializeMethod(TestContext context)
     {
       string _DBRelativePath = @"Instrumentation\CDCatalog.mdf";
       string _TestingWorkingFolder = Environment.CurrentDirectory;
       string _DBPath = Path.Combine(_TestingWorkingFolder, _DBRelativePath);
       FileInfo _databaseFile = new FileInfo(_DBPath);
       Assert.IsTrue(_databaseFile.Exists, $"{Environment.CurrentDirectory}");
-      Assert.AreEqual<int>(0, m_InitializationCounter);
-      m_InitializationCounter++;
       m_ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={_DBPath};Integrated Security = True; Connect Timeout = 30;";
     }
-    private int m_InitializationCounter = 0;
     [TestMethod]
     public void CatalogConstructorTest()
     {
@@ -77,14 +74,14 @@ namespace TP.StructuralDataUnitTest
       }
     }
     [TestMethod]
-    public void FilterPersonsByLastName_MethodSyntaxTest()
+    public void FilterPersonsByLastName_QuerySyntaxTest()
     {
       using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
       {
         try
         {
           _newCatalog.AddContent(TestDataGenerator.PrepareData());
-          IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_MethodSyntax("Person");
+          IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_QuerySyntax("Person");
           Type _returnedType = _filtered.GetType();
           Assert.AreEqual<string>("System.Data.Linq.DataQuery`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
           Assert.AreEqual<string>("SELECT [t0].[Id], [t0].[FirstName], [t0].[LastName], [t0].[Age]\r\nFROM [dbo].[Person] AS [t0]\r\nWHERE [t0].[LastName] = @p0", _filtered.ToString().Trim());
@@ -99,14 +96,14 @@ namespace TP.StructuralDataUnitTest
       }
     }
     [TestMethod]
-    public void FilterPersonsByLastName_QuerySyntaxTest()
+    public void FilterPersonsByLastName_MethodSyntaxTest()
     {
       using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
       {
         try
         {
           _newCatalog.AddContent(TestDataGenerator.PrepareData());
-          IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_QuerySyntax("Person");
+          IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_MethodSyntax("Person");
           Type _returnedType = _filtered.GetType();
           Assert.AreEqual<string>("System.Data.Linq.DataQuery`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
           Assert.AreEqual<string>("SELECT [t0].[Id], [t0].[FirstName], [t0].[LastName], [t0].[Age]\r\nFROM [dbo].[Person] AS [t0]\r\nWHERE [t0].[LastName] = @p0", _filtered.ToString().Trim());
@@ -159,7 +156,7 @@ namespace TP.StructuralDataUnitTest
 
     #region instrumentation
     // Connection string defined in LinqToSqlLibTests project settings.
-    private string m_ConnectionString;
+    private static string m_ConnectionString;
     #endregion
   }
 }
