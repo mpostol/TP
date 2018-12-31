@@ -135,7 +135,7 @@ namespace TP.StructuralDataUnitTest
       }
     }
     [TestMethod]
-    public void ObjectRelationalMappingMTest()
+    public void ObjectRelationalMappingTest()
     {
       //CatalogDataContext
       object[] _attributes = typeof(CatalogDataContext).GetCustomAttributes(false);
