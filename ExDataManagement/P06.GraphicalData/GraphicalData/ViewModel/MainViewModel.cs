@@ -10,7 +10,6 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using TP.GraphicalData.Model;
 using TP.GraphicalData.MVVMLight;
-using TP.GraphicalData.View;
 
 namespace TP.GraphicalData.ViewModel
 {
@@ -36,7 +35,7 @@ namespace TP.GraphicalData.ViewModel
     #region ViewModel API
     public ObservableCollection<User> Users
     {
-      get { return m_Users; }
+      get => m_Users;
       set
       {
         m_Users = value;
@@ -45,10 +44,7 @@ namespace TP.GraphicalData.ViewModel
     }
     public User CurrentUser
     {
-      get
-      {
-        return m_CurrentUser;
-      }
+      get => m_CurrentUser;
       set
       {
         m_CurrentUser = value;
@@ -57,7 +53,7 @@ namespace TP.GraphicalData.ViewModel
     }
     public string ActionText
     {
-      get { return m_ActionText; }
+      get => m_ActionText;
       set
       {
         m_ActionText = value;
@@ -81,7 +77,7 @@ namespace TP.GraphicalData.ViewModel
     {
       get; private set;
     }
-
+    public Lazy<Window> ChildWindow { get; set; }
     #endregion
 
     #region Unit test instrumentation
@@ -96,10 +92,11 @@ namespace TP.GraphicalData.ViewModel
     public Func<string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult> MessageBoxShowDelegate { get; set; } = MessageBox.Show;
     public DataLayer DataLayer
     {
-      get { return m_DataLayer; }
+      get => m_DataLayer;
       set
       {
-        m_DataLayer = value; Users = new ObservableCollection<User>(value.User);
+        m_DataLayer = value;
+        Users = new ObservableCollection<User>(value.User);
       }
     }
     #endregion
@@ -115,8 +112,8 @@ namespace TP.GraphicalData.ViewModel
     }
     private void ShowTreeViewMainWindow()
     {
-      TreeViewMainWindow _treeViewWindow = new TreeViewMainWindow();
-      _treeViewWindow.Show();
+      Window _child = ChildWindow.Value;
+      _child.Show();
     }
     #endregion
 
