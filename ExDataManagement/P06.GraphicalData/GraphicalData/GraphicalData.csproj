@@ -66,9 +66,6 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="TreeView\RootTreeViewItem.cs" />
     <Compile Include="TreeView\TreeViewItem.cs" />
-    <Compile Include="TreeView\TreeViewMainWindow.xaml.cs">
-      <DependentUpon>TreeViewMainWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TreeView\TreeViewViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
@@ -78,11 +75,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TreeView\TreeViewMainWindow.xaml">
+    <Compile Include="View\TreeViewMainWindow.xaml.cs">
+      <DependentUpon>TreeViewMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="View\TreeViewMainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using TP.GraphicalData.Model;
 using TP.GraphicalData.MVVMLight;
+using TP.GraphicalData.View;
 
 namespace TP.GraphicalData.ViewModel
 {
@@ -114,7 +115,7 @@ namespace TP.GraphicalData.ViewModel
     }
     private void ShowTreeViewMainWindow()
     {
-      TreeView.TreeViewMainWindow _treeViewWindow = new TreeView.TreeViewMainWindow();
+      TreeViewMainWindow _treeViewWindow = new TreeViewMainWindow();
       _treeViewWindow.Show();
     }
     #endregion

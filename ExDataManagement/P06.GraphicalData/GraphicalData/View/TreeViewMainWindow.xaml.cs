@@ -7,7 +7,7 @@
 
 using System.Windows;
 
-namespace TP.GraphicalData.TreeView
+namespace TP.GraphicalData.View
 {
   /// <summary>
   /// Interaction logic for MainWindow.xaml
