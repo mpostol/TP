@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnonymousFunctions.cs" />
+    <Compile Include="DelegateExample.cs" />
     <Compile Include="LessonExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="LessonExtensionMethods\IMyInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

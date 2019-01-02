@@ -51,6 +51,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DelegateExampleUnitTest.cs" />
     <Compile Include="ExtensionMethodsUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AnonymousFunctionsUnitTest.cs" />

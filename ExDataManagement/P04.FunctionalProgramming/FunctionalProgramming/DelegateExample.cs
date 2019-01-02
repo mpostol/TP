@@ -7,7 +7,7 @@
 
 using System;
 
-namespace TP.GraphicalData
+namespace TP.FunctionalProgramming
 {
 
   public class DelegateExample

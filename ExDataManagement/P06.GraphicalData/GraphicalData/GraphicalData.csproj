@@ -60,7 +60,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DelegateExample.cs" />
     <Compile Include="Model\DataLayerr.cs" />
     <Compile Include="MVVMLight\RelayCommand.cs" />
     <Compile Include="MVVMLight\ViewModelBase.cs" />

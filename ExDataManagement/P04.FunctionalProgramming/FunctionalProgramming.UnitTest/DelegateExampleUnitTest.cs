@@ -8,11 +8,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace TP.GraphicalData
+namespace TP.FunctionalProgramming
 {
   [TestClass]
   public class DelegateExampleUnitTest
   {
+
     [TestMethod]
     public void SumTestMethod()
     {

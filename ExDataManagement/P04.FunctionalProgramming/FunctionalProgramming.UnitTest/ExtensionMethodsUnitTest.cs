@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using TP.Lecture.LessonExtensionMethods;
 
-namespace TP.Lecture.UnitTest
+namespace TP.FunctionalProgramming
 {
   /// <summary>
   /// Class ExtensionMethodsUnitTest - main purpose of this class is to present main features of the extension method, but not to test code validation.
