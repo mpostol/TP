@@ -64,10 +64,10 @@
     <Compile Include="MVVMLight\RelayCommand.cs" />
     <Compile Include="MVVMLight\ViewModelBase.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="TreeView\RootTreeViewItem.cs" />
-    <Compile Include="TreeView\TreeViewItem.cs" />
-    <Compile Include="TreeView\TreeViewViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RootTreeViewItem.cs" />
+    <Compile Include="ViewModel\TreeViewItem.cs" />
+    <Compile Include="ViewModel\TreeViewViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

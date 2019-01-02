@@ -9,7 +9,7 @@ using System;
 using System.Collections.ObjectModel;
 using TP.GraphicalData.MVVMLight;
 
-namespace TP.GraphicalData.TreeView
+namespace TP.GraphicalData.ViewModel
 {
   public class TreeViewModelItem : ViewModelBase
   {

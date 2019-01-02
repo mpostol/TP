@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TP.GraphicalData.MVVMLight;
 
-namespace TP.GraphicalData.TreeView
+namespace TP.GraphicalData.ViewModel
 {
   /// <summary>
   /// Class MyViewModel - ViewModel implementation 
