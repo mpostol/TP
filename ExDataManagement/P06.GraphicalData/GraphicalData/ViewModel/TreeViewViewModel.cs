@@ -7,7 +7,7 @@
 
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using TP.GraphicalData.MVVMLight;
+using TP.GraphicalData.ViewModel.MVVMLight;
 
 namespace TP.GraphicalData.ViewModel
 {

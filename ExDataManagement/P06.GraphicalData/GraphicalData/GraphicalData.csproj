@@ -61,10 +61,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\DataLayerr.cs" />
-    <Compile Include="MVVMLight\RelayCommand.cs" />
-    <Compile Include="MVVMLight\ViewModelBase.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MVVMLight\RelayCommand.cs" />
+    <Compile Include="ViewModel\MVVMLight\ViewModelBase.cs" />
     <Compile Include="ViewModel\RootTreeViewItem.cs" />
     <Compile Include="ViewModel\TreeViewItem.cs" />
     <Compile Include="ViewModel\TreeViewViewModel.cs" />

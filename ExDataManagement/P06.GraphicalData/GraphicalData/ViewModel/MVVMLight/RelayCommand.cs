@@ -8,7 +8,7 @@
 using System;
 using System.Windows.Input;
 
-namespace TP.GraphicalData.MVVMLight
+namespace TP.GraphicalData.ViewModel.MVVMLight
 {
 
   /// <summary>

@@ -9,7 +9,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TP.GraphicalData.MVVMLight
+namespace TP.GraphicalData.ViewModel.MVVMLight
 {
   public class ViewModelBase : INotifyPropertyChanged
   {
