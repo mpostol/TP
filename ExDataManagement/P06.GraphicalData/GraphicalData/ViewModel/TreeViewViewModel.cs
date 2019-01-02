@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TP.GraphicalData.ViewModel.MVVMLight;
@@ -21,25 +22,39 @@ namespace TP.GraphicalData.ViewModel
     #region constructors
     public TreeViewViewModel()
     {
-      Click_Button = new RelayCommand(AddRoot, () => true);
-      Click_Browse = new RelayCommand(Browse);
+      ShowTreeViewCommand = new RelayCommand(AddRoot, () => ! string.IsNullOrEmpty(PathVariable));
+      BrowseCommand = new RelayCommand(Browse);
     }
     #endregion
 
-    #region DataContext
+    #region View Model API
     public ObservableCollection<TreeViewModelItem> HierarchicalAreas { get; set; } = new ObservableCollection<TreeViewModelItem>();
-    public string PathVariable { get; set; }
-    public ICommand Click_Browse { get; }
-    public ICommand Click_Button { get; }
+    public string PathVariable
+    {
+      get => _pathVariable;
+      set
+      {
+        _pathVariable = value;
+        ShowTreeViewCommand.RaiseCanExecuteChanged();
+        this.RaisePropertyChanged();
+      }
+    }
+    private string _pathVariable = string.Empty;
+    public ICommand BrowseCommand { get; }
+    public RelayCommand ShowTreeViewCommand { get; }
     #endregion
 
     #region private
+    internal Func<string> GetPath { set; private get; }
     private void AddRoot()
     {
       TreeViewModelItem _rootItem = new RootTreeViewItem();
       HierarchicalAreas.Add(_rootItem);
     }
-    private void Browse() { }
+    private void Browse()
+    {
+      PathVariable = GetPath();
+    }
     #endregion
 
   }

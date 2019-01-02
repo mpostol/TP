@@ -47,15 +47,14 @@ The repository is scoped to provide sound examples covering the following topics
 	1. Anonymous function and lambda expression
 	14. Extension method
 5. Structural Data
-	1. LINQ query and methods syntax
+	 1. LINQ query and methods syntax
 	16. LINQ to object
 	17. LINQ to SQL
 5. Graphical data
-	1. Delegates and events
-	19. [xaml](https://docs.microsoft.com/en-us/dotnet/framework/xaml-services/)
-	20. MVVM (Model, View, ViewModel) pattern
+   1. [xaml](https://docs.microsoft.com/en-us/dotnet/framework/xaml-services/)
+	19. MVVM (Model, View, ViewModel) pattern
 
-> **NOTE**: Unit Test role is code explanation rather than testing the correctness of it. 
+> **NOTE**: Unit Test role is solely code explanation rather than testing the correctness of it. 
 
 <!--//____________________________________________________________________________
 //

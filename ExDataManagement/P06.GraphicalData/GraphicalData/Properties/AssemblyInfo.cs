@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyTitle("TP.GraphicalData")]
 [assembly: AssemblyDescription("Graphical data")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Mariusz Postol")]
 [assembly: AssemblyProduct("TP.ExDataManagement")]
 [assembly: AssemblyCopyright("Copyright (C) 2018, Mariusz Postol")]
 [assembly: AssemblyTrademark("")]

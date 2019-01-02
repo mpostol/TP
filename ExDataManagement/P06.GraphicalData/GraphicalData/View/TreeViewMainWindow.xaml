@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TP.GraphicalData.ViewModel"
         mc:Ignorable="d"
-        Title="TreeView example" Height="350" Width="525">
+        Title="TreeView example" Height="350" Width="800">
     <Window.DataContext>
         <local:TreeViewViewModel/>
     </Window.DataContext>
@@ -28,8 +28,8 @@
         </TreeView>
         <StackPanel Orientation="Vertical" Grid.Column="0">
             <TextBox Text="{Binding Mode=OneWay,Path=PathVariable}" TextWrapping="Wrap" />
-            <Button Content="Browse" Command="{Binding Click_Browse}" />
-            <Button Content="Show TreeView" Command="{Binding Click_Button}" />
+            <Button Content="Browse" Command="{Binding BrowseCommand}" />
+            <Button Content="Show TreeView" Command="{Binding ShowTreeViewCommand}" />
         </StackPanel>
     </Grid>
 </Window>

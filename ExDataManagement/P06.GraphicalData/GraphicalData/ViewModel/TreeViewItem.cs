@@ -14,6 +14,7 @@ namespace TP.GraphicalData.ViewModel
   public class TreeViewModelItem : ViewModelBase
   {
 
+    #region View Model API
     public string Name { get; set; }
     public ObservableCollection<TreeViewModelItem> Children { get; } = new ObservableCollection<TreeViewModelItem>() { null };
     public bool TreeViewItemIsExpanded
@@ -30,7 +31,9 @@ namespace TP.GraphicalData.ViewModel
         RaisePropertyChanged();
       }
     }
+    #endregion
 
+    #region private
     private bool m_WasBuilt = false;
     private bool m_IsExpanded = false;
     private static Random m_Random = new Random();
@@ -40,6 +43,7 @@ namespace TP.GraphicalData.ViewModel
       for (int i = 0; i < _numberOfChildren; i++)
         this.Children.Add(new TreeViewModelItem() { Name = $"sample{i}" });
     }
+    #endregion
 
   }
 }
