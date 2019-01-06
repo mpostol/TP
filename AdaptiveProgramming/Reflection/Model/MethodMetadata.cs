@@ -50,7 +50,7 @@ namespace TPA.Reflection.Model
     }
     private static bool EmitExtension(MethodBase method)
     {
-      return method.IsDefined(typeof(ExtensionAttribute), true);
+      return method.CustomAttributes.Where<CustomAttributeData>(x => x.AttributeType == typeof(ExtensionAttribute)).Count<CustomAttributeData>() == 1;
     }
     private static Tuple<AccessLevel, AbstractENum, StaticEnum, VirtualEnum> EmitModifiers(MethodBase method)
     {

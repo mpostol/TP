@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace TPA.Reflection.Model
 {
@@ -22,7 +23,7 @@ namespace TPA.Reflection.Model
       m_BaseType = EmitExtends(type.BaseType);
       m_Properties = PropertyMetadata.EmitProperties(type.GetProperties());
       m_TypeKind = GetTypeKind(type);
-      m_Attributes = type.GetCustomAttributes(false).Cast<Attribute>();
+      m_Attributes = type.CustomAttributes;
     }
     #endregion
 
@@ -52,7 +53,7 @@ namespace TPA.Reflection.Model
     internal IEnumerable<TypeMetadata> m_GenericArguments;
     internal Tuple<AccessLevel, SealedEnum, AbstractENum> m_Modifiers;
     internal TypeKind m_TypeKind;
-    internal IEnumerable<Attribute> m_Attributes;
+    internal IEnumerable<CustomAttributeData> m_Attributes;
     internal IEnumerable<TypeMetadata> m_ImplementedInterfaces;
     internal IEnumerable<TypeMetadata> m_NestedTypes;
     internal IEnumerable<PropertyMetadata> m_Properties;
