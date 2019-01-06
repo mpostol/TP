@@ -11,8 +11,8 @@ namespace TPA.Reflection.Model
     }
     
     //private vars
-    private string m_Name;
-    private TypeMetadata m_TypeMetadata;
+    internal string m_Name;
+    internal TypeMetadata m_TypeMetadata;
 
   }
 }
