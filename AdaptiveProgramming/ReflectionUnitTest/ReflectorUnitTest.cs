@@ -27,7 +27,6 @@ namespace TPA.Reflection.UnitTest
       Assert.IsTrue(_fileInfo.Exists);
       Assert.IsNotNull(ReflectorTestClass.Reflector);
       Assert.IsNotNull(ReflectorTestClass.Reflector.MyNamespace);
-      Assert.Inconclusive("Nor all types are processed - test fails.");
       Assert.AreEqual<int>(4, ReflectorTestClass.Reflector.Namespaces.Count);
     }
     [TestMethod]
