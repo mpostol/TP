@@ -133,22 +133,22 @@ namespace TPA.Reflection.Model
     }
 
     private static void AddToStoredTypes(Type type)
+    {
+      if (!storedTypes.ContainsKey(type.Name))
       {
-        if (!storedTypes.ContainsKey(type.Name))
-        {
-          // TypeMetadata object is added to dictionary when invoking its constructor
-          new TypeMetadata(type);
-        }
+        // TypeMetadata object is added to dictionary when invoking its constructor
+        new TypeMetadata(type);
       }
+    }
 
     private static void AddToStoredTypes(IEnumerable<Type> types)
+    {
+      foreach (Type type in types)
       {
-        foreach (var type in types)
-        {
-          AddToStoredTypes(type);
-        }
+        AddToStoredTypes(type);
       }
-      #endregion
-
     }
+    #endregion
+
+  }
 }
