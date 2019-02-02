@@ -12,6 +12,10 @@ namespace TPA.Reflection.Model
     #region constructors
     internal TypeMetadata(Type type)
     {
+      if (!storedTypes.ContainsKey(type.Name))
+      {
+        storedTypes.Add(type.Name, this);
+      }
       m_typeName = type.Name;
       m_DeclaringType = EmitDeclaringType(type.DeclaringType);
       m_Constructors = MethodMetadata.EmitMethods(type.GetConstructors());
@@ -46,6 +50,7 @@ namespace TPA.Reflection.Model
     #endregion
 
     #region private
+    private static Dictionary<string, TypeMetadata> storedTypes = new Dictionary<string, TypeMetadata>();
     //vars
     internal string m_typeName;
     internal string m_NamespaceName;
@@ -75,16 +80,19 @@ namespace TPA.Reflection.Model
     {
       if (declaringType == null)
         return null;
+      AddToStoredTypes(declaringType);
       return EmitReference(declaringType);
     }
     private IEnumerable<TypeMetadata> EmitNestedTypes(IEnumerable<Type> nestedTypes)
     {
+      AddToStoredTypes(nestedTypes);
       return from _type in nestedTypes
              where _type.GetVisible()
              select new TypeMetadata(_type);
     }
     private IEnumerable<TypeMetadata> EmitImplements(IEnumerable<Type> interfaces)
     {
+      AddToStoredTypes(interfaces);
       return from currentInterface in interfaces
              select EmitReference(currentInterface);
     }
@@ -120,7 +128,25 @@ namespace TPA.Reflection.Model
     {
       if (baseType == null || baseType == typeof(Object) || baseType == typeof(ValueType) || baseType == typeof(Enum))
         return null;
+      AddToStoredTypes(baseType);
       return EmitReference(baseType);
+    }
+
+    private static void AddToStoredTypes(Type type)
+    {
+      if (!storedTypes.ContainsKey(type.Name))
+      {
+        // TypeMetadata object is added to dictionary when invoking its constructor
+        new TypeMetadata(type);
+      }
+    }
+
+    private static void AddToStoredTypes(IEnumerable<Type> types)
+    {
+      foreach (Type type in types)
+      {
+        AddToStoredTypes(type);
+      }
     }
     #endregion
 
