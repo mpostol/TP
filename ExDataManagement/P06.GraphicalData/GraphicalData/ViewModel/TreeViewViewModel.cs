@@ -31,15 +31,15 @@ namespace TP.GraphicalData.ViewModel
     public ObservableCollection<TreeViewModelItem> HierarchicalAreas { get; set; } = new ObservableCollection<TreeViewModelItem>();
     public string PathVariable
     {
-      get => _pathVariable;
+      get => m_PathVariable;
       set
       {
-        _pathVariable = value;
+        m_PathVariable = value;
         ShowTreeViewCommand.RaiseCanExecuteChanged();
         this.RaisePropertyChanged();
       }
     }
-    private string _pathVariable = string.Empty;
+    private string m_PathVariable = string.Empty;
     public ICommand BrowseCommand { get; }
     public RelayCommand ShowTreeViewCommand { get; }
     #endregion
