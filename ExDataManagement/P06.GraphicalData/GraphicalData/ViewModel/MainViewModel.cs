@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using TP.GraphicalData.Model;
 using TP.GraphicalData.ViewModel.MVVMLight;
 
@@ -77,7 +76,7 @@ namespace TP.GraphicalData.ViewModel
     {
       get; private set;
     }
-    public Lazy<Window> ChildWindow { get; set; }
+    public Lazy<IWindow> ChildWindow { get; set; }
     #endregion
 
     #region Unit test instrumentation
@@ -89,7 +88,7 @@ namespace TP.GraphicalData.ViewModel
     /// using <see cref="System.Runtime.CompilerServices.InternalsVisibleToAttribute"/>.
     /// </remarks>
     /// <value>The message box show delegate.</value>
-    public Func<string, string, MessageBoxButton, MessageBoxImage, MessageBoxResult> MessageBoxShowDelegate { get; set; } = MessageBox.Show;
+    public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the view layer");
     public DataLayer DataLayer
     {
       get => m_DataLayer;
@@ -108,11 +107,11 @@ namespace TP.GraphicalData.ViewModel
     private ObservableCollection<User> m_Users;
     private void ShowPopupWindow()
     {
-      MessageBoxShowDelegate(ActionText, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
+      MessageBoxShowDelegate(ActionText);
     }
     private void ShowTreeViewMainWindow()
     {
-      Window _child = ChildWindow.Value;
+      IWindow _child = ChildWindow.Value;
       _child.Show();
     }
     #endregion

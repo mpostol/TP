@@ -7,7 +7,6 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Windows;
 using TP.GraphicalData.Model;
 using TP.GraphicalData.ViewModel;
 
@@ -32,14 +31,10 @@ namespace TP.GraphicalData
     {
       MainViewModel _vm = new MainViewModel();
       int _boxShowCount = 0;
-      _vm.MessageBoxShowDelegate = (messageBoxText, caption, button, icon) =>
+      _vm.MessageBoxShowDelegate = (messageBoxText) =>
       {
         _boxShowCount++;
         Assert.AreEqual < string>("ActionText", messageBoxText);
-        Assert.AreEqual<string>("Button interaction", caption);
-        Assert.AreEqual<MessageBoxButton>(MessageBoxButton.OK, button);
-        Assert.AreEqual<MessageBoxImage>(MessageBoxImage.Information, icon);
-        return System.Windows.MessageBoxResult.OK;
       };
       _vm.ActionText = "ActionText";
       Assert.IsTrue(_vm.DisplayTextCommand.CanExecute(null));

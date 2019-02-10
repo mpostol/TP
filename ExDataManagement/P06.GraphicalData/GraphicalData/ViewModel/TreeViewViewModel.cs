@@ -45,7 +45,7 @@ namespace TP.GraphicalData.ViewModel
     #endregion
 
     #region private
-    internal Func<string> GetPath { set; private get; }
+    private Func<string> GetPath { set; get; } =  () => "Result of the FileOpenDialog";
     private void AddRoot()
     {
       TreeViewModelItem _rootItem = new RootTreeViewItem();

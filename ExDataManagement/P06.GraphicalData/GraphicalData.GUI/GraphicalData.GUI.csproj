@@ -60,14 +60,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\DataLayerr.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\MVVMLight\RelayCommand.cs" />
-    <Compile Include="ViewModel\MVVMLight\ViewModelBase.cs" />
-    <Compile Include="ViewModel\RootTreeViewItem.cs" />
-    <Compile Include="ViewModel\TreeViewItem.cs" />
-    <Compile Include="ViewModel\TreeViewViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -113,6 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GraphicalData\GraphicalData.csproj">
+      <Project>{7e5d5acd-5ba6-4faf-a51f-da4f3937f226}</Project>
+      <Name>GraphicalData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

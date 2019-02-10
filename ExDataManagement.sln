@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalData.GUI", "ExData
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalData", "ExDataManagement\P06.GraphicalData\GraphicalData\GraphicalData.csproj", "{7E5D5ACD-5BA6-4FAF-A51F-DA4F3937F226}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalData.UnitTest", "ExDataManagement\P06.GraphicalData\GraphicalData.UnitTest\GraphicalData.UnitTest.csproj", "{32EE831B-AD46-48AC-B303-23A6D818B8D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,10 @@ Global
 		{7E5D5ACD-5BA6-4FAF-A51F-DA4F3937F226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E5D5ACD-5BA6-4FAF-A51F-DA4F3937F226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E5D5ACD-5BA6-4FAF-A51F-DA4F3937F226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32EE831B-AD46-48AC-B303-23A6D818B8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32EE831B-AD46-48AC-B303-23A6D818B8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32EE831B-AD46-48AC-B303-23A6D818B8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32EE831B-AD46-48AC-B303-23A6D818B8D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,6 +145,7 @@ Global
 		{E7CB1D42-CECB-4E2A-BC20-D8FA655B2F11} = {014A60F6-B923-40AA-B63F-E4C1D826F8C0}
 		{7465F369-E400-4B02-B602-B8A5CD112044} = {FC29CE65-D5DB-4DE7-A25F-FD8B57E7F99D}
 		{7E5D5ACD-5BA6-4FAF-A51F-DA4F3937F226} = {FC29CE65-D5DB-4DE7-A25F-FD8B57E7F99D}
+		{32EE831B-AD46-48AC-B303-23A6D818B8D5} = {FC29CE65-D5DB-4DE7-A25F-FD8B57E7F99D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65AA60A0-3E47-4570-9AAD-40AB900681D6}
