@@ -7,21 +7,16 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using TP.GraphicalData.Model;
 using TP.GraphicalData.ViewModel.MVVMLight;
 
 namespace TP.GraphicalData.ViewModel
 {
-  /// <summary>
-  /// This class contains properties that the <see cref="MainWindow"/> can data bind to.
-  /// </summary>
   public class MainViewModel : ViewModelBase
   {
 
     #region constructors
-    /// <summary>
-    /// Initializes a new instance of the MainViewModel class.
-    /// </summary>
     public MainViewModel()
     {
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
@@ -62,17 +57,13 @@ namespace TP.GraphicalData.ViewModel
     }
     public RelayCommand DisplayTextCommand
     {
-      get;
-      private set;
+      get; private set;
     }
-    /// <summary>
-    /// Gets the commend responsible to fetch data.
-    /// </summary>
     public RelayCommand FetchDataCommend
     {
       get; private set;
     }
-    public RelayCommand ShowTreeViewMainWindowCommend
+    public ICommand ShowTreeViewMainWindowCommend
     {
       get; private set;
     }

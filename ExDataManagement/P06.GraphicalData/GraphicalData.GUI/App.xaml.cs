@@ -7,7 +7,7 @@
 
 using System.Windows;
 
-namespace TP.GraphicalData
+namespace TP.GraphicalData.View
 {
   /// <summary>
   /// Interaction logic for App.xaml

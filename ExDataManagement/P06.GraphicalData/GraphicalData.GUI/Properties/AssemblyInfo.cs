@@ -9,8 +9,8 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[assembly: AssemblyTitle("TP.GraphicalData")]
-[assembly: AssemblyDescription("Graphical data")]
+[assembly: AssemblyTitle("TP.GraphicalData.View")]
+[assembly: AssemblyDescription("Graphical data view layer implementation")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
 [assembly: AssemblyProduct("TP.ExDataManagement")]
