@@ -2,7 +2,7 @@
 
 ## Key words:
 
-education, training, external data, data management, information processing, data processing
+software engineering, education, training, external data, data management, information processing, data processing, GUI, SQL, serialization
 
 ## Subject
 
@@ -30,8 +30,7 @@ The repository is scoped to provide sound examples covering the following topics
 
 1. Introduction
 	1. About the course, information versus data, algorithm versus program, type - what does it mean
-	2. Useful assets: C# language, Visual Studio, GitHub 
-	3. Program robustness: exception, unit tests, environment simulation 
+	2. Useful assets: C# language, Visual Studio, GitHub, Gitter 
 2. Data semantics
 	1. Type concept
 	5. Anonymous type
