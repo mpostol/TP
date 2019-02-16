@@ -2,9 +2,19 @@
 
 [![Gitter](https://badges.gitter.im/mpostol/TP.svg)](https://gitter.im/mpostol/TP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) - to be in touch join us on GITTER.
 
-## Key words:
+## Key words
 
-software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, 
+software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control. 
+
+## Milestones
+
+| Release | Name                                    | Milestone                                                          | DOI |
+|:-------:|-----------------------------------------|--------------------------------------------------------------------|:---:|
+|![](https://img.shields.io/github/release/mpostol/tp.svg?style=flat) | Adaptive Programming (AP) February 2019 | Adaptive Programming postmortem dump                               |     |
+|   2.0.1 | ExDM VideoBook Helion v1.0.         | **C# in Practice - External Data-Intensive Programming** v1.0. |     |
+
+> [**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
+> 
 
 ## Content
 
@@ -12,6 +22,7 @@ Main purpose of this repository is to provide code examples for education purpos
 
 - **External Data-Intensive Programming**: process data management, i.e. those that are input or output for the business logic of the program.
 - **Adaptive Programming**: language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
+
 
 ## Goal
 
