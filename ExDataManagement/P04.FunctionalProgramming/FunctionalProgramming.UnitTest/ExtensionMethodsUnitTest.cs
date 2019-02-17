@@ -1,13 +1,12 @@
 ﻿//____________________________________________________________________________
 //
-//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using TP.Lecture.LessonExtensionMethods;
 
 namespace TP.FunctionalProgramming
 {
