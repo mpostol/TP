@@ -1,4 +1,4 @@
-﻿# Generics notes
+# Generics notes
 
 Constraints are specified by using the where contextual keyword. The following table lists the seven types of constraints:
 
@@ -15,4 +15,5 @@ Constraints are specified by using the where contextual keyword. The following t
 Some of the constraints are mutually exclusive. All value types must have an accessible parameterless constructor. The struct constraint implies the new() constraint and the new() constraint cannot be combined with the struct constraint. The unmanaged constraint implies the struct constraint. The unmanaged constraint cannot be combined with either the struct or new() constraints.
 
 # See also
+
 [Constraints on type parameters](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)

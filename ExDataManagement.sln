@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{014A60F6-B923-40AA-B63F-E4C1D826F8C0}"
 	ProjectSection(SolutionItems) = preProject
 		ExDataManagement\README.md = ExDataManagement\README.md
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "P01 Introduction", "P01 Introduction", "{6592B78B-A8DB-4D58-B7D6-5E19E5BF9389}"
@@ -59,6 +58,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalData.UnitTest", "ExDataManagement\P06.GraphicalData\GraphicalData.UnitTest\GraphicalData.UnitTest.csproj", "{32EE831B-AD46-48AC-B303-23A6D818B8D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalData.View", "ExDataManagement\P06.GraphicalData\GraphicalData.View\GraphicalData.View.csproj", "{7465F369-E400-4B02-B602-B8A5CD112044}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Repository Items", ".Repository Items", "{6CAAF878-DB4C-4855-822B-15CC21505FB1}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		REFERENCES.md = REFERENCES.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

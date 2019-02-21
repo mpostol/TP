@@ -24,7 +24,7 @@ To learn more about the serialization visit the MSDN:
 
 [Serialization in .NET](http://msdn.microsoft.com/en-us/library/7ay27kt9.aspx)
 
-You may use the XML Schema Definition [Xsd.exe](http://msdn.microsoft.com/en-us/library/x6c1kb0s(v=vs.110).aspx) tool, which generates XML schema or common language run-time classes from XDR, XML, and XSD files, or from classes in a run-time assembly.
+You may use the XML Schema Definition [Xsd.exe](http://msdn.microsoft.com/en-us/library/x6c1kb0s.aspx) tool, which generates XML schema or common language run-time classes from XDR, XML, and XSD files, or from classes in a run-time assembly.
 
 # Solution
 
