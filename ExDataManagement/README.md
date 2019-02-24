@@ -1,6 +1,6 @@
 # C# External Data-intensive Programming (ExDM)
 
-## Key words:
+## Key words
 
 software engineering, education, training, external data, data management, information processing, data processing, GUI, SQL, serialization
 
@@ -9,8 +9,8 @@ software engineering, education, training, external data, data management, infor
 Computer science in general, and especially programming activities, is a field of knowledge that deals with automation of information processing. Programs can be recognized as a driving force of that automated behavior. To achieve information processing goals programs have to implement algorithms required by the application concerned. In other words, the programs describe how to process data, which represent information relevant to the application. Data management - apart from the implementation of the algorithms – is, therefore,  a key issue from the point of view of automation of the entire information processing and computer science in general.
 
 Let's review selected language constructs, patterns, and frameworks targeting data-intensive programming.
- 
-## Goal 
+
+## Goal
 
 The aim of the course is to extend knowledge and skills related to object-oriented programming focusing on interoperability between the computing process and data visualization, archiving and networking environment. Particular emphasis is placed on the identification of solutions that can serve as a certain pattern with the widest possible use over a long-term horizon. Providing a long-term horizon is extremely difficult for such a dynamically developing field. Here, the experience of the author comes to the rescue, who has been employing similar solutions for years using constantly changing programming tools.
 
@@ -29,33 +29,34 @@ The external data is recognized as the data we must pull or push from outside of
 The repository is scoped to provide sound examples covering the following topics:
 
 1. Introduction
-	1. About the course, information versus data, algorithm versus program, type - what does it mean
-	2. Useful assets: C# language, Visual Studio, GitHub, Gitter 
+   1. About the course, information versus data, algorithm versus program, type - what does it mean
+   2. Useful assets: C# language, Visual Studio, GitHub, Gitter
 2. Data semantics
-	1. Type concept
-	5. Anonymous type
-	6. Partial types and methods
-	7. Generics 
+    1. Type concept
+    1. Anonymous type
+    1. Partial types and methods
+    1. Generics
 3. Data streams
-	1. File and Stream Concepts
-	9. Attributes
-	10. Reflection
-	11. Serialization
-	12. Cryptography basics
+    1. File and Stream Concepts
+    1. Attributes
+    1. Reflection
+    1. Serialization
+    1. Cryptography basics
 4. Functional programming basics
-	1. Anonymous function and lambda expression
-	14. Extension method
+    1. Anonymous function and lambda expression
+    1. Extension method
 5. Structural Data
-	 1. LINQ query and methods syntax
-	16. LINQ to object
-	17. LINQ to SQL
-5. Graphical data
+    1. LINQ query and methods syntax
+    1. LINQ to object
+    1. LINQ to SQL
+6. Graphical data
    1. [xaml](https://docs.microsoft.com/en-us/dotnet/framework/xaml-services/)
-	19. MVVM (Model, View, ViewModel) pattern
+   1. MVVM (Model, View, ViewModel) pattern
 
-> **NOTE**: Unit Test role is solely code explanation rather than testing the correctness of it. 
+> **NOTE**: Unit Test role is solely code explanation rather than testing the correctness of it.
 
-<!--//____________________________________________________________________________
+<!--
+//____________________________________________________________________________
 //
 //  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
 //

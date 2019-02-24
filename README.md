@@ -1,10 +1,10 @@
-# csharp (C#) Teaching of Programming (TP) ![](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)
+# csharp (C#) Teaching of Programming (TP) ![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)
 
 ## csharp (C#) in Practice
 
 ### Key words
 
-software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control. 
+software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control.
 
 [![Gitter](https://badges.gitter.im/mpostol/TP.svg)](https://gitter.im/mpostol/TP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) - to be in touch join us on GITTER.
 
@@ -12,11 +12,11 @@ software engineering, software design, education, training, code examples, cshar
 
 | Release | Name                                    | Milestone                                                          | DOI |
 |:-------:|-----------------------------------------|--------------------------------------------------------------------|:---:|
-|![](https://img.shields.io/github/release/mpostol/tp.svg?style=flat) | Adaptive Programming (AP) February 2019 | Adaptive Programming postmortem dump                               |     |
+|![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat) | Adaptive Programming (AP) February 2019 | Adaptive Programming postmortem dump                               |     |
 |   2.0.1 | ExDM VideoBook Helion v1.0.         | **C# in Practice - External Data-Intensive Programming** v1.0. |     |
 
 > [**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
-> 
+>
 
 ### Content
 
@@ -24,7 +24,6 @@ Main purpose of this repository is to provide code examples for education purpos
 
 - [**External Data-Intensive Programming**](ExDataManagement/README.md) : process data management, i.e. those that are input or output for the business logic of the program.
 - [**Adaptive Programming**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
-
 
 ### Goal
 
@@ -50,4 +49,3 @@ The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects example
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 -->
-
