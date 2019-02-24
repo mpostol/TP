@@ -22,6 +22,7 @@
 
 - [.NET Guide](https://docs.microsoft.com/en-us/dotnet/standard/)
 - [.NET API Browser](https://docs.microsoft.com/en-us/dotnet/api/)
+- [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 - [XAML in WPF](https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/xaml-in-wpf)
 - [TreeView Overview](https://docs.microsoft.com/en-us/dotnet/framework/wpf/controls/treeview-overview?view=netframework-4.7.2)
 - [Entity Framework Documentation](https://docs.microsoft.com/en-us/ef/)
@@ -29,6 +30,8 @@
 - [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]
 
 # Visual Studio
+
+- [Visual Studio IDE documentation](https://docs.microsoft.com/en-us/visualstudio/ide/?view=vs-2017)
 
 # GitHub
 
