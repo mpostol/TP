@@ -12,8 +12,8 @@ software engineering, software design, education, training, code examples, cshar
 
 | Release | Name                                    | Milestone                                                          | DOI |
 |:-------:|-----------------------------------------|--------------------------------------------------------------------|:---:|
-|![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat) | Adaptive Programming (AP) February 2019 | Adaptive Programming postmortem dump                               |     |
-|   x.x.planned | ExDM VideoBook Helion v1.0.         | **C# in Practice - External Data-Intensive Programming** v1.0. |     |
+|2.0 | Adaptive Programming (AP) February 2019 | Adaptive Programming postmortem dump                               |     |
+|![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat) | ExDM VideoBook Helion v1.0.         | **C# in Practice - External Data-Intensive Programming** v1.0. | DOI: 10.5281/zenodo.2578245 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578245.svg)](https://doi.org/10.5281/zenodo.2578245)    |
 
 > [**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
