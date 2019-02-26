@@ -1,5 +1,6 @@
+# References
 
-# `C#`
+## `C#`
 
 - [C# programming guide][csharpguid]
 - [Language Integrated Query (LINQ)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq)
@@ -14,11 +15,10 @@
 - [Partial Classes and Methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)
 - [Constraints on type parameters](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)
   
- 
 [ExpressionClass]:https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression
 [ET]:https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/index
 
-# .NET
+## .NET
 
 - [.NET Guide](https://docs.microsoft.com/en-us/dotnet/standard/)
 - [.NET API Browser](https://docs.microsoft.com/en-us/dotnet/api/)
@@ -29,15 +29,16 @@
 - [Serialization in .NET](http://msdn.microsoft.com/en-us/library/7ay27kt9.aspx)
 - [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]
 
-# Visual Studio
+## Visual Studio
 
 - [Visual Studio IDE documentation](https://docs.microsoft.com/en-us/visualstudio/ide/?view=vs-2017)
 
-# GitHub
+## GitHub
 
+- [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 - [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 
-# See also
+## See also
 
 - [XSL\(T\) Languages](https://www.w3schools.com/xml/xsl_languages.asp)
 - [Xsd.exe](http://msdn.microsoft.com/en-us/library/x6c1kb0s.aspx)
