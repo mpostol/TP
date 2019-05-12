@@ -35,11 +35,15 @@ Computer science in general, and especially programming activities, is a field o
 
 The [ExDataManagement](ExDataManagement/README.md) folder collects examples that can serve as a certain pattern with the widest possible use addressing the mentioned above application domain. In order to ensure the practical context and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code is available in this repository.
 
+> **Note**: to open the code samples in the Visual studio double click the file `ExDataManagement.sln`.
+
 ### Adaptive Programming (AP)
 
 The adaptive programming is presented as a catalog of language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the program against changing production environment in which it is executed.
 
 The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects examples that can serve as a certain pattern with the widest possible use addressing the mentioned above application domain. In order to ensure the practical context and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code is available in this repository.
+
+> **Note**: to open the code samples in the Visual studio double click the file `AdaptiveProgramming.sln`.
 
 <!--
 //____________________________________________________________________________
