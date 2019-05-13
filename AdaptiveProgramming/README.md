@@ -1,6 +1,6 @@
 # C# in Practice - Adaptive Programming (AP)
 
-## Key words:
+## Key words
 
 education, training, code examples, csharp, csharp-examples, adaptive-programming, asynchronous programming, reflection, dependency injection, inversion of control, dynamic programming, plug-in, cloud tracing, LINQ
 
@@ -11,7 +11,6 @@ The adaptive programming is presented as a catalog of language constructs, patte
 ## Goal
 
 The aim of the course is to expand knowledge and improve skills of software development thanks to using technology and programming patterns to enable adaptation of the created program against the changing requirements and capabilities of the run-time production environment. This objective includes issues related to the practical knowledge of technology dedicated to postpone the decisions regarding software interoperability with development framework and the external environment. Students learn the selected technologies, design patterns, archetypes and their practical implementation in the .NET with the goal to be used while developing their own programs.
-
 
 ## Learning outcomes
 
@@ -28,9 +27,9 @@ After completing the course students will:
 
 Knowledge of the following topics is required to understand the content:
 
-* Object-oriented programming.
-* Software Development Technologies.
-* Component Programming.
+* Object-oriented programming
+* Software Development Technologies
+* Component Programming
 
 ## Repository Content
 
@@ -44,30 +43,30 @@ This folder collects examples that can serve as a certain pattern with the wides
 
 This part covers the following topics:
 
-- Asynchronous Behavior - critical section, synchronization,
-- Application Architecture - layers dependency, implementation and design time control
-- Application Localization - application resources
-- Reflection - object model, code generation, dynamic programming, object instantiation, data binding
+* Asynchronous Behavior - critical section, synchronization,
+* Application Architecture - layers dependency, implementation and design time control
+* Application Localization - application resources
+* Reflection - object model, code generation, dynamic programming, object instantiation, data binding
 
 ### Application Composition
 
-- service locator
-- dependency injection
-- plug-in
+* service locator
+* dependency injection
+* plug-in
 
 ### Logging
 
-- Application Trace Source
-- Application Trace Remote Control
-- Distributed Application Tracing
-- Semantic Tracing
-- Cloud Tracing
+* Application Trace Source
+* Application Trace Remote Control
+* Distributed Application Tracing
+* Semantic Tracing
+* Cloud Tracing
 
 ### Configuration
 
-- Configuration Manger
-- XML, JSON Based Configuration
-- Distributed Application Configuration
+* Configuration Manger
+* XML, JSON Based Configuration
+* Distributed Application Configuration
 
 ## Lecture
 
@@ -99,8 +98,8 @@ The lecture is focused on the following topics:
   * dynamic programming
 * expression representation and their translation as required by the target external system;
 * architecture and programming patterns related to access external data based management systems:
-	* materialization to save objects state and objects graph relationship using XML, JSON, etc.
-	* object relation mapping,
+  * materialization to save objects state and objects graph relationship using XML, JSON, etc.
+  * object relation mapping,
 * program composition using independently developed modules:
   * Dependency injection
   * functionality extension using modules developed independently (plug-in)
@@ -108,11 +107,11 @@ The lecture is focused on the following topics:
   * composition modules versioning,
   * application domain,
 * tracing of the program activities in the production environment
-  - multisource tracing systems,
-  - semantic logging,
-  - dynamic configuration of the tracing,
-  - cloud based tracing,
-  - modules development reusable patterns promoting separation of concerns,
+  * multisource tracing systems,
+  * semantic logging,
+  * dynamic configuration of the tracing,
+  * cloud based tracing,
+  * modules development reusable patterns promoting separation of concerns,
 * systematic approach to configuration development:
   * the program as a one whole,
   * independently developed modules,
@@ -120,9 +119,9 @@ The lecture is focused on the following topics:
 * unit and integration tests:
   * testing environment requirements against the program composed using independently developed modules,
   * processing data simulation for testing purpose,
-  * simulation of production environment behavior for testing purpose.    
+  * simulation of production environment behavior for testing purpose.
 
-> **NOTE**: Unit Test role is code explanation rather than testing the correctness of it. 
+> **NOTE**: Unit Test role is code explanation rather than testing the correctness of it.
 
 <!--
 //____________________________________________________________________________
