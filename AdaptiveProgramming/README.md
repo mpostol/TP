@@ -46,13 +46,13 @@ This part covers the following topics:
 * Asynchronous Behavior - critical section, synchronization,
 * Application Architecture - layers dependency, implementation and design time control
 * Application Localization - application resources
-* Reflection - object model, code generation, dynamic programming, object instantiation, data binding
+* Reflection - object model, code generation, dynamic programming, objects instantiation, data binding
 
 ### Application Composition
 
-* service locator
-* dependency injection
-* plug-in
+* Service Locator
+* Dependency Injection
+* Plug-in
 
 ### Logging
 
@@ -92,18 +92,18 @@ In particular this covers such issues as:
 The lecture is focused on the following topics:
 
 * syntax and semantics of the C# patterns useful for adaptive programming
-  * parallel and asynchronous programming;
+  * parallel and asynchronous programming,
   * reflection,
-  * attributed programming model
-  * dynamic programming
-* expression representation and their translation as required by the target external system;
-* architecture and programming patterns related to access external data based management systems:
-  * materialization to save objects state and objects graph relationship using XML, JSON, etc.
+  * attributed programming model,
+  * dynamic programming,
+* expression representation and their translation as required by the target external system
+* architecture and programming patterns related to access external data based management systems
+  * materialization to save objects state and objects graph relationship using XML, JSON, etc.,
   * object relation mapping,
-* program composition using independently developed modules:
-  * Dependency injection
-  * functionality extension using modules developed independently (plug-in)
-  * to assure the separation of responsibilities;
+* program composition using independently developed modules
+  * dependency injection (DI),
+  * functionality extension using modules developed independently (plug-in),
+  * to assure the separation of responsibilities,
   * composition modules versioning,
   * application domain,
 * tracing of the program activities in the production environment
@@ -112,14 +112,14 @@ The lecture is focused on the following topics:
   * dynamic configuration of the tracing,
   * cloud based tracing,
   * modules development reusable patterns promoting separation of concerns,
-* systematic approach to configuration development:
+* systematic approach to configuration development
   * the program as a one whole,
   * independently developed modules,
   * properties in the context of individual users,
-* unit and integration tests:
+* unit and integration tests
   * testing environment requirements against the program composed using independently developed modules,
   * processing data simulation for testing purpose,
-  * simulation of production environment behavior for testing purpose.
+  * simulation of production environment behavior for testing purpose,
 
 > **NOTE**: Unit Test role is code explanation rather than testing the correctness of it.
 
