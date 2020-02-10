@@ -1,4 +1,4 @@
-# csharp (C#) Teaching of Programming (TP) ![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)
+# csharp (C#) Teaching of Programming (TP) [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases)
 
 ## csharp (C#) in Practice
 
