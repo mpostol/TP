@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("DataSemanticsUnitTest")]
-[assembly: AssemblyCopyright("Copyright (c) 2019 Mariusz Postol")]
+[assembly: AssemblyCopyright("Copyright (c) 2020 Mariusz Postol")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

@@ -8,7 +8,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
 [assembly: AssemblyProduct("TP.ExDataManagement")]
-[assembly: AssemblyCopyright("Copyright (c) 2019 Mariusz Postol")]
+[assembly: AssemblyCopyright("Copyright (c) 2020 Mariusz Postol")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
