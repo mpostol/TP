@@ -4,6 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>TP.GraphicalData</AssemblyName>
     <RootNamespace>TP.GraphicalData</RootNamespace>
+    <Copyright>Copyright (c) 2019 Mariusz Postol</Copyright>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <Version>4.1.0</Version>
   </PropertyGroup>
 
 </Project>

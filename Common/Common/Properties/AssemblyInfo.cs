@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________
 //
-//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Teaching Programming")]
-[assembly: AssemblyCopyright("Copyright ©  2018 Mariusz Postol")]
+[assembly: AssemblyCopyright("Copyright ©  2020 Mariusz Postol")]
 [assembly: AssemblyTrademark("TP")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

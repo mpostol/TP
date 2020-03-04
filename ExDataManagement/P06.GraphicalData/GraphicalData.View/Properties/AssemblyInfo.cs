@@ -1,10 +1,4 @@
-﻿//____________________________________________________________________________
-//
-//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
-//
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
-
+﻿
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -14,7 +8,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
 [assembly: AssemblyProduct("TP.ExDataManagement")]
-[assembly: AssemblyCopyright("Copyright (C) 2018, Mariusz Postol")]
+[assembly: AssemblyCopyright("Copyright (c) 2019 Mariusz Postol")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
@@ -26,6 +20,7 @@ using System.Windows;
                                               //(used if a resource is not found in the page, 
                                               // app, or any theme specific resource dictionaries)
 )]
-[assembly: AssemblyVersion("1.0.1.*")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyVersion("4.1.0.*")]
+[assembly: AssemblyFileVersion("4.1.0.0")]
+
 
