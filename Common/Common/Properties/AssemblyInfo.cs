@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Teaching Programming")]
-[assembly: AssemblyCopyright("Copyright ©  2020 Mariusz Postol")]
+[assembly: AssemblyCopyright(" Copyright (C) 2020, Mariusz Postol LODZ POLAND.")]
 [assembly: AssemblyTrademark("TP")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

@@ -25,8 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part3_Logging", "Part3_Logg
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part2_Composition", "Part2_Composition", "{5304DF32-EA92-4D21-BD39-4389AB7A43DB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part4_DataBase", "Part4_DataBase", "{C7DE8A05-6D49-4820-ABF3-9FC892A44A72}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part4_Configuration", "Part4_Configuration", "{25BD5BA3-C65F-454A-B86A-6E1DA9373948}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Composition", "Composition\Composition.csproj", "{8E42046A-D9AE-41BD-8054-0D8F1BFBA94D}"
