@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="CodeGeneration\CSharpCodeFactory.cs" />
     <Compile Include="CodeGeneration\DynamicMethodFactory.cs" />
+    <Compile Include="Compilation\CodeBuilder.cs" />
+    <Compile Include="Compilation\CodeBuilderBase.cs" />
+    <Compile Include="Compilation\CSharpStreamCompiller.cs" />
     <Compile Include="DynamicType\DemoTypeBuilder.cs" />
     <Compile Include="DynamicType\DynamicExampleClass.cs" />
     <Compile Include="DynamicType\ReadOnlyFile.cs" />
