@@ -10,7 +10,7 @@ using System.IO;
 namespace TPA.Reflection.Compilation
 {
   /// <summary>
-  /// Compliler that perform compilation of any cs class from stream or string
+  /// Complier that perform compilation of any cs class from stream or string
   /// </summary>
   public class CSharpStreamCompiller : CodeBuilderBase
   {
@@ -19,10 +19,7 @@ namespace TPA.Reflection.Compilation
     /// </summary>
     /// <param name="streamSource">The stream source of source code.</param>
     /// <param name="referencedAssemblies">The referenced assemblies list.</param>
-    public CSharpStreamCompiller(Stream streamSource, string[] referencedAssemblies) :
-      this(new StreamReader(streamSource).ReadToEnd(), referencedAssemblies)
-    {
-    }
+    public CSharpStreamCompiller(Stream streamSource, string[] referencedAssemblies) : this(new StreamReader(streamSource).ReadToEnd(), referencedAssemblies) { }
     /// <summary>
     /// Initializes a new instance of the <see cref="CSharpStreamCompiller"/> class.
     /// </summary>
