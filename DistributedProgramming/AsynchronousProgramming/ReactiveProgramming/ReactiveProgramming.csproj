@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>TPD.ReactiveProgramming</AssemblyName>
+    <RootNamespace>TPD.ReactiveProgramming</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="4.3.2" />
+  </ItemGroup>
 
 </Project>
