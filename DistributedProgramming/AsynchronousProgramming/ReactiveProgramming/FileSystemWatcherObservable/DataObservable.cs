@@ -19,7 +19,7 @@ namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
   /// </summary>
   /// <seealso cref="System.Reactive.ObservableBase{DataEntity}" />
   /// <seealso cref="System.IDisposable" />
-  internal class DataObservable : ObservableBase<IDataEntity>, IDisposable
+  public class DataObservable : ObservableBase<IDataEntity>, IDisposable
   {
     #region private
 
@@ -74,7 +74,7 @@ namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
     /// or
     /// traceSource
     /// </exception>
-    internal DataObservable(string filename, ITextReaderProtocolParameters settings, ITraceSource traceSource)
+    public DataObservable(string filename, ITextReaderProtocolParameters settings, ITraceSource traceSource)
     {
       if (settings == null)
         throw new ArgumentNullException(nameof(settings));

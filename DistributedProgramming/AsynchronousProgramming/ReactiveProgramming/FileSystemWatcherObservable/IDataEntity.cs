@@ -12,7 +12,7 @@ namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
   /// <summary>
   /// Interface IDataEntity - data holder entity
   /// </summary>
-  internal interface IDataEntity
+  public interface IDataEntity
   {
     /// <summary>
     /// Gets or sets the tags containing process data this instance captures.
