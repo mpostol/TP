@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>TPD.AsynchronousProgramming</RootNamespace>
+    <AssemblyName>TPD.AsynchronousProgramming</AssemblyName>
+    <Authors>Mariusz Postol</Authors>
+    <Product>Teaching of Programming (TP)</Product>
+    <Description>software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control,</Description>
+    <Copyright>Copyright 2020 Mariusz Postol</Copyright>
+    <PackageProjectUrl>http://mpostol.github.io/TP/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mpostol/TP</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>AsynchronousProgramming, MobileApp, SemanticData, Security</PackageTags>
+    <AssemblyVersion>3.1.2</AssemblyVersion>
+    <FileVersion>3.1.2.0</FileVersion>
+    <Version>3.1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

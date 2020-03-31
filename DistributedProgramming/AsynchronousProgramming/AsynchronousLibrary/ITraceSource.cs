@@ -7,7 +7,7 @@
 
 using System.Diagnostics;
 
-namespace TPD.ReactiveProgramming
+namespace TPD.AsynchronousProgramming
 {
   /// <summary>
   /// Interface ITraceSource - declares basic functionality for the component behavior tracing.

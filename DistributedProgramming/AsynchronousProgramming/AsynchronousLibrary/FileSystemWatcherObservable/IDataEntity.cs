@@ -7,7 +7,7 @@
 
 using System;
 
-namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
+namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
 {
   /// <summary>
   /// Interface IDataEntity - data holder entity

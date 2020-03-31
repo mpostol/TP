@@ -8,7 +8,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
+namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
 {
   [TestClass]
   [DeploymentItem(@"TestingData\", "TestingData")]

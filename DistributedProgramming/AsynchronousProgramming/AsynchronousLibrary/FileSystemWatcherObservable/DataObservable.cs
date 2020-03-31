@@ -12,7 +12,7 @@ using System.IO;
 using System.Reactive;
 using System.Reactive.Linq;
 
-namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
+namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
 {
   /// <summary>
   /// Class DataObservable - captures file watching functionality and provides services as <see cref="IObservable{T}"/>

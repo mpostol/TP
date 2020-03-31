@@ -9,7 +9,7 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
+namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
 {
   /// <summary>
   /// Class DataEntity - data holder entity

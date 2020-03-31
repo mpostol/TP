@@ -6,9 +6,9 @@
 //___________________________________________________________________________________
 
 using System;
-using TPD.ReactiveProgramming.FileSystemWatcherObservable;
+using TPD.AsynchronousProgramming.FileSystemWatcherObservable;
 
-namespace TPD.ReactiveProgramming.Instrumentation
+namespace TPD.AsynchronousProgramming.Instrumentation
 {
   /// <summary>
   /// Class TextReaderProtocolParameters - provides editable parameters of the DataProvider behavior

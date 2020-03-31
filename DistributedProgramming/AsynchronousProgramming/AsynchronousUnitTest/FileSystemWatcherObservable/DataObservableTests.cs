@@ -12,9 +12,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Reactive.Linq;
 using System.Threading;
-using TPD.ReactiveProgramming.Instrumentation;
+using TPD.AsynchronousProgramming.Instrumentation;
 
-namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
+namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
 {
   [TestClass()]
   [DeploymentItem(@"TestingData\", "TestingData")]

@@ -6,7 +6,7 @@
 //___________________________________________________________________________________
 
 
-namespace TPD.ReactiveProgramming.FileSystemWatcherObservable
+namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
 {
   /// <summary>
   /// Interface ITextReaderProtocolParameters - provides parameters of the DataProvider behavior.
