@@ -18,7 +18,6 @@ namespace TPD.AsynchronousProgramming
     [TestMethod]
     public void TPAReadKeyFromKeyboardBufferAsyncTest()
     {
-      Assert.Inconclusive("//[Synchronization(true)] - it causes deadlock");
       using (Producer<TestingClass> _producer = new Producer<TestingClass>(new ProductFactory()))
       {
         List<TestingClass> _products = new List<TestingClass>();
@@ -39,7 +38,6 @@ namespace TPD.AsynchronousProgramming
     [TestMethod]
     public void APMReadKeyFromKeyboardBuffer()
     {
-      Assert.Inconclusive("//[Synchronization(true)] - it causes deadlock");
       using (Producer<TestingClass> _producer = new Producer<TestingClass>(new ProductFactory()))
       {
         List<TestingClass> _products = new List<TestingClass>();
@@ -60,7 +58,6 @@ namespace TPD.AsynchronousProgramming
     [TestMethod]
     public void EAPReadKeyFromKeyboardBufferAsyncTest()
     {
-      Assert.Inconclusive("//[Synchronization(true)] - it causes deadlock");
       using (Producer<TestingClass> _producer = new Producer<TestingClass>(new ProductFactory()))
       {
         List<TestingClass> _products = new List<TestingClass>();

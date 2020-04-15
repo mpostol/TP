@@ -7,8 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,6 +18,10 @@ namespace TPD.AsynchronousProgramming
   /// <typeparam name="T"></typeparam>
   public interface IProductFactory<T>
   {
+    /// <summary>
+    /// Creates an product expressed as the instance of <typeparamref name="T"/>.
+    /// </summary>
+    /// <returns>T.</returns>
     T Create();
   }
 
@@ -82,7 +84,6 @@ namespace TPD.AsynchronousProgramming
       if (disposing)
       {
         m_Timer.Dispose();
-        m_CriticalSection.Dispose();
       }
       disposedValue = true;
     }
@@ -105,7 +106,7 @@ namespace TPD.AsynchronousProgramming
     private CriticalSection<T> m_CriticalSection;
 
     //[Synchronization(true)] - it causes deadlock
-    private class CriticalSection<productType> : IDisposable
+    private class CriticalSection<productType>
     {
       public CriticalSection(IProductFactory<productType> factory)
       {
@@ -114,35 +115,36 @@ namespace TPD.AsynchronousProgramming
 
       internal void GenerateChar()
       {
-        lock (this)
+        try
         {
+          Monitor.Enter(this);
           m_productsBuffer.Enqueue(m_Factory.Create());
           if (m_productsBuffer.Count == 1)
-            m_AutoResetEvent.Set();
+            Monitor.Pulse(this);
+        }
+        finally
+        {
+          Monitor.Exit(this);
         }
       }
 
       internal productType ReadKeyFromKeyboardBuffer()
       {
-        lock (this)
+        try
         {
-          if (m_productsBuffer.Count == 0)
-            m_AutoResetEvent.WaitOne(-1, true);
-          else if (m_productsBuffer.Count == 1)
-            m_AutoResetEvent.Reset();
-          Debug.Assert(m_productsBuffer.Any<productType>());
+          Monitor.Enter(this);
+          while (m_productsBuffer.Count == 0)
+            Monitor.Wait(this);
           return m_productsBuffer.Dequeue();
         }
-      }
-
-      public void Dispose()
-      {
-        m_AutoResetEvent.Dispose();
+        finally
+        {
+          Monitor.Exit(this);
+        }
       }
 
       private IProductFactory<productType> m_Factory;
       private readonly Queue<productType> m_productsBuffer = new Queue<productType>();
-      private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
     }
 
     #endregion private
