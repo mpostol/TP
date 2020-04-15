@@ -24,7 +24,15 @@ namespace TPD.AsynchronousProgramming
     /// <returns>T.</returns>
     T Create();
   }
+  public class InstanceCreationCompletedEventArgs<type> : EventArgs
+  {
+    public type Result { get; internal set; }
 
+    public InstanceCreationCompletedEventArgs(type instance)
+    {
+      Result = instance;
+    }
+  }
   public class Producer<T> : IDisposable
   {
     public Producer(IProductFactory<T> factory)
@@ -105,7 +113,6 @@ namespace TPD.AsynchronousProgramming
     private AsyncMethodCaller m_Caller;
     private CriticalSection<T> m_CriticalSection;
 
-    //[Synchronization(true)] - it causes deadlock
     private class CriticalSection<productType>
     {
       public CriticalSection(IProductFactory<productType> factory)
