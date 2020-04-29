@@ -76,12 +76,8 @@ namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
     /// </exception>
     public DataObservable(string filename, ITextReaderProtocolParameters settings, ITraceSource traceSource)
     {
-      if (settings == null)
-        throw new ArgumentNullException(nameof(settings));
-      if (traceSource == null)
-        throw new ArgumentNullException(nameof(traceSource));
-      m_Settings = settings;
-      TraceSource = traceSource;
+      m_Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+      TraceSource = traceSource ?? throw new ArgumentNullException(nameof(traceSource));
       m_FileFullPath = Path.GetFullPath(filename);
       string _path = Path.GetDirectoryName(m_FileFullPath);
       string _fileName = Path.GetFileName(m_FileFullPath);
