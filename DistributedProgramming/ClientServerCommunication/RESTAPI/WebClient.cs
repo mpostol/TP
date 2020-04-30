@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace TPD.Communication.ClientServerCommunication.RESTAPI
 {
+  //TODO client derived from  https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/console-webapiclient
   public class WebClient : IDisposable
   {
     private readonly HttpClient m_Client = new HttpClient();
