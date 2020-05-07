@@ -14,13 +14,19 @@ using System.Threading.Tasks;
 
 namespace TPD.Communication.ClientServerCommunication.WebSocketAPI
 {
-  internal static class WebSocketServer
+  public static class WebSocketServer
   {
-    internal static async Task Server(int p2p_port, Action<WebSocketConnection> onConnection)
+    #region API
+
+    public static async Task Server(int p2p_port, Action<WebSocketConnection> onConnection)
     {
       Uri _uri = new Uri($@"http://localhost:{p2p_port}/");
       await ServerLoop(_uri, onConnection);
     }
+
+    #endregion API
+
+    #region private
 
     private static async Task ServerLoop(Uri _uri, Action<WebSocketConnection> onConnection)
     {
@@ -107,5 +113,7 @@ namespace TPD.Communication.ClientServerCommunication.WebSocketAPI
         }
       }
     }
+
+    #endregion private
   }
 }

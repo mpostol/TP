@@ -13,9 +13,11 @@ using System.Threading.Tasks;
 
 namespace TPD.Communication.ClientServerCommunication.WebSocketAPI
 {
-  internal static class WebSocketClient
+  public static class WebSocketClient
   {
-    internal static async Task Connect(Uri peer, Action<WebSocketConnection> onOpen, Action<string> log)
+    #region API
+
+    public static async Task<WebSocketConnection> Connect(Uri peer, Action<string> log)
     {
       ClientWebSocket m_ClientWebSocket = new ClientWebSocket();
       await m_ClientWebSocket.ConnectAsync(peer, CancellationToken.None);
@@ -24,14 +26,15 @@ namespace TPD.Communication.ClientServerCommunication.WebSocketAPI
         case WebSocketState.Open:
           log($"Opening WebSocket connection to remote server {peer}");
           WebSocketConnection _socket = new ClintWebSocketConnection(m_ClientWebSocket, peer, log);
-          onOpen?.Invoke(_socket);
-          break;
+          return _socket;
 
         default:
           log?.Invoke($"Cannot connect to remote node status {m_ClientWebSocket.State}");
-          break;
+          throw new WebSocketException($"Cannot connect to remote node status {m_ClientWebSocket.State}");
       }
     }
+
+    #endregion API
 
     #region private
 
