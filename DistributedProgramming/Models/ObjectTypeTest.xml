@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:cas="http://cas.eu/UA/CommServer/UnitTests/ObjectTypeTest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:ua="http://opcfoundation.org/UA/" TargetNamespace="http://cas.eu/UA/CommServer/UnitTests/ObjectTypeTest" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="cas" Prefix="ObjectTypeTest" XmlPrefix="cas">http://cas.eu/UA/CommServer/UnitTests/ObjectTypeTest</Namespace>
+    <Namespace Name="ua" XmlPrefix="ua">http://opcfoundation.org/UA/</Namespace>
+  </Namespaces>
+  <ObjectType SymbolicName="cas:ComplexObjectType">
+    <Children>
+      <Object SymbolicName="cas:ChildObject" ModellingRule="MandatoryPlaceholder" SupportsEvents="true" />
+      <Property SymbolicName="cas:BrowseName4node66" ModellingRule="Mandatory" DataType="ua:LocalizedText">
+        <BrowseName>ChildProperty</BrowseName>
+      </Property>
+      <Variable SymbolicName="cas:ChildVariable" TypeDefinition="ua:AnalogItemType" ModellingRule="Mandatory">
+        <BrowseName />
+      </Variable>
+      <Method SymbolicName="cas:ChildMethod" ModellingRule="Mandatory">
+        <InputArguments>
+          <Argument Name="Input1" DataType="ua:Int32" />
+          <Argument Name="Input2" DataType="ua:Int32" />
+        </InputArguments>
+        <OutputArguments>
+          <Argument Name="Output1" DataType="ua:Int32" />
+        </OutputArguments>
+      </Method>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="cas:DerivedFromComplexObjectType" BaseType="cas:ComplexObjectType">
+    <Children>
+      <Method SymbolicName="cas:ChildMethod">
+        <DisplayName>ChildMethodNewName</DisplayName>
+      </Method>
+    </Children>
+  </ObjectType>
+  <Object SymbolicName="cas:InstanceOfDerivedFromComplexObjectType" TypeDefinition="cas:DerivedFromComplexObjectType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>ua:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+</ModelDesign>
