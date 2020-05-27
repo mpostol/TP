@@ -28,4 +28,5 @@
       <FileName>DataTypeTest.xml</FileName>
     </UAModelDesignerProject>
   </Projects>
+  <ServerDetails xsi:nil="true" />
 </UAModelDesignerSolution>
