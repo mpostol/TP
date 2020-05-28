@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2A879FB1-D346-4352-AAC0-B6821F7ED662}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Project1</RootNamespace>
     <AssemblyName>Project1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,57 +32,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="DataTypeTest.csv" />
-    <None Include="DataTypeTest\DataTypeTest.PredefinedNodes.uanodes" />
-    <None Include="DataTypeTest\DataTypeTest.Types.bsd" />
-    <None Include="DataTypeTest\DataTypeTest.Types.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="ObjectTypeTest.csv" />
-    <None Include="ObjectTypeTest\ObjectTypeTest.PredefinedNodes.uanodes" />
-    <None Include="ObjectTypeTest\ObjectTypeTest.Types.bsd" />
-    <None Include="ObjectTypeTest\ObjectTypeTest.Types.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="ReferenceTest.csv" />
-    <None Include="ReferenceTest\ReferenceTest.PredefinedNodes.uanodes" />
-    <None Include="ReferenceTest\ReferenceTest.Types.bsd" />
-    <None Include="ReferenceTest\ReferenceTest.Types.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="TestModels.uamdsl" />
     <None Include="VariableTypeTest.csv" />
-    <None Include="VariableTypeTest\VariableTypeTest.PredefinedNodes.uanodes" />
-    <None Include="VariableTypeTest\VariableTypeTest.Types.bsd" />
-    <None Include="VariableTypeTest\VariableTypeTest.Types.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataTypeTest.xml" />
-    <Content Include="DataTypeTest\DataTypeTest.NodeSet.xml" />
-    <Content Include="DataTypeTest\DataTypeTest.NodeSet2.xml" />
-    <Content Include="DataTypeTest\DataTypeTest.PredefinedNodes.xml" />
     <Content Include="ObjectTypeTest.xml" />
-    <Content Include="ObjectTypeTest\ObjectTypeTest.NodeSet.xml" />
-    <Content Include="ObjectTypeTest\ObjectTypeTest.NodeSet2.xml" />
-    <Content Include="ObjectTypeTest\ObjectTypeTest.PredefinedNodes.xml" />
     <Content Include="ReadMe.txt" />
     <Content Include="ReferenceTest.xml" />
-    <Content Include="ReferenceTest\ReferenceTest.NodeSet.xml" />
-    <Content Include="ReferenceTest\ReferenceTest.NodeSet2.xml" />
-    <Content Include="ReferenceTest\ReferenceTest.PredefinedNodes.xml" />
     <Content Include="VariableTypeTest.xml" />
-    <Content Include="VariableTypeTest\VariableTypeTest.NodeSet.xml" />
-    <Content Include="VariableTypeTest\VariableTypeTest.NodeSet2.xml" />
-    <Content Include="VariableTypeTest\VariableTypeTest.PredefinedNodes.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DataTypeTest\DataTypeTest.Classes.cs" />
-    <Compile Include="ObjectTypeTest\ObjectTypeTest.Classes.cs" />
-    <Compile Include="ReferenceTest\ReferenceTest.Classes.cs" />
-    <Compile Include="VariableTypeTest\VariableTypeTest.Classes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
