@@ -6,10 +6,12 @@
 //____________________________________________________________________________
 
 using System;
+using TPA.ApplicationArchitecture.Data.API;
+
 
 namespace TPA.ApplicationArchitecture.Data
 {
-  internal class Linq2SQL
+  public class Linq2SQL : ILinq2SQL
   {
 
     public void Connect()
