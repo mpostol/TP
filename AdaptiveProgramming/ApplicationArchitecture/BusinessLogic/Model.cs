@@ -13,9 +13,9 @@ namespace TPA.ApplicationArchitecture.BusinessLogic
   {
     public ILinq2SQL Linq2SQL { get; set; }
 
-        public Model(IFactory factory)
+        public Model()
         {
-            Linq2SQL = factory.CreateLinq2SQL();
+            Linq2SQL = Factory.CreateLinq2SQL();
         }
   }
 }

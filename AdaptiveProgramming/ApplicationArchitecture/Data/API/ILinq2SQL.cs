@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TPA.ApplicationArchitecture.Data.API
 {
-    internal interface ILinq2SQL
+    public interface ILinq2SQL
     {
         void Connect();
     }
