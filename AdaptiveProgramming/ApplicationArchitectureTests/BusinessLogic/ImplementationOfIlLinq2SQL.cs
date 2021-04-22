@@ -7,7 +7,7 @@ namespace TPA.ApplicationArchitecture.BusinessLogic.Tests
     {
         public override void Connect()
         {
-            Console.WriteLine("Text to write for UT");
+            Console.Write("Text to write for UT");
         }
     }
 }

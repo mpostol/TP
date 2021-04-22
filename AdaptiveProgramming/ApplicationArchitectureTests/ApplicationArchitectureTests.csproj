@@ -56,6 +56,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="BusinessLogic\ConsoleOutput.cs" />
     <Compile Include="BusinessLogic\ImplementationOfIlLinq2SQL.cs" />
     <Compile Include="BusinessLogic\ModelTests.cs" />
     <Compile Include="Data\API\ILinq2SQLTests.cs" />
