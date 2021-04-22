@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\ImplementationOfIlLinq2SQL.cs" />
     <Compile Include="BusinessLogic\ModelTests.cs" />
-    <Compile Include="Data\API\FactoryTests.cs" />
+    <Compile Include="Data\API\ILinq2SQLTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TPA.ApplicationArchitecture.Data.API
+﻿namespace TPA.ApplicationArchitecture.Data.API
 {
     public abstract class ILinq2SQL
     {
@@ -13,7 +7,6 @@ namespace TPA.ApplicationArchitecture.Data.API
         public static ILinq2SQL CreateLinq2SQL()
         {
             return new Linq2SQL();
-
         }
     }
 }

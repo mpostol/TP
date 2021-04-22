@@ -11,12 +11,9 @@ namespace TPA.ApplicationArchitecture.BusinessLogic
 {
   public class Model
   {
-    public ILinq2SQL Linq2SQL { get; set; }
+        public ILinq2SQL Linq2SQL { get; set; }
+        public Model() : this(ILinq2SQL.CreateLinq2SQL()) { }
 
-        public Model():this (ILinq2SQL.CreateLinq2SQL())
-        {
-            
-        }
         public Model(ILinq2SQL linq)
         {
             Linq2SQL = linq;

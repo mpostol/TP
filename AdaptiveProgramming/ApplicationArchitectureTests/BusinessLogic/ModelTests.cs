@@ -1,7 +1,4 @@
-﻿using TPA.ApplicationArchitecture.BusinessLogic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPA.ApplicationArchitecture.Data.API;
-using TPA.ApplicationArchitectureTests.BusinessLogic.Tests;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TPA.ApplicationArchitecture.BusinessLogic.Tests
 {
@@ -9,12 +6,21 @@ namespace TPA.ApplicationArchitecture.BusinessLogic.Tests
     public class ModelTests
     {
         [TestMethod()]
+        public void DefaultModelTest()
+        {
+            Model model = new Model();
+            model.Linq2SQL.Connect();
+
+            Assert.IsNotNull(model.Linq2SQL);
+        }
+
+        [TestMethod()]
         public void ModelTest()
         {
-            Model model = new Model( new Linq2SQL() );
+            Model model = new Model(new TestLinq2SQL());
             model.Linq2SQL.Connect();
+
+            Assert.IsInstanceOfType(model.Linq2SQL, typeof(TestLinq2SQL));
         }
     }
 }
-
-

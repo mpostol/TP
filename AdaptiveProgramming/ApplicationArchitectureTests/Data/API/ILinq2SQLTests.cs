@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
 namespace TPA.ApplicationArchitecture.Data.API.Tests
 {
     [TestClass()]
-    public class FactoryTests
+    public class ILinq2SQLTests
     {
         [TestMethod()]
         public void CreateLinq2SQLTest()
@@ -12,7 +11,6 @@ namespace TPA.ApplicationArchitecture.Data.API.Tests
             ILinq2SQL linq2SQL = ILinq2SQL.CreateLinq2SQL();
 
             Assert.IsNotNull(linq2SQL);
-            
         }
     }
 }
