@@ -9,13 +9,17 @@ using TPA.ApplicationArchitecture.Data.API;
 
 namespace TPA.ApplicationArchitecture.BusinessLogic
 {
-  internal class Model
+  public class Model
   {
     public ILinq2SQL Linq2SQL { get; set; }
 
-        public Model()
+        public Model():this (ILinq2SQL.CreateLinq2SQL())
         {
-            Linq2SQL = Factory.CreateLinq2SQL();
+            
+        }
+        public Model(ILinq2SQL linq)
+        {
+            Linq2SQL = linq;
         }
   }
 }

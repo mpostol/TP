@@ -11,10 +11,10 @@ using TPA.ApplicationArchitecture.Data.API;
 
 namespace TPA.ApplicationArchitecture.Data
 {
-  public class Linq2SQL : ILinq2SQL
+  internal class Linq2SQL : ILinq2SQL
   {
 
-    public void Connect()
+    public override void Connect()
     {
       Console.WriteLine("Text to write");
     }

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace TPA.ApplicationArchitecture.Data.API
 {
-    public interface ILinq2SQL
+    public abstract class ILinq2SQL
     {
-        void Connect();
+        public abstract void Connect();
+
+        public static ILinq2SQL CreateLinq2SQL()
+        {
+            return new Linq2SQL();
+
+        }
     }
 }
