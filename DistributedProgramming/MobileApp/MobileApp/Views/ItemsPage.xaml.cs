@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MobileApp.Models;
+using MobileApp.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using MobileApp.Models;
-using MobileApp.Views;
-using MobileApp.ViewModels;
 
 namespace MobileApp.Views
 {
   [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class ItemsPage : ContentPage
   {
-    ItemsViewModel viewModel;
+    private ItemsViewModel viewModel;
 
     public ItemsPage()
     {
@@ -25,19 +18,18 @@ namespace MobileApp.Views
       BindingContext = viewModel = new ItemsViewModel();
     }
 
-    async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+    private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
     {
-      var item = args.SelectedItem as Item;
-      if (item == null)
+      if (!(args.SelectedItem is Item))
         return;
-
+      Item item = (Item)args.SelectedItem;
       await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
       // Manually deselect item.
       ItemsListView.SelectedItem = null;
     }
 
-    async void AddItem_Clicked(object sender, EventArgs e)
+    private async void AddItem_Clicked(object sender, EventArgs e)
     {
       await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
     }
