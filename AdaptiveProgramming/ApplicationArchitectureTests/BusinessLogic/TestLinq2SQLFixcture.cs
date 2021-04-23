@@ -5,19 +5,16 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using TPA.ApplicationArchitecture.Data.API;
 
-namespace TPA.ApplicationArchitecture.Data.API.Tests
+namespace TPA.ApplicationArchitecture.BusinessLogic.Tests
 {
-  [TestClass()]
-  public class ILinq2SQLTests
+  public class TestLinq2SQLFixcture : ILinq2SQL
   {
-    [TestMethod()]
-    public void CreateLinq2SQLTest()
+    public override void Connect()
     {
-      ILinq2SQL linq2SQL = ILinq2SQL.CreateLinq2SQL();
-
-      Assert.IsNotNull(linq2SQL);
+      Console.Write("Text to write for UT");
     }
   }
 }

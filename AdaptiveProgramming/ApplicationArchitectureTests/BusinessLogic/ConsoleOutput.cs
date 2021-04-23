@@ -1,33 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
+
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TPA.ApplicationArchitecture.BusinessLogic.Tests
 {
-    public class ConsoleOutput : IDisposable
+  public class ConsoleOutput : IDisposable
+  {
+    private StringWriter stringWriter;
+    private readonly TextWriter originalOutput;
+
+    public ConsoleOutput()
     {
-        private StringWriter stringWriter;
-        private TextWriter originalOutput;
-
-        public ConsoleOutput()
-        {
-            stringWriter = new StringWriter();
-            originalOutput = Console.Out;
-            Console.SetOut(stringWriter);
-        }
-
-        public string GetOuput()
-        {
-            return stringWriter.ToString();
-        }
-
-        public void Dispose()
-        {
-            Console.SetOut(originalOutput);
-            stringWriter.Dispose();
-        }
+      stringWriter = new StringWriter();
+      originalOutput = Console.Out;
+      Console.SetOut(stringWriter);
     }
+
+    public string GetOuput()
+    {
+      return stringWriter.ToString();
+    }
+
+    public void Dispose()
+    {
+      Console.SetOut(originalOutput);
+      stringWriter.Dispose();
+    }
+  }
 }

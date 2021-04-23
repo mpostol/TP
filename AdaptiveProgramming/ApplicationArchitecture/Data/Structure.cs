@@ -7,9 +7,9 @@
 
 namespace TPA.ApplicationArchitecture.Data
 {
-  public struct Structure
+  internal struct Structure
   {
-    public int FieldA;
-    private readonly int FieldB;
+    internal int FieldA;
+    internal readonly int FieldB;
   }
 }

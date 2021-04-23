@@ -7,11 +7,11 @@
 
 namespace TPA.ApplicationArchitecture.Data
 {
-  public static class StaticClass
+  internal static class StaticClass
   {
-    public static int StaticField;
-    public static int StaticProperty { get; set; }
-    public static void StaticMethod1() { }
-    public static float StaticMethod2() { return 0f; }
+    internal static int StaticField;
+    internal static int StaticProperty { get; set; }
+    internal static void StaticMethod1() { }
+    internal static float StaticMethod2() { return 0f; }
   }
 }

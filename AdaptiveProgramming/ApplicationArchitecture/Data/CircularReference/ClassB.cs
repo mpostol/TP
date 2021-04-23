@@ -7,10 +7,8 @@
 
 namespace TPA.ApplicationArchitecture.Data.CircularReference
 {
-  public class ClassB
+  internal class ClassB
   {
-
-    public ClassA ClassA { get; set; }
-
+    internal ClassA ClassA { get; set; }
   }
 }

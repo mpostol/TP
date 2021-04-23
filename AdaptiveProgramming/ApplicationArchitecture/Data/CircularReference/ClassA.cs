@@ -1,16 +1,14 @@
 ﻿//____________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
 namespace TPA.ApplicationArchitecture.Data.CircularReference
 {
-  public class ClassA
+  internal class ClassA
   {
-
-    public ClassB ClassB { get; set; }
-
+    internal ClassB ClassB { get; set; }
   }
 }
