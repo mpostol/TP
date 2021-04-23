@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TPA.ApplicationArchitecture.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +47,7 @@
     <Compile Include="BusinessLogic\ServiceC.cs" />
     <Compile Include="BusinessLogic\ViewModel.cs" />
     <Compile Include="Data\AbstractClass.cs" />
+    <Compile Include="Data\API\ILinq2SQL.cs" />
     <Compile Include="Data\CircularReference\ClassA.cs" />
     <Compile Include="Data\CircularReference\ClassB.cs" />
     <Compile Include="Data\ClassWithAttribute.cs" />

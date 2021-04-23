@@ -1,14 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//___________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
-
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-
-[assembly: AssemblyTitle("ApplicationArchitecture")]
+[assembly: AssemblyTitle("ApplicationArchitectureTests")]
 [assembly: AssemblyDescription("Application Architecture examples")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
@@ -17,7 +16,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("79c1349a-1eaf-467f-9290-da7fad5e49e5")]
+[assembly: Guid("9b32dd59-f5d9-43d6-81fe-e95420d75e07")]
 [assembly: AssemblyVersion("5.0.0.*")]
 [assembly: AssemblyFileVersion("5.0.0.0")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TPA.ApplicationArchitectureTests")]
