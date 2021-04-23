@@ -6,13 +6,15 @@
 //____________________________________________________________________________
 
 using System;
+using TPA.ApplicationArchitecture.Data.API;
+
 
 namespace TPA.ApplicationArchitecture.Data
 {
-  internal class Linq2SQL
+  internal class Linq2SQL : ILinq2SQL
   {
 
-    public void Connect()
+    public override void Connect()
     {
       Console.WriteLine("Text to write");
     }
