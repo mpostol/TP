@@ -6,6 +6,7 @@
 //___________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TPA.ApplicationArchitecture.Data.API.Tests
 {
@@ -15,9 +16,9 @@ namespace TPA.ApplicationArchitecture.Data.API.Tests
     [TestMethod()]
     public void CreateLinq2SQLTest()
     {
-      ILinq2SQL linq2SQL = ILinq2SQL.CreateLinq2SQL();
-
+      DataLayerAbstractAPI linq2SQL = DataLayerAbstractAPI.CreateLinq2SQL();
       Assert.IsNotNull(linq2SQL);
+      Assert.ThrowsException<NotImplementedException>(() => linq2SQL.Connect());
     }
   }
 }

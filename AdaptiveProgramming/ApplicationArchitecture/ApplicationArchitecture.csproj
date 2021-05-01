@@ -48,16 +48,15 @@
     <Compile Include="BusinessLogic\ServiceC.cs" />
     <Compile Include="BusinessLogic\ViewModel.cs" />
     <Compile Include="Data\AbstractClass.cs" />
-    <Compile Include="Data\API\ILinq2SQL.cs" />
     <Compile Include="Data\CircularReference\ClassA.cs" />
     <Compile Include="Data\CircularReference\ClassB.cs" />
     <Compile Include="Data\ClassWithAttribute.cs" />
+    <Compile Include="Data\DataLayerAbstractAPI.cs" />
     <Compile Include="Data\DerivedClass.cs" />
     <Compile Include="Data\Enum.cs" />
     <Compile Include="Data\GenericClass.cs" />
     <Compile Include="Data\IExample.cs" />
     <Compile Include="Data\ImplementationOfIExample.cs" />
-    <Compile Include="Data\Linq2SQL.cs" />
     <Compile Include="Data\OuterClass.cs" />
     <Compile Include="Data\StaticClass.cs" />
     <Compile Include="Data\Structure.cs" />

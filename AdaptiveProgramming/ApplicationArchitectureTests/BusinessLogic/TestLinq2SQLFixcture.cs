@@ -5,16 +5,21 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using System;
-using TPA.ApplicationArchitecture.Data.API;
+using TPA.ApplicationArchitecture.Data;
 
 namespace TPA.ApplicationArchitecture.BusinessLogic.Tests
 {
-  public class TestLinq2SQLFixcture : ILinq2SQL
+  public class TestLinq2SQLFixcture : DataLayerAbstractAPI
   {
+    internal int ConnectedCallCount = 0;
+
+    #region ILinq2SQLAPI
+
     public override void Connect()
     {
-      Console.Write("Text to write for UT");
+      ConnectedCallCount++;
     }
+
+    #endregion ILinq2SQLAPI
   }
 }
