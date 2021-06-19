@@ -7,6 +7,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.ComponentModel;
 using TP.GraphicalData.Model;
 using TP.GraphicalData.ViewModel;
 
@@ -26,6 +27,7 @@ namespace TP.GraphicalData
       Assert.IsNull(_vm.CurrentUser);
       Assert.IsTrue(_vm.DisplayTextCommand.CanExecute(null));
     }
+
     [TestMethod]
     public void MyCommandTest()
     {
@@ -34,13 +36,14 @@ namespace TP.GraphicalData
       _vm.MessageBoxShowDelegate = (messageBoxText) =>
       {
         _boxShowCount++;
-        Assert.AreEqual < string>("ActionText", messageBoxText);
+        Assert.AreEqual<string>("ActionText", messageBoxText);
       };
       _vm.ActionText = "ActionText";
       Assert.IsTrue(_vm.DisplayTextCommand.CanExecute(null));
       _vm.DisplayTextCommand.Execute(null);
       Assert.AreEqual<int>(1, _boxShowCount);
     }
+
     [TestMethod]
     public void ActionTextTestMethod()
     {
@@ -49,6 +52,7 @@ namespace TP.GraphicalData
       _vm.ActionText = String.Empty;
       Assert.IsFalse(_vm.DisplayTextCommand.CanExecute(null));
     }
+
     [TestMethod]
     public void DataLayerTestMethod()
     {
@@ -60,6 +64,17 @@ namespace TP.GraphicalData
       Assert.AreNotSame(_vm.DataLayer, _dl);
       _vm.DataLayer = _dl;
       Assert.AreSame(_vm.DataLayer, _dl);
+    }
+
+    [TestMethod]
+    public void MyTestMethod()
+    {
+      Object DataContext = new MainViewModel();
+      Assert.IsInstanceOfType(DataContext, typeof(INotifyPropertyChanged));
+      int executionCount = 0;
+      ((INotifyPropertyChanged)DataContext).PropertyChanged += (x, y) => { Assert.AreEqual<string>("ActionText", y.PropertyName); executionCount++; };
+      ((MainViewModel)DataContext).ActionText = "dsdafafafdfsfs";
+      Assert.AreEqual<int>(1, executionCount);
     }
   }
 }
