@@ -1,7 +1,7 @@
 ---
-name: AP Feature request
-about: Suggest an idea for the AP project
-title: 'AP Feature request'
+name: ExDM Feature request
+about: Suggest an idea for the ExDM project
+title: 'ExDM Feature request'
 labels: 'Refactoring'
 assignees: 'mpostol'
 ---
