@@ -8,13 +8,15 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-namespace TPA.ApplicationArchitecture.BusinessLogic
+namespace TPA.ApplicationArchitecture.Presentation
 {
-  /// <summary>
-  /// Class ServiceA - an example of the indirect circular reference (recursion) at design time
-  /// </summary>
-  internal class ServiceA
+  internal class ViewModel
   {
-    public ServiceB ServiceB { get; set; }
+    internal ViewModel(Model model = default(Model))
+    {
+      MyModel = model ?? new Model(); //creates production version of the Model layer if required
+    }
+
+    private Model MyModel { get; set; }
   }
 }

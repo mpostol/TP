@@ -1,24 +1,29 @@
-﻿//____________________________________________________________________________
+﻿//__________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright 2021 Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
-
-using System;
-using System.Reflection;
-using TPA.ApplicationArchitecture.BusinessLogic;
+//  To be in touch join the community by pressing the `Watch` button and to get started 
+//  comment using the discussion panel at
+//  https://github.com/mpostol/TP/discussions/182
+//  with an introduction of yourself and tell us about what you do with this community.
+//__________________________________________________________________________________________
 
 namespace TPA.ApplicationArchitecture.Presentation
 {
+  /// <summary>
+  /// Class View = it is an example of the view layer implementation.
+  /// /// </summary>
   internal class View
   {
-    public View()
+    /// <summary>
+    /// Initializes a new instance of the <see cref="View"/> class.
+    /// </summary>
+    /// <param name="viewModel"> - the view model layer if any. If <paramref name="viewModel"/> is null the production version of the <see cref="ViewModel"/> is created instead.</param>
+    public View(ViewModel viewModel = null)
     {
-      Console.WriteLine($"Starting View Rel {Assembly.GetExecutingAssembly().GetName().Version}");
+      MyViewModel = viewModel ?? new ViewModel();
     }
 
-    private ViewModel ViewModel { get; set; }
-
+    private ViewModel MyViewModel { get; set; } = default(ViewModel);
   }
 }

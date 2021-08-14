@@ -42,11 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\Model.cs" />
+    <Compile Include="BusinessLogic\BusinessLogicAbstractAPI.cs" />
     <Compile Include="BusinessLogic\ServceB.cs" />
     <Compile Include="BusinessLogic\ServiceA.cs" />
     <Compile Include="BusinessLogic\ServiceC.cs" />
-    <Compile Include="BusinessLogic\ViewModel.cs" />
     <Compile Include="Data\AbstractClass.cs" />
     <Compile Include="Data\CircularReference\ClassA.cs" />
     <Compile Include="Data\CircularReference\ClassB.cs" />
@@ -60,7 +59,9 @@
     <Compile Include="Data\OuterClass.cs" />
     <Compile Include="Data\StaticClass.cs" />
     <Compile Include="Data\Structure.cs" />
+    <Compile Include="Presentation\Model.cs" />
     <Compile Include="Presentation\View.cs" />
+    <Compile Include="Presentation\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
