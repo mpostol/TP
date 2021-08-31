@@ -1,14 +1,19 @@
 ﻿#pragma warning disable IDE0033 // Use explicitly provided tuple name
 
-//____________________________________________________________________________
+//__________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright 2021 Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and to get started 
+//  comment using the discussion panel at
+//  https://github.com/mpostol/TP/discussions/182
+//  with an introduction of yourself and tell us about what you do with this community.
+//__________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Globalization;
+using System.Threading;
 
 namespace TP.DataSemantics
 {
@@ -20,7 +25,6 @@ namespace TP.DataSemantics
     public void VARTest()
     {
       Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("es-Es");
-
       Random _rdm = new Random();
       double _dividend = 5;// * _rdm.Next();
       double _double = _dividend / 2;
@@ -34,8 +38,6 @@ namespace TP.DataSemantics
       _dynamic = "String";
       Assert.AreEqual("String", _dynamic);
       _dynamic += 1.5;
-      //TODO Some UT fails due to wrong string formating #143
-      //Assert.Inconclusive("Some UT fails due to wrong string formating #143");
       Assert.AreEqual("String1,5", _dynamic);
       Assert.AreEqual("1,5", 1.5.ToString());
       Assert.ThrowsException<Microsoft.CSharp.RuntimeBinder.RuntimeBinderException>(() => _dynamic /= 1);
