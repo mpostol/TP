@@ -21,12 +21,12 @@ namespace TPD.Communication.ClientServerCommunication
         private WebSocketConnection _wclient = null;
         private int _delay = 10;
 
-        [TestCleanup]
-        public async Task Cleanup()
-        {
-            await _wclient?.DisconnectAsync();
-            await _wserver?.DisconnectAsync();
-        }
+        //[TestCleanup]
+        //public async Task Cleanup()
+        //{
+        //    await _wclient?.DisconnectAsync();
+        //    await _wserver?.DisconnectAsync();
+        //}
 
         [TestMethod]
         public async Task WebSocketUsageTestMethod()
@@ -35,8 +35,8 @@ namespace TPD.Communication.ClientServerCommunication
 
             //create server
             //Assert.Inconclusive("WebSockets example #170");
-            var uri = new Uri("ws://localhost:6966");
-            var logOutput = new List<string>();
+            Uri uri = new Uri("ws://localhost:6966");
+            List<string> logOutput = new List<string>();
             Action<string> log = (message) => logOutput.Add(message);
             Task server = Task.Run(async () => await WebSocketServer.Server(uri.Port,
                 _ws =>
@@ -77,6 +77,9 @@ namespace TPD.Communication.ClientServerCommunication
 
             //test correctness of the response
             Assert.AreEqual($"Received message from server: test 2", logOutput[2]);
+
+            await _wclient?.DisconnectAsync();
+            await _wserver?.DisconnectAsync();
         }
     }
 }
