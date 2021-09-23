@@ -62,16 +62,28 @@ DOI: [http://doi.org/10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.25782
 
 Replace `year` with the current year and `Target Part Name` with the name (or names) of the files you are referring to.
 
-## See also
+## How to follow up?
+
+GitHub offers `Discussions` as a space to connect with other members of the community. I hope that using the `Discussion` space you:
+
+- ask questions you’re wondering about
+- share ideas
+- engage with other community members
+- welcome others and are open-minded; remember that this is a community we build together
+
+I have activated the [Discussion][Discussion] space for this repository. Follow the  [Discussion][Discussion] to be in touch.
+
+To follow any activity in the repository, switch on the `Watch` functionality. If you find the project interesting, please star the repository. Starring a repository also shows appreciation to the repository maintainer for their work. You can star repositories and topics to keep track of projects you find interesting and discover related content in your news feed. Check out [Saving repositories with stars](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars) to get more.
 
 - [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
-- [![Gitter](https://badges.gitter.im/mpostol/TP.svg)](https://gitter.im/mpostol/TP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) - to be in touch join us on GITTER.
+- [Discussion][Discussion]
+
+[Discussion]: https://github.com/mpostol/TP/discussions
 
 <!--
 //____________________________________________________________________________
 //
 //  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 -->
