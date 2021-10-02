@@ -2,7 +2,7 @@
 
 ## Table of content <!-- omit in toc -->
 
-- [CSharp (C#) in Practice](#csharp-c-in-practice)
+- [Programming in Practice](#programming-in-practice)
   - [Key words](#key-words)
   - [Releases](#releases)
   - [Goal](#goal)
@@ -15,7 +15,7 @@
 - [How to follow up?](#how-to-follow-up)
 - [See also](#see-also)
 
-## CSharp (C#) in Practice
+## Programming in Practice
 
 ### Key words
 
@@ -45,7 +45,7 @@ Main purpose of this repository is to provide code examples for education purpos
 - [**Adaptive Programming (AP)**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
 - [**Distributed Programming (DP)**](DistributedProgramming/README.md): All about developing interoperable applications interconnected over the network.
 
-The repository collects examples that can serve as a certain pattern with the widest possible use addressing the described bellow application domain. In order to ensure the practical context and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code is available in this repository.
+The repository collects examples that can serve as a certain pattern with the widest possible use addressing the described below application domain. To ensure the practical context and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code is available in this repository. Hopefully, the examples are easily portable to other development environments.
 
 #### External Data-Intensive Programming (ExDM)
 
