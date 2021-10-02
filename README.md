@@ -17,7 +17,7 @@
 
 ### Key words
 
-software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control.
+software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control, distributed programming.
 
 ### Releases
 
@@ -31,14 +31,14 @@ software engineering, software design, education, training, code examples, cshar
 
 ### Goal
 
-Turning today's students into tomorrow's advanced software developer and architectures.
+Turning today's students into tomorrow's advanced software developers and architects.
 
 ### Content
 
 Main purpose of this repository is to provide code examples for education purpose. The code examples address the following application domains
 
-- [**External Data-Intensive Programming**](ExDataManagement/README.md) : process data management, i.e. those that are input or output for the business logic of the program.
-- [**Adaptive Programming**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
+- [**External Data-Intensive Programming (ExDM)**](ExDataManagement/README.md) : process data management, i.e. those that are input or output for the business logic of the program.
+- [**Adaptive Programming (AP)**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
 
 #### External Data-Intensive Programming (ExDM)
 
@@ -64,13 +64,11 @@ Copyright (c) 2021 Mariusz Postol
 
 In this section, you will learn how to cite the "Software" using the DOI number. A DOI number is a unique identifying number for the Software version. Because this repository has a DOI, use the DOI in your citation for the article or any derived work, like this:
 
-> Mariusz Postol, csharp (C#) in Practice: [Target Part Name], `https://github.com/mpostol/TP`, [year]
-DOI: [10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244)
+> Mariusz Postol, csharp (C#) in Practice: \[Target Part Name\], `https://github.com/mpostol/TP`, \[year\] DOI: [10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244)
 
 or
 
-> Mariusz Postol, csharp (C#) in Practice: [Target Part Name], `https://github.com/mpostol/OPC-UA-OOI`, [year]
-DOI: [http://doi.org/10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244).
+> Mariusz Postol, csharp (C#) in Practice: \[Target Part Name\], `https://github.com/mpostol/TP`, \[year\] DOI: [http://doi.org/10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244).
 
 Replace `year` with the current year and `Target Part Name` with the name (or names) of the files you are referring to.
 
@@ -90,16 +88,18 @@ To follow any activity in the repository, switch on the `Watch` functionality. I
 - [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
 - [Discussion][Discussion]
 
-[![Build Status](https://caseu.visualstudio.com/TP/_apis/build/status/mpostol.TP?branchName=master)](https://caseu.visualstudio.com/TP/_build/latest?definitionId=2&branchName=master)
-
 ## See also
 
 - [Discussion][Discussion]
-- [Programming Technologies 2021; Recorded lecture](https://youtube.com/playlist?list=PLC7zPvgw-YbyWXRTAe9m-ABP9YWmpLvUk)
-- [Programming Technologies 2020; Recorded lecture](https://youtube.com/playlist?list=PLC7zPvgw-YbwOD3GaSPl6kzKhDRmmrA-9)
-- [Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych](https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w) in polish.
+- [Programming Technologies 2021; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbyWXRTAe9m-ABP9YWmpLvUk)
+- [Programming Technologies 2020; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbwOD3GaSPl6kzKhDRmmrA-9)
+- [Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych](https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w); 2019, Helion (in polish).
 - [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
 - [References](.\References)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578244.svg)](https://doi.org/10.5281/zenodo.2578244) - This DOI represents all versions, and will always resolve to the latest one.
+
+[![Build Status](https://caseu.visualstudio.com/TP/_apis/build/status/mpostol.TP?branchName=master)](https://caseu.visualstudio.com/TP/_build/latest?definitionId=2&branchName=master) - Build Status
 
 [Discussion]: https://github.com/mpostol/TP/discussions
 [vdpnt]: https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
