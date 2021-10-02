@@ -1,2 +1,4 @@
 theme: jekyll-theme-minimal
-Logo: Programming_in_Practice.png
+title: Programming in Practice
+logo: Programming_in_Practice.png
+show_downloads: true
