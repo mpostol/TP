@@ -1,4 +1,4 @@
-# CSharp (C#) Teaching of Programming (TP) [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases) <!-- omit in toc -->
+# Teaching of Programming (TP) [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases) <!-- omit in toc -->
 
 ## Table of content <!-- omit in toc -->
 
@@ -45,13 +45,13 @@ Main purpose of this repository is to provide code examples for education purpos
 - [**Adaptive Programming (AP)**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
 - [**Distributed Programming (DP)**](DistributedProgramming/README.md): All about developing interoperable applications interconnected over the network.
 
-The repository collects examples that can serve as a certain pattern with the widest possible use addressing the described below application domain. To ensure the practical context and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code is available in this repository. Hopefully, the examples are easily portable to other development environments.
+The repository collects examples that can serve as a pattern with the broadest possible applicability addressing the applications in concern.  All topics are illustrated using the C# language and the MS Visual Studio design environment to ensure the practical context and provide solid examples. The source code is available in this repository. Hopefully, the samples are easily portable to other development environments.
 
 #### External Data-Intensive Programming (ExDM)
 
 Computer science in general, and especially programming activities, is a field of knowledge that deals with automation of information processing. Programs can be recognized as a driving force of that automated behavior. To achieve information processing goals programs have to implement algorithms required by the application concerned. In other words, the programs describe how to process data, which represent information relevant to the application. Data management - apart from the implementation of the algorithms – is, therefore, a key issue from the point of view of automation of the entire information processing and computer science in general.
 
-The [ExDataManagement](ExDataManagement/README.md) folder collects examples that can serve as a certain pattern with the widest possible use addressing the mentioned above application domain.
+The [ExDataManagement](ExDataManagement/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
 
 > **Note**: to open the code samples in the Visual studio double click the file `ExDataManagement.sln`.
 
@@ -59,7 +59,7 @@ The [ExDataManagement](ExDataManagement/README.md) folder collects examples that
 
 The adaptive programming is presented as a catalog of language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the program against changing production environment in which it is executed.
 
-The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects examples that can serve as a certain pattern with the widest possible use addressing the mentioned above application domain.
+The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
 
 > **Note**: to open the code samples in the Visual studio double click the file `AdaptiveProgramming.sln`.
 
@@ -67,7 +67,7 @@ The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects example
 
 Information and Communication Technology has provided society with a vast diversity of distributed applications. By design, the deployment of this kind of application has to focus primarily on communication. Examples collected in this repository addresses the systematic approach to the designing of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, namely Industry 4.0 and Internet of Things (IoT) atop of the M2M communication and composed as multi-vendor cyber-physicals systems.
 
-The [DistributedProgramming](DistributedProgramming/README.md) folder collects examples that can serve as a certain pattern with the widest possible use addressing the application domain in concern.
+The [DistributedProgramming](DistributedProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the applications in concern.
 
 > **Note**: to open the code samples in the Visual studio double click the file `DistributedProgramming.sln`.
 
