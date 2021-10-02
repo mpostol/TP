@@ -1,8 +1,19 @@
-# csharp (C#) Teaching of Programming (TP) [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases)
+# CSharp (C#) Teaching of Programming (TP) [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases) <!-- omit in toc -->
 
-[![Build Status](https://caseu.visualstudio.com/TP/_apis/build/status/mpostol.TP?branchName=master)](https://caseu.visualstudio.com/TP/_build/latest?definitionId=2&branchName=master)
+## Table of content <!-- omit in toc -->
 
-## csharp (C#) in Practice
+- [CSharp (C#) in Practice](#csharp-c-in-practice)
+  - [Key words](#key-words)
+  - [Releases](#releases)
+  - [Goal](#goal)
+  - [Content](#content)
+    - [External Data-Intensive Programming (ExDM)](#external-data-intensive-programming-exdm)
+    - [Adaptive Programming (AP)](#adaptive-programming-ap)
+- [How to cite the software and associated documentation files](#how-to-cite-the-software-and-associated-documentation-files)
+- [How to follow up?](#how-to-follow-up)
+- [See also](#see-also)
+
+## CSharp (C#) in Practice
 
 ### Key words
 
@@ -10,10 +21,11 @@ software engineering, software design, education, training, code examples, cshar
 
 ### Releases
 
-| Release | Name                                    | Milestone                                                          | DOI |
-|:-------:|-----------------------------------------|--------------------------------------------------------------------|:---:|
-|[3.0](https://github.com/mpostol/TP/releases/tag/3.0) | ExDM  VideoBook Helion v1.0. | [**C# in Practice - External Data-Intensive Programming** v1.0.](https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w) | DOI: 10.5281/zenodo.2578245 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578245.svg)](https://doi.org/10.5281/zenodo.2578245)
-|2.0 | Adaptive Programming (AP) February 2019 | Adaptive Programming postmortem dump                               | NA
+|                        Release                        | Name                                    | Milestone                                                               |                                                                  DOI                                                                  |
+| :---------------------------------------------------: | --------------------------------------- | ----------------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------: |
+|                          4.0                          | Distributed Programming 2020-10-05      | Distributed Programming                                                 |
+| [3.0](https://github.com/mpostol/TP/releases/tag/3.0) | ExDM  VideoBook Helion v1.0.            | [**C# in Practice - External Data-Intensive Programming** v1.0.][vdpnt] | DOI: 10.5281/zenodo.2578245 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578245.svg)](https://doi.org/10.5281/zenodo.2578245) |
+|                          2.0                          | Adaptive Programming (AP) February 2019 | Adaptive Programming                                                    |                                                                  NA                                                                   |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 
@@ -48,7 +60,7 @@ The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects example
 
 To be compliant with the license of the repository the below copyright notice shall be included in all copies or substantial portions of the software and associated documentation files (the "Software").
 
-Copyright (c) 2019 Mariusz Postol
+Copyright (c) 2021 Mariusz Postol
 
 In this section, you will learn how to cite the "Software" using the DOI number. A DOI number is a unique identifying number for the Software version. Because this repository has a DOI, use the DOI in your citation for the article or any derived work, like this:
 
@@ -78,12 +90,24 @@ To follow any activity in the repository, switch on the `Watch` functionality. I
 - [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
 - [Discussion][Discussion]
 
+[![Build Status](https://caseu.visualstudio.com/TP/_apis/build/status/mpostol.TP?branchName=master)](https://caseu.visualstudio.com/TP/_build/latest?definitionId=2&branchName=master)
+
+## See also
+
+- [Discussion][Discussion]
+- [Programming Technologies 2021; Recorded lecture](https://youtube.com/playlist?list=PLC7zPvgw-YbyWXRTAe9m-ABP9YWmpLvUk)
+- [Programming Technologies 2020; Recorded lecture](https://youtube.com/playlist?list=PLC7zPvgw-YbwOD3GaSPl6kzKhDRmmrA-9)
+- [Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych](https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w) in polish.
+- [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
+- [References](.\References)
+
 [Discussion]: https://github.com/mpostol/TP/discussions
+[vdpnt]: https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
 
 <!--
 //____________________________________________________________________________
 //
-//  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //____________________________________________________________________________
 -->
