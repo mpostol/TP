@@ -7,10 +7,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Threading", "Threading\Thre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingUnitTest", "ThreadingUnitTest\ThreadingUnitTest.csproj", "{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{714FF0A4-62BB-4299-A636-A271FD362B9D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{714FF0A4-62BB-4299-A636-A271FD362B9D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReactiveInteractiveUserInterface", "ReactiveInteractiveUserInterface", "{C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationView", "ReactiveInteractiveUserInterface\GraphicalUserInterface\PresentationView.csproj", "{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationViewModel", "ReactiveInteractiveUserInterface\PresentationViewModel\PresentationViewModel.csproj", "{B2380645-D767-4E38-835A-3CA87C22CD20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationModel", "PresentationModel\PresentationModel.csproj", "{A106D92E-B514-4FC0-BDE4-5DE1B8590060}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationViewModelTest", "PresentationViewModelTest\PresentationViewModelTest.csproj", "{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +36,31 @@ Global
 		{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2380645-D767-4E38-835A-3CA87C22CD20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2380645-D767-4E38-835A-3CA87C22CD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2380645-D767-4E38-835A-3CA87C22CD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2380645-D767-4E38-835A-3CA87C22CD20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A106D92E-B514-4FC0-BDE4-5DE1B8590060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A106D92E-B514-4FC0-BDE4-5DE1B8590060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A106D92E-B514-4FC0-BDE4-5DE1B8590060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A106D92E-B514-4FC0-BDE4-5DE1B8590060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
+		{B2380645-D767-4E38-835A-3CA87C22CD20} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
+		{A106D92E-B514-4FC0-BDE4-5DE1B8590060} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
+		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4ACB1EF2-3819-4CE2-9F11-F8DBD7CDDFEC}

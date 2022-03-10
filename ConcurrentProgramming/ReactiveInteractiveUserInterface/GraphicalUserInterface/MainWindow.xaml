@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="Presentation layer targeting reactive/interactive behaviour" Height="auto" Width="auto">
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Window.DataContext>
-    <Canvas Width="900" Height="600"  >
-       
+    <StackPanel Orientation="Vertical">
+        
+    <Canvas Width="900" Height="600">
         <!-- Draws an oval with a blue interior. -->
-        <Ellipse Name="Elipse1" Width= "{ Binding Radious }" Height="50" Fill="Blue" Canvas.Left="400" Canvas.Top="250" Opacity="1" >
+        <Ellipse Name="Elipse1" Width= "{ Binding Radious }" Height="50" Fill="Blue" Canvas.Left="400" Canvas.Top="250" Opacity="1">
             <Ellipse.Triggers>
                 <EventTrigger RoutedEvent="Ellipse.Loaded">
                     <BeginStoryboard>
@@ -33,7 +34,6 @@
 
         <!-- Draws an oval with a blue interior and a black outline. -->
         <Ellipse Width="50" Height="50" Fill="Red" Stroke="Black" StrokeThickness="4" Canvas.Left="400" Canvas.Top="100">
-
         </Ellipse>
 
         <!-- Draws a circle with a blue interior. -->
@@ -41,13 +41,16 @@
 
         <!-- Draws a circle with a blue interior and a black outline. -->
         <Ellipse Width="50" Height="50" Stroke="Black" StrokeThickness="4" Canvas.Left="135" Canvas.Top="100" />
-                <Button Canvas.Left="100" Canvas.Top="300">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Ellipse Width="70" Height="70" Fill="Azure" ></Ellipse>
-                        </ControlTemplate>
-                        
-                    </Button.Template>
-                </Button>
+        <Button Canvas.Left="100" Canvas.Top="300">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Ellipse Width="70" Height="70" Fill="Azure" ></Ellipse>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Canvas>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Press me" MinHeight="100" MinWidth="500" Command= "{Binding ButtomClick}"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

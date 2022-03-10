@@ -5,7 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <StartupObject></StartupObject>
+    <StartupObject>TP.ConcurrentProgramming.PresentationView.App</StartupObject>
     <AssemblyName>TP.ConcurrentProgramming.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>TP.ConcurrentProgramming.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
