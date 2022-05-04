@@ -10,6 +10,7 @@
   - [Executive Summary](#executive-summary)
     - [External Data-Intensive Programming (ExDM)](#external-data-intensive-programming-exdm)
     - [Adaptive Programming (AP)](#adaptive-programming-ap)
+    - [Concurrent Programming (CW)](#concurrent-programming-cw)
     - [Distributed Programming (DP)](#distributed-programming-dp)
 - [How to cite the software and associated documentation files](#how-to-cite-the-software-and-associated-documentation-files)
 - [How to follow up?](#how-to-follow-up)
@@ -43,7 +44,9 @@ Main purpose of this repository is to provide code examples for education purpos
 
 - [**External Data-Intensive Programming (ExDM)**](ExDataManagement/README.md) : process data management, i.e. those that are input or output for the business logic of the program.
 - [**Adaptive Programming (AP)**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
-- [**Distributed Programming (DP)**](DistributedProgramming/README.md): All about developing interoperable applications interconnected over the network.
+- [**Distributed Programming (DP)**](DistributedProgramming/README.md): all about developing inter-operable applications interconnected over the network.
+- [**Concurrent Programming (CW)**](ConcurrentProgramming/README.md): all about the programming pattern formally describing a program to execute operations as a result of nondeterministic events at run time.
+
 
 The repository collects examples that can serve as a pattern with the broadest possible applicability addressing the applications in concern.  All topics are illustrated using the C# language and the MS Visual Studio design environment to ensure the practical context and provide solid examples. The source code is available in this repository. Hopefully, the samples are easily portable to other development environments.
 
@@ -62,6 +65,12 @@ The adaptive programming is presented as a catalog of language constructs, patte
 The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
 
 > **Note**: to open the code samples in the Visual studio double click the file `AdaptiveProgramming.sln`.
+
+#### Concurrent Programming (CW)
+
+It is a programming pattern that allows writing a program that formally describes at design-time the execution of operations as a result of nondeterministic events. Concurrency is when multiple sequences of instructions are run in overlapping periods of time. In other words, the instructions sequence execution is undetermined in advance. Concurrency may be implemented explicitly using dedicated types. The `Thread` is a type that may be used to represent a sequence of instructions in this scenario. Concurrency may also be implemented implicitly, for example using a concept like asynchronous programming atop of the `Task` type.
+
+> **Note**: to open the code samples in the Visual studio double click the file `DistributedProgramming.sln`.
 
 #### Distributed Programming (DP)
 
