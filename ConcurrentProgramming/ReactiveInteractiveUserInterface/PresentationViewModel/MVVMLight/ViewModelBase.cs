@@ -10,14 +10,11 @@
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TP.ConcurrentProgramming.PresentationModel;
 
 namespace TP.ConcurrentProgramming.PresentationViewModel.MVVMLight
 {
   public class ViewModelBase : INotifyPropertyChanged
   {
-    private ModelAbstractApi modelAbstractApi;
-
     #region INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;

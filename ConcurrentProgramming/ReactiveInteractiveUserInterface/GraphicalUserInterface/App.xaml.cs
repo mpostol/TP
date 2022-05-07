@@ -8,6 +8,7 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
+using System;
 using System.Windows;
 
 namespace TP.ConcurrentProgramming.PresentationView
@@ -17,5 +18,11 @@ namespace TP.ConcurrentProgramming.PresentationView
   /// </summary>
   public partial class App : Application
   {
+    protected override void OnDeactivated(EventArgs e)
+    {
+      if (this.MainWindow is MainWindow window)
+        window.Dispose();
+      base.OnDeactivated(e);
+    }
   }
 }
