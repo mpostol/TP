@@ -34,7 +34,7 @@ namespace TP.ConcurrentProgramming.PresentationViewModel.MVVMLight
     /// </param>
     protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
     {
-      this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     #endregion API

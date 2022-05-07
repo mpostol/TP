@@ -5,52 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:TP.ConcurrentProgramming.PresentationViewModel;assembly=TP.ConcurrentProgramming.PresentationViewModel"
         mc:Ignorable="d"
-        Title="Presentation layer targeting reactive/interactive behaviour" Height="auto" Width="auto">
+        Title="Presentation layer targeting reactive behaviour" Height="auto" Width="auto">
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
-    <StackPanel Orientation="Vertical">
-        
-    <Canvas Width="900" Height="600">
-        <!-- Draws an oval with a blue interior. -->
-        <Ellipse Name="Elipse1" Width= "{ Binding Radious }" Height="50" Fill="Blue" Canvas.Left="400" Canvas.Top="250" Opacity="1">
-            <Ellipse.Triggers>
-                <EventTrigger RoutedEvent="Ellipse.Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation
-                                Storyboard.TargetName="Elipse1"
-                                Storyboard.TargetProperty="Height"
-                                From="10.0"
-                                To="250.0"
-                                Duration="0:0:5"
-                                AutoReverse="True"
-                                RepeatBehavior="Forever" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Ellipse.Triggers>
-        </Ellipse>
-
-        <!-- Draws an oval with a blue interior and a black outline. -->
-        <Ellipse Width="50" Height="50" Fill="Red" Stroke="Black" StrokeThickness="4" Canvas.Left="400" Canvas.Top="100">
-        </Ellipse>
-
-        <!-- Draws a circle with a blue interior. -->
-        <Ellipse Width="50" Height="50" Fill="Yellow" Canvas.Left="135" Canvas.Top="250" />
-
-        <!-- Draws a circle with a blue interior and a black outline. -->
-        <Ellipse Width="50" Height="50" Stroke="Black" StrokeThickness="4" Canvas.Left="135" Canvas.Top="100" />
-        <Button Canvas.Left="100" Canvas.Top="300">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Ellipse Width="70" Height="70" Fill="Azure" ></Ellipse>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-    </Canvas>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="Press me" MinHeight="100" MinWidth="500" Command= "{Binding ButtomClick}"/>
-        </StackPanel>
-    </StackPanel>
+    <Border BorderThickness="4" BorderBrush="Green" Height="420" Width="400">
+        <ItemsControl ItemsSource="{Binding Balls}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Width= "{Binding Diameter}" Height="{Binding Diameter}" Fill="Blue" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Top" Value="{Binding Top}" />
+                    <Setter Property="Canvas.Left" Value="{Binding Left}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+    </Border>
 </Window>
