@@ -21,7 +21,7 @@ namespace TP.ConcurrentProgramming.PresentationModel
     {
       TopBackingField = top;
       LeftBackingField = left;
-      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(200));
+      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
     }
 
     #region IBall

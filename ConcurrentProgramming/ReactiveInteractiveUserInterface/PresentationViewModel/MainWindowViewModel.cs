@@ -22,7 +22,9 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
 
     public MainWindowViewModel()
     {
-      ModelLayer = ModelAbstractApi.CreateApi(BallChaneEventHandler);
+      ModelLayer = ModelAbstractApi.CreateApi();
+      IDisposable observer = ModelLayer.Subscribe<IBall>(x => Balls.Add(x));
+      ModelLayer.Start();
     }
 
     public ObservableCollection<IBall> Balls { get; } = new ObservableCollection<IBall>();
@@ -41,11 +43,6 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
     #region private
 
     private ModelAbstractApi ModelLayer;
-
-    private void BallChaneEventHandler(object sender, BallChaneEventArgs e)
-    {
-      Balls.Add(e.Ball);
-    }
 
     #endregion private
   }

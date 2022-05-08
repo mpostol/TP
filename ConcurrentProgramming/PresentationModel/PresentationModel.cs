@@ -10,6 +10,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reactive;
+using System.Reactive.Linq;
 
 namespace TP.ConcurrentProgramming.PresentationModel
 {
@@ -18,6 +20,11 @@ namespace TP.ConcurrentProgramming.PresentationModel
   /// </summary>
   internal class PresentationModel : ModelAbstractApi
   {
+    public PresentationModel()
+    {
+      eventObservable = Observable.FromEventPattern<BallChaneEventArgs>(this, "BallChanged");
+    }
+
     #region ModelAbstractApi
 
     public override void Dispose()
@@ -28,16 +35,10 @@ namespace TP.ConcurrentProgramming.PresentationModel
 
     public override IDisposable Subscribe(IObserver<IBall> observer)
     {
-      throw new NotImplementedException();
+      return eventObservable.Subscribe(x => observer.OnNext(x.EventArgs.Ball), ex => observer.OnError(ex), () => observer.OnCompleted());
     }
 
-    public override event EventHandler<BallChaneEventArgs> BallChanged;
-
-    #endregion ModelAbstractApi
-
-    #region API
-
-    internal void CraeteBalls()
+    public override void Start()
     {
       Random random = new Random();
       int ballNumber = random.Next(1, 10);
@@ -49,10 +50,17 @@ namespace TP.ConcurrentProgramming.PresentationModel
       }
     }
 
+    #endregion ModelAbstractApi
+
+    #region API
+
+    public event EventHandler<BallChaneEventArgs> BallChanged;
+
     #endregion API
 
     #region private
 
+    private IObservable<EventPattern<BallChaneEventArgs>> eventObservable = null;
     private List<ModelBall> Balls2Dispose = new List<ModelBall>();
 
     #endregion private

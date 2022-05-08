@@ -6,4 +6,8 @@
     <RootNamespace>TP.ConcurrentProgramming.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+  </ItemGroup>
+
 </Project>

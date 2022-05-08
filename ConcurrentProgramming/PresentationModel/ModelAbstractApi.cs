@@ -34,20 +34,30 @@ namespace TP.ConcurrentProgramming.PresentationModel
     event EventHandler<BallChaneEventArgs> BallChanged;
   }
 
-  public abstract class ModelAbstractApi : IObservable<IBall>, INotifyBallChanged, IDisposable
+  public abstract class ModelAbstractApi : IObservable<IBall>, IDisposable  //, INotifyBallChanged,
   {
-    public abstract event EventHandler<BallChaneEventArgs> BallChanged;
+    //public abstract event EventHandler<BallChaneEventArgs> BallChanged;
 
-    public abstract IDisposable Subscribe(IObserver<IBall> observer);
-
-    public static ModelAbstractApi CreateApi(EventHandler<BallChaneEventArgs> eventHandler)
+    public static ModelAbstractApi CreateApi() //EventHandler<BallChaneEventArgs> eventHandler)
     {
       PresentationModel model = new PresentationModel();
-      model.BallChanged += eventHandler;
-      model.CraeteBalls();
+      //model.BallChanged += eventHandler;
+      //model.CraeteBalls();
       return model;
     }
 
+    public abstract void Start();
+
+    #region IObservable
+
+    public abstract IDisposable Subscribe(IObserver<IBall> observer);
+
+    #endregion IObservable
+
+    #region IDisposable
+
     public abstract void Dispose();
+
+    #endregion IDisposable
   }
 }
