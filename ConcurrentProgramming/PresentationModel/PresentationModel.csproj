@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>TP.ConcurrentProgramming.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>TP.ConcurrentProgramming.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <VersionPrefix>4.2.0</VersionPrefix>
+    <Copyright>Copyright 2022 Mariusz Postol</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

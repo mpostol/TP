@@ -6,8 +6,8 @@
     <RootNamespace>TP.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyName>TP.$(MSBuildProjectName)</AssemblyName>
     <Copyright>Copyright (c) 2022 Mariusz Postol</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <FileVersion>4.2.0</FileVersion>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Version>$(AssemblyVersion)</Version>
     <RepositoryUrl>https://github.com/mpostol/TP</RepositoryUrl>

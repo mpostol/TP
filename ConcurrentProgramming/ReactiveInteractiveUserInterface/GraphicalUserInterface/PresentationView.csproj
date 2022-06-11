@@ -2,12 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject>TP.ConcurrentProgramming.PresentationView.App</StartupObject>
     <AssemblyName>TP.ConcurrentProgramming.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>TP.ConcurrentProgramming.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <VersionPrefix>4.2.0</VersionPrefix>
+    <Copyright>Copyright 2022 Mariusz Postol</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
-
     <RootNamespace>TP.ConcurrentProgramming.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <VersionPrefix>4.2.0</VersionPrefix>
+    <Copyright>Copyright 2022 Mariusz Postol</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
