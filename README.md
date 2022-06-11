@@ -84,7 +84,7 @@ The [DistributedProgramming](DistributedProgramming/README.md) folder collects e
 
 To be compliant with the license of the repository the below copyright notice shall be included in all copies or substantial portions of the software and associated documentation files (the "Software").
 
-Copyright (c) 2021 Mariusz Postol
+Copyright (c) 2022 Mariusz Postol
 
 In this section, you will learn how to cite the "Software" using the DOI number. A DOI number is a unique identifying number for the Software version. Because this repository has a DOI, use the DOI in your citation for the article or any derived work, like this:
 
