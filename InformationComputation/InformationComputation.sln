@@ -3,16 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{76D57E74-8443-43F4-8CF9-B0E798585FDD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{76D57E74-8443-43F4-8CF9-B0E798585FDD}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S02-Introduction2Types", "S02-Introduction2Types", "{17D825BE-E932-4FE5-B7DF-241D2CD5A7D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartialDefinitionsTest", "PartialDefinitionsTest\PartialDefinitionsTest.csproj", "{0F38237B-1A67-4471-B356-15776577614E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartialDefinitionsTest", "PartialDefinitionsTest\PartialDefinitionsTest.csproj", "{0F38237B-1A67-4471-B356-15776577614E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartialDefinitions", "PartialDefinitions\PartialDefinitions.csproj", "{4CB9A959-863C-4494-96AF-20CDB80A86A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S01-Fundamentals", "S01-Fundamentals", "{C8D03012-BDE2-473A-8239-9AABC5E0671B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S03-Algorithm Implementation", "S03-Algorithm Implementation", "{272D3BC3-E3C9-4EED-88D2-4CC986BB9755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-CodingVType", "CodingVType\10-CodingVType.csproj", "{013F781C-2077-4AD2-8A20-168F08472CA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15-CodingVTypeTest", "CodingVTypeTest\15-CodingVTypeTest.csproj", "{59951CA3-2EC7-4A7D-A4FB-F645AADB6469}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +36,14 @@ Global
 		{4CB9A959-863C-4494-96AF-20CDB80A86A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB9A959-863C-4494-96AF-20CDB80A86A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB9A959-863C-4494-96AF-20CDB80A86A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{013F781C-2077-4AD2-8A20-168F08472CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{013F781C-2077-4AD2-8A20-168F08472CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{013F781C-2077-4AD2-8A20-168F08472CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{013F781C-2077-4AD2-8A20-168F08472CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59951CA3-2EC7-4A7D-A4FB-F645AADB6469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59951CA3-2EC7-4A7D-A4FB-F645AADB6469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59951CA3-2EC7-4A7D-A4FB-F645AADB6469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59951CA3-2EC7-4A7D-A4FB-F645AADB6469}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +51,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0F38237B-1A67-4471-B356-15776577614E} = {17D825BE-E932-4FE5-B7DF-241D2CD5A7D3}
 		{4CB9A959-863C-4494-96AF-20CDB80A86A2} = {17D825BE-E932-4FE5-B7DF-241D2CD5A7D3}
+		{013F781C-2077-4AD2-8A20-168F08472CA2} = {17D825BE-E932-4FE5-B7DF-241D2CD5A7D3}
+		{59951CA3-2EC7-4A7D-A4FB-F645AADB6469} = {17D825BE-E932-4FE5-B7DF-241D2CD5A7D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD716F48-1604-46EF-A0C7-B8270AC2653A}
