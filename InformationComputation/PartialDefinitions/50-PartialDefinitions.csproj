@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>TPIC.$(MSBuildProjectName)</AssemblyName>
-    <RootNamespace>TP.InformationComputation.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <RootNamespace>TP.InformationComputation.PartialDefinitions</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
