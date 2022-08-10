@@ -7,9 +7,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>TPIC.$(MSBuildProjectName)</AssemblyName>
-
-    <RootNamespace>TP.InformationComputation.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <RootNamespace>TP.InformationComputation.CodingVType</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PartialDefinitions\PartialDefinitions.csproj" />
+    <ProjectReference Include="..\CodingVType\10-CodingVType.csproj" />
   </ItemGroup>
 
 </Project>
