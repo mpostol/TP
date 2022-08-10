@@ -17,6 +17,6 @@ namespace TP.InformationComputation.LayeredArchitecture.Logic
   /// </summary>
   internal class ServiceC : IService
   {
-    public ServiceA ServiceA { get; set; }
+    public IService? Service { get; set; }
   }
 }

@@ -12,11 +12,11 @@ using TP.InformationComputation.LayeredArchitecture.Data;
 
 namespace TP.InformationComputation.LayeredArchitecture.Logic.AbstractLayerInterface
 {
-  internal abstract class LayerFactory
+  public abstract class LayerFactory
   {
-    internal static ILogic CreateLayer(DataLayerAbstractAPI? data = default(DataLayerAbstractAPI))
+    public static ILogic CreateLayer(DataLayerAbstract? data = default(DataLayerAbstract))
     {
-      return new BusinessLogic(data == null ? DataLayerAbstractAPI.CreateLinq2SQL() : data);
+      return new BusinessLogic(data == null ? DataLayerAbstract.CreateLinq2SQL() : data);
     }
 
     /// <summary>
@@ -25,19 +25,30 @@ namespace TP.InformationComputation.LayeredArchitecture.Logic.AbstractLayerInter
     /// <seealso cref="TPA.ApplicationArchitecture.BusinessLogic.BusinessLogicAbstractAPI" />
     private class BusinessLogic : ILogic
     {
-      public BusinessLogic(DataLayerAbstractAPI dataLayerAPI)
+      #region constructors
+
+      public BusinessLogic(DataLayerAbstract dataLayerAPI)
       {
         MyDataLayer = dataLayerAPI;
         MyDataLayer.Connect();
         //handling circular reference at run time.
-        graph = new ServiceA() { ServiceB = new ServiceB(new ServiceC()) };
-        graph.ServiceB.ServiceC.ServiceA = graph;
+        NextService = new ServiceA(new ServiceB(new ServiceC()));
+        NextService.Service.Service = NextService;
       }
 
-      private readonly DataLayerAbstractAPI MyDataLayer;
-      private ServiceA? graph = null;
+      #endregion constructors
 
-      public IService GraphRoot => throw new NotImplementedException();
+      #region ILogic
+
+      public IService? NextService { get; private set; }
+
+      #endregion ILogic
+
+      #region private
+
+      private readonly DataLayerAbstract MyDataLayer;
+
+      #endregion private
     }
   }
 }

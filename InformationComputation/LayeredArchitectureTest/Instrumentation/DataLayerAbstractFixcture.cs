@@ -8,10 +8,21 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-namespace TP.InformationComputation.LayeredArchitecture.Logic.AbstractLayerInterface
+using TP.InformationComputation.LayeredArchitecture.Data;
+
+namespace TP.InformationComputation.LayeredArchitecture.Instrumentation
 {
-  public interface ILogic
+  public class DataLayerAbstractFixcture : DataLayerAbstract
   {
-    IService? NextService { get; }
+    internal int ConnectedCallCount = 0;
+
+    #region DataLayerAbstract
+
+    public override void Connect()
+    {
+      ConnectedCallCount++;
+    }
+
+    #endregion DataLayerAbstract
   }
 }

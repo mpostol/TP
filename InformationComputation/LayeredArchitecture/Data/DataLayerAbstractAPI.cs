@@ -11,9 +11,9 @@
 namespace TP.InformationComputation.LayeredArchitecture.Data
 {
   /// <summary>
-  /// Class DataLayerAbstractAPI - an example of the abstract API of the Data layer
+  /// Class DataLayerAbstractAPI - an example of the abstract interface to the Data layer
   /// </summary>
-  public abstract class DataLayerAbstractAPI
+  public abstract class DataLayerAbstract
   {
     /// <summary>
     /// A place holder to implement the connection functionality.
@@ -21,17 +21,17 @@ namespace TP.InformationComputation.LayeredArchitecture.Data
     public abstract void Connect();
 
     /// <summary>
-    /// A factory method to provide new instance of the <see cref="DataLayerAbstractAPI" />.
+    /// A factory method to provide new instance of the <see cref="DataLayerAbstract" />.
     /// </summary>
     /// <returns>An instance of DataLayerAbstractAPI.</returns>
-    public static DataLayerAbstractAPI CreateLinq2SQL()
+    public static DataLayerAbstract CreateLinq2SQL()
     {
-      return new Linq2SQL();
+      return new DataLayerImplementation();
     }
 
     #region Layer implementation
 
-    private class Linq2SQL : DataLayerAbstractAPI
+    private class DataLayerImplementation : DataLayerAbstract
     {
       /// <summary>
       /// A place holder to implement the connection functionality.
