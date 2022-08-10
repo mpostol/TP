@@ -8,6 +8,8 @@
     <IsPackable>false</IsPackable>
 
     <RootNamespace>TP.InformationComputation.LayeredArchitecture</RootNamespace>
+
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
