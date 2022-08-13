@@ -10,7 +10,7 @@
 
 using System.Diagnostics;
 
-namespace TP.InformationComputation.LayersCommunication.Logic
+namespace TP.InformationComputation.LayersCommunication.Logic.DependencyInjection
 {
   public class ConstructorInjection
   {

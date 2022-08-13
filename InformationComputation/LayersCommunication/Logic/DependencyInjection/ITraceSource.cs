@@ -9,7 +9,7 @@
 //__________________________________________________________________________________________
 using System.Diagnostics;
 
-namespace TP.InformationComputation.LayersCommunication.Logic
+namespace TP.InformationComputation.LayersCommunication.Logic.DependencyInjection
 {
   /// <summary>
   /// Interface ITraceSource - defines trace source.
