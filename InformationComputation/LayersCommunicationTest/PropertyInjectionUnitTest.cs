@@ -11,7 +11,6 @@
 using System.Diagnostics;
 using TP.InformationComputation.LayersCommunication.Instrumentation;
 using TP.InformationComputation.LayersCommunication.Logic;
-using TP.InformationComputation.LayersCommunication.Logic.DependencyInjection;
 
 namespace TP.InformationComputation.LayersCommunication
 {

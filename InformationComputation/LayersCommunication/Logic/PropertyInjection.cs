@@ -10,7 +10,7 @@
 
 using System.Diagnostics;
 
-namespace TP.InformationComputation.LayersCommunication.Logic.DependencyInjection
+namespace TP.InformationComputation.LayersCommunication.Logic
 {
   /// <summary>
   /// Class PropertyInjection.

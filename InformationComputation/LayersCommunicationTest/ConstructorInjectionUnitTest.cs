@@ -9,7 +9,7 @@
 //__________________________________________________________________________________________
 
 using TP.InformationComputation.LayersCommunication.Instrumentation;
-using TP.InformationComputation.LayersCommunication.Logic.DependencyInjection;
+using TP.InformationComputation.LayersCommunication.Logic;
 
 namespace TP.InformationComputation.LayersCommunication
 {
