@@ -9,7 +9,7 @@
 //__________________________________________________________________________________________
 
 using System.Diagnostics;
-using TP.InformationComputation.LayersCommunication.Logic.DependencyInjection;
+using TP.InformationComputation.LayersCommunication.Logic;
 
 namespace TP.InformationComputation.LayersCommunication.Presentation
 {

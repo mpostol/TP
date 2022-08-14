@@ -16,12 +16,52 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
   {
     private static void Main(string[] args)
     {
+      MethodsCall();
+      MethodsCallWrongBehavior();
+      ConstructorInjectionExample();
+      Console.ReadLine();
+    }
+
+    private static void MethodsCallWrongBehavior()
+    {
+      Console.WriteLine($"Entering {nameof(MethodsCallWrongBehavior)}");
+      Logic.ICallingMethodProvider callingMethodProvider = Logic.LogicAbstraction.NewCallingMethodProvider();
+      callingMethodProvider.Alpha();
+      callingMethodProvider.Charlie();
+      callingMethodProvider.Bravo();
+      callingMethodProvider.Delta();
+      try
+      {
+        callingMethodProvider.CheckConsistency();
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.ToString());
+      }
+      Console.WriteLine($"Methods call finished");
+    }
+
+    private static void MethodsCall()
+    {
+      Console.WriteLine($"ENtering {nameof(MethodsCall)}");
+      Logic.ICallingMethodProvider callingMethodProvider = Logic.LogicAbstraction.NewCallingMethodProvider();
+      callingMethodProvider.Alpha();
+      callingMethodProvider.Bravo();
+      callingMethodProvider.Charlie();
+      callingMethodProvider.Delta();
+      bool result = callingMethodProvider.CheckConsistency();
+      Console.WriteLine($"Finished with result: {result}");
+    }
+
+    private static void ConstructorInjectionExample()
+    {
+      Console.WriteLine($"ENtering {nameof(ConstructorInjectionExample)}");
       ConstructorInjection _ConstructorInjection = new ConstructorInjection(new ConsoleTraceSource());
       _ConstructorInjection.Alpha();
       _ConstructorInjection.Bravo();
       _ConstructorInjection.Charlie();
       _ConstructorInjection.Delta();
-      Console.ReadLine();
+      Console.WriteLine($"Methods call finished successfully");
     }
   }
 }
