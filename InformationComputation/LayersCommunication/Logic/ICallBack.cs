@@ -13,26 +13,16 @@ using System.Diagnostics;
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  internal class CallBack : ICallBack
+  public delegate void TraceDataDelegate(TraceEventType eventType, int id, object data);
+
+  public interface ICallBack
   {
-    public void Alpha(TraceDataDelegate trace)
-    {
-      trace(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
-    }
+    void Alpha(TraceDataDelegate trace);
 
-    public void Bravo(TraceDataDelegate trace)
-    {
-      trace(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
-    }
+    void Bravo(TraceDataDelegate trace);
 
-    public void Charlie(TraceDataDelegate trace)
-    {
-      trace(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
-    }
+    void Charlie(TraceDataDelegate trace);
 
-    public void Delta(TraceDataDelegate trace)
-    {
-      trace(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
-    }
+    void Delta(TraceDataDelegate trace);
   }
 }

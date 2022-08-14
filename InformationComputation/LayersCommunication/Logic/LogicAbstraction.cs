@@ -8,22 +8,34 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-using TP.InformationComputation.LayersCommunication.Data;
-
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
   public abstract class LogicAbstraction
   {
     public static ICallingMethodProvider NewCallingMethodProvider()
     {
-      return new CallingMethodProviderImplementation(DataAbstraction.CreateData());
+      return new CallingMethodProviderImplementation();
+    }
+
+    public static ICallBack NewICallBack()
+    {
+      return new CllBackImplementation();
+    }
+    public static IEventBased NewEventBased()
+    {
+      return new EventBasedImplementation();
     }
 
     private class CallingMethodProviderImplementation : CallingMethodProvider
     {
-      public CallingMethodProviderImplementation(IData traceSource) : base(traceSource)
-      {
-      }
+    }
+
+    private class EventBasedImplementation : EventBased
+    {
+    }
+
+    private class CllBackImplementation : CallBack
+    {
     }
   }
 }

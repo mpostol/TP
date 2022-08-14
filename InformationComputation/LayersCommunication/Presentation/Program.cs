@@ -8,6 +8,7 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
+using TP.InformationComputation.LayersCommunication.Logic;
 using TP.InformationComputation.LayersCommunication.Logic.DependencyInjection;
 
 namespace TP.InformationComputation.LayersCommunication.Presentation
@@ -16,16 +17,43 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
   {
     private static void Main(string[] args)
     {
-      MethodsCall();
-      MethodsCallWrongBehavior();
+      MethodsCallExample();
+      MethodsCallWrongBehaviorExample();
+      CallbackExample();
+      EventBasedExample();
       ConstructorInjectionExample();
       Console.ReadLine();
     }
 
-    private static void MethodsCallWrongBehavior()
+    private static void EventBasedExample()
     {
-      Console.WriteLine($"Entering {nameof(MethodsCallWrongBehavior)}");
-      Logic.ICallingMethodProvider callingMethodProvider = Logic.LogicAbstraction.NewCallingMethodProvider();
+      Console.WriteLine($"ENtering {nameof(EventBasedExample)}");
+      ConsoleTraceSource trace = new ConsoleTraceSource();
+      IEventBased eventBased = LogicAbstraction.NewEventBased();
+      eventBased.TraceDataEvent += trace.TraceData;
+      eventBased.Alpha();
+      eventBased.Bravo();
+      eventBased.Charlie();
+      eventBased.Delta();
+      Console.WriteLine($"Methods call finished successfully");
+    }
+
+    private static void CallbackExample()
+    {
+      Console.WriteLine($"ENtering {nameof(CallbackExample)}");
+      ConsoleTraceSource trace = new ConsoleTraceSource();
+      ICallBack _ConstructorInjection = LogicAbstraction.NewICallBack();
+      _ConstructorInjection.Alpha(trace.TraceData);
+      _ConstructorInjection.Bravo(trace.TraceData);
+      _ConstructorInjection.Charlie(trace.TraceData);
+      _ConstructorInjection.Delta(trace.TraceData);
+      Console.WriteLine($"Methods call finished successfully");
+    }
+
+    private static void MethodsCallWrongBehaviorExample()
+    {
+      Console.WriteLine($"Entering {nameof(MethodsCallWrongBehaviorExample)}");
+      ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Charlie();
       callingMethodProvider.Bravo();
@@ -41,10 +69,10 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
       Console.WriteLine($"Methods call finished");
     }
 
-    private static void MethodsCall()
+    private static void MethodsCallExample()
     {
-      Console.WriteLine($"ENtering {nameof(MethodsCall)}");
-      Logic.ICallingMethodProvider callingMethodProvider = Logic.LogicAbstraction.NewCallingMethodProvider();
+      Console.WriteLine($"ENtering {nameof(MethodsCallExample)}");
+      Logic.ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Bravo();
       callingMethodProvider.Charlie();
