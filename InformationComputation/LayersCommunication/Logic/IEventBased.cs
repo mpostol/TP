@@ -10,8 +10,14 @@
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
+  /// <summary>
+  /// An example of functionality associated with an event-based tracing mechanism.
+  /// </summary>
   public interface IEventBased
   {
+    /// <summary>
+    /// This <see cref="TraceDataEvent"/> event should be triggered every time the method defined by this interface is called.
+    /// </summary>
     event TraceDataDelegate? TraceDataEvent;
 
     void Alpha();

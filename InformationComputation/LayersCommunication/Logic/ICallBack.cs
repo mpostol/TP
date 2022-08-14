@@ -9,12 +9,8 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-using System.Diagnostics;
-
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public delegate void TraceDataDelegate(TraceEventType eventType, int id, object data);
-
   public interface ICallBack
   {
     void Alpha(TraceDataDelegate trace);
