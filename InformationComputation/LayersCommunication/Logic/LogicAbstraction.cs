@@ -32,15 +32,12 @@ namespace TP.InformationComputation.LayersCommunication.Logic
     }
 
     private class CallingMethodProviderImplementation : CallingMethodProvider
-    {
-    }
+    { }
 
     private class EventBasedImplementation : EventBased
-    {
-    }
+    { }
 
     private class CllBackImplementation : CallBack
-    {
-    }
+    { }
   }
 }
