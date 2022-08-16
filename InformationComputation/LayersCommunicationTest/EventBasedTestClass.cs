@@ -14,18 +14,19 @@ using TP.InformationComputation.LayersCommunication.Logic;
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class ConstructorInjectionUnitTest
+  public class EventBasedTestClass
   {
     [TestMethod]
-    public void ConstructorInjectionTest()
+    public void EventBasedTestMethod()
     {
-      InMemoryTraceSource traceSource = new InMemoryTraceSource();
-      ConstructorInjection _ConstructorInjection = new ConstructorInjection(traceSource);
-      _ConstructorInjection.Alpha();
-      _ConstructorInjection.Bravo();
-      _ConstructorInjection.Charlie();
-      _ConstructorInjection.Delta();
-      traceSource.CheckConsistency();
+      InMemoryTraceSource consoleTrace = new InMemoryTraceSource();
+      IEventBased eventBased = LogicAbstraction.NewEventBased();
+      eventBased.TraceDataEvent += consoleTrace.TraceData;
+      eventBased.Alpha();
+      eventBased.Bravo();
+      eventBased.Charlie();
+      eventBased.Delta();
+      consoleTrace.CheckConsistency();
     }
   }
 }

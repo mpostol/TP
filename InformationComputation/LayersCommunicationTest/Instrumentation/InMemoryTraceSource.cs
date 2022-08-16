@@ -17,18 +17,18 @@ namespace TP.InformationComputation.LayersCommunication.Instrumentation
   {
     public void TraceData(TraceEventType eventType, int id, object data)
     {
-      _callStack.Add(id);
+      CallStack.Add(id);
     }
 
     internal void CheckConsistency()
     {
-      Assert.AreEqual<int>(4, _callStack.Count);
-      Assert.AreEqual<int>("Alpha".GetHashCode(), _callStack[0]);
-      Assert.AreEqual<int>("Bravo".GetHashCode(), _callStack[1]);
-      Assert.AreEqual<int>("Charlie".GetHashCode(), _callStack[2]);
-      Assert.AreEqual<int>("Delta".GetHashCode(), _callStack[3]);
+      Assert.AreEqual<int>(4, CallStack.Count);
+      Assert.AreEqual<int>("Alpha".GetHashCode(), CallStack[0]);
+      Assert.AreEqual<int>("Bravo".GetHashCode(), CallStack[1]);
+      Assert.AreEqual<int>("Charlie".GetHashCode(), CallStack[2]);
+      Assert.AreEqual<int>("Delta".GetHashCode(), CallStack[3]);
     }
 
-    internal List<int> _callStack = new();
+    private List<int> CallStack = new();
   }
 }
