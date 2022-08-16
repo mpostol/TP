@@ -38,20 +38,16 @@ namespace TP.InformationComputation.LayersCommunication
       InMemoryTraceSource traceSource = new InMemoryTraceSource();
       PropertyInjection propertyInjection = new PropertyInjection() { TraceSource = traceSource };
       propertyInjection.Alpha();
-      Assert.AreEqual<int>(1, traceSource._callStack.Count);
       propertyInjection.Bravo();
-      Assert.AreEqual<int>(2, traceSource._callStack.Count);
       propertyInjection.Charlie();
-      Assert.AreEqual<int>(3, traceSource._callStack.Count);
       propertyInjection.Delta();
-      Assert.AreEqual<int>(4, traceSource._callStack.Count);
       traceSource.CheckConsistency();
       propertyInjection.TraceSource = new DoNothingTraceSource(); //It is possible to inject new object of a different type.
       propertyInjection.Alpha();
       propertyInjection.Bravo();
       propertyInjection.Charlie();
       propertyInjection.Delta();
-      Assert.AreEqual<int>(4, traceSource._callStack.Count);
+      traceSource.CheckConsistency();
     }
 
     private class DoNothingTraceSource : ITraceSource

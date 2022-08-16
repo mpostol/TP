@@ -14,18 +14,18 @@ using TP.InformationComputation.LayersCommunication.Logic;
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class ConstructorInjectionUnitTest
+  public class CallBackTest
   {
     [TestMethod]
-    public void ConstructorInjectionTest()
+    public void CallBackTestMethod()
     {
-      InMemoryTraceSource traceSource = new InMemoryTraceSource();
-      ConstructorInjection _ConstructorInjection = new ConstructorInjection(traceSource);
-      _ConstructorInjection.Alpha();
-      _ConstructorInjection.Bravo();
-      _ConstructorInjection.Charlie();
-      _ConstructorInjection.Delta();
-      traceSource.CheckConsistency();
+      InMemoryTraceSource inMemoryTraceSource= new InMemoryTraceSource();
+      ICallBack callBackBased = LogicAbstraction.NewICallBack();
+      callBackBased.Alpha(inMemoryTraceSource.TraceData);
+      callBackBased.Bravo(inMemoryTraceSource.TraceData);
+      callBackBased.Charlie(inMemoryTraceSource.TraceData);
+      callBackBased.Delta(inMemoryTraceSource.TraceData);
+      inMemoryTraceSource.CheckConsistency();
     }
   }
 }

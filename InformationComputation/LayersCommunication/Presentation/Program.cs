@@ -16,8 +16,8 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
   {
     private static void Main(string[] args)
     {
-      MethodsCallExample();
-      MethodsCallWrongBehaviorExample();
+      CallingMethodProviderCorrectSequenceExample();
+      CallingMethodProviderWrongSequenceExample();
       CallbackExample();
       EventBasedExample();
       ConstructorInjectionExample();
@@ -25,9 +25,9 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
       Console.ReadLine();
     }
 
-    private static void MethodsCallExample()
+    private static void CallingMethodProviderCorrectSequenceExample()
     {
-      Console.WriteLine($"ENtering {nameof(MethodsCallExample)}");
+      Console.WriteLine($"ENtering {nameof(CallingMethodProviderCorrectSequenceExample)}");
       Logic.ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Bravo();
@@ -37,9 +37,9 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
       Console.WriteLine($"Finished with result: {result}");
     }
 
-    private static void MethodsCallWrongBehaviorExample()
+    private static void CallingMethodProviderWrongSequenceExample()
     {
-      Console.WriteLine($"Entering {nameof(MethodsCallWrongBehaviorExample)}");
+      Console.WriteLine($"Entering {nameof(CallingMethodProviderWrongSequenceExample)}");
       ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Charlie();// wrong sequence of calls
@@ -56,6 +56,18 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
       Console.WriteLine($"Methods call finished");
     }
 
+    private static void CallbackExample()
+    {
+      Console.WriteLine($"ENtering {nameof(CallbackExample)}");
+      ConsoleTraceSource consoleTrace = new ConsoleTraceSource();
+      ICallBack callBackBased = LogicAbstraction.NewICallBack();
+      callBackBased.Alpha(consoleTrace.TraceData);
+      callBackBased.Bravo(consoleTrace.TraceData);
+      callBackBased.Charlie(consoleTrace.TraceData);
+      callBackBased.Delta(consoleTrace.TraceData);
+      Console.WriteLine($"Methods call finished successfully");
+    }
+
     private static void EventBasedExample()
     {
       Console.WriteLine($"ENtering {nameof(EventBasedExample)}");
@@ -66,18 +78,6 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
       eventBased.Bravo();
       eventBased.Charlie();
       eventBased.Delta();
-      Console.WriteLine($"Methods call finished successfully");
-    }
-
-    private static void CallbackExample()
-    {
-      Console.WriteLine($"ENtering {nameof(CallbackExample)}");
-      ConsoleTraceSource consoleTrace = new ConsoleTraceSource();
-      ICallBack callBackBased = LogicAbstraction.NewICallBack();
-      callBackBased.Alpha(consoleTrace.TraceData);
-      callBackBased.Bravo(consoleTrace.TraceData);
-      callBackBased.Charlie(consoleTrace.TraceData);
-      callBackBased.Delta(consoleTrace.TraceData);
       Console.WriteLine($"Methods call finished successfully");
     }
 
