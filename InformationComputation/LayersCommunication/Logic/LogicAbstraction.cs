@@ -31,16 +31,40 @@ namespace TP.InformationComputation.LayersCommunication.Logic
       return new EventBasedImplementation();
     }
 
-    private class CallingMethodProviderImplementation : CallingMethodProvider
+    public static ILogic NewConstructorInjection(ITraceSource traceEngine)
     {
+      return new ConstructorInjectionImplementation(traceEngine);
     }
+
+    public static IPropertyInjection NewPropertyInjection()
+    {
+      return new PropertyInjectionImplementation();
+    }
+
+    public static IReactiveProgramming NewReactiveProgramming()
+    {
+      return new ReactiveProgrammingImplementation();
+    }
+
+    private class ConstructorInjectionImplementation : ConstructorInjection
+    {
+      public ConstructorInjectionImplementation(ITraceSource traceEngine) : base(traceEngine)
+      { }
+    }
+
+    private class PropertyInjectionImplementation : PropertyInjection
+    { }
+
+    private class CallingMethodProviderImplementation : CallingMethodProvider
+    { }
 
     private class EventBasedImplementation : EventBased
-    {
-    }
+    { }
 
     private class CllBackImplementation : CallBack
-    {
-    }
+    { }
+
+    private class ReactiveProgrammingImplementation : ReactiveProgramming
+    { }
   }
 }

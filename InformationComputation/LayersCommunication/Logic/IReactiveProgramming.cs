@@ -10,12 +10,6 @@
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public interface ICallingMethodProvider : ILogic
-  {
-    /// <summary>
-    ///Is called to check if the methods call chain is correct.
-    /// </summary>
-    /// <returns></returns>
-    bool CheckConsistency();
-  }
+  public interface IReactiveProgramming : IObservable<ITracingContext>, ILogic
+  { }
 }

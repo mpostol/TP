@@ -14,18 +14,18 @@ using TP.InformationComputation.LayersCommunication.Logic;
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class ConstructorInjectionUnitTest
+  public class ReactiveProgrammingTestClass
   {
     [TestMethod]
-    public void ConstructorInjectionTest()
+    public void ReactiveProgrammingTestMethod()
     {
-      InMemoryTraceSource traceSource = new InMemoryTraceSource();
-      ILogic _ConstructorInjection = LogicAbstraction.NewConstructorInjection(traceSource);
-      _ConstructorInjection.Alpha();
-      _ConstructorInjection.Bravo();
-      _ConstructorInjection.Charlie();
-      _ConstructorInjection.Delta();
-      traceSource.CheckConsistency();
+      InMemoryTraceSource tracer = new InMemoryTraceSource();
+      IReactiveProgramming reactiveProgramming = LogicAbstraction.NewReactiveProgramming();
+      reactiveProgramming.Subscribe(x => tracer.TraceData(x.eventType, x.id, x.data));
+      reactiveProgramming.Alpha();
+      reactiveProgramming.Bravo();
+      reactiveProgramming.Charlie();
+      reactiveProgramming.Delta();
     }
   }
 }

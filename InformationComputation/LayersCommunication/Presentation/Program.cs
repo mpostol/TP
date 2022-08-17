@@ -20,6 +20,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
       CallingMethodProviderWrongSequenceExample();
       CallbackExample();
       EventBasedExample();
+      ReactiveProgrammingExample();
       ConstructorInjectionExample();
       PropertyInjectionExample();
       Console.ReadLine();
@@ -81,10 +82,23 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
       Console.WriteLine($"Methods call finished successfully");
     }
 
+    private static void ReactiveProgrammingExample()
+    {
+      Console.WriteLine($"ENtering {nameof(ReactiveProgrammingExample)}");
+      ConsoleTraceSource consoleTrace = new ConsoleTraceSource();
+      IReactiveProgramming reactiveProgramming = LogicAbstraction.NewReactiveProgramming();
+      reactiveProgramming.Subscribe(x => consoleTrace.TraceData(x.eventType, x.id, x.data));
+      reactiveProgramming.Alpha();
+      reactiveProgramming.Bravo();
+      reactiveProgramming.Charlie();
+      reactiveProgramming.Delta();
+      Console.WriteLine($"Methods call finished successfully");
+    }
+
     private static void ConstructorInjectionExample()
     {
       Console.WriteLine($"ENtering {nameof(ConstructorInjectionExample)}");
-      ConstructorInjection constructorInjection = new ConstructorInjection(new ConsoleTraceSource());
+      ILogic constructorInjection = LogicAbstraction.NewConstructorInjection(new ConsoleTraceSource());
       constructorInjection.Alpha();
       constructorInjection.Bravo();
       constructorInjection.Charlie();
@@ -95,7 +109,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
     private static void PropertyInjectionExample()
     {
       Console.WriteLine($"ENtering {nameof(PropertyInjectionExample)}");
-      PropertyInjection propertyInjection = new PropertyInjection();
+      IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
       propertyInjection.TraceSource = new ConsoleTraceSource();
       propertyInjection.Alpha();
       propertyInjection.Bravo();

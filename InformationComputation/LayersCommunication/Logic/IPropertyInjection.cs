@@ -10,12 +10,8 @@
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public interface ICallingMethodProvider : ILogic
+  public interface IPropertyInjection : ILogic
   {
-    /// <summary>
-    ///Is called to check if the methods call chain is correct.
-    /// </summary>
-    /// <returns></returns>
-    bool CheckConsistency();
+    ITraceSource? TraceSource { get; set; }
   }
 }

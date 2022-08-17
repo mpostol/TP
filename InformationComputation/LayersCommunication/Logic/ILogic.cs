@@ -2,7 +2,7 @@
 //
 //  Copyright 2022 Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community by pressing the `Watch` button and to get started
+//  To be in touch join the community by pressing the `Watch` button and to get started 
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
 //  with an introduction of yourself and tell us about what you do with this community.
@@ -10,12 +10,26 @@
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public interface ICallingMethodProvider : ILogic
+  public interface ILogic
   {
     /// <summary>
-    ///Is called to check if the methods call chain is correct.
+    /// Method Alpha
     /// </summary>
-    /// <returns></returns>
-    bool CheckConsistency();
+    void Alpha();
+
+    /// <summary>
+    /// Method Bravo
+    /// </summary>
+    void Bravo();
+
+    /// <summary>
+    /// Method Charlie
+    /// </summary>
+    void Charlie();
+
+    /// <summary>
+    /// Method Delta
+    /// </summary>
+    void Delta();
   }
 }
