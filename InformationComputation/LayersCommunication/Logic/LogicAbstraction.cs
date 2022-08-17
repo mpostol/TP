@@ -31,6 +31,11 @@ namespace TP.InformationComputation.LayersCommunication.Logic
       return new EventBasedImplementation();
     }
 
+    public static IReactiveProgramming NewIReactiveProgramming()
+    {
+      return new ReactiveProgrammingImplementation();
+    }
+
     private class CallingMethodProviderImplementation : CallingMethodProvider
     { }
 
@@ -38,6 +43,9 @@ namespace TP.InformationComputation.LayersCommunication.Logic
     { }
 
     private class CllBackImplementation : CallBack
+    { }
+
+    private class ReactiveProgrammingImplementation : ReactiveProgramming
     { }
   }
 }

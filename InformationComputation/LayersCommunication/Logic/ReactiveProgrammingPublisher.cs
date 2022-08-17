@@ -38,7 +38,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
   public class TraceEventArgs : EventArgs
   {
     /// <summary>
-    /// Creates an instance of the <see cref="TraceEventArgs"/> 
+    /// Creates an instance of the <see cref="TraceEventArgs"/>
     /// </summary>
     /// <param name="context"></param>
     public TraceEventArgs(ITracingContext context)
@@ -49,12 +49,36 @@ namespace TP.InformationComputation.LayersCommunication.Logic
     public ITracingContext Context { get; set; }
   }
 
-  internal class ReactiveProgrammingPublisher : IObservable<ITracingContext>
+  internal abstract class ReactiveProgramming : IReactiveProgramming   
   {
-    public ReactiveProgrammingPublisher()
+    public ReactiveProgramming()
     {
       eventObservable = Observable.FromEventPattern<TraceEventArgs>(this, "publish");
     }
+
+    #region API
+
+    public void Alpha()
+    {
+      publish?.Invoke(this, new TraceEventArgs(new TracingContext(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha")));
+    }
+
+    public void Bravo()
+    {
+      publish?.Invoke(this, new TraceEventArgs(new TracingContext(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo")));
+    }
+
+    public void Charlie()
+    {
+      publish?.Invoke(this, new TraceEventArgs(new TracingContext(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie")));
+    }
+
+    public void Delta()
+    {
+      publish?.Invoke(this, new TraceEventArgs(new TracingContext(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta")));
+    }
+
+    #endregion API
 
     #region IObservable<TracingContext>
 
@@ -69,6 +93,13 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 
     private class TracingContext : ITracingContext
     {
+      public TracingContext(TraceEventType eventType, int id, string data)
+      {
+        this.eventType = eventType;
+        this.id = id;
+        this.data = data;
+      }
+
       public TraceEventType eventType { get; set; }
       public int id { get; set; }
       public object data { get; set; }
@@ -76,4 +107,6 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 
     private IObservable<EventPattern<TraceEventArgs>> eventObservable = null;
   }
+
+
 }
