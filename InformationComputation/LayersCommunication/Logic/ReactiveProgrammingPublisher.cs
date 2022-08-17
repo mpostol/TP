@@ -32,29 +32,16 @@ namespace TP.InformationComputation.LayersCommunication.Logic
     object data { get; }
   }
 
-  /// <summary>
-  /// Represents a custom class that contain event data, and provides a value to use for events that do not include event data.
-  /// </summary>
-  public class TraceEventArgs : EventArgs
+  internal abstract class ReactiveProgramming : IReactiveProgramming
   {
-    /// <summary>
-    /// Creates an instance of the <see cref="TraceEventArgs"/>
-    /// </summary>
-    /// <param name="context"></param>
-    public TraceEventArgs(ITracingContext context)
-    {
-      Context = context;
-    }
+    #region constructor
 
-    public ITracingContext Context { get; set; }
-  }
-
-  internal abstract class ReactiveProgramming : IReactiveProgramming   
-  {
     public ReactiveProgramming()
     {
       eventObservable = Observable.FromEventPattern<TraceEventArgs>(this, "publish");
     }
+
+    #endregion constructor
 
     #region API
 
@@ -89,6 +76,25 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 
     #endregion IObservable<TracingContext>
 
+    #region private
+
+    /// <summary>
+    /// Represents a custom class that contain event data, and provides a value to use for events that do not include event data.
+    /// </summary>
+    public class TraceEventArgs : EventArgs
+    {
+      /// <summary>
+      /// Creates an instance of the <see cref="TraceEventArgs"/>
+      /// </summary>
+      /// <param name="context"></param>
+      public TraceEventArgs(ITracingContext context)
+      {
+        Context = context;
+      }
+
+      public ITracingContext Context { get; set; }
+    }
+
     public event EventHandler<TraceEventArgs>? publish;
 
     private class TracingContext : ITracingContext
@@ -105,8 +111,8 @@ namespace TP.InformationComputation.LayersCommunication.Logic
       public object data { get; set; }
     }
 
-    private IObservable<EventPattern<TraceEventArgs>> eventObservable = null;
+    private IObservable<EventPattern<TraceEventArgs>> eventObservable;
+
+    #endregion private
   }
-
-
 }
