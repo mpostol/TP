@@ -10,26 +10,6 @@
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public interface IReactiveProgramming : IObservable<ITracingContext>
-  {
-    /// <summary>
-    /// Method Alpha
-    /// </summary>
-    void Alpha();
-
-    /// <summary>
-    /// Method Bravo
-    /// </summary>
-    void Bravo();
-
-    /// <summary>
-    /// Method Charlie
-    /// </summary>
-    void Charlie();
-
-    /// <summary>
-    /// Method Delta
-    /// </summary>
-    void Delta();
-  }
+  public interface IReactiveProgramming : IObservable<ITracingContext>, ILogic
+  { }
 }

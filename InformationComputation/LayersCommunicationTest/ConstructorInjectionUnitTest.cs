@@ -20,7 +20,7 @@ namespace TP.InformationComputation.LayersCommunication
     public void ConstructorInjectionTest()
     {
       InMemoryTraceSource traceSource = new InMemoryTraceSource();
-      ConstructorInjection _ConstructorInjection = new ConstructorInjection(traceSource);
+      ILogic _ConstructorInjection = LogicAbstraction.NewConstructorInjection(traceSource);
       _ConstructorInjection.Alpha();
       _ConstructorInjection.Bravo();
       _ConstructorInjection.Charlie();

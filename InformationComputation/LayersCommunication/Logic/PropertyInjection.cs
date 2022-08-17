@@ -15,7 +15,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
   /// <summary>
   /// Class PropertyInjection.
   /// </summary>
-  public class PropertyInjection
+  internal abstract class PropertyInjection: IPropertyInjection
   {
     /// <summary>
     /// Alpha example method.

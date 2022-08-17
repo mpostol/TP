@@ -20,23 +20,23 @@ namespace TP.InformationComputation.LayersCommunication
     [TestMethod]
     public void AfterCreationStateTestMethod()
     {
-      PropertyInjection propertyInjection = new PropertyInjection();
+      IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
       Assert.IsNull(propertyInjection.TraceSource);
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
     public void NoTracerDefinedTestMethod()
     {
-      PropertyInjection propertyInjection = new PropertyInjection();
-      propertyInjection.Alpha();
+      IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
+      Assert.ThrowsException<NullReferenceException>(() => propertyInjection.Alpha());
     }
 
     [TestMethod]
     public void PropertyInjectionTest()
     {
       InMemoryTraceSource traceSource = new InMemoryTraceSource();
-      PropertyInjection propertyInjection = new PropertyInjection() { TraceSource = traceSource };
+      IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
+      propertyInjection.TraceSource = traceSource;
       propertyInjection.Alpha();
       propertyInjection.Bravo();
       propertyInjection.Charlie();

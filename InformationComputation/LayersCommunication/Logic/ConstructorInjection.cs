@@ -12,12 +12,14 @@ using System.Diagnostics;
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public class ConstructorInjection
+  internal abstract class ConstructorInjection : ILogic
   {
     public ConstructorInjection(ITraceSource traceEngine)
     {
       m_TraceEngine = traceEngine ?? throw new ArgumentNullException(nameof(traceEngine));
     }
+
+    #region ILogic
 
     public void Alpha()
     {
@@ -38,6 +40,8 @@ namespace TP.InformationComputation.LayersCommunication.Logic
     {
       m_TraceEngine.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
     }
+
+    #endregion ILogic
 
     private ITraceSource m_TraceEngine;
   }
