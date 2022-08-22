@@ -1,6 +1,6 @@
 # 1. Coding System versus Type
 
-## 1.1.1. What's the problem? ✍🏻
+## 1.1.1. What's the problem? ✍
 
 ## 1.1.2. Introduction to Type Concept
 
