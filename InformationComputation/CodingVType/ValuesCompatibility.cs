@@ -14,10 +14,11 @@ namespace TP.InformationComputation.CodingVType
   {
     public static void ValuesCompatibility()
     {
-      long _arabicIntegerNumber = 4;
-      float _arabicFloatNumber = 4.0f;
-      //_arabicIntegerNumber = 4.0f;
-      _arabicFloatNumber = 4;
+      long arabicIntegerNumber = 4; 
+      float arabicFloatNumber = 4.0f;
+      //arabicIntegerNumber = 4.0f; // it could happen that the calculated value doesn't belong to the set of values specified by the long type 
+      arabicFloatNumber = 4;  //
+      arabicFloatNumber = int.MinValue;  //
       bool isEqual = 4 == 4.0f;
     }
   }
