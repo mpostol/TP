@@ -12,6 +12,7 @@
   - [1.7. Loosely versus strongly typed approaches (TH) 🧑‍🏫](#17-loosely-versus-strongly-typed-approaches-th-)
   - [1.8. Opening the example (S) 🖥️](#18-opening-the-example-s-️)
   - [1.9. Variable type (S) 🖥️](#19-variable-type-s-️)
+  - [Type Definition (S) 🖥️](#type-definition-s-️)
   - [1.10. Weakly Typed Languages (TH) 🧑‍🏫](#110-weakly-typed-languages-th-)
   - [1.11. Assignment to Float (S) 🖥️](#111-assignment-to-float-s-️)
   - [1.12. Types Compatibilities (S) 🖥️](#112-types-compatibilities-s-️)
@@ -61,11 +62,15 @@ Anyway, it is time to return to programming in practice. Understanding type conc
 
 ## 1.8. Opening the example (S) 🖥️
 
-The examples I am going to use you can find in the mpostol/TP GitHub repository. It must be cloned on your computer in advance. Instruction on how to do it you can find in the independent course called `programming in practice executive summary`. I did it already and the code is located in the local folder TP on my computer. Now I can open the folder with Visual Studio using the context menu. The screenshot could be different depending on the operating system version you are using. After opening, the solution tab of the Visual Studio, we have all available solutions collected here. If needed switch to this view using this icon. For this course, the most appropriate examples are in the `InformationComputation` solution.  Double click on the entry opens the solution. The code that I will start with is in the project `10-CodingVType` in the file `TypesCompatibility`class. To follow me just pause the course and open the example in a separate window.
+Check out the code from the repository if you want to follow it. The examples I am going to use you can find in the mpostol/TP GitHub repository. It must be cloned on your computer in advance. Instruction on how to do it you can find in the independent course called `programming in practice executive summary`. I did it already and the code is located in the local folder TP on my computer. Now I can open the folder with Visual Studio using the context menu. The screenshot could be different depending on the operating system version you are using. After opening, the solution tab of the Visual Studio, we have all available solutions collected here. If needed switch to this view using this icon. For this course, the most appropriate examples are in the `InformationComputation` solution.  Double click on the entry opens the solution. The code that I will start with is in the project `10-CodingVType` in the file `TypesCompatibility`class. To follow me just pause the course and open the example in a separate window.
 
 ## 1.9. Variable type (S) 🖥️
 
 In the computer realm, the place where the data - I mean a value - is stored we call a variable. Here in this program, we have a variable declaration. To re-establish the context from the previous lesson assume that our goal is to assign representations of the number four to this variable. In other words, the value is a representation of the number four. In all languages I know, the variable is always declared as an identifier preceded optionally by a type declaration. For the  CSharp, it is also true. The type declaration - if present -  defines a set of allowed values that can be stored in that variable, that can be represented by that variable, and that can be assigned to that variable. Reversing, if a value is outside of the current set of allowed values, the assignment is considered an error for strongly typed languages.  The main challenge is that it could be distinguished and signaled at design time. It is worth stressing that in this case, the designer has full control of the variable meaning by controlling the set of allowed values.
+
+## Type Definition (S) 🖥️
+
+Let's start our further investigation of the type meaning from this example where we use int as the variable type here. Using `F12` or the go to definition context menu entry we may open the definition. The first thing that requires explanation is that we have got the definition of the type `Int32` but not a type called int as it's in our code. To avoid a long discussion, related to the programming language used and get directly to the point, you must assume that the int identifier is just an alias of the `Int32`. Both identifiers mean the same. The first important observation is that the type definition uses a construct called `struct`. Let me only mention that the type definition was recreated by the environment using a reflection mechanism. The reflection mechanism is outside of this course scope, hence, I propose to reuse the same approach to implement the roman coding system using the type concept and use this definition for further investigation.
 
 ## 1.10. Weakly Typed Languages (TH) 🧑‍🏫
 
@@ -81,7 +86,7 @@ Let's un-comment of the next line of code, in which we try to assign the value r
 
 ## 1.13. Type conversion (S) 🖥️ (TH) 🧑‍🏫
 
-For strongly typed languages I presented the types as a disjoint sets of values.  Two sets are disjoint if they have no element in common. It is easy to apply this rule if it is obvious, for example for int and boolean. Things are more complicated in the case it is not true. We will investigate this topic using CSharp but the discussion could be also applied to practically all languages. 
+For strongly typed languages I presented the types as a disjoint sets of values.  Two sets are disjoint if they have no element in common. It is easy to apply this rule if it is obvious, for example for int and boolean. Things are more complicated in the case it is not true. We will investigate this topic using CSharp but the discussion could be also applied to practically all languages.
 
 I'll go straight to the point.. Using background knowledge related to sets we have to investigate the next two typical cases:
 
