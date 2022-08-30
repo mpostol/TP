@@ -12,9 +12,12 @@ using System.Diagnostics;
 
 namespace TP.InformationComputation.DependencyInjection
 {
+  /// <summary>
+  /// An example of constructor injection pattern fundamentals
+  /// </summary>
   public class ConstructorInjection
   {
-    public ConstructorInjection(ITraceSource traceEngine)
+    public ConstructorInjection(ITraceSource? traceEngine)
     {
       m_TraceEngine = traceEngine ?? throw new ArgumentNullException(nameof(traceEngine));
     }

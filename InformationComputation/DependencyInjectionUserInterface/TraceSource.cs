@@ -15,7 +15,7 @@ namespace TP.InformationComputation.DependencyInjection
   /// <summary>
   /// Class ConsoleTraceSource - an example implementation of <see cref="ITraceSource"/> using <see cref="Console"/> to trace code behavior.
   /// </summary>
-  /// <seealso cref="TP.DependencyInjection.ITraceSource" />
+  /// <seealso cref="ITraceSource" />
   internal class ConsoleTraceSource : ITraceSource
   {
     /// <summary>
