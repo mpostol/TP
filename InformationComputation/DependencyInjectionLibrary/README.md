@@ -1,8 +1,8 @@
-# 1. Object-oriented programming
+﻿# 1. Dependency injection
 
 ## Table of content <!-- omit in toc -->
 
-- [1. Object-oriented programming](#1-object-oriented-programming)
+- [1. Dependency injection](#1-dependency-injection)
   - [1.1. Script](#11-script)
     - [1.1.1. What's the problem? ✍🏻](#111-whats-the-problem-)
       - [1.1.1.1. Object-oriented programming Entry 🧑‍🏫](#1111-object-oriented-programming-entry-)
@@ -22,7 +22,7 @@
     - [1.1.15. Abstractions](#1115-abstractions)
     - [1.1.16. Inheritance](#1116-inheritance)
     - [1.1.17. Object Creation (dependency  injection) 📋(SC)](#1117-object-creation-dependency--injection-sc)
-    - [1.1.18. No Polimorfizm 📋](#1118-no-polimorfizm-)
+    - [1.1.18. No Polymorphism 📋](#1118-no-polymorphism-)
     - [1.1.19. Dependency Injection](#1119-dependency-injection)
     - [1.1.20. Automation of Dependency Injection](#1120-automation-of-dependency-injection)
     - [1.1.21. Type concept](#1121-type-concept)
@@ -34,7 +34,7 @@
 
 ## 1.1. Script
 
-### 1.1.1. What's the problem? ✍🏻
+### 1.1.1. What's the problem? ✍
 
 - Why object oriented programming
 - information model
