@@ -17,31 +17,31 @@ namespace TP.InformationComputation.DependencyInjection
   /// </summary>
   public class ConstructorInjection
   {
-    public ConstructorInjection(ITraceSource? traceEngine)
+    public ConstructorInjection(ITraceSource? tracingInstance)
     {
-      m_TraceEngine = traceEngine ?? throw new ArgumentNullException(nameof(traceEngine));
+      TraceEngine = tracingInstance ?? throw new ArgumentNullException(nameof(tracingInstance));
     }
 
     public void Alpha()
     {
-      m_TraceEngine.TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
+      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
     }
 
     public void Bravo()
     {
-      m_TraceEngine.TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
+      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
     }
 
     public void Charlie()
     {
-      m_TraceEngine.TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
+      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
     }
 
     public void Delta()
     {
-      m_TraceEngine.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
+      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
     }
 
-    private ITraceSource m_TraceEngine;
+    private ITraceSource TraceEngine;
   }
 }
