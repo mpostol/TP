@@ -7,28 +7,25 @@
 //  https://github.com/mpostol/TP/discussions/182
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
-#nullable disable annotations
+
 namespace TP.InformationComputation.ObjectOrientedProgramming
 {
-  public class Segment : Coordinates
+  [TestClass]
+  public class DiamondPatternUnitTest
   {
-    public Segment NextSegment { get; set; }
-
-    public Segment(int x, int y, Segment next) : base(x, y)
+    [TestMethod]
+    public void DiamondPatternCreationTest()
     {
-      NextSegment = next;
-    }
-  }
-
-  public class Coordinates
-  {
-    public int x, y;
-
-    public Coordinates(int p1, int p2)
-    {
-      x = p1;
-      y = p2;
+      Bottom bottom = new Bottom();
+      Left left = new Left(bottom);
+      Assert.AreSame(left.BottomEntity, bottom);
+      Right right = new Right(bottom);
+      Assert.AreSame(right.BottomEntity, bottom);
+      Top top = new Top(left, right);
+      Assert.IsNotNull(top.LeftEntity);
+      Assert.IsNotNull(top.RightEntity);
+      Assert.AreSame(left, top.LeftEntity);
+      Assert.AreSame(right, top.RightEntity);
     }
   }
 }
-#nullable restore annotations

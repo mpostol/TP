@@ -21,11 +21,11 @@ namespace TP.InformationComputation.ObjectOrientedProgramming
   {
     #region Encapsulation
 
-    public virtual void LanguageMethod()
+    public virtual void PublicMethod()
     { }
 
     private void HiddenMethod()
-    { } // Hermetization
+    { } // Encapsulation - Encapsulation refers to a definition's ability to hide the visibility of the properties, methods, and other members that intentionally shall not be referred to outside of this definition.
 
     #endregion Encapsulation
   }
@@ -53,9 +53,9 @@ namespace TP.InformationComputation.ObjectOrientedProgramming
 
     #endregion implementation
 
-    public override void LanguageMethod()
+    public override void PublicMethod()
     {
-      base.LanguageMethod();
+      base.PublicMethod();
     }
 
     #endregion IInterface
