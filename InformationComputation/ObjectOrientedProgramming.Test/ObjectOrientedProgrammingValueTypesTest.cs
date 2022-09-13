@@ -8,6 +8,8 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
+using TP.InformationComputation.ObjectOrientedProgramming.Instrumentation;
+
 namespace TP.InformationComputation.ObjectOrientedProgramming.ValueTypes
 {
   /// <summary>
@@ -31,24 +33,24 @@ namespace TP.InformationComputation.ObjectOrientedProgramming.ValueTypes
     [TestMethod]
     public void CircleDrawingTest()
     {
-      IDrawing circle = new Circle(5);
-      Assert.AreEqual(78.54, Math.Round(circle.Area(), 2));
+      IDrawing drawing = new Circle(5);
+      AdditionalAssertions.AreEqual(78.54, drawing);
       //Assert.AreEqual(5, interfaceVar.Radius); // 'IDrawing' does not contain a definition for 'Radius'
     }
 
     [TestMethod]
     public void SquareDrawingTest()
     {
-      IDrawing square = new Square(1234.5678);
-      Assert.AreEqual(1524157.65, Math.Round(square.Area(), 2));
+      IDrawing drawing = new Square(1234.5678);
+      AdditionalAssertions.AreEqual(1524157.65, drawing);
       //Assert.AreEqual(1234.5678, square.Length); //'IDrawing' does not contain a definition for 'Length'
     }
 
     [TestMethod]
     public void RectangleDrawiTestMethod()
     {
-      IDrawing rectangle = new Rectangle(78.38, 43.38);
-      Assert.AreEqual(3400.12, Math.Round(rectangle.Area(), 2));
+      IDrawing drawing = new Rectangle(78.38, 43.38);
+      AdditionalAssertions.AreEqual(3400.12, drawing);
       //Assert.AreEqual(78.38, rectangle.Height); //'IDrawing' does not contain a definition for 'Height'
       //Assert.AreEqual(43.38, rectangle.Width); //'IDrawing' does not contain a definition for 'Height'
     }
