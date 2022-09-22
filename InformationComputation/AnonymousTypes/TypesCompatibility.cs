@@ -14,7 +14,7 @@ using System.Globalization;
 namespace TP.InformationComputation.AnonymousTypes
 {
   [TestClass]
-  public class TypesCompatibilityTest
+  public class TypesCompatibility
   {
     [TestMethod]
     public void DivisionTest()
