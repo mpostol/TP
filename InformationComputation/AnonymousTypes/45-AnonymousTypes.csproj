@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>TP.InformationComputation.AnonymousTypes</RootNamespace>
+
+    <AssemblyName>AnonymousTypesUnitTest</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
