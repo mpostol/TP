@@ -1,5 +1,29 @@
 ﻿# 1. Partial Definitions
 
+## Table of content  <!-- omit in toc -->
+
+- [1. Partial Definitions](#1-partial-definitions)
+  - [1.1. Title Page](#11-title-page)
+  - [1.2. What is the problem?](#12-what-is-the-problem)
+    - [1.2.1. Separation of Concerns](#121-separation-of-concerns)
+    - [1.2.2. Merging the Text](#122-merging-the-text)
+    - [1.2.3. An Example of Auto-Generated Code](#123-an-example-of-auto-generated-code)
+    - [1.2.4. Catalog,xsd](#124-catalogxsd)
+    - [1.2.5. Catalog.cs](#125-catalogcs)
+  - [1.3. PersonsDataContext](#13-personsdatacontext)
+  - [1.4. Partial Class and Partial Interface](#14-partial-class-and-partial-interface)
+  - [1.5. PartialClass](#15-partialclass)
+  - [1.6. IPartialInterface](#16-ipartialinterface)
+  - [1.7. PartialsUnitTest](#17-partialsunittest)
+  - [1.8. PartialsUnitTest](#18-partialsunittest)
+  - [1.9. Partial Method](#19-partial-method)
+  - [1.10. PartialClass](#110-partialclass)
+    - [1.10.1. PartialMethodCallTest](#1101-partialmethodcalltest)
+  - [1.11. Homework Part 1](#111-homework-part-1)
+  - [1.12. PartialClass](#112-partialclass)
+  - [1.13. Homework part 2](#113-homework-part-2)
+  - [1.14. Thanks for your time](#114-thanks-for-your-time)
+
 ## 1.1. Title Page
 
 In this lesson, we continue the discussion of topics related to the representation of information as data processed by a computer.  We know that a basic term relevant for this discussion is type notion. The type could be defined explicitly by the developer. During the previous lesson, we talked about how the programming language supports us in data harmonization, where the variable type is inferred from the value type assigned when the variable is declared. It means implicit type declaration. It requires a special syntax of the text representing the assigned value. Using this approach the explicit type definition doesn't exist so we can't even specify a name for this type. Hence, we call this kind of type anonymous type. It is permanently assigned to the variable in which it was defined. A drawback of this approach is the impossibility to define custom behavior. Hence we are limited to using only operations associated with the anonymous type by the programming language definition.
@@ -108,7 +132,3 @@ And two more questions. Will the test result depend on where the attributes were
 ## 1.14. Thanks for your time
 
 And that's all about partial definitions, which, as it turns out later, will be very useful for defining types for external data. We will come back to this language construct many times. Thanks for your attention and see you next lesson.
-
-## 1.15. See also
-
-- [Partial Classes and Methods](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)
