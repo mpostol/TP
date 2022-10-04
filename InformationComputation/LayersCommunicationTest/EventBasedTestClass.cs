@@ -19,14 +19,14 @@ namespace TP.InformationComputation.LayersCommunication
     [TestMethod]
     public void EventBasedTestMethod()
     {
-      InMemoryTraceSource consoleTrace = new InMemoryTraceSource();
+      InMemoryTraceSource inMemoryTrace  = new InMemoryTraceSource();
       IEventBased eventBased = LogicAbstraction.NewEventBased();
-      eventBased.TraceDataEvent += consoleTrace.TraceData;
+      eventBased.TraceDataEvent += inMemoryTrace.TraceData;
       eventBased.Alpha();
       eventBased.Bravo();
       eventBased.Charlie();
       eventBased.Delta();
-      consoleTrace.CheckConsistency();
+      inMemoryTrace.CheckConsistency();
     }
   }
 }

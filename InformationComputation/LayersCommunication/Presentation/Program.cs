@@ -12,7 +12,7 @@ using TP.InformationComputation.LayersCommunication.Logic;
 
 namespace TP.InformationComputation.LayersCommunication.Presentation
 {
-  internal class Program
+  internal static class Program
   {
     private static void Main(string[] args)
     {
@@ -28,8 +28,8 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
 
     private static void CallingMethodProviderCorrectSequenceExample()
     {
-      Console.WriteLine($"ENtering {nameof(CallingMethodProviderCorrectSequenceExample)}");
-      Logic.ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
+      Console.WriteLine($"Entering {nameof(CallingMethodProviderCorrectSequenceExample)}");
+      ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Bravo();
       callingMethodProvider.Charlie();
@@ -59,7 +59,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
 
     private static void CallbackExample()
     {
-      Console.WriteLine($"ENtering {nameof(CallbackExample)}");
+      Console.WriteLine($"Entering {nameof(CallbackExample)}");
       ConsoleTraceSource consoleTrace = new ConsoleTraceSource();
       ICallBack callBackBased = LogicAbstraction.NewICallBack();
       callBackBased.Alpha(consoleTrace.TraceData);
@@ -71,7 +71,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
 
     private static void EventBasedExample()
     {
-      Console.WriteLine($"ENtering {nameof(EventBasedExample)}");
+      Console.WriteLine($"Entering {nameof(EventBasedExample)}");
       ConsoleTraceSource consoleTrace = new ConsoleTraceSource();
       IEventBased eventBased = LogicAbstraction.NewEventBased();
       eventBased.TraceDataEvent += consoleTrace.TraceData;
@@ -84,7 +84,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
 
     private static void ReactiveProgrammingExample()
     {
-      Console.WriteLine($"ENtering {nameof(ReactiveProgrammingExample)}");
+      Console.WriteLine($"Entering {nameof(ReactiveProgrammingExample)}");
       ConsoleTraceSource consoleTrace = new ConsoleTraceSource();
       IReactiveProgramming reactiveProgramming = LogicAbstraction.NewReactiveProgramming();
       reactiveProgramming.Subscribe(x => consoleTrace.TraceData(x.eventType, x.id, x.data));
@@ -97,7 +97,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
 
     private static void ConstructorInjectionExample()
     {
-      Console.WriteLine($"ENtering {nameof(ConstructorInjectionExample)}");
+      Console.WriteLine($"Entering {nameof(ConstructorInjectionExample)}");
       ILogic constructorInjection = LogicAbstraction.NewConstructorInjection(new ConsoleTraceSource());
       constructorInjection.Alpha();
       constructorInjection.Bravo();
@@ -108,7 +108,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
 
     private static void PropertyInjectionExample()
     {
-      Console.WriteLine($"ENtering {nameof(PropertyInjectionExample)}");
+      Console.WriteLine($"Entering {nameof(PropertyInjectionExample)}");
       IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
       propertyInjection.TraceSource = new ConsoleTraceSource();
       propertyInjection.Alpha();

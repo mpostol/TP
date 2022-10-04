@@ -31,7 +31,7 @@ namespace TP.InformationComputation.LayersCommunication
     {
       ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
-      callingMethodProvider.Charlie();// wrong sequence of calls, Bravo should be before Charlie
+      callingMethodProvider.Charlie();//the wrong sequence of calls, Bravo should be called before Charlie
       callingMethodProvider.Bravo();
       callingMethodProvider.Delta();
       Assert.ThrowsException<ApplicationException>(() => callingMethodProvider.CheckConsistency());

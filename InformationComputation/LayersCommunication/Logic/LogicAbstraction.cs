@@ -12,9 +12,9 @@ using System.Diagnostics;
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public delegate void TraceDataDelegate(TraceEventType eventType, int id, object data);
+  
 
-  public abstract class LogicAbstraction
+  public interface LogicAbstraction
   {
     public static ICallingMethodProvider NewCallingMethodProvider()
     {
@@ -46,6 +46,8 @@ namespace TP.InformationComputation.LayersCommunication.Logic
       return new ReactiveProgrammingImplementation();
     }
 
+    #region encapsulated definitions
+
     private class ConstructorInjectionImplementation : ConstructorInjection
     {
       public ConstructorInjectionImplementation(ITraceSource traceEngine) : base(traceEngine)
@@ -66,5 +68,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 
     private class ReactiveProgrammingImplementation : ReactiveProgramming
     { }
+
+    #endregion encapsulated definitions
   }
 }

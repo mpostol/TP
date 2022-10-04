@@ -14,7 +14,7 @@ using TP.InformationComputation.LayersCommunication.Logic;
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class ReactiveProgrammingTestClass
+  public class ReactiveProgrammingTest
   {
     [TestMethod]
     public void ReactiveProgrammingTestMethod()
@@ -26,6 +26,7 @@ namespace TP.InformationComputation.LayersCommunication
       reactiveProgramming.Bravo();
       reactiveProgramming.Charlie();
       reactiveProgramming.Delta();
+      tracer.CheckConsistency();
     }
   }
 }
