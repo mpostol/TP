@@ -14,27 +14,26 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 {
   internal abstract class EventBased : IEventBased
   {
-    public event TraceDataDelegate? TraceDataEvent;
+    public event EventHandler<TraceData>? TraceDataEvent = null;
 
     public void Alpha()
-
     {
-      TraceDataEvent?.Invoke(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
+      TraceDataEvent?.Invoke(this, new TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha"));
     }
 
     public void Bravo()
     {
-      TraceDataEvent?.Invoke(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
+      TraceDataEvent?.Invoke(this, new TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo"));
     }
 
     public void Charlie()
     {
-      TraceDataEvent?.Invoke(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
+      TraceDataEvent?.Invoke(this, new TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie"));
     }
 
     public void Delta()
     {
-      TraceDataEvent?.Invoke(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
+      TraceDataEvent?.Invoke(this, new TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta"));
     }
   }
 }

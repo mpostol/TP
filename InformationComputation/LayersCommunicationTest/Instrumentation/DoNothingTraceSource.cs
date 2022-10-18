@@ -9,19 +9,15 @@
 //__________________________________________________________________________________________
 
 using System.Diagnostics;
+using TP.InformationComputation.LayersCommunication.Logic;
 
-namespace TP.InformationComputation.LayersCommunication.Logic
+namespace TP.InformationComputation.LayersCommunication.Instrumentation
 {
-  public delegate void TraceDataDelegate(TraceEventType eventType, int id, object data);
-
-  public interface ICallBack
+  internal class DoNothingTraceSource : ITraceSource
   {
-    void Alpha(TraceDataDelegate trace);
-
-    void Bravo(TraceDataDelegate trace);
-
-    void Charlie(TraceDataDelegate trace);
-
-    void Delta(TraceDataDelegate trace);
+    public void TraceData(TraceEventType eventType, int id, object data)
+    {
+      //Do nothing
+    }
   }
 }

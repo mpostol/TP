@@ -13,12 +13,12 @@ using TP.InformationComputation.LayersCommunication.Logic;
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class CallingMethodProviderTest
+  public class CallingMethodProviderUsage
   {
     [TestMethod]
     public void CallingMethodProviderCorrectSequenceTest()
     {
-      Logic.ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
+      Logic.ICallingMethodProvider callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Bravo();
       callingMethodProvider.Charlie();
@@ -29,9 +29,9 @@ namespace TP.InformationComputation.LayersCommunication
     [TestMethod]
     public void CallingMethodProviderWrongSequenceTest()
     {
-      ICallingMethodProvider callingMethodProvider = LogicAbstraction.NewCallingMethodProvider();
+      ICallingMethodProvider callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
-      callingMethodProvider.Charlie();// wrong sequence of calls, Bravo should be before Charlie
+      callingMethodProvider.Charlie();//the wrong sequence of calls, Bravo should be called before Charlie
       callingMethodProvider.Bravo();
       callingMethodProvider.Delta();
       Assert.ThrowsException<ApplicationException>(() => callingMethodProvider.CheckConsistency());

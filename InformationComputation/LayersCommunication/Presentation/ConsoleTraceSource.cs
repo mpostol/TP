@@ -30,5 +30,15 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
     {
       Console.WriteLine($"Event type: {eventType}, id: {id}, message: {data}");
     }
+
+    /// <summary>
+    /// Represents the method that will handle an event when the event provides data.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">An object that contains the event data.</param>
+    public void TraceData(object sender, TraceData e)
+    {
+      TraceData(e.EventType, e.ID, e.Message);
+    }
   }
 }

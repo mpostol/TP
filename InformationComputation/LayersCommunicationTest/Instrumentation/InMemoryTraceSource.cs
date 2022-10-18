@@ -20,6 +20,16 @@ namespace TP.InformationComputation.LayersCommunication.Instrumentation
       CallStack.Add(id);
     }
 
+    /// <summary>
+    /// Represents the method that will handle an event when the event provides data.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">An object that contains the event data.</param>
+    internal void TraceData(object? sender, TraceData e)
+    {
+      TraceData(e.EventType, e.ID, e.Message);
+    }
+
     internal void CheckConsistency()
     {
       Assert.AreEqual<int>(4, CallStack.Count);
