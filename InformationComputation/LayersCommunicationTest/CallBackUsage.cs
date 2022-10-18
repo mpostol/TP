@@ -14,13 +14,13 @@ using TP.InformationComputation.LayersCommunication.Logic;
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class CallBackTest
+  public class CallBackUsage
   {
     [TestMethod]
     public void CallBackTestMethod()
     {
-      InMemoryTraceSource inMemoryTraceSource= new InMemoryTraceSource();
-      ICallBack callBackBased = LogicAbstraction.NewICallBack();
+      InMemoryTraceSource inMemoryTraceSource = new InMemoryTraceSource();
+      ICallBack callBackBased = ILogicAbstraction.NewICallBack();
       callBackBased.Alpha(inMemoryTraceSource.TraceData);
       callBackBased.Bravo(inMemoryTraceSource.TraceData);
       callBackBased.Charlie(inMemoryTraceSource.TraceData);

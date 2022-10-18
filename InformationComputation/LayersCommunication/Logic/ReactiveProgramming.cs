@@ -43,7 +43,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 
     #endregion constructor
 
-    #region API
+    #region ILogic
 
     public void Alpha()
     {
@@ -65,7 +65,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
       publish?.Invoke(this, new TraceEventArgs(new TracingContext(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta")));
     }
 
-    #endregion API
+    #endregion ILogic
 
     #region IObservable<TracingContext>
 
@@ -106,9 +106,9 @@ namespace TP.InformationComputation.LayersCommunication.Logic
         this.data = data;
       }
 
-      public TraceEventType eventType { get; set; }
-      public int id { get; set; }
-      public object data { get; set; }
+      public TraceEventType eventType { get; private set; }
+      public int id { get; private set; }
+      public object data { get; private set; }
     }
 
     private IObservable<EventPattern<TraceEventArgs>> eventObservable;

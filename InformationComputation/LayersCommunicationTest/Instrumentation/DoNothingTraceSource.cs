@@ -8,24 +8,16 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-using TP.InformationComputation.LayersCommunication.Instrumentation;
+using System.Diagnostics;
 using TP.InformationComputation.LayersCommunication.Logic;
 
-namespace TP.InformationComputation.LayersCommunication
+namespace TP.InformationComputation.LayersCommunication.Instrumentation
 {
-  [TestClass]
-  public class ConstructorInjectionUnitTest
+  internal class DoNothingTraceSource : ITraceSource
   {
-    [TestMethod]
-    public void ConstructorInjectionTest()
+    public void TraceData(TraceEventType eventType, int id, object data)
     {
-      InMemoryTraceSource traceSource = new InMemoryTraceSource();
-      ILogic _ConstructorInjection = LogicAbstraction.NewConstructorInjection(traceSource);
-      _ConstructorInjection.Alpha();
-      _ConstructorInjection.Bravo();
-      _ConstructorInjection.Charlie();
-      _ConstructorInjection.Delta();
-      traceSource.CheckConsistency();
+      //Do nothing
     }
   }
 }

@@ -8,34 +8,26 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-using System.Diagnostics;
 using TP.InformationComputation.LayersCommunication.Instrumentation;
 using TP.InformationComputation.LayersCommunication.Logic;
 
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class PropertyInjectionUnitTest
+  public class DependencyInjectionUsage
   {
     [TestMethod]
-    public void AfterCreationStateTestMethod()
+    public void PropertyInjectionAfterCreationStateTest()
     {
-      IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
+      IPropertyInjection propertyInjection = ILogicAbstraction.NewPropertyInjection();
       Assert.IsNull(propertyInjection.TraceSource);
-    }
-
-    [TestMethod]
-    public void NoTracerDefinedTestMethod()
-    {
-      IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
-      Assert.ThrowsException<NullReferenceException>(() => propertyInjection.Alpha());
     }
 
     [TestMethod]
     public void PropertyInjectionTest()
     {
       InMemoryTraceSource traceSource = new InMemoryTraceSource();
-      IPropertyInjection propertyInjection = LogicAbstraction.NewPropertyInjection();
+      IPropertyInjection propertyInjection = ILogicAbstraction.NewPropertyInjection();
       propertyInjection.TraceSource = traceSource;
       propertyInjection.Alpha();
       propertyInjection.Bravo();
@@ -50,12 +42,16 @@ namespace TP.InformationComputation.LayersCommunication
       traceSource.CheckConsistency();
     }
 
-    private class DoNothingTraceSource : ITraceSource
+    [TestMethod]
+    public void ConstructorInjectionTest()
     {
-      public void TraceData(TraceEventType eventType, int id, object data)
-      {
-        //Do nothing
-      }
+      InMemoryTraceSource traceSource = new InMemoryTraceSource();
+      ILogic _ConstructorInjection = ILogicAbstraction.NewConstructorInjection(traceSource);
+      _ConstructorInjection.Alpha();
+      _ConstructorInjection.Bravo();
+      _ConstructorInjection.Charlie();
+      _ConstructorInjection.Delta();
+      traceSource.CheckConsistency();
     }
   }
 }

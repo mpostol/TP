@@ -9,7 +9,6 @@
 //__________________________________________________________________________________________
 
 using System.Diagnostics;
-using TP.InformationComputation.LayersCommunication.Data;
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
@@ -17,7 +16,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
   /// Calling a method is like accessing a field. After the object name (if you're calling an instance method) or the type name (if you're calling a static method), add a period,
   /// the name of the method, and parentheses. Arguments are listed within the parentheses and are separated by commas.
   /// </summary>
-  internal abstract class CallingMethodProvider: ICallingMethodProvider
+  internal abstract class CallingMethodProvider : ICallingMethodProvider
   {
     /// <summary>
     /// Creates an instance of the <see cref="CallingMethodProvider"/> to be used to demonstrate how to use a methods call chain for the bidirectional communication purpose.
@@ -53,6 +52,43 @@ namespace TP.InformationComputation.LayersCommunication.Logic
       return TraceSource.CheckConsistency();
     }
 
-    private IData TraceSource;
+    private class CalledMethodProvider
+    {
+      public void InMemoryTraceData(TraceEventType eventType, int id, object data)
+      {
+        callStack.Add(id);
+      }
+
+      public bool CheckConsistency()
+      {
+        if (callStack.Count != 4)
+          throw new ApplicationException();
+        if ("Alpha".GetHashCode() != callStack[0])
+          throw new ApplicationException();
+        if ("Bravo".GetHashCode() != callStack[1])
+          throw new ApplicationException();
+        if ("Charlie".GetHashCode() != callStack[2])
+          throw new ApplicationException();
+        if ("Delta".GetHashCode() != callStack[3])
+          throw new ApplicationException();
+        return true;
+      }
+
+      /// <summary>
+      /// Writes trace data to the trace listeners in the <see cref="P:System.Diagnostics.TraceSource.Listeners" /> collection using the specified <paramref name="eventType" />,
+      /// event identifier <paramref name="id" />, and trace <paramref name="data" />.
+      /// </summary>
+      /// <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+      /// <param name="id">A numeric identifier for the event.</param>
+      /// <param name="data">The trace data.</param>
+      public void ConsoleTraceData(TraceEventType eventType, int id, object data)
+      {
+        Console.WriteLine($"Event type: {eventType}, id: {id}, message: {data}");
+      }
+
+      private List<int> callStack = new();
+    }
+
+    private CalledMethodProvider TraceSource;
   }
 }

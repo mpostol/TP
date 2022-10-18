@@ -14,19 +14,20 @@ using TP.InformationComputation.LayersCommunication.Logic;
 namespace TP.InformationComputation.LayersCommunication
 {
   [TestClass]
-  public class EventBasedTestClass
+  public class ReactiveProgrammingUsage
   {
     [TestMethod]
-    public void EventBasedTestMethod()
+    public void ReactiveProgrammingTestMethod()
     {
-      InMemoryTraceSource inMemoryTrace  = new InMemoryTraceSource();
-      IEventBased eventBased = LogicAbstraction.NewEventBased();
-      eventBased.TraceDataEvent += inMemoryTrace.TraceData;
-      eventBased.Alpha();
-      eventBased.Bravo();
-      eventBased.Charlie();
-      eventBased.Delta();
-      inMemoryTrace.CheckConsistency();
+      InMemoryTraceSource traceSource = new InMemoryTraceSource();
+      IReactiveProgramming reactiveProgramming = ILogicAbstraction.NewReactiveProgramming();
+      IDisposable unsubscribe = reactiveProgramming.Subscribe(x => traceSource.TraceData(x.eventType, x.id, x.data));
+      reactiveProgramming.Alpha();
+      reactiveProgramming.Bravo();
+      reactiveProgramming.Charlie();
+      reactiveProgramming.Delta();
+      unsubscribe.Dispose();
+      traceSource.CheckConsistency();
     }
   }
 }

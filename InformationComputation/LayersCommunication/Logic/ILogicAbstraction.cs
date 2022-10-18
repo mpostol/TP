@@ -8,67 +8,54 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-using System.Diagnostics;
+using TP.InformationComputation.LayersCommunication.Data;
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  
 
-  public interface LogicAbstraction
+  /// <summary>
+  /// Logic layer abstraction
+  /// </summary>
+  public interface ILogicAbstraction
   {
     public static ICallingMethodProvider NewCallingMethodProvider()
     {
       return new CallingMethodProviderImplementation();
     }
-
     public static ICallBack NewICallBack()
     {
       return new CllBackImplementation();
     }
-
     public static IEventBased NewEventBased()
     {
       return new EventBasedImplementation();
     }
-
-    public static ILogic NewConstructorInjection(ITraceSource traceEngine)
-    {
-      return new ConstructorInjectionImplementation(traceEngine);
-    }
-
-    public static IPropertyInjection NewPropertyInjection()
-    {
-      return new PropertyInjectionImplementation();
-    }
-
     public static IReactiveProgramming NewReactiveProgramming()
     {
       return new ReactiveProgrammingImplementation();
     }
-
-    #region encapsulated definitions
-
-    private class ConstructorInjectionImplementation : ConstructorInjection
+    public static ILogic NewConstructorInjection(ITraceSource traceEngine)
     {
-      public ConstructorInjectionImplementation(ITraceSource traceEngine) : base(traceEngine)
-      { }
+      return new DependencyInjectionImplementation(traceEngine);
+    }
+    public static IPropertyInjection NewPropertyInjection()
+    {
+      return new DependencyInjectionImplementation();
     }
 
-    private class PropertyInjectionImplementation : PropertyInjection
-    { }
-
+    #region encapsulated definitions
     private class CallingMethodProviderImplementation : CallingMethodProvider
-    { }
-
-    private class EventBasedImplementation : EventBased
-    { }
-
-    private class CllBackImplementation : CallBack
-    { }
-
-    private class ReactiveProgrammingImplementation : ReactiveProgramming
-    { }
-
+    {
+      private IData DataLayer = DataAbstraction.CreateData(); //added to make the three layers of architecture clearly stated
+    }
+    private class EventBasedImplementation : EventBased{ }
+    private class CllBackImplementation : CallBack{ }
+    private class ReactiveProgrammingImplementation : ReactiveProgramming{ }
+    private class DependencyInjectionImplementation : DependencyInjection
+    {
+      public DependencyInjectionImplementation(ITraceSource traceEngine) : base(traceEngine) { }
+      public DependencyInjectionImplementation() : base() { }
+    }
     #endregion encapsulated definitions
   }
 }

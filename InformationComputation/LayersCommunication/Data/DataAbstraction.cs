@@ -13,7 +13,7 @@ namespace TP.InformationComputation.LayersCommunication.Data
   /// <summary>
   /// Data Layer Abstraction is responsible to create the abstract layer interface.
   /// </summary>
-  public abstract class DataAbstraction
+  public interface DataAbstraction
   {
     /// <summary>
     /// Creates new object implementing the layer abstract interface <see cref="IData"/>
@@ -21,7 +21,9 @@ namespace TP.InformationComputation.LayersCommunication.Data
     /// <returns>An object implementing the layer abstract interface <see cref="IData"/>.</returns>
     public static IData CreateData()
     {
-      return new CalledMethodProvider();
+      return new DataImplementation();
     }
+    private class DataImplementation : IData
+    { }
   }
 }
