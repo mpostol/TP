@@ -15,6 +15,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "50-PartialDefinitions", "PartialDefinitions\50-PartialDefinitions.csproj", "{4CB9A959-863C-4494-96AF-20CDB80A86A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S01-Fundamentals", "S01-Fundamentals", "{C8D03012-BDE2-473A-8239-9AABC5E0671B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S03-Algorithm Implementation", "S03-Algorithm Implementation", "{272D3BC3-E3C9-4EED-88D2-4CC986BB9755}"
 EndProject
