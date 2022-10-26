@@ -38,13 +38,20 @@
     - [1.3.11. Possibility to Replace Information by Data](#1311-possibility-to-replace-information-by-data)
     - [1.3.12. Conclusion - Algorithm Introduction](#1312-conclusion---algorithm-introduction)
   - [1.4. Algorithm Versus Program](#14-algorithm-versus-program)
+    - [1.4.1. Preface](#141-preface)
+    - [1.4.2. What's the problem?](#142-whats-the-problem)
+    - [1.4.3. Algorithm implementation](#143-algorithm-implementation)
+    - [1.4.4. Computer Program is Text](#144-computer-program-is-text)
+    - [1.4.5. Programming Language](#145-programming-language)
+    - [1.4.6. Binary machine needs binary alphabet](#146-binary-machine-needs-binary-alphabet)
+    - [1.4.7. Aim of the course](#147-aim-of-the-course)
   - [1.5. Summary](#15-summary)
 
 ## 1.1. Preface
 
 Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken in order to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract, it is a kind of knowledge that cannot be processed directly by any physical device. This solution contains code that by design is to be used as a set of examples for an online video course and class lectures. The examples can also be used alone.
 
-Generally speaking, two main topics are covered. That is dealing with the data recognized as the information representation and behavior description using a program compliant with an algorithm. 
+Generally speaking, two main topics are covered. That is dealing with the data recognized as the information representation and behavior description using a program compliant with an algorithm.
 
 - C# Language introduction
 - TP repository relationship
@@ -134,7 +141,7 @@ In the context of examples, you will learn how to use types to represent custom 
 - select appropriate methods to spread the work of a team according to the separation of concerns rules,
 - organize the obtained this way program parts using unidirectional layers relationship (dependencies), and
 - make them interoperable using bidirectional communication engaging reactive programming, dependency injection, and inversion of control.
- 
+
 All discussion is conducted based on the examples gathered in a dedicated solution and maintained using a GitHub repository. These examples are ready to use as a foundation for programming skills learning. All the time I will keep the discussion on a level that guarantees common and easy portable conclusions, which are applicable independently of the used development environment.
 
 ## 1.3. Information versus data
@@ -195,7 +202,40 @@ Explaining the title of our course, we concluded that we are talking about the a
 
 ## 1.4. Algorithm Versus Program
 
-**TBD**:
+### 1.4.1. Preface
+
+Let me recall that our challenge is to learn all about information computation. Information computation means a process employing a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help fulfill a task. The first challenge of this process is that information is abstract. In other words, it is a kind of knowledge that cannot be used directly to describe computer behavior. During this lesson, we will learn how to describe the actions or steps to achieve a particular result in compliance with the limitations of modern computers. I mean the computer is a physical device and cannot process any abstraction. Let's get started.
+
+### 1.4.2. What's the problem?
+
+- how to control a physical device (precisely computer) behavior to process information in compliance with an algorithm
+
+Explaining the title of the course, we concluded that we are talking about the automation of information processing. To be more practical and talk in the context of problem-solving we may recognize the information as a piece of knowledge about the state and behavior of a selected real-time set of activities - part of the natural realm. But to solve any problem using a computer we also need to know how to process the information to reach a goal. Again, additionally, we need information, a piece of knowledge describing how to solve the selected problem. How to control the activities to achieve the goal we are facing with. This kind of knowledge we call an algorithm. Let me stress it is also information that cannot be directly applied or used by any physical device including but not limited to computers. The main challenge of this lesson is to learn more about how to do it.
+
+### 1.4.3. Algorithm implementation
+
+Computation means a set of actions that ensure the automation of information processing. To ensure automatic processing, we need to use technology, which means a programmable device. Today it is the binary computer for sure. Anyway, we must ensure that this processing engine behaves following an appropriate algorithm. The algorithm is again information because it is a piece of knowledge on how to solve the problem. Hence, it is an abstraction that will be useful in the computation process only if it can be represented in binary form - similar to the process information discussed earlier. And this is the next task of software developers, namely algorithms implementation, and the results of this work are computer programs. That is a recipe instructing the computer how to control the activities to achieve the chosen goal. From the previous lessons, we learned that information to be processed by a physical device must be represented by data first using the alphabet, syntax, and data semantics. That is a coding system. A similar approach can be applied to the algorithm, which is also a piece of information describing the computer behavior - shortly algorithm. The most promising solution is coupling together custom coding system design and algorithm implementation because both are tightly coupled.
+
+### 1.4.4. Computer Program is Text
+
+Today, we do not need to implement the algorithm using a binary representation. Thanks to the compilation process, we can use alpha-numeric alphabets - just like the natural languages we use on a daily basis. Typically the alphabet is derived from the Latin alphabet. This leads to the statement that any program at the beginning of its life cycle is just a text, hence a sequence of characters. Text becomes a computer program when it meets additional rules that will enable it to be compiled.
+
+### 1.4.5. Programming Language
+
+And so we come to the term programming language. To be used to control a computer it is a kind of contract between the software developer and compiler that both must comply with and use to finally implement information processing as the data computation. It must be a set of rules. The contract must be exhaustive. To fulfill this requirement the syntax and semantics must be defined and applied respectively to provide appropriate rules that can be used:
+
+- syntax: to create the correct text by concatenating characters from the alphabet and
+- semantics: to make the text meaningful.
+
+CSharp is such a language that I use to explain software development issues with concrete examples.
+
+### 1.4.6. Binary machine needs binary alphabet
+
+Using an alphanumeric instead of a binary alphabet and the requirement that the design of the process data coding system should be coupled together with the algorithm implementation leads to a need to replace the coding system with the type concept to design the information representation and computer behavior. Defining a programming language atop of alphanumeric alphabet allows us to better suit the definition to human needs finally we get high-level languages. The type concept will be the main subject of the next section.
+
+### 1.4.7. Aim of the course
+
+This way we finished the theoretical introduction. Maybe it was boring or annoying for you but I believe that it will give you a firm foundation to reach the main aim of the course. It must be stressed that the aim of the course is to deal with the implementation of selected algorithms, not just training that is scoped on the language itself and the development environment in which it is embedded. In order to ensure the practical nature of the course, selected topics are only illustrated using CSharp and the Microsoft Visual Studio development environment. A foundation of the course is that the main goals, design patterns, and discussed scenarios are of generic nature to be easily portable to other environments. The selected language and tools are only used to conduct the discussion using a well-defined environment and ensure that the course achievements are also very practical.
 
 ## 1.5. Summary
 
