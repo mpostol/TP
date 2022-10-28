@@ -45,7 +45,7 @@
     - [1.4.5. Programming Language](#145-programming-language)
     - [1.4.6. Binary machine needs binary alphabet](#146-binary-machine-needs-binary-alphabet)
     - [1.4.7. Aim of the course](#147-aim-of-the-course)
-  - [1.5. Summary](#15-summary)
+  - [1.5. Conclusion](#15-conclusion)
 
 ## 1.1. Preface
 
@@ -237,6 +237,27 @@ Using an alphanumeric instead of a binary alphabet and the requirement that the 
 
 This way we finished the theoretical introduction. Maybe it was boring or annoying for you but I believe that it will give you a firm foundation to reach the main aim of the course. It must be stressed that the aim of the course is to deal with the implementation of selected algorithms, not just training that is scoped on the language itself and the development environment in which it is embedded. In order to ensure the practical nature of the course, selected topics are only illustrated using CSharp and the Microsoft Visual Studio development environment. A foundation of the course is that the main goals, design patterns, and discussed scenarios are of generic nature to be easily portable to other environments. The selected language and tools are only used to conduct the discussion using a well-defined environment and ensure that the course achievements are also very practical.
 
-## 1.5. Summary
+## 1.5. Conclusion
 
-**TBD**:
+It is time to conclude our discussion and idea exchange related to Information Computation.
+
+The last message from the discussion is that applying computer science could be very helpful to solve our problems and support human beings to improve the performance and robustness of their activity. It is a result of the automation of information processing. A main result of automation is the repeatability of results obtained from information processing. Repeatability enables the applicability of testing as a method to improve robustness. To apply information technology or computer science, as the name says, we must employ technology to implement information processing. We need a driving force - an engine - to realize the processing. Today it is a binary computer but the most important thing is that it is a device governed by physics. This led to the conclusion that abstraction must not be a subject of processing by any device today and in the future.
+
+In this respect, that is in the context of information processing, we must deal with two kinds of information. It is process information describing the state and behavior of a process in concern and an algorithm, which is a piece of knowledge describing the solution of a problem using the computer. Both are tightly coupled and must be represented together using a programming language, which could be compiled into a binary form suitable to be used as a recipe of the computer behavior and process information representation. Today, typically we use high-level languages that are based on an alphanumeric alphabet derived from a Latin alphabet. Syntax of these languages is founded on keywords borrowed from the natural English language and semantics supports object-oriented programming concept. It was emphasized that modern languages use type as a concept to describe process information and algorithms consistently.
+
+Process information representation and algorithm implementation software developer responsibility are tightly coupled but following the previous discussion divided to cover topics related to the design of types and the design of a program as one whole.
+
+The first part titled `Information representation` covers the following examples and associated explanation:
+
+- Coding System versus Type
+- Custom types
+- Object-oriented programming
+- Anonymous Types
+- Partial Definitions
+- Generic Types and methods
+
+The second part titled `Algorithm Implementation` covers the following examples and associated explanation:
+
+- Program Layered Architecture
+- Inter Layers Communication
+- Dependency injection
