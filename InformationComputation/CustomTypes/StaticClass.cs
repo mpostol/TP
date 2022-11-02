@@ -32,7 +32,8 @@ namespace TP.InformationComputation.CustomTypes
     //static StaticClass(double x) { }
 
     /// <summary>
-    /// Error CS0132	'StaticClass.StaticClass(double)': a static constructor must be parameterless
+    /// It is called automatically before any member is referenced. A static constructor is used to initialize any static data, 
+    /// or to perform a particular action that needs to be performed only once.
     /// </summary>
     static StaticClass()
     {
