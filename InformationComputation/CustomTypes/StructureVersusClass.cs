@@ -22,7 +22,7 @@ namespace TP.InformationComputation.CustomTypes
 
     public static CoordinatesStruct GetCoordinates()
     {
-      CoordinatesStruct _co; //no new example
+      CoordinatesStruct _co; //no new example but value exist
       _co.x = 1;
       _co.y = 2;
       return _co;
