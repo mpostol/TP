@@ -1,4 +1,5 @@
-﻿//__________________________________________________________________________________________
+﻿#nullable disable
+//__________________________________________________________________________________________
 //
 //  Copyright 2022 Mariusz Postol LODZ POLAND.
 //
@@ -19,7 +20,7 @@ namespace TP.InformationComputation.LayeredArchitecture
     [TestMethod()]
     public void ConstructorTest()
     {
-      DataLayerAbstractFixcture dataLayerTestingFixture = new DataLayerAbstractFixcture();
+      DataLayerAbstractFixture dataLayerTestingFixture = new DataLayerAbstractFixture();
       ILogic logic = LayerFactory.CreateLayer(dataLayerTestingFixture);
       Assert.AreEqual<int>(1, dataLayerTestingFixture.ConnectedCallCount);
       Assert.IsNotNull(logic.NextService);
@@ -29,3 +30,4 @@ namespace TP.InformationComputation.LayeredArchitecture
     }
   }
 }
+#nullable restore
