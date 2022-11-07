@@ -12,7 +12,7 @@ using TP.InformationComputation.LayeredArchitecture.Data;
 
 namespace TP.InformationComputation.LayeredArchitecture.Instrumentation
 {
-  public class DataLayerAbstractFixcture : DataLayerAbstract
+  public class DataLayerAbstractFixture : DataLayerAbstract
   {
     internal int ConnectedCallCount = 0;
 
