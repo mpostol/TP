@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DependencyInjectionLibrary\DependencyInjectionLibrary.csproj" />
+    <ProjectReference Include="..\DependencyInjection\DependencyInjectionLibrary\DependencyInjectionLibrary.csproj" />
   </ItemGroup>
 
 </Project>
