@@ -48,6 +48,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "45-AnonymousTypes", "AnonymousTypes\45-AnonymousTypes.csproj", "{426864DE-6BA3-42B8-B33C-1142396067E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{08EB8F09-5184-42AF-82DE-84935AF3EC73}"
+	ProjectSection(SolutionItems) = preProject
+		DependencyInjection\README.md = DependencyInjection\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionLibrary", "DependencyInjection\DependencyInjectionLibrary\DependencyInjectionLibrary.csproj", "{1FDEFF0F-EE20-4827-A830-CD81DE30474A}"
 EndProject
