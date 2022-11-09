@@ -1,4 +1,4 @@
-﻿# 1. Custom types
+# 1. Custom types
 
 ## Table of content <!-- omit in toc -->
 
