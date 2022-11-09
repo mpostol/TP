@@ -1,4 +1,4 @@
-﻿# 1. Partial Definitions
+# 1. Partial Definitions
 
 ## Table of content  <!-- omit in toc -->
 
