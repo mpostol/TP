@@ -22,7 +22,7 @@ namespace TP.InformationComputation.CodingVType
     [TestMethod]
     public void WhyWeNeedTypesIntBehavior()
     {
-      Int32 integerValue = 5;
+      int integerValue = 5;
       integerValue = integerValue / 2;
       Assert.AreEqual(2, integerValue);
       float floatValue = 5.0f;
