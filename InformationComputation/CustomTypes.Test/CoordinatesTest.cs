@@ -11,11 +11,12 @@
 namespace TP.InformationComputation.CustomTypes
 {
   [TestClass]
-  public class ReferenceValueTypesTest
+  public class CoordinatesTest
   {
     [TestMethod]
-    public void ValueTypeTestMethod()
+    public void ValueTypeTest()
     {
+      //CoordinatesStruct noValue = null;
       CoordinatesStruct coordinate1 = CoordinatesStruct.GetCoordinates(1, 2);
       CoordinatesStruct coordinate2 = CoordinatesStruct.GetCoordinates(1, 2);
       CoordinatesNoChange(coordinate1);

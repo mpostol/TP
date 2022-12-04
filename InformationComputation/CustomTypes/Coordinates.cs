@@ -10,6 +10,9 @@
 
 namespace TP.InformationComputation.CustomTypes
 {
+  /// <summary>
+  /// An example of the value type
+  /// </summary>
   public struct CoordinatesStruct
   {
     public int x, y;
@@ -35,6 +38,9 @@ namespace TP.InformationComputation.CustomTypes
     }
   }
 
+  /// <summary>
+  /// An example of the reference type
+  /// </summary>
   public class CoordinatesClass
   {
     public int x, y;

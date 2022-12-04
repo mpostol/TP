@@ -1,5 +1,4 @@
 ﻿#pragma warning disable CS0219 // Variable is assigned but its value is never used
-
 //__________________________________________________________________________________________
 //
 //  Copyright 2022 Mariusz Postol LODZ POLAND.
@@ -13,7 +12,7 @@
 namespace TP.InformationComputation.CustomTypes
 {
   [TestClass]
-  public class RomanTypesConceptUnitTest
+  public class RomanTest
   {
 
     [TestMethod]
@@ -28,7 +27,7 @@ namespace TP.InformationComputation.CustomTypes
     }
 
     [TestMethod]
-    public void RomanToStringTest()
+    public void C()
     {
       Roman roman = "IV";
       Assert.AreEqual("4", roman.ToString());

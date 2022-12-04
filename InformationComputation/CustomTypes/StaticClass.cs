@@ -22,12 +22,12 @@ namespace TP.InformationComputation.CustomTypes
     //Initialization:
 
     /// <summary>
-    /// Error CS0710  Static classes cannot have instance constructors
+    /// Static classes cannot have instance constructors
     /// </summary>
     //public StaticClass() { }
 
     /// <summary>
-    /// Error CS0132	'StaticClass.StaticClass(double)': a static constructor must be parameterless
+    /// 'StaticClass.StaticClass(double)': a static constructor must be parameterless
     /// </summary>
     //static StaticClass(double x) { }
 

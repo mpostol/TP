@@ -8,6 +8,8 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
+using System;
+
 namespace TP.InformationComputation.CustomTypes
 {
   [TestClass]
@@ -16,6 +18,8 @@ namespace TP.InformationComputation.CustomTypes
     [TestMethod]
     public void StaticClassTestMethod()
     {
+      // StaticClass staticClassVariable; //Cannot declare a variable of static type 'StaticClass'
+
       //StaticClass staticVariable;
       Assert.AreEqual(123456.789, StaticClass.MinIncome);
       Assert.AreEqual(987654.321, StaticClass.MaxIncome);
