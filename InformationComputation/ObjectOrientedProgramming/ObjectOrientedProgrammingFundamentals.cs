@@ -16,23 +16,30 @@ namespace TP.InformationComputation.ObjectOrientedProgramming
   {
     void MethodDeclaration();
   }
-
+  /// <summary>
+  /// Abstraction is a definition whose some members don't have an implementation part.
+  /// </summary>
   public abstract class AbstractClass
   {
-    #region Encapsulation
-
     public virtual void PublicMethod()
     { }
 
+    #region Encapsulation
+
     private void HiddenMethod()
-    { } // Encapsulation - Encapsulation refers to a definition's ability to hide the visibility of the properties, methods, and other members that intentionally shall not be referred to outside of this definition.
+    { } // Encapsulation - Encapsulation refers to a definition's ability
+        // to hide the visibility of the properties, methods,
+        // and other members that intentionally shall not be referred
+        // to outside of this definition.
 
     #endregion Encapsulation
   }
 
   #endregion abstraction
 
-  public class ConcreteClass : AbstractClass, IInterface //inheritance
+  public class ConcreteClass : AbstractClass, IInterface //inheritance enables you to create new classes
+                                                         //that reuse, extend, implement, and modify
+                                                         //the behavior defined in other classes.
   {
     #region constructor
 
