@@ -12,7 +12,7 @@ namespace TP.InformationComputation.CustomTypes
 {
   public struct Roman
   {
-    #region operations
+    #region operators
 
     // Operations set
     public static implicit operator int(Roman value)
