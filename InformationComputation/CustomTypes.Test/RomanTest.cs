@@ -27,7 +27,7 @@ namespace TP.InformationComputation.CustomTypes
     }
 
     [TestMethod]
-    public void C()
+    public void RomanToStringTest()
     {
       Roman roman = "IV";
       Assert.AreEqual("4", roman.ToString());

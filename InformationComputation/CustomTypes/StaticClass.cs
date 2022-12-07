@@ -17,7 +17,7 @@ namespace TP.InformationComputation.CustomTypes
   ///   - state representation
   ///   - API representation
   /// </summary>
-  public static class StaticClass//: ISerializable - Error CS0714  'StaticClass': static classes cannot implement interfaces
+  public static class StaticClass//: ISerializable - 'StaticClass': static classes cannot implement interfaces
   {
     //Initialization:
 
