@@ -27,7 +27,7 @@ namespace TP.InformationComputation.ObjectOrientedProgramming
     { }
 
     /// <summary>
-    /// An example of abstract method that does not have a block. The block must be provided by the derived class that is inherited from it. 
+    /// An example of abstract method that does not have a block. The block must be provided by the derived class that is inherited from it.
     /// </summary>
     protected abstract double AbstractMethod();
 
@@ -56,24 +56,20 @@ namespace TP.InformationComputation.ObjectOrientedProgramming
 
     #endregion constructor
 
-    #region IInterface
+    #region IInterface implementation
 
     public void MethodDeclaration()
-
-    #region implementation
 
     {
       throw new NotImplementedException();
     }
 
-    #endregion implementation
+    #endregion IInterface implementation
 
     public override void PublicMethod()
     {
       base.PublicMethod();
     }
-
-    #endregion IInterface
 
     #region AbstractClass
 

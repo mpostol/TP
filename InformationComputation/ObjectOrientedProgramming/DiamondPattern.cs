@@ -6,6 +6,8 @@
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
 //  with an introduction of yourself and tell us about what you do with this community.
+//
+//  path: TP\InformationComputation\ObjectOrientedProgramming\DiamondPattern.cs
 //__________________________________________________________________________________________
 
 namespace TP.InformationComputation.ObjectOrientedProgramming
