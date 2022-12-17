@@ -8,10 +8,7 @@
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-#nullable disable annotations
-
-using static System.Net.Mime.MediaTypeNames;
-
+#nullable disable
 namespace TP.InformationComputation.ObjectOrientedProgramming
 {
   [TestClass]
@@ -38,4 +35,4 @@ namespace TP.InformationComputation.ObjectOrientedProgramming
     }
   }
 }
-#nullable restore annotations
+#nullable restore

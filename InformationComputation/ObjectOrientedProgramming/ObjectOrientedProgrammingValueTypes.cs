@@ -6,6 +6,8 @@
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
 //  with an introduction of yourself and tell us about what you do with this community.
+//
+//  path: TP\InformationComputation\ObjectOrientedProgramming\ObjectOrientedProgrammingValueTypes.cs
 //__________________________________________________________________________________________
 
 namespace TP.InformationComputation.ObjectOrientedProgramming.ValueTypes
@@ -39,6 +41,7 @@ namespace TP.InformationComputation.ObjectOrientedProgramming.ValueTypes
 
     #endregion Drawing implementation (polymorphism)
   }
+
   /// <summary>
   /// The Square structure hold data about a square.
   /// </summary>
@@ -68,6 +71,7 @@ namespace TP.InformationComputation.ObjectOrientedProgramming.ValueTypes
 
     #endregion Drawing implementation (polymorphism)
   }
+
   /// <summary>
   /// The Rectangle structure hold data about a rectangle.
   /// </summary>
