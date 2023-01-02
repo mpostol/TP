@@ -58,6 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionUserInte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionTest", "DependencyInjection\DependencyInjectionLTest\DependencyInjectionTest.csproj", "{1F79AF31-DB32-4C79-9E54-CDD067B44AAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "51-PartialDefinitionsXAML", "PartialDefinitionsXAML\51-PartialDefinitionsXAML.csproj", "{31AEFD33-C5FF-4DE4-9151-4AC616563C77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,10 @@ Global
 		{1F79AF31-DB32-4C79-9E54-CDD067B44AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F79AF31-DB32-4C79-9E54-CDD067B44AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F79AF31-DB32-4C79-9E54-CDD067B44AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31AEFD33-C5FF-4DE4-9151-4AC616563C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31AEFD33-C5FF-4DE4-9151-4AC616563C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31AEFD33-C5FF-4DE4-9151-4AC616563C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31AEFD33-C5FF-4DE4-9151-4AC616563C77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,6 +166,7 @@ Global
 		{1FDEFF0F-EE20-4827-A830-CD81DE30474A} = {08EB8F09-5184-42AF-82DE-84935AF3EC73}
 		{60FA9BA3-B5C2-4423-93F7-AD4B8020912B} = {08EB8F09-5184-42AF-82DE-84935AF3EC73}
 		{1F79AF31-DB32-4C79-9E54-CDD067B44AAD} = {08EB8F09-5184-42AF-82DE-84935AF3EC73}
+		{31AEFD33-C5FF-4DE4-9151-4AC616563C77} = {17D825BE-E932-4FE5-B7DF-241D2CD5A7D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD716F48-1604-46EF-A0C7-B8270AC2653A}

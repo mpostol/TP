@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PartialDefinitionsXAML\51-PartialDefinitionsXAML.csproj" />
     <ProjectReference Include="..\PartialDefinitions\50-PartialDefinitions.csproj" />
   </ItemGroup>
 
