@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://Viculu34.org/Catalog.xsd" elementFormDefault="qualified" targetNamespace="http://Viculu34.org/Catalog.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="CD">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="Title" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Artist" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Country" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Company" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Price" type="xs:decimal" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Year" type="xs:unsignedShort" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
