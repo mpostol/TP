@@ -1,12 +1,15 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
 //  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TP.InformationComputation.PartialDefinitions
 {
@@ -17,15 +20,15 @@ namespace TP.InformationComputation.PartialDefinitions
     public void RegularMethodsCallTest()
     {
       PartialClass _newObject = new PartialClass();
-      Assert.ThrowsException<System.NotImplementedException>(() => _newObject.MethodPart1());
-      Assert.ThrowsException<System.NotImplementedException>(() => _newObject.MethodPart2());
+      Assert.ThrowsException<NotImplementedException>(() => _newObject.MethodPart1());
+      Assert.ThrowsException<NotImplementedException>(() => _newObject.MethodPart2());
     }
 
     [TestMethod]
     public void PartialMethodsCallTest()
     {
       PartialClass _newObject = new PartialClass();
-      Assert.ThrowsException<System.NotImplementedException>(() => _newObject.PartialMethodCall());
+      Assert.ThrowsException<NotImplementedException>(() => _newObject.PartialMethodCall());
     }
 
     [TestMethod]
