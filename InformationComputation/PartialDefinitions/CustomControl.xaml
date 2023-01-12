@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="150" d:DesignWidth="700">
+             d:DesignHeight="150" d:DesignWidth="500">
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="1*" />
@@ -12,8 +12,8 @@
     </Grid.ColumnDefinitions>
     <TextBox Text="Example Text" Grid.Column="0" />
     <StackPanel Orientation="Vertical" Grid.Column="1">
-      <Button Content="Browse"  Click="Button_Click" />
-      <Button Content="Show TreeView" Click="Button_Click_1" />
+      <Button Content="Browse"  Click="BrowseClickHandler" />
+      <Button Content="Show TreeView" Click="ShowTreeViewHandler" />
     </StackPanel>
   </Grid>
 </UserControl>

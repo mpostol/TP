@@ -25,6 +25,6 @@ namespace TP.InformationComputation.PartialDefinitions
       PartialMethod();
     }
 
-    private partial void PartialMethod();
+    partial void PartialMethod();
   }
 }
