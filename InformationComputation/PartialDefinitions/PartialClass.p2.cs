@@ -20,7 +20,7 @@ namespace TP.InformationComputation.PartialDefinitions
       throw new NotImplementedException();
     }
 
-    private partial void PartialMethod()
+    partial void PartialMethod()
     {
       throw new NotImplementedException();
     }

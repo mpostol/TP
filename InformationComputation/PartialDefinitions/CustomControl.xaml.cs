@@ -23,14 +23,14 @@ namespace TP.InformationComputation.PartialDefinitions
       InitializeComponent();
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void BrowseClickHandler(object sender, RoutedEventArgs e)
     {
-      //Do nothing
+      //Handle the Click Event  of the "Browse" Button
     }
 
-    private void Button_Click_1(object sender, RoutedEventArgs e)
+    private void ShowTreeViewHandler (object sender, RoutedEventArgs e)
     {
-      //Do nothing
+      //Handle the Click Event of the "Show TreeView" Button
     }
   }
 }
