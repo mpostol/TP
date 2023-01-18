@@ -28,6 +28,8 @@
   - [1.9. Where Construct Introduction (SelfDictionaryTest)](#19-where-construct-introduction-selfdictionarytest)
   - [1.10. Constraints on Type Parameters](#110-constraints-on-type-parameters)
   - [1.11. Generic Methods](#111-generic-methods)
+  - [1.12. Constraints on Type Parameters Syntax](#112-constraints-on-type-parameters-syntax)
+  - [1.13. See also](#113-see-also)
 
 ## 1.1. Preface
 
@@ -123,12 +125,36 @@ Now I must stress that the main intent of the presented unit tests is an explana
 
 ## 1.9. Where Construct Introduction (SelfDictionaryTest)
 
-Since in our solution we used a certain feature of the type that is the parameter for the generic type, the question arises as to how to force situations so that all types used as the actual generic type parameter have this feature. The `where` construct comes in handy here, which allows us to state that the actual parameter that substitutes a formal parameter for the type must inherit from the `IEquatable` interface. As a result, when our type does not meet this requirement, let's remove the inheritance from a specific type and we see that immediately there is a compilation error, which indicates that the required features for the selected type are not present, i.e. our newly created type used as the current parameter does not meet the designer expectation, it does not have the features that are required in the definition of the generic type. Accordingly, the `where` clause in this application can be considered as a solution that allows specifying the required features of the type parameters, which can be utilized inside the template. On the other hand, the `where` clause restricts the applicability of existing types if the type doesn't have required features, so it is also often considered a constraint of actual types.
+Since in the solution, we used particular capabilities of the type that is the parameter for the generic type, a question arises as to how to force situations so that all types used as the actual generic type parameter have this capability. The `where` construct comes in handy here, which allows us to state that the actual parameter that substitutes a formal parameter for the type must inherit from the `IEquatable` interface. As a result, when our type does not meet this requirement, let's remove the inheritance from a specific type. We see that immediately there is a compilation error, which indicates that the required capabilities for the selected type are not present, i.e. our newly created type used as the current parameter does not meet the expectation of the designer, it does not have the capabilities that are required in the definition of the generic type. Accordingly, the `where` clause in this application can be considered as a solution that allows specifying the required capabilities of the type parameters, which can be utilized inside the template. On the other hand, the `where` clause restricts the applicability of existing types if the type doesn't have the required capabilities, so it is also often considered a constraint of actual types.
 
 ## 1.10. Constraints on Type Parameters
+
+- constraints on type parameters c# example
+- [Generic classes and methods](https://docs.microsoft.com/dotnet/csharp/programming-guide/generics)
 
 The language-defined constraints that we can use are described in detail in the manual available on MSDN. Ask Google "constraints on type parameters c# example" to get a link to the documentation. The URL to this manual can be found in the support material and is visible on the screen. Below I have added a table summing the where construct semantics. Again, check out the language documentation to get more.
 
 ## 1.11. Generic Methods
 
 Finally, let's mention the generic methods. The syntax and semantics of generic method definitions are very similar to the syntax and semantics of the type definition. An example is the Assert class extensively used in the unit test examples. We also have here, as in the case of types, a list of formal type parameters, which we can then use in each place where we use the type identifier. Again, this parameter is a formal parameter and must be replaced in the calling operations by an identifier of an existing type. We also have a `where` construct, which allows us to specify what type can be the actual parameter.
+
+## 1.12. Constraints on Type Parameters Syntax
+
+Constraints are specified by using the `where` contextual keyword. The following table lists the seven types of constraints:
+
+| Constraint | Description |
+| -----------| ----------- |
+| where T: `struct` | The type argument must be a value type. Any value type except Nullable can be specified. For more information, see Using Nullable Types. |
+| where T : class | The type argument must be a reference type. This constraint applies also to any class, interface, delegate, or array type.|
+| where T : unmanaged | The type argument must not be a reference type and must not contain any reference type members at any level of nesting.|
+| where T : `new()` | The type argument must have a public parameterless constructor. When used together with other constraints, the new() constraint must be specified last.|
+| where T : \<base class name\> | The type argument must be or derive from the specified base class.|
+| where T : \<interface name\> | The type argument must be or implement the specified interface. Multiple interface constraints can be specified. The constraining interface can also be generic.|
+| where T : U | The type argument supplied for T must be or derive from the argument supplied for U.|
+
+Some of the constraints are mutually exclusive. All value types must have an accessible parameterless constructor. The `struct` constraint implies the new() constraint and the new() constraint cannot be combined with the `struct` constraint. The unmanaged constraint implies the `struct` constraint. The unmanaged constraint cannot be combined with either the `struct` or new() constraints.
+
+## 1.13. See also
+
+- [Generic classes and methods](https://docs.microsoft.com/dotnet/csharp/programming-guide/generics)
+- [Constraints on type parameters](https://docs.microsoft.com/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)
