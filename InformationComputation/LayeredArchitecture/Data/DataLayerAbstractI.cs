@@ -11,7 +11,7 @@
 namespace TP.InformationComputation.LayeredArchitecture.Data
 {
   /// <summary>
-  /// Class DataLayerAbstractAPI - an example of the abstract interface to the Data layer
+  /// Class DataLayerAbstract - an example of the abstract interface to the Data layer
   /// </summary>
   public abstract class DataLayerAbstract
   {
@@ -23,7 +23,7 @@ namespace TP.InformationComputation.LayeredArchitecture.Data
     /// <summary>
     /// A factory method to provide new instance of the <see cref="DataLayerAbstract" />.
     /// </summary>
-    /// <returns>An instance of DataLayerAbstractAPI.</returns>
+    /// <returns>An instance of DataLayerAbstract.</returns>
     public static DataLayerAbstract CreateLinq2SQL()
     {
       return new DataLayerImplementation();
