@@ -16,13 +16,13 @@ namespace TP.InformationComputation.LayersCommunication.Logic
   /// Calling a method is like accessing a field. After the object name (if you're calling an instance method) or the type name (if you're calling a static method), add a period,
   /// the name of the method, and parentheses. Arguments are listed within the parentheses and are separated by commas.
   /// </summary>
-  internal abstract class CallingMethodProvider : ICallingMethod
+  internal abstract class CallingMethod : ICallingMethod
   {
     /// <summary>
-    /// Creates an instance of the <see cref="CallingMethodProvider"/> to be used to demonstrate how to use a methods call chain for the bidirectional communication purpose.
+    /// Creates an instance of the <see cref="CallingMethod"/> to be used to demonstrate how to use a methods call chain for the bidirectional communication purpose.
     /// </summary>
     /// <param name="traceSource">Responsible to provide trace functionality for a methods call chain.</param>
-    internal CallingMethodProvider()
+    internal CallingMethod()
     {
       TraceSource = new CalledMethodProvider();
     }

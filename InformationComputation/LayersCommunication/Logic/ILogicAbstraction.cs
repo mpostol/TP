@@ -18,9 +18,9 @@ namespace TP.InformationComputation.LayersCommunication.Logic
   /// </summary>
   public interface ILogicAbstraction
   {
-    public static ICallingMethod NewCallingMethodProvider()
+    public static ICallingMethod NewCallingMethod()
     {
-      return new CallingMethodProviderImplementation();
+      return new CallingMethodImplementation();
     }
     public static ICallBack NewICallBack()
     {
@@ -44,7 +44,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
     }
 
     #region encapsulated definitions
-    private class CallingMethodProviderImplementation : CallingMethodProvider
+    private class CallingMethodImplementation : CallingMethod
     {
       private IData DataLayer = DataAbstraction.CreateData(); //added to make the three layers of architecture clearly stated
     }

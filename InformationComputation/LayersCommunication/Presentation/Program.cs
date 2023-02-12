@@ -29,7 +29,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
     private static void CallingMethodProviderCorrectSequenceExample()
     {
       Console.WriteLine($"Entering {nameof(CallingMethodProviderCorrectSequenceExample)}");
-      ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
+      ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethod();
       callingMethodProvider.Alpha();
       callingMethodProvider.Bravo();
       callingMethodProvider.Charlie();
@@ -41,7 +41,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
     private static void CallingMethodProviderWrongSequenceExample()
     {
       Console.WriteLine($"Entering {nameof(CallingMethodProviderWrongSequenceExample)}");
-      ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
+      ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethod();
       callingMethodProvider.Alpha();
       callingMethodProvider.Charlie();// wrong sequence of calls
       callingMethodProvider.Bravo();
