@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
@@ -18,7 +18,7 @@ namespace TP.InformationComputation.LayersCommunication
     [TestMethod]
     public void CallingMethodProviderCorrectSequenceTest()
     {
-      Logic.ICallingMethodProvider callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
+      Logic.ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Bravo();
       callingMethodProvider.Charlie();
@@ -29,7 +29,7 @@ namespace TP.InformationComputation.LayersCommunication
     [TestMethod]
     public void CallingMethodProviderWrongSequenceTest()
     {
-      ICallingMethodProvider callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
+      ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
       callingMethodProvider.Alpha();
       callingMethodProvider.Charlie();//the wrong sequence of calls, Bravo should be called before Charlie
       callingMethodProvider.Bravo();
