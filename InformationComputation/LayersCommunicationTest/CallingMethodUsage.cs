@@ -18,7 +18,7 @@ namespace TP.InformationComputation.LayersCommunication
     [TestMethod]
     public void CallingMethodCorrectSequenceTest()
     {
-      Logic.ICallingMethod callingMethod = ILogicAbstraction.NewCallingMethod();
+      ICallingMethod callingMethod = ILogicAbstraction.NewCallingMethod();
       callingMethod.Alpha();
       callingMethod.Bravo();
       callingMethod.Charlie();

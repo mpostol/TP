@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  internal class CallBack : ICallBack
+  internal abstract class CallBack : ICallBack
   {
     public void Alpha(TraceDataDelegate trace)
     {

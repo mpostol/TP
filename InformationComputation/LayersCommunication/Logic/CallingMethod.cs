@@ -24,7 +24,7 @@ namespace TP.InformationComputation.LayersCommunication.Logic
     /// <param name="traceSource">Responsible to provide trace functionality for a methods call chain.</param>
     internal CallingMethod()
     {
-      TraceSource = new CalledMethodProvider();
+      TraceSource = new CallingMethodTraceSource();
     }
 
     #region ILogic
@@ -51,14 +51,18 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 
     #endregion ILogic
 
+    #region ICallingMethod
+
     public bool CheckConsistency()
     {
       return TraceSource.CheckConsistency();
     }
 
+    #endregion ICallingMethod
+
     #region private
 
-    private class CalledMethodProvider
+    private class CallingMethodTraceSource
     {
       public void InMemoryTraceData(TraceEventType eventType, int id, object data)
       {
@@ -85,6 +89,6 @@ namespace TP.InformationComputation.LayersCommunication.Logic
 
     #endregion private
 
-    private CalledMethodProvider TraceSource;
+    private CallingMethodTraceSource TraceSource;
   }
 }
