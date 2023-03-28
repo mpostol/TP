@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
@@ -10,10 +10,10 @@
 
 namespace TP.InformationComputation.LayersCommunication.Logic
 {
-  public interface ICallingMethodProvider : ILogic
+  public interface ICallingMethod : ILogic
   {
     /// <summary>
-    ///Is called to check if the methods call chain is correct.
+    ///Is called to check if the methods call sequence is correct.
     /// </summary>
     /// <returns></returns>
     bool CheckConsistency();

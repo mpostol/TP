@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
@@ -29,7 +29,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
     private static void CallingMethodProviderCorrectSequenceExample()
     {
       Console.WriteLine($"Entering {nameof(CallingMethodProviderCorrectSequenceExample)}");
-      ICallingMethodProvider callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
+      ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethod();
       callingMethodProvider.Alpha();
       callingMethodProvider.Bravo();
       callingMethodProvider.Charlie();
@@ -41,7 +41,7 @@ namespace TP.InformationComputation.LayersCommunication.Presentation
     private static void CallingMethodProviderWrongSequenceExample()
     {
       Console.WriteLine($"Entering {nameof(CallingMethodProviderWrongSequenceExample)}");
-      ICallingMethodProvider callingMethodProvider = ILogicAbstraction.NewCallingMethodProvider();
+      ICallingMethod callingMethodProvider = ILogicAbstraction.NewCallingMethod();
       callingMethodProvider.Alpha();
       callingMethodProvider.Charlie();// wrong sequence of calls
       callingMethodProvider.Bravo();
