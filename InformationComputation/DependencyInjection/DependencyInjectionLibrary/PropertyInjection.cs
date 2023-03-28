@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
@@ -28,22 +28,22 @@ namespace TP.InformationComputation.DependencyInjection
     /// </summary>
     public void Alpha()
     {
-      TraceSource.TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
+      TraceSource?.TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
     }
 
     public void Bravo()
     {
-      TraceSource.TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
+      TraceSource?.TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
     }
 
     public void Charlie()
     {
-      TraceSource.TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
+      TraceSource?.TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
     }
 
     public void Delta()
     {
-      TraceSource.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
+      TraceSource?.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
     }
 
     public ITraceSource? TraceSource { get; set; }
