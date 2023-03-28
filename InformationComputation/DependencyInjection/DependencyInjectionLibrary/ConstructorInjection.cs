@@ -19,29 +19,29 @@ namespace TP.InformationComputation.DependencyInjection
   {
     public ConstructorInjection(ITraceSource? tracingInstance)
     {
-      TraceEngine = tracingInstance ?? throw new ArgumentNullException(nameof(tracingInstance));
+      TraceEngine = tracingInstance;
     }
 
     public void Alpha()
     {
-      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
+      TraceEngine?.TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
     }
 
     public void Bravo()
     {
-      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
+      TraceEngine?.TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
     }
 
     public void Charlie()
     {
-      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
+      TraceEngine?.TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
     }
 
     public void Delta()
     {
-      TraceEngine.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
+      TraceEngine?.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
     }
 
-    private ITraceSource TraceEngine;
+    private ITraceSource? TraceEngine;
   }
 }
