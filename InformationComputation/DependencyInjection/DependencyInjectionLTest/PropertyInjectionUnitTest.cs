@@ -20,10 +20,10 @@ namespace TP.InformationComputation.DependencyInjection
     {
       PropertyInjection propertyInjection = new PropertyInjection();
       Assert.IsNull(propertyInjection.TraceSource);
-      Assert.ThrowsException<NullReferenceException>(() => propertyInjection.Alpha());
-      Assert.ThrowsException<NullReferenceException>(() => propertyInjection.Bravo());
-      Assert.ThrowsException<NullReferenceException>(() => propertyInjection.Charlie());
-      Assert.ThrowsException<NullReferenceException>(() => propertyInjection.Delta());
+      propertyInjection.Alpha();
+      propertyInjection.Bravo();
+      propertyInjection.Charlie();
+      propertyInjection.Delta();
       propertyInjection.TraceSource = new DoNothingTraceSource();
       propertyInjection.Delta();
       propertyInjection.Bravo();
