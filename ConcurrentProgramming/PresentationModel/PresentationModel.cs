@@ -61,7 +61,7 @@ namespace TP.ConcurrentProgramming.PresentationModel
     #region private
 
     private IObservable<EventPattern<BallChaneEventArgs>> eventObservable = null;
-    private List<ModelBall> Balls2Dispose = new List<ModelBall>();
+    private List<IDisposable> Balls2Dispose = new List<IDisposable>();
 
     #endregion private
   }
