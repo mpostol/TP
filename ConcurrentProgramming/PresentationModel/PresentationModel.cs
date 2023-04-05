@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
@@ -61,7 +61,7 @@ namespace TP.ConcurrentProgramming.PresentationModel
     #region private
 
     private IObservable<EventPattern<BallChaneEventArgs>> eventObservable = null;
-    private List<ModelBall> Balls2Dispose = new List<ModelBall>();
+    private List<IDisposable> Balls2Dispose = new List<IDisposable>();
 
     #endregion private
   }
