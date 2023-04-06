@@ -8,9 +8,10 @@
 //
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
+
 namespace TP.DataSemantics.Partials
 {
-  partial interface IPartialInterface
+  internal partial interface IPartialInterface
   {
   }
 }
