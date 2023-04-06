@@ -1,4 +1,14 @@
-﻿
+﻿//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+
 using System;
 using System.IO;
 using System.Xml;
@@ -11,8 +21,8 @@ namespace TPA.Configuration.XmlFactory
   /// </summary>
   public static class XmlFile
   {
-
     #region public
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject"/> and writes the XML document to a file.
     /// </summary>
@@ -28,29 +38,30 @@ namespace TPA.Configuration.XmlFactory
     /// or
     /// stylesheetName
     /// </exception>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
-    public static void WriteXmlFile<type>( type dataObject, string path, FileMode mode, string stylesheetName )
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+    public static void WriteXmlFile<type>(type dataObject, string path, FileMode mode, string stylesheetName)
     {
-      if ( string.IsNullOrEmpty( path ) )
+      if (string.IsNullOrEmpty(path))
         throw new ArgumentNullException("path");
-      if ( string.IsNullOrEmpty( stylesheetName ) )
-        throw new ArgumentNullException( "stylesheetName" );
-      if ( dataObject == null )
-        throw new ArgumentNullException( "content" );
-      XmlSerializer _srlzr = new XmlSerializer( typeof( type ) );
+      if (string.IsNullOrEmpty(stylesheetName))
+        throw new ArgumentNullException("stylesheetName");
+      if (dataObject == null)
+        throw new ArgumentNullException("content");
+      XmlSerializer _srlzr = new XmlSerializer(typeof(type));
       XmlWriterSettings _setting = new XmlWriterSettings()
       {
         Indent = true,
         IndentChars = "  ",
         NewLineChars = "\r\n"
       };
-      using ( FileStream _docStrm = new FileStream( path, mode, FileAccess.Write ) )
-      using ( XmlWriter _writer = XmlWriter.Create( _docStrm, _setting ) )
+      using (FileStream _docStrm = new FileStream(path, mode, FileAccess.Write))
+      using (XmlWriter _writer = XmlWriter.Create(_docStrm, _setting))
       {
-        _writer.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + String.Format( "href=\"{0}\"", stylesheetName ) );
-        _srlzr.Serialize( _writer, dataObject );
+        _writer.WriteProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" " + String.Format("href=\"{0}\"", stylesheetName));
+        _srlzr.Serialize(_writer, dataObject);
       }
     }
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject"/> and writes the XML document to a file.
     /// </summary>
@@ -58,11 +69,12 @@ namespace TPA.Configuration.XmlFactory
     /// <param name="dataObject">The object containing working data to be serialized and saved in the file.</param>
     /// <param name="path">A relative or absolute path for the file containing the serialized object.</param>
     /// <param name="mode">Specifies how the operating system should open a file.</param>
-    public static void WriteXmlFile<type>( type dataObject, string path, FileMode mode )
-      where type: IStylesheetNameProvider
+    public static void WriteXmlFile<type>(type dataObject, string path, FileMode mode)
+      where type : IStylesheetNameProvider
     {
       XmlFile.WriteXmlFile<type>(dataObject, path, mode, dataObject.StylesheetNmane);
     }
+
     /// <summary>
     /// Reads an XML document from the file <paramref name="path"/> and deserializes its content to returned object.
     /// </summary>
@@ -70,19 +82,19 @@ namespace TPA.Configuration.XmlFactory
     /// <param name="path">A relative or absolute path for the file containing the serialized object.</param>
     /// <returns>An object containing working data retrieved from an XML file.</returns>
     /// <exception cref="System.ArgumentNullException">path</exception>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
-    public static type ReadXmlFile<type>( string path )
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+    public static type ReadXmlFile<type>(string path)
     {
-      if ( string.IsNullOrEmpty( path ) )
+      if (string.IsNullOrEmpty(path))
         throw new ArgumentNullException("path");
-      type _content = default( type );
-      XmlSerializer _srlzr = new XmlSerializer( typeof( type ) );
-      using ( FileStream _docStrm = new FileStream( path, FileMode.Open, FileAccess.Read ) )
-      using ( XmlReader _writer = XmlReader.Create( _docStrm ) )
-        _content = (type)_srlzr.Deserialize( _writer );
+      type _content = default(type);
+      XmlSerializer _srlzr = new XmlSerializer(typeof(type));
+      using (FileStream _docStrm = new FileStream(path, FileMode.Open, FileAccess.Read))
+      using (XmlReader _writer = XmlReader.Create(_docStrm))
+        _content = (type)_srlzr.Deserialize(_writer);
       return _content;
     }
-    #endregion
 
+    #endregion public
   }
 }
