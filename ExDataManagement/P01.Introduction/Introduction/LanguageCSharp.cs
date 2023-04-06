@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright 2020 Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -14,40 +14,50 @@ using System;
 namespace TP.Introduction
 {
   #region abstraction
-  interface IInterface
+
+  internal interface IInterface
   {
     void MethodDeclaration();
   }
-  abstract class Language
+
+  internal abstract class Language
   {
     #region Encapsulation
-    public virtual void LanguageMethod() { }
-    private void HiddenMethod() { } // Hermetization
-    #endregion
-  }
-  #endregion
-  class LanguageCSharp : Language, IInterface //inheritance
-  {
 
+    public virtual void LanguageMethod() { }
+
+    private void HiddenMethod() { } // Hermetization
+
+    #endregion Encapsulation
+  }
+
+  #endregion abstraction
+
+  internal class LanguageCSharp : Language, IInterface //inheritance
+  {
     #region constructor
+
     public LanguageCSharp() { }
-    #endregion
+
+    #endregion constructor
 
     #region IInterface
 
     public void MethodDeclaration()
+
     #region implementation
+
     {
       throw new NotImplementedException();
     }
-    #endregion
+
+    #endregion implementation
 
     public override void LanguageMethod()
     {
       base.LanguageMethod();
     }
 
-    #endregion
-
+    #endregion IInterface
   }
 }

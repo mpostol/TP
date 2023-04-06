@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright 2020 Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -14,9 +14,9 @@ using TP.Introduction;
 
 namespace TP.DependencyInjection.ConsoleApplication
 {
-  class Program
+  internal class Program
   {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
       ConstructorInjection _ConstructorInjection = new ConstructorInjection(new ConsoleTraceSource());
       _ConstructorInjection.Alpha();

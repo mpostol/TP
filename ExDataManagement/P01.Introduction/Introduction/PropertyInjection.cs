@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright 2018 Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -8,7 +8,6 @@
 //
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
-
 
 using System.Diagnostics;
 
@@ -23,6 +22,7 @@ namespace TP.Introduction
     /// Initializes a new instance of the <see cref="PropertyInjection"/> class.
     /// </summary>
     public PropertyInjection() { }
+
     /// <summary>
     /// Alpha example method.
     /// </summary>
@@ -30,19 +30,22 @@ namespace TP.Introduction
     {
       TraceSource.TraceData(TraceEventType.Verbose, nameof(Alpha).GetHashCode(), "Entering Alpha");
     }
+
     public void Bravo()
     {
       TraceSource.TraceData(TraceEventType.Verbose, nameof(Bravo).GetHashCode(), "Entering Bravo");
     }
+
     public void Charlie()
     {
       TraceSource.TraceData(TraceEventType.Verbose, nameof(Charlie).GetHashCode(), "Entering Charlie");
     }
+
     public void Delta()
     {
       TraceSource.TraceData(TraceEventType.Verbose, nameof(Delta).GetHashCode(), "Entering Delta");
     }
-    public ITraceSource TraceSource { get; set; }
 
+    public ITraceSource TraceSource { get; set; }
   }
 }

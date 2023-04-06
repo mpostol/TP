@@ -58,7 +58,7 @@ The repository is scoped to provide sound examples covering the following topics
 <!--
 //____________________________________________________________________________________________________________________________________
 //
-//  Copyright 2018 Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
