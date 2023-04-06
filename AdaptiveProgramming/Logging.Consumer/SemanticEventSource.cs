@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System.Diagnostics.Tracing;
 
@@ -37,17 +41,19 @@ namespace TPA.Logging.Consumer
     {
       this.WriteEvent(1, message);
     }
+
     [Event(2, Message = "Starting up.", Keywords = Keywords.Performance, Level = EventLevel.Informational)]
     internal void Startup()
     {
       this.WriteEvent(2);
     }
+
     [Event(3, Message = "loading page {1} activityID={0}", Opcode = EventOpcode.Start, Task = Tasks.Page, Keywords = Keywords.Page, Level = EventLevel.Informational)]
     internal void PageStart(int ID, string url)
     {
       if (this.IsEnabled()) this.WriteEvent(3, ID, url);
     }
-    private SemanticEventSource() { }
 
+    private SemanticEventSource() { }
   }
 }

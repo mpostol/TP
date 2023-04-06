@@ -1,14 +1,15 @@
 ﻿#pragma warning disable IDE0033 // Use explicitly provided tuple name
 
-//__________________________________________________________________________________________
+//____________________________________________________________________________________________________________________________________
 //
-//  Copyright 2021 Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community by pressing the `Watch` button and to get started 
-//  comment using the discussion panel at
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
 //  https://github.com/mpostol/TP/discussions/182
-//  with an introduction of yourself and tell us about what you do with this community.
-//__________________________________________________________________________________________
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -20,7 +21,6 @@ namespace TP.DataSemantics
   [TestClass]
   public class AnonymousTypesUnitTest
   {
-
     [TestMethod]
     public void VARTest()
     {
@@ -43,22 +43,24 @@ namespace TP.DataSemantics
       Assert.ThrowsException<Microsoft.CSharp.RuntimeBinder.RuntimeBinderException>(() => _dynamic /= 1);
       int _integer = 5;
       //var _integer = 5;
-      //_integer = ""; //Error CS0029  Cannot implicitly convert type 'string' to 'int' 
+      //_integer = ""; //Error CS0029  Cannot implicitly convert type 'string' to 'int'
       _integer = _integer / 2;
       Assert.AreEqual(2, _integer);
     }
+
     [TestMethod]
     public void AnonymousType()
     {
       var _anonymousVariable = new { Amount = 108, Message = "Hello" };
       Assert.AreEqual(108, _anonymousVariable.Amount);
       Assert.AreEqual("Hello", _anonymousVariable.Message);
-      //_anonymousVariable = new { Amount = 108.0, Message = "Hello" }; //Error CS0029  Cannot implicitly convert type '<anonymous type: double Amount, string Message>' to '<anonymous type: int Amount, string Message>' 
+      //_anonymousVariable = new { Amount = 108.0, Message = "Hello" }; //Error CS0029  Cannot implicitly convert type '<anonymous type: double Amount, string Message>' to '<anonymous type: int Amount, string Message>'
       //_anonymousVariable = new { Message = "Hello", Amount = 108 }; //Error CS0029  Cannot implicitly convert type '<anonymous type: string Message, int Amount>' to '<anonymous type: int Amount, string Message>'
       //_anonymousVariable.Message = ""; //Error CS0200  Property or indexer '<anonymous type: int Amount, string Message>.Message' cannot be assigned to --it is read only
       _anonymousVariable = null;
       //var _newAnonymousVariable = null; //Error CS0815  Cannot assign<null > to an implicitly-typed variable
     }
+
     [TestMethod]
     public void AnonymousTypesCompatibilityTest()
     {
@@ -69,17 +71,19 @@ namespace TP.DataSemantics
       _anonymousVariable1 = _anonymousVariable2;
       Assert.AreSame(_anonymousVariable1, _anonymousVariable2);
     }
+
     [TestMethod]
     public void AnonymousArrayTest()
     {
       var _anonymousArray = new[] {
                               new { name = "apple", diam = 4 },
                               new { name = "grape", diam = 1 },
-                              //new { diam = 2, name = "plum"  } 
+                              //new { diam = 2, name = "plum"  }
                              };
       Assert.AreEqual(new { name = "apple", diam = 4 }, _anonymousArray[0]);
       Assert.AreEqual(new { name = "grape", diam = 1 }, _anonymousArray[1]);
     }
+
     [TestMethod]
     public void NoNewBehaviorValues()
     {
@@ -95,10 +99,11 @@ namespace TP.DataSemantics
       Assert.AreEqual("Hello", _valueTupleVariable.Item2);
       _valueTupleVariable.Item1 = 801;
       _valueTupleVariable.Item2 = "";
-      //_valueTupleVariable = (108.0, "Hello"); //Error CS0029  Cannot implicitly convert type 'double' to 'int' 
-      //_valueTupleVariable = ("Hello", 108); //Error CS0029  Cannot implicitly convert type 'string' to 'int'; Error CS0029  Cannot implicitly convert type 'int' to 'string' 
+      //_valueTupleVariable = (108.0, "Hello"); //Error CS0029  Cannot implicitly convert type 'double' to 'int'
+      //_valueTupleVariable = ("Hello", 108); //Error CS0029  Cannot implicitly convert type 'string' to 'int'; Error CS0029  Cannot implicitly convert type 'int' to 'string'
       //_valueTupleVariable = null; //Error CS0037  Cannot convert null to '(int, string)' because it is a non - nullable value type
     }
+
     [TestMethod]
     public void NamedFieldsValueTuple()
     {
@@ -111,6 +116,7 @@ namespace TP.DataSemantics
       _valueTupleVariable.Amount = 801;
       _valueTupleVariable.Message = "";
     }
+
     [TestMethod]
     public void ValueTupleEqality()
     {
@@ -120,6 +126,7 @@ namespace TP.DataSemantics
       Assert.AreEqual(_valueTupleVariable1, _valueTupleVariable2);
       _valueTupleVariable1 = _valueTupleVariable2;
     }
+
     [TestMethod]
     public void ValueTupleMethodTest()
     {
@@ -129,6 +136,7 @@ namespace TP.DataSemantics
       _valueTupleVariable.Amount = 801;
       _valueTupleVariable.Message = "";
     }
+
     [TestMethod]
     public void ValueTupleDeconstructionMethodTest()
     {
@@ -138,6 +146,7 @@ namespace TP.DataSemantics
       Amount = 801;
       Message = "";
     }
+
     private static class InstrumentationTupleClass
     {
       internal static (int Amount, string Message) GetValueTupleValue()
@@ -145,7 +154,7 @@ namespace TP.DataSemantics
         return (108, "Hello");
       }
     }
-
   }
 }
+
 #pragma warning restore IDE0033 // Use explicitly provided tuple name

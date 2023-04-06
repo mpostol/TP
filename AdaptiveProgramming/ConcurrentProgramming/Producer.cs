@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Collections.Generic;
@@ -17,7 +21,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
 {
   public class Producer<T> : IDisposable
   {
-
     public Producer(IProductFactory<T> factory)
     {
       m_CriticalSection = new CriticalSection<T>(factory);
@@ -25,14 +28,18 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
     }
 
     #region Task-based Asynchronous Pattern (TAP)
+
     public async Task<T> TPAReadKeyFromKeyboardBufferAsync()
     {
       return await Task<T>.Run(() => m_CriticalSection.ReadKeyFromKeyboardBuffer());
     }
-    #endregion
+
+    #endregion Task-based Asynchronous Pattern (TAP)
 
     #region Event-based Asynchronous Pattern (EAP)
+
     public event EventHandler<InstanceCreationCompletedEventArgs<T>> ReadKeyFromKeyboardBufferCompleted;
+
     public void EAPReadKeyFromKeyboardBufferAsync()
     {
       ThreadPool.QueueUserWorkItem(x =>
@@ -42,22 +49,28 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
           }
       );
     }
-    #endregion
+
+    #endregion Event-based Asynchronous Pattern (EAP)
 
     #region Asynchronous Programming Model  Pattern (APM)
+
     public IAsyncResult BeginReadKeyFromKeyboardBuffer(AsyncCallback callback, object parameter)
     {
       m_Caller = m_CriticalSection.ReadKeyFromKeyboardBuffer;
       return m_Caller.BeginInvoke(callback, parameter);
     }
+
     public T EndReadKeyFromKeyboardBuffer(IAsyncResult result)
     {
       return m_Caller.EndInvoke(result);
     }
-    #endregion
+
+    #endregion Asynchronous Programming Model  Pattern (APM)
 
     #region IDisposable Support
+
     private bool disposedValue = false; // To detect redundant calls
+
     protected virtual void Dispose(bool disposing)
     {
       if (disposedValue)
@@ -69,33 +82,39 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       }
       disposedValue = true;
     }
+
     // This code added to correctly implement the disposable pattern.
     public void Dispose()
     {
       // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
       Dispose(true);
     }
-    #endregion
+
+    #endregion IDisposable Support
 
     #region private
+
     private delegate T AsyncMethodCaller();
+
     private Timer m_Timer;
     private AsyncMethodCaller m_Caller;
     private CriticalSection<T> m_CriticalSection;
 
     [Synchronization(true)]
-    class CriticalSection<productType> : IDisposable
+    private class CriticalSection<productType> : IDisposable
     {
       public CriticalSection(IProductFactory<productType> factory)
       {
         m_Factory = factory ?? throw new ArgumentNullException(nameof(factory));
       }
+
       internal void GenerateChar()
       {
         m_productsBuffer.Enqueue(m_Factory.Create());
         if (m_productsBuffer.Count == 1)
           m_AutoResetEvent.Set();
       }
+
       internal productType ReadKeyFromKeyboardBuffer()
       {
         if (m_productsBuffer.Count == 0)
@@ -110,12 +129,12 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       {
         m_AutoResetEvent.Dispose();
       }
+
       private IProductFactory<productType> m_Factory;
       private readonly Queue<productType> m_productsBuffer = new Queue<productType>();
       private readonly AutoResetEvent m_AutoResetEvent = new AutoResetEvent(false);
     }
 
-    #endregion
-
+    #endregion private
   }
 }

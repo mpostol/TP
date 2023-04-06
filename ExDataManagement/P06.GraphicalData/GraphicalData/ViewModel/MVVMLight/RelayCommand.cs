@@ -1,16 +1,19 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Windows.Input;
 
 namespace TP.GraphicalData.ViewModel.MVVMLight
 {
-
   /// <summary>
   /// A generic command whose sole purpose is to relay its functionality to other
   /// objects by invoking delegates. The default return value for the CanExecute
@@ -20,14 +23,15 @@ namespace TP.GraphicalData.ViewModel.MVVMLight
   /// <remarks>The <see cref="CommandManager"/>handles automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
   public class RelayCommand : ICommand
   {
-
     #region constructors
+
     /// <summary>
     /// Initializes a new instance of the <see cref="RelayCommand"/>  class that can always execute.
     /// </summary>
     /// <param name="execute">The execution logic encapsulated by the <paramref name="execute"/> delegate. </param>
     /// <exception cref="T:System.ArgumentNullException">If the <paramref name="execute"/> argument is null.</exception>
     public RelayCommand(Action execute) : this(execute, null) { }
+
     /// <summary>
     /// Initializes a new instance of the RelayCommand class.
     /// </summary>
@@ -39,13 +43,15 @@ namespace TP.GraphicalData.ViewModel.MVVMLight
       this.m_Execute = execute ?? throw new ArgumentNullException(nameof(execute));
       this.m_CanExecute = canExecute;
     }
-    #endregion
+
+    #endregion constructors
 
     #region ICommand
+
     /// <summary>
     /// Defines the method that determines whether the command can execute in its current state.
     /// </summary>
-    /// <param name="parameter">Data used by the command. Because the command does not require data 
+    /// <param name="parameter">Data used by the command. Because the command does not require data
     /// to be passed, this parameter is always ignored</param>
     /// <returns><c>true</c> if this command can be executed; otherwise, <c>false</c>.</returns>
     public bool CanExecute(object parameter)
@@ -56,22 +62,26 @@ namespace TP.GraphicalData.ViewModel.MVVMLight
         return this.m_CanExecute();
       return this.m_CanExecute();
     }
+
     /// <summary>
     /// Defines the method to be called when the command is invoked.
     /// </summary>
-    /// <param name="parameter">Data used by the command. Because the command does not require data 
+    /// <param name="parameter">Data used by the command. Because the command does not require data
     /// to be passed, this parameter is always ignored</param>
     public virtual void Execute(object parameter)
     {
       this.m_Execute();
     }
+
     /// <summary>
     /// Occurs when changes occur that affect whether the command should execute.
     /// </summary>
     public event EventHandler CanExecuteChanged;
-    #endregion
+
+    #endregion ICommand
 
     #region API
+
     /// <summary>
     /// Raises the <see cref="CanExecuteChanged" /> event.
     /// </summary>
@@ -79,13 +89,14 @@ namespace TP.GraphicalData.ViewModel.MVVMLight
     {
       this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
-    #endregion
+
+    #endregion API
 
     #region private
+
     private readonly Action m_Execute;
     private readonly Func<bool> m_CanExecute;
-    #endregion
 
+    #endregion private
   }
 }
-

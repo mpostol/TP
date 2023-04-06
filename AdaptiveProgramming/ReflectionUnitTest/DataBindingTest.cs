@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -16,7 +20,6 @@ namespace TPA.Reflection.UnitTest
   [TestClass]
   public class DataBindingTest
   {
-
     [TestMethod]
     public void ParametersValidationTest()
     {
@@ -56,14 +59,15 @@ namespace TPA.Reflection.UnitTest
     }
 
     #region test instrumentation
+
     private const string StringPropName = "StringProperty";
     private const string IntPropName = "IntProperty";
     private const string StringPropConsumerName = "StringPropertyConsumer";
     private const string IntPropConsumerName = "IntPropertyConsumer";
     private const string ValueTypePropConsumerName = "ValuePropertyConsumer";
+
     private class DataSource : INotifyPropertyChanged
     {
-
       public int IntProperty
       {
         get { return m_intField; }
@@ -73,6 +77,7 @@ namespace TPA.Reflection.UnitTest
           OnPropertyChanged("IntProperty");
         }
       }
+
       public string StringProperty
       {
         get { return m_stringField; }
@@ -82,25 +87,29 @@ namespace TPA.Reflection.UnitTest
           OnPropertyChanged("StringProperty");
         }
       }
+
       public event PropertyChangedEventHandler PropertyChanged;
 
       #region private
+
       private int m_intField = 0;
       private string m_stringField = "";
+
       private void OnPropertyChanged([CallerMemberName] string propertyName = null)
       {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
       }
-      #endregion
 
+      #endregion private
     }
+
     internal class DataConsumer
     {
       public int IntPropertyConsumer { get; set; }
       public string StringPropertyConsumer { get; set; }
       public ValueType ValuePropertyConsumer { get; set; }
     }
-    #endregion
 
+    #endregion test instrumentation
   }
 }
