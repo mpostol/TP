@@ -1,7 +1,17 @@
-﻿
+﻿//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TPA.Composition.Plugins.PluginContract;
 
 namespace TPA.Composition.UnitTest
@@ -20,6 +30,7 @@ namespace TPA.Composition.UnitTest
       Assert.AreEqual("Uppercase Plugin", _plugins[0].Name);
       Assert.AreEqual("Lowercase Plugin", _plugins[1].Name);
     }
+
     [TestMethod]
     public void UppercasePluginTest()
     {
@@ -28,6 +39,7 @@ namespace TPA.Composition.UnitTest
       _plugins[0].PerformAction(_stringContext); //Perform operation on data
       Assert.AreEqual("THIS IS ONLY ROCK'N'ROLL", _stringContext.Text);
     }
+
     [TestMethod]
     public void LowercasePluginTest()
     {
@@ -38,6 +50,7 @@ namespace TPA.Composition.UnitTest
     }
 
     #region instrumentation
+
     //Implementation of IPluginContext
     internal class StringContext : IPluginContext
     {
@@ -45,11 +58,12 @@ namespace TPA.Composition.UnitTest
       {
         this.m_Text = currentText;
       }
+
       public string Text { get => m_Text; set => m_Text = value; }
 
       private string m_Text;
     }
-    #endregion
 
+    #endregion instrumentation
   }
 }
