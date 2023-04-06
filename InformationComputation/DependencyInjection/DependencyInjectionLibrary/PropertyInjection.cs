@@ -13,7 +13,7 @@ using System.Diagnostics;
 namespace TP.InformationComputation.DependencyInjection
 {
   /// <summary>
-  /// Class PropertyInjection.
+  /// An example of property injection pattern fundamentals .
   /// </summary>
   public class PropertyInjection
   {
