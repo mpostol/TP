@@ -1,28 +1,33 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Collections;
 
 namespace TP.DataSemantics.TypeConcept
 {
-  public class InterfaceExample: ICollection
+  public class InterfaceExample : ICollection
   {
-
     #region ICollection Members
+
     /// <summary>
     /// Copies the elements of the <see cref="T:System.Collections.ICollection" /> to an <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
     /// </summary>
     /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.ICollection" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
     /// <param name="index">The zero-based index in <paramref name="array" /> at which copying begins.</param>
-    public void CopyTo( Array array, int index )
+    public void CopyTo(Array array, int index)
     {
-      m_ArrayExample.CopyTo( array, index );
+      m_ArrayExample.CopyTo(array, index);
     }
+
     /// <summary>
     /// Gets the number of elements contained in the <see cref="T:System.Collections.ICollection" />.
     /// </summary>
@@ -31,6 +36,7 @@ namespace TP.DataSemantics.TypeConcept
     {
       get { return m_ArrayExample.Length; }
     }
+
     /// <summary>
     /// Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection" /> is synchronized (thread safe).
     /// </summary>
@@ -39,6 +45,7 @@ namespace TP.DataSemantics.TypeConcept
     {
       get { return m_ArrayExample.IsSynchronized; }
     }
+
     /// <summary>
     /// Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection" />.
     /// </summary>
@@ -47,9 +54,11 @@ namespace TP.DataSemantics.TypeConcept
     {
       get { return m_ArrayExample.SyncRoot; }
     }
-    #endregion
+
+    #endregion ICollection Members
 
     #region IEnumerable Members
+
     /// <summary>
     /// Returns an enumerator that iterates through a collection.
     /// </summary>
@@ -60,19 +69,23 @@ namespace TP.DataSemantics.TypeConcept
     {
       return m_ArrayExample.GetEnumerator();
     }
-    #endregion
+
+    #endregion IEnumerable Members
 
     #region public API
+
     public double this[int index]
     {
       get { return m_ArrayExample[index]; }
       set { m_ArrayExample[index] = value; }
     }
-    #endregion
+
+    #endregion public API
 
     #region private
-    private double[] m_ArrayExample = { 0, 1, 2, 3 };
-    #endregion
 
+    private double[] m_ArrayExample = { 0, 1, 2, 3 };
+
+    #endregion private
   }
 }

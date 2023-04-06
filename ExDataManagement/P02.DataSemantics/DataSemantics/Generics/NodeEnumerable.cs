@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Collections;
@@ -15,12 +19,14 @@ namespace TP.DataSemantics.Generics
     where TypeParameter : IEquatable<TypeParameter>
   {
     public NodeEnumerable() { }
+
     public Node<TypeParameter> New(TypeParameter value)
     {
       Node<TypeParameter> _ret = new InternalNode<TypeParameter>(value);
       Add(_ret);
       return _ret;
     }
+
     public TypeParameter this[TypeParameter selfIndex]
     {
       get
@@ -30,6 +36,7 @@ namespace TP.DataSemantics.Generics
     }
 
     #region IEnumerable<TypeParameter>
+
     public IEnumerator<TypeParameter> GetEnumerator()
     {
       Node<TypeParameter> _current = m_FirstNode;
@@ -40,25 +47,27 @@ namespace TP.DataSemantics.Generics
         yield return _value;
       }
     }
+
     IEnumerator IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
     }
-    #endregion
+
+    #endregion IEnumerable<TypeParameter>
 
     private class InternalNode<ValueTypeParaTypeParametermeter> : Node<TypeParameter>
     {
       public InternalNode(TypeParameter value) : base(value) { }
     }
+
     private Node<TypeParameter> m_FirstNode = null;
     private SelfDictionary<TypeParameter> m_dictionary = new SelfDictionary<TypeParameter>();
+
     private void Add(Node<TypeParameter> newNode)
     {
       newNode.Next = m_FirstNode;
       m_FirstNode = newNode;
       m_dictionary.AddIfNotPresent(newNode.Value);
     }
-
   }
-
 }
