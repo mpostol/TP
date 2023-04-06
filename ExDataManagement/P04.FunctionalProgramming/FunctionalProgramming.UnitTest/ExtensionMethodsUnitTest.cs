@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -26,8 +30,9 @@ namespace TP.FunctionalProgramming
       int _wordCount = ExtensionMethods.WordCount(_TestString);
       Assert.IsFalse(ExtensionMethods.Even(_wordCount));
     }
+
     /// <summary>
-    /// You can invoke the extension method with instance method syntax. 
+    /// You can invoke the extension method with instance method syntax.
     /// </summary>
     [TestMethod]
     public void SequentialCallTestMethod()
@@ -36,6 +41,7 @@ namespace TP.FunctionalProgramming
       Assert.IsFalse(_TestString.WordCount().Even()); //To enable extension methods for a particular type, the definition must be visible.
       Assert.AreEqual<int>(_TestString.WordCount(), ExtensionMethods.WordCount(_TestString)); //Typical method call can also be in use.
     }
+
     /// <summary>
     /// Test method of the rule: the existing class method cannot be replaced by an extension method.
     /// </summary>
@@ -45,6 +51,7 @@ namespace TP.FunctionalProgramming
       string _TestString = "Hello Extension Methods";
       Assert.IsTrue(_TestString.Contains("Hello")); //An extension method with the same name and signature as an interface or class method will never be called.
     }
+
     /// <summary>
     /// Calling the instance method if the reference is null is impossible.
     /// </summary>
@@ -55,6 +62,7 @@ namespace TP.FunctionalProgramming
       IMyInterface _myInterface = null;
       _myInterface.MyInterfaceMethod(); //Here the runtime throws the exception NullReferenceException.
     }
+
     /// <summary>
     /// Calling the extension method if the reference is null proceeds normally.
     /// </summary>
@@ -65,7 +73,5 @@ namespace TP.FunctionalProgramming
       IMyInterface _myInterface = null;
       _myInterface.ProtectedMyInterfaceMethodCall();
     }
-
   }
 }
-
