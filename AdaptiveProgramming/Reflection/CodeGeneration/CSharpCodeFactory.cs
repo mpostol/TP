@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.CodeDom;
@@ -13,7 +17,6 @@ using System.Reflection;
 
 namespace TPA.Reflection.CodeGeneration
 {
-
   /// <summary>
   /// This code example creates a graph using a CodeCompileUnit and generates source code for the graph using the CSharpCodeProvider.
   /// </summary>
@@ -35,6 +38,7 @@ namespace TPA.Reflection.CodeGeneration
       _samples.Types.Add(m_TargetClass);
       m_TargetUnit.Namespaces.Add(_samples);
     }
+
     /// <summary>
     /// Adds two fields to the class.
     /// </summary>
@@ -59,6 +63,7 @@ namespace TPA.Reflection.CodeGeneration
       _heightValueField.Comments.Add(new CodeCommentStatement("The height of the object."));
       m_TargetClass.Members.Add(_heightValueField);
     }
+
     /// <summary>
     /// Add three properties to the class.
     /// </summary>
@@ -108,6 +113,7 @@ namespace TPA.Reflection.CodeGeneration
       _areaProperty.GetStatements.Add(new CodeMethodReturnStatement(_areaExpression));
       m_TargetClass.Members.Add(_areaProperty);
     }
+
     /// <summary>
     /// Adds a method to the class. This method multiplies values stored in both fields.
     /// </summary>
@@ -134,6 +140,7 @@ namespace TPA.Reflection.CodeGeneration
       _toStringMethod.Statements.Add(returnStatement);
       m_TargetClass.Members.Add(_toStringMethod);
     }
+
     /// <summary>
     /// Add a constructor to the class.
     /// </summary>
@@ -154,6 +161,7 @@ namespace TPA.Reflection.CodeGeneration
       _constructor.Statements.Add(new CodeAssignStatement(heightReference, new CodeArgumentReferenceExpression("height")));
       m_TargetClass.Members.Add(_constructor);
     }
+
     /// <summary>
     /// Add an entry point to the class.
     /// <code>
@@ -182,6 +190,7 @@ namespace TPA.Reflection.CodeGeneration
       start.Statements.Add(new CodeMethodInvokeExpression(new CodeTypeReferenceExpression("System.Console"), "WriteLine", toStringInvoke));
       m_TargetClass.Members.Add(start);
     }
+
     /// <summary>
     /// Generate CSharp source code from the compile unit.
     /// </summary>
@@ -198,17 +207,18 @@ namespace TPA.Reflection.CodeGeneration
     }
 
     #region private
+
     /// <summary>
-    /// Define the compile unit to use for code generation. 
+    /// Define the compile unit to use for code generation.
     /// </summary>
     private CodeCompileUnit m_TargetUnit;
+
     /// <summary>
     /// The only class in the compile unit. This class contains 2 fields,
-    /// 3 properties, a constructor, an entry point, and 1 simple method. 
+    /// 3 properties, a constructor, an entry point, and 1 simple method.
     /// </summary>
     private CodeTypeDeclaration m_TargetClass;
-    #endregion
 
+    #endregion private
   }
 }
-

@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Diagnostics;
@@ -13,8 +17,8 @@ namespace TPA.Reflection.CodeGeneration
 {
   public class DynamicMethodFactory
   {
-
     #region public
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DynamicMethodFactory"/> class.
     /// </summary>
@@ -22,15 +26,15 @@ namespace TPA.Reflection.CodeGeneration
     {
       // Create an array that specifies the parameter types for the dynamic method. In this example the only parameter is an int, so the array has only one element.
       Type[] _methodArgs = { typeof(int) };
-      // Create a DynamicMethod. In this example the method is named SquareIt. It is not necessary to give dynamic 
-      // methods names. They cannot be invoked by name, and two dynamic methods can have the same name. However, the 
-      // name appears in calls stacks and can be useful for debugging. 
+      // Create a DynamicMethod. In this example the method is named SquareIt. It is not necessary to give dynamic
+      // methods names. They cannot be invoked by name, and two dynamic methods can have the same name. However, the
+      // name appears in calls stacks and can be useful for debugging.
       //
-      // In this example the return type of the dynamic method is long. The method is associated with the module that 
+      // In this example the return type of the dynamic method is long. The method is associated with the module that
       // contains the Example class. Any loaded module could be specified. The dynamic method is like a module-level
       // static method.
       DynamicMethod squareIt = new DynamicMethod("SquareIt", typeof(long), _methodArgs, typeof(DynamicMethodFactory).Module);
-      // Emit the method body. In this example ILGenerator is used to emit the MSIL. DynamicMethod has an associated type DynamicILInfo that can be used in conjunction with 
+      // Emit the method body. In this example ILGenerator is used to emit the MSIL. DynamicMethod has an associated type DynamicILInfo that can be used in conjunction with
       // unmanaged code generators.
       //
       // The MSIL loads the argument, which is an int, onto the stack, converts the int to a long, duplicates the top item on the stack, and multiplies the top two items on the
@@ -46,6 +50,7 @@ namespace TPA.Reflection.CodeGeneration
       //
       m_InvokeSquareIt = (SquareItInvoker)squareIt.CreateDelegate(typeof(SquareItInvoker));
     }
+
     /// <summary>
     /// Calls the dynamic method.
     /// </summary>
@@ -55,26 +60,30 @@ namespace TPA.Reflection.CodeGeneration
     {
       return m_InvokeSquareIt(value);
     }
-    #endregion
+
+    #endregion public
 
     #region private
+
     /// <summary>
     /// Declare delegates that can be used to execute the completed SquareIt dynamic method.
     /// </summary>
     /// <param name="input">The input.</param>
     /// <returns>System.Int64.</returns>
     private delegate long SquareItInvoker(int input);
+
     private readonly SquareItInvoker m_InvokeSquareIt;
-    #endregion
+
+    #endregion private
 
     #region UT Instrumentation
+
     [Conditional("DEBUG")]
     internal void TestConsitency(Action<bool> returnValue)
     {
       returnValue(m_InvokeSquareIt != null);
     }
-    #endregion
 
+    #endregion UT Instrumentation
   }
-
 }

@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Collections.Generic;
@@ -25,11 +29,15 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
           .Synchronize(_bufferLockObject)
           .Subscribe(_ => ProduceToBuffer());
     }
+
     public void OnCompleted()
     {
       m_ProduceSubscriber.Dispose();
     }
-    public void OnError(Exception error) { }
+
+    public void OnError(Exception error)
+    { }
+
     public void OnNext(bool value)
     {
       lock (_bufferLockObject)
@@ -37,11 +45,13 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         EmitToConsumer();
       }
     }
+
     public IDisposable Subscribe(IObserver<TProduct> observer)
     {
       ConsumerObserver = observer;
       return Disposable.Create(() => ConsumerObserver = null);
     }
+
     private void ProduceToBuffer()
     {
       TProduct product = Produce();
@@ -54,6 +64,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         _productRequested = false;
       }
     }
+
     private void EmitToConsumer()
     {
       if (ConsumerObserver == null)
@@ -67,18 +78,22 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       else
         _productRequested = true;
     }
+
     public Func<TProduct> Produce
     {
       get;
     }
+
     public TimeSpan ProducePeriod
     {
       get;
     }
+
     public int BufferCapacity
     {
       get;
     }
+
     public IObserver<TProduct> ConsumerObserver
     {
       get;
@@ -98,24 +113,29 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       Consume = consume;
       ConsumePeriod = consumePeriod;
     }
+
     public void OnCompleted()
     {
       _productRequestSubscriber?.Dispose();
       ProducerObserver?.OnCompleted();
     }
+
     public void OnError(Exception error)
     {
     }
+
     public void OnNext(TProduct value)
     {
       ProcessProduct(value);
     }
+
     public IDisposable Subscribe(IObserver<bool> observer)
     {
       ProducerObserver = observer;
       NotifyProducer();
       return Disposable.Create(() => ProducerObserver = null);
     }
+
     private void ProcessProduct(TProduct product)
     {
       _productRequestSubscriber?.Dispose();
@@ -126,23 +146,28 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
           .Timer(ConsumePeriod)
           .Subscribe(_ => NotifyProducer());
     }
+
     private void NotifyProducer()
     {
       ProducerObserver?.OnNext(true);
     }
+
     public Action<TProduct> Consume
     {
       get;
     }
+
     public TimeSpan ConsumePeriod
     {
       get;
     }
+
     public IObserver<bool> ProducerObserver
     {
       get;
       private set;
     }
+
     private IDisposable _productRequestSubscriber;
   }
 }

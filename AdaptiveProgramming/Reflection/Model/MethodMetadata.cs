@@ -1,4 +1,14 @@
-﻿
+﻿//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +19,6 @@ namespace TPA.Reflection.Model
 {
   internal class MethodMetadata
   {
-
     internal static IEnumerable<MethodMetadata> EmitMethods(IEnumerable<MethodBase> methods)
     {
       return from MethodBase _currentMethod in methods
@@ -18,13 +27,16 @@ namespace TPA.Reflection.Model
     }
 
     #region private
+
     //vars
     internal string m_Name;
+
     internal IEnumerable<TypeMetadata> m_GenericArguments;
     internal Tuple<AccessLevel, AbstractENum, StaticEnum, VirtualEnum> m_Modifiers;
     internal TypeMetadata m_ReturnType;
     internal bool m_Extension;
     internal IEnumerable<ParameterMetadata> m_Parameters;
+
     //constructor
     private MethodMetadata(MethodBase method)
     {
@@ -35,12 +47,14 @@ namespace TPA.Reflection.Model
       m_Modifiers = EmitModifiers(method);
       m_Extension = EmitExtension(method);
     }
+
     //methods
     private static IEnumerable<ParameterMetadata> EmitParameters(IEnumerable<ParameterInfo> parms)
     {
       return from parm in parms
              select new ParameterMetadata(parm.Name, TypeMetadata.EmitReference(parm.ParameterType));
     }
+
     private static TypeMetadata EmitReturnType(MethodBase method)
     {
       MethodInfo methodInfo = method as MethodInfo;
@@ -48,10 +62,12 @@ namespace TPA.Reflection.Model
         return null;
       return TypeMetadata.EmitReference(methodInfo.ReturnType);
     }
+
     private static bool EmitExtension(MethodBase method)
     {
       return method.CustomAttributes.Where<CustomAttributeData>(x => x.AttributeType == typeof(ExtensionAttribute)).Count<CustomAttributeData>() == 1;
     }
+
     private static Tuple<AccessLevel, AbstractENum, StaticEnum, VirtualEnum> EmitModifiers(MethodBase method)
     {
       AccessLevel _access = AccessLevel.IsPrivate;
@@ -72,7 +88,7 @@ namespace TPA.Reflection.Model
         _virtual = VirtualEnum.Virtual;
       return new Tuple<AccessLevel, AbstractENum, StaticEnum, VirtualEnum>(_access, _abstract, _static, _virtual);
     }
-    #endregion
 
+    #endregion private
   }
 }
