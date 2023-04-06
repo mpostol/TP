@@ -1,11 +1,15 @@
 ﻿#pragma warning disable CS0612 // Type or member is obsolete
 
-//____________________________________________________________________________
+//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -16,7 +20,6 @@ namespace TP.DataStreams
   [TestClass]
   public class ReflectionUnitTest
   {
-
     [TestMethod]
     public void CustomAttributeTest()
     {
@@ -24,18 +27,21 @@ namespace TP.DataStreams
       Assert.IsNotNull(_attribute);
       Assert.AreEqual<string>("Instance description", _attribute.Description);
     }
+
     [TestMethod]
     public void ObsoleteTest()
     {
       object _unknownObject = AttributedClass.GetObject();
       Assert.IsNotNull(_unknownObject);
     }
+
     [TestMethod]
     public void AttributedClassTypeTest()
     {
       Type _objectType = typeof(AttributedClass);
       GoTest(_objectType);
     }
+
     [TestMethod]
     public void AttributedClassInstanceTest()
     {
@@ -46,6 +52,7 @@ namespace TP.DataStreams
         GoTest(_objectType);
       }
     }
+
     [TestMethod]
     public void AttachedPropertyTest()
     {
@@ -61,6 +68,7 @@ namespace TP.DataStreams
     }
 
     #region test instrumentation
+
     [CustomAttribute("Description of the class")]
     private class Siyova16 //pronounce any class
     {
@@ -69,9 +77,12 @@ namespace TP.DataStreams
       public string Vupowe51 { get; set; } //pronounce any property
       public Tuple<double, int, string> Yozoho42 { get; set; } //pronounce any property
     }
+
     private static class ObjectFactory
     {
-      internal enum CreationHints { Suxuxe12, Gipoci82 }
+      internal enum CreationHints
+      { Suxuxe12, Gipoci82 }
+
       internal static object CreateObject(CreationHints hints)
       {
         object _return = null;
@@ -80,6 +91,7 @@ namespace TP.DataStreams
           case CreationHints.Suxuxe12:
             _return = new AttributedClass();
             break;
+
           case CreationHints.Gipoci82:
             _return = new Siyova16();
             break;
@@ -87,6 +99,7 @@ namespace TP.DataStreams
         return _return;
       }
     }
+
     private static void GoTest(Type objectType)
     {
       Object[] _attribute = objectType.GetCustomAttributes(typeof(CustomAttribute), false);
@@ -95,8 +108,8 @@ namespace TP.DataStreams
       Assert.IsNotNull(_expectedAttribute);
       Assert.AreEqual<string>("Description of the class", _expectedAttribute.Description);
     }
-    #endregion
 
+    #endregion test instrumentation
   }
 }
 

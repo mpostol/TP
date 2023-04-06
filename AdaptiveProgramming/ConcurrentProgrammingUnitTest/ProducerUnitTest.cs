@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -15,7 +19,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
   [TestClass]
   public class ProducerUnitTest
   {
-
     [TestMethod]
     public void TPAReadKeyFromKeyboardBufferAsyncTest()
     {
@@ -35,6 +38,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         Assert.IsTrue(_counter > 1000000);
       }
     }
+
     [TestMethod]
     public void APMReadKeyFromKeyboardBuffer()
     {
@@ -54,6 +58,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         Assert.IsTrue(_counter > 1000000);
       }
     }
+
     [TestMethod]
     public void EAPReadKeyFromKeyboardBufferAsyncTest()
     {
@@ -73,6 +78,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         Assert.IsTrue(_counter > 50000, $"Counter = {_counter}");
       }
     }
+
     private class ProductFactory : IProductFactory<TestingClass>
     {
       public TestingClass Create()
@@ -80,6 +86,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         return new TestingClass();
       }
     }
+
     private class TestingClass { }
   }
 }

@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.ComponentModel;
@@ -13,7 +17,6 @@ namespace TPA.Reflection.Execution
 {
   internal class DataBinding
   {
-
     public DataBinding(INotifyPropertyChanged dataSource, string sourcePropertyName, object consumer, string consumerPropertyName)
     {
       if (dataSource == null)
@@ -32,19 +35,22 @@ namespace TPA.Reflection.Execution
     }
 
     #region private
+
     private readonly PropertyInfo m_source;
     private readonly object m_consumer;
     private readonly PropertyInfo m_consumerProperty;
+
     private void OnPropertyChangedAction(object sender, PropertyChangedEventArgs args)
     {
       if (args.PropertyName == m_source.Name)
         UpdateProperty(sender);
     }
+
     private void UpdateProperty(object dataSource)
     {
       m_consumerProperty.SetValue(m_consumer, m_source.GetValue(dataSource));
     }
-    #endregion
 
+    #endregion private
   }
 }

@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Reactive.Concurrency;
@@ -18,24 +22,29 @@ namespace TPD.AsynchronousProgramming
     {
       Counter = counter;
     }
+
     public long Counter
     {
       get;
       private set;
     }
   }
-  public class ReactiveTimer: IDisposable
-  {
 
+  public class ReactiveTimer : IDisposable
+  {
     #region constructor
+
     public ReactiveTimer(TimeSpan period)
     {
       Period = period;
     }
-    #endregion
+
+    #endregion constructor
 
     #region API
+
     public event EventHandler<TickEventArgs> Tick;
+
     //What happens after recalling Start ??
     public void Start()
     {
@@ -44,15 +53,19 @@ namespace TPD.AsynchronousProgramming
       m_TimerSubscription = _TimerObservable.ObserveOn(Scheduler.Default).Subscribe(c => RaiseTick(c));
       //m_TimerSubscription = _TimerObservable.ObserveOn(DispatcherScheduler.Current).Subscribe(c => RaiseTick(c));
     }
+
     public TimeSpan Period
     {
       get;
       private set;
     }
-    #endregion
+
+    #endregion API
 
     #region private
-    IDisposable m_TimerSubscription = null;
+
+    private IDisposable m_TimerSubscription = null;
+
     private void RaiseTick(long counter)
     {
       // Make safe call
@@ -60,7 +73,9 @@ namespace TPD.AsynchronousProgramming
     }
 
     #region IDisposable Support
+
     private bool disposedValue = false; // To detect redundant calls
+
     protected virtual void Dispose(bool disposing)
     {
       if (!disposedValue)
@@ -89,8 +104,9 @@ namespace TPD.AsynchronousProgramming
       // TODO: uncomment the following line if the finalizer is overridden above.
       // GC.SuppressFinalize(this);
     }
-    #endregion
-    #endregion
 
+    #endregion IDisposable Support
+
+    #endregion private
   }
 }

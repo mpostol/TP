@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,7 +17,6 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
 {
   public static class LinqQuerySyntaxExamples
   {
-
     public static string ForeachExample()
     {
       string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
@@ -23,6 +26,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
           _wordQuery.Add(_item);
       return string.Join(";", _wordQuery.ToArray());
     }
+
     public static string QuerySyntax()
     {
       string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
@@ -41,6 +45,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
       _words[2] = "pear";
       return string.Join(";", _wordQuery.ToArray());
     }
+
     public static string AnonymousType()
     {
       Customer[] customers = new Customer[] { new Customer() { City = "Phoenix", Name = "Name1", Revenue=11.0E3F  },
@@ -53,6 +58,5 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
                            select new { _customer.Name, _customer.Revenue };
       return string.Join("; ", _customerQuery.Select(x => $"{x.Name}:{x.Revenue.ToString("F", CultureInfo.InvariantCulture)}").ToArray<string>());
     }
-
   }
 }

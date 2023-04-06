@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -29,6 +33,7 @@ namespace TPA.Reflection.UnitTest
       Assert.IsNotNull(ReflectorTestClass.Reflector.MyNamespace);
       Assert.AreEqual<int>(4, ReflectorTestClass.Reflector.Namespaces.Count);
     }
+
     [TestMethod]
     public void AssemblyNameTest()
     {
@@ -36,6 +41,7 @@ namespace TPA.Reflection.UnitTest
       //Reflector _reflector = new Reflector(m_TestAssemblyName);
       //Assert.AreEqual(Path.GetFileName(m_TestAssemblyName), _reflector.m_AssemblyModel.m_Name);
     }
+
     [TestMethod]
     public void CircularReferencesShouldNotCreateNewObjects()
     {
@@ -43,6 +49,7 @@ namespace TPA.Reflection.UnitTest
       Assert.IsTrue(true);
       // New objects are always created for current reflector model
     }
+
     [TestMethod]
     public void AbstractClassTest()
     {
@@ -50,6 +57,7 @@ namespace TPA.Reflection.UnitTest
       Assert.AreEqual(AbstractENum.Abstract, abstractClass.m_Modifiers.Item3);
       Assert.AreEqual(AbstractENum.Abstract, abstractClass.m_Methods.Single(x => x.m_Name == "AbstractMethod").m_Modifiers.Item2);
     }
+
     [TestMethod]
     public void ClassWithAttributesTest()
     {
@@ -57,12 +65,14 @@ namespace TPA.Reflection.UnitTest
       Assert.AreEqual(1, attributeClass.m_Attributes.Count<CustomAttributeData>());
       //TypeMetaData lacks Fields info
     }
+
     [TestMethod]
     public void DerivedClassTest()
     {
       TypeMetadata derivedClass = ReflectorTestClass.Reflector.MyNamespace.m_Types.Single(x => x.m_typeName == "DerivedClass");
       Assert.IsNotNull(derivedClass.m_BaseType);
     }
+
     [TestMethod]
     public void EnumTest()
     {
@@ -70,6 +80,7 @@ namespace TPA.Reflection.UnitTest
       Assert.IsTrue(true);
       //No information about enums in NamespaceMetaData
     }
+
     [TestMethod]
     public void GenericClassTest()
     {
@@ -82,6 +93,7 @@ namespace TPA.Reflection.UnitTest
       Assert.AreEqual<string>("T", genericClass.m_Methods.Single<MethodMetadata>(x => x.m_Name == "GenericMethod").m_ReturnType.m_typeName);
       //TypeMetaData lacks Fields info
     }
+
     [TestMethod]
     public void InterfaceTest()
     {
@@ -90,6 +102,7 @@ namespace TPA.Reflection.UnitTest
       Assert.AreEqual<AbstractENum>(AbstractENum.Abstract, interfaceClass.m_Modifiers.Item3);
       Assert.AreEqual<AbstractENum>(AbstractENum.Abstract, interfaceClass.m_Methods.Single<MethodMetadata>(x => x.m_Name == "MethodA").m_Modifiers.Item2);
     }
+
     [TestMethod]
     public void ImplementedInterfaceTest()
     {
@@ -99,12 +112,14 @@ namespace TPA.Reflection.UnitTest
       foreach (MethodMetadata method in _interfaceClass.m_Methods)
         Assert.IsNotNull(implementedInterfaceClass.m_Methods.SingleOrDefault(x => x.m_Name == method.m_Name));
     }
+
     [TestMethod]
     public void Linq2SQLClassTest()
     {
       Assert.IsTrue(true);
       //No information about internal classes in NamespaceMetaData
     }
+
     [TestMethod]
     public void NestedClassTest()
     {
@@ -112,6 +127,7 @@ namespace TPA.Reflection.UnitTest
       Assert.IsTrue(true);
       // TypeMetaData doesn't store information about private nested types (it does about public)
     }
+
     [TestMethod]
     public void StaticClassTest()
     {
@@ -120,6 +136,7 @@ namespace TPA.Reflection.UnitTest
       // no information about class/property being static
       // TypeMetaData lacks Fields info
     }
+
     [TestMethod]
     public void StructureTest()
     {
@@ -128,23 +145,27 @@ namespace TPA.Reflection.UnitTest
           .m_Types.Single<TypeMetadata>(x => x.m_typeName == "Structure");
       Assert.AreEqual<TypeMetadata.TypeKind>(TypeMetadata.TypeKind.StructType, structure.m_TypeKind);
     }
+
     private class ReflectorTestClass : Reflector
     {
       internal static ReflectorTestClass Reflector => m_Reflector.Value;
       internal Dictionary<string, NamespaceMetadata> Namespaces;
       internal NamespaceMetadata MyNamespace { get; private set; }
+
       internal ReflectorTestClass() : base(TestAssemblyName)
       {
         Namespaces = this.m_AssemblyModel.m_Namespaces.ToDictionary<NamespaceMetadata, string>(x => x.m_NamespaceName);
         MyNamespace = Namespaces.ContainsKey(m_NamespaceName) ? Namespaces["TPA.ApplicationArchitecture.Data"] : null;
       }
+
       internal const string TestAssemblyName = @"Instrumentation\TPA.ApplicationArchitecture.dll";
 
       #region private
+
       private const string m_NamespaceName = "TPA.ApplicationArchitecture.Data";
       private static Lazy<ReflectorTestClass> m_Reflector = new Lazy<ReflectorTestClass>(() => new ReflectorTestClass());
-      #endregion
 
+      #endregion private
     }
   }
 }

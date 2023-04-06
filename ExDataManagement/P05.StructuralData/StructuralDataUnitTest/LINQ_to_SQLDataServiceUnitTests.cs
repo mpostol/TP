@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -20,7 +24,6 @@ namespace TP.StructuralDataUnitTest
   [DeploymentItem(@"Instrumentation\CDCatalog.mdf", @"Instrumentation")]
   public class LINQ_to_SQLDataServiceUnitTests
   {
-
     [ClassInitialize]
     public static void ClassInitializeMethod(TestContext context)
     {
@@ -31,6 +34,7 @@ namespace TP.StructuralDataUnitTest
       Assert.IsTrue(_databaseFile.Exists, $"{Environment.CurrentDirectory}");
       m_ConnectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={_DBPath};Integrated Security = True; Connect Timeout = 30;";
     }
+
     [TestMethod]
     public void CatalogConstructorTest()
     {
@@ -51,6 +55,7 @@ namespace TP.StructuralDataUnitTest
         }
       }
     }
+
     [TestMethod]
     public void FilterPersonsByLastName_ForEachTest()
     {
@@ -73,6 +78,7 @@ namespace TP.StructuralDataUnitTest
         }
       }
     }
+
     [TestMethod]
     public void FilterPersonsByLastName_QuerySyntaxTest()
     {
@@ -95,6 +101,7 @@ namespace TP.StructuralDataUnitTest
         }
       }
     }
+
     [TestMethod]
     public void FilterPersonsByLastName_MethodSyntaxTest()
     {
@@ -117,6 +124,7 @@ namespace TP.StructuralDataUnitTest
         }
       }
     }
+
     [TestMethod]
     public void FilterPersonsByLastName_AnonymousTypeClass()
     {
@@ -134,6 +142,7 @@ namespace TP.StructuralDataUnitTest
         }
       }
     }
+
     [TestMethod]
     public void ObjectRelationalMappingTest()
     {
@@ -155,8 +164,10 @@ namespace TP.StructuralDataUnitTest
     }
 
     #region instrumentation
+
     // Connection string defined in LinqToSqlLibTests project settings.
     private static string m_ConnectionString;
-    #endregion
+
+    #endregion instrumentation
   }
 }
