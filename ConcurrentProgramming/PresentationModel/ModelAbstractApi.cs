@@ -22,27 +22,14 @@ namespace TP.ConcurrentProgramming.PresentationModel
 
   public class BallChaneEventArgs : EventArgs
   {
-    public IBall Ball { get; set; }
+    public IBall Ball { get; internal set; }
   }
 
-  public interface INotifyBallChanged
+  public abstract class ModelAbstractApi : IObservable<IBall>, IDisposable
   {
-    //     Occurs when a property value changes.
-    /// <summary>
-    /// Occurs when a ball value changes..
-    /// </summary>
-    event EventHandler<BallChaneEventArgs> BallChanged;
-  }
-
-  public abstract class ModelAbstractApi : IObservable<IBall>, IDisposable  //, INotifyBallChanged,
-  {
-    //public abstract event EventHandler<BallChaneEventArgs> BallChanged;
-
-    public static ModelAbstractApi CreateApi() //EventHandler<BallChaneEventArgs> eventHandler)
+    public static ModelAbstractApi CreateApi()
     {
       PresentationModel model = new PresentationModel();
-      //model.BallChanged += eventHandler;
-      //model.CraeteBalls();
       return model;
     }
 
