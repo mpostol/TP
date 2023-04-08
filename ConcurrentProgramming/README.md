@@ -1,4 +1,4 @@
-# Concurrent Programming <!-- omit in toc -->
+# Concurrent Programming
 
 ## Program life cycle
 
