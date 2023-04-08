@@ -1,17 +1,26 @@
-﻿
+﻿//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
   [TestClass]
   public class ReactiveTimerUnitTest
   {
-
     [TestMethod]
     public void CheckWhetherTickRaised()
     {
@@ -28,7 +37,6 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         bool _error = false;
         using (IDisposable _observer = _firstFiveTickObservable.Subscribe(x => _accumulator += x, _ => _error = true, () => _completed = true))
         {
-
           System.Threading.Thread.Sleep(2000);
           Assert.AreEqual<long>(0, _accumulator);
           Assert.IsFalse(_completed);
@@ -50,6 +58,5 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
         Assert.IsFalse(_error);
       }
     }
-
   }
 }

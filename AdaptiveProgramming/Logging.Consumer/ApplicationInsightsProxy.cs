@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
@@ -15,18 +19,12 @@ using System.Diagnostics;
 
 namespace TPA.Logging.Consumer
 {
-
   [Export(typeof(ITelemetry))]
   [PartCreationPolicy(CreationPolicy.Shared)]
-  /// <summary>
-  /// The wrapper of the <see cref="TelemetryClient"/> sending events, metrics and other telemetry to the Application Insights service.
-  /// Learn more:
-  /// https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics
-  /// </summary>
-  sealed public class ApplicationInsightsTelemetry : ITelemetry
+  public sealed class ApplicationInsightsTelemetry : ITelemetry
   {
-
     #region Constructors
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ApplicationInsightsTelemetry"/> class.
     /// </summary>
@@ -40,17 +38,21 @@ namespace TPA.Logging.Consumer
       TelemetryConfiguration = new TelemetryConfiguration(instrumentationKey);
       TelemetryClient = new TelemetryClient(TelemetryConfiguration);
     }
-    #endregion
+
+    #endregion Constructors
 
     #region ITelemetryTracker methods
+
     public void StopTrackRequest(string requestName, Stopwatch stopwatch)
     {
       throw new NotImplementedException();
     }
+
     public void TrackDependency(string dependencyTypeName, string target, string dependencyName, string data, DateTimeOffset startTime, TimeSpan duration, string resultCode, bool success)
     {
       TelemetryClient.TrackDependency(dependencyTypeName, target, dependencyName, data, startTime, duration, resultCode, success);
     }
+
     /// <summary>
     /// In Application Insights, a custom event is a data point that you can display in Metrics Explorer as an aggregated count, and in Diagnostic Search as individual occurrences. (It isn't related to MVC or other framework "events.")
     /// Insert TrackEvent calls in your code to count various events.How often users choose a particular feature, how often they achieve particular goals, or maybe how often they make particular types of mistakes.
@@ -70,12 +72,14 @@ namespace TPA.Logging.Consumer
         this.TrackException(e);
       }
     }
+
     public void TrackException(Exception exception, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null)
     {
       TelemetryClient.TrackException(exception, properties, metrics);
     }
+
     /// <summary>
-    /// Application Insights can chart metrics that are not attached to particular events. For example, you could monitor a queue length at regular intervals. 
+    /// Application Insights can chart metrics that are not attached to particular events. For example, you could monitor a queue length at regular intervals.
     /// With metrics, the individual measurements are of less interest than the variations and trends, and so statistical charts are useful.
     /// https://docs.microsoft.com/en-us/azure/application-insights/app-insights-how-do-i
     /// </summary>
@@ -93,6 +97,7 @@ namespace TPA.Logging.Consumer
         this.TrackException(e);
       }
     }
+
     public void TrackPageView(string name)
     {
       try
@@ -104,6 +109,7 @@ namespace TPA.Logging.Consumer
         this.TrackException(e);
       }
     }
+
     /// <summary>
     /// Send information about a request handled by the application.
     /// </summary>
@@ -118,52 +124,58 @@ namespace TPA.Logging.Consumer
         this.TrackException(e);
       }
     }
+
     public void TrackTrace(string message, IDictionary<string, string> properties)
     {
       TelemetryClient.TrackTrace(message, properties);
     }
-    #endregion
+
+    #endregion ITelemetryTracker methods
 
     #region Fields
+
     private TelemetryConfiguration TelemetryConfiguration { get; set; }
     private TelemetryClient TelemetryClient { get; set; }
-    #endregion
 
+    #endregion Fields
   }
 
   public interface ITelemetry
   {
-
     /// <summary>
     /// Pages, screens, blades, or forms
     /// </summary>
     /// <param name="name"></param>
     void TrackPageView(string name);
+
     /// <summary>
     /// User actions and other events. Used to track user behavior or to monitor performance.
     /// </summary>
     void TrackEvent(string eventName, Dictionary<string, string> properties = null, IDictionary<string, double> metrics = null);
+
     /// <summary>
     /// Performance measurements such as queue lengths not related to specific events.
     /// </summary>
     void TrackMetric(string name, double value, IDictionary<string, string> properties = null);
+
     /// <summary>
     /// Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces.
     /// </summary>
     void TrackException(Exception exception, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null);
+
     /// <summary>
     /// Logging the frequency and duration of server requests for performance analysis.
     /// </summary>
     void TrackRequest(string name, DateTimeOffset startTime, TimeSpan duration, string responseCode, bool success);
+
     /// <summary>
     /// Diagnostic log messages. You can also capture third-party logs.
     /// </summary>
     void TrackTrace(string message, IDictionary<string, string> properties);
+
     /// <summary>
     /// Logging the duration and frequency of calls to external components that your app depends on.
     /// </summary>
     void TrackDependency(string dependencyTypeName, string target, string dependencyName, string data, DateTimeOffset startTime, TimeSpan duration, string resultCode, bool success);
-
   }
-
 }

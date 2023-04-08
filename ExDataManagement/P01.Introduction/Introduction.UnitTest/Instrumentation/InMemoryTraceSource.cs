@@ -1,10 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
-
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +20,7 @@ namespace TP.Introduction.Instrumentation
     {
       _callStack.Add(id);
     }
+
     internal void CheckConsistency()
     {
       Assert.AreEqual<int>(4, _callStack.Count);
@@ -25,6 +29,7 @@ namespace TP.Introduction.Instrumentation
       Assert.AreEqual<int>("Charlie".GetHashCode(), _callStack[2]);
       Assert.AreEqual<int>("Delta".GetHashCode(), _callStack[3]);
     }
+
     internal List<int> _callStack = new List<int>();
   }
 }

@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Collections.Generic;
@@ -15,6 +19,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
   public class CriticalSectionExample
   {
     #region To be moved to UT
+
     public void StartThreads(bool useMonitor)
     {
       Thread[] _Threads = new Thread[2];
@@ -28,6 +33,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       foreach (Thread _thread in _Threads)
         _thread.Join();
     }
+
     public void StartThreadsUsingThreadPool(bool useMonitor)
     {
       for (int i = 0; i < 2; i++)
@@ -39,6 +45,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       //TODO must be improved it could cause race condition
       Thread.Sleep(1000);
     }
+
     public void StartThreadsUsingTask(bool useMonitor)
     {
       List<Task> _tasksInProgress = new List<Task>();
@@ -51,15 +58,19 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
       //TODO _tasksInProgress is always empty.
       Task.WaitAll(_tasksInProgress.ToArray());
     }
-    #endregion
+
+    #endregion To be moved to UT
 
     #region Monitor methods
+
     public int LockedNumber; // variable used to demonstrate how monitors works
+
     public void NoMonitorMethod(object state)
     {
       for (int i = 0; i < 1000000; ++i)
         ++LockedNumber;
     }
+
     public void MonitorMethod(object state)
     {
       bool lockWasTaken = false;
@@ -75,6 +86,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
           Monitor.Exit(this);
       }
     }
+
     public void LockMethod(object state)
     {
       lock (this)
@@ -83,6 +95,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
           ++LockedNumber;
       }
     }
+
     public void MonitorMethodWithTimeout(object state)
     {
       bool[] _parametersObjects = state as bool[]; // a flag used for testing
@@ -102,6 +115,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
           _parametersObjects[0] = true;
       }
     }
+
     // IMPORTANT: explaining the difference between ready queue and waiting queue
     public void WaitMethod(object state)
     {
@@ -114,6 +128,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
           --LockedNumber;
       }
     }
+
     public void PulseMethod(object state)
     {
       lock (this)
@@ -123,22 +138,27 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         System.Threading.Monitor.Pulse(this);
       }
     }
-    #endregion
+
+    #endregion Monitor methods
 
     #region private
+
     private readonly object m_SyncObject = new object();
     private int m_IntegerA = 0;
     private int m_IntegerB = 0;
     private Random m_Random = new Random();
+
     private void ThreadFunc(object parameter)
     {
       DataProcessingSimulator();
     }
+
     private void ThreadFuncWithMonitor(object parameter)
     {
       lock (m_SyncObject)
         DataProcessingSimulator();
     }
+
     private void DataProcessingSimulator()
     {
       for (int i = 0; i < 1000000; i++)
@@ -149,16 +169,18 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming
         IsConsistent &= m_IntegerA + m_IntegerB == 0;
       }
     }
-    #endregion
+
+    #endregion private
 
     #region UT Instrumentation
+
     /// <summary>
     /// Gets a value indicating whether this instance is consistent.
     /// </summary>
     /// <remarks>Always must be true.</remarks>
     /// <value><c>true</c> if this instance is consistent; otherwise, <c>false</c>.</value>
     internal bool IsConsistent { get; private set; } = true;
-    #endregion
 
+    #endregion UT Instrumentation
   }
 }

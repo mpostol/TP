@@ -1,10 +1,15 @@
-<!--    //____________________________________________________________________________
+<!--
+    //____________________________________________________________________________________________________________________________________
     //
-    //  Copyright (C) 2018, Mariusz Postol LODZ POLAND.
+    //  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
     //
-    //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-    //____________________________________________________________________________-->
-
+    //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+    //
+    //  https://github.com/mpostol/TP/discussions/182
+    //
+    //  by introducing yourself and telling us what you do with this community.
+    //_____________________________________________________________________________________________________________________________________
+-->
 # Message
 
 - Each file content is a stream of bytes, consequently, it is also a stream of bits.

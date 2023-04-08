@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.Collections.Generic;
@@ -12,22 +16,24 @@ using System.IO;
 
 namespace TPA.Reflection.DynamicType
 {
-  public enum StringSearchOption { Contains, StartsWith, EndsWith }
+  public enum StringSearchOption
+  { Contains, StartsWith, EndsWith }
 
   public class ReadOnlyFile : DynamicObject
   {
-
     public ReadOnlyFile(string filePath)
     {
       if (!File.Exists(filePath))
         throw new FileLoadException("File path does not exist.");
       p_filePath = filePath;
     }
+
     public override bool TryGetMember(GetMemberBinder binder, out object result)
     {
       result = GetPropertyValue(binder.Name);
       return result == null ? false : true;
     }
+
     public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
     {
       StringSearchOption _stringSearchOption = StringSearchOption.StartsWith;
@@ -55,6 +61,7 @@ namespace TPA.Reflection.DynamicType
     }
 
     private string p_filePath;
+
     private IEnumerable<string> GetPropertyValue(string propertyName, StringSearchOption StringSearchOption = StringSearchOption.StartsWith, bool trimSpaces = true)
     {
       StreamReader _sr = null;
@@ -75,9 +82,11 @@ namespace TPA.Reflection.DynamicType
             case StringSearchOption.StartsWith:
               if (_testLine.StartsWith(propertyName.ToUpper())) { _results.Add(_line); }
               break;
+
             case StringSearchOption.Contains:
               if (_testLine.Contains(propertyName.ToUpper())) { _results.Add(_line); }
               break;
+
             case StringSearchOption.EndsWith:
               if (_testLine.EndsWith(propertyName.ToUpper())) { _results.Add(_line); }
               break;
@@ -95,6 +104,5 @@ namespace TPA.Reflection.DynamicType
       }
       return _results;
     }
-
   }
 }

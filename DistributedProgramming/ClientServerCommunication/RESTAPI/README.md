@@ -1,4 +1,4 @@
-﻿# Notes
+﻿# REST API
 
 This example is derived from [REST client; MSDN Documentation][RESTClient]
 A practical use case is covered by the project [M. Postol; Object-Oriented Internet; Global Data Discovery][OOI-GDD]

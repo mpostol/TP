@@ -1,20 +1,22 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 
 namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
 {
-
   [TestClass]
   public class CriticalSectionExampleUnitTest
   {
-
     [TestMethod]
     public void CheckWhetherThreadsAreNotSynchronized()
     {
@@ -22,6 +24,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       m_ThreadsExample.StartThreads(false);
       Assert.IsFalse(m_ThreadsExample.IsConsistent);
     }
+
     [TestMethod]
     public void CheckWhetherThreadsAreSynchronized()
     {
@@ -29,6 +32,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       m_ThreadsExample.StartThreads(true);
       Assert.IsTrue(m_ThreadsExample.IsConsistent);
     }
+
     [TestMethod]
     public void CheckWhetherThreadsUsingThreadPoolAreNotSynchronized()
     {
@@ -36,6 +40,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       m_ThreadsExample.StartThreadsUsingThreadPool(false);
       Assert.IsFalse(m_ThreadsExample.IsConsistent);
     }
+
     [TestMethod]
     public void CheckWhetherThreadsUsingThreadPoolAreSynchronized()
     {
@@ -43,6 +48,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       m_ThreadsExample.StartThreadsUsingThreadPool(true);
       Assert.IsTrue(m_ThreadsExample.IsConsistent);
     }
+
     [TestMethod]
     public void MonitorMethodTest()
     {
@@ -53,6 +59,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       const int _expectedCycles = 2 * 1000000; // twice the number of iterations
       Assert.AreEqual(_expectedCycles, m_ThreadsExample.LockedNumber);
     }
+
     [TestMethod]
     public void LockMethodTest()
     {
@@ -62,6 +69,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       Thread.Sleep(SleepTime); // wait for threads
       Assert.AreEqual(2 * 1000000, m_ThreadsExample.LockedNumber);
     }
+
     [TestMethod]
     public void NoMonitorMethodTest()
     {
@@ -71,17 +79,19 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       Thread.Sleep(SleepTime); // wait for threads
       Assert.AreNotEqual(2 * 1000000, m_ThreadsExample.LockedNumber);
     }
+
     [TestMethod]
     public void MonitorMethodWithTimeoutTest()
     {
       CriticalSectionExample m_ThreadsExample = new CriticalSectionExample();
       object tab = new bool[] { false };
       ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethodWithTimeout, tab);
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethodWithTimeout, tab); 
+      ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethodWithTimeout, tab);
       Assert.AreEqual(false, ((bool[])tab)[0]);
       Thread.Sleep(2000); // 2 seconds - wait the timeout
       Assert.AreEqual(true, ((bool[])tab)[0]);
     }
+
     [TestMethod]
     public void WaitPulseMethodsTest()
     {
@@ -92,6 +102,7 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
       Thread.Sleep(SleepTime); // wait for threads
       Assert.AreEqual(0, m_ThreadsExample.LockedNumber);
     }
+
     [TestMethod()]
     public void SynchronizationAttributeNoMonitorMethodTest()
     {
@@ -104,6 +115,5 @@ namespace TPA.AsynchronousBehavior.ConcurrentProgramming.UnitTest
     }
 
     private const int SleepTime = 512; // ms
-
   }
 }

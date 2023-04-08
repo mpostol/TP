@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -15,12 +19,12 @@ namespace TP.FunctionalProgramming
   [TestClass]
   public class AnonymousFunctionsUnitTest
   {
-
     [TestMethod]
     public void StringIsLongPredicateTest()
     {
       Assert.IsTrue(AnonymousFunctions.StringIsLongPredicate("g5F|z*tC&yKJU$"));
     }
+
     [TestMethod]
     public void NamedMethodCallBackTest()
     {
@@ -30,6 +34,7 @@ namespace TP.FunctionalProgramming
       _newInstance.ConsistencyCheck(new AnonymousFunctions.CallBackTestDelegate(_callBackResult.CallBackTestResult));
       Assert.IsTrue(_callBackResult.m_TestResult);
     }
+
     [TestMethod]
     public void AnonymousMethodTest()
     {
@@ -40,14 +45,16 @@ namespace TP.FunctionalProgramming
       _newInstance.ConsistencyCheck(_CallBackTestResult);
       Assert.IsTrue(_testResult);
     }
+
     [TestMethod]
     public void LambdaCallTest()
     {
       AnonymousFunctions _newInstance = new AnonymousFunctions();
       bool _testResult = false;
-      _newInstance.ConsistencyCheck( _result => _testResult = _result);
+      _newInstance.ConsistencyCheck(_result => _testResult = _result);
       Assert.IsTrue(_testResult);
     }
+
     [TestMethod]
     public void LambdaSyntaxTest()
     {
@@ -60,6 +67,7 @@ namespace TP.FunctionalProgramming
       const int _tolerance = 130;
       Assert.IsTrue(_count > _length / 2 - _tolerance && _count < _length / 2 + _tolerance, $"{nameof(_count)}={_count}");
     }
+
     [TestMethod]
     public void DelegateVsExpressionTest()
     {
@@ -74,6 +82,7 @@ namespace TP.FunctionalProgramming
       Assert.IsTrue(lambda.Compile()(4));
       Assert.IsFalse(lambda.Compile()(5));
     }
+
     [TestMethod]
     public void EventTestMethod()
     {
@@ -87,14 +96,15 @@ namespace TP.FunctionalProgramming
       Assert.AreEqual<State>(State.Idle, _currentState);
       //_newInstance.OnStateChanged(_newInstance, _newInstance.CurrentStateHandler.CurrentState);  //Error CS0070  The event 'AnonymousFunctions.OnStateChanged' can only appear on the left hand side of += or -= (except when used from within the type 'AnonymousFunctions')
     }
+
     private class CallBackTestClass
     {
       internal bool m_TestResult = false;
+
       internal void CallBackTestResult(bool returnResult)
       {
         m_TestResult = returnResult;
       }
     }
-
   }
 }

@@ -1,9 +1,13 @@
-//____________________________________________________________________________
+//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.CSharp;
 using System;
@@ -19,8 +23,8 @@ namespace TPA.Reflection.Compilation
   /// </summary>
   public class CodeBuilder : CodeBuilderBase
   {
-
     #region private
+
     /// <summary>
     /// Main driving routine for building a class
     /// </summary>
@@ -35,7 +39,7 @@ namespace TPA.Reflection.Compilation
       CodeNamespace myNamespace = new CodeNamespace("ExpressionEvaluator");
       myNamespace.Imports.Add(new CodeNamespaceImport("System"));
       myNamespace.Imports.Add(new CodeNamespaceImport("System.Windows.Forms"));
-      //Build the class declaration and member variables			
+      //Build the class declaration and member variables
       CodeTypeDeclaration classDeclaration = new CodeTypeDeclaration
       {
         IsClass = true,
@@ -72,6 +76,7 @@ namespace TPA.Reflection.Compilation
       sw.Flush();
       sw.Close();
     }
+
     private CodeMemberField FieldVariable(string fieldName, string typeName, MemberAttributes accessLevel)
     {
       CodeMemberField field = new CodeMemberField(typeName, fieldName)
@@ -80,6 +85,7 @@ namespace TPA.Reflection.Compilation
       };
       return field;
     }
+
     private CodeMemberField FieldVariable(string fieldName, Type type, MemberAttributes accessLevel)
     {
       CodeMemberField field = new CodeMemberField(type, fieldName)
@@ -88,6 +94,7 @@ namespace TPA.Reflection.Compilation
       };
       return field;
     }
+
     /// <summary>
     /// Very simplistic getter/setter properties
     /// </summary>
@@ -109,6 +116,7 @@ namespace TPA.Reflection.Compilation
       _Property.SetStatements.Add(new CodeAssignStatement(new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), internalName), new CodePropertySetValueReferenceExpression()));
       return _Property;
     }
+
     /// <summary>
     /// Runs the Calculate method in our on-the-fly assembly
     /// </summary>
@@ -145,9 +153,11 @@ namespace TPA.Reflection.Compilation
         Console.WriteLine("An exception occurred while executing the script: {0}", ex.Message);
       }
     }
+
     #endregion private
 
     #region public
+
     /// <summary>
     /// Initializes a new instance of the <see cref="CodeBuilder"/> class.
     /// </summary>
@@ -158,11 +168,13 @@ namespace TPA.Reflection.Compilation
       BuildClass(expression);
       PerformCompilation();
     }
+
     /// <summary>
     /// Gets the output text from last run.
     /// </summary>
     /// <value>The output text from last run.</value>
     public string OutputTextFromLastRun { get; private set; } = "";
+
     /// <summary>
     /// Runs the code.
     /// </summary>
@@ -176,7 +188,7 @@ namespace TPA.Reflection.Compilation
         throw new Exception("Cannot Run The Code:" + SourceCode + "\r\n error:" + ErrorText);
       }
     }
-    #endregion public
 
+    #endregion public
   }
 }

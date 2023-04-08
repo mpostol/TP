@@ -114,3 +114,16 @@ Project settings:
 * [LINQ to SQL tools in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/data-tools/linq-to-sql-tools-in-visual-studio2?view=vs-2017)
 * [LINQ to SQL](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/)
 * [Entity Framework Documentation](https://docs.microsoft.com/en-us/ef/)
+
+<!--
+//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+-->

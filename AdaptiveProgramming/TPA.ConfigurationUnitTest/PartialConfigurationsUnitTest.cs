@@ -1,7 +1,17 @@
-﻿
-using System.Collections.Generic;
+﻿//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using TPA.Configuration.MicrosoftExtensions;
 
 namespace TPA.Configuration.UnitTest
@@ -20,6 +30,7 @@ namespace TPA.Configuration.UnitTest
       Assert.AreEqual<int>(0, _configuration.GetValue<int>("MainWindow:Left"));
       Assert.AreEqual<int>(80, _configuration.GetValue<int>("MainWindow:ScreenBufferSize", 80)); //AppConfiguration:MainWindow:ScreenBufferSize is absent in the configuration
     }
+
     [TestMethod]
     public void GetSwitchMappingsMyTestMethod()
     {
@@ -30,6 +41,7 @@ namespace TPA.Configuration.UnitTest
       Assert.AreEqual<string>($"MainWindow:Top", _mappings["-Top"]);
       Assert.AreEqual<string>($"MainWindow:Left", _mappings["-Left"]);
     }
+
     [TestMethod]
     public void GetApplicationConfigurationTestMethod()
     {
@@ -42,6 +54,7 @@ namespace TPA.Configuration.UnitTest
       Assert.AreEqual<int>(0, _configuration.MainWindow.Top);
       Assert.AreEqual<int>(0, _configuration.MainWindow.Left);
     }
+
     [TestMethod]
     public void GetConfigurationWithCommanLineTestMethod()
     {
@@ -53,6 +66,7 @@ namespace TPA.Configuration.UnitTest
       Assert.AreEqual<int>(43, _configuration.GetValue<int>("MainWindow:Left")); //the value has been overwritten by the args
       Assert.AreEqual<int>(80, _configuration.GetValue<int>("MainWindow:ScreenBufferSize", 80)); //AppConfiguration:MainWindow:ScreenBufferSize is absent in the configuration
     }
+
     [TestMethod]
     public void GetExtendedConfigurationWithCommanLineTestMethod()
     {

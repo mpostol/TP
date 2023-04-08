@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.IO;
@@ -14,7 +18,6 @@ using System.Xml;
 
 namespace TP.DataStreams.Cryptography
 {
-
   public static class CryptographyHelpers
   {
     public static (string Hex, string Base64) CalculateSHA256(this string inputStream)
@@ -26,6 +29,7 @@ namespace TP.DataStreams.Cryptography
         return (BitConverter.ToString(hashValue), Convert.ToBase64String(hashValue, Base64FormattingOptions.InsertLineBreaks));
       }
     }
+
     public static void EncryptData(string inFileName, string outFileName, byte[] dESKey, byte[] dESIV, IProgress<long> progress)
     {
       //Create the file streams to handle the input and output files.
@@ -54,6 +58,7 @@ namespace TP.DataStreams.Cryptography
         }
       }
     }
+
     public static void DecryptData(string inCryptoFileName, string outFileName, byte[] dESKey, byte[] dESIV, IProgress<long> progress)
     {
       //Create the file streams to handle the input and output files.
@@ -79,6 +84,7 @@ namespace TP.DataStreams.Cryptography
         }
       }
     }
+
     /// <summary>
     /// Creates the RSA crypto service keys.
     /// </summary>
@@ -93,6 +99,7 @@ namespace TP.DataStreams.Cryptography
         return (_parameters, _public, _both);
       }
     }
+
     /// <summary>
     /// Sign and save an XML document.
     /// </summary>
@@ -104,13 +111,16 @@ namespace TP.DataStreams.Cryptography
     public static void SignSaveXml(this XmlDocument document, string rSAKeys, string fileName)
     {
       #region Check arguments
+
       if (document == null)
         throw new ArgumentException($"The {nameof(document)} parameter cannot be null");
       if (string.IsNullOrEmpty(rSAKeys))
         throw new ArgumentException($"The {nameof(rSAKeys)} parameter cannot be null");
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
-      #endregion
+
+      #endregion Check arguments
+
       using (RSACryptoServiceProvider _rSAProvider = new RSACryptoServiceProvider())
       {
         _rSAProvider.FromXmlString(rSAKeys);
@@ -134,6 +144,7 @@ namespace TP.DataStreams.Cryptography
       }
       document.Save(fileName);
     }
+
     /// <summary>
     /// Load and verify the signature of an XML file against an asymmetric RSA algorithm and return the document.
     /// </summary>
@@ -150,11 +161,14 @@ namespace TP.DataStreams.Cryptography
     public static XmlDocument LoadVerifyXml(string rsaKeys, string fileName)
     {
       #region Check arguments
+
       if (string.IsNullOrEmpty(rsaKeys))
         throw new ArgumentException($"The {nameof(rsaKeys)} parameter cannot be null");
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
-      #endregion
+
+      #endregion Check arguments
+
       (XmlDocument _document, SignedXml _signedXml) = LoadSignedXmlFile(fileName);
       using (RSACryptoServiceProvider _provider = new RSACryptoServiceProvider())
       {
@@ -164,17 +178,22 @@ namespace TP.DataStreams.Cryptography
       }
       return _document;
     }
+
     public static XmlDocument LoadVerifyXml(string fileName)
     {
       #region Check arguments
+
       if (string.IsNullOrEmpty(fileName))
         throw new ArgumentException($"The {nameof(fileName)} parameter cannot be null");
-      #endregion
+
+      #endregion Check arguments
+
       (XmlDocument _document, SignedXml _signedXml) = LoadSignedXmlFile(fileName);
       if (!_signedXml.CheckSignature())// Check the signature and return the result.
         throw new System.Security.Cryptography.CryptographicException($"Wrong signature of the document.");
       return _document;
     }
+
     private static (XmlDocument document, SignedXml signedXml) LoadSignedXmlFile(string fileName)
     {
       XmlDocument _document = new XmlDocument();

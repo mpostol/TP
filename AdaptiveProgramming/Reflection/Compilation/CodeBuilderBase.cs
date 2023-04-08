@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using Microsoft.CSharp;
 using System;
@@ -19,7 +23,6 @@ namespace TPA.Reflection.Compilation
   /// </summary>
   public class CodeBuilderBase
   {
-
     /// <summary>
     /// Create parameters for compiling
     /// </summary>
@@ -45,6 +48,7 @@ namespace TPA.Reflection.Compilation
       //              compilerParams.ReferencedAssemblies.Add(refAssembly);
       return compilerParams;
     }
+
     /// <summary>
     /// Compiles the code from the code string
     /// </summary>
@@ -55,7 +59,7 @@ namespace TPA.Reflection.Compilation
     private CompilerResults CompileCode(CSharpCodeProvider compiler, CompilerParameters parms, string source)
     {
       //actually compile the code
-      CompilerResults results = compiler.CompileAssemblyFromSource( parms, source); 
+      CompilerResults results = compiler.CompileAssemblyFromSource(parms, source);
       //Do we have any compiler errors?
       if (results.Errors.Count > 0)
       {
@@ -65,6 +69,7 @@ namespace TPA.Reflection.Compilation
       }
       return results;
     }
+
     /// <summary>
     /// Writes the output to the text box on the win form
     /// </summary>
@@ -74,6 +79,7 @@ namespace TPA.Reflection.Compilation
     {
       ErrorText += string.Format(txt, args) + "\r\n";
     }
+
     /// <summary>
     /// Compiles the c# into an assembly if there are no syntax errors
     /// </summary>
@@ -88,6 +94,7 @@ namespace TPA.Reflection.Compilation
       CompilerResults _results = CompileCode(compiler, parms, Source.ToString());
       return _results;
     }
+
     /// <summary>
     /// Performs the compilation.
     /// </summary>
@@ -109,6 +116,7 @@ namespace TPA.Reflection.Compilation
       Console.WriteLine(Source.ToString());
 #endif
     }
+
     /// <summary>
     /// Gets the compiled assembly.
     /// </summary>
@@ -125,21 +133,25 @@ namespace TPA.Reflection.Compilation
         throw new ArgumentException("Cannot Run The Code:" + SourceCode + "\r\n error:" + ErrorText);
       }
     }
+
     /// <summary>
     /// Gets the error text from last compilation or run.
     /// </summary>
     /// <value>The error text from last compilation or run.</value>
     public string ErrorText { get; private set; } = "";
+
     /// <summary>
     /// Gets the source code string builder object.
     /// </summary>
     /// <value>The source.</value>
     public StringBuilder Source { get; } = new StringBuilder();
+
     /// <summary>
     /// Gets the results of compilation.
     /// </summary>
     /// <value>The results.</value>
     public CompilerResults Results { get; private set; }
+
     /// <summary>
     /// Gets a value indicating whether this instance is ready to use.
     /// </summary>
@@ -147,11 +159,13 @@ namespace TPA.Reflection.Compilation
     /// 	<c>true</c> if this instance is ready to use; otherwise, <c>false</c>.
     /// </value>
     public bool IsReadyToUse { get; private set; } = false;
+
     /// <summary>
     /// Gets the referenced assemblies.
     /// </summary>
     /// <value>The referenced assemblies.</value>
     public StringCollection ReferencedAsseblies { get; } = new StringCollection();
+
     /// <summary>
     /// Gets the source code.
     /// </summary>

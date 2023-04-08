@@ -1,9 +1,13 @@
-﻿//____________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
-//____________________________________________________________________________
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
 
 using System;
 using System.IO;
@@ -17,8 +21,8 @@ namespace TP.DataStreams.Serialization
   /// </summary>
   public static class XmlFile
   {
-
     #region public
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject"/> and writes the XML document to a file.
     /// </summary>
@@ -34,28 +38,29 @@ namespace TP.DataStreams.Serialization
     /// or
     /// stylesheetName
     /// </exception>
-    public static void WriteXmlFile<type>( type dataObject, string path, FileMode mode, string stylesheetName )
+    public static void WriteXmlFile<type>(type dataObject, string path, FileMode mode, string stylesheetName)
     {
-      if ( string.IsNullOrEmpty( path ) )
+      if (string.IsNullOrEmpty(path))
         throw new ArgumentNullException(nameof(path));
-      if ( string.IsNullOrEmpty( stylesheetName ) )
-        throw new ArgumentNullException( nameof(stylesheetName) );
-      if ( dataObject == null )
-        throw new ArgumentNullException( nameof(dataObject) );
-      XmlSerializer _xmlSerializer = new XmlSerializer( typeof( type ) );
+      if (string.IsNullOrEmpty(stylesheetName))
+        throw new ArgumentNullException(nameof(stylesheetName));
+      if (dataObject == null)
+        throw new ArgumentNullException(nameof(dataObject));
+      XmlSerializer _xmlSerializer = new XmlSerializer(typeof(type));
       XmlWriterSettings _setting = new XmlWriterSettings()
       {
         Indent = true,
         IndentChars = "  ",
         NewLineChars = "\r\n"
       };
-      using ( FileStream _docStream = new FileStream( path, mode, FileAccess.Write ) )
+      using (FileStream _docStream = new FileStream(path, mode, FileAccess.Write))
       {
         XmlWriter _writer = XmlWriter.Create(_docStream, _setting);
-        _writer.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + String.Format( "href=\"{0}\"", stylesheetName ) );
-        _xmlSerializer.Serialize( _writer, dataObject );
+        _writer.WriteProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" " + String.Format("href=\"{0}\"", stylesheetName));
+        _xmlSerializer.Serialize(_writer, dataObject);
       }
     }
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject"/> and writes the XML document to a file.
     /// </summary>
@@ -63,11 +68,12 @@ namespace TP.DataStreams.Serialization
     /// <param name="dataObject">The object containing working data to be serialized and saved in the file.</param>
     /// <param name="path">A relative or absolute path for the file containing the serialized object.</param>
     /// <param name="mode">Specifies how the operating system should open a file.</param>
-    public static void WriteXmlFile<type>( type dataObject, string path, FileMode mode )
-      where type: IStylesheetNameProvider
+    public static void WriteXmlFile<type>(type dataObject, string path, FileMode mode)
+      where type : IStylesheetNameProvider
     {
       XmlFile.WriteXmlFile<type>(dataObject, path, mode, dataObject.StylesheetName);
     }
+
     /// <summary>
     /// Reads an XML document from the file <paramref name="path"/> and deserializes its content to returned object.
     /// </summary>
@@ -75,18 +81,18 @@ namespace TP.DataStreams.Serialization
     /// <param name="path">A relative or absolute path for the file containing the serialized object.</param>
     /// <returns>An object containing working data retrieved from an XML file.</returns>
     /// <exception cref="System.ArgumentNullException">path</exception>
-    public static type ReadXmlFile<type>( string path )
+    public static type ReadXmlFile<type>(string path)
     {
-      if ( string.IsNullOrEmpty( path ) )
+      if (string.IsNullOrEmpty(path))
         throw new ArgumentNullException(nameof(path));
-      type _content = default( type );
-      XmlSerializer _xmlSerializer = new XmlSerializer( typeof( type ) );
+      type _content = default(type);
+      XmlSerializer _xmlSerializer = new XmlSerializer(typeof(type));
       FileStream _docStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-      using ( XmlReader _writer = XmlReader.Create( _docStream ) )
-        _content = (type)_xmlSerializer.Deserialize( _writer );
+      using (XmlReader _writer = XmlReader.Create(_docStream))
+        _content = (type)_xmlSerializer.Deserialize(_writer);
       return _content;
     }
-    #endregion
 
+    #endregion public
   }
 }
