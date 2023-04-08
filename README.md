@@ -47,7 +47,6 @@ Main purpose of this repository is to provide code examples for education purpos
 - [**Distributed Programming (DP)**](DistributedProgramming/README.md): all about developing inter-operable applications interconnected over the network.
 - [**Concurrent Programming (CW)**](ConcurrentProgramming/README.md): all about the programming pattern formally describing a program to execute operations as a result of nondeterministic events at run time.
 
-
 The repository collects examples that can serve as a pattern with the broadest possible applicability addressing the applications in concern.  All topics are illustrated using the C# language and the MS Visual Studio design environment to ensure the practical context and provide solid examples. The source code is available in this repository. Hopefully, the samples are easily portable to other development environments.
 
 #### External Data-Intensive Programming (ExDM)
