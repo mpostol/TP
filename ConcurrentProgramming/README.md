@@ -69,7 +69,7 @@ It is a programming pattern to describe an interaction between programming entit
 
 ## Concurrent programming
 
-### Introduction
+### Introduction to Concurrent programming
 
 - **Concurrent programming**: performing operations as a result of nondeterministic events
 - **Parallel Programming**: simultaneous execution of program operations
