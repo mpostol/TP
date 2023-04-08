@@ -19,5 +19,5 @@ The formal REST constraints are as follows:
 - [Standards.REST](https://standards.rest/) A collection of standards and specifications, that help make fantastic HTTP/REST APIs. Don't reinvent the wheel, use fantastic wheels, hashed out by experts, that solve problems you hadn't even considered yet.
 - [REST client; MSDN Documentation][RESTClient]
 
-[RESTClient]: https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/console-webapiclient
+[RESTClient]: https://docs.microsoft.com/dotnet/csharp/tutorials/console-webapiclient
 [OOI-GDD]: https://commsvr.gitbook.io/ooi/global-data-discovery/datadiscovery
