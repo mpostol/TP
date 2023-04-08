@@ -14,7 +14,8 @@ using System.Diagnostics;
 
 namespace TP.FunctionalProgramming
 {
-  public enum State { Idle, Active, Error };
+  public enum State
+  { Idle, Active, Error };
 
   public interface IStateHandler
   {
@@ -96,7 +97,9 @@ namespace TP.FunctionalProgramming
 
     private class IdleHandler : StateHandlerBase
     {
-      public IdleHandler(AnonymousFunctions context) : base(context) { }
+      public IdleHandler(AnonymousFunctions context) : base(context)
+      {
+      }
 
       public override State CurrentState => State.Idle;
 
@@ -108,7 +111,9 @@ namespace TP.FunctionalProgramming
 
     private class ActiveHandler : StateHandlerBase
     {
-      public ActiveHandler(AnonymousFunctions context) : base(context) { }
+      public ActiveHandler(AnonymousFunctions context) : base(context)
+      {
+      }
 
       public override State CurrentState => State.Active;
 
@@ -125,7 +130,9 @@ namespace TP.FunctionalProgramming
 
     private class ErrorHandler : StateHandlerBase
     {
-      public ErrorHandler(AnonymousFunctions context) : base(context) { }
+      public ErrorHandler(AnonymousFunctions context) : base(context)
+      {
+      }
 
       public override State CurrentState => State.Error;
 
