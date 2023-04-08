@@ -1,28 +1,10 @@
-# Teaching of Programming (TP) [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases) <!-- omit in toc -->
+# Programming in Practice [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases) <!-- omit in toc -->
 
-## Table of content <!-- omit in toc -->
-
-- [Programming in Practice](#programming-in-practice)
-  - [Key words](#key-words)
-  - [Releases](#releases)
-  - [Goal](#goal)
-  - [Content](#content)
-  - [Executive Summary](#executive-summary)
-    - [External Data-Intensive Programming (ExDM)](#external-data-intensive-programming-exdm)
-    - [Adaptive Programming (AP)](#adaptive-programming-ap)
-    - [Concurrent Programming (CW)](#concurrent-programming-cw)
-    - [Distributed Programming (DP)](#distributed-programming-dp)
-- [How to cite the software and associated documentation files](#how-to-cite-the-software-and-associated-documentation-files)
-- [How to follow up?](#how-to-follow-up)
-- [See also](#see-also)
-
-## Programming in Practice
-
-### Key words
+## Key words
 
 software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control, distributed programming.
 
-### Releases
+## Major Milestones
 
 |                        Release                        | Name                                    | Milestone                                                               |                                                                  DOI                                                                  |
 | :---------------------------------------------------: | --------------------------------------- | ----------------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------: |
@@ -32,14 +14,15 @@ software engineering, software design, education, training, code examples, cshar
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 
-### Goal
+## Goal
 
 Turning today's students into tomorrow's advanced software developers and architects.
 
-### Content
+## Content
 
 ### Executive Summary
 
+Teaching of Programming (TP)
 Main purpose of this repository is to provide code examples for education purpose. The code examples address the following application domains
 
 - [**External Data-Intensive Programming (ExDM)**](ExDataManagement/README.md) : process data management, i.e. those that are input or output for the business logic of the program.
