@@ -1,14 +1,14 @@
 # Presenting working data outside the application
 
-# Key words
+## Key words
 
-File System, User Interface, XML, XSLT, HTML, XmlSerializer, Save file, Transformation, Saving text files, Local File Systems, Open and read file, XML Schema, Common File Format, Data Access, XML Serialization, XSL, Data Validation, XML Documentation, 
+File System, User Interface, XML, XSLT, HTML, XmlSerializer, Save file, Transformation, Saving text files, Local File Systems, Open and read file, XML Schema, Common File Format, Data Access, XML Serialization, XSL, Data Validation, XML Documentation
 
-# Executive summary
+## Executive summary
 
 This sample demonstrates how to save working data in a file containing xml document, which next can be directly presented for example in MS Word editor or Internet Explorer translated using a style sheet. It is simplest way to detach the document content from its presentation.
 
-# Scenario
+## Scenario
 
 Applications save working data into the files to keep state information, to provide processing outcome or both. Applications need robust storage, i.e. correctness of the stored data has to be validated every time an application reads it back from the file. It must be carefully observed if the files are also modified by other applications or directly by users, because data corruption may occur. To address the validation requirement XML (Extensible Markup Language) as a text-based format for representing structured information and XML Schema as a language for expressing constraints about XML documents are very good candidates to be used by the save operation.
 
@@ -26,7 +26,7 @@ To learn more about the serialization visit the MSDN:
 
 You may use the XML Schema Definition [Xsd.exe](http://msdn.microsoft.com/en-us/library/x6c1kb0s.aspx) tool, which generates XML schema or common language run-time classes from XDR, XML, and XSD files, or from classes in a run-time assembly.
 
-# Solution
+## Solution
 
 This example is dedicated to demonstrate how to deal with the presented above scenario. It defines a few helper functions, for serialization and deserialization located in the static class:
 
@@ -40,6 +40,7 @@ An example of xslt file has been added to the CustomData and is copied during pr
 
 Program class demonstrates how to use read/write operation.
 
+<!--
     //____________________________________________________________________________________________________________________________________
     //
     //  Copyright (C) 2023, Mariusz Postol LODZ POLAND.

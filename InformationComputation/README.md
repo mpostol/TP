@@ -165,8 +165,7 @@ Computation means a set of actions that ensure the automation of information pro
 
 ### Computer Program is Text
 
-Today, we do not need to implement the algorithm using a binary representation. Thanks to the compilation process, we can use alpha-numeric alphabets - just like the natural languages we use on a daily basis. Typically the alphabet is derived from the Latin alphabet. This leads to the statement that any program at the beginning of its life cycle is just a text, hence a sequence of characters. **Text becomes a computer program when it meets additional rules that will enable it to be compiled.
-**
+Today, we do not need to implement the algorithm using a binary representation. Thanks to the compilation process, we can use alpha-numeric alphabets - just like the natural languages we use on a daily basis. Typically the alphabet is derived from the Latin alphabet. This leads to the statement that any program at the beginning of its life cycle is just a text, hence a sequence of characters. **Text becomes a computer program when it meets additional rules that will enable it to be compiled.**
 
 ### Programming Language
 

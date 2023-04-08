@@ -1,3 +1,4 @@
+<!--
     //____________________________________________________________________________________________________________________________________
     //
     //  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
@@ -8,7 +9,7 @@
     //
     //  by introducing yourself and telling us what you do with this community.
     //_____________________________________________________________________________________________________________________________________
-
+-->
 # Message
 
 - Each file content is a stream of bytes, consequently, it is also a stream of bits.

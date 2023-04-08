@@ -18,47 +18,48 @@ Functional programming is a style of developing the computer programs that treat
 
 The most important behavior of a function in the context of functional programming paradigm is that its output value depends only on the actual parameter values that are passed to while calling it. In other words, the function behavior doesn't depend on the local or global state. So calling a function f twice with the same value for a parameter x produces the same result f(x) each time. An example of the function conforming to this paradigm is for example:
 
-```
+```C#
     public static bool StringIsLongPredicate(string stringToTest)
     {
       return stringToTest.Length > 10;
     }
 ```
+
 This predicate returns always `true` if the current string assigned to `stringToTest` is longer than 10.
 
 It represents the method that defines a set of criteria and determines whether the specified object meets those criteria.
 
 It eliminates side effects, which is one of the key motivations for using the functional programming approach to manage external data. In this scenario, the function can be sent and executed by a data management system and produce a set of related data.
 
-Usually, the function expressed in terms of selected language syntax must be translated to be useful and executable by the external system. To make the translation feasible the function must be syntactically embedded in an expression - a sequence of operators and operands. Before translation, it must be expressed using the object model in the form of an expression tree. The expression tree can be created by the compiler or grammatically using the API. 
+Usually, the function expressed in terms of selected language syntax must be translated to be useful and executable by the external system. To make the translation feasible the function must be syntactically embedded in an expression - a sequence of operators and operands. Before translation, it must be expressed using the object model in the form of an expression tree. The expression tree can be created by the compiler or grammatically using the API.
 
 The C# compiler can generate expression trees only from expression lambdas (or single-line lambdas). It cannot parse statement lambdas (or multi-line lambdas).
 
 To create expression trees by using the API, use the [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]. This class contains static factory methods that create expression tree nodes of specific types.
 
-## Anonymous Functions 
+## Anonymous Functions
 
 ### Lambda Expressions
 
 A lambda expression with an expression on the right side of the `=>` operator is called an expression lambda. Expression lambdas are used extensively in the construction of [Expression Trees][ET]. An expression lambda returns the result of the expression and takes the following basic form:
-```
+
+```C#
 (input-parameters) => expression
 ```
 
 Sometimes it is difficult or impossible for the compiler to infer the input types. When this occurs, you can specify the types explicitly as shown in the following example:
 
-```
+```C#
 (int x, string s) => s.Length > x
 ```
 
 > If you are creating expression trees that are executed outside of the .NET Framework, such as in SQL Server, you should not use method calls in lambda expressions. The methods will have no meaning outside the context of the .NET common language runtime. For example:
 
-```
+```C#
 () => SomeMethod()
 ```
 
 ### Anonymous Method
-
 
 ## Extension Methods
 
@@ -76,7 +77,7 @@ The UT located in the class `TP.Lecture.UnitTest.ExtensionMethodsUnitTest` has t
 
 - [Anonymous Functions (C# Programming Guide)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)
 - [Expression Trees (C#)][ET]
-- [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass] 
+- [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]
 - [Extension Methods \(C# Programming Guide\) on MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
 [ExpressionClass]:https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression
