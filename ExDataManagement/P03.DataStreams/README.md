@@ -41,7 +41,6 @@ An example of xslt file has been added to the CustomData and is copied during pr
 Program class demonstrates how to use read/write operation.
 
 <!--
-
 //____________________________________________________________________________________________________________________________________
 //
 //  Copyright (C) 2023, Mariusz Postol LODZ POLAND.

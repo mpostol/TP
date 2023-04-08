@@ -80,7 +80,7 @@ The UT located in the class `TP.Lecture.UnitTest.ExtensionMethodsUnitTest` has t
 - [Anonymous Functions (C# Programming Guide)](https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)
 - [Expression Trees (C#)][ET]
 - [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]
-- [Extension Methods \(C# Programming Guide\) on MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
+- [Extension Methods (C# Programming Guide) on MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
 [ExpressionClass]:https://docs.microsoft.com/dotnet/api/system.linq.expressions.expression
 [ET]:https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/expression-trees/index
