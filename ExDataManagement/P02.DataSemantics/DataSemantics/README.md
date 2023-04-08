@@ -10,9 +10,8 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 -->
+# Data Semantics
 
-# [`var` - Implicitly Typed Local Variables](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/implicitly-typed-local-variables)
-
-# [Anonymous Types](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/anonymous-types)
-
-# [Tuple Types](https://docs.microsoft.com/en-us/dotnet/csharp/tuples)
+- [`var` - Implicitly Typed Local Variables](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/implicitly-typed-local-variables)
+- [Anonymous Types](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/anonymous-types)
+- [Tuple Types](https://docs.microsoft.com/dotnet/csharp/tuples)

@@ -16,4 +16,4 @@ Some of the constraints are mutually exclusive. All value types must have an acc
 
 ## See also
 
-[Constraints on type parameters](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)
+- [Constraints on type parameters](https://docs.microsoft.com/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)

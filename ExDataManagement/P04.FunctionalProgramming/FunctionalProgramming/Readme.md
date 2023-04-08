@@ -61,6 +61,8 @@ Sometimes it is difficult or impossible for the compiler to infer the input type
 
 ### Anonymous Method
 
+TBD
+
 ## Extension Methods
 
 ### Introduction
@@ -73,12 +75,12 @@ The class `ExtensionMethods` provides a few examples of extension methods.
 
 The UT located in the class `TP.Lecture.UnitTest.ExtensionMethodsUnitTest` has test methods illustrating how to use the extension methods and points out differences between usage the instance and extension methods against the instance methods.
 
-# See also
+## See also
 
-- [Anonymous Functions (C# Programming Guide)](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)
+- [Anonymous Functions (C# Programming Guide)](https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)
 - [Expression Trees (C#)][ET]
 - [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]
-- [Extension Methods \(C# Programming Guide\) on MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
+- [Extension Methods \(C# Programming Guide\) on MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
-[ExpressionClass]:https://docs.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression
-[ET]:https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/index
+[ExpressionClass]:https://docs.microsoft.com/dotnet/api/system.linq.expressions.expression
+[ET]:https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/expression-trees/index
