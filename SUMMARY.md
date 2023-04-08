@@ -1,6 +1,6 @@
 # Table of Content
 
-* [Executive Summary ✅](README.MD)
+* [Executive Summary ✅](README.md)
 
 ## Computation of Information
 
