@@ -11,7 +11,4 @@
 
 # [Anonymous Types](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/anonymous-types)
 
-
 # [Tuple Types](https://docs.microsoft.com/en-us/dotnet/csharp/tuples)
-
-
