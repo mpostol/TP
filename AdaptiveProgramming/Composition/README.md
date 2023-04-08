@@ -1,6 +1,6 @@
 ﻿# Application composition
 
-## `commonservicelocator` - research on
+## `commonservicelocator`
 
 ### Assumptions
 
