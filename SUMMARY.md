@@ -31,7 +31,7 @@
 
 ## Concurrent Programming
 
-* [Concurrent Programming ✅](ConcurrentProgramming/README.md)
+* [Concurrent Programming Summary ✅](ConcurrentProgramming/README.md)
 
 ## Distributed Programming
 
