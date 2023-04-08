@@ -18,16 +18,16 @@
 ## External Data-Intensive Programming
 
 * [External Data Management Summary](ExDataManagement/README.md)
-* [Data Semantics](ExDataManagement/P02.DataSemantics/DataSemantics/README.md)
+<!-- * [Data Semantics](ExDataManagement/P02.DataSemantics/DataSemantics/README.md) -->
 * [Data Streams](ExDataManagement/P03.DataStreams/README.md)
 * [Functional Programming](ExDataManagement/P04.FunctionalProgramming/FunctionalProgramming/Readme.md)
 * [Structural Data](ExDataManagement/P05.StructuralData/README.md)
-* [Graphical Data](ExDataManagement/P06.GraphicalData/Readme.md)
+<!-- * [Graphical Data](ExDataManagement/P06.GraphicalData/Readme.md) -->
 
 ## Adaptive Programming
 
 * [Adaptive Programming Summary](AdaptiveProgramming/README.md)
-* [Composition](AdaptiveProgramming/Composition/README.md)
+<!-- * [Composition](AdaptiveProgramming/Composition/README.md) -->
 
 ## Concurrent Programming
 
