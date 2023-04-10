@@ -1,4 +1,4 @@
-# C# External Data-intensive Programming (ExDM)
+# C\# External Data-intensive Programming (ExDM)
 
 ## Key words
 
@@ -14,7 +14,7 @@ Let's review selected language constructs, patterns, and frameworks targeting da
 
 The aim of the course is to extend knowledge and skills related to object-oriented programming focusing on interoperability between the computing process and data visualization, archiving and networking environment. Particular emphasis is placed on the identification of solutions that can serve as a certain pattern with the widest possible use over a long-term horizon. Providing a long-term horizon is extremely difficult for such a dynamically developing field. Here, the experience of the author comes to the rescue, who has been employing similar solutions for years using constantly changing programming tools.
 
-In order to ensure the practical context of the discussion and provide sound examples, all topics are illustrated using the C# language and the MS Visual Studio design environment. The source code used during the course is available in this repository. I believe that the proposed principles, design patterns, and scenarios are generic in nature and may be seamlessly ported to other environments. The language and tools mentioned above have been used only to embed the discussion in a particular environment and to ensure that the course is very practical.
+In order to ensure the practical context of the discussion and provide sound examples, all topics are illustrated using the C\# language and the MS Visual Studio design environment. The source code used during the course is available in this repository. I believe that the proposed principles, design patterns, and scenarios are generic in nature and may be seamlessly ported to other environments. The language and tools mentioned above have been used only to embed the discussion in a particular environment and to ensure that the course is very practical.
 
 The course discusses solutions for practical scenarios regarding various aspects of process data management, i.e. those that are input or output for the business logic of the program. In general, three classes of an external data have been distinguished:
 
@@ -30,7 +30,7 @@ The repository is scoped to provide sound examples covering the following topics
 
 1. Introduction
    1. About the course, information versus data, algorithm versus program, type - what does it mean
-   2. Useful assets: C# language, Visual Studio, GitHub, Gitter
+   2. Useful assets: C\# language, Visual Studio, GitHub
 2. Data semantics
     1. Type concept
     1. Anonymous type
@@ -50,7 +50,7 @@ The repository is scoped to provide sound examples covering the following topics
     1. LINQ to object
     1. LINQ to SQL
 6. Graphical data
-   1. [xaml](https://docs.microsoft.com/en-us/dotnet/framework/xaml-services/)
+   1. [xaml](https://docs.microsoft.com/dotnet/framework/xaml-services/)
    1. MVVM (Model, View, ViewModel) pattern
 
 > **NOTE**: Unit Test role is solely code explanation rather than testing the correctness of it.

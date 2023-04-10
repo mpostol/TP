@@ -12,5 +12,5 @@ The WebSocket Protocol enables two-way communication between a client running un
 - [The WebSocket API; W3C Candidate Recommendation 20 September 2012](https://www.w3.org/TR/websockets/)
 - [M. Postol; NBlockchain; NBlockchain/P2PPrototocol/NodeJSAPI/; Rel.1.0][WSExampleInBlockchain]
 
-[OOI-GDD]: https://commsvr.gitbook.io/ooi/global-data-discovery/datadiscovery
+<!--[OOI-GDD]: https://commsvr.gitbook.io/ooi/global-data-discovery/datadiscovery-->
 [WSExampleInBlockchain]: https://github.com/mpostol/NBlockchain/tree/master/P2PPrototocol/NodeJSAPI

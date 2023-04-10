@@ -1,6 +1,6 @@
 ﻿# Application composition
 
-## `commonservicelocator` - research on
+## `commonservicelocator`
 
 ### Assumptions
 
@@ -11,7 +11,7 @@ Using `commonservicelocator` the following assumptions are hold
 - lack of service locator is mitigated by the default implementation of the services
 - it can be easily implemented for any kind of container.
 
-### see also
+### See also
 
 - [Microsoft.Practices.ServiceLocation](https://github.com/unitycontainer/commonservicelocator)
   - solution in concern

@@ -1,19 +1,25 @@
-# Table of Content
+# Summary
 
-* [Executive Summary](README.md)
+* [Programming in Practice](README.md)
 
 ## Computation of Information
 
-* [Computation of Information Summary](InformationComputation/README.md)
-* [Anonymous Types](InformationComputation/AnonymousTypes/README.md)
+* [Computation of Information Introduction](InformationComputation/README.md)
+
+## Information Representation
+
 * [Coding System versus Type](InformationComputation/CodingVType/README.md)
 * [Custom Types](InformationComputation/CustomTypes/README.md)
-* [Dependency Injection](InformationComputation/DependencyInjection/README.md)
-* [Generic Types and Methods](InformationComputation/GenericClassesMethods/README.md)
-* [Program Layered Architecture](InformationComputation/LayeredArchitecture/README.md)
-* [Layer Communication](InformationComputation/LayersCommunication/README.md)
 * [Object-oriented programming](InformationComputation/ObjectOrientedProgramming/README.md)
+* [Anonymous Types](InformationComputation/AnonymousTypes/README.md)
 * [Partial Definitions](InformationComputation/PartialDefinitions/README.md)
+* [Generic Types and Methods](InformationComputation/GenericClassesMethods/README.md)
+
+## Algorithm Implementation
+
+* [Program Layered Architecture](InformationComputation/LayeredArchitecture/README.md)
+* [Inter Layer Communication](InformationComputation/LayersCommunication/README.md)
+* [Dependency Injection](InformationComputation/DependencyInjection/README.md)
 
 ## External Data-Intensive Programming
 
@@ -36,7 +42,5 @@
 ## Distributed Programming
 
 * [Distributed Programming Summary](DistributedProgramming/README.md)
-
-* Client-server communication
   * [Rest API](DistributedProgramming/ClientServerCommunication/RESTAPI/README.md)
   * [WebSocket API](DistributedProgramming/ClientServerCommunication/WebSocketAPI/README.md)
