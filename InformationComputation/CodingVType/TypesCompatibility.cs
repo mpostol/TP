@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2023 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
@@ -17,7 +17,7 @@ namespace TP.InformationComputation.CodingVType
       int arabicIntegerNumber = 4;
       float arabicFloatNumber = 4.0f;
       //arabicIntegerNumber = 4.0f; // it could happen that the calculated value doesn't
-                                    //belong to the set of values specified by the long type
+                                    //belong to the set of values specified by the float type
       arabicFloatNumber = 4;
     }
   }
