@@ -6,7 +6,7 @@ Let me recall that the CSharp language is strongly typed programming language li
 
 ## What is the problem?
 
-### Main bullets
+### Main topics
 
 - normalized coding systems
 - custom coding systems
