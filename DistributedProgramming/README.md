@@ -14,7 +14,7 @@ This folder contains the following examples:
 | `ClientServerCommunication` | `RESTAPI` and `WebSocketAPI` - interactive communication               |
 | `Models`                    | How to define Semantic-Data to implement meaningfully interoperability |
 
-## Feutre work
+## Future work
 
 Consider to add the following examples:
 

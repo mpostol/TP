@@ -75,11 +75,11 @@ It is a programming pattern to describe an interaction between programming entit
 - **Parallel Programming**: simultaneous execution of program operations
 - **Real Time Programming**: the time must be taken into account as a factor determining the correctness of the program
 
-### Multi-threading or concurrent programming
+### Multithreading or concurrent programming
 
 Both terms are used to refer to the programming pattern that allows writing a program to execute operations at run time as a result of nondeterministic events. Concurrency is when multiple sequences of instructions are run in overlapping periods of time. In other words, the instructions sequence execution is undetermined in advance. Thread is a type that may be used to represent a sequence of instructions in this scenario.
 
-- RunMethodAsynchronously from mpostol/RealTime#33
+<!-- - RunMethodAsynchronously from mpostol/RealTime#33
 
 ### Resource sharing
 
@@ -91,7 +91,7 @@ Both terms are used to refer to the programming pattern that allows writing a pr
 
 ### Communication
 
-Real time library
+Real time library -->
 
 ## Distributed Programming - Network Nodes Communication (out of scope)
 

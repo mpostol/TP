@@ -59,9 +59,9 @@ Sometimes it is difficult or impossible for the compiler to infer the input type
 () => SomeMethod()
 ```
 
-### Anonymous Method
+<!-- ### Anonymous Method
 
-TBD
+TBD -->
 
 ## Extension Methods
 
