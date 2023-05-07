@@ -1,4 +1,4 @@
-# Programming in Practice [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases
+# Programming in Practice [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases)
 
 ## Key words
 
