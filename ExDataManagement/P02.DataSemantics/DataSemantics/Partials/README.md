@@ -1,6 +1,6 @@
 ﻿# Partial Definitions
 
-## Title Page
+## Introduction
 
 In this lesson, we continue the discussion of topics related to the representation of information as data processed by a computer.  We know that a basic term relevant for this discussion is type notion. The type could be defined explicitly by the developer. During the previous lesson, we talked about how the programming language supports us in data harmonization, where the variable type is inferred from the value type assigned when the variable is declared. It means implicit type declaration. It requires a special syntax of the text representing the assigned value. Using this approach the explicit type definition doesn't exist so we can't even specify a name for this type. Hence, we call this kind of type anonymous type. It is permanently assigned to the variable in which it was defined. A drawback of this approach is the impossibility to define custom behavior. Hence we are limited to using only operations associated with the anonymous type by the programming language definition.
 
