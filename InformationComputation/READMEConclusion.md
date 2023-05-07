@@ -94,7 +94,7 @@ Usually talking about a layered design pattern applied to the program as one who
 
 We concluded that this design pattern is clear and doesn't need any special education background or explanation to understand it. Hence, it should be used for further development.
 
-![figure 1](../.Media/2109-0302-ProgramLayeredArchitecture-Script-Layers.png)
+![figure 1](../InformationComputation/.Media/2109-0302-ProgramLayeredArchitecture-Script-Layers.png)
 
 ### Deployment
 
