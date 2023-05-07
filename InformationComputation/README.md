@@ -1,4 +1,4 @@
-# Computation of Information
+# Information Computation
 
 ## Executive Summary
 
