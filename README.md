@@ -109,7 +109,7 @@ To follow any activity in the repository, switch on the `Watch` functionality. I
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578244.svg)](https://doi.org/10.5281/zenodo.2578244) - This DOI represents all versions, and will always resolve to the latest one.
 [![Build Status](https://caseu.visualstudio.com/TP/_apis/build/status/mpostol.TP?branchName=master)](https://caseu.visualstudio.com/TP/_build/latest?definitionId=2&branchName=master) - Build Status
 
-[udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
+[udemyPiPES]: https://www.udemy.com/course/pipintroduction/
 [Discussion]: https://github.com/mpostol/TP/discussions
 [vdpnt]: https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
 
