@@ -62,13 +62,17 @@
     <Compile Include="MVVMLightUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GraphicalData\GraphicalData.csproj">
-      <Project>{7e5d5acd-5ba6-4faf-a51f-da4f3937f226}</Project>
-      <Name>GraphicalData</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\GraphicalData.Model\GraphicalData.Model.csproj">
+      <Project>{893e88bb-75e4-432b-b143-837de3df1cf8}</Project>
+      <Name>GraphicalData.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GraphicalData.ViewModel\GraphicalData.ViewModel.csproj">
+      <Project>{60400d24-411e-4c53-9b0a-abbf27783d06}</Project>
+      <Name>GraphicalData.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

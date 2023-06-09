@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TP.GraphicalData.ViewModel</AssemblyName>
+    <RootNamespace>TP.GraphicalData.ViewModel</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GraphicalData.Model\GraphicalData.Model.csproj" />
+  </ItemGroup>
+
+</Project>
