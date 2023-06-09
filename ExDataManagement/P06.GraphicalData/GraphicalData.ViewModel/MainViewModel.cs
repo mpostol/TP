@@ -29,7 +29,7 @@ namespace TP.GraphicalData.ViewModel
       m_ActionText = "Text to be displayed on the popup";
     }
 
-    public MainViewModel(DataLayerAPI? dataLayer = null)
+    public MainViewModel(DataLayerAPI dataLayer = null)
     {
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
       FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? DataLayerAPI.Create());
@@ -37,9 +37,9 @@ namespace TP.GraphicalData.ViewModel
       m_ActionText = "Text to be displayed on the popup";
     }
 
-        #endregion constructors
+    #endregion constructors
 
-        #region ViewModel API
+    #region ViewModel API
 
     public ObservableCollection<IUser> Users
     {
