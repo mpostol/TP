@@ -9,8 +9,6 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using TP.GraphicalData.Model.API;
-
 namespace TP.GraphicalData.Model.IMP
 {
   internal class User : IUser

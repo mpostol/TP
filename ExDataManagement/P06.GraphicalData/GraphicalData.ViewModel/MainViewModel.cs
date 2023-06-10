@@ -12,7 +12,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using TP.GraphicalData.Model.API;
+using TP.GraphicalData.Model;
 using TP.GraphicalData.ViewModel.MVVMLight;
 
 namespace TP.GraphicalData.ViewModel
@@ -26,7 +26,7 @@ namespace TP.GraphicalData.ViewModel
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
       FetchDataCommend = new RelayCommand(() => DataLayer = DataLayerAPI.Create());
       DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
-      m_ActionText = "Text to be displayed on the popup";
+      m_ActionText = "Text to be displayed on the pop-up";
     }
 
     public MainViewModel(DataLayerAPI dataLayer = null)
@@ -34,7 +34,7 @@ namespace TP.GraphicalData.ViewModel
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
       FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? DataLayerAPI.Create());
       DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
-      m_ActionText = "Text to be displayed on the popup";
+      m_ActionText = "Text to be displayed on the pop-up";
     }
 
     #endregion constructors

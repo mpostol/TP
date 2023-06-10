@@ -10,7 +10,6 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System.Collections.Generic;
-using TP.GraphicalData.Model.API;
 
 namespace TP.GraphicalData.Model.IMP
 {

@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.GraphicalData.Model.API
+namespace TP.GraphicalData.Model
 {
   public interface IUser
   {

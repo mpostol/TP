@@ -13,7 +13,7 @@
 using System.Collections.Generic;
 using TP.GraphicalData.Model.IMP;
 
-namespace TP.GraphicalData.Model.API
+namespace TP.GraphicalData.Model
 {
   public abstract class DataLayerAPI
   {
