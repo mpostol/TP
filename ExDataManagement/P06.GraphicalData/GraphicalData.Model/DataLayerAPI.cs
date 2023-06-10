@@ -11,7 +11,6 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System.Collections.Generic;
-using TP.GraphicalData.Model.IMP;
 
 namespace TP.GraphicalData.Model
 {
@@ -21,7 +20,7 @@ namespace TP.GraphicalData.Model
 
     public static DataLayerAPI Create()
     {
-      return new DataLayer();
+      return new LayerImplementation.DataLayer();
     }
   }
 }

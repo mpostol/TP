@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.GraphicalData.Model.IMP
+namespace TP.GraphicalData.Model.LayerImplementation
 {
   internal class User : IUser
   {

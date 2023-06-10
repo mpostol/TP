@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-namespace TP.GraphicalData.Model.IMP
+namespace TP.GraphicalData.Model.LayerImplementation
 {
   internal class DataLayer : DataLayerAPI
   {
