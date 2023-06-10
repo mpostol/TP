@@ -9,12 +9,9 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.GraphicalData.Model
+namespace TP.GraphicalData.Model.LayerImplementation
 {
-  /// <summary>
-  /// Class User - a class representing user
-  /// </summary>
-  public class User
+  internal class User : IUser
   {
     /// <summary>
     /// Gets or sets the name.

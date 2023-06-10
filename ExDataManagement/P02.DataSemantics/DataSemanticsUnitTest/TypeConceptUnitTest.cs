@@ -36,7 +36,7 @@ namespace TP.DataSemantics.TypeConcept
       CoordinatesClass _ = null;
       IndependentClass _reference1 = null;
       Segment _reference2 = null;
-      Assert.AreSame(_reference1, _reference2);
+      Assert.AreSame<object>(_reference1, _reference2);
       //_reference1 = _reference2;
       //_reference2 = _reference1;
     }
