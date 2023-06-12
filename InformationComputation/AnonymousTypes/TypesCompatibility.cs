@@ -19,15 +19,15 @@ namespace TP.InformationComputation.AnonymousTypes
     [TestMethod]
     public void DivisionTest()
     {
-      //double example
-      float dubleExample = 5;
-      float dubleExampleDividedBy2 = dubleExample / 2;
-      Assert.AreEqual(2.5, dubleExampleDividedBy2);
-
       //int example
-      int integerExample = 5;
-      dubleExampleDividedBy2 = integerExample / 2;
-      Assert.AreEqual(2, dubleExampleDividedBy2);
+      int intDdividend = 5;
+      float result = intDdividend / 2;
+      Assert.AreEqual(2, result);
+      
+      //float example
+      float dividend = 5;
+      result = dividend / 2;
+      Assert.AreEqual(2.5, result);
     }
 
     [TestMethod]
