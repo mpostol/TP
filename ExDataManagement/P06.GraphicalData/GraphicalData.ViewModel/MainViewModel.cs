@@ -24,16 +24,24 @@ namespace TP.GraphicalData.ViewModel
     public MainViewModel()
     {
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
-      FetchDataCommend = new RelayCommand(() => DataLayer = new DataLayer());
+      FetchDataCommend = new RelayCommand(() => DataLayer = DataLayerAPI.Create());
       DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
-      m_ActionText = "Text to be displayed on the popup";
+      m_ActionText = "Text to be displayed on the pop-up";
+    }
+
+    public MainViewModel(DataLayerAPI dataLayer = null)
+    {
+      ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
+      FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? DataLayerAPI.Create());
+      DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
+      m_ActionText = "Text to be displayed on the pop-up";
     }
 
     #endregion constructors
 
     #region ViewModel API
 
-    public ObservableCollection<User> Users
+    public ObservableCollection<IUser> Users
     {
       get => m_Users;
       set
@@ -43,7 +51,7 @@ namespace TP.GraphicalData.ViewModel
       }
     }
 
-    public User CurrentUser
+    public IUser CurrentUser
     {
       get => m_CurrentUser;
       set
@@ -95,13 +103,13 @@ namespace TP.GraphicalData.ViewModel
     /// <value>The message box show delegate.</value>
     public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the view layer");
 
-    public DataLayer DataLayer
+    public DataLayerAPI DataLayer
     {
       get => m_DataLayer;
       set
       {
         m_DataLayer = value;
-        Users = new ObservableCollection<User>(value.User);
+        Users = new ObservableCollection<IUser>(value.User);
       }
     }
 
@@ -109,10 +117,10 @@ namespace TP.GraphicalData.ViewModel
 
     #region Private stuff
 
-    private DataLayer m_DataLayer;
-    private User m_CurrentUser;
+    private DataLayerAPI m_DataLayer;
+    private IUser m_CurrentUser;
     private string m_ActionText;
-    private ObservableCollection<User> m_Users;
+    private ObservableCollection<IUser> m_Users;
 
     private void ShowPopupWindow()
     {
