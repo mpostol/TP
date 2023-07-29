@@ -4,6 +4,8 @@
 
 ## Information Computation
 
+* [Preface](InformationComputation\READMEIntroduction.md)
+
 ### Fundamentals
 
 * [Introduction](InformationComputation/README.md)
