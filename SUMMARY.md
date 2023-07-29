@@ -8,7 +8,7 @@
 
 * [Introduction](InformationComputation/README.md)
 
-## Information Representation
+### Information Representation
 
 * [Coding System versus Type](InformationComputation/CodingVType/README.md)
 * [Custom Types](InformationComputation/CustomTypes/README.md)
@@ -17,7 +17,7 @@
 * [Partial Definitions](InformationComputation/PartialDefinitions/README.md)
 * [Generic Types and Methods](InformationComputation/GenericClassesMethods/README.md)
 
-## Algorithm Implementation
+### Algorithm Implementation
 
 * [Program Layered Architecture](InformationComputation/LayeredArchitecture/README.md)
 * [Inter Layer Communication](InformationComputation/LayersCommunication/README.md)
