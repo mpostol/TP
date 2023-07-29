@@ -4,7 +4,7 @@
 
 ## Information Computation
 
-### Information Computation Fundamentals
+### Fundamentals
 
 * [Introduction](InformationComputation/README.md)
 
