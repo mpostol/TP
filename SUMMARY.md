@@ -2,9 +2,11 @@
 
 * [Programming in Practice](README.md)
 
-## Computation of Information
+## Information Computation
 
-* [Computation of Information Introduction](InformationComputation/README.md)
+### Information Computation Fundamentals
+
+* [Introduction](InformationComputation/README.md)
 
 ## Information Representation
 
@@ -20,6 +22,10 @@
 * [Program Layered Architecture](InformationComputation/LayeredArchitecture/README.md)
 * [Inter Layer Communication](InformationComputation/LayersCommunication/README.md)
 * [Dependency Injection](InformationComputation/DependencyInjection/README.md)
+
+### Summary
+
+* [Conclusion](InformationComputation\READMEConclusion.md)
 
 ## External Data-Intensive Programming
 

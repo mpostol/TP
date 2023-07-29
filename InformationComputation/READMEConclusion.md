@@ -8,22 +8,13 @@ I want to review the learning outcomes and idea exchange related to the informat
 
 ### Information representation fundamentals
 
-- applying computer science could be very helpful for human beings to improve the performance and robustness of their activity
-- process information is an abstraction and cannot be processed by a physical machine
-
 Concluding the section titled **Information Computation Fundamentals** I stated that applying information technology could be very helpful for human beings to improve the performance and robustness of their activity. It is a result of the automation of information computation. Unfortunately, process information is an abstraction and, hence, cannot be processed by a physical machine, including but not limited to computers. This inconsistency can be overcome by applying coding systems. In reality, this way, we are computing the data but not the information.
 
 ### Algorithm implementation
 
-- we must deal with two kinds of information, namely process information and algorithm
-- both are tightly coupled and must be represented together using a programming language
-
 To accomplish benefits from processing data by a machine we must employ technology. We need a driving force - an engine - to realize the processing. Today it is a binary computer. In the context of information computation, we must deal with two kinds of information: process information and algorithm. The process information describes the state and behavior of a process in concern. In turn, the algorithm is a piece of information on how to solve the selected problem. We stated that both are tightly coupled and must be represented together using a programming language, which is suitable to be used as a recipe of the computer behavior and information representation of a process in concern.
 
 ### Programming language fundamentals
-
-- computers are programmable devices and need a kind of program to be controlled
-- to obtain a binary version of the computer program a kind of compiler is required
 
 In other words, computers are programmable devices and need a kind of program to be controlled. The computer world is binary. It means that to be controlled they require a binary program. Today, typically we use high-level languages that are based on an alphabet derived from the Latin alphabet. Syntax of these languages is founded on keywords borrowed from the natural English language and semantics supports object-oriented programming concept. It was emphasized that modern languages use the type concept to describe process information representation and algorithms implementation consistently. To obtain a binary version of the computer program a kind of compiler is required.
 
@@ -64,9 +55,6 @@ We know that the possibility of reusing the outcome of previous programming work
 ### Algorithm Implementation Preface
 
 Process information representation and algorithm implementation are tightly coupled but following the previous discussion divided to cover topics related to the design of types and the design of a program as one whole. The second part titled `Algorithm Implementation` covers the following examples and associated explanation:
-
-- we must distinguish between design-time and run-time environments.
-- how to organize the program text
 
 ### Program Layered Architecture
 
