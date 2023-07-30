@@ -20,7 +20,6 @@ software engineering, sequential programming, software design, education, code e
 [REL43]: https://github.com/mpostol/TP/releases/tag/4.3
 [DOI43]: https://doi.org/10.5281/zenodo.8192921
 [BDG43]: https://zenodo.org/badge/DOI/10.5281/zenodo.8192921.svg
-
 [REL40]: https://github.com/mpostol/TP/releases/tag/4.0
 [DOI40]: https://doi.org/10.5281/zenodo.4066609
 [BDG40]: https://zenodo.org/badge/DOI/10.5281/zenodo.4066609.svg
