@@ -2,79 +2,111 @@
 
 ## Key words
 
-software engineering, software design, education, training, code examples, csharp, csharp-examples, data-intensive-programming, data management, information processing, data processing, adaptive-programming, dependency injection, inversion of control, distributed programming.
+software engineering, sequential programming, software design, education, code examples, information computation, external data, information processing, data processing, dependency injection, inversion of control, concurrent programming, adaptive-programming, distributed programming.
 
-## Major Milestones
+## Major Releases
 
-|                        Release                        | Name                                    | Milestone                                                               |                                                                  DOI                                                                  |
-| :---------------------------------------------------: | --------------------------------------- | ----------------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------: |
-|                          4.0                          | Distributed Programming 2020-10-05      | Distributed Programming                                                 | DOI: 10.5281/zenodo.4066609 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4066609.svg)](https://doi.org/10.5281/zenodo.4066609) |
-| [3.0](https://github.com/mpostol/TP/releases/tag/3.0) | ExDM  VideoBook Helion v1.0.            | [**C# in Practice - External Data-Intensive Programming** v1.0.][vdpnt] | DOI: 10.5281/zenodo.2578245 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578245.svg)](https://doi.org/10.5281/zenodo.2578245) |
-|                          2.0                          | Adaptive Programming (AP) February 2019 | Adaptive Programming                                                    |                                                                  NA                                                                   |
+|   Release    | Title                                |          DOI           |
+| :----------: | ------------------------------------ | :--------------------: |
+| [4.3][REL43] | TUL IT Classes 2023 Summer Semester  | [![DOI][BDG43]][DOI43] |
+| [4.0][REL40] | Distributed Programming              | [![DOI][BDG40]][DOI40] |
+| [3.0][REL30] | [ExDM VideoBook Helion v1.0.][vdpnt] | [![DOI][BDG30]][DOI30] |
+|     2.0      | Adaptive Programming                 |           NA           |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
+>
+> [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
 
-## Goal
+[REL43]: https://github.com/mpostol/TP/releases/tag/4.3
+[DOI43]: https://doi.org/10.5281/zenodo.8192921
+[BDG43]: https://zenodo.org/badge/DOI/10.5281/zenodo.8192921.svg
+[REL40]: https://github.com/mpostol/TP/releases/tag/4.0
+[DOI40]: https://doi.org/10.5281/zenodo.4066609
+[BDG40]: https://zenodo.org/badge/DOI/10.5281/zenodo.4066609.svg
+[REL30]: https://github.com/mpostol/TP/releases/tag/3.0
+[DOI30]: https://doi.org/10.5281/zenodo.2578245
+[BDG30]: https://zenodo.org/badge/DOI/10.5281/zenodo.2578245.svg
+[TULIT]: https://it.p.lodz.pl/
 
-Turning today's students into tomorrow's advanced software developers and architects.
+## Repository Content
 
-## Content
+### Preface
 
-### Executive Summary
+>The **main goal** of this repository is to turn today's students into tomorrow's advanced software developers and architects.
+>The **main purpose** of this repository is to provide code extended examples for education purposes.
 
-Teaching of Programming (TP)
-Main purpose of this repository is to provide code examples for education purpose. The code examples address the following application domains
+My point is that we could distinguish between two kinds of education:
 
-- [**External Data-Intensive Programming (ExDM)**](ExDataManagement/README.md) : process data management, i.e. those that are input or output for the business logic of the program.
-- [**Adaptive Programming (AP)**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the software.
-- [**Distributed Programming (DP)**](DistributedProgramming/README.md): all about developing inter-operable applications interconnected over the network.
+1. training - focused on products adoption and maintenance
+2. learning - focused on knowledge (concepts, standards, best practices, etc) adoption and maintenance
+
+The extended examples gathered in this repository focus on learning - the improvement of your knowledge related to software engineering as a field of computer science covering topics like the systematic design, development, testing, maintenance, and evolution of software. My goal is that it will be beneficial for you in the long run. The extended examples have been selected and prepared considering that **simplification is not a mother of simplicity**.
+
+The code extended examples address the following application domains:
+
+- [**Information Computation (IC)**](InformationComputation/README.md): internal data management - all about engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task.
+- [**External Data Management (ExDM)**](ExDataManagement/README.md): external (graphical, streaming, structural) data management -  all about processing data managed using external resources, that is screen, DBMS (database management system), files.
+- [**Adaptive Programming (AP)**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage to improve the future adaptability of the software.
 - [**Concurrent Programming (CW)**](ConcurrentProgramming/README.md): all about the programming pattern formally describing a program to execute operations as a result of nondeterministic events at run time.
+- [**Distributed Programming (DP)**](DistributedProgramming/README.md): all about developing inter-operable applications interconnected over the network.
 
-The repository collects examples that can serve as a pattern with the broadest possible applicability addressing the applications in concern.  All topics are illustrated using the C# language and the MS Visual Studio design environment to ensure the practical context and provide solid examples. The source code is available in this repository. Hopefully, the samples are easily portable to other development environments.
+The TP repository collects examples that can serve as a pattern with the broadest possible applicability addressing the applications in concern. All topics are illustrated using the C# language and the MS Visual Studio design environment to ensure the practical context and provide solid examples.
 
-#### External Data-Intensive Programming (ExDM)
+The source code is available under a very permissive open-source license to increase broad reach. Hopefully, the samples are easily portable to other development environments.
 
-Computer science in general, and especially programming activities, is a field of knowledge that deals with automation of information processing. Programs can be recognized as a driving force of that automated behavior. To achieve information processing goals programs have to implement algorithms required by the application concerned. In other words, the programs describe how to process data, which represent information relevant to the application. Data management - apart from the implementation of the algorithms – is, therefore, a key issue from the point of view of automation of the entire information processing and computer science in general.
+### Information Computation
 
-The [ExDataManagement](ExDataManagement/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
+Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. The repository contains code that is to be used as a set of examples for an online video course and class lectures. The examples can also be used alone. Generally speaking, two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system.  The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 
-> **Note**: to open the code samples in the Visual studio double click the file `ExDataManagement.sln`.
+The [InformationComputation](InformationComputation/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
 
-#### Adaptive Programming (AP)
+> **Note**: to open the code samples in the Visual Studio double click the file `InformationComputation`.
 
-The adaptive programming is presented as a catalog of language constructs, patterns, and frameworks used at the development and deployment stage with the goal to increase the adaptability of the program against changing production environment in which it is executed.
+### External Data-Intensive Programming (ExDM)
 
-The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
+Computer science in general, and especially software development, is a field of knowledge that deals with the automation of information processing. Programs can be recognized as a recipe for that automated behavior. To achieve information processing goals programs have to manage external information engaged to control the graphical user interface (graphical data), stored by database management systems (structure data) and file systems (streaming data). This part of the gathered examples provides ready-to-use code snippets helpful for rendering the graphical data, querying the structural data, and serialization to employ streaming data, that is manage of the external data. The external data is recognized as a process information representation handled outside of the program realm.
 
-> **Note**: to open the code samples in the Visual studio double click the file `AdaptiveProgramming.sln`.
+The [ExDataManagement](ExDataManagement/README.md) folder collects examples that can serve as examples of managing external data.
 
-#### Concurrent Programming (CW)
+> **Note**: to open the code samples in the Visual studio double click the file `ExDataManagement`.
 
-It is a programming pattern that allows writing a program that formally describes at design-time the execution of operations as a result of nondeterministic events. Concurrency is when multiple sequences of instructions are run in overlapping periods of time. In other words, the instructions sequence execution is undetermined in advance. Concurrency may be implemented explicitly using dedicated types. The `Thread` is a type that may be used to represent a sequence of instructions in this scenario. Concurrency may also be implemented implicitly, for example using a concept like asynchronous programming atop of the `Task` type.
+### Adaptive Programming (AP)
 
-> **Note**: to open the code samples in the Visual studio double click the file `DistributedProgramming.sln`.
+The adaptive programming is presented as a catalog of language constructs, patterns, and frameworks used at the development and deployment stage to increase the adaptability of the program against changing production environment in which it is executed.
 
-#### Distributed Programming (DP)
+The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the adaptive programming.
 
-Information and Communication Technology has provided society with a vast diversity of distributed applications. By design, the deployment of this kind of application has to focus primarily on communication. Examples collected in this repository addresses the systematic approach to the designing of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, namely Industry 4.0 and Internet of Things (IoT) atop of the M2M communication and composed as multi-vendor cyber-physicals systems.
+> **Note**: to open the code samples in the Visual studio double click the file `AdaptiveProgramming`.
 
-The [DistributedProgramming](DistributedProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the applications in concern.
+### Concurrent Programming (CW)
 
-> **Note**: to open the code samples in the Visual studio double click the file `DistributedProgramming.sln`.
+It is a programming paradigm that allows writing a program that formally describes the execution of instructions as a result of nondeterministic events. Concurrency is when multiple sequences of instructions are run in overlapping periods. In other words, the instructions sequence execution is undetermined in advance. Concurrency may be implemented explicitly using constructs like the Thread type, or implicitly using a concept like asynchronous programming. The gathered examples address selected concepts unique for concurrent programming, namely critical section, race condition, synchronization,  communication, and deadlocks, to name only the most important.
+
+The [ConcurrentProgramming](ConcurrentProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
+
+> **Note**: to open the code samples in the Visual studio double click the file `ConcurrentProgramming`.
+
+### Distributed Programming (DP)
+
+Information and Communication Technology has provided society with a vast diversity of distributed applications. By design, the deployment of this kind of application has to focus primarily on communication. Examples collected in this repository address the systematic approach to the designing of meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, namely Industry 4.0 and Internet of Things (IoT) atop of the M2M communication and composed as multi-vendor cyber-physicals systems.
+
+The [DistributedProgramming](DistributedProgramming/README.md) folder collects examples that can be reused in any case distributed processing of information is considered.
+
+> **Note**: to open the code samples in the Visual studio double click the file `DistributedProgramming`.
 
 ## How to cite the software and associated documentation files
 
 To be compliant with the license of the repository the below copyright notice shall be included in all copies or substantial portions of the software and associated documentation files (the "Software").
 
-Copyright (c) 2022 Mariusz Postol
+Copyright (c) 2023 Mariusz Postol
 
-In this section, you will learn how to cite the "Software" using the DOI number. A DOI number is a unique identifying number for the Software version. Because this repository has a DOI, use the DOI in your citation for the article or any derived work, like this:
+A DOI number, which stands for "Digital Object Identifier," is a unique alphanumeric identifier assigned to a digital object, such as an academic article, book, dataset, software, or other scholarly work. It provides a permanent link and a standardized way to identify and locate digital content on the internet. Because this repository has a DOI, use the DOI in your citation for the article or any derived work, like this:
 
-> Mariusz Postol, csharp (C#) in Practice: \[Target Part Name\], `https://github.com/mpostol/TP`, \[year\] DOI: [10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244)
+- Mariusz Postol, Programming in Practice: \[Target Part Name\], `https://github.com/mpostol/TP`, \[year\] DOI: [10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244)
 
 or
 
-> Mariusz Postol, csharp (C#) in Practice: \[Target Part Name\], `https://github.com/mpostol/TP`, \[year\] DOI: [http://doi.org/10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244).
+- Mariusz Postol, Programming in Practice: \[Target Part Name\], `https://github.com/mpostol/TP`, \[year\] DOI: [http://doi.org/10.5281/zenodo.2578244](http://doi.org/10.5281/zenodo.2578244).
 
 Replace `year` with the current year and `Target Part Name` with the name (or names) of the files you are referring to.
 
@@ -87,22 +119,34 @@ GitHub offers `Discussions` as a space to connect with other members of the comm
 - engage with other community members
 - welcome others and are open-minded; remember that this is a community we build together
 
-I have activated the [Discussion][Discussion] space for this repository. Follow the  [Discussion][Discussion] to be in touch.
+I have activated the [Discussion][Discussion] space for this repository.
 
-To follow any activity in the repository, switch on the `Watch` functionality. If you find the project interesting, please star the repository. Starring a repository also shows appreciation to the repository maintainer for their work. You can star repositories and topics to keep track of projects you find interesting and discover related content in your news feed. Check out [Saving repositories with stars](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars) to get more.
+To follow any activity in the repository, switch on the `Watch` functionality. If you find the project interesting, please star the repository using the `Star` button. Starring a repository also shows appreciation to the repository maintainer for their work. You can star repositories and topics to keep track of projects you find interesting and discover related content in your news feed. Check out [Saving repositories with stars](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars) to get more.
 
-- [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
-- [Discussion][Discussion]
+**To get more on my activity and projects currently I am working on**:
+
+- 📫 [join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
+- 👀 [follow me on YouTube](https://youtu.be/YPdL0bc0Xmo)
+- :cloud_with_lightning: [visit the discussion][Discussion]
+- 🔭 I’m currently working on: Programming in Practice education path
+- 👯 I’m looking to collaborate on **External Data Management**, **Object-oriented Internet**
+- 💬 ask me about sequential, concurrent, parallel, real-time, and distributed software engineering including but not limited to design patterns, agile management, and testing.
+
+## Contributing
+
+I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'.
+
+You must agree to the contributor license agreement before I can accept your changes.
 
 ## See also
 
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
 - [Discussion panel][Discussion]
-- [Programming Technologies 2021; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbyWXRTAe9m-ABP9YWmpLvUk)
-- [Programming Technologies 2020; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbwOD3GaSPl6kzKhDRmmrA-9)
-- [Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
-- [Postół. M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych](https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w); 2019, Helion (in polish).
+- [Postół. M, Programming Technologies 2021; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbyWXRTAe9m-ABP9YWmpLvUk)
+- [Postół. M, Programming Technologies 2020; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbwOD3GaSPl6kzKhDRmmrA-9)
+- [Postół. M, Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
+- [Postół. M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
 - [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
 - [References](REFERENCES.md)
 
