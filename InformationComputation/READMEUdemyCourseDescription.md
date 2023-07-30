@@ -2,7 +2,7 @@
 
 ## Welcome
 
-I would like to invite you to participate in a course on `Information Computation``. The course is a part of the Programming in Practice series of courses.
+I would like to invite you to participate in a course on `Information Computation`. The course is a part of the Programming in Practice series of courses.
 
 My point is that we could distinguish between two kinds of education:
 
@@ -56,7 +56,7 @@ This section covers the following topics:
 
 - Conclusion
 
-## Information Computation Course Content
+## Course Content
 
 ### Preface
 

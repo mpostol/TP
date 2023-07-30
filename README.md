@@ -8,7 +8,7 @@ software engineering, sequential programming, software design, education, code e
 
 |   Release    | Title                                |          DOI           |
 | :----------: | ------------------------------------ | :--------------------: |
-| [4.3][REL43] | TUL IT Classes 2023 Summer Semester     | [![DOI][BDG43]][DOI43] |
+| [4.3][REL43] | TUL IT Classes 2023 Summer Semester  | [![DOI][BDG43]][DOI43] |
 | [4.0][REL40] | Distributed Programming              | [![DOI][BDG40]][DOI40] |
 | [3.0][REL30] | [ExDM VideoBook Helion v1.0.][vdpnt] | [![DOI][BDG30]][DOI30] |
 |     2.0      | Adaptive Programming                 |           NA           |
@@ -33,16 +33,16 @@ software engineering, sequential programming, software design, education, code e
 ### Preface
 
 >The **main goal** of this repository is to turn today's students into tomorrow's advanced software developers and architects.
->The **main purpose** of this repository is to provide code examples for education purposes.
+>The **main purpose** of this repository is to provide code extended examples for education purposes.
 
 My point is that we could distinguish between two kinds of education:
 
 1. training - focused on products adoption and maintenance
 2. learning - focused on knowledge (concepts, standards, best practices, etc) adoption and maintenance
 
-The examples gathered in this repository focus on learning - the improvement of your knowledge related to software engineering as a field of computer science covering topics like the systematic design, development, testing, maintenance, and evolution of software. My goal is that it will be beneficial for you in the long run. The examples have been selected and prepared considering that **simplification is not a mother of simplicity**.
+The extended examples gathered in this repository focus on learning - the improvement of your knowledge related to software engineering as a field of computer science covering topics like the systematic design, development, testing, maintenance, and evolution of software. My goal is that it will be beneficial for you in the long run. The extended examples have been selected and prepared considering that **simplification is not a mother of simplicity**.
 
-The code examples address the following application domains:
+The code extended examples address the following application domains:
 
 - [**Information Computation (IC)**](InformationComputation/README.md): internal data management - all about engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task.
 - [**External Data Management (ExDM)**](ExDataManagement/README.md): external (graphical, streaming, structural) data management -  all about processing data managed using external resources, that is screen, DBMS (database management system), files.
