@@ -1,14 +1,6 @@
 # Information Computation
 
-## Executive Summary
-
-Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken in order to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract, it is a kind of knowledge that cannot be processed directly by any physical device.
-
-This MS Visual Studio (TM) solution contains code that by design is to be used as a set of examples for an online video course and class lectures. The examples can also be used alone.
-
-Generally speaking, two main topics are covered. That is dealing with the data recognized as the information representation and behavior description using a program compliant with an algorithm.
-
-### Welcome
+## Welcome
 
 I would like to invite you to participate in a course on information processing. The course is a part of the Programming in Practice series of courses. My point is that we could distinguish between two kinds of education:
 
@@ -17,7 +9,7 @@ I would like to invite you to participate in a course on information processing.
 
 This curse will focus on p. 2 - the improvement of your knowledge related to software engineering. My goal is that it will be beneficial for you in the long run.
 
-### Instructor Intro
+## Instructor Intro
 
 My name is Mariusz Postół. If your job or professional career depends on software development skills, consider joining us to learn how to improve your knowledge and experience in this respect. I'm gonna share with you the principles of a learning concept called Programming in Practice - information Computation. It has evolved atop 30 years of experience gathered by me as a University teacher and leader of hundreds of innovative IT projects realized, among others, for aviation, energy, tobacco, and mines industries. I am also an author and project leader of commercial software packages published on GitHub as open-source software. Since 1994 - that is from the very beginning - I am also a lecturer at Lodz University of Technology. If you are serious about programming skills, I believe that this mixture will cause a synergy effect. Welcome and thank you for joining the community.
 

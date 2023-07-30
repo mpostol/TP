@@ -3,7 +3,7 @@
 * [Programming in Practice](README.md)
   * [References](REFERENCES.md)
 
-## Information Computation
+## [Information Computation](InformationComputation/README.md)
 
 * [Information Computation Course Description](InformationComputation/READMEUdemyCourseDescription.md)
 
