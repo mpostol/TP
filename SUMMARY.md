@@ -8,7 +8,7 @@
 * [Repository Description](InformationComputation/README.md)
 * [Course Description](InformationComputation/READMEUdemyCourseDescription.md)
 * Fundamentals
-  * [Fundamentals](InformationComputation/READMEFundamentals.md)
+  * [Introduction](InformationComputation/READMEFundamentals.md)
   * [Information versus data](InformationComputation/READMEInformationVersusData.md)
   * [Algorithm Versus Program](InformationComputation/READMEAlgorithmVersusProgram.md)
 * Information Representation
