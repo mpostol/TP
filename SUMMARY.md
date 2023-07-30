@@ -1,11 +1,11 @@
 # Summary
 
 * [Programming in Practice](README.md)
-* [References](REFERENCES.md)
+  * [References](REFERENCES.md)
 
 ## Information Computation
 
-* Information Computation Fundamentals
+* Fundamentals
   * [Preface](InformationComputation/READMEIntroduction.md)
   * [Introduction](InformationComputation/README.md)
 * Information Representation
@@ -24,26 +24,39 @@
 
 ## External Data-Intensive Programming
 
-* [External Data Management Summary](ExDataManagement/README.md)
-* [Generics](ExDataManagement/P02.DataSemantics/DataSemantics/Generics/Generics.md)
-* [Partial types](ExDataManagement/P02.DataSemantics/DataSemantics/Partials/README.md)
-* [Data Streams](ExDataManagement/P03.DataStreams/README.md)
-* [Functional Programming](ExDataManagement/P04.FunctionalProgramming/FunctionalProgramming/Readme.md)
-* [Structural Data](ExDataManagement/P05.StructuralData/README.md)
-<!-- * [Data Semantics](ExDataManagement/P02.DataSemantics/DataSemantics/README.md) -->
-<!-- * [Graphical Data](ExDataManagement/P06.GraphicalData/Readme.md) -->
+* [Executive Summary](ExDataManagement/README.md)
 
+* Introduction
+* Data Semantics
+  <!-- * [Data Semantics](ExDataManagement/P02.DataSemantics/DataSemantics/README.md) -->
+  * [Generics](ExDataManagement/P02.DataSemantics/DataSemantics/Generics/Generics.md)
+  * [Partial types](ExDataManagement/P02.DataSemantics/DataSemantics/Partials/README.md)
+* Data Streams
+  * [Data Streams](ExDataManagement/P03.DataStreams/README.md)
+* Functional Programming
+  * [Functional Programming](ExDataManagement/P04.FunctionalProgramming/FunctionalProgramming/Readme.md)
+* Structural Data
+  * [Structural Data](ExDataManagement/P05.StructuralData/README.md)
+* Graphical Data
+<!-- * [Graphical Data](ExDataManagement/P06.GraphicalData/Readme.md) -->
 ## Adaptive Programming
 
-* [Adaptive Programming Summary](AdaptiveProgramming/README.md)
+* [Executive Summary](AdaptiveProgramming/README.md)
+
+* Application Architecture
+* Composition
 <!-- * [Composition](AdaptiveProgramming/Composition/README.md) -->
+* Reflection
+* Configuration
 
 ## Concurrent Programming
 
-* [Concurrent Programming Summary](ConcurrentProgramming/README.md)
+* [Executive Summary](ConcurrentProgramming/README.md)
 
 ## Distributed Programming
 
-* [Distributed Programming Summary](DistributedProgramming/README.md)
+* [Executive Summary](DistributedProgramming/README.md)
+
+* Client-Server Communication
   * [Rest API](DistributedProgramming/ClientServerCommunication/RESTAPI/README.md)
   * [WebSocket API](DistributedProgramming/ClientServerCommunication/WebSocketAPI/README.md)
