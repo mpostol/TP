@@ -3,6 +3,7 @@
 ## Programming in Practice
 
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+- [Information Computation Promotional Video on Youtube, 2023](https://youtu.be/qlDKFd6w2UE)
 - [Postol. M, profile on Udemy.com][MPUdemy]
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
 - [Discussion panel][Discussion]
