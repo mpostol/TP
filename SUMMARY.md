@@ -3,10 +3,10 @@
 * [Programming in Practice](README.md)
   * [References](REFERENCES.md)
 
-## [Information Computation](InformationComputation/README.md)
+## Information Computation
 
-* [Information Computation Course Description](InformationComputation/READMEUdemyCourseDescription.md)
-
+* [Repository Description](InformationComputation/README.md)
+* [Course Description](InformationComputation/READMEUdemyCourseDescription.md)
 * Fundamentals
   * [Fundamentals](InformationComputation/READMEFundamentals.md)
   * [Information versus data](InformationComputation/READMEInformationVersusData.md)
