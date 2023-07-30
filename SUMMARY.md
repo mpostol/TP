@@ -5,26 +5,22 @@
 
 ## Information Computation
 
-* [Preface](InformationComputation/READMEIntroduction.md)
-  * Fundamentals
-    * [Introduction](InformationComputation/README.md)
-  * Information Representation
-    * [Coding System versus Type](InformationComputation/CodingVType/README.md)
-    * [Custom Types](InformationComputation/CustomTypes/README.md)
-    * [Object-oriented programming](InformationComputation/ObjectOrientedProgramming/README.md)
-    * [Anonymous Types](InformationComputation/AnonymousTypes/README.md)
-    * [Partial Definitions](InformationComputation/PartialDefinitions/README.md)
-    * [Generic Types and Methods](InformationComputation/GenericClassesMethods/README.md)
-
-### Algorithm Implementation
-
-* [Program Layered Architecture](InformationComputation/LayeredArchitecture/README.md)
-* [Inter Layer Communication](InformationComputation/LayersCommunication/README.md)
-* [Dependency Injection](InformationComputation/DependencyInjection/README.md)
-
-### Summary
-
-* [Conclusion](InformationComputation/READMEConclusion.md)
+* Information Computation Fundamentals
+  * [Preface](InformationComputation/READMEIntroduction.md)
+  * [Introduction](InformationComputation/README.md)
+* Information Representation
+  * [Coding System versus Type](InformationComputation/CodingVType/README.md)
+  * [Custom Types](InformationComputation/CustomTypes/README.md)
+  * [Object-oriented programming](InformationComputation/ObjectOrientedProgramming/README.md)
+  * [Anonymous Types](InformationComputation/AnonymousTypes/README.md)
+  * [Partial Definitions](InformationComputation/PartialDefinitions/README.md)
+  * [Generic Types and Methods](InformationComputation/GenericClassesMethods/README.md)
+* Algorithm Implementation
+  * [Program Layered Architecture](InformationComputation/LayeredArchitecture/README.md)
+  * [Inter Layer Communication](InformationComputation/LayersCommunication/README.md)
+  * [Dependency Injection](InformationComputation/DependencyInjection/README.md)
+* Summary
+  * [Conclusion](InformationComputation/READMEConclusion.md)
 
 ## External Data-Intensive Programming
 
