@@ -113,6 +113,7 @@ The second part titled `Algorithm Implementation` covers the following examples 
 ## Aim of the course
 
 This way we finished the theoretical introduction. Maybe it was boring or annoying for you but I believe that it will give you a firm foundation to reach the main aim of the course. It must be stressed that the aim of the course is to deal with the implementation of selected algorithms, not just training that is scoped on the language itself and the development environment in which it is embedded. In order to ensure the practical nature of the course, selected topics are only illustrated using CSharp and the Microsoft Visual Studio development environment. A foundation of the course is that the main goals, design patterns, and discussed scenarios are of generic nature to be easily portable to other environments. The selected language and tools are only used to conduct the discussion using a well-defined environment and ensure that the course achievements are also very practical.
+
 ## See also
 
 - [Mariusz Postol profile on udemy][MPUdemy]
