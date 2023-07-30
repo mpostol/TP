@@ -93,97 +93,6 @@ In the context of examples, you will learn how to use types to represent custom 
 
 All discussion is conducted based on the examples gathered in a dedicated solution and maintained using a GitHub repository. These examples are ready to use as a foundation for programming skills learning. All the time I will keep the discussion on a level that guarantees common and easy portable conclusions, which are applicable independently of the used development environment.
 
-## Information Representation
-
-### Preface
-
-The main goal of this subsection is to explain the meaning of the course title to create a starting point to improve your further understanding.
-
-### What's the problem?
-
-To explain the meaning of the course title we must start by explaining the meaning of the keywords that are in the title of this course. So, the terms: information, and computation require clarification. The research must be conducted in the context of computer science and information technology. Of course, don't expect deep dive or a theoretical lecture because in general, I am going to present a part of the programming in practice story. Let me stress again that my goal is an improvement of your development skills but not a formal elaboration and definition of the meaning of the course title - in other words - I will try to avoid a complicated discussion related to the meaning of the title.
-
-### Introduction to Title Explanation
-
-Thanks to googling, it is easy to discover from the internet something like this "computer science uses technology to solve problems and prepare for the future". We can conclude from this statement that a computer may be recognized as a technology used to process information provided that information is knowledge about problems and the future. It looks like a common junction point with the information technology subject. In other words, we are talking about applying a technique and technology to problem-solving, or information processing to be more general. I must say that I have a few problems with this approach or rather this explanation.
-
-### First Problem
-
-The first problem I have is the term information processing itself. Let me ask you a question, do you think that medicine or journalism is not concerned with information processing? It is an important question for further discussion because we need to make a certain distinction between what doctors and journalists do and what you are going to do as an active member of the computer science ecosystem. Additionally, let me stress that doctors and journalists also use technology on a daily basis. This question is the easiest one to answer because we can say that computer science deals with the automation of information processing by applying programmable devices, I mean computers. Thanks to this, we can say that computer science embeds also an engineering domain aimed at providing solutions - information processing systems to be used in medicine for diagnostics or in journalism for the publication of a newspaper.
-
-### First Conclusion
-
-Concluding, our particular goal is to learn how to make information processing automatic using computers. In this context, information should be recognized as knowledge about the state or behavior of a set of interoperable real-time activities. The activities that we want to monitor or control, with the use of technology, or more precisely with the use of physical programmable devices, so as to achieve problem-solving automatically. It is our goal and responsibility as computer science active members of an ecosystem  - shortly developers.
-
-### Fundamental Inconsistency
-
-The automation of information computation requires the use of technology, simplifying a computer. Any computer is a device, so it is governed by the laws of physics. And here we come to our fundamental inconsistency, how it is possible to use a physical device (the computer) to operate against abstraction (information). To solve the problem, I mean to resolve this inconsistency, let's try to address this issue by answering another question, namely, whether the left side is equal to the right side.
-
-![InformacjaVersusData](.Media/2109-010201007000-InformationVersusData-InformacjaVersusData.png)
-
-### Syntax Analysis
-
-The first answer may be based on the observation that what we see are characters. That is on the left side of the equal sign we have two characters, and on the right side of the equal sign, we have one character. From this fact, we can conclude, that the left side is not equal to the right side. Generally speaking, we use characters in the syntax layer analysis. In this discussion, the set of allowed characters that we can use, I mean concatenate to make a valid string is called an alphabet. If the alphabet is intended for a human, it contains alphanumeric characters - for example letters, digits, or symbols for the Latin alphabet. In the case of today's computers, which are governed by the laws of physics, we must consider only two discrete states. It makes a difference because in this case, the alphabet must contain exactly two signs. Following this rule, the alphabet is called a binary alphabet - no matter what signs it contains. In case the alphabet is intended for a human we are talking about characters, in case the alphabet is intended to be used by a computer we are talking about signs. In both cases, we are talking about the alphabet as a set of entities to be concatenated in streams. For the characters, we have a shape, in the case of signs we have measurable features.
-
-### Semantics analysis
-
-If we now move from a syntax analysis to a semantic analysis of what we see, we can claim that the left side may represent the number four. And the right side can also represent the number four. In that case, the numbers are equal to each other, so the equal sign is legitimate because both sides are equivalent. That could have the same meaning. Only one question remains to be answered: what conditions must be met for the left side to represent the number four, and the right side also represents the number four? In this case, we are comparing the meaning but not the streams of characters. Again, meaning is an abstraction so physical computers cannot be able to compare meanings, they always compare bitstreams, and they always work on a stream of signs.
-
-### Data Definition
-
-Continuing this discussion to resolve any doubts related to the meaning of the title, I will use a funny illustration in which the number four is presented as a ghost, something that does not exist in the real world. It is information, it is an abstraction, but it has two equivalent representations interconnected by arrows indicating a bidirectional relationship with the streams of characters associating a meaning to them. To stress the difference between information and information representation that is associated with streams of characters the representation we call data. I believe that now it is very easy for you to distinguish the terms information and data. The simplified rule is as follows: if something is a stream of signs and we are able to assign a meaning to this stream it is just data.
-
-![Coding System](.Media/2109-010201010000-InformationVersusData-InformacjaVersusData.png)
-
-### Coding System
-
-To build a meaningful relationship between something abstract, in our case a number, and something that has a physical nature - a sequence of characters - we first need to define the alphabet, I mean a set of characters that you are allowed to use in this sequence. Then we need to define a set of rules expressing how to concatenate these characters into valid sequences - called syntax. Finally, we must define the semantics, I mean rules we could apply to correct characters sequences to associate meaning to them. Finally, the alphabet, syntax, and semantics make up a coding system. It is a very important conclusion for subjects related to types, which I will cover.
-
-### Possibility to Replace Information Term by Data
-
-Returning once again to the discussion about the title of the course, we can observe that in reality, we are computing the data but not the information. Hence, someone could put forward a proposal that maybe it is enough to replace the term information with the term data, and as a result, we will be able to avoid this whole long introduction, which is relatively low-level and theoretical. Of course, the answer is that we can't do that because your duty, as a software developer, is to select or even create if necessary an appropriate coding system. The good news is that the creation of a new coding system is built upon the existing ones. In other words, typically new coding systems are derived from the existing ones. In any case, it is part of your responsibility, so you must know how to deal with it and acquire appropriate skills.
-
-### Algorithm Implementation
-
-Explaining the title of our course, we concluded that we are talking about the automation of the information computation process. To be more practical and talk in the context of problem-solving we may recognize the information as a piece of knowledge about the state and behavior of a selected real-time set of activities - part of the natural realm. But to solve any problem using a computer we need to know how to compute the information to fulfill an expectation of the activities owner or a manager. Again, additionally, we need knowledge, a piece of information on how to solve the selected problem. How to monitor and possibly control the behavior of the activities in concern. How to control the activities to achieve the chosen goal. This kind of knowledge we may call an algorithm. Let me stress it is also information that cannot be directly applied or used by any physical device including but not limited to computers.
-
-## Algorithm Versus Program
-
-### Preface
-
-Let me recall that our challenge is to learn all about information computation. Information computation means a process employing a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help fulfill a task. The first challenge of this process is that information is abstract. In other words, it is a kind of knowledge that cannot be used directly to describe computer behavior. In this subsection, we will learn how to describe the actions or steps to achieve a particular result in compliance with the limitations of modern computers. I mean the computer is a physical device and cannot process any abstraction.
-
-### What's the problem?
-
-- how to control a physical device (precisely computer) behavior to process information in compliance with an algorithm
-
-Explaining the title of the course, we concluded that we are talking about the automation of information processing. To be more practical and talk in the context of problem-solving we may recognize the information as a piece of knowledge about the state and behavior of a selected real-time set of activities - part of the natural realm. But to solve any problem using a computer we also need to know how to process the information to reach a goal. Again, additionally, we need information, a piece of knowledge describing how to solve the selected problem. How to control the activities to achieve the goal we are facing with. This kind of knowledge we call an algorithm. Let me stress it is also information that cannot be directly applied or used by any physical device including but not limited to computers. The main challenge of this subsection is to learn more about how to do it.
-
-### Algorithm implementation
-
-Computation means a set of actions that ensure the automation of information processing. To ensure automatic processing, we need to use technology, which means a programmable device. Today it is the binary computer for sure. Anyway, we must ensure that this processing engine behaves following an appropriate algorithm. The algorithm is again information because it is a piece of knowledge on how to solve the problem. Hence, it is an abstraction that will be useful in the computation process only if it can be represented in binary form - similar to the process information discussed earlier. And this is the next task of software developers, namely algorithms implementation, and the results of this work are computer programs. That is a recipe instructing the computer how to control the activities to achieve the chosen goal. From the previous subsection, we learned that information to be processed by a physical device must be represented by data first using the alphabet, syntax, and data semantics. That is a coding system. A similar approach can be applied to the algorithm, which is also a piece of information describing the computer behavior - shortly algorithm. The most promising solution is coupling together custom coding system design and algorithm implementation because both are tightly coupled.
-
-### Computer Program is Text
-
-Today, we do not need to implement the algorithm using a binary representation. Thanks to the compilation process, we can use alpha-numeric alphabets - just like the natural languages we use on a daily basis. Typically the alphabet is derived from the Latin alphabet. This leads to the statement that any program at the beginning of its life cycle is just a text, hence a sequence of characters. **Text becomes a computer program when it meets additional rules that will enable it to be compiled.**
-
-### Programming Language
-
-And so we come to the term programming language. To be used to control a computer it is a kind of contract between the software developer and compiler that both must comply with and use to finally implement information processing as the data computation. It must be a set of rules. The contract must be exhaustive. To fulfill this requirement the syntax and semantics must be defined and applied respectively to provide appropriate rules that can be used:
-
-- syntax: to create the correct text by concatenating characters from the alphabet and
-- semantics: to make the text meaningful.
-
-CSharp is such a language that I use to explain software development issues with concrete examples.
-
-### Binary machine needs binary alphabet
-
-Using an alphanumeric instead of a binary alphabet and the requirement that the design of the process data coding system should be coupled together with the algorithm implementation leads to a need to replace the coding system with the type concept to design the information representation and computer behavior. Defining a programming language atop of alphanumeric alphabet allows us to better suit the definition to human needs finally we get high-level languages. The type concept is the main subject of the section titled `Information representation`.
-
-### Aim of the course
-
-This way we finished the theoretical introduction. Maybe it was boring or annoying for you but I believe that it will give you a firm foundation to reach the main aim of the course. It must be stressed that the aim of the course is to deal with the implementation of selected algorithms, not just training that is scoped on the language itself and the development environment in which it is embedded. In order to ensure the practical nature of the course, selected topics are only illustrated using CSharp and the Microsoft Visual Studio development environment. A foundation of the course is that the main goals, design patterns, and discussed scenarios are of generic nature to be easily portable to other environments. The selected language and tools are only used to conduct the discussion using a well-defined environment and ensure that the course achievements are also very practical.
-
 ## Conclusion
 
 It is time to conclude our discussion and idea exchange related to Information Computation.
@@ -209,6 +118,9 @@ The second part titled `Algorithm Implementation` covers the following examples 
 - Inter Layers Communication
 - Dependency injection
 
+## Aim of the course
+
+This way we finished the theoretical introduction. Maybe it was boring or annoying for you but I believe that it will give you a firm foundation to reach the main aim of the course. It must be stressed that the aim of the course is to deal with the implementation of selected algorithms, not just training that is scoped on the language itself and the development environment in which it is embedded. In order to ensure the practical nature of the course, selected topics are only illustrated using CSharp and the Microsoft Visual Studio development environment. A foundation of the course is that the main goals, design patterns, and discussed scenarios are of generic nature to be easily portable to other environments. The selected language and tools are only used to conduct the discussion using a well-defined environment and ensure that the course achievements are also very practical.
 ## See also
 
 - [Mariusz Postol profile on udemy][MPUdemy]

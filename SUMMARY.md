@@ -8,7 +8,9 @@
 * [Information Computation Course Description](InformationComputation/READMEUdemyCourseDescription.md)
 
 * Fundamentals
-  * [Introduction](InformationComputation/README.md)
+  * [Fundamentals](InformationComputation/READMEFundamentals.md)
+  * [Information versus data](InformationComputation/READMEInformationVersusData.md)
+  * [Algorithm Versus Program](InformationComputation/READMEAlgorithmVersusProgram.md)
 * Information Representation
   * [Coding System versus Type](InformationComputation/CodingVType/README.md)
   * [Custom Types](InformationComputation/CustomTypes/README.md)
