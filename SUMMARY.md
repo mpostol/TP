@@ -5,8 +5,9 @@
 
 ## Information Computation
 
+* [Information Computation Course Description](InformationComputation/READMEUdemyCourseDescription.md)
+
 * Fundamentals
-  * [Preface](InformationComputation/READMEIntroduction.md)
   * [Introduction](InformationComputation/README.md)
 * Information Representation
   * [Coding System versus Type](InformationComputation/CodingVType/README.md)
