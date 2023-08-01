@@ -11,7 +11,11 @@ My point is that we could distinguish between two kinds of education:
 
 This curse will focus on p. 2 - the improvement of your knowledge related to software engineering. My goal is that it will be beneficial for you in the long run.
 
-Anyway, to learn more about programming in practice meaning check out the free introduction to the series of courses titled [Programming in Practice - Executive summary][2108-PiP-TP-repository]. It is a free course published on [udemy.com][MPUdemy]. Consider enrolling in.
+Anyway, to learn more about programming in practice meaning check out the free introduction to the series of courses titled [Programming in Practice - Executive summary][udemyPiPES]. It is a free course published on [udemy.com][MPUdemy]. Consider enrolling in.
+
+Check the course from Udemy. Consider enrolling in.
+
+- [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 
 ## Instructor Intro
 
@@ -64,7 +68,7 @@ The associated course on Udemy is about information computation in practice. We 
 
 The main goal of the course is to concentrate on learning - it means focussing on knowledge adoption. It focuses on learning rules related to information computation but not training in a particular language or development tool. To make the learning outcomes practical the examples are indispensable. To avoid overloading the examples with details unimportant for investigated topics, it is proposed to apply extended examples. By extended examples, we mean examples that can be executed as independent unit tests. This way, you can observe not only a pattern but also trace the behavior of selected code snippets. I believe that it should also improve the reusability of the examples. By design, the unit tests are used to validate the correctness and consistency of a program. The role of the unit tests included in the attached examples is significantly different. They are created with teaching values in mind. By design, they are used to make the examples intelligible and add the possibility to analyze also the behavior of the code patterns presented here. As a result of this approach, the examples are not obscured by a bunch of unimportant details needed to execute the examples as a part of an entire program.
 
-This Information Computation course is a member of the courses suite titled Programming in Practice. Hence, more details about the rules overseeing this course you can find in the independent free course titled [Programming in Practice - Executive Summary][2108-PiP-TP-repository] - consider enrolling and passing it if haven't yet.
+This Information Computation course is a member of the courses suite titled Programming in Practice. Hence, more details about the rules overseeing this course you can find in the independent free course titled [Programming in Practice - Executive Summary][udemyPiPES] - consider enrolling and passing it if haven't yet.
 
 ### Information Computation Fundamentals
 
@@ -90,5 +94,12 @@ The next part of the course covers the applicability of the dependency injection
 
 The dependency injection design pattern uses abstraction to create an agreement between the creation and usage of an instance. The abstraction is employed to specify the property type (property injection) or the formal parameter type of the method or constructor (method or constructor injection). This design pattern eliminates the requirement for visibility of a specific definition of the concrete type in the usage intended location.
 
-[2108-PiP-TP-repository]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
+## See Also
+
+- [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
+- [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+- [Postol. M, profile on Udemy.com][MPUdemy]
+
+[udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
+[udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
 [MPUdemy]:https://www.udemy.com/user/mariusz-postol/
