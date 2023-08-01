@@ -6,13 +6,13 @@ software engineering, sequential programming, software design, education, code e
 
 ## Major Releases
 
-|   Release    | Title                                                   |          DOI           |
-| :----------: | ------------------------------------------------------- | :--------------------: |
-| [5.1][REL51] | Information Computation Udemy Course Online Publication | [![DOI][BDG51]][DOI51] |
-| [4.3][REL43] | TUL IT Classes 2023 Summer Semester                     | [![DOI][BDG43]][DOI43] |
-| [4.0][REL40] | Distributed Programming                                 | [![DOI][BDG40]][DOI40] |
-| [3.0][REL30] | [ExDM VideoBook Helion v1.0.][vdpnt]                    | [![DOI][BDG30]][DOI30] |
-|     2.0      | Adaptive Programming                                    |           NA           |
+|   Release    | Title                                                                 |          DOI           |
+| :----------: | --------------------------------------------------------------------- | :--------------------: |
+| [5.1][REL51] | [Information Computation Udemy Course Online Publication][udemyPiPIC] | [![DOI][BDG51]][DOI51] |
+| [4.3][REL43] | TUL IT Classes 2023 Summer Semester                                   | [![DOI][BDG43]][DOI43] |
+| [4.0][REL40] | Distributed Programming                                               | [![DOI][BDG40]][DOI40] |
+| [3.0][REL30] | [ExDM VideoBook Helion v1.0.][vdpnt]                                  | [![DOI][BDG30]][DOI30] |
+|     2.0      | Adaptive Programming                                                  |           NA           |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
