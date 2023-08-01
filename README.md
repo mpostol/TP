@@ -6,26 +6,34 @@ software engineering, sequential programming, software design, education, code e
 
 ## Major Releases
 
-|   Release    | Title                                |          DOI           |
-| :----------: | ------------------------------------ | :--------------------: |
-| [4.3][REL43] | TUL IT Classes 2023 Summer Semester  | [![DOI][BDG43]][DOI43] |
-| [4.0][REL40] | Distributed Programming              | [![DOI][BDG40]][DOI40] |
-| [3.0][REL30] | [ExDM VideoBook Helion v1.0.][vdpnt] | [![DOI][BDG30]][DOI30] |
-|     2.0      | Adaptive Programming                 |           NA           |
+|   Release    | Title                                                   |          DOI           |
+| :----------: | ------------------------------------------------------- | :--------------------: |
+| [5.1][REL51] | Information Computation Udemy Course Online Publication | [![DOI][BDG51]][DOI51] |
+| [4.3][REL43] | TUL IT Classes 2023 Summer Semester                     | [![DOI][BDG43]][DOI43] |
+| [4.0][REL40] | Distributed Programming                                 | [![DOI][BDG40]][DOI40] |
+| [3.0][REL30] | [ExDM VideoBook Helion v1.0.][vdpnt]                    | [![DOI][BDG30]][DOI30] |
+|     2.0      | Adaptive Programming                                    |           NA           |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
 > [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
 
+[REL51]: https://github.com/mpostol/TP/releases/tag/5.1
+[DOI51]: https://doi.org/10.5281/zenodo.8206620
+[BDG51]: https://zenodo.org/badge/DOI/10.5281/zenodo.8206620
+
 [REL43]: https://github.com/mpostol/TP/releases/tag/4.3
 [DOI43]: https://doi.org/10.5281/zenodo.8192921
 [BDG43]: https://zenodo.org/badge/DOI/10.5281/zenodo.8192921.svg
+
 [REL40]: https://github.com/mpostol/TP/releases/tag/4.0
 [DOI40]: https://doi.org/10.5281/zenodo.4066609
 [BDG40]: https://zenodo.org/badge/DOI/10.5281/zenodo.4066609.svg
+
 [REL30]: https://github.com/mpostol/TP/releases/tag/3.0
 [DOI30]: https://doi.org/10.5281/zenodo.2578245
 [BDG30]: https://zenodo.org/badge/DOI/10.5281/zenodo.2578245.svg
+
 [TULIT]: https://it.p.lodz.pl/
 
 ## Repository Content
