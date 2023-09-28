@@ -1,4 +1,8 @@
-# Graphical data
+# Section 4 - Graphical data
+
+## Lesson 13 - Graphical data (Part 1)
+
+## Lesson 14 - Graphical data (Part 2)
 
 ## What is control?
 

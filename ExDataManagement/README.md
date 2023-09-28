@@ -1,59 +1,67 @@
-# C\# External Data Management (ExDM)
+# External Data Management (ExDM)
 
 ## Key words
 
-software engineering, education, learning, external data, data management, information processing, data processing, GUI, SQL, serialization, LINQ, XAML
+software engineering, education, learning, external data, data management, information processing, data processing,  serialization, SQL, LINQ, XAML, GUI
 
-## Subject
+## Introduction
 
-Computer science in general, and especially programming activities, is a field of knowledge that deals with the automation of information processing. Programs can be recognized as a driving force of that automated behavior. To achieve information processing goals programs have to implement algorithms required by the application concerned. In other words, the programs describe how to process data, which represents information relevant to the application. Apart from the implementation of the algorithms, therefore, data management is a key issue from the point of view of automation of information processing in particular and computer science in general.
+### Subject
 
-Let's review selected language constructs, design patterns, and frameworks targeting external data management by a program.
+Computer science in general, and especially software engineering, is a field of knowledge that deals with the automation of information processing. Programs can be recognized as a driving force of that automated behavior. To achieve information processing goals programs have to implement algorithms required by the application. In other words, the programs describe how to process data, which represents information relevant to the application. Apart from the implementation of the algorithms, therefore, data management is a key issue from the point of view of automation of information processing in particular and computer science in general. Let's review selected language constructs, design patterns, and frameworks targeting external data management by a program.
 
-## Goal
+### Goal
 
-The main aim of the course is to extend knowledge and skills related to object-oriented programming focusing on interoperability between the computing process and data visualization, archiving, and networking environment. Particular emphasis is placed on the identification of solutions that can serve as a certain design pattern with the widest possible use in the long run. Providing a long-term horizon is extremely difficult for such a dynamically developing field. Here, the experience of the author comes to the rescue, who has been employing similar solutions for years using constantly changing programming tools.
+The main aim, of the collected code snippets in this folder, is to extend knowledge and improve skills related to object-oriented programming focusing on interoperability between the computing process and data visualization, archiving, and networking resources. Particular emphasis is placed on the identification of solutions that can serve as a certain design pattern with the widest possible use in the long run. Providing solutions valid for a long-term horizon is extremely difficult for such a dynamically developing field. Here, the experience of the author comes to the rescue, who has been employing similar solutions for years using constantly changing programming tools.
 
 To ensure the practical context of the discussion and provide sound examples, all topics are illustrated using the C\# language and the MS Visual Studio design environment. The source code used during the course is available in this repository. I believe that the proposed principles, design patterns, and scenarios are generic and may be seamlessly ported to other environments. The language and tools mentioned above have been used only to embed the discussion in a particular environment and to ensure that the course is very practical.
 
-The course discusses solutions for practical scenarios regarding various aspects of process data management, i.e. those that are input or output for the business logic of the program. In general, the external data may be grouped as follows:
+The course discusses solutions for practical scenarios regarding various aspects of external process data management.  In general, the external data may be grouped as follows:
 
-- **streaming**: files, network packets
-- **structural**: databases
-- **graphical**: Graphical User Interface (GUI)
+- **streaming** - bitstreams managed using content of files, or network payload
+- **structural** - data fetched/pushed from/to external database management systems using queries
+- **graphical** - data rendered on Graphical User Interface (GUI)
 
-The external data is recognized as the data we must pull or push from outside of the process hosting the computer program.
+The external data is recognized as the data we must pull or push from outside of a boundary of the process hosting the computer program.
 
 ## Scope
 
-The repository is scoped to provide sound examples covering the following topics:
+In the `ExDataManagement` folder, the code snippets are scoped to provide sound examples covering the following topics:
 
-1. Introduction
-   1. About the course, information versus data, algorithm versus program, type - what does it mean
-   2. Useful assets: C\# language, Visual Studio, GitHub
-2. Data semantics
-    1. Type concept
-    1. Anonymous type
-    1. Partial types and methods
-    1. Generics
-3. Data streams
-    1. File and Stream Concepts
-    1. Attributes
-    1. Reflection
-    1. Serialization
-    1. Cryptography basics
-4. Functional programming basics
-    1. Anonymous function and lambda expression
-    1. Extension method
-5. Structural Data
-    1. LINQ query and methods syntax
-    1. LINQ to object
-    1. LINQ to SQL
-6. Graphical data
-   1. [xaml](https://docs.microsoft.com/dotnet/framework/xaml-services/)
-   1. MVVM (Model, View, ViewModel) pattern
+- Section 1 - Introduction
+  - Lesson 01 - Executive Summary
+    - About the course, information versus data, algorithm versus program, type - what does it mean
+    - Useful assets: C\# language, Visual Studio, GitHub
+  - Lesson 02 - Data semantics
+    - Type concept
+    - Anonymous type
+    - Partial types and methods
+    - Generics
+- Section 2 - Data streams
+  - Lesson 03 - File and Stream Concepts
+  - Lesson 04 - Attributes
+  - Lesson 05 - Reflection
+  - Lesson 06 - Serialization
+  - Lesson 07 - Cryptography basics
+- Section 3 - Structural Data](#3-section-3---structural-data)
+  - Lesson 08 - Anonymous function and lambda expression
+  - Lesson 09 - Extension method
+  - Lesson 10 - LINQ query and methods syntax
+  - Lesson 11 - LINQ to object
+  - Lesson 12 - LINQ to SQL
+- Section 4 - Graphical data
+  - Lesson 13 - Graphical data (Part 1)
+    - [xaml](https://docs.microsoft.com/dotnet/framework/xaml-services/)
+  - Lesson 14 - Graphical data (Part 2)
+    - MVVM (Model, View, ViewModel) design pattern
+- Section 5 - Summary
+  - Lesson 15 - Conclusion
 
 > **NOTE**: Unit Test role is solely code explanation rather than testing the correctness of it.
+
+## Lesson 15 - Conclusion
+
+TBD
 
 ## See also
 
