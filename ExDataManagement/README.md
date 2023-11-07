@@ -73,7 +73,7 @@ TBD
 - [Postol. M, profile on Udemy.com][MPUdemy]
 
 [Discussion]: https://github.com/mpostol/TP/discussions
-[MPUdemy]:https://www.udemy.com/user/mariusz-postol/
+[MPUdemy]: https://www.udemy.com/user/mariusz-postol/
 [udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
 
 <!--
