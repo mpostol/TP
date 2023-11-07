@@ -1,8 +1,16 @@
-# Presenting working data outside the application
+# Section 2 - Data streams
 
 ## Key words
 
 File System, User Interface, XML, XSLT, HTML, XmlSerializer, Save file, Transformation, Saving text files, Local File Systems, Open and read file, XML Schema, Common File Format, Data Access, XML Serialization, XSL, Data Validation, XML Documentation
+
+## Lesson 03 - File and Stream Concepts
+
+## Lesson 04 - Attributes
+
+## Lesson 05 - Reflection
+
+## Lesson 06 - Serialization
 
 ## Executive summary
 
@@ -11,6 +19,8 @@ This sample demonstrates how to save working data in a file containing xml docum
 ## Scenario
 
 Applications save working data into the files to keep state information, to provide processing outcome or both. Applications need robust storage, i.e. correctness of the stored data has to be validated every time an application reads it back from the file. It must be carefully observed if the files are also modified by other applications or directly by users, because data corruption may occur. To address the validation requirement XML (Extensible Markup Language) as a text-based format for representing structured information and XML Schema as a language for expressing constraints about XML documents are very good candidates to be used by the save operation.
+
+## Presenting working data outside the application
 
 As the XML format is text based it can be directly read and displayed by the software user. However, it is not preferred format, because it does not contain any formatting information. Today we expect data presentation to meet user experience, i.e. to have appropriate layout and style. We can meet this requirement using any application that supports XSLT transformation of XML documents into other text documents or HTML documents. XSLT uses a template-driven approach to transformations: you write a template that shows what happens to any given input element. For example, if you were formatting a working data to produce HTML for the Web, you might have a template (*stylesheet file*) to match an underlined group of elements and make it come out as a table.
 
@@ -39,6 +49,8 @@ After implementation of the `Example.Xml.DocumentsFactory.IStylesheetNameProvide
 An example of xslt file has been added to the CustomData and is copied during project build to destination folder. In the same folder an example of XML file (named Catalog.xml ) is created. You can open it using IE or MS Word using the instruction below.
 
 Program class demonstrates how to use read/write operation.
+
+## Lesson 07 - Cryptography basics
 
 <!--
 //____________________________________________________________________________________________________________________________________

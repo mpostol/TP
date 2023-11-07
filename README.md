@@ -62,7 +62,7 @@ The TP repository collects examples that can serve as a pattern with the broades
 
 The source code is available under a very permissive open-source license to increase broad reach. Hopefully, the samples are easily portable to other development environments.
 
-### Information Computation
+### Information Computation (IC)
 
 Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. The repository contains code that is to be used as a set of examples for an online video course and class lectures. The examples can also be used alone. Generally speaking, two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system.  The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 
@@ -70,7 +70,7 @@ The [InformationComputation](InformationComputation/README.md) folder collects e
 
 > **Note**: to open the code samples in the Visual Studio double click the file `InformationComputation`.
 
-### External Data-Intensive Programming (ExDM)
+### External Data Management (ExDM)
 
 Computer science in general, and especially software development, is a field of knowledge that deals with the automation of information processing. Programs can be recognized as a recipe for that automated behavior. To achieve information processing goals programs have to manage external information engaged to control the graphical user interface (graphical data), stored by database management systems (structure data) and file systems (streaming data). This part of the gathered examples provides ready-to-use code snippets helpful for rendering the graphical data, querying the structural data, and serialization to employ streaming data, that is manage of the external data. The external data is recognized as a process information representation handled outside of the program realm.
 

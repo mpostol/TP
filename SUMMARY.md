@@ -25,7 +25,7 @@
 * Summary
   * [Conclusion](InformationComputation/READMEConclusion.md)
 
-## External Data-Intensive Programming
+## External Data Management
 
 * [Executive Summary](ExDataManagement/README.md)
 
@@ -42,6 +42,7 @@
   * [Structural Data](ExDataManagement/P05.StructuralData/README.md)
 * Graphical Data
 <!-- * [Graphical Data](ExDataManagement/P06.GraphicalData/Readme.md) -->
+
 ## Adaptive Programming
 
 * [Executive Summary](AdaptiveProgramming/README.md)
