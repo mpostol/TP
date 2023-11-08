@@ -28,20 +28,14 @@
 ## External Data Management
 
 * [Executive Summary](ExDataManagement/README.md)
-
-* Introduction
 * Data Semantics
   <!-- * [Data Semantics](ExDataManagement/P02.DataSemantics/DataSemantics/README.md) -->
   * [Generics](ExDataManagement/P02.DataSemantics/DataSemantics/Generics/Generics.md)
   * [Partial types](ExDataManagement/P02.DataSemantics/DataSemantics/Partials/README.md)
-* Data Streams
-  * [Data Streams](ExDataManagement/P03.DataStreams/README.md)
-* Functional Programming
-  * [Functional Programming](ExDataManagement/P04.FunctionalProgramming/FunctionalProgramming/Readme.md)
-* Structural Data
-  * [Structural Data](ExDataManagement/P05.StructuralData/README.md)
-* Graphical Data
-<!-- * [Graphical Data](ExDataManagement/P06.GraphicalData/Readme.md) -->
+* [Data Streams](ExDataManagement/P03.DataStreams/README.md)
+* [Functional Programming](ExDataManagement/P04.FunctionalProgramming/FunctionalProgramming/Readme.md)
+* [Structural Data](ExDataManagement/P05.StructuralData/README.md)
+* [Graphical Data](ExDataManagement/P06.GraphicalData/README.md)
 
 ## Adaptive Programming
 
