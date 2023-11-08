@@ -1,4 +1,4 @@
-# Section 1 - Introduction
+# Section: Introduction
 
 ## Executive Summary
 

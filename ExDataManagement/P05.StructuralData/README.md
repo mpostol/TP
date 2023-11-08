@@ -1,4 +1,4 @@
-# Section 3 - Structural Data
+# Section: Structural Data
 
 ## Lesson 08 - Anonymous function and lambda expression
 
