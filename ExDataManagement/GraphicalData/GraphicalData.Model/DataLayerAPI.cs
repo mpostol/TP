@@ -13,6 +13,7 @@ using System.Collections.Generic;
 
 namespace TP.GraphicalData.Model
 {
+  //TODO ExDM GraphicalData.UnitTest - implement idependent testing #343
   public abstract class DataLayerAPI
   {
     public IEnumerable<IUser> User { get; }

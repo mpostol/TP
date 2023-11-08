@@ -20,7 +20,7 @@ namespace TP.GraphicalData.ViewModel
   public class MainViewModel : ViewModelBase
   {
     #region constructors
-
+    //TODO ExDM GraphicalData.UnitTest - implement idependent testing #343
     public MainViewModel()
     {
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
@@ -28,7 +28,7 @@ namespace TP.GraphicalData.ViewModel
       DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
       m_ActionText = "Text to be displayed on the pop-up";
     }
-
+    //TODO ExDM GraphicalData.UnitTest - implement idependent testing #343
     public MainViewModel(DataLayerAPI dataLayer = null)
     {
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);

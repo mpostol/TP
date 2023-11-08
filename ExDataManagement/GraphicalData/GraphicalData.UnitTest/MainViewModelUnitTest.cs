@@ -56,7 +56,7 @@ namespace TP.GraphicalData
       Assert.IsFalse(_vm.DisplayTextCommand.CanExecute(null));
     }
 
-    // ExDM GraphicalData.UnitTest - implement idependent testing #343
+    //TODO ExDM GraphicalData.UnitTest - implement idependent testing #343
     //[TestMethod]
     //public void DataLayerTestMethod()
     //{
