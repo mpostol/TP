@@ -14,7 +14,7 @@ using System;
 using System.ComponentModel;
 using TP.GraphicalData.ViewModel.MVVMLight;
 
-namespace TP.GraphicalData
+namespace TP.GraphicalData.ViewMode
 {
   [TestClass]
   public class MVVMLightUnitTest
@@ -22,41 +22,41 @@ namespace TP.GraphicalData
     [TestMethod]
     public void RelayCommandTest()
     {
-      int _executeCount = 0;
-      RelayCommand _testCommand = new RelayCommand(() => _executeCount++);
+      int executeCount = 0;
+      RelayCommand _testCommand = new RelayCommand(() => executeCount++);
       Assert.IsTrue(_testCommand.CanExecute(null));
       int _CanExecuteChangedCount = 0;
       _testCommand.CanExecuteChanged += (object sender, EventArgs e) => _CanExecuteChangedCount++;
       _testCommand.Execute(null);
-      Assert.AreEqual<int>(1, _executeCount);
+      Assert.AreEqual<int>(1, executeCount);
       Assert.AreEqual<int>(0, _CanExecuteChangedCount);
     }
 
     [TestMethod]
     public void RelayCommandCanExecuteTest()
     {
-      int _ExecuteCount = 0;
-      bool _CanExecute = true;
-      int _CanExecuteChangedCount = 0;
-      RelayCommand _testCommand = new RelayCommand(() => _ExecuteCount++, () => _CanExecute);
-      _testCommand.CanExecuteChanged += (object sender, EventArgs e) => _CanExecuteChangedCount++;
-      Assert.IsTrue(_testCommand.CanExecute(null));
-      _testCommand.Execute(null);
-      _CanExecute = false;
-      Assert.IsFalse(_testCommand.CanExecute(null));
-      _testCommand.Execute(null);
-      Assert.AreEqual<int>(2, _ExecuteCount);
-      Assert.AreEqual<int>(0, _CanExecuteChangedCount);
+      int executeCount = 0;
+      bool canExecute = true;
+      int canExecuteChangedCount = 0;
+      RelayCommand testCommand = new RelayCommand(() => executeCount++, () => canExecute);
+      testCommand.CanExecuteChanged += (object sender, EventArgs e) => canExecuteChangedCount++;
+      Assert.IsTrue(testCommand.CanExecute(null));
+      testCommand.Execute(null);
+      canExecute = false;
+      Assert.IsFalse(testCommand.CanExecute(null));
+      testCommand.Execute(null);
+      Assert.AreEqual<int>(2, executeCount);
+      Assert.AreEqual<int>(0, canExecuteChangedCount);
     }
 
     [TestMethod]
     public void ViewModelBaseTest()
     {
-      ViewModelBaseFixture _toTest = new ViewModelBaseFixture();
+      ViewModelBaseFixture toTest = new ViewModelBaseFixture();
       int _PropertyChangedCount = 0;
       string _lastPropertyName = String.Empty;
-      _toTest.PropertyChanged += (object sender, PropertyChangedEventArgs e) => { _PropertyChangedCount++; _lastPropertyName = e.PropertyName; };
-      _toTest.TestRaisePropertyChanged("PropertyName");
+      toTest.PropertyChanged += (object sender, PropertyChangedEventArgs e) => { _PropertyChangedCount++; _lastPropertyName = e.PropertyName; };
+      toTest.TestRaisePropertyChanged("PropertyName");
       Assert.AreEqual<string>("PropertyName", _lastPropertyName);
       Assert.AreEqual<int>(1, _PropertyChangedCount);
     }

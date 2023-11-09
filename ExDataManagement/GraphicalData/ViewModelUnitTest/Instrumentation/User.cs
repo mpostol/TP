@@ -9,23 +9,19 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using System.Collections.Generic;
+using TP.GraphicalData.Model;
 
-namespace TP.GraphicalData.Model.LayerImplementation
+namespace TP.GraphicalData.ViewMode.Instrumentation
 {
-  internal class DataLayer : DataLayerAPI
+  internal class User : IUser
   {
-    public override IEnumerable<IUser> User
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public bool Active { get; set; }
+
+    public override string ToString()
     {
-      get
-      {
-        List<IUser> Users = new List<IUser>()
-                {
-                    new User() { Age = 21, Name = "Jan", Active = true },
-                    new User() { Age = 22, Name = "Stefan", Active = false }
-                };
-        return Users;
-      }
+      return Name + " " + Age + " " + Active;
     }
   }
 }

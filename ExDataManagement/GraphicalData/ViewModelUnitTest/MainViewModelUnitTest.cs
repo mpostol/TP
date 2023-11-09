@@ -14,7 +14,7 @@ using System;
 using System.ComponentModel;
 using TP.GraphicalData.ViewModel;
 
-namespace TP.GraphicalData
+namespace TP.GraphicalData.ViewMode
 {
   [TestClass]
   public class MainViewModelUnitTest
@@ -22,7 +22,7 @@ namespace TP.GraphicalData
     [TestMethod]
     public void CreatorTestMethod()
     {
-      MainViewModel _vm = new MainViewModel();
+      MainViewModel _vm = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
       Assert.IsFalse(String.IsNullOrEmpty(_vm.ActionText));
       Assert.IsNotNull(_vm.MessageBoxShowDelegate);
       Assert.IsNotNull(_vm.DisplayTextCommand);
@@ -34,7 +34,7 @@ namespace TP.GraphicalData
     [TestMethod]
     public void MyCommandTest()
     {
-      MainViewModel _vm = new MainViewModel();
+      MainViewModel _vm = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
       int _boxShowCount = 0;
       _vm.MessageBoxShowDelegate = (messageBoxText) =>
       {
@@ -50,7 +50,7 @@ namespace TP.GraphicalData
     [TestMethod]
     public void ActionTextTestMethod()
     {
-      MainViewModel _vm = new MainViewModel();
+      MainViewModel _vm = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
       Assert.IsTrue(_vm.DisplayTextCommand.CanExecute(null));
       _vm.ActionText = String.Empty;
       Assert.IsFalse(_vm.DisplayTextCommand.CanExecute(null));
@@ -59,7 +59,7 @@ namespace TP.GraphicalData
     [TestMethod]
     public void MyTestMethod()
     {
-      Object DataContext = new MainViewModel();
+      Object DataContext = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
       Assert.IsInstanceOfType(DataContext, typeof(INotifyPropertyChanged));
       int executionCount = 0;
       ((INotifyPropertyChanged)DataContext).PropertyChanged += (x, y) => { Assert.AreEqual<string>("ActionText", y.PropertyName); executionCount++; };

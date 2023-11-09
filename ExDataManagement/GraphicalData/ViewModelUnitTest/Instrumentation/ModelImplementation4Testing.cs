@@ -10,10 +10,11 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System.Collections.Generic;
+using TP.GraphicalData.Model;
 
-namespace TP.GraphicalData.Model.LayerImplementation
+namespace TP.GraphicalData.ViewMode.Instrumentation
 {
-  internal class DataLayer : DataLayerAPI
+  internal class ModelImplementation4Testing : DataLayerAPI
   {
     public override IEnumerable<IUser> User
     {
