@@ -20,9 +20,17 @@ namespace TP.GraphicalData.ViewModel
   public class MainViewModel : ViewModelBase
   {
     #region constructors
-
-    //TODO ExDM GraphicalData.UnitTest - implement independent testing #343
-    public MainViewModel(ModelSublayerAPI dataLayer = null)
+    /// <summary>
+    /// The constructor used by the View sublayer to create the DataContext
+    /// </summary>
+    public MainViewModel() : this(null)
+    {
+    }
+    /// <summary>
+    /// The constructor used by the unit tests
+    /// </summary>
+    /// <param name="dataLayer"></param>
+    public MainViewModel(ModelSublayerAPI dataLayer)
     {
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
       FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? ModelSublayerAPI.Create());
@@ -80,7 +88,7 @@ namespace TP.GraphicalData.ViewModel
       get; private set;
     }
 
-    public Lazy<IWindow> ChildWindow { get; set; }
+    public Func<IWindow> ChildWindow { get; set; }
 
     #endregion ViewModel API
 
@@ -122,8 +130,8 @@ namespace TP.GraphicalData.ViewModel
 
     private void ShowTreeViewMainWindow()
     {
-      IWindow _child = ChildWindow.Value;
-      _child.Show();
+      IWindow child = ChildWindow();
+      child.Show();
     }
 
     #endregion Private stuff

@@ -28,7 +28,7 @@ namespace TP.GraphicalData.View
     {
       base.OnInitialized(e);
       MainViewModel _vm = (MainViewModel)DataContext;
-      _vm.ChildWindow = new Lazy<IWindow>(() => new TreeViewMainWindow());
+      _vm.ChildWindow = () => new TreeViewMainWindow();
       _vm.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
     }
   }
