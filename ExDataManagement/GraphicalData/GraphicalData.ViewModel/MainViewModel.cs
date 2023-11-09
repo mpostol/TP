@@ -22,10 +22,10 @@ namespace TP.GraphicalData.ViewModel
     #region constructors
 
     //TODO ExDM GraphicalData.UnitTest - implement independent testing #343
-    public MainViewModel(DataLayerAPI dataLayer = null)
+    public MainViewModel(ModelSublayerAPI dataLayer = null)
     {
       ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
-      FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? DataLayerAPI.Create());
+      FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? ModelSublayerAPI.Create());
       DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
       m_ActionText = "Text to be displayed on the pop-up";
     }
@@ -96,7 +96,7 @@ namespace TP.GraphicalData.ViewModel
     /// <value>The message box show delegate.</value>
     public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the view layer");
 
-    public DataLayerAPI DataLayer
+    public ModelSublayerAPI DataLayer
     {
       get => m_DataLayer;
       set
@@ -110,7 +110,7 @@ namespace TP.GraphicalData.ViewModel
 
     #region Private stuff
 
-    private DataLayerAPI m_DataLayer;
+    private ModelSublayerAPI m_DataLayer;
     private IUser m_CurrentUser;
     private string m_ActionText;
     private ObservableCollection<IUser> m_Users;

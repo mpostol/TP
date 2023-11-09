@@ -13,13 +13,26 @@ using System.Collections.Generic;
 
 namespace TP.GraphicalData.Model
 {
-  public abstract class DataLayerAPI
+  /// <summary>
+  /// API of the Model sublayer
+  /// </summary>
+  public abstract class ModelSublayerAPI
   {
+    /// <summary>
+    /// An example of the sublayer member.
+    /// </summary>
+    /// <remarks>
+    /// Let me stress - to make sure we don't have any dependency on concrete implementation everything must be abstract except types from the library exposed by dot-net
+    /// </remarks>
     public abstract IEnumerable<IUser> User { get; }
 
-    public static DataLayerAPI Create()
+    /// <summary>
+    /// Factoring methods that create an instance of the Model sublayer API
+    /// </summary>
+    /// <returns>An instance of the <seealso cref="ModelSublayerAPI"/> </returns>
+    public static ModelSublayerAPI Create()
     {
-      return new LayerImplementation.DataLayer();
+      return new LayerImplementation.ModelSublayerImplementation();
     }
   }
 }

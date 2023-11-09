@@ -19,7 +19,7 @@ namespace TP.GraphicalData.Model
     [TestMethod]
     public void DataLayerTestMethod()
     {
-      DataLayerAPI dl = DataLayerAPI.Create();
+      ModelSublayerAPI dl = ModelSublayerAPI.Create();
       Assert.IsNotNull(dl);
     }
   }

@@ -14,21 +14,18 @@ namespace TP.GraphicalData.Model.LayerImplementation
   internal class User : IUser
   {
     /// <summary>
-    /// Gets or sets the name.
+    /// Gets or sets the name of a user.
     /// </summary>
-    /// <value>The name.</value>
     public string Name { get; set; }
 
     /// <summary>
-    /// Gets or sets the age.
+    /// Gets or sets the age of a user.
     /// </summary>
-    /// <value>The age.</value>
     public int Age { get; set; }
 
     /// <summary>
-    /// Gets or sets the active.
+    /// Gets or sets if a user is active now.
     /// </summary>
-    /// <value>The active.</value>
     public bool Active { get; set; }
 
     /// <summary>

@@ -14,7 +14,7 @@ using TP.GraphicalData.Model;
 
 namespace TP.GraphicalData.ViewMode.Instrumentation
 {
-  internal class ModelImplementation4Testing : DataLayerAPI
+  internal class ModelImplementation4Testing : ModelSublayerAPI
   {
     public override IEnumerable<IUser> User
     {

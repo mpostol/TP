@@ -11,12 +11,24 @@
 
 namespace TP.GraphicalData.Model
 {
+  /// <summary>
+  /// An example of the sublayer API member.
+  /// </summary>
   public interface IUser
   {
+    /// <summary>
+    /// Gets or sets the name of a user.
+    /// </summary>
     string Name { get; set; }
 
+    /// <summary>
+    /// Gets or sets the age of a user.
+    /// </summary>
     int Age { get; set; }
 
+    /// <summary>
+    /// Gets or sets if a user is active now.
+    /// </summary>
     bool Active { get; set; }
   }
 }

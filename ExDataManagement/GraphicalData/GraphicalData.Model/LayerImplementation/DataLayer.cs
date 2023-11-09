@@ -13,7 +13,10 @@ using System.Collections.Generic;
 
 namespace TP.GraphicalData.Model.LayerImplementation
 {
-  internal class DataLayer : DataLayerAPI
+  /// <summary>
+  /// An example implementation of the model sublayer
+  /// </summary>
+  internal class ModelSublayerImplementation : ModelSublayerAPI
   {
     public override IEnumerable<IUser> User
     {
