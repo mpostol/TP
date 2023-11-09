@@ -56,20 +56,6 @@ namespace TP.GraphicalData
       Assert.IsFalse(_vm.DisplayTextCommand.CanExecute(null));
     }
 
-    //TODO ExDM GraphicalData.UnitTest - implement idependent testing #343
-    //[TestMethod]
-    //public void DataLayerTestMethod()
-    //{
-    //  DataLayer _dl = new DataLayer();
-    //  MainViewModel _vm = new MainViewModel();
-    //  Assert.IsNull(_vm.DataLayer);
-    //  _vm.FetchDataCommend.Execute(null);
-    //  Assert.IsNotNull(_vm.DataLayer);
-    //  Assert.AreNotSame(_vm.DataLayer, _dl);
-    //  _vm.DataLayer = _dl;
-    //  Assert.AreSame(_vm.DataLayer, _dl);
-    //}
-
     [TestMethod]
     public void MyTestMethod()
     {
