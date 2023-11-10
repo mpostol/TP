@@ -16,6 +16,9 @@ using TP.GraphicalData.ViewModel;
 
 namespace TP.GraphicalData.ViewMode
 {
+  /// <summary>
+  /// The <seealso cref="MainViewModel"/> class unit test
+  /// </summary>
   [TestClass]
   public class MainViewModelUnitTest
   {

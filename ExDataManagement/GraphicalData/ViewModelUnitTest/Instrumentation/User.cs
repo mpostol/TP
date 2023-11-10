@@ -13,6 +13,9 @@ using TP.GraphicalData.Model;
 
 namespace TP.GraphicalData.ViewMode.Instrumentation
 {
+  /// <summary>
+  /// <seealso cref="IUser"/> implementation for the testing purpose
+  /// </summary>
   internal class User : IUser
   {
     public string Name { get; set; }
