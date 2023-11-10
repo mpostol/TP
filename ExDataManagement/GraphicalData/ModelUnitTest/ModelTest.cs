@@ -13,6 +13,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TP.GraphicalData.Model
 {
+  /// <summary>
+  /// Place to test the Model sublayer
+  /// </summary>
   [TestClass]
   public class ModelTest
   {
