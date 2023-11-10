@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Version>6.0.0</Version>
+    <Authors>MPostol</Authors>
+    <Company>MPostol</Company>
+    <PackageProjectUrl>https://www.udemy.com/user/mariusz-postol/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mpostol/TP</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GraphicalData.ViewModel\GraphicalData.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>
