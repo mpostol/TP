@@ -11,8 +11,14 @@
 
 namespace TP.GraphicalData.ViewModel
 {
+  /// <summary>
+  /// Class derived from <see cref="TreeViewModelItem"/> to provide root item for the tree
+  /// </summary>
   public class RootTreeViewItem : TreeViewModelItem
   {
+    /// <summary>
+    /// Creates and instance of <seealso cref="TreeViewModelItem"/> with the hard-coded name "Root"
+    /// </summary>
     public RootTreeViewItem()
     {
       Name = "Root";

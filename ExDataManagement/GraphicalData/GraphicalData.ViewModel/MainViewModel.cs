@@ -20,12 +20,12 @@ namespace TP.GraphicalData.ViewModel
   public class MainViewModel : ViewModelBase
   {
     #region constructors
+
     /// <summary>
     /// The constructor used by the View sublayer to create the DataContext
     /// </summary>
-    public MainViewModel() : this(null)
-    {
-    }
+    public MainViewModel() : this(null) { }
+
     /// <summary>
     /// The constructor used by the unit tests
     /// </summary>
@@ -42,6 +42,9 @@ namespace TP.GraphicalData.ViewModel
 
     #region ViewModel API
 
+    /// <summary>
+    /// A list of users exposed on the screen
+    /// </summary>
     public ObservableCollection<IUser> Users
     {
       get => m_Users;
@@ -52,6 +55,9 @@ namespace TP.GraphicalData.ViewModel
       }
     }
 
+    /// <summary>
+    /// A selected user
+    /// </summary>
     public IUser CurrentUser
     {
       get => m_CurrentUser;
@@ -62,6 +68,9 @@ namespace TP.GraphicalData.ViewModel
       }
     }
 
+    /// <summary>
+    /// A text entered on the screen using the appropriate text box that is to be displayed by an independent message box
+    /// </summary>
     public string ActionText
     {
       get => m_ActionText;
@@ -73,38 +82,45 @@ namespace TP.GraphicalData.ViewModel
       }
     }
 
+    /// <summary>
+    /// An implementation of the <seealso cref="ICommand"/> bonded with a button to open a message box displaying entered text in the associated text box
+    /// </summary>
     public RelayCommand DisplayTextCommand
     {
       get; private set;
     }
 
-    public RelayCommand FetchDataCommend
+    /// <summary>
+    /// An implementation of the <seealso cref="ICommand"/> bonded with a button to simulate data fetching from the layer beneath.
+    /// </summary>
+    public ICommand FetchDataCommend
     {
       get; private set;
     }
 
+    /// <summary>
+    /// An implementation of the <seealso cref="ICommand"/> bonded with a button to show a new window contaminating a tree view control
+    /// </summary>
     public ICommand ShowTreeViewMainWindowCommend
     {
       get; private set;
     }
 
+    /// <summary>
+    /// A callback that provides functionality to create a new child window by the layer above avoiding referencing to the types defined by the layer above.
+    /// </summary>
     public Func<IWindow> ChildWindow { get; set; }
+
+    /// <summary>
+    /// A callback that provides functionality to show a message displacing a text entered in the associated text box.
+    /// </summary>
+    public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the View sublayer");
 
     #endregion ViewModel API
 
-    #region Unit test instrumentation
+    #region Private stuff
 
-    /// <summary>
-    /// Gets or sets the message box show delegate.
-    /// </summary>
-    /// <remarks>
-    /// It is to be used by unit test to override default popup. Limited access ability is addressed by explicate allowing unit test assembly to access internals
-    /// using <see cref="System.Runtime.CompilerServices.InternalsVisibleToAttribute"/>.
-    /// </remarks>
-    /// <value>The message box show delegate.</value>
-    public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the view layer");
-
-    public ModelSublayerAPI DataLayer
+    private ModelSublayerAPI DataLayer
     {
       get => m_DataLayer;
       set
@@ -113,10 +129,6 @@ namespace TP.GraphicalData.ViewModel
         Users = new ObservableCollection<IUser>(value.User);
       }
     }
-
-    #endregion Unit test instrumentation
-
-    #region Private stuff
 
     private ModelSublayerAPI m_DataLayer;
     private IUser m_CurrentUser;

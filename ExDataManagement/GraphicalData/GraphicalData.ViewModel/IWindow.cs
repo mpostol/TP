@@ -11,8 +11,17 @@
 
 namespace TP.GraphicalData.ViewModel
 {
+  /// <summary>
+  /// An interface used to replace any Window and avoid referencing the layer above. 
+  /// </summary>
+  /// <remarks>
+  /// It abstracts the functionality showing the window on the screen.
+  /// </remarks>
   public interface IWindow
   {
+    /// <summary>
+    /// Opens a window and returns without waiting for the newly opened window to close.
+    /// </summary>
     void Show();
   }
 }

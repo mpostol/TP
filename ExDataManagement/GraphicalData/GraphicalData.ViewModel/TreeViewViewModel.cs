@@ -17,13 +17,16 @@ using TP.GraphicalData.ViewModel.MVVMLight;
 namespace TP.GraphicalData.ViewModel
 {
   /// <summary>
-  /// Class MyViewModel - ViewModel implementation
+  /// An implementation of the <seealso cref="ViewModelBase"/> to be used as a sublayer for the tree view window rendered by the View sublayer
   /// </summary>
   /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
   public class TreeViewViewModel : ViewModelBase
   {
     #region constructors
 
+    /// <summary>
+    /// Creates an instance of the <see cref="TreeViewViewModel"/>
+    /// </summary>
     public TreeViewViewModel()
     {
       ShowTreeViewCommand = new RelayCommand(AddRoot, () => !string.IsNullOrEmpty(PathVariable));
@@ -43,11 +46,10 @@ namespace TP.GraphicalData.ViewModel
       {
         m_PathVariable = value;
         ShowTreeViewCommand.RaiseCanExecuteChanged();
-        this.RaisePropertyChanged();
+        RaisePropertyChanged();
       }
     }
 
-    private string m_PathVariable = string.Empty;
     public ICommand BrowseCommand { get; }
     public RelayCommand ShowTreeViewCommand { get; }
 
@@ -55,12 +57,13 @@ namespace TP.GraphicalData.ViewModel
 
     #region private
 
+    private string m_PathVariable = string.Empty;
     private Func<string> GetPath { set; get; } = () => "Result of the FileOpenDialog";
 
     private void AddRoot()
     {
-      TreeViewModelItem _rootItem = new RootTreeViewItem();
-      HierarchicalAreas.Add(_rootItem);
+      TreeViewModelItem rootItem = new RootTreeViewItem();
+      HierarchicalAreas.Add(rootItem);
     }
 
     private void Browse()

@@ -14,10 +14,16 @@ using System.Runtime.CompilerServices;
 
 namespace TP.GraphicalData.ViewModel.MVVMLight
 {
+  /// <summary>
+  /// Notifies clients that a property value has changed.
+  /// </summary>
   public class ViewModelBase : INotifyPropertyChanged
   {
     #region INotifyPropertyChanged
 
+    /// <summary>
+    /// Occurs when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
     #endregion INotifyPropertyChanged
@@ -32,7 +38,7 @@ namespace TP.GraphicalData.ViewModel.MVVMLight
     /// </param>
     protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
     {
-      this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     #endregion API

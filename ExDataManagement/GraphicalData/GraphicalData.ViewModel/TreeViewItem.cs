@@ -15,6 +15,9 @@ using TP.GraphicalData.ViewModel.MVVMLight;
 
 namespace TP.GraphicalData.ViewModel
 {
+  /// <summary>
+  /// An instance of this class is used as the data context to provide a ViewModel sublayer for a Window rendered by the View sublayer.
+  /// </summary>
   public class TreeViewModelItem : ViewModelBase
   {
     #region View Model API
