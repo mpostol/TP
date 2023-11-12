@@ -28,14 +28,24 @@
 ## External Data Management
 
 * [Executive Summary](ExDataManagement/README.md)
-* Data Semantics
-  <!-- * [Data Semantics](ExDataManagement/P02.DataSemantics/DataSemantics/README.md) -->
-  * [Generics](ExDataManagement/P02.DataSemantics/DataSemantics/Generics/Generics.md)
-  * [Partial types](ExDataManagement/P02.DataSemantics/DataSemantics/Partials/README.md)
-* [Data Streams](ExDataManagement/P03.DataStreams/README.md)
-* [Functional Programming](ExDataManagement/P04.FunctionalProgramming/FunctionalProgramming/Readme.md)
-* [Structural Data](ExDataManagement/P05.StructuralData/README.md)
-* [Graphical Data](ExDataManagement/P06.GraphicalData/README.md)
+  * [Fundamentals](ExDataManagement/READMEFundamentals.md)
+  * [Prerequisites](ExDataManagement/READMEPrerequisites.md)
+* [Data Streams Preface](ExDataManagement/DataStreams/README.md)
+  * [Implementation Examples](ExDataManagement/DataStreams/DataStreams)
+  * [Usage](ExDataManagement\DataStreams\DataStreams.UnitTest\README.md)
+* [Functional Programming Preface](ExDataManagement\FunctionalProgramming\README.md)
+  * [Implementation Examples](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
+  * [Usage](ExDataManagement/FunctionalProgramming/FunctionalProgramming.UnitTest/README.md)
+* [Structural Data Preface](ExDataManagement/StructuralData/README.md)
+  * [Implementation Examples](ExDataManagement/StructuralData/StructuralData/README.md)
+  * [Usage](ExDataManagement/StructuralData/StructuralDataUnitTest/README.md)
+* [Graphical Data Preface](ExDataManagement/GraphicalData/README.md)
+  * [View Implementation Examples](ExDataManagement\GraphicalData\GraphicalData.View\README.md)
+  * [ViewModel Implementation Examples](ExDataManagement\GraphicalData\GraphicalData.ViewModel\README.md)
+  * [ViewModel Usage](ExDataManagement\GraphicalData\ViewModelUnitTest\README.md)
+  * [Model Implementation Examples](ExDataManagement/GraphicalData/GraphicalData.Model/README.md)
+  * [Model Usage](ExDataManagement/GraphicalData/ModelUnitTest/README.md)
+* [Conclusion](ExDataManagement/READMEConclusion.md)
 
 ## Adaptive Programming
 

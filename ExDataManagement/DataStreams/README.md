@@ -1,4 +1,4 @@
-# Section 2 - Data streams
+# Data Streams Preface
 
 ## Key words
 
