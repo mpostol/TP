@@ -131,7 +131,9 @@ What can we do? We can move this text to an element, which is called for example
 
 First, let me remind you of the goals. We have three of them. The first is to ensure that all users of the source bitstream can verify that the stream was not modified while it was being archived or transmitted. The second goal is to confirm authorship, so all users of this stream can determine who created this stream and who is responsible for its content. The third goal is the nonrepudiation of the author. In the latter case, let me remind you of an example involving a wire transfer. It would be better for the bank to have a guarantee that the person issuing the wire transfer order will not be able to deny authorship of the order and blame someone fraud who transferred money.
 
-The following diagram shows how we can achieve these goals.
+The following diagram shows how we can achieve these goals
+
+![Fig. 1 Digital Signature](.Media/PodpisCyfrowy.png)
 
 In the first step, we calculate the hash, just like before. But then we encrypt this hash using a private key, which is assumed to be assigned to a certain identity, which is assumed to be exclusively at the disposal of this identity. So, at least theoretically, no one else can use this key. If we encrypt the hash using a private key and asymmetric algorithm, the result is called a signature. We can therefore attach this signature to the original bitstream, send the whole result to another place, archive it, and in any case make it available to other users of this bitstream.
 
