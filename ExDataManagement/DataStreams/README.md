@@ -11,7 +11,7 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Data Streams Preface
+# Data Streams Preface``
 
 ## Key words
 
@@ -53,9 +53,9 @@ So let's summarize this discussion. To simultaneously use object-oriented progra
 
 > To learn more about the serialization visit the MSDN: [Serialization in .NET][STLZTN].
 
-## Useful Technologies
+### Useful Technologies
 
-### Validation
+#### Validation
 
 Applications save working data into the files to keep state information, provide processing outcomes, or both. Applications need robust storage, i.e. **correctness** of the stored data has to be validated every time an application reads it back from the file. It must be carefully observed if the files are also modified by other applications or directly by users, because data corruption may occur.
 
@@ -63,7 +63,7 @@ To address the validation requirement XML (Extensible Markup Language) as a text
 
 You may use the [XML Schema Definition Tool (Xsd.exe)][XSD], which generates XML schema or language classes from XDR, XML, and XSD files, or from classes in a run-time assembly.
 
-### Visualization
+#### Visualization
 
 One more requirement often arises here, namely that the bitstream resulting from the transition of objects to bitstreams should be human-readable. A typical example that we can cite here is using the Internet. Using a web browser, a server-side application uses objects and then serializes the data that the user needs, sends it over the network, and then the browser displays it on the screen. And here it is important, that the browser always displays data in graphical form. This applies to all kind of data used by humans, a person uses. The data, even when reading a newspaper, is always graphical data. Let me remind you that a letter is also a picture. This is one feature of data that is prepared for this. so that man can use them. The second feature is that this data must be written in a natural language that humans know. The concept of natural language is very broad. For example, XML text is said to be human-readable. But is this a piece of natural language?
 
@@ -71,7 +71,7 @@ As the XML format is text-based it can be directly read and displayed by a varie
 
 > To get more about how to start with XSLT visit the W3C School: [XSL\(T\) Languages][XSLW3C].
 
-### Reflection
+#### Reflection
 
 In this chapter, we will touch on the subject of reflection, i.e. we will enter a world in which definitions in the program become data and will be processed just like process data. In other words, reflection in software engineering refers to the ability of a program to examine and modify its structure and behavior during runtime. Due to the complexity of this topic, we have to limit the discussion to only selected topics useful in the context of serialization. The reflection is a good topic for an independent course. Hence, don't expect deep knowledge related to this topic.  Reflection is commonly used for tasks like dynamic instantiation, method invocation, and accessing metadata about types.
 
@@ -89,7 +89,7 @@ The state of objects is the minimum set of values that is necessary to recreate 
 
 So much theory. It's time to move on to practical acquaintance with selected reflection mechanisms. To get more based on examples check out the document [Implementation Examples](./DataStreams/README.md)
 
-#### Conclusion
+##### Conclusion
 
 It's time to summarize selected features of reflection. The examples discussed show how to represent type features as [System.Type][system.type] instances. These instances can be created based on the type definition using the `typeof` keyword and objects of unknown type using the `GetType` method. In both cases, an object-oriented type description is created. The examples discussed also show how to use this description to read and write the values of a selected property. This ability is especially useful when implementing serialization and deserialization operations. Similarly, we can also read and write values from fields and call instance methods. Similarly, it is also possible to create new objects without referring to the `new` keyword. Discussing all the details of the reflection concept is far beyond the scope of the examples collected here.
 
@@ -105,7 +105,7 @@ Based on these examples presented in the mentioned above document the discussion
 
 The examples show that attributes have broader applicability than just serialization and deserialization. However, the attribute concept can be used also to implement the serialization/deserialization processes but examples will be a subject of further discussion.
 
-## Part 1
+### Serialization Part 1
 
 Now we are ready to return to discussing issues directly related to streaming data. During the previous episodes, we learned about the mechanisms of managing streams, especially in the context of files. We also learned the differences between bitstreams, text, and documents. We also learned about reflection, which can be useful for us. Now let's answer the question of how to create streaming data and how to use it.
 
@@ -129,11 +129,11 @@ From the previous considerations regarding the transformation of object data int
 
 In order not to enter into purely theoretical considerations, let us return to these topics in the context of sample programs.
 
-### Conclusion
+#### Conclusion
 
 The example discussed shows the mechanism of transferring an object or more precisely the state of the object to a bitstream. In this process, the state of the object is determined by the programmer by implementing an appropriate mechanism for determining the values that contribute to the state of the object. Since determining the state of an object is done (implemented) manually by the programmer in this approach, it is difficult to call this mechanism fully automatic.
 
-## Part 2
+### Serialization Part 2
 
 From the previous considerations, we know that serialization is the process of transferring data from object to stream form. This transfer process must start with a selection of values contributing to the state of objects. The previously analyzed SelfControlSerialization class is based on internal reading operations of the values constituting the state of the object contained in the object type definition. This way, it is possible to avoid the need for employing the reflection by inheriting from the `ISerializable` interface. This interface acts as a contract between the target class that must implement it to be serialized and the class that implements serialization to read relevant values to accomplish this operation. In conclusion, serialization is a data transfer process in which an important feature is automation, i.e. an implementation that does not depend on the type of the serialized object, so it can be offered as a library solution and therefore used many times.
 
@@ -151,7 +151,7 @@ We also completely ignored the operation of graphs, i.e. a set of objects connec
 
 Let's first discuss the first two issues regarding automation and synchronization of the serialization process with the deserialization process. Let's discuss these issues using the example of a program.
 
-## Part 3
+### Serialization Part 3
 
 ### Catalog XML
 
@@ -173,7 +173,7 @@ Previously an object graph was presented as interconnected objects in such a way
 
 ![Fig. 1](.Media/Part3-N80-10-Diagram.png)
 
-Assuming that instances of all classes are created, the question arises which of the objects should be subject to the transformation process first. Therefore, while in the previous case, we could insist that the hierarchy between objects is dependent on the order of representation of these objects in the stream, in the case when objects are connected recursively (they form a cycle), such an assumption cannot be made. Hence, here we enter the issue of equivalence of streams. If a stream contains a representation of all information including references, the order in which the data associated with each instance is placed in the stream is not relevant, provided that each object is serialized only once. Due to the above, it has to be considered that several different streams will contain equivalent states of individual objects and these object states will be placed in different orders will be equivalent to each other, which means that on their basis it will be possible to reconstruct an equivalent graph of objects. Creating equivalent streams does not mean that they have to be identical and therefore, for example, they can be compared with each other. 
+Assuming that instances of all classes are created, the question arises which of the objects should be subject to the transformation process first. Therefore, while in the previous case, we could insist that the hierarchy between objects is dependent on the order of representation of these objects in the stream, in the case when objects are connected recursively (they form a cycle), such an assumption cannot be made. Hence, here we enter the issue of equivalence of streams. If a stream contains a representation of all information including references, the order in which the data associated with each instance is placed in the stream is not relevant, provided that each object is serialized only once. Due to the above, it has to be considered that several different streams will contain equivalent states of individual objects and these object states will be placed in different orders will be equivalent to each other, which means that on their basis it will be possible to reconstruct an equivalent graph of objects. Creating equivalent streams does not mean that they have to be identical and therefore, for example, they can be compared with each other.
 
 ![Fig. 1](.Media/Part3-N80-20-Rekurencja.png)
 
@@ -214,7 +214,7 @@ At the end of our considerations, let's go back to non-tree graphs. In such grap
 [Debug]: https://learn.microsoft.com/visualstudio/debugger/how-to-set-debug-and-release-configurations
 [WriteXmlFile]: https://github.com/mpostol/TP/blob/19592185e96c273de49c3808b7bc1a3b3106aa2f/ExDataManagement/DataStreams/DataStreams/Serialization/XmlFile.cs#L41-L62
 
-## Cryptography basics
+## Cryptography
 
 ### Hash
 
