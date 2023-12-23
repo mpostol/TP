@@ -31,7 +31,7 @@
   * [Fundamentals](ExDataManagement/READMEFundamentals.md)
   * [Prerequisites](ExDataManagement/READMEPrerequisites.md)
 * [Data Streams Preface](ExDataManagement/DataStreams/README.md)
-  * [Cryptography](ExDataManagement/DataStreams/Cryptography.md)
+  * [Cryptography](ExDataManagement/DataStreams/READMECryptography.md)
   * [Implementation Examples](ExDataManagement/DataStreams/DataStreams/README.md)
   * [Usage](ExDataManagement/DataStreams/DataStreams.UnitTest/README.md)
 * [Functional Programming Preface](ExDataManagement/FunctionalProgramming/README.md)
