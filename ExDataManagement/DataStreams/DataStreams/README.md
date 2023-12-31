@@ -45,7 +45,7 @@ The external data is recognized as the data we must pull or push from outside of
 - **structural** - data fetched/pushed from/to external database management systems using queries
 - **graphical** - data rendered on Graphical User Interface (GUI)
 
-This section collects description of examples explaining usage of the **streaming** data.
+This section collects descriptions of examples explaining the usage of the **streaming** data.
 
 ## File and Stream Concepts
 
@@ -55,31 +55,31 @@ Let's look at the `.Media` folder containing files used in the examples:
 
 ![Fig. MediaFolderAnimated](../.Media/MediaFolderAnimated.gif)
 
-We have different files there, but similar descriptive data, i.e. metadata, are defined for all of them. Among these data, `Name`, `Date`, `Type`, `Size`, `Data created` and many other information that may be useful, but the most important thing is, of course, the content of the file.
+We have different files there, but similar descriptive data, i.e. metadata, are defined for all of them. Among these data, `Name`, `Date`, `Type`, `Size`, `Data created`, and much other information that may be useful, but the most important thing is, of course, the content of the file.
 
 After double-clicking on the selected file an image will appear.
 
 ![PC](../.Media/PodpisCyfrowy.png)
 
-Here we may ask a question - how to describe this behavior? Well, a program was launched. This program must have been written by some programmer. The program opens the file as input data, so the programmer had to know the syntax and semantics rules that were used in this file. The data contained in the file make it possible to show the content graphically on the computer screen. This is the first example of graphical representation, but we will return to this topic later.
+Here we may ask a question - how to describe this behavior? Well, a program was launched. This program must have been written by some programmer. The program opens the file as input data, so the programmer had to know the syntax and semantics rules that were used in this file. The data contained in the file makes it possible to show the content graphically on the computer screen. This is the first example of graphical representation, but we will return to this topic later.
 
 ### Program Context
 
-Using code snippets located in the [FileExample class][FileExample] differences between file and stream may be explained from a program point of view. From this example it could be learned that the `File` is a static class that represents available file system and provides typical operations against this file system. The content of the file is represented as a bitstream, or rather the `Stream` class. It is an abstract class that represents basic operations on a data stream (on the stream of bytes), which allows mapping the behavior of various media that can be used to store or transmit data as the bitstream. From this perspective, it can be proved, that file content is always a bitstream (a stream of bytes).
+Using code snippets located in the [FileExample class][FileExample] differences between file and stream may be explained from a program point of view. From this example, it could be learned that the `File` is a static class that represents the available file system and provides typical operations against this file system. The content of the file is represented as a bitstream, or rather the `Stream` class. It is an abstract class that represents basic operations on a data stream (on the stream of bytes), which allows mapping the behavior of various media that can be used to store or transmit data as the bitstream. From this perspective, it can be proved, that file content is always a bitstream (a stream of bytes).
 
 ### XML-based Presentation
 
-Using bitstreams (file content) we must face up a problem how to make bitstreams human readable. Firs answer we know form the examples above, namely the bitstream must be compliant with a well known application. Unfortunately, this answer is not always applicable. Therefore we should consider another answer, namely human readable representation should be close to natural language. Of course, we have no measure here and therefore it is difficult to say whether a bitstream is close enough to natural language to be comprehensible. First requirement in order for humans to understand the stream that it has to be formatted as the text. To recognize bitstream as the text directly or indirectly an encoding must be associated. An example of how to associate directly an encoding with the bitstream is the following XML code snippet:
+Using bitstreams (file content) we must face a problem with how to make bitstreams human readable. Firs answer we know from the examples above, namely the bitstream must be compliant with a well-known application. Unfortunately, this answer is not always applicable. Therefore we should consider another answer, namely human-readable representation should be close to natural language. Of course, we have no measure here and therefore it is difficult to say whether a bitstream is close enough to natural language to be comprehensible. The first requirement for humans to understand the stream is that it has to be formatted as text. To recognize bitstream as the text directly or indirectly an encoding must be associated. An example of how to associate directly an encoding with the bitstream is the following XML code snippet:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 ```
 
-Next requirement, common for both human and computer, is a bitstream association with the comprehensive syntax rules. To make the rules comprehensive for humans the bitstream should have been formatted as a text. Finally semantic rules should be associated with the bitstream that allow to assign meaning to bitstreams.
+The next requirement, common for both humans and computers, is a bitstream association with the comprehensive syntax rules. To make the rules comprehensive for humans the bitstream should have been formatted as a text. Finally, semantic rules should be associated with the bitstream that allows to assigning of meaning to bitstreams.
 
-The [ReadWRiteTest][ReadWRiteTest] sample code demonstrates how to save working data in a file containing an XML document, which next can be directly presented in other applications, like MS Word editor or Internet Explorer. In this concept it is assumed that the bitstream formatted as XML is transformed using a stylesheet before being presented. An XML stylesheet is a set of rules or instructions for transforming the structure and presentation of XML documents. It defines how the data in an XML file should be formatted. It is the simplest way to detach a custom document content from its formatting to be presented as graphical data provided that the original document is compliant with the XML specification.
+The [ReadWRiteTest][ReadWRiteTest] sample code demonstrates how to save working data in a file containing an XML document, which next can be directly presented in other applications, like MS Word editor or Internet Explorer. In this concept, it is assumed that the bitstream formatted as XML is transformed using a stylesheet before being presented. An XML stylesheet is a set of rules or instructions for transforming the structure and presentation of XML documents. It defines how the data in an XML file should be formatted. It is the simplest way to detach a custom document content from its formatting to be presented as graphical data provided that the original document is compliant with the XML specification.
 
-After implementation of the [IStylesheetNameProvider][IStylesheetNameProvider] interface by the [Catalog][Catalog] class we can convey information about default stylesheet that may be used to create output XML file. Thanks to implementation of the mentioned interface information about the stylesheet (xslt file) is added to the XML document and can be used by any generic application to open the file and translate the content, for example [catalog.example.xml][catalogexamplexml]:
+After implementation of the [IStylesheetNameProvider][IStylesheetNameProvider] interface by the [Catalog][Catalog] class we can convey information about the default stylesheet that may be used to create an output XML file. Thanks to the implementation of the mentioned interface information about the stylesheet (`XSLT` file) is added to the XML document and can be used by any generic application to open the file and translate the content, for example [catalog.example.xml][catalogexamplexml]:
 
 ``` XML
 <?xml-stylesheet type="text/xsl" href="catalog.xslt"?>
@@ -87,13 +87,13 @@ After implementation of the [IStylesheetNameProvider][IStylesheetNameProvider] i
 
 ### XML-based Validation
 
-If we are talking about exchanging data between different applications or between an application and a human, the issue of bitstreams correctness arises. This issue should be considered on two independent levels. The first one is the correctness of the bitstream as a certain stream of signs, i.e. when the syntax rules are met. The second one is determined by possibility of assigning information to these sequences and therefore assigning meaning to a bitstream.
+If we are talking about exchanging data between different applications or between an application and a human, the issue of bitstream correctness arises. This issue should be considered on two independent levels. The first one is the correctness of the bitstream as a certain stream of signs, i.e. when the syntax rules are met. The second one is determined by the possibility of assigning information to these sequences and therefore assigning meaning to a bitstream.
 
-To better understand these issues, let's look at them in the context of an examples [catalog.example.xml][catalogexamplexml]. The following discursion scops to the XML format but the presented approach should be recognized as an universal one.
+To better understand these issues, let's look at them in the context of an example [catalog.example.xml][catalogexamplexml]. The following discussion scops to the XML format but the presented approach should be recognized as a universal one.
 
-The XML (Extensible Markup Language) is a language that defines syntax rules. For example in the mentioned above XML text after replacing closing name of the `CD` element (by `CD1` instead of `CD` for example) we get an XML syntax error. Syntax error means that the file is not compliant wit the XML standard ad should not be used any more. But after replacing the name of the opening markup of the element by the same `CD1` name then this file is correct in context of the XML syntax. However, it is difficult to imagine that two subsequent elements will have different names but will represent the same information. So at this point, we can say that this file complies with the XML standard, with the XML syntax. However, well, it does not represent the semantics we would expect.
+The XML (Extensible Markup Language) is a language that defines syntax rules. For example, in the mentioned above XML text after replacing the closing name of the `CD` element (by `CD1` instead of `CD` for example) we get an XML syntax error. Syntax error means that the file is not compliant with the XML standard and should not be used anymore. But after replacing the name of the opening markup of the element with the same `CD1` name then this file is correct in the context of the XML syntax. However, it is difficult to imagine that two subsequent elements will have different names but will represent the same information. So at this point, we can say that this file complies with the XML standard, with the XML syntax. However, it does not represent the semantics we would expect.
 
-Adding this attribute causes it to refer to the XML schema.
+Adding these attributes causes it to refer to the XML schema.
 
 ```xml
 <Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -202,7 +202,6 @@ Thanks to presented example we showed how attributed programming and reflection 
 As an example of reflection based data values access is the [Catalog][Catalog] class, which is to contain an array of CD descriptions. So here we have property, which is an array containing CD descriptions complaint with the `CatalogCD` class defined in the same file.
 
 Let me stress again that we have two issues that we need to resolve. The first one is which of these properties should be included in the resulting stream. The second one is how we can read the values for these selected properties without directly referencing the type definition. Additionally, in general, they don't have to be properties.
-
 
 ## Standardization - generating classes based on schema definition
 
