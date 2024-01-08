@@ -11,28 +11,31 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Data Streams Preface
+# Data Streams
 
-- [Data Streams Preface](#data-streams-preface)
+- [Data Streams](#data-streams)
   - [Key words](#key-words)
   - [Introduction](#introduction)
-  - [File concept](#file-concept)
+  - [File and Stream Concepts](#file-and-stream-concepts)
+    - [Introduction](#introduction-1)
+    - [BitStream Format](#bitstream-format)
+      - [XML Format](#xml-format)
+      - [Introduction](#introduction-2)
+      - [Catalog XML](#catalog-xml)
+      - [Standardization of the output stream](#standardization-of-the-output-stream)
+  - [Attributes](#attributes)
+  - [BitStream Protection](#bitstream-protection)
   - [Serialization](#serialization)
     - [Fundamentals](#fundamentals)
     - [Useful Technologies](#useful-technologies)
       - [Validation](#validation)
       - [Visualization](#visualization)
       - [Reflection](#reflection)
-      - [Attributes](#attributes)
+      - [Attributes](#attributes-1)
     - [Main Technology Features](#main-technology-features)
     - [Access to Object State Values](#access-to-object-state-values)
       - [Self Controlled](#self-controlled)
       - [Reflection-based](#reflection-based)
-    - [BitStream Format](#bitstream-format)
-      - [XML Format](#xml-format)
-      - [Introduction](#introduction-1)
-      - [Catalog XML](#catalog-xml)
-      - [Standardization of the output stream](#standardization-of-the-output-stream)
     - [Graph of Objects Serialization](#graph-of-objects-serialization)
       - [Reflection-Based Serialization Example](#reflection-based-serialization-example)
       - [SerializationUnitTest](#serializationunittest)
@@ -48,9 +51,11 @@ This folder `ExDataManagement\DataStreams` directly or indirectly contains examp
 
 If we write a program to automate information processing, we inevitably have to operate on data representing this process. Generally, we can distinguish operations related to reading input data, permanently preserving intermediate data, transferring data between individual applications, and saving the final data somewhere after completing the entire processing process. All these requirements can be accomplished using the concept of file. Even sending data between applications can be done using a file server, distributed file system, Google Drive, One Drive, and finally a Pendrive.
 
-## File concept
+## File and Stream Concepts
 
-This is where the term file system came into play. Without going into details about the structure of the computer and the operating system, we can enigmatically state that it is a resource available in virtually every modern computer. For us, its most important feature is the ability to manage files. First of all, the file is metadata, i.e. data describing data. So here we may have the first indication that we are talking about data that we are describing. One such description is an identifier that plays two roles. One is that the file clearly distinguishes it from all other files. The second one indicates the location where the file can be found by the file system engine. We also have other metadata such as date of creation, author, length, and many others.
+### Introduction
+
+This is where the term file system came into play. Without going into details about the structure of the computer and the operating system, we can enigmatically state that it is a resource available in virtually every modern computer. For us, its most important feature is the ability to manage files. First of all, the file is metadata, i.e. data describing data. So here we may have the first indication that we are talking about data that we are describing. One such description is an identifier that plays two roles. One is that the file clearly distinguishes it from all other files. In this role it is Uniform Resource Identifier(URI), is a tekst that identifies the file. The second one indicates the location where the file can be found by the file system engine. In this role it is Uniform Resource Locators(URL). We also have other metadata such as date of creation, author, length, and many others.
 
 An important feature of a file concept is that it contains content in addition to metadata. Metadata is, of course, a very important file part but the most important thing is the content it includes, which is data representing information to to take part in processing.
 
@@ -60,7 +65,59 @@ Let's start with the fact that typically we utilize object-oriented programming.
 
 On the other hand, as we mentioned already, we have the streaming world where the data is organized in the form of bitstreams, where each self-contained element of data has information about the next element.
 
+### BitStream Format
+
+> DSL
+> XML Format
+> JSON Format
+> YAML Format
+
+#### XML Format
+
+In the previous example, we used XML text, but there are still many open issues that we need to talk about. One such issue is the answer to the question of what is the difference between XML text and an XML document.
+
+#### Introduction
+
+An issue we haven't even mentioned is the visualization of data that has already been saved as a stream. Earlier, when discussing assumptions, we assumed that there may be a situation in which this data will also be intended for the user. One of the issues here is whether the fact that we use the XML standard to record data is enough to determine that this data is readable to a potential human user.
+
+We also completely ignored the operation of graphs, i.e. a set of objects connected by references.
+
+Let's first discuss the first two issues regarding automation and synchronization of the serialization process with the deserialization process. Let's discuss these issues using the example of a program.
+
+#### Catalog XML
+
+Let's go back to the XML file and the question of how to visualize data for a user, for a human. It was stated that an XML file is text, namely a bitstream for which the encoding is defined. It allows to employ of any text editor. Unfortunately, if a file is formatted this way and is seen by persons, who are not familiar with XML technology, it won't be easy to associate any information with the text.
+
+To make it easier to visualize the data that is in the XML file, let's use a feature of XML files that allows a transfer of XML text to any other text by adding this additional line in the XML file [catalog.example.xml][catalog]:
+
+``` XML
+<?xml-stylesheet type="text/xsl" href="catalog.xslt"?>
+```
+
+This XML declaration defines an additional document [Catalog.xslt][catalogxslt]. The [Catalog.xslt][catalogxslt] is a stylesheet document and it contains a detailed description that allows to convert the source XML document into an HTML document. If we open the source document by clicking on it, we will open a web browser and the source file will be displayed in a graphical form that can be much easier to understand by people who are not familiar with XML technology. If we look at the source of this document using the browser context menu, we can see that it is simply the earliest XML document. This document that we originally had just got transformed thanks to browser transformation. So browsers have a built-in mechanism to convert an XML file to any other text file, in this case, it is an HTML file based on a defined XML stylesheet document
+
+Finally, a few notes related to XML stylesheet transformation. Not only web browsers have a built-in mechanism ensuring transformation. This transformation can be defined in such a way that the target text that will be created has the features of a natural language. The final form may also cover ergonomic requirements, and in particular, it may be the user interface. Shortly, thanks to the transformation of XML files using stylesheet it is possible to add formatting to the data contained in the XML bitstream.
+
+#### Standardization of the output stream
+
+If we are talking about communication between different remote applications, we must consider a scenario in which these applications are written in different programming languages. In this case, the problem arises of how to create types in other languages that will represent the same information. Since we recognize the schema as a good idea to validate XML documents, i.e. XML texts, and check whether the XML text is the XML document we expect, then maybe we should turn the issue upside down and generate types in selected programming language based on XML schema. Of course, it is a chicken and egg problem namely, should we first create types in the selected programming language, or should we create these types in the XML schema and then create classes based on the XML schema? But let's try to see how this can be achieved using an example.
+
+_________________________________
+
+When we talk about the syntax and semantics of a stream, the first thing to consider is the scope of data use. Well, data produced by one instance of a program can also be used by the same instance of the program. In such a case, if the process runs autonomously and is symmetric from a serialization and deserialization point of view, we should not expect any further problems.
+
+However, the same data can be used by the same program but not the same program instance, we also have to take into account that the programs may be in different versions. In such a case, there is a problem of data compatibility between different versions of the program. So the question arises whether if the data serialized by one version of the program is used by another version of the program run as a different instance, will it allow the creation of a graph equivalent to the original graph.
+
+Another application of streams may be the use of them between various programs that are created in different technologies and implemented on different platforms. Then there is also the issue of technological compatibility. Also in this case, it must be taken into account that classes (types) that were created in one technology cannot necessarily be directly used in another technology. And in this case, we are already entering the issue of semantics, so we must take into account the fact that in another technology the same information will be represented in a different way.
+
+## Attributes
+
+## BitStream Protection
+
 ## Serialization
+
+> Standardization
+> Data Transfer Object
 
 ### Fundamentals
 
@@ -72,9 +129,9 @@ So the first problem we have is how to implement serialization and deserializati
 
 If we talk about repeatability by applying a library concept implementing serialization and deserialization functionalities, we need to define one more problem. Namely, we must be able to define this process in advance, without prior knowledge of what will be serialized.
 
-Generic implementation of the serialization and deserialization functionality means that we have to implement it in advance and offer it as ready-to-use libraries. We have many libraries that permit this process to be carried out automatically. So the question is why do we need to learn about it? Why go into detail? Well, my opinion is that if someone wants to use a washing machine, let me refer to this example, they do not need to know how the controller, engine, or temperature sensor works. However, if someone wants to design or build a custom washing machine, knowledge or understanding of how the engine, controller, and temperature sensor work is essential in this case. Similarly, we need detailed knowledge about serialization and deserialization in case we are going to use streaming data, for example, the file system.
+Generic implementation of the serialization and deserialization functionality means that we have to implement it in advance and offer it as ready-to-use libraries. We have many libraries that permit this process to be carried out automatically. So the question is why do we need to learn about it? Why go into detail? Well, my point is that if someone wants to use a washing machine, let me refer to this example, they do not need to know how the controller, engine, or temperature sensor works. However, if someone wants to design or build a custom washing machine, knowledge or understanding of how the engine, controller, and temperature sensor work is essential in this case. Similarly, we need detailed knowledge about serialization and deserialization in case we are going to use streaming data, for example, the file system.
 
-So let's summarize this discussion. To simultaneously use object-oriented programming and save data as a bitstream, our programming goal must be to combine two worlds. First, in which the data is in object form. The second world is data in the form of bitstreams. The data conversion between these worlds is serialization and deserialization. In the case of serialization, it is a process that involves converting the state of a graph of objects into a stream of bits. Deserialization is the reverse process, i.e. converting a bitstream into a graph of objects that must be created in memory. Here the magical statement about the condition of the object appeared; what does object state mean? We will know the answer to this question soon.
+In summary, to simultaneously use object-oriented programming and save data as a bitstream, our goal must be to combine two worlds. First, in which the data is in object form. The second world is data in the form of bitstreams. The data conversion between these worlds is serialization and deserialization. In the case of serialization, it is a process that involves converting the state of a graph of objects into a stream of bits. Deserialization is the reverse process, i.e. converting a bitstream into a graph of objects that must be created in memory. Here the magical statement about the condition of the object appeared; what does object state mean? We will know the answer to this question soon.
 
 > To learn more about the serialization visit the document: [Serialization in .NET][STLZTN].
 
@@ -84,11 +141,13 @@ So let's summarize this discussion. To simultaneously use object-oriented progra
 
 If we are talking about exchanging data between different applications or between an application and a human, the issue of data correctness arises. This issue should be considered on two independent levels. The first one is the correctness of the stream as a certain stream of signs, i.e. when the syntax rules are met. The second one is correctness from the point of view of the possibility of assigning information to these correct sequences and therefore assigning meaning.
 
-To better understand these issues, let's look at them in the context of code examples. Maybe we will also be able to determine solutions that may be useful in this regard.
+To better understand these issues, let's look at them in the context of code examples. 
+
+~~Maybe we will also be able to determine solutions that may be useful in this regard.~~
 
 _________________
 
-Applications save working data into bitstreams (for example content of files) to keep state information, provide processing outcomes, or both. Applications need robust storage, i.e. correctness of the stored data has to be validated every time an application reads it back from a bitstream. It must be carefully observed if the bitreams are also modified by other applications or directly by users, because data corruption may occur.
+Applications save working data into bitstreams (for example content of files) to keep state information, provide processing outcomes, or both. Applications need robust storage, i.e. correctness of the stored data has to be validated every time an application reads it back from a bitstream. It must be carefully observed if the bitstreams are also modified by other applications or directly by users, because data corruption may occur.
 
 To address the validation requirement XML (Extensible Markup Language) as a text-based format for representing structured information and XML Schema as a language for expressing constraints about XML documents are very good candidates to be used by the file operation. Today applications use objects to process working data according to the Object Oriented Programming (OOP) paradigm. Therefore, instead of XML schema to validate XML files, we may use an equivalent set of classes.
 
@@ -98,10 +157,9 @@ You may use the [XML Schema Definition Tool (Xsd.exe)][XSD], which generates XML
 
 First of all, we need to deal with data visualization, so as to enable the use of streams also by a human computer user. Let's start with data visualization, taking into account, firstly, natural language, ergonomics, and graphical user interface.
 
-
 We also talked about the human use of streams. In this case, further requirements appear. Among other things, this representation should be close to natural language. Of course, we have no measure here and therefore it is difficult to say whether something is close enough to natural language to be comprehensible. In order for humans to understand the stream, it will also be necessary to define semantic rules, i.e. rules that will allow us to assign meaning and information to strings of bits. The issue of ergonomics is also important, i.e. the ease of absorbing information represented by the stream. Of course, the closer we are to natural language, the easier it will be, but again in this matter, we do not have measures that will allow us to clearly determine how good our solution is.
 
-_______________________________
+_________________
 
 One more requirement often arises here, namely that the bitstream resulting from the transition of objects to bitstreams should be human-readable. A typical example that we can cite here is using the Internet. Using a web browser, a server-side application uses objects and then serializes the data that the user needs, sends it over the network, and then the browser displays it on the screen. And here it is important, that the browser always displays data in graphical form. This applies to all kinds of data used by humans, a person uses. The data, even when reading a newspaper, is always graphical data. Let me remind you that a letter is also a picture. This is one feature of data that is prepared for this. so that man can use them. The second feature is that this data must be written in a natural language that humans know. The concept of natural language is very broad. For example, XML text is said to be human-readable. But is this a piece of natural language?
 
@@ -201,45 +259,7 @@ Reflection-based serialization is a technique in software engineering where the 
 
 To serialize objects of this class we use reflection and attributed programming. An example is described in the section
 
-### BitStream Format
 
-#### XML Format
-
-In the previous example, we used XML text, but there are still many open issues that we need to talk about. One such issue is the answer to the question of what is the difference between XML text and an XML document.
-
-#### Introduction
-
-An issue we haven't even mentioned is the visualization of data that has already been saved as a stream. Earlier, when discussing assumptions, we assumed that there may be a situation in which this data will also be intended for the user. One of the issues here is whether the fact that we use the XML standard to record data is enough to determine that this data is readable to a potential human user.
-
-We also completely ignored the operation of graphs, i.e. a set of objects connected by references.
-
-Let's first discuss the first two issues regarding automation and synchronization of the serialization process with the deserialization process. Let's discuss these issues using the example of a program.
-
-#### Catalog XML
-
-Let's go back to the XML file and the question of how to visualize data for a user, for a human. It was stated that an XML file is text, namely a bitstream for which the encoding is defined. It allows to employ of any text editor. Unfortunately, if a file is formatted this way and is seen by persons, who are not familiar with XML technology, it won't be easy to associate any information with the text.
-
-To make it easier to visualize the data that is in the XML file, let's use a feature of XML files that allows a transfer of XML text to any other text by adding this additional line in the XML file [catalog.example.xml][catalog]:
-
-``` XML
-<?xml-stylesheet type="text/xsl" href="catalog.xslt"?>
-```
-
-This XML declaration defines an additional document [Catalog.xslt][catalogxslt]. The [Catalog.xslt][catalogxslt] is a stylesheet document and it contains a detailed description that allows to convert the source XML document into an HTML document. If we open the source document by clicking on it, we will open a web browser and the source file will be displayed in a graphical form that can be much easier to understand by people who are not familiar with XML technology. If we look at the source of this document using the browser context menu, we can see that it is simply the earliest XML document. This document that we originally had just got transformed thanks to browser transformation. So browsers have a built-in mechanism to convert an XML file to any other text file, in this case, it is an HTML file based on a defined XML stylesheet document
-
-Finally, a few notes related to XML stylesheet transformation. Not only web browsers have a built-in mechanism ensuring transformation. This transformation can be defined in such a way that the target text that will be created has the features of a natural language. The final form may also cover ergonomic requirements, and in particular, it may be the user interface. Shortly, thanks to the transformation of XML files using stylesheet it is possible to add formatting to the data contained in the XML bitstream.
-
-#### Standardization of the output stream
-
-If we are talking about communication between different remote applications, we must consider a scenario in which these applications are written in different programming languages. In this case, the problem arises of how to create types in other languages that will represent the same information. Since we recognize the schema as a good idea to validate XML documents, i.e. XML texts, and check whether the XML text is the XML document we expect, then maybe we should turn the issue upside down and generate types in selected programming language based on XML schema. Of course, it is a chicken and egg problem namely, should we first create types in the selected programming language, or should we create these types in the XML schema and then create classes based on the XML schema? But let's try to see how this can be achieved using an example.
-
-_________________________________
-
-When we talk about the syntax and semantics of a stream, the first thing to consider is the scope of data use. Well, data produced by one instance of a program can also be used by the same instance of the program. In such a case, if the process runs autonomously and is symmetric from a serialization and deserialization point of view, we should not expect any further problems.
-
-However, the same data can be used by the same program but not the same program instance, we also have to take into account that the programs may be in different versions. In such a case, there is a problem of data compatibility between different versions of the program. So the question arises whether if the data serialized by one version of the program is used by another version of the program run as a different instance, will it allow the creation of a graph equivalent to the original graph.
-
-Another application of streams may be the use of them between various programs that are created in different technologies and implemented on different platforms. Then there is also the issue of technological compatibility. Also in this case, it must be taken into account that classes (types) that were created in one technology cannot necessarily be directly used in another technology. And in this case, we are already entering the issue of semantics, so we must take into account the fact that in another technology the same information will be represented in a different way.
 
 ### Graph of Objects Serialization
 
