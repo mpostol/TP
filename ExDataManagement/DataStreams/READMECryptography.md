@@ -177,7 +177,7 @@ A `Signature` element complies with the XML Digital Signature standard, namely X
 - [Serialization in .NET][STLZTN]
 - [XML Schema Definition Tool (Xsd.exe)][XSD]
 - [Generic implementation of the Blockchain agent in .NET][NBlockchain]
-- [dependency injection][DI]
+- [Dependency Injection][DI]
 
 [DI]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
 [XSLW3C]: (https://www.w3schools.com/xml/xsl_languages.asp)

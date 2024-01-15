@@ -86,6 +86,8 @@ After implementation of the [IStylesheetNameProvider][IStylesheetNameProvider] i
 <?xml-stylesheet type="text/xsl" href="catalog.xslt"?>
 ```
 
+This XML declaration defines an additional document that is a stylesheet document and it contains a detailed description that allows to convert the source XML document into other text-based document. If we open the source document by clicking on it, we will open a web browser and the source file will be displayed in a graphical form that can be much easier to understand by people who are not familiar with XML technology. If we look at the source of this document using the browser context menu, we can see that it is simply the earliest XML document. This document that we originally had just got transformed thanks to browser transformation. So browsers have a built-in mechanism to convert an XML file to any other text file, in this case, it is an HTML file based on a defined XML stylesheet document
+
 ### XML-based Validation
 
 If we are talking about exchanging data between different applications or between an application and a human, the issue of bitstream correctness arises. This issue should be considered on two independent levels. The first one is the correctness of the bitstream as a certain stream of signs, i.e. when the syntax rules are met. The second one is determined by the possibility of assigning information to these sequences and therefore assigning meaning to a bitstream.
