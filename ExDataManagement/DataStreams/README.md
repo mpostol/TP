@@ -11,46 +11,46 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Data Streams
+# Data Streams <!-- omit in toc -->
 
-- [Data Streams](#data-streams)
-  - [Key words](#key-words)
-  - [Introduction](#introduction)
-  - [File and Stream Concepts Preface](#file-and-stream-concepts-preface)
-  - [Useful Technologies](#useful-technologies)
-    - [Introduction](#introduction-1)
-    - [Data Presentation](#data-presentation)
-    - [Validation](#validation)
-    - [Standardization](#standardization)
-  - [BitStream Format](#bitstream-format)
-    - [Domain Specific Language (DSL)](#domain-specific-language-dsl)
-    - [Extensible Markup Language (XML) Format](#extensible-markup-language-xml-format)
-      - [Introduction](#introduction-2)
-      - [Visualization](#visualization)
-      - [Validation](#validation-1)
-      - [Standardization](#standardization-1)
-    - [JavaScript Object Notation (JSON)](#javascript-object-notation-json)
-      - [Introduction](#introduction-3)
-      - [Visualization](#visualization-1)
-      - [Validation](#validation-2)
-      - [Standardization](#standardization-2)
-    - [Yet Another Markup Language (YAML)](#yet-another-markup-language-yaml)
-      - [Introduction](#introduction-4)
-      - [Visualization](#visualization-2)
-      - [Validation](#validation-3)
-  - [BitStream Cybersecurity](#bitstream-cybersecurity)
-    - [TBD](#tbd)
-  - [Serialization](#serialization)
-    - [Fundamentals](#fundamentals)
-    - [Implementation](#implementation)
-      - [Preface](#preface)
-      - [Attributes](#attributes)
-      - [Reflection](#reflection)
-    - [Access to Object State Values](#access-to-object-state-values)
-      - [Self Controlled](#self-controlled)
-      - [Reflection-based](#reflection-based)
-    - [Graph of Objects Serialization](#graph-of-objects-serialization)
-  - [See Also](#see-also)
+- [Key words](#key-words)
+- [Introduction](#introduction)
+- [File and Stream Concepts Preface](#file-and-stream-concepts-preface)
+- [Useful Technologies](#useful-technologies)
+  - [Introduction](#introduction-1)
+  - [Data Presentation](#data-presentation)
+  - [Validation](#validation)
+  - [Standardization](#standardization)
+- [BitStream Format](#bitstream-format)
+  - [Domain Specific Language (DSL)](#domain-specific-language-dsl)
+  - [Extensible Markup Language (XML) Format](#extensible-markup-language-xml-format)
+    - [Introduction](#introduction-2)
+    - [Visualization](#visualization)
+    - [Validation](#validation-1)
+    - [Standardization](#standardization-1)
+  - [JavaScript Object Notation (JSON)](#javascript-object-notation-json)
+    - [Introduction](#introduction-3)
+    - [Visualization](#visualization-1)
+    - [Validation](#validation-2)
+    - [Standardization](#standardization-2)
+  - [Yet Another Markup Language (YAML)](#yet-another-markup-language-yaml)
+    - [Introduction](#introduction-4)
+    - [Visualization](#visualization-2)
+    - [Validation](#validation-3)
+- [BitStream Cybersecurity](#bitstream-cybersecurity)
+  - [TBD](#tbd)
+- [Serialization](#serialization)
+  - [Fundamentals](#fundamentals)
+  - [Implementation](#implementation)
+    - [Preface](#preface)
+    - [Attributes](#attributes)
+    - [Reflection](#reflection)
+  - [Access to Object State Values](#access-to-object-state-values)
+    - [Introduction](#introduction-5)
+    - [Self Controlled](#self-controlled)
+    - [Reflection-based](#reflection-based)
+  - [Graph of Objects Serialization](#graph-of-objects-serialization)
+- [See Also](#see-also)
 
 ## Key words
 
@@ -215,29 +215,33 @@ In essence, you can create a new language by establishing a set of guidelines fo
 
 ### Fundamentals
 
-We've already talked a bit about why we need bitstreams handled using files. Let's recall the most important applications, such as entering input data or storing output data using file systems. We also use various types of streaming devices to archive data, i.e. to save data forever. Data transfer between applications is another use case. For example interoperability of a web server and a web browser. There is a virtual wire between them. We can only send bitstreams over this wire. The temporary and intermediate data repository is another example. These are just a few examples but let's limit the discussion to them because they are enough to justify the importance of this topic.
+We need bitstreams to be handled using files to make sure that the data can be persisted. Let's recall the most important applications, such as entering input data or storing output data using file systems. We also use various types of streaming devices to archive data, i.e. to save data forever. The temporary and intermediate data repository is another example.
 
-Now we are ready to return to discussing issues directly related to streaming data. Above, we discussed the mechanisms of managing streams, especially in the context of files. We also realized the differences between bitstreams, text, and documents. Now let's answer the question of how to create streaming data and how to use it. First, let's try to define the purpose of our missions and the limitations we must deal with.
+Data transfer between applications is another use case. It requires that data must be transferable. For example interoperability of a web server and a web browser. There is a virtual wire between them.
 
-And here the first problem arises, namely the question of how to combine data formatted as objects with the bitstreams. We will call the transition from the object world to the streaming world serialization. Deserialization is the reverse process, which involves replacing the bitstream with interconnected objects located in the working memory of a computer.
+These are just a few examples but let's limit the discussion to them because they are enough to justify the importance of this topic.
 
-Hence, to save/read working data from files we need generic operations that could automate this process regardless of the types we used to create the graph of objects containing working data. This process is called serialization. There must be also provided reverse operation creating objects from a file content - deserialization. This operation additionally has to verify the file content.
+In the already mentioned use cases data must be in a form of bitstream. Now we are ready to return to discussing issues directly related to streaming data. Above, we discussed the mechanisms of managing streams, especially in the context of files. We also realized the differences between bitstreams, text, and documents. Now let's answer the question of how to create streaming data and how to use it. First, let's try to define the purpose of our missions and the limitations we must deal with.
+
+Here the first problem arises: combining reasoning about two concepts, namely data formatted as objects with the bitstreams. We will call the transition from the object world to the streaming world serialization. Deserialization is the reverse process, which involves replacing the bitstream with interconnected objects located in the working memory of a computer.
+
+Hence, to save/read working data from files we need generic operations that could automate this transition process regardless of the types we used to create the graph of objects containing working data. This process is called serialization. There must be also provided a reverse operation creating objects from a file content - deserialization. This operation additionally has to verify the file content.
 
 Let me remind you that so far we have noted that in the transition between the object world and the world of bitstreams, we need serialization, which is responsible for transferring the state of an object graph to a bitstream. And deserialization, which is responsible for the reverse process, i.e. for transferring a bitstream into a graph of interconnected objects. We would like this operation to be implemented as generic, i.e. we would not have to program this operation every time, but only parameterize it.
 
-Before we move to the next step, it is worth recognizing what we need. Here, from the object point of view, the list of requirements includes:
+Before we move to the next step, it is worth recognizing what we need in this context. Here, from the object point of view, the list of requirements includes:
 
 - access to the data that will be the subject of the serialization
 - values that will constitute the state of the objects
 - the relationships between these objects
 
-Next, we need to implement an algorithm that will describe in detail this data transformation, in such a way that this transformation is mutually unambiguous. Here, the mutual unambiguity of this process does not mean that each time we perform serialization we will obtain an identical bitstream. The same we should state for deserialization. We will get back to this topic shortly.
+Next, we need to implement an algorithm that will describe in detail this data transformation, in such a way that this transformation is mutually unambiguous. Here, the mutual unambiguity of this process does not mean that each time we perform serialization we will obtain an identical bitstream. The same we should state for deserialization. We will get back to this issue shortly.
 
-So the first problem we have is how to implement serialization and deserialization to make the transition between the object world and the streaming world possible. The serialization and deserialization process must be repeatable and mutually unambiguous. Moreover, it is not a simple process. Well, someone may say that this is a relative matter because we have no measure of simplicity in this case. However cloning serialization and deserialization code snippets each time serialization is needed will consume and waste time, so it may be worth implementing this process as a generic library, without the need to create dedicated software each time. So the next problem we can define here is the possibility of transition between the streaming world and the object world using the library concept.
+So the first problem we have is how to implement serialization and deserialization to make the transition between the object world and the streaming world possible. The serialization and deserialization process must be repeatable and mutually unambiguous. Moreover, it is not a simple process. Well, someone may say that this is a relative matter because we have no metrics of simplicity in this case. However cloning serialization and deserialization code snippets each time serialization is needed will consume and waste time, so it may be worth implementing this process as a generic library, without the need to create dedicated software each time. So the next problem we can define here is the possibility of transition between the streaming world and the object world using the library concept.
 
 If we talk about repeatability by applying a library concept implementing serialization and deserialization functionalities, we need to offer a generic implementation. Namely, we must be able to define this process in advance, without prior knowledge of what will be serialized. Generic implementation of the serialization and deserialization functionality means that we have to implement it in advance and offer it as ready-to-use libraries. We have many libraries that permit this process to be carried out automatically. So the question is why do we need to learn about it? Why go into detail? Well, my point is that if someone wants to use a washing machine, let me refer to this example, they do not need to know how the controller, engine, or temperature sensor works. However, if someone wants to assemble a custom washing machine using available parts, knowledge or understanding of how the engine, controller, and temperature sensor work is essential in this case even if the mentioned parts are available. Similarly, we need detailed knowledge about serialization and deserialization in case we are going to use streaming data, for example, the file system.
 
-In summary, to simultaneously use data as objects and bitstreams, our goal must be to combine two worlds. First, in which the data is in object form. The second world contain data in the form of bitstreams. let me stress now that in both cases we have the same information but different representations. The data conversion between these worlds is serialization and deserialization. In the case of serialization, it is a process that involves converting the state of a graph of objects into a stream of bits. Deserialization is the reverse process, i.e. converting a bitstream into a graph of objects that must be created in memory. Here the magical statement about the condition of the object appeared; what does object state mean? We will know the answer to this question soon.
+In summary, to simultaneously use data as objects and bitstreams, our goal must be to combine two worlds. First, in which the data is in object form. The second world contain data in the form of bitstreams. Let me stress now that in both cases we have the same information but different representations. The data conversion between these worlds is serialization and deserialization. In the case of serialization, it is a process that involves converting the state of a graph of objects into a stream of bits. Deserialization is the reverse process, i.e. converting a bitstream into a graph of objects that must be created in memory. Here the magical statement about the condition of the object appeared; what does object state mean? We will know the answer to this question soon.
 
 From the above, it could be derived that if an equivalent graph of objects can be reconstructed based on a bitstream it can be stated that the bitstream is correct for the purpose it has to serve. This reconstruction must be accomplished in compliance with the syntax, and semantics rules governing the bitstream. Again, this graph does not have to be identical to the original. It is enough for us that it is equivalent from the point of view of the information it represents. It could be added that in some cases, let's say in simpler cases, the bitstream identity can be ensured. This means that for a selected graph of objects, each time as a result of serialization we receive an identical bitstream. Then this bitstream can be compared, for example, to check whether the process is the same as before. It must be stressed that equivalence has no generic measure that can be used to evaluate equivalence condition. Due to the above, it is not possible to formally determine whether the resulting bit stream and the source object graph are equivalent. Therefore, equivalence must be decided by the software developer using custom measures, for example unit tests. From that, we can derive that only the software developer is responsible for ensuring that serialization and deserialization are mutually unambiguous.
 
@@ -257,53 +261,55 @@ In order not to enter into purely theoretical considerations, let us return to t
 
 #### Preface
 
-To implement a serialization/deserialization engine, you need to define a data structure, choose a serialization format (like JSON, XML, etc.), and use serialization logic to convert the data wrapped by a graph of objects into the selected format in both directions. The data structure is required to define the state of objects subject to serialization. Apart from the data structure a guidelines allowing to select only values constituting the state of the object are required. To implement the mentioned functionality access to the values holder that constitute the state of the object is also required. Attributes as a language construct at design-time and reflection as a technology at run-time could help to solve some problems related to serialization/deserialization implementation.
+To implement a serialization/deserialization engine, you need to define a data structure, choose a serialization format (like JSON, XML, etc.), and use a serialization library to convert the data wrapped by a graph of objects into the selected format in both directions. The data structure is required to define the state of objects subject to serialization. Apart from the data structure a guidelines allowing to select only values constituting the state of the object are necessary. To implement the mentioned functionality access to the value holders that constitute the state of the object is also required. Attributes as a language construct at design-time and reflection as a technology at run-time could help to solve some problems related to serialization/deserialization implementation.
 
 #### Attributes
 
-Attribute or annotation is a concept used in various programming languages.  It is used to add metadata, comments, and supplementary information to program text. It helps enhance code readability, and document functionality and provides details for tools or compilers. Many languages may implement attributes in their own way, but the fundamental idea of associating extra information with code entities is common across many programming languages - mainly the differences refer to syntax, hence the meaning expressed as the semantics rules are almost the same.
+Attribute or annotation is a concept used in various programming languages. It is used to add metadata, comments, and supplementary information to program text. It helps enhance code readability, and document functionality and provides details for tools or compilers. Many languages may implement attributes in their own way, but the fundamental idea of associating extra information with code entities is common across many programming languages - mainly the differences refer to syntax, hence the meaning expressed as the semantics rules are almost the same.
 
 Apart from the definition of an attribute, it also must be possible to associate attributes with a selected language construct. This association usually is realized as a syntax constraint. For example, an attribute is added as a prefix or a decoration of a target construct.
 
-The language must also provide means to instantiate the attributes in the context of a construct to which additional data has been associated. By design, the reflection mechanisms must be used to instantiate attributes at run-time.
+So the question is what is an attribute? The general answer is that it is a language construct. A programming language construct refers to a syntactical element or feature within a programming language. The constructs provide the building blocks for implementing algorithms for various problems in software development.
 
-Again, let me stress, that the definition of attributes and association attributes with other programming language constructs must be compliant with the selected programming language syntax rules.
+To avoid meaningless explanations and get straight to the point, further explanations must be investigated in the context of program snippets prepared using the selected programming language that will be used to provide a comprehensive explanation of the syntax and semantics of the attribute definition and use. A description of the code snippets is available in the document [Implementation Examples][ie]. The examples show that attributes have broader applicability than just serialization and deserialization. However, the attribute concept is well suited to address selected issues related to the serialization/deserialization processes.
 
-So the question is what is an attribute? The general answer is that it is a programming language definition. Detailed explanations must be investigated in the context of program snippets prepared using the selected programming language that will be used to explain the attribute creation and use. A description of the code snippets is available in the document [Implementation Examples][ie]. The examples show that attributes have broader applicability than just serialization and deserialization. However, the attribute concept can be used also to implement the serialization/deserialization processes.
+In the selected language any attribute definition is a class derived from the `System.Attribute` class. Hence, the programming language must also provide means to instantiate this class in the context of a selected construct to which additional data has been associated using attributes. By design, the reflection mechanisms must be used to instantiate attributes at run-time.
 
 #### Reflection
 
-Reflection is the next very useful technology that may be employed to support serialization and deserialization implementation. We will only touch on the subject of reflection, i.e. we just enter a world in which definitions in the source program become data and are processed like process data. In other words, reflection in software engineering refers to the ability of a program to examine and modify its structure and behavior during runtime. Due to the complexity of this topic, we have to limit the discussion to only selected topics useful in the context of serialization. Hence, don't expect deep knowledge related to this topic. Reflection is commonly used for tasks like recovery metadata about types, objects dynamic instantiation, method invocation, and recovering data wrapped by objects at run-time.
+Reflection is the next very useful approach that may be employed to support serialization and deserialization implementation. We will only touch on the subject of reflection, i.e. we just enter a world in which definitions in the source program become data and are processed like process data. In other words, reflection in software engineering refers to the ability of a program to examine and modify its structure and behavior during runtime. Due to the complexity of this topic, we have to limit the discussion to only selected topics useful in the context of serialization. Hence, don't expect deep knowledge related to this topic. Reflection is commonly used for tasks like recovery metadata about types, classes instantiation, method invocation, and recovering data wrapped by objects at run-time.
 
-So, our task is to answer the question of how to automate this serialization and deserialization process. Because we have to do it in a way that allows us to avoid repetitive work. This, however, means that the mentioned functionality must be implemented in advance when we do not know the types yet. We want to offer a generic library that will be used against various types, i.e. for custom types that the user will define according to requirements of the application in concern. The only thing we can rely on are the types built into a selected programming language because they are immutable.
+So, our task is to answer the question of how to make it autonomous and automate this serialization and deserialization process. Because we have to do it in a way that allows us to avoid repetitive work. It means the mentioned functionality must be implemented in advance when we do not know the types yet. We want to offer a generic library that will be used against various types, i.e. against custom types that the user will define according to requirements of the application in concern. The only thing we can rely on and reuse is the built-in types of a selected programming language because they are immutable.
 
-If we need to deal with custom types that we do not know in advance, generally there are the following solutions that may be applied. First is dynamic programming when types are created during program execution and will reflect the needs related to the data processing algorithm. The next one is independent conversion of member values based on built-in custom functionality in new types. Finally, we may consider applying reflection, where type definitions become data for the program that can be the subject of recovery metadata and reading/assigning objects state values.
+If we need to deal with custom types, which we do not know in advance the following solutions may be applied typically. First is dynamic programming when types are created during program execution and will reflect the needs related to the data processing algorithm at run-time. The next one is the independent conversion of member values based on built-in custom functionality in new types defined at compile time. Finally, we may consider applying reflection, where type definitions created at compile time become data for the program that can be the subject of recovery metadata and reading/assigning objects state values at run-time.
 
-Dynamic programming is not promising and should be avoided because it is an error-prone run-time approach. Independent conversion is a design-time approach and must be considered as a serialization/deserialization method however it still needs custom serialization/deserialization functionality to be embedded in new type definitions, and therefore it is not an autonomous solution. More in this respect you can get by checking out appropriate examples described in the document [Implementation Examples][ie]. Reflection allows to write the program so that the type features are recoverable and become data for the program. Reflection allows for avoiding custom implementation of the serialization and deserialization functionality. Hence, it will be described in more detail.
+Dynamic programming is not promising and should be avoided because it is an error-prone run-time approach. Independent conversion is a design-time approach and must be considered as a serialization/deserialization method. However, it still needs custom serialization/deserialization functionality to be embedded in new type definitions, and therefore cannot be recognized as an autonomous solution. More in this respect you can get by checking out appropriate examples described in the document [Implementation Examples][ie]. Reflection allows to write the program so that the type features are recoverable and become data for the program. Reflection allows for avoiding custom implementation of the serialization and deserialization functionality. Hence, it will be described in more detail.
 
 The language we have selected for education purposes is based on the concept of types. It is strongly typed. However, it is not the only one that uses type compatibility to check the correctness of the program at design time. However, the transition from the object-oriented world to the streaming world requires generic actions, consisting of creating generalized mechanisms for operating on data without referring to concrete type definitions. I mean the serialization/deserialization functionality must be generic without referring to type definitions, because the types may be unknown at this time.
 
-We want the data transformation process between object graphs and bitstreams process to be mutually unambiguous, repeatable, and autonomous. Data transformation from object form to stream form, so the transformation of an object graph requires reading the state of these objects and the relationships between them. The reverse transformation, i.e. converting a bitstream into an object graph, requires creating an instance of the object and populating it with values of its fields or properties to recover its state based on the data obtained during deserialization.
+We want the data transformation process between object graphs and bitstreams process to be mutually unambiguous, repeatable, and autonomous. Data transformation from graph of objects form to stream form requires reading the state of these objects and the relationships between them. The reverse transformation, i.e. converting a bitstream into an object graph, requires creating instances of appropriate types contributing to the graph and populating them with values of its fields or properties to recover its state based on the data obtained during deserialization.
 
 The state of objects is the minimum set of values that is necessary to recreate an equivalent object. In the case of conversion from a stream to an object form, first of all, we must be able to create objects. If the objects are instantiated, the values that have been saved as the object's state must be assigned to the internal members that are part of this object. This also applies to those variables that store information about relationships between objects, i.e. references.
 
-So much theory. It's time to move on to practical acquaintance with selected reflection mechanisms. To get more based on examples in selected programming language check out the document [Implementation Examples][ie]. These examples show how to represent type features as [Type Class][system.type] instances. These instances can be created based on the type definition using the `typeof` keyword and objects of unknown type using the `GetType` instance method. In both cases, an object-oriented type description is created. The examples discussed show how to use this description to read and write the values of a selected property. This ability is especially useful when implementing serialization and deserialization operations. Similarly, we can also read and write values from fields and call instance methods. Similarly, it is also possible to create new objects without referring to the `new` keyword. Discussing all the details of the reflection concept is far beyond the scope of the examples collected here.
+So much theory. It's time to move on to practical acquaintance with selected reflection mechanisms. To get more based on examples in selected programming language check out the document [Implementation Examples][ie]. These examples show how to represent type features as the [Type][system.type] class instances. The instances can be created using the `typeof` keyword based on the type definition or the `GetType` instance method for objects of unknown type. In both cases, an object-oriented type description is created. The examples discussed show how to use this description to read and write the values of a selected property. This ability is especially useful when implementing serialization and deserialization operations. Similarly, we can also read and write values from fields and call instance methods. Similarly, it is also possible to create new objects without referring to the `new` keyword. Discussing all the details of the reflection concept is far beyond the scope of the examples collected here.
 
 ### Access to Object State Values
 
-From the previous considerations, we know that serialization/deserialization is a data transformation process from/to an object from/to a bitstream form. These operations should be implemented as generic ones. It means that they don't depend on the type of the serialized/deserialized object because they should be offered as a generic library solution to allow multi-time usage against custom types. This process must start with recovering a set of value-holder members contributing to the state of the object. Let me stress that to provide a generic solution this mechanism must not depend on the object type.
+#### Introduction
+
+From the previous considerations, we know that serialization/deserialization is a data transformation process from/to an object from/to a bitstream form. These operations should be implemented as generic ones. It means that they don't depend on the type of the serialized/deserialized object because they should be offered as a generic library solution to allow multi-time usage against custom types. This process must start with recovering a set of value-holder members constituting the state of an object. Let me stress that to provide a generic solution this mechanism must not depend on the object type.
 
 Talking about serialization/deserialization we must answer the question of how to build universal and stand-alone libraries that will allow you to transfer object data to a stream and from a stream to object data. From the above, we know how to use attributes and reflection to ensure full autonomy of this process and harmonize the behavior of the process of converting objects to a stream and stream to objects. Autonomy in this context means that the reflection is utilized to implement a library and as a result, the conversion process can be performed without dedicated custom code embedded in the type of objects to be serialized and deserialized.
 
-We also talked about bitstream semantics and syntax using the example of XML files. We showed how to use the XML schema concept to describe details of the syntax and indirect semantics of a document and to create the source code of a program that will be used in the serialization and deserialization process.
+We also talked about bitstream syntax and semantics using the example of XML files. We showed how to use the XML schema concept to describe details of the syntax and also indirectly semantics of a document and to create the source code of a program that will be used in the serialization and deserialization process.
 
 #### Self Controlled
 
-The first approach, compliant with the above scenario, is to locate this functionality internally of a custom type. An example of this approach is described in the document [Implementation Examples][ie]. It is based on internal reading and assigning operations of the values creating the object's state in compliance with the object type definition. This way, it is possible to avoid the need for employing the reflection by inheriting from the `ISerializable` interface. This interface acts as a contract between the target class to be serialized and the class that implements the serialization algorithm. We must be aware that the proposed solution is not perfect. There are still many issues that have been left unsaid. So let's start by systematizing the shortcomings of the previous proposals.
+The first approach, compliant with the above scenario, is to implement of this functionality internally by a custom type. An example of this approach is described in the document [Implementation Examples][ie]. It is based on internal reading and assigning operations of the values creating the object's state in compliance with the object type definition. This way, it is possible to avoid the need for employing reflection.  Instead, the `ISerializable` interface has to be implemented. This interface acts as a contract between the target but custom class to be serialized and the class that implements the serialization algorithm and by design, implements this algorithm without detailed knowledge about the target type. Only this interface is in common. We must be aware that the proposed solution is not perfect. There are still many issues that have been left unsaid. So let's start by systematizing the shortcomings of this proposal.
 
-The first issue that we can recognize is full autonomy of the serialization and deserialization process. In this approach we must manually ensure that the appropriate values constituting the state of the target object are saved in the dedicated array, which will be passed on to be written to the stream. It means that partially this functionality must be implemented by the custom type in compliance with the `ISerializable` interface instead of being provided by a generic library.
+The first issue that we can recognize is the full autonomy of the serialization and deserialization process. In this approach, we must manually ensure that the appropriate values constituting the state of the target object are saved in the dedicated array, which is passed on to be written to the bitstream. It means that partially this functionality must be implemented by the custom type in compliance with the `ISerializable` interface instead of being provided by a generic library.
 
-The second issue is the necessity of harmonization of the custom operations carried out during the serialization with the operations carried out during deserialization. In the example discussed already, we see that we have two separate pieces of custom code that are responsible for this, and therefore any modification in one piece must be reflected in the other piece. This can lead to errors if this is not the case. The sample code could be slightly improved in this respect but it still does not solve this problem.
+The second issue related to the self-controlled approach to access values constituting the state of an object is the necessity of harmonization of the custom operations carried out during the serialization with the operations carried out during deserialization. from the mentioned examples we learn that two separate pieces of custom code are responsible for this, and therefore any modification in one piece must be mirrored in the other piece. This can lead to errors if this is not the case. The sample code could be slightly improved in this respect but it still does not solve this problem.
 
 #### Reflection-based
 

@@ -40,8 +40,9 @@ software engineering, sequential programming, software design, education, code e
 
 ### Preface
 
->The **main goal** of this repository is to turn today's students into tomorrow's advanced software developers and architects.
->The **main purpose** of this repository is to provide code extended examples for education purposes.
+> **Programming in Practice** is a contribution to **Code Engineering**. Code Engineering, also known as programming, is the process of designing, developing, testing, and maintaining computer programs. It involves applying engineering principles and methodologies to writing the program text, also referred to as the code to ensure its reliability, efficiency, and scalability. Code engineering encompasses various stages, including requirements analysis, design, implementation, testing, deployment, and maintenance, all aimed at producing high-quality computer software that meets the needs of users or clients.
+> The **main goal** of this repository is to turn today's students into tomorrow's advanced software developers and architects.
+> The **main purpose** of this repository is to provide code extended examples for education purposes.
 
 My point is that we could distinguish between two kinds of education:
 
