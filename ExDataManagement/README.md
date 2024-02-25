@@ -1,18 +1,20 @@
-# External Data Management (ExDM)
+# 1. External Data Management (ExDM) <!-- omit in toc -->
 
-- [External Data Management (ExDM)](#external-data-management-exdm)
-  - [Key words](#key-words)
-  - [Introduction](#introduction)
-  - [External Data](#external-data)
-  - [Data Management and Access](#data-management-and-access)
-  - [Conclusion](#conclusion)
-  - [See also](#see-also)
+## Table of Content <!-- omit in toc -->
 
-## Key words
+- [1. Key words](#1-key-words)
+- [2. Introduction](#2-introduction)
+- [3. External Data](#3-external-data)
+  - [3.1. Preface](#31-preface)
+  - [3.2. Data Management and Access](#32-data-management-and-access)
+- [4. Conclusion](#4-conclusion)
+- [5. See also](#5-see-also)
+
+## 1. Key words
 
 software engineering, education, learning, external data, data management, streaming data, structural data, graphical data
 
-## Introduction
+## 2. Introduction
 
 Computer science in general, and especially software engineering, is a field of knowledge that deals with the automation of information processing. Programs can be recognized as a driving force of that automated behavior. To achieve information processing goals programs have to implement algorithms required by applications. In other words, the programs describe how to process data, which represents information relevant to the applications in concern. Apart from the implementation of the algorithms, therefore, data management is a key issue from the point of view of automation of information processing in particular and computer science in general.
 
@@ -22,7 +24,9 @@ Providing solutions valid for a long-term horizon is extremely difficult for suc
 
 To ensure a practical context of the discussion and provide sound examples, all topics are illustrated using the C\# programming language and the Visual Studio design environment. The source code used is available in the GitHub repository. Check it out from the See Also section. I believe that the proposed principles, design patterns, and scenarios are generic and may be seamlessly ported to other environments, including but not limited to different programming languages. The language and tools mentioned above have been used only to embed the discussion in a particular environment and to ensure that the examples are compliant with the programming in practice principles.
 
-## External Data
+## 3. External Data
+
+### 3.1. Preface
 
 The external data is recognized as the data we must pull or push from outside of a boundary of the process hosting the computer program. In general, the external data may be grouped as follows:
 
@@ -30,15 +34,15 @@ The external data is recognized as the data we must pull or push from outside of
 - **structural** - data fetched/pushed from/to external database management systems using queries
 - **graphical** - data rendered on Graphical User Interface (GUI)
 
-## Data Management and Access
+### 3.2. Data Management and Access
 
 Data management involves the organization, storage, retrieval, communication, and manipulation of data to ensure its accuracy, security, and accessibility. It encompasses processes like data collection, storage architecture, data integration, and maintenance to support efficient analysis and decision-making.
 
 Referring to previously mentioned data kinds we need examples related to:
 
-- **Streaming**: files management, bitstreams format, interoperability, cybersecurity of bitstreams, serialization
-- **Structural**: queries compositions, queries execution, database interoperability
-- **Graphical**: data rendering, data entering, events handling
+- **streaming**: files management, bitstreams format, interoperability, cybersecurity of bitstreams, serialization
+- **structural**: queries compositions, queries execution, database interoperability
+- **graphical**: data rendering, data entering, events handling
 
 **files management**: files management functionality involves the organization, manipulation, and control of files as entities of a distributed file system. It includes tasks such as creating, opening, closing, reading, writing, deleting, and organizing files using dedicated containers, for example, directories. Key aspects of file management functionality include content protection against malicious users and metadata maintenance.
 
@@ -52,11 +56,16 @@ Referring to previously mentioned data kinds we need examples related to:
 
 **graphical user interface (GUI)**: GUI is a type of user interface that allows users to interact with electronic devices or software applications through graphical elements such as icons, buttons, windows, and menus. To handle GUI functionality allowing data rendering,  data entering, and events handling is required. Data rendering refers to the process of converting raw data into a visual or presentable format for users to comprehend. Key aspects of GUI handling include converting raw data into a format suitable for further processing and adapting the presentation of data to different screen sizes or devices to ensure a consistent and effective user experience. GUIs provide a visual way for users to interact with a system, making it more intuitive and user-friendly compared to text-based interfaces.
 
-## Conclusion
+## 4. Conclusion
 
-This section and subsections address examples of practical scenarios regarding various aspects of external data management.
+This section and subsections address examples of practical scenarios regarding various aspects of external data management. Referring to previously mentioned data kinds we need examples related to:
 
-## See also
+
+- **streaming**: files management, bitstreams format, interoperability, cybersecurity of bitstreams, serialization
+- **structural**: queries compositions, queries execution, database interoperability
+- **graphical**: data rendering, data entering, events handling
+
+## 5. See also
 
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the markdown files collected in this repository. It is distributed online upon the open access rules.
@@ -72,7 +81,7 @@ This section and subsections address examples of practical scenarios regarding v
 <!--
 //____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //

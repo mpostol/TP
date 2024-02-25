@@ -13,59 +13,55 @@
 
 # Data Streams <!-- omit in toc -->
 
-- [Key words](#key-words)
-- [Introduction](#introduction)
-- [File and Stream Concepts Preface](#file-and-stream-concepts-preface)
-- [Useful Technologies](#useful-technologies)
-  - [Introduction](#introduction-1)
-  - [Data Presentation](#data-presentation)
-  - [Validation](#validation)
-  - [Standardization](#standardization)
-- [BitStream Format](#bitstream-format)
-  - [Domain Specific Language (DSL)](#domain-specific-language-dsl)
-  - [Extensible Markup Language (XML) Format](#extensible-markup-language-xml-format)
-    - [Introduction](#introduction-2)
-    - [Visualization](#visualization)
-    - [Validation](#validation-1)
-    - [Standardization](#standardization-1)
-  - [JavaScript Object Notation (JSON)](#javascript-object-notation-json)
-    - [Introduction](#introduction-3)
-    - [Visualization](#visualization-1)
-    - [Validation](#validation-2)
-    - [Standardization](#standardization-2)
-  - [Yet Another Markup Language (YAML)](#yet-another-markup-language-yaml)
-    - [Introduction](#introduction-4)
-    - [Visualization](#visualization-2)
-    - [Validation](#validation-3)
-- [BitStream Cybersecurity](#bitstream-cybersecurity)
-  - [TBD](#tbd)
-- [Serialization](#serialization)
-  - [Fundamentals](#fundamentals)
-  - [Implementation](#implementation)
-    - [Preface](#preface)
-    - [Attributes](#attributes)
-    - [Reflection](#reflection)
-  - [Access to Object State Values](#access-to-object-state-values)
-    - [Introduction](#introduction-5)
-    - [Self Controlled](#self-controlled)
-    - [Attributes and Reflection](#attributes-and-reflection)
-  - [Graph of Objects Serialization](#graph-of-objects-serialization)
-  - [Conclusion](#conclusion)
-- [See Also](#see-also)
+## Table of Content <!-- omit in toc -->
 
-## Key words
+- [1. Introduction](#1-introduction)
+- [2. File and Stream Concepts Preface](#2-file-and-stream-concepts-preface)
+- [3. Useful Technologies](#3-useful-technologies)
+  - [3.1. Introduction](#31-introduction)
+  - [3.2. Data Presentation](#32-data-presentation)
+  - [3.3. Validation](#33-validation)
+  - [3.4. Standardization](#34-standardization)
+- [4. BitStream Format](#4-bitstream-format)
+  - [4.1. Domain Specific Language (DSL)](#41-domain-specific-language-dsl)
+  - [4.2. Extensible Markup Language (XML) Format](#42-extensible-markup-language-xml-format)
+    - [4.2.1. Introduction](#421-introduction)
+    - [4.2.2. Visualization](#422-visualization)
+    - [4.2.3. Validation](#423-validation)
+    - [4.2.4. Standardization](#424-standardization)
+  - [4.3. JavaScript Object Notation (JSON)](#43-javascript-object-notation-json)
+    - [4.3.1. Introduction](#431-introduction)
+    - [4.3.2. Visualization](#432-visualization)
+    - [4.3.3. Validation](#433-validation)
+    - [4.3.4. Standardization](#434-standardization)
+  - [4.4. Yet Another Markup Language (YAML)](#44-yet-another-markup-language-yaml)
+    - [4.4.1. Introduction](#441-introduction)
+    - [4.4.2. Visualization](#442-visualization)
+    - [4.4.3. Validation](#443-validation)
+- [5. Objects Serialization](#5-objects-serialization)
+  - [5.1. Fundamentals](#51-fundamentals)
+  - [5.2. Implementation](#52-implementation)
+    - [5.2.1. Preface](#521-preface)
+    - [5.2.2. Attributes](#522-attributes)
+    - [5.2.3. Reflection](#523-reflection)
+  - [5.3. Access to Object State Values](#53-access-to-object-state-values)
+    - [5.3.1. Introduction](#531-introduction)
+    - [5.3.2. Self Controlled](#532-self-controlled)
+    - [5.3.3. Attributes and Reflection](#533-attributes-and-reflection)
+  - [5.4. Graph of Objects Serialization](#54-graph-of-objects-serialization)
+  - [5.5. Conclusion](#55-conclusion)
+- [6. BitStream Cybersecurity](#6-bitstream-cybersecurity)
+- [7. See Also](#7-see-also)
 
-Bitstream, File, File System, XML, XSLT, HTML, XmlSerializer, Save file, Transformation, Saving text files, Local File Systems, Open and read file, XML Schema, Common File Format, Data Access, XML Serialization, Data Validation, Data Visualization
-
-## Introduction
+## 1. Introduction
 
 This folder `ExDataManagement\DataStreams` contains examples related to information representation as a bitstream and is devoted to discussing selected programming issues related to their management.
 
+## 2. File and Stream Concepts Preface
+
 If we write a program to automate information processing, we inevitably have to operate on data representing this process. Generally, we can distinguish operations related to reading input data, permanently preserving intermediate data, transferring data between individual applications, and saving the final data somewhere after completing the entire processing process. All these requirements can be accomplished using the concept of file. Even sending data between applications can be done using a file server, distributed file system, Google Drive, One Drive, and Pendrive to name only the most popular ones.
 
-## File and Stream Concepts Preface
-
-This is where the term file system came into play. Without going into details about the structure of the computer and the operating system, we can enigmatically state that it is a resource available in virtually every modern computer. For us, its most important feature is the ability to manage files. First of all, the file is metadata, i.e. data describing data. So here we may have the first indication that we are talking about data that we are describing. One such description is an identifier that plays two roles. One is that the file clearly distinguishes it from all other files. In this role it is Uniform Resource Identifier(URI), is a tekst that identifies the file. The second one indicates the location where the file can be found by the file system engine. In this role it is Uniform Resource Locator (URL). We also have other metadata such as date of creation, author, length, and many others.
+This is where the term file system came into play. Without going into details about the structure of the computer and the operating system, we can enigmatically state that the file system is a resource available in virtually every modern computer. For us, its most important feature is the ability to manage files. First of all, the file is metadata, i.e. data describing data. So here we may have the first indication that we are talking about data that we are describing. One such description is an identifier that plays two roles. One is that the file clearly distinguishes it from all other files. In this role it is Uniform Resource Identifier(URI), is a tekst that identifies the file. The second one indicates the location where the file can be found by the file system engine. In this role it is Uniform Resource Locator (URL). We also have other metadata such as date of creation, author, length, and many others.
 
 An important feature of a file concept is that it contains content in addition to metadata. Metadata is, of course, a very important file part but the most important thing is the content it includes, which is data representing information to take part in processing.
 
@@ -75,13 +71,13 @@ Let's start with the fact that typically we utilize object-oriented programming.
 
 On the other hand, we have the streaming world where the data is organized in the form of bitstreams, where each self-contained element of data has information about the next element but not a correlated element.
 
-## Useful Technologies
+## 3. Useful Technologies
 
-### Introduction
+### 3.1. Introduction
 
 To use computers for automation of information processing we have to manage bitstreams as the information representation. Bitstream management involves the organization, storage, retrieval, communication, and manipulation to ensure its accuracy, security, and accessibility. It encompasses data collection, storage architecture, integration, and maintenance to support efficient analysis and decision-making. To fulfill this functionality a set of technologies could make a real relief, namely presentation, validation, and standardization.
 
-### Data Presentation
+### 3.2. Data Presentation
 
 Data presentation is implemented by various ways of conveying information, including textual and tabular formats. Hence, first of all, we need to deal with data presentation, so as to enable the use of bitstreams also by a human computer user. In this context we must take into account the following terms: natural language, ergonomics, and graphical user interface.
 
@@ -89,7 +85,7 @@ A typical example that we can cite here is using the Internet. Using a web brows
 
 From the above we can derive that the bitstream should be formatted in a way to resemble a natural language. Of course, we have no measure here and therefore it is difficult to say whether something is close enough to natural language to be comprehensible.
 
-### Validation
+### 3.3. Validation
 
 Applications save working data into bitstreams (for example content of files) to keep state information, provide processing outcomes, or both. Applications need robust storage, i.e. correctness of the stored data has to be validated every time an application reads it back from a bitstream. It must be carefully observed if the bitstreams are also modified by other applications or directly by users, because data corruption may occur.
 
@@ -97,7 +93,7 @@ If we are talking about exchanging data between different applications or betwee
 
 To better understand above mentioned topics, let's look at them in the context of code examples explained in the section [XML-based Validation][xml-based-validation]. In this section, XML examples are only subject to more detailed examination but by design, it has no impact on the generality of the discussion.
 
-### Standardization
+### 3.4. Standardization
 
 When we talk about the syntax and semantics of a stream, the first thing to consider is the scope of data use. Well, data produced by one instance of a program can also be used by the same instance of the program. In such a case, if the process runs autonomously and is symmetric from a serialization and deserialization point of view, we should not expect any further problems.
 
@@ -109,21 +105,21 @@ Another application of streams may be the use of them between various programs t
 
 If schema definition is expressed in a widely accepted format it should be possible to generate types in selected programming language based on this schema. Of course, it is a chicken and egg problem namely, should we first create types in the selected programming language, or should we create these types in the schema and then create classes based on the schema definition? But let's try to see how this can be achieved using an example.
 
-## BitStream Format
+## 4. BitStream Format
 
-### Domain Specific Language (DSL)
+### 4.1. Domain Specific Language (DSL)
 
-Using bitstreams (file content) we must face a problem with how to make bitstreams human readable. The first answer is that it must be compliant and coupled with a well-known application. The application opens this bitstream as input data and exposes it to the user employing appropriate means to make the data comprehensible.
+Using bitstreams (file content) we must look out for a problem with how to make bitstreams human readable. The first answer is that it must be compliant and coupled with a well-known application. The application opens this bitstream as input data and exposes it to the user employing appropriate means to make the data comprehensible.
 
-Unfortunately, this approach does not apply to custom data. Therefore we should consider another approach, namely human-readable representation should be close to natural language. The first requirement for humans to understand the stream is that it has to be formatted as text. To recognize bitstream as the text an encoding must be associated by default, directly or indirectly. The next requirement, common for both humans and computers, is that a bitstream must be associated with comprehensible syntax rules. Finally, semantics rules should be associated with the bitstream that allows to assigning of meaning to bitstreams. Shortly there have to be defined a text-based language. A domain-specific language (DSL) is a text-based language dedicated to expressing concepts and data within a specific area. Except for programming languages like Java, C#, and Python, examples of well-known and widely accepted domain-specific languages are XML, JSON, and YAML formats to name only the most crucial.
+Unfortunately, this approach does not apply to custom data. Therefore we should consider another approach, namely human-readable representation should be close to natural language. The first requirement for humans to understand the stream is that it has to be formatted as text. To recognize bitstream as the text an encoding must be associated by default, directly or indirectly. The next requirement, common for both humans and computers, is that a bitstream must be associated with comprehensible syntax rules. Finally, semantics rules should be associated with the bitstream that allows to assigning of meaning to bitstreams. Shortly there have to be defined a text-based language. A domain-specific language (DSL) is a text-based language dedicated to expressing concepts and data within a specific area. Except for programming languages like Java, C#, and Python, examples of well-known and widely accepted domain-specific languages are XML, JSON, and YAML to name only the most crucial.
 
-Using DSL to describe the bitstreams a Data Transfer Object (DTO) concept can be used as a foundation to encapsulate and transport data between applications. It may be a text document that contains fields to store data.
+Using DSL to describe the bitstreams a Data Transfer Object (DTO) concept can be used as a foundation to encapsulate and transport data between computer programs. It may be a text document that contains fields to store data.
 
 To use DTO in a multi-vendor environment to transfer data between instances of different programs the standardization of the syntax and semantics rules is vital. Additionally possibility to use well defined and widely accepted schema documents is a key feature to establish interoperability.
 
-### Extensible Markup Language (XML) Format
+### 4.2. Extensible Markup Language (XML) Format
 
-#### Introduction
+#### 4.2.1. Introduction
 
 Extensible Markup Language (XML) is a standard text-based format for representing structured data in machine-readable form. Because it is founded based on the text it could also be recognized as human-readable. Its simplicity and flexibility make it suitable for representing a wide range of data formats.
 
@@ -133,7 +129,7 @@ XML is often used for data interchange between different applications.
 
 Overall, XML is versatile and widely adopted in various domains for configuring settings and exchanging process data.
 
-#### Visualization
+#### 4.2.2. Visualization
 
 As the XML format is text-based it can be directly read and displayed by a variety of software tools. However, it is not the preferred format, because it does not contain any formatting information. Today we expect data presentation to meet user experience, i.e. to have an appropriate layout and style. We can meet this requirement using any application that supports XSLT transformation of XML documents into other text documents, including but not limited to equivalent HTML documents. XSLT uses a template-driven approach to transformations: you write a template that shows what happens to any given input element. For example, if you were formatting working data to produce HTML for the Web, you might have a template (stylesheet file) to match an underlined group of elements and make it come out as a table.
 
@@ -144,7 +140,7 @@ To make it easier to visualize the data that is in the XML file, let's use a fea
 > - To get more about how to start with XSLT visit the W3C School: [XSL(T) Languages][XSLW3C]
 > - To check out an examples visit the section [XML-based Presentation][xmlpresentation]
 
-#### Validation
+#### 4.2.3. Validation
 
 To address the validation requirement XML (Extensible Markup Language) as a text-based format for representing structured information and XML Schema as a language for expressing constraints about XML documents are very good candidates to be used by the file operation. Today applications use objects to process working data according to the Object Oriented Programming (OOP) paradigm.
 
@@ -152,23 +148,23 @@ You may use the [XML Schema Definition Tool (Xsd.exe)][XSD], which generates XML
 
 To better understand topics related to validation check out code examples described in the section [XML-based Validation][xml-based-validation].
 
-#### Standardization
+#### 4.2.4. Standardization
 
 Extensible Markup Language (XML), is a standardized markup language designed to store and transport data. It provides a set of rules for encoding documents in a machine-readable format. XML standardization ensures consistency in data representation and interchange across different systems.
 
 Visit the `See also` section to get more details.
 
-### JavaScript Object Notation (JSON)
+### 4.3. JavaScript Object Notation (JSON)
 
-#### Introduction
+#### 4.3.1. Introduction
 
 JavaScript Object Notation (JSON), is a lightweight data interchange format. It is a text-based domain-specific language that is easy for humans to read and write, and for machines to parse and generate. JSON is often used to transmit data between a server and a web application, as well as for configuration files. It consists of key-value pairs and supports data types like strings, numbers, objects, arrays, booleans, and null.
 
-#### Visualization
+#### 4.3.2. Visualization
 
 Yes, JSON can be transformed into other text formats using a variety of programming languages employing additional libraries for parsing and then converting to different formats like CSV, XML, or others as needed. Languages like JavaScript can be also used for transforming JSON documents to other text formats. JavaScript has built-in functions for JSON manipulation, and you can use libraries or frameworks to convert JSON to various formats as needed.
 
-#### Validation
+#### 4.3.3. Validation
 
 Thanks to schema definition it is possible to derive new domain-specific languages based on JSON.
 
@@ -178,19 +174,19 @@ You may use a lot of available in the open access domain tools, which generates 
 
 To better understand topics related to validation check out code examples related to XML described in the section [XML-based Validation][xml-based-validation]. XML is used to express a general disunion using concrete language.
 
-#### Standardization
+#### 4.3.4. Standardization
 
 This language is recognized as an international standard. It is standardized by the International Organization for Standardization (ISO) as [ISO/IEC 21778:2017][ISOJSON]. The standardization ensures that JSON is consistent and widely accepted for data interchange between different systems and programming languages. There is also [Request for Comments:7159][RFCJSON] specification titled _The JavaScript Object Notation (JSON) Data Interchange Format_.
 
 ISO/IEC 21778:2017 specifies the JSON data interchange format, its data model, and its various data types. JSON's simplicity, ease of use, and language-agnostic nature have contributed to its widespread adoption in various domains for representing and exchanging data. JSON is also supported by an open community maintaining schema specification [JSON Schema][CommunityJSON]
 
-### Yet Another Markup Language (YAML)
+### 4.4. Yet Another Markup Language (YAML)
 
-#### Introduction
+#### 4.4.1. Introduction
 
 YAML, short for "YAML Ain't Markup Language" is a human-readable data serialization format. It is often used for configuration files and data exchange between development environments with different data structures. YAML uses indentation to represent hierarchy and relies on a straightforward syntax with key-value pairs. It aims to be easy to read and write, making it popular in various applications, including configuration files for software projects.
 
-#### Visualization
+#### 4.4.2. Visualization
 
 YAML doesn't define any special language allowing automatic transformation of YAML document to other text-based documents that can be used to visualize associated information. To visualize the content of a YAML document, you can use various tools and editors that support YAML. Here are a few options:
 
@@ -202,19 +198,15 @@ YAML doesn't define any special language allowing automatic transformation of YA
 
 Choose the method that best suits your preferences and workflow.
 
-#### Validation
+#### 4.4.3. Validation
 
 While YAML itself is not designed to be extended or derived into new languages, it is possible to create domain-specific languages (DSLs) or configuration languages based on YAML syntax. Developers can define specific rules and conventions within the YAML structure to suit the requirements of their particular domain or application.
 
 In essence, you can create a new language by establishing a set of guidelines for interpreting the YAML data in a specific way. This is often done in the context of configuration files or data representation for a particular software or system. Keep in mind that this is more about using YAML as a foundation and defining the semantics and rules for your specific language rather than formally deriving a new language from YAML.
 
-## BitStream Cybersecurity
+## 5. Objects Serialization
 
-### TBD
-
-## Serialization
-
-### Fundamentals
+### 5.1. Fundamentals
 
 We need bitstreams to be handled using files to make sure that the data can be persisted. Let's recall the most important applications, such as entering input data or storing output data using file systems. We also use various types of streaming devices to archive data, i.e. to save data forever. The temporary and intermediate data repository is another example.
 
@@ -258,13 +250,13 @@ In order not to enter into purely theoretical considerations, let us return to t
 
 > To learn more about the serialization visit the document: [Serialization in .NET][STLZTN].
 
-### Implementation
+### 5.2. Implementation
 
-#### Preface
+#### 5.2.1. Preface
 
 To implement a serialization/deserialization engine, you need to define a data structure, choose a serialization format (like JSON, XML, etc.), and use a serialization library to convert the data wrapped by a graph of objects into the selected format in both directions. The data structure is required to determine the state of objects that are subject to serialization. Apart from the data structure a guidelines allowing to select only values constituting the state of the object are necessary. To implement the mentioned functionality access to the value holders that constitute the state of the object is also required. Attributes as a language construct at design-time and reflection as a technology at run-time could help to solve some problems related to serialization/deserialization implementation.
 
-#### Attributes
+#### 5.2.2. Attributes
 
 Attribute or annotation is a concept used in various programming languages. It is used to add metadata, comments, and supplementary information to program text. It helps enhance code readability, and document functionality and provides details for tools or compilers. Many languages may implement attributes in their own way, but the fundamental idea of associating extra information with code entities is common across many programming languages - mainly the differences refer to syntax, hence the meaning expressed as the semantics rules are almost the same.
 
@@ -278,7 +270,7 @@ In the selected language any attribute definition is a class derived from the `S
 
 Depending on the development environment, attributes are crucial in controlling how objects are serialized and deserialized. They allow to provide instructions for the serialization process. The attributes help customize the serialization process to meet specific requirements. Often dedicated attributes are added to the serialization frameworks to allow the addition of expected by the specific implementation control information. Using this framework, the exposed attributes may be associated with custom definitions.
 
-#### Reflection
+#### 5.2.3. Reflection
 
 Reflection is the next very useful approach that may be employed to support serialization and deserialization implementation. We can only touch on the subject of reflection, i.e. we just enter a world in which definitions in the source program become data and are processed like process data. In other words, reflection in software engineering refers to the ability of a program to examine and modify its structure and behavior during runtime. Due to the complexity of this topic, we have to limit the discussion to only selected topics useful in the context of serialization. Hence, don't expect deep knowledge related to this topic. Reflection is commonly used for tasks like recovery metadata about types, classes instantiation, method invocation, and recovering data wrapped by objects at run-time.
 
@@ -294,9 +286,9 @@ We want the data transformation process between object graphs and bitstreams pro
 
 The state of an object is the minimum set of values that is necessary to recreate an equivalent object. In the case of conversion from a stream to an object form, first of all, we must be able to create objects by instantiating types. If the types are instantiated, the values that have been saved as the object's state must be assigned to the internal members that are part of this object against its type. This also applies to those value holders that store information about relationships between objects, i.e. references.
 
-### Access to Object State Values
+### 5.3. Access to Object State Values
 
-#### Introduction
+#### 5.3.1. Introduction
 
 From the previous considerations, we know that serialization/deserialization is a data transformation process from/to an object from/to a bitstream form. These operations should be implemented as generic ones. It means that they don't depend on the type of the serialized/deserialized object because they should be offered as a generic library solution to allow multi-time usage against custom types. This process must start with recovering a set of value-holder members constituting the state of an object. Let me stress that to provide a generic solution this mechanism must not depend on the object type.
 
@@ -305,7 +297,7 @@ Talking about serialization/deserialization we must answer the question of how t
 - **Self Controlled** values access mechanism
 - **Attributes + reflection** values access mechanism
 
-#### Self Controlled
+#### 5.3.2. Self Controlled
 
 The first approach, compliant with the above scenario, is to implement access to object state values internally by a custom type. An example of this approach is described in the document [Implementation Examples][ie]. It is based on internal reading and assigning operations of the values creating the object's state in compliance with the object type definition. This way, it is possible to avoid the need for employing reflection.  Instead, the `ISerializable` interface has to be implemented. This interface acts as a contract between the target but custom class to be serialized and the class that implements the serialization algorithm and by design, implements this algorithm without detailed knowledge about the target type. Only this interface is in common. We must be aware that the proposed solution is not perfect. There are still many issues that have been left unsaid. So let's start by systematizing the shortcomings of this proposal.
 
@@ -313,7 +305,7 @@ The first issue that we must address is the full autonomy of the serialization a
 
 The second issue related to the self-controlled approach to access values constituting the state of an object is the necessity of harmonization of the custom operations carried out during the serialization with the operations carried out during deserialization. From the mentioned examples we learn that two separate pieces of custom code are responsible for this, and therefore any modification in one piece must be mirrored in the other piece. This can lead to errors if this is not the case.
 
-#### Attributes and Reflection
+#### 5.3.3. Attributes and Reflection
 
 Using self-controlled management of the object state means splitting the functionality between the type to be subject to serialization/deserialization and library functionality, which serializes/deserializes the value of members independently. This solution requires that the type to be serialized must be prepared to read/write values from the members and create a table against an interface that is a contract between both parties responsible for implementing commonly the serialization/deserialization functionality. The main problem is that the type to be subject to serialization/deserialization must be prepared against the contract defined by the implemented interface.
 
@@ -325,7 +317,7 @@ Summarizing, from the above, we may learn how to use attributes and reflection t
 
 Examples illustrating serialization using reflection and attributed programming are described in the section [Implementation Examples][ie].
 
-### Graph of Objects Serialization
+### 5.4. Graph of Objects Serialization
 
 Let's move on to the last issue related to the serialization of objects interconnected to each other forming graphs. So the objects have references between them and these references will determine the structure of the graph of objects. In this case, the main challenge is that all the objects must be considered as one whole.
 
@@ -345,11 +337,15 @@ Another issue that should be addressed here is when the serialization process sh
 
 In case of cyclic graphs, there is no restriction on the number of paths between any pair of vertices, and cycles may be present. We may encounter two problems here. Firstly, we have to resolve many-to-one references in this type of graph, when many objects will have references to one object. As a result, we can expect that serializing such a structure may cause cloning of objects in the stream. During recovery, if all these objects are recreated, many redundant copies are instantiated, so the structure will be different comparing it with the original. In the case of cyclic graphs (contain cycles - closed loops) in the relationship structure, we must take into account the fact that the serialization mechanism (the graph-to-bitstream conversion mechanism) will have to deal with this problem and therefore will have to set a stop condition to avoid cloning objects in the output stream. Well, we have two options to solve this issue. The first option is to write a custom library but this is a complex process. The second approach to address this problem is to choose an appropriate but existing library. There are many such libraries on the market and when analyzing their applicability, you should pay attention to these issues.
 
-### Conclusion
+### 5.5. Conclusion
 
 So much theory. It's time to move on to practical acquaintance with selected reflection mechanisms. To get more based on examples in selected programming language check out the document [Implementation Examples][ie]. These examples show how to represent type features as the [Type][system.type] class instances. The instances can be created using the `typeof` keyword based on the type definition or the `GetType` instance method for objects of unknown type. In both cases, an object-oriented type description is created. The examples discussed show how to use this description to read and write the values of a selected property. This ability is especially useful when implementing serialization and deserialization operations. Similarly, we can also read and write values from fields and call instance methods. Similarly, it is also possible to create new objects without referring to the `new` keyword. Discussing all the details of the reflection concept is far beyond the scope of the examples collected here. We also talked about bitstream syntax and semantics using the example of XML files. We showed how to use the XML schema concept to describe details of the syntax and also the semantics of a document indirectly and to create the source code of a program that will be used in the serialization and deserialization process.
 
-## See Also
+## 6. BitStream Cybersecurity
+
+- [In the file READMECryptography](.\READMECryptography.md)
+
+## 7. See Also
 
 - [XSL\(T\) Languages][XSLW3C]
 - [Serialization in .NET][STLZTN]

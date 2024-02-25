@@ -54,7 +54,7 @@ The extended examples gathered in this repository focus on learning - the improv
 The code extended examples address the following application domains:
 
 - [**Information Computation (IC)**](InformationComputation/README.md): internal data management - all about engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task.
-- [**External Data Management (ExDM)**](ExDataManagement/README.md): external (graphical, streaming, structural) data management -  all about processing data managed using external resources, that is screen, DBMS (database management system), files.
+- [**External Data Management (ExDM)**](ExDataManagement/README.md): external (streaming, structural, graphical) data management -  all about processing data managed using external resources, that is screen, DBMS (database management system), files.
 - [**Adaptive Programming (AP)**](AdaptiveProgramming/README.md): language constructs, patterns, and frameworks used at the development and deployment stage to improve the future adaptability of the software.
 - [**Concurrent Programming (CW)**](ConcurrentProgramming/README.md): all about the programming pattern formally describing a program to execute operations as a result of nondeterministic events at run time.
 - [**Distributed Programming (DP)**](DistributedProgramming/README.md): all about developing inter-operable applications interconnected over the network.
