@@ -14,41 +14,35 @@
 # Bitstream Cybersecurity <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Hash](#2-hash)
-  - [2.1. Preface](#21-preface)
-- [3. Hash Function](#3-hash-function)
-  - [3.1. Hash Function Applicability Example](#31-hash-function-applicability-example)
-- [4. Encryption](#4-encryption)
-  - [4.1. Introduction](#41-introduction)
-  - [4.2. Encryption fundamentals](#42-encryption-fundamentals)
-  - [4.3. Symmetric Cryptography Example](#43-symmetric-cryptography-example)
-  - [4.4. Conclusion](#44-conclusion)
-- [5. Non-repudiation](#5-non-repudiation)
-  - [5.1. Preface](#51-preface)
-  - [5.2. Compliance with Domain-specific Language](#52-compliance-with-domain-specific-language)
-  - [5.3. Signing Process](#53-signing-process)
-  - [5.4. Creation of Keys Example](#54-creation-of-keys-example)
-  - [5.5. XML Document Signing Example](#55-xml-document-signing-example)
-  - [5.6. Conclusion](#56-conclusion)
-- [6. See Also](#6-see-also)
+- [2. Hash Function](#2-hash-function)
+  - [2.1. Fundamentals](#21-fundamentals)
+  - [2.2. Example](#22-example)
+- [3. Encryption](#3-encryption)
+  - [3.1. Fundamentals](#31-fundamentals)
+  - [3.2. Symmetric Cryptography Example](#32-symmetric-cryptography-example)
+  - [3.3. Conclusion](#33-conclusion)
+- [4. Non-repudiation](#4-non-repudiation)
+  - [4.1. Fundamentals](#41-fundamentals)
+  - [4.2. Compliance with Domain-specific Language](#42-compliance-with-domain-specific-language)
+  - [4.3. Signing Process](#43-signing-process)
+  - [4.4. Creation of Keys Example](#44-creation-of-keys-example)
+  - [4.5. XML Document Signing Example](#45-xml-document-signing-example)
+  - [4.6. Conclusion](#46-conclusion)
+- [5. See Also](#5-see-also)
 
 ## 1. Introduction
 
-Cybersecurity describes the practice of protecting computer systems, networks, and data from cyber threats. In this section, only cybersecurity related to bitstreams is considered.
+In the context of the cybersecurity of bitstreams implementation let me remind you of the following requirements we have:
 
-## 2. Hash
+1. The first one is to ensure that all users of a source bitstream can verify that the stream has been not modified while it was being archived or transmitted.
+1. The second one is to safeguard information from unauthorized access, ensuring confidentiality.
+1. The third one is to confirm authorship, so all users of a bitstream can determine who created it and who is responsible for its content. This goal we call non-repudiation of the author.
 
-### 2.1. Preface
+The following chapters provide more detailed descriptions of examples related to the implementation of these requirements. These requirements are implemented by applying the following cybersecurity concepts hash, encryption, and non-repudiation.
 
-Now let's talk about securing streams using cryptography. Talking about cryptography in the context of streams may seem a little strange because usually cryptography is discussed in the context of data security and system security in general. For now, I mention this seemingly strange combination of topics to ask for your patience. Everything will be clear soon; I promise. Cryptography is a broad concept, but we will focus only on selected, very practical aspects related to the security of bitstreams.
+## 2. Hash Function
 
-We already know how to create bitstreams. We can also attach coding to them, i.e. the natural language alphabet. The next step is to assign syntax and semantics that allow the streams to be transformed into a coherent document and therefore enable recovery of information from these documents by a computer user. If this is not enough, we can also display these documents in graphical form. We will come back to this last issue because we have not said the last word here.
-
-However, the most important thing is that a bitstream is still a stream, so it is a sequence of bits and can be sent, archived, and processed by another computer. It must be stressed again that this infrastructure is always binary. Well, this is where the problem arises. It is required that this binary document is protected against malicious operations. For example, if this document contains a transfer order to our bank, the problem becomes real, material, and meaningful in this context.
-
-If we are talking about archiving streams or sending streams from one system to another, from one to another computer, the first thing we need to take care of is the integrity of such a stream. This means that from the moment it is produced until it is at its actual destination, where it will be processed, it is not modified. The best way to accomplish this is by using the hash function.
-
-## 3. Hash Function
+### 2.1. Fundamentals
 
 Let's move on to the first option for securing streams: the hash function. It is a function that transforms the input bitstream to calculate another fixed-size unique bitstream. A collision in a hash function occurs when two different inputs produce the same hash value as output. The next feature of the received output bitstream is that the reverse transformation, i.e. recovering the source bitstream is practically impossible. One way to use such a function is to associate this hash value with the bitstream we want to protect. Then the hash value can be used to check whether the bitstream has not been modified in the meantime by calculating this function again and comparing the result with the associated hash value with the source bitstream if the expanded bitstream is archived or sent from one place to another. A certain drawback of this solution is that the algorithms for these functions are widely known, so if a "man in the middle" wants to modify the source bitstream, they can modify the source bitstream and recalculate a new value of the hash function for the previously modified bitstream.
 
@@ -56,13 +50,11 @@ Anyway, there are a few scenarios where this approach makes sense. Well, for exa
 
 ![Blockchain](.Media/Blockchain.png)
 
-Blockchain security helps ensure that if someone wants to modify one of the blocks in the chain, they must modify all the blocks that have been attached to that chain later. Of course, this is still possible, so further safeguards are needed. Among other things, the growth rate of this chain, i.e. the speed of adding subsequent blocks to the chain, is greater than the possibility of modifying fragments of the chain.
+Blockchain security helps ensure that if someone wants to modify one of the blocks in the chain, they must modify all the blocks that have been attached to that chain later. Of course, this is still possible, so further safeguards are needed. Among other things, the growth rate of this chain, i.e. the speed of adding subsequent blocks to the chain, is greater than the possibility of modifying fragments of the chain. This topic is far beyond the scope of this document, but if you are interested in getting more I encourage you to check out a dedicated GitHub repository [NBlockchain][NBlockchain]. There is a practical example of how to implement such a chain.
 
-This topic is far beyond the scope of this document, but if you are interested in getting more I encourage you to check out a dedicated GitHub repository [NBlockchain][NBlockchain]. There is a practical example of how to implement such a chain.
+### 2.2. Example
 
-### 3.1. Hash Function Applicability Example
-
-So let's see how the hash function works and how it can be used in practice. In the [CryptographyHelpersUnitTest][CryptographyHelpersUnitTest] class, two unit tests have been prepared. They use the [CalculateSHA256][CalculateSHA256] method defined in the library. It is worth emphasizing once again that the argument of a hash function is always a bitstream. But obviously, the hash function may also be used for text, namely a bitstream for which an encoding has been defined. In the `CalculateSHA256Test` method, we have to protect a password. It is a string of random characters. Password may be associated with syntax and semantics to make it easier to remember but, fortunately, these syntax and semantics rules have no impact on the hash calculation. In this method, instead of a bitstream, we have a stream of characters compliant with the string type. The Alt+F12 key will take us to the definition of the [CalculateSHA256][CalculateSHA256] method. The input parameter of this method is a sequence of characters of the `string` type, but the hash function operates on an array of bytes, therefore we must transform this string of characters into a string of bytes. To do this, we need to have associated an encoding. In the case of the method under consideration, this is `UTF8`. This is the first yellow light that should light up because everyone who will use the result of the hash function to check the correctness of the input string must use the same encoding (UTF8 in this case). If someone uses a different encoding, the hash function cannot necessarily be used to check the consistency of the input text. To be able to calculate the hash function in the [CalculateSHA256][CalculateSHA256] method, we need to create an object of the `SHA256Managed` class available in the language library. Since it implements `IDisposable`, I used the using statement.
+So let's see how the hash function works and how it can be used in practice. In the [CryptographyHelpersUnitTest][CryptographyHelpersUnitTest] class, two unit tests have been prepared. They use the [CalculateSHA256][CalculateSHA256] method defined in the library. It is worth emphasizing once again that the argument of a hash function is always a bitstream. But obviously, the hash function may also be used for text, namely a bitstream for which an encoding has been defined. In the `CalculateSHA256Test` method, we have to protect a password. It is a string of random characters. Password may be associated with syntax and semantics to make it easier to remember but, fortunately, these syntax and semantics rules have no impact on the hash calculation. In this method, instead of a bitstream, we have a stream of characters compliant with the string type. The Alt+F12 key will take us to the definition of the [CalculateSHA256][CalculateSHA256] method. The input parameter of this method is a sequence of characters of the `string` type, but the hash function operates on an array of bytes, therefore we must transform this string of characters into a string of bytes. To do this, we need to have associated an encoding. In the case of the method under consideration, this is `UTF8`. This is the first yellow light that should light up because everyone who will use the result of the hash function to check the correctness of the input string must use the same encoding format (UTF8 in this case). If someone uses a different encoding, the hash function cannot necessarily be used to check the consistency of the input text. To be able to calculate the hash function in the [CalculateSHA256][CalculateSHA256] method, we need to create an object of the `SHA256Managed` class available in the language library. Since it implements `IDisposable`, I used the using statement.
 
 In the next line:
 
@@ -76,24 +68,9 @@ a bitstream generated by the hash function is converted into two text forms. The
 
 In unit tests methods, we have two assertions, which compare the result returned by hash calculation methods with defined hard-coded text. If the encoding changes when converting the input string of characters and when the implementation of the conversion to hexadecimal text or `Base64` changes, we can expect that these assertions and invariants will not be true and the test will end with an error. And we also have to consider this as another yellow flag that has to be raised. In other words, the use of a string, although convenient, unfortunately, has the consequence that this conversion from a bitstream to text compliant with the string type does not always have to be the same and may change over time. So why use it; someone may ask. In that case, wouldn't it be better for us to base it on a sequence of bytes? Well, we cannot always attach such a sequence of bits to the text; if it is e-mail, for example, then the email system has strictly defined characters that it can use to control data flow. Hence, it has to be taken into consideration the fact that attaching such a raw bitstream could have invalid characters causing problems with the correct operation of the email system. Therefore, conversion to text is sometimes necessary, but you need to remember these caveats.
 
-## 4. Encryption
+## 3. Encryption
 
-### 4.1. Introduction
-
-It often happens that only authorized persons should have access to the information represented by the binary stream, and therefore unauthorized persons shouldn't have access to it. To address this requirement, we may use the bidirectional transformation mechanism to replace a source bitstream with another bitstream to which we can no longer attach the encoding, syntax, and semantics rules. As a result, it makes it impossible to associate information with this bitstream. The obtained from the transformation bitstream resembles white noise. However, any person who has the right to access the associated with the source bitstream information; should be able to recover the source bitstream and as a result associate back the encoding, syntax, and semantics rules and finally recover the information represented by the source bitstream. The process is similar to replacing music with noise but granting the possibility to recover music from that notice by the authorized user. Unauthorized users can hear only noise, but authorized users can transform the notice back to the original music. This reversible transformation function we will call encryption.
-
-In this subsection of the cryptographic security of bitstreams, the encryption concept is addressed. Thanks to the hash function, we can secure the integrity of the controlled bitstream, provided that we can transfer the hash value to the destination in such a way that malicious users cannot modify it. Otherwise, modifying the source stream is not a problem because calculating a new hash function value that takes this modification into account is quite a trivial operation.
-
-Hence, selective access is required to protect any bitstream including but not limited to hash value against unauthorized access. Selective access is the ability to access information that is associated with a bitstream only by people who are authorized to do so. We can accomplish this in two ways:
-
-- selective availability of the bitstream itself
-- selective availability of the bitstream meaning
-
-The first approach is to share the bitstream, for example, as a file, only with people who have the right to get access to it. This can be achieved thanks to the authentication and authorization offered by most operating systems.  Authorization in the context of an operating system refers to the process of granting or denying permissions to identity attempting to perform certain operations on a computer system. Thanks to this, each time an attempt is made to operate on a file, it is first checked whether the identity that requested the execution of an operation has the right to do so. Of course, if someone does not gain access to the bitstream (to the file content), he will necessarily not have access to the information that is associated with this bitstream. Unfortunately, this approach is possible only in case there is something trusted in the middle between the file and the user, for example, a well-configured operating system. This topic generally doesn't deal with operating systems implementation, so this approach is outside the scope of our interest. Hence, we have to deal with another security method.
-
-The second option is to transform a bitstream (for example the file content, hash function value, etc.) into a form that an unauthorized user cannot associate any information with this bitstream. This method we call encryption. In other words, encryption involves transforming or scrambling bitstreams to make the underlying information unavailable to unauthorized users.
-
-### 4.2. Encryption fundamentals
+### 3.1. Fundamentals
 
 Encryption is a reversible bitstream transformation function into another bitstream. The transformation or scrambling function rearranges or modifies the order of bits in a bitstream. This function is designed to introduce complexity and randomness into the data, making it difficult for unauthorized parties to interpret or understand without the appropriate decryption process. The goal is to enhance the security of the information being transmitted or stored. After encryption, the encoding, syntax, and semantics rules no longer apply to an output bitstream. So, as a consequence, no information can be associated with the obtained this way bitstream. The diagram below shows how it works.
 
@@ -107,7 +84,7 @@ Symmetric encryption employs a single key for both encryption and decryption ope
 
 Asymmetric encryption, also known as public-key cryptography, involves a pair of keys, namely a public key used for encryption and a private key for decryption. Bitstreams encrypted with the public key can only be decrypted by the corresponding private key, ensuring secure interoperability. On the other hand, bitstreams encrypted with the private key can only be decrypted by the corresponding public key.
 
-### 4.3. Symmetric Cryptography Example
+### 3.2. Symmetric Cryptography Example
 
 It is proposed to analyze the encryption and decryption process using the [EncryptDecryptDataTest][EncryptDecryptDataTest] test method defined in the [CryptographyHelpersUnitTest][CryptographyHelpersUnitTest] class. In this method, symmetric encryption is used that implements the 3DES algorithm. We will encrypt the selected XML file [catalog.example.xml][catalog]. The test method must be preceded by an attribute that ensures all necessary files are copied to the test workspace before this method is invoked. First, we check whether this file exists. An assertion must always be true indicating that the file exists. We will save the encrypted result in another file. If this file exists, it is deleted. `ProgressMonitor` is a local class that will be used to track the progress of encryption and decryption progress. We will come back to this class shortly. The next step is directly related to encryption.
 
@@ -131,7 +108,7 @@ And now we move on to the step where the file is decrypted. That one we created.
 
 So let's take a look at how the decryption procedure is implemented in the [DecryptData][DecryptData] method. It is easy to note that it is very similar to the encryption method. Again, we treat the output file as a bitstream opened for writing so that we can store the decrypted bytes. We will carry out the entire process step by step using small chunks preserved in a buffer, which has the same length as the previous one. What is important is that we must have an object of the `TripleDESCryptoServiceProvider` class that provides the same key and the same initialization vector that was previously used. This time, `CryptoString` will have a `mode` parameter indicating that it will be used to read a file content, so it will generally operate by decrypting the content of the specified file. In the [DecryptData][DecryptData] we have created an object that is responsible for performing decryption operations. Again, we end the process when we have read all the bits from the file containing the encrypted bitstream. We report the progress of this process using the `Report` method. The operation finishes when everything has been saved to the output file. Of course, the output file is automatically closed thanks to the `using` statement. For the sake of simplicity, in the [EncryptDecryptDataTest][EncryptDecryptDataTest] test method, the only correctness validation of the encryption/decryption round trip process is that the length of the file after decryption is equal to the length of the input file that is the source file.
 
-### 4.4. Conclusion
+### 3.3. Conclusion
 
 We have already learned that there are two types of encryption. In the examples discussed in this section, the symmetric encryption method of the bitstreams was the subject of examination. Asymmetric encryption will be the subject of the next section covering digital signature generation and validation.
 
@@ -139,37 +116,23 @@ In the symmetric encryption, the encryption and decryption sides use identical k
 
 In the next part, we move on to asymmetric encryption. Precisely, not the encryption itself because the performance of asymmetric encryption is not enough hence it is only used in selected scenarios. The next section explores examples illustrating digital signature scenarios in which asymmetric encryption can and should be used. Asymmetric encryption is also used to distribute a session key securely. The session key for communication encryption is a temporary cryptographic key used to secure communication between parties during a specific session. It is generated for a short duration and provides a secure means for encrypting and decrypting bitstreams exchanged between the communicating entities. Session keys can be securely exchanged using asymmetric cryptography, where each party has a pair of public and private keys. The public keys can be exchanged openly, while the private keys are kept secret.
 
-## 5. Non-repudiation
+## 4. Non-repudiation
 
-### 5.1. Preface
+### 4.1. Fundamentals
 
-When talking about documents such as a wire transfer order, there is no need to provide any special justification that the recipient of such a document will be vitally interested in being able to determine that the document has been issued by an authorized person, for example by the owner of the account for which the order was issued.
+Digital signatures are widely used in electronic transactions, software distribution, and other scenarios where ensuring the origin and integrity of bitstreams is crucial. Let's check how asymmetric encryption could be implemented in this subsection. First of all, I propose to deal with the confirmation of authorship. This issue has been associated with the topic of ensuring bitstream integrity. We have already learned that there are two types of encryption. In the examples discussed in this chapter, only the asymmetric encryption method of the bitstreams is the subject of examination. Symmetric encryption has been the subject of the previous chapter covering the confidentiality of bitstreams.
 
-Because we use file systems and transfer bitstream data over computer networks streaming data security must inherently be the subject of our particular concern. In this subsection, the discussion on cryptographic security is continued in the context of non-repudiation.  Non-repudiation can be achieved by providing a way to verify that the sender of a message is who claims to be and that the message has not been altered during transmission. To achieve this protection a digital signature is applied. The digital signature is a cryptographic technique used to ensure the authenticity and integrity of a  bitstream.
+So let's move on to how a digital signature works, and how we ensure that the document's author cannot deny that he is the author.
 
-We have already learned about the hash function to protect bitstream integrity. However, there is still a problem with how to distribute its result so that in different places of the IT system, and different locations in the world this hash value can be used to check the integrity of a bitstream. Bitstream integrity refers to the assurance that the bitstream remains intact during transmission or storage. It ensures that each bit in the data stream retains its original value without corruption or errors. The previous article [`Cybersecurity of External Streaming  Data  - Confidentiality`][confidentiality] addresses symmetric encryption, in which we use identical keys by the encryption and decryption inter-operating parties. Again, we have the problem of distributing these keys among the authorized users who have the right to access the information represented by this stream. There is another problem with the use of symmetric encryption, namely scalability. It consists of the fact that the number of keys that we need to manage for encryption and decryption increases rapidly, that is, it increases with the square of the number of parties that participate in sharing data.
-
-To implement a digital signature, the sender uses a private key to create a unique digital signature for the message. This private key is known only to the sender and is kept confidential. The recipient, in turn, can verify the signature using the sender's public key. The public key is widely distributed and can be freely shared.
-
-If the digital signature is valid, it confirms that the bitstream is indeed signed by the holder of the private key associated with the public key used for verification. The digital signature also ensures that the content of the bitstream has not been altered since the signature was created. Even a small change in the message would result in a completely different signature.
-
-Digital signatures are widely used in electronic transactions, software distribution, and other scenarios where ensuring the origin and integrity of bitstreams is crucial. Let's check how asymmetric encryption could be implemented in this subsection. First of all, I propose to deal with the confirmation of authorship. This issue has been associated with the topic of ensuring bitstream integrity. So let's move on to how a digital signature works, and how we ensure that the document's author cannot deny that he is the author.
-
-### 5.2. Compliance with Domain-specific Language
+### 4.2. Compliance with Domain-specific Language
 
 If a bitstream to be signed is compliant with domain-specific language (for example XML) any inserted text to this bitstream must not break compliance with this language. For example, consider the [catalog.example.xml][catalog] document that we already used in examples. Let's try to add a free-formatted text at the end of this document, for example, a previously calculated hash value expressed as hexadecimal text encoded using ASCII standard. Well, of course, we can easily predict the result. There is a syntax error reported, hence it can be stated that this document is no longer an XML document. Because the syntax is not correct it is not possible to recover the meaning of this document as one whole including added text. It is simply a free text and is not suitable for further processing when we expect the document to follow XML syntax rules.
 
 What can we do? We can surround this text with an element markup, which is called for example `Hash`. As a result, we no longer have an XML syntax error, but we do have an error that such an element does not exist according to the schema we have defined. We can dumb down this document again and remove references to the schema, which defines what an XML document should contain. But this again leads to further consequences, such that if we expect that this document is compliant with a certain schema, then, as a consequence, this document is rejected because the schema is not defined for it. I would like us to remember this when following the method of implementing a digital signature. It will be vital to us.
 
-### 5.3. Signing Process
+### 4.3. Signing Process
 
-First, let me remind you of the three goals we have.
-
-1. The first one is to ensure that all users of the source bitstream can verify that the stream was not modified while it was being archived or transmitted.
-2. The second goal is to safeguard information from unauthorized access, ensuring confidentiality. This goal can be enforced using the encryption already examined provided that the key distribution will support this.
-3. Last but not least purpose is to confirm authorship, so all users of this stream can determine who created this stream and who is responsible for its content. This goal we call non-repudiation of the author. In this case, let me remind you of an example involving a wire transfer. It would have been much better for the bank to have been sure that the person issuing the wire transfer order would not be able to deny authorship of the order and blame someone fraud who transferred money.
-
-The following diagram shows how to achieve authorship non-repudiation of a bitstream
+The following diagram shows how to implement authorship non-repudiation of a bitstream
 
 ![Fig. 1 Digital Signature](.Media/PodpisCyfrowy.png)
 
@@ -179,7 +142,7 @@ To check the bitstream integrity and authorship at the final location, we can fi
 
 And now the last thing is how to ensure non-repudiation. How to ensure that the person who originally signed this bitstream will not say after some time that it is not him/she, that it is someone else? We can do it only after ensuring that the public key has been provided by a public benefit organization, just like an ID that confirms our identity. This means that we trust a certain organization that issued this key. This key is made available to us in the context of personal data, data that describes the identity, and therefore, based on this trust, we can conclude that this is a specific person, a specific identity.
 
-### 5.4. Creation of Keys Example
+### 4.4. Creation of Keys Example
 
 Let's move on to discussing how to implement this scenario using program text. As we can see from the description of this scenario, one of the important problems we have is creating and distributing keys. Hence, the first test method [CreateRSACryptoServiceKeys][CreateRSACryptoServiceKeys] is an example of how to generate keys and to point out how these keys may be distributed as an XML text. Of course, the topic related to key distribution - in general - is far beyond the scope of this section, therefore let me encourage you to check out other publications at this point. In this test, I use a method that generates keys. Let's go to its definition and see that in the first step an object `RSACryptoServiceProvider` is created for which we define the key length. This is a parameter that also determines the strength of security, but at the same time, it has some negative impact on the performance of this process. Depending on the equipment we have, this number should not be outsized here.
 
@@ -191,9 +154,9 @@ The XML document that contains both the public and the private keys is located i
 
 The situation is different when we have a document containing only the public key. [PubliKey.xml][PubliKey] is an XML document that contains only the public key. Since this key will be used by third parties (bitstream users), by design, the distributed document must contain information about the identity to which this public key is associated. Of course, this is not fulfilled here. For this to be true, information about the public key must be added to another document called a certificate. A certificate is a document that has just been issued by a trusted organization. The organization is an office that certifies with its signature that the certificate is authentic and contains correct information. From the certificate itself, we can find out what identity the public key is assigned to. Unfortunately, discussing these issues in detail, as I said earlier, is far beyond the scope of this document.
 
-### 5.5. XML Document Signing Example
+### 4.5. XML Document Signing Example
 
-Let us now discuss how to implement the operation of signing an XML document and how to encapsulate the obtained signature in this document so as not to violate the rules of syntax control consistent with its schema. We are using XML but the same approach is available for any domain-specific language. First, we will need an input file that will serve as a signed source document. For this purpose, the file [catalog.example.xml][catalog] is used. We will also need the keys.  We will use the private key to sign the document, precisely to encrypt the hash value calculated for the initial bitstream. We will use the public key to check the validity of the signature, precisely to decrypt the attached signature.
+Let us now discuss how to implement the operation of signing an XML document and how to encapsulate the obtained signature in this document so as not to violate the rules of syntax control consistent with its schema. We are using XML but the same approach is available for any domain-specific language. First, we will need an input file that will serve as a signed source document. For this purpose, the file [catalog.example.xml][catalog] is used. We will also need the keys. We will use the private key to sign the document, precisely to encrypt the hash value calculated for the initial bitstream. We will use the public key to check the validity of the signature, precisely to decrypt the attached signature.
 
 The signing operation is performed in the [XmlSignatureTest][XmlSignatureTest] test method. This operation is implemented in the [SignSaveXml][SignSaveXml] method to which we passed the source document to be signed, the keys that will be used for signing, and the name of the document where the signed document is to be saved. In this method, apart from checking the correctness of the input arguments, we create an instance of the `RSACryptoServiceProvider` class, which is to be used to create a signature so that we can place the signature in this document. Signing itself means that we add a signature in the last instruction. To create this signature, we use the keys that we passed while invoking the method, so this instance is initialized with the keys that were passed here so that the entire signing process takes place using the keys that will be further used to check the signature. Finally, the signed document is saved to a file.
 
@@ -201,17 +164,15 @@ So let's return to the [XmlSignatureTest][XmlSignatureTest] test method. We assu
 
 Finally, let's look at the signed XML document [SignedXmlFile.xml][SignedXmlFile]. We can see that the `Signature` element has been added. This document is currently erroneous because it is incompatible with the declared document schema. To fix it, the `Signature` element has to be removed from the XML document just after validation against the signature, and before using this document, for example for a deserialization operation; i.e. creating a graph of objects based on it.
 
-A `Signature` element complies with the XML Digital Signature standard, namely [XML Signature Syntax and Processing Version 1.1][XMLS] issued by W3C in 2013. It is used to encapsulate digital signatures within an XML document. The `Signature` element contains information about the signature, including the cryptographic signature value and details about the key used for signing. Thanks to this it can be easily removed from the XML document before further processing.
+A `Signature` element complies with the XML Digital Signature standard, namely [XML Signature Syntax and Processing Version 1.1][XMLS] issued by W3C in 2013. It is used to encapsulate digital signatures within an XML document. The `Signature` element contains additional information including the cryptographic signature value and details about the key used for signing. Thanks to this it can be easily removed from the XML document before further processing.
 
-### 5.6. Conclusion
-
-We have already learned that there are two types of encryption. In the examples discussed in this chapter, only the asymmetric encryption method of the bitstreams is the subject of examination. Symmetric encryption has been the subject of the previous chapter covering the confidentiality of bitstreams.
+### 4.6. Conclusion
 
 In this part, we move on to asymmetric encryption. Precisely, not the encryption itself because the performance of asymmetric encryption is not enough hence it is only used in selected scenarios. This section explores examples illustrating digital signature scenarios in which asymmetric encryption can and should be used to create a safe hash value interchange channel. Asymmetric encryption is also used to distribute a session key securely. The session key for communication encryption is a temporary cryptographic key used to secure communication between parties to establish a secure session. It is generated for a short duration to be used to establish a secure session allowing for encrypting and decrypting bitstreams exchanged between the communicating parties. Initially, session keys can be securely exchanged using asymmetric cryptography, where each party has a pair of public and private keys. The public keys can be exchanged openly, while the private keys are kept secret.
 
-## 6. See Also
+## 5. See Also
 
-- Postol Mariusz; [Cybersecurity of External Streaming  Data  - Confidentiality][confidentiality] C# Corner, 2024.
+- Postol Mariusz; [Cybersecurity of External Streaming Data - Confidentiality][confidentiality] C# Corner, 2024.
 - Postol Mariusz; [Cybersecurity of External Streaming Data - Integrity][CI] C# Corner, 2024.
 - Postol Mariusz; [External Data Management (ExDM)][ExDM]; C# Corner, 2024
 - Postol Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, 2023
