@@ -302,8 +302,6 @@ While YAML itself is not designed to be extended or derived into new languages, 
 
 In essence, you can create a new language by establishing a set of guidelines for interpreting the YAML data in a specific way. This is often done in the context of configuration files or data representation for a particular software or system. Keep in mind that this is more about using YAML as a foundation and defining the semantics and rules for your specific language rather than formally deriving a new language from YAML.
 
-
-
 ## 5. See Also
 
 - [XSL\(T\) Languages][XSLW3C]
