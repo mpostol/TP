@@ -75,7 +75,7 @@ Using a code snippet located in the [FileExample class][FileExample] differences
 
 #### 3.2.1. File Class
 
-Let's try this the [FileExample class][FileExample] piece of program. A unit test checks it. After executing it, we noticed that this unit test was successful. But let's try to replace this caption `Today is` with the Polish translation `dziś jest` and let's execute the test again. Unfortunately, the result points out that the test hasn't passed. It may mean that the behavior of our program is different from before because we introduced Polish letters. The main reason for this problem is that I used an encoding that doesn't contain Polish letters. Precisely, a represented set of characters doesn't contain Polish letters. If we take an encoding that contains Polish letters and perform this test again, this time we see that the test is green. This means that the file's content corresponds to the string of characters, the text that was saved to it, including the national letters.
+Let's try the [FileExample class][FileExample]. This class is tested using the [FileStreamUnitTest][FileStreamUnitTest] unit test. After executing the test, we noticed that this test finished with success. But let's try to replace this caption `Today is` with the Polish translation `dziś jest` and let's execute the test again. Unfortunately, the result points out that the test hasn't passed. It may mean that the behavior of our program is different from before because we introduced Polish letters. The main reason for this problem is that I used an encoding that doesn't contain Polish letters. Precisely, a represented set of characters doesn't contain Polish letters. If we take an encoding that contains Polish letters and perform this test again, this time we see that the test is green. This means that the file's content corresponds to the string of characters, the text that was saved to it, including the national letters.
 
 I have files of different types here, which would indicate that they are data for different programs. But for example, if we click on this file twice, we will receive information from the operating system that it does not know what program it is associated with. What program can open this file? But I have a program here that can open any file. This program, like the previous one, opens this file, reads its contents, and displays its contents on the screen using hexadecimal code. This means that a file is actually a composite, a sequence of bytes. Since each byte is a sequence of bits, we can conclude that the content of each file is a sequence of bits.
 
@@ -319,37 +319,39 @@ Let me stress again that we have two issues that we need to resolve. The first o
 [AttributeUsage]: https://learn.microsoft.com/dotnet/api/system.attributeusageattribute
 
 [udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
-[FileExample]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/FileAndStream/FileExample.cs#L19-L32
+[FileExample]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/FileAndStream/FileExample.cs#L19-L32
 
-[AttachedProperty]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Reflection/AttachedProperty.cs#L17-L46
+[AttachedProperty]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Reflection/AttachedProperty.cs#L17-L46
 
-[AttributedClass]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Reflection/AttributedClass.cs#L17-L24
-[CustomAttribute]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Reflection/AttributedClass.cs#L27
+[AttributedClass]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Reflection/AttributedClass.cs#L17-L24
+[CustomAttribute]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Reflection/AttributedClass.cs#L27
 
-[AttributedClassInstanceTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L46-L55
-[AttachedPropertyTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L57-L68
-[ObjectFactory]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L81-L101
-[AttributedClassTypeTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L39-L43
-[Siyova16]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L73-L79
-[typeof]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L41
-[CustomAttributeTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L24-L29
-[GoTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L103
+[AttributedClassInstanceTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L46-L55
+[AttachedPropertyTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L57-L68
+[ObjectFactory]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L81-L101
+[AttributedClassTypeTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L39-L43
+[Siyova16]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L73-L79
+[typeof]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L41
+[CustomAttributeTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L24-L29
+[GoTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L103
 
-[SelfControlSerializationTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/SerializationUnitTest.cs#L26-L39
+[SelfControlSerializationTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/SerializationUnitTest.cs#L26-L39
 
-[CustomFormatter]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Serialization/CustomFormatter.cs#L21-L153
+[CustomFormatter]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Serialization/CustomFormatter.cs#L21-L153
 [Formatter]: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.formatter
-[SelfControlSerialization]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/SelfControlSerialization.cs#L22-L79
-[Catalog]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/Catalog.xsd.cs#L21-L55
-[Catalog.cs]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/Catalog.cs#L18-L120
+[SelfControlSerialization]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/SelfControlSerialization.cs#L22-L79
+[Catalog]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/Catalog.xsd.cs#L21-L55
+[Catalog.cs]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/Catalog.cs#L18-L120
 
-[ReadWRiteTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/SerializationUnitTest.cs#L42-L57
-[IStylesheetNameProvider]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Serialization/IStylesheetNameProvider.cs#L17-L23
-[XmlFile]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Serialization/XmlFile.cs#L22-L97
+[ReadWRiteTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/SerializationUnitTest.cs#L42-L57
+[IStylesheetNameProvider]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Serialization/IStylesheetNameProvider.cs#L17-L23
+[XmlFile]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Serialization/XmlFile.cs#L22-L97
 
-[GoCS]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/GoCS.cmd#L1-L2
+[GoCS]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/GoCS.cmd#L1-L2
 
-[catalogexamplexml]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/catalog.example.xml#L1-L23
+[catalogexamplexml]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/catalog.example.xml#L1-L23
 
 [Object]: https://learn.microsoft.com/dotnet/api/system.object
-[SelfControlSerializationConstructor]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/SelfControlSerialization.cs#L61-L66
+[SelfControlSerializationConstructor]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/SelfControlSerialization.cs#L61-L66
+[FileStreamUnitTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/FileStreamUnitTest.cs#L19-L33
+
