@@ -1,3 +1,16 @@
+<!--
+//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+-->
+
 # 1. External Data Management (ExDM) <!-- omit in toc -->
 
 ## Table of Content <!-- omit in toc -->
@@ -78,15 +91,4 @@ This section and subsections address examples of practical scenarios regarding v
 [MPUdemy]: https://www.udemy.com/user/mariusz-postol/
 [udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
 
-<!--
-//____________________________________________________________________________________________________________________________________
-//
-//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
-//
-//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
-//
-//  https://github.com/mpostol/TP/discussions/182
-//
-//  by introducing yourself and telling us what you do with this community.
-//_____________________________________________________________________________________________________________________________________
--->
+
