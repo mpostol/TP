@@ -321,8 +321,8 @@ In essence, you can create a new language by establishing a set of guidelines fo
 [STLZTN]: http://msdn.microsoft.com/library/7ay27kt9.aspx
 [system.type]: https://learn.microsoft.com/dotnet/api/system.type
 
-[ie]: .\DataStreams\README.md
-[ies]: .\DataStreams\READMESerilization.md
-[READMECryptography]: .\DataStreams\READMECryptography.md
-[xmlpresentation]: .\DataStreams\README.md#xml-based-presentation
-[xml-based-validation]: .\DataStreams\README.md#xml-based-validation
+[ie]: DataStreams/README.md
+[ies]: DataStreams/READMESerilization.md
+[READMECryptography]: DataStreams/READMECryptography.md
+[xmlpresentation]: DataStreams/README.md#xml-based-presentation
+[xml-based-validation]: DataStreams/README.md#xml-based-validation
