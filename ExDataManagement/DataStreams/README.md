@@ -48,6 +48,8 @@
 
 ## Introduction
 
+To use computers to automate information processing we have to deal with bitstreams as the information representation. By design, bitstream management involves the organization, storage, retrieval, communication, and manipulation to ensure accuracy, security, and accessibility. It encompasses data collection, storage architecture, integration, and maintenance to support efficient analysis and decision-making. To fulfill these requirements, the following concepts could be a real relief. It includes but is not limited to presentation, validation, standardization, serialization, and safeguarding of data.
+
 This folder `ExDataManagement\DataStreams` contains examples related to information representation as a bitstream and is devoted to discussing selected programming issues related to their management.
 
 ## File and Stream Concepts Preface
