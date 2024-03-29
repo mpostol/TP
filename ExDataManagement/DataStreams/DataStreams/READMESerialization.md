@@ -8,8 +8,6 @@
   - [1.3. Graph of Objects Serialization](#13-graph-of-objects-serialization)
 - [2. Self-controlled Serialization Example](#2-self-controlled-serialization-example)
 - [3. Reflection-Based Serialization Example](#3-reflection-based-serialization-example)
-  - [3.1. Reflection](#31-reflection)
-  - [3.3. Graph of Objects](#33-graph-of-objects)
 
 ## 1. Introduction
 
@@ -65,7 +63,7 @@ Reflection-based serialization is a technique in software engineering where the 
 
 Discussing the reflection concept in detail is far beyond the scope of the examples collected here. We also talked about bitstream syntax and semantics using the example of XML files. We showed how to use the XML schema concept to describe details of the syntax and also the semantics of a document indirectly and to create the source code of a program that will be used in the serialization and deserialization process.
 
-Examples illustrating serialization using reflection and attributed programming are described later in the section [Reflection-Based Serialization Example](./READMESerialization.md##3-reflection-based-serialization-example)
+Examples illustrating serialization using reflection and attributed programming are described later in the section [Reflection-Based Serialization Example](./READMESerialization.md#3-reflection-based-serialization-example)
 
 ### 1.3. Graph of Objects Serialization
 
@@ -115,8 +113,6 @@ In this approach, the [SelfControlSerialization][SelfControlSerialization] class
 
 ## 3. Reflection-Based Serialization Example
 
-### 3.1. Reflection
-
 It's time to move on to practical acquaintance with selected reflection mechanisms. To get more about reflection based on examples in selected programming language check out the document [Implementation Examples][ie]. These examples show how to represent type features as the [Type][system.type] class instances. The instances can be created using the `typeof` keyword or the `GetType` instance method for objects of unknown type. In both cases, an object-oriented type description is created. The examples discussed show how to use this description to read and write the values of a selected member of a type. This ability is especially useful when implementing serialization and deserialization operations. Similarly, we can also read and write values from fields and call instance methods. Similarly, it is also possible to create a new object without using the `new` keyword.
 
 This example explains how to serialize using reflection and attributed programming. Examples collected in this section are dedicated to demonstrating how to deal with the presented above scenario. It defines a few helper functions, for serialization and deserialization located in the static [XmlFile][XmlFile] class.
@@ -149,8 +145,6 @@ We can now check whether the result is consistent with our expectation, i.e. whe
 There are two more things worth noting about the [ReadWRiteTest][ReadWRiteTest] method. The first one is reading the stream and restoring an equivalent graph of objects. The second one is to check whether the graph of objects is equivalent compared with the original one. As we can see in this method, the same library called `XMLSerializer` is used. As previously the operation of restoring the graph of objects comes down to one instruction. From the example we can derive that testing if the recovered graph of objects is equivalent to the original one strongly depends on the custom type definitions and cannot be performed universally, therefore it must be the responsibility of developers.
 
 Thanks to the presented example we may learn how attributed programming and reflection may be used to ensure autonomy and synchronization of object-to-stream conversion processes and vice versa. In the presented example there is no need to point out members contributing to the object state. In the [Catalog][CatalogAttributes] class attributes are only used to control the behavior of the serialization process.
-
-### 3.3. Graph of Objects
 
 Although we know that this is not a universal approach, let us return to the discussion of the topics related to checking the equivalence of the recovered graph compared to the original graph in this specific case. The primary graph was created while creating an object of the  [Catalog][Catalog] class and then filling it with test data using the `AddTestingData` method. After deserialization, we check that the `_recoveredCatalog` variable has references to the newly created object, so it is not `null`. Then we check how many elements the array has. It is assumed that there are only two elements, but it would also be worth checking the actual length of the array. However, the most important thing here is to check whether two subsequent disc descriptions compatible with [CatalogCD][CatalogCD] are equivalent to each other. The equality symbol is used to compare them, although we expect that the elements are equivalent, not identical. This effect can be achieved by redefining the equality operator in the [CatalogCD][CatalogCD] class. For this purpose, the definition of the equality operator has been overwritten. As a result, the behavior of a new definition of this operator determines what equals means. The standard `Equals` method is used here. This operation compares strings, which have been generated by the overridden `ToString` method. It determines which elements will take part in this comparison and how they will be formatted. It is worth emphasizing here that the string formatting may depend on the current operating system language settings and, depending on different data types, the formatting of this string may not be clear; it may not be the same every time.
 
