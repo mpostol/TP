@@ -2,14 +2,14 @@
 
 ## Table of Content <!-- omit in toc -->
 
-- [1. Introduction](#1-introduction)
-  - [1.1. Self-controlled Serialization](#11-self-controlled-serialization)
-  - [1.2. Attributes and Reflection](#12-attributes-and-reflection)
-  - [1.3. Graph of Objects Serialization](#13-graph-of-objects-serialization)
-- [2. Self-controlled Serialization Example](#2-self-controlled-serialization-example)
-- [3. Reflection-Based Serialization Example](#3-reflection-based-serialization-example)
+- [Introduction](#introduction)
+  - [Self-controlled Serialization](#self-controlled-serialization)
+  - [Attributes and Reflection](#attributes-and-reflection)
+  - [Graph of Objects Serialization](#graph-of-objects-serialization)
+- [Self-controlled Serialization Example](#self-controlled-serialization-example)
+- [Reflection-Based Serialization Example](#reflection-based-serialization-example)
 
-## 1. Introduction
+## Introduction
 
 From the previous considerations, we know that serialization/deserialization is the transformation process of data wrapped by an object from/to a bitstream form. These operations should be implemented as generic ones. It means that they must not depend on the type of the serialized/deserialized object because they should be offered as a generic library solution to allow multi-time usage against custom types. This process must start with recovering a set of value-holder members constituting the state of an object. Let me stress, that to provide a generic solution, this mechanism must not depend on the object type.
 
@@ -20,7 +20,7 @@ Talking about serialization/deserialization we must answer the question of how t
 - **self-controlled** - the type exposes functionality that enables reading from and assigning to the type members contributing to the instance state
 - **attributes and reflection** - metadata added by attributes to select state contributors and reflection that enables reading from and assigning to properties constituting the state
 
-### 1.1. Self-controlled Serialization
+### Self-controlled Serialization
 
 The first approach, compliant with the above scenario, is to implement access to object state values internally by a custom type. An example of this approach is presented later in this section. It is based on internal reading and assigning operations of the values creating the object's state in compliance with the object type definition. This way, it is possible to avoid the need for employing reflection. Instead, the [ISerializable][iserializable] interface has to be implemented.
 
@@ -41,9 +41,9 @@ The main benefit of this technique is the lack of necessity to additionally dete
 
 Using self-controlled determination of a set of values contributing to the object state means splitting the functionality between the type to be subject for serialization/deserialization and library functionality, which is responsible for saving the value of the selected members independently in a bitstream. This solution requires that the type to be serialized must be prepared to read/write values from the members and create a table against an interface that is a kind of contract between both parties responsible for implementing the serialization/deserialization functionality. The main problem is that the type of concern must be prepared against the contract defined by the implemented interface.
 
-Examples illustrating serialization using self-controlled access to values contributing to an object state are described later in the section [Self-controlled Serialization](./READMESerialization.md#2-self-controlled-serialization-example)
+Examples illustrating serialization using self-controlled access to values contributing to an object state are described later in the section [Self-controlled Serialization][self-controlled-serialization-example]
 
-### 1.2. Attributes and Reflection
+### Attributes and Reflection
 
 Instead of using a self-controlled data access approach, the reflection may be employed to read and write values contributing to the object state. This way there is no custom code related to selecting, reading, and writing state values. To select only necessary values the following convention may be applied. It says that the state of the object is constituted by all the values that can be obtained by reading the public properties that have both getter and setter. So from this, you can read the current value and assign new ones. If this convention applies to the target object and all indirectly referenced ones we can state that the graph of objects is ready for serialization and deserialization using reflection. What is very important is to ensure symmetry between serialization and deserialization. This means that using reflection there is no need to add any dedicated functionality to the target class related to serialization and deserialization. It addresses the error-prone self-controlled data access responsibility of a type.
 
@@ -63,9 +63,9 @@ Reflection-based serialization is a technique in software engineering where the 
 
 Discussing the reflection concept in detail is far beyond the scope of the examples collected here. We also talked about bitstream syntax and semantics using the example of XML files. We showed how to use the XML schema concept to describe details of the syntax and also the semantics of a document indirectly and to create the source code of a program that will be used in the serialization and deserialization process.
 
-Examples illustrating serialization using reflection and attributed programming are described later in the section [Reflection-Based Serialization Example](./READMESerialization.md#3-reflection-based-serialization-example)
+Examples illustrating serialization using reflection and attributed programming are described later in the section [Reflection-Based Serialization Example][reflection-based-serialization-example]
 
-### 1.3. Graph of Objects Serialization
+### Graph of Objects Serialization
 
 Let's move on to the last issue related to the serialization of objects interconnected to each other forming graphs. So the objects have references between them and these references will determine the structure of the graph of objects. In this case, the main challenge is that all the objects must be considered as one whole.
 
@@ -87,7 +87,7 @@ Another issue that should be addressed here is when the serialization process sh
 
 In the case of cyclic graphs, there is no restriction on the number of paths between any pair of vertices, and cycles may be present. We may encounter two problems here. Firstly, we have to resolve many-to-one references in this type of graph, when many objects will have references to one object. As a result, we can expect that serializing such a structure may cause the cloning of objects in the stream. During recovery, if all these objects are recreated, many redundant copies are instantiated, so the structure will be different comparing it with the original. In the case of cyclic graphs (contain cycles - closed loops) in the relationship structure, we must take into account the fact that the serialization mechanism (the graph-to-bitstream conversion mechanism) will have to deal with this problem and therefore will have to set a stop condition to avoid cloning objects in the output stream. Well, we have two options to solve this issue. The first option is to write a custom library but this is a complex process. The second approach to address this problem is to choose an appropriate but existing library. There are many such libraries on the market and when analyzing their applicability, you should pay attention to these issues.
 
-## 2. Self-controlled Serialization Example
+## Self-controlled Serialization Example
 
 To illustrate this scenario, our task now is to implement a library class that enables reading from and assigning to properties defined as a member of a type that is a candidate to be serialized.
 
@@ -111,7 +111,7 @@ To implement deserialization we must create an instance of the type and populate
 
 In this approach, the [SelfControlSerialization][SelfControlSerialization] class cannot have a reference to the definition of a target type that is subject to the serialization process. The object that is subject to the serialization process can be of any type but it must implement the [ISerializable][iserializable] interface and therefore must provide an implementation of the `GetObjectData` operation method. Because the target type is invisible, it can be recognized as a typical scenario where the dependency injection design pattern is required.
 
-## 3. Reflection-Based Serialization Example
+## Reflection-Based Serialization Example
 
 It's time to move on to practical acquaintance with selected reflection mechanisms. To get more about reflection based on examples in selected programming language check out the document [Implementation Examples][ie]. These examples show how to represent type features as the [Type][system.type] class instances. The instances can be created using the `typeof` keyword or the `GetType` instance method for objects of unknown type. In both cases, an object-oriented type description is created. The examples discussed show how to use this description to read and write the values of a selected member of a type. This ability is especially useful when implementing serialization and deserialization operations. Similarly, we can also read and write values from fields and call instance methods. Similarly, it is also possible to create a new object without using the `new` keyword.
 
@@ -149,6 +149,9 @@ Thanks to the presented example we may learn how attributed programming and refl
 Although we know that this is not a universal approach, let us return to the discussion of the topics related to checking the equivalence of the recovered graph compared to the original graph in this specific case. The primary graph was created while creating an object of the  [Catalog][Catalog] class and then filling it with test data using the `AddTestingData` method. After deserialization, we check that the `_recoveredCatalog` variable has references to the newly created object, so it is not `null`. Then we check how many elements the array has. It is assumed that there are only two elements, but it would also be worth checking the actual length of the array. However, the most important thing here is to check whether two subsequent disc descriptions compatible with [CatalogCD][CatalogCD] are equivalent to each other. The equality symbol is used to compare them, although we expect that the elements are equivalent, not identical. This effect can be achieved by redefining the equality operator in the [CatalogCD][CatalogCD] class. For this purpose, the definition of the equality operator has been overwritten. As a result, the behavior of a new definition of this operator determines what equals means. The standard `Equals` method is used here. This operation compares strings, which have been generated by the overridden `ToString` method. It determines which elements will take part in this comparison and how they will be formatted. It is worth emphasizing here that the string formatting may depend on the current operating system language settings and, depending on different data types, the formatting of this string may not be clear; it may not be the same every time.
 
 [ie]: README.md#implementation-examples-
+[self-controlled-serialization-example]: READMESerialization.md#self-controlled-serialization-example
+[reflection-based-serialization-example]: READMESerialization.md#reflection-based-serialization-example
+
 [system.type]: https://learn.microsoft.com/dotnet/api/system.type
 [Debug]: https://learn.microsoft.com/visualstudio/debugger/how-to-set-debug-and-release-configurations
 [Formatter]: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.formatter
