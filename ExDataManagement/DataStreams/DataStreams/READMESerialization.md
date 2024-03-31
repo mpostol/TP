@@ -109,7 +109,7 @@ It is worth emphasizing that in our example we only write `double` values and it
 
 To implement deserialization we must create an instance of the type and populate value holders to initialize the object state. To implement this responsibility, the dedicated [SelfControlSerialization][SelfControlSerializationConstructor] constructor must be provided.
 
-In this approach, the [SelfControlSerialization][SelfControlSerialization] class cannot have a reference to the definition of a target type that is subject to the serialization process. The object that is subject to the serialization process can be of any type but it must implement the [ISerializable][iserializable] interface and therefore must provide an implementation of the `GetObjectData` operation method. Because the target type is invisible, it can be recognized as a typical scenario where the dependency injection design pattern is required.
+In this approach, the [CustomFormatter][CustomFormatter] class cannot have a reference to the definition of a target type that is subject to the serialization process. The object that is subject to the serialization process can be of any type but it must implement the [ISerializable][iserializable] interface and therefore must provide an implementation of the `GetObjectData` operation method. Because the target type is invisible, it can be recognized as a typical scenario where the dependency injection design pattern is required.
 
 ## Reflection-Based Serialization Example
 
@@ -118,6 +118,7 @@ It's time to move on to practical acquaintance with selected reflection mechanis
 This example explains how to serialize using reflection and attributed programming. Examples collected in this section are dedicated to demonstrating how to deal with the presented above scenario. It defines a few helper functions, for serialization and deserialization located in the static [XmlFile][XmlFile] class.
 
 The `ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation` folder contains classes that represent the XML schema used by the program as an object model of the working data. An example of reflection-based data values access is the [Catalog][Catalog] class, which contains an array of CD descriptions. So here we have property, which is an array containing CD descriptions consistent with the [CatalogCD][CatalogCD] class defined in the same file.
+
 Classes to be serialized were defined in the test project. Therefore, if we define a library that will be used to serialize these classes, this graph, then the serializing class cannot know the type of serialized classes, cannot have references to unit tests, and so it cannot know the types. This way it could be proved that the solution is generic, I mean it doesn't depend on the definition of serialized classes.
 
 As we see in this example, we do not have to create custom code in the target type that is to be subject to serialization and used to implement this responsibility. So we can say that in this case, the serialization process is exactly autonomous.
