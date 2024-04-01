@@ -276,13 +276,14 @@ The functionality enabling the possibility to get access to a selected property 
 
 ## See Also
 
+- [References](./../../REFERENCES.md#references)
 - [XSL\(T\) Languages][XSLW3C]
 - [Serialization in .NET][STLZTN]
 - [XML Schema Definition Tool (Xsd.exe)][XSD]
 
-[XSLW3C]: (https://www.w3schools.com/xml/xsl_languages.asp)
-[XSD]: (http://msdn.microsoft.com/library/x6c1kb0s.aspx)
-[STLZTN]: (http://msdn.microsoft.com/library/7ay27kt9.aspx)
+[XSLW3C]: https://www.w3schools.com/xml/xsl_languages.asp
+[XSD]: http://msdn.microsoft.com/library/x6c1kb0s.aspx
+[STLZTN]: http://msdn.microsoft.com/library/7ay27kt9.aspx
 [system.type]: https://learn.microsoft.com/dotnet/api/system.type
 [system.attribute]: https://learn.microsoft.com/dotnet/api/system.attribute
 [AttributeUsage]: https://learn.microsoft.com/dotnet/api/system.attributeusageattribute
