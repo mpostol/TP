@@ -34,9 +34,8 @@
   * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md)
   * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md)
 * Functional Programming
-  * [Preface](ExDataManagement/FunctionalProgramming/README.md)
+  * [Preface](ExDataManagement\FunctionalProgramming\README.md)
   * [Implementation Examples](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
-  * [Usage](ExDataManagement/FunctionalProgramming/FunctionalProgramming.UnitTest/README.md)
 * Structural Data
   * [Preface](ExDataManagement/StructuralData/README.md)
   * [Implementation Examples](ExDataManagement/StructuralData/StructuralData/README.md)
