@@ -169,10 +169,10 @@ Although we know that this is not a universal approach, let us return to the dis
 [CustomFormatter]: Serialization/CustomFormatter.cs#L21-L153
 [XmlFile]: Serialization/XmlFile.cs#L22-L97
 
-[ReadWRiteTest]: ../DataStreams.UnitTestSerializationUnitTest.cs#L42-L58
-[Catalog]: ../DataStreams.UnitTestInstrumentation/Catalog.xsd.cs#L21-L55
-[CatalogAttributes]: ../DataStreams.UnitTestInstrumentation/Catalog.cs#L19-L25
-[CatalogCD]: ../DataStreams.UnitTestInstrumentation/Catalog.xsd.cs#L56-L79
-[SelfControlSerialization]: ../DataStreams.UnitTestInstrumentation/SelfControlSerialization.cs#L22-L79
-[SelfControlSerializationTest]: ../DataStreams.UnitTestSerializationUnitTest.cs#L26-L39
-[SelfControlSerializationConstructor]: ../DataStreams.UnitTestInstrumentation/SelfControlSerialization.cs#L61-L66
+[ReadWRiteTest]: ../DataStreams.UnitTest/SerializationUnitTest.cs#L42-L58
+[Catalog]: ../DataStreams.UnitTest/Instrumentation/Catalog.xsd.cs#L21-L55
+[CatalogAttributes]: ../DataStreams.UnitTest/Instrumentation/Catalog.cs#L19-L25
+[CatalogCD]: ../DataStreams.UnitTest/Instrumentation/Catalog.xsd.cs#L56-L79
+[SelfControlSerialization]: ../DataStreams.UnitTest/Instrumentation/SelfControlSerialization.cs#L22-L79
+[SelfControlSerializationTest]: ../DataStreams.UnitTest/SerializationUnitTest.cs#L26-L39
+[SelfControlSerializationConstructor]: ../DataStreams.UnitTest/Instrumentation/SelfControlSerialization.cs#L61-L66
