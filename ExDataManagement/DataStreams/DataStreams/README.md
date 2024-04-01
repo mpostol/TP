@@ -276,10 +276,12 @@ The functionality enabling the possibility to get access to a selected property 
 
 ## See Also
 
-- [References](./../../REFERENCES.md#references)
+- [References](./../../../REFERENCES.md#references)
 - [XSL\(T\) Languages][XSLW3C]
 - [Serialization in .NET][STLZTN]
 - [XML Schema Definition Tool (Xsd.exe)][XSD]
+
+https://github.com/mpostol/TP/blob/ExDMUdemy/ExDataManagement/REFERENCES.md#references
 
 [XSLW3C]: https://www.w3schools.com/xml/xsl_languages.asp
 [XSD]: http://msdn.microsoft.com/library/x6c1kb0s.aspx
@@ -317,4 +319,8 @@ The functionality enabling the possibility to get access to a selected property 
 
 [Object]: https://learn.microsoft.com/dotnet/api/system.object
 [FileStreamUnitTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/FileStreamUnitTest.cs#L19-L33
+[Open]: FileAndStream/FileExample.cs#L24-L29
+
+<!--
 [Open]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/FileAndStream/FileExample.cs#L24-L29
+-->
