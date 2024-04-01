@@ -34,7 +34,7 @@
   * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md)
   * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md)
 * Functional Programming
-  * [Preface](ExDataManagement\FunctionalProgramming\README.md)
+  * [Preface](ExDataManagement/FunctionalProgramming/README.md)
   * [Implementation Examples](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
 * Structural Data
   * [Preface](ExDataManagement/StructuralData/README.md)
@@ -51,7 +51,6 @@
 ## Adaptive Programming
 
 * [Executive Summary](AdaptiveProgramming/README.md)
-
 * Application Architecture
 * Composition
 <!-- * [Composition](AdaptiveProgramming/Composition/README.md) -->
