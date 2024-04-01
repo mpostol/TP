@@ -8,5 +8,10 @@
     "githubPullRequests.ignoredPullRequestBranches": [
         "master"
     ],
-    "dotnet.defaultSolution": "disable"
+    "dotnet.defaultSolution": "disable",
+    "cSpell.words": [
+        "MVVM",
+        "Pendrive",
+        "typeof"
+    ]
 }

@@ -10,7 +10,7 @@ The adaptive programming is presented as a catalog of language constructs, patte
 
 ## Goal
 
-The aim of the course is to expand knowledge and improve skills of software development thanks to using technology and programming patterns to enable adaptation of the created program against the changing requirements and capabilities of the run-time production environment. This objective includes issues related to the practical knowledge of technology dedicated to postpone the decisions regarding software interoperability with development framework and the external environment. Students learn the selected technologies, design patterns, archetypes and their practical implementation in the .NET with the goal to be used while developing their own programs.
+The aim of the course is to expand knowledge and improve skills of software development thanks to using technology and design patterns to enable adaptation of the created program against the changing requirements and capabilities of the run-time production environment. This objective includes issues related to the practical knowledge of technology dedicated to postpone the decisions regarding software interoperability with development framework and the external environment. Students learn the selected technologies, design patterns, archetypes and their practical implementation in the .NET with the goal to be used while developing their own programs.
 
 ## Learning outcomes
 
@@ -97,7 +97,7 @@ The lecture is focused on the following topics:
   * attributed programming model,
   * dynamic programming,
 * expression representation and their translation as required by the target external system
-* architecture and programming patterns related to access external data based management systems
+* architecture and design patterns related to access external data based management systems
   * materialization to save objects state and objects graph relationship using XML, JSON, etc.,
   * object relation mapping,
 * program composition using independently developed modules
