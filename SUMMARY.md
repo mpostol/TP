@@ -28,17 +28,20 @@
 ## External Data Management
 
 * [Executive Summary](ExDataManagement/README.md)
-* [Data Streams Preface](ExDataManagement/DataStreams/README.md#data-streams)
-  * [Implementation Examples](ExDataManagement/DataStreams/DataStreams/README.md#implementation-examples)
-  * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md#objects-serialization)
-  * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md#bitstream-cybersecurity)
-* [Functional Programming Preface](ExDataManagement/FunctionalProgramming/README.md)
+* Data Streams
+  * [Preface](ExDataManagement/DataStreams/README.md)
+  * [Implementation Examples](ExDataManagement/DataStreams/DataStreams/README.md)
+  * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md)
+  * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md)
+* Functional Programming
+  * [Preface](ExDataManagement/FunctionalProgramming/README.md)
   * [Implementation Examples](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
-  * [Usage](ExDataManagement/FunctionalProgramming/FunctionalProgramming.UnitTest/README.md)
-* [Structural Data Preface](ExDataManagement/StructuralData/README.md)
+* Structural Data
+  * [Preface](ExDataManagement/StructuralData/README.md)
   * [Implementation Examples](ExDataManagement/StructuralData/StructuralData/README.md)
   * [Usage](ExDataManagement/StructuralData/StructuralDataUnitTest/README.md)
-* [Graphical Data Preface](ExDataManagement/GraphicalData/README.md)
+* Graphical Data
+  * [Preface](ExDataManagement/GraphicalData/README.md)
   * [View Implementation Examples](ExDataManagement\GraphicalData\GraphicalData.View\README.md)
   * [ViewModel Implementation Examples](ExDataManagement\GraphicalData\GraphicalData.ViewModel\README.md)
   * [ViewModel Usage](ExDataManagement\GraphicalData\ViewModelUnitTest\README.md)
@@ -48,7 +51,6 @@
 ## Adaptive Programming
 
 * [Executive Summary](AdaptiveProgramming/README.md)
-
 * Application Architecture
 * Composition
 <!-- * [Composition](AdaptiveProgramming/Composition/README.md) -->
