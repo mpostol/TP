@@ -69,4 +69,4 @@ This section and subsections address examples of practical scenarios regarding v
 
 ## See also
 
-- [References](..\REFERENCES.md#references)
+- [References](../REFERENCES.md#references)
