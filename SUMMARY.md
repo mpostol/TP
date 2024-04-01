@@ -48,7 +48,9 @@
   * [ViewModel Usage](ExDataManagement\GraphicalData\ViewModelUnitTest\README.md)
   * [Model Implementation Examples](ExDataManagement/GraphicalData/GraphicalData.Model/README.md)
   * [Model Usage](ExDataManagement/GraphicalData/ModelUnitTest/README.md)
+<!--  
 * [Conclusion](ExDataManagement/READMEConclusion.md)
+-->
 
 ## Adaptive Programming
 
