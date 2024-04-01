@@ -1,7 +1,7 @@
 <!--
 //____________________________________________________________________________________________________________________________________
 //
-// Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+// Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 // To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -11,24 +11,7 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Bitstream Cybersecurity <!-- omit in toc -->
-
-- [1. Introduction](#1-introduction)
-- [2. Hash Function](#2-hash-function)
-  - [2.1. Fundamentals](#21-fundamentals)
-  - [2.2. Example](#22-example)
-- [3. Encryption](#3-encryption)
-  - [3.1. Fundamentals](#31-fundamentals)
-  - [3.2. Symmetric Cryptography Example](#32-symmetric-cryptography-example)
-  - [3.3. Conclusion](#33-conclusion)
-- [4. Non-repudiation](#4-non-repudiation)
-  - [4.1. Fundamentals](#41-fundamentals)
-  - [4.2. Compliance with Domain-specific Language](#42-compliance-with-domain-specific-language)
-  - [4.3. Signing Process](#43-signing-process)
-  - [4.4. Creation of Keys Example](#44-creation-of-keys-example)
-  - [4.5. XML Document Signing Example](#45-xml-document-signing-example)
-  - [4.6. Conclusion](#46-conclusion)
-- [5. See Also](#5-see-also)
+# Bitstream Cybersecurity
 
 ## 1. Introduction
 

@@ -11,40 +11,7 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Data Streams <!-- omit in toc -->
-
-## Table of Content <!-- omit in toc -->
-
-- [Introduction](#introduction)
-- [File and Stream Concepts Preface](#file-and-stream-concepts-preface)
-- [Useful Concepts for Bitstreams Deployment](#useful-concepts-for-bitstreams-deployment)
-  - [Introduction](#introduction-1)
-  - [Presentation](#presentation)
-  - [Validation](#validation)
-  - [Standardization](#standardization)
-  - [Serialization](#serialization)
-  - [Cybersecurity](#cybersecurity)
-    - [Introduction](#introduction-2)
-    - [Hash](#hash)
-    - [Encryption](#encryption)
-    - [Non-repudiation](#non-repudiation)
-- [BitStream Format](#bitstream-format)
-  - [Domain Specific Language (DSL)](#domain-specific-language-dsl)
-  - [Extensible Markup Language (XML) Format](#extensible-markup-language-xml-format)
-    - [Introduction](#introduction-3)
-    - [Visualization](#visualization)
-    - [Validation](#validation-1)
-    - [Standardization](#standardization-1)
-  - [JavaScript Object Notation (JSON)](#javascript-object-notation-json)
-    - [Introduction](#introduction-4)
-    - [Visualization](#visualization-1)
-    - [Validation](#validation-2)
-    - [Standardization](#standardization-2)
-  - [Yet Another Markup Language (YAML)](#yet-another-markup-language-yaml)
-    - [Introduction](#introduction-5)
-    - [Visualization](#visualization-2)
-    - [Validation](#validation-3)
-- [See Also](#see-also)
+# Data Streams
 
 ## Introduction
 

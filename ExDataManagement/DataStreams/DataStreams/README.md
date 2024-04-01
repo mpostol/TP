@@ -11,35 +11,11 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Implementation Examples <!-- omit from toc -->
-
-## Table of Content <!-- omit from toc -->
-
-- [Key words](#key-words)
-- [Streaming Data Preface](#streaming-data-preface)
-- [File and Stream Concepts](#file-and-stream-concepts)
-  - [Operating System Context](#operating-system-context)
-  - [Program Context](#program-context)
-    - [File Class](#file-class)
-    - [Stream class](#stream-class)
-  - [XML-based Presentation](#xml-based-presentation)
-  - [XML-based Validation](#xml-based-validation)
-  - [XML-based Classes Generation](#xml-based-classes-generation)
-- [Attributes](#attributes)
-  - [Introduction](#introduction)
-  - [Profiling Development Environment](#profiling-development-environment)
-  - [Attribute Definition](#attribute-definition)
-  - [Attribute Use Based Directly on Type Definition](#attribute-use-based-directly-on-type-definition)
-  - [Attribute Use Based Indirectly on Type Instance](#attribute-use-based-indirectly-on-type-instance)
-  - [Summary](#summary)
-- [Reflection](#reflection)
-  - [Preface](#preface)
-  - [Example](#example)
-- [See Also](#see-also)
+# Implementation Examples
 
 ## Key words
 
-Bitstream, File, File System, XML, XSLT, HTML, XmlSerializer, Save file, Transformation, Saving text files, Local File Systems, Open and read file, XML Schema, Common File Format, Data Access, Serialization, Validation,Visualization
+Bitstream, File, File System, XML, XSLT, HTML, XmlSerializer, Save file, Transformation, Saving text files, Local File Systems, Open and read file, XML Schema, Common File Format, Data Access, Serialization, Validation, Visualization
 
 ## Streaming Data Preface
 

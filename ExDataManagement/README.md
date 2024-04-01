@@ -11,17 +11,7 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# External Data Management (ExDM) <!-- omit in toc -->
-
-## Table of Content <!-- omit in toc -->
-
-- [Key words](#key-words)
-- [Introduction](#introduction)
-- [External Data](#external-data)
-  - [Preface](#preface)
-  - [Data Management and Access](#data-management-and-access)
-- [Conclusion](#conclusion)
-- [See also](#see-also)
+# External Data Management (ExDM)
 
 ## Key words
 
