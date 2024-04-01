@@ -104,7 +104,7 @@ We also said earlier that sometimes these bitstreams are also used to communicat
 
 From the previous considerations regarding the transformation of object data into streaming data, we know that the basis of this process is to determine the state of the object. Let me remind you that the state of an object is a set of values that must be subject to a transformation process so that the reverse operation can be performed in the future, i.e., so that the object graph can be recreated and an equivalent object graph can be created.
 
-In order not to enter into purely theoretical considerations, let us return to these topics in the context of sample programs. The examples are described in the document titled [Objects Serialization Implementation Examples][ies]. The example discussed shows the mechanism of transformation of an object or more precisely an object state to a bitstream. In this process, the state of the object is determined by a software developer, which implements an appropriate mechanism responsible for selecting the values that constitute the object state. Since the determination of an object state is the responsibility of program authors, there must be measures allowing them to point out what has to be serialized.
+In order not to enter into purely theoretical considerations, let us return to these topics in the context of sample programs. The examples are described in the document titled [Objects Serialization][objects-serialization]. The example discussed shows the mechanism of transformation of an object or more precisely an object state to a bitstream. In this process, the state of the object is determined by a software developer, which implements an appropriate mechanism responsible for selecting the values that constitute the object state. Since the determination of an object state is the responsibility of program authors, there must be measures allowing them to point out what has to be serialized.
 
 To implement a serialization/deserialization engine, you need to define a data structure, choose a serialization format (like custom, JSON, XML, etc.), and use a serialization library to convert the data wrapped by a graph of objects into the selected format in both directions. The data structure is required to determine the state of objects that are subject to serialization. Apart from the data structure a guidelines allowing to select only values constituting the state of the object are necessary. To fulfill the mentioned requirements access to the value holders that constitute the state of the object is also required. Attributes as a language construct at design-time and reflection as a technology at run-time could help to solve some problems related to serialization/deserialization implementation.
 
@@ -271,7 +271,7 @@ In essence, you can create a new language by establishing a set of guidelines fo
 
 ## See Also
 
-- [References](..\REFERENCES.md#references)
+- [References](../REFERENCES.md#references)
 
 [CommunityJSON]: https://json-schema.org/specification#specification
 [ISOJSON]: https://www.iso.org/standard/71616.html
@@ -281,7 +281,7 @@ In essence, you can create a new language by establishing a set of guidelines fo
 [XSD]: http://msdn.microsoft.com/library/x6c1kb0s.aspx
 [STLZTN]: http://msdn.microsoft.com/library/7ay27kt9.aspx
 
-[ies]: DataStreams/READMESerialization.md#objects-serialization
+[objects-serialization]: DataStreams/READMESerialization.md#objects-serialization
 [READMECryptography]: DataStreams/READMECryptography.md#bitstream-cybersecurity
 [xmlpresentation]: DataStreams/README.md#xml-based-presentation
 [xml-based-validation]: DataStreams/README.md#xml-based-validation
