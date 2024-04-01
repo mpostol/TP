@@ -155,20 +155,10 @@ In this part, we move on to asymmetric encryption. Precisely, not the encryption
 
 ## 5. See Also
 
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Confidentiality][confidentiality] C# Corner, 2024.
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Integrity][CI] C# Corner, 2024.
-- Postol Mariusz; [External Data Management (ExDM)][ExDM]; C# Corner, 2024
-- Postol Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, 2023
-- Postol Mariusz; [External Data - Attributes - Profiling Data Access][Attributes]; C# Corner, 2024
+- [References](./../../../REFERENCES.md#references)
 - [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
-- [Programming in Practice - GitHub repository][TPGitHub]
-- [Discussion panel][Discussion]
-- [Postol. M, profile on Udemy.com][MPUdemy]
-- [Postol. M, profile on GitHub.com][MPGitHub]
-- Join me on [LinkedIn][MPLinkedIn]
-- Join me on [ORCID.org][orcid.org]
 - Connect to [Programming in Practice Education LinkedIn Group][LinkedInPiP]
 - [Generic implementation of the Blockchain agent in .NET][NBlockchain]
 - [XSL\(T\) Languages][XSLW3C]
@@ -178,20 +168,10 @@ In this part, we move on to asymmetric encryption. Precisely, not the encryption
 - [Dependency Injection][DI]
 - [XML Signature Syntax and Processing Version 1.1][XMLS]; W3C Recommendation; 11 April 2013
 
-[CI]: https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-integrity/
-[confidentiality]: https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-confidentiality/
-[ExDM]: https://www.c-sharpcorner.com/blogs/external-data-management-exdm
-[FileStream]: https://www.c-sharpcorner.com/article/external-data-file-and-stream-concepts
-[Attributes]: https://www.c-sharpcorner.com/article/external-data-attributes-profiling-data-access/
+
 [NBlockchain]: https://github.com/mpostol/NBlockchain#nblockchain
 [udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
 [udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
-[TPGitHub]: https://github.com/mpostol/TP
-[Discussion]: https://github.com/mpostol/TP/discussions
-[orcid.org]: https://orcid.org/0000-0002-9669-0565
-[MPLinkedIn]: https://pl.linkedin.com/in/mpostol
-[MPUdemy]: https://www.udemy.com/user/mariusz-postol/
-[MPGitHub]: https://github.com/mpostol
 [LinkedInPiP]: https://www.linkedin.com/groups/7478959/
 
 [XMLS]: https://www.w3.org/TR/xmldsig-core1/
@@ -200,21 +180,21 @@ In this part, we move on to asymmetric encryption. Precisely, not the encryption
 [XSD]: (http://msdn.microsoft.com/library/x6c1kb0s.aspx)
 [STLZTN]: (http://msdn.microsoft.com/library/7ay27kt9.aspx)
 
-<!-- Hash -->
-[CalculateSHA256]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Cryptography/CryptographyHelpers.cs#L23-L31
+<!-- ./ -->
+[CalculateSHA256]: Cryptography/CryptographyHelpers.cs#L23-L31
+[LoadVerifyXml]: Cryptography/CryptographyHelpers.cs#L161-L195
+[DecryptData]: Cryptography/CryptographyHelpers.cs#L62-L86
+[EncryptData]: Cryptography/CryptographyHelpers.cs#L33-L60
+[CreateRSACryptoServiceKeys]: Cryptography/CryptographyHelpers.cs#L88-L101
+[SignSaveXml]: Cryptography/CryptographyHelpers.cs#L111-L146
 
-<!-- Symmetric Encryption Example -->
-[EncryptDecryptDataTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L49-L76
-[DecryptData]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Cryptography/CryptographyHelpers.cs#L62-L86
-[CryptographyHelpersUnitTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L23-L140
-[EncryptData]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Cryptography/CryptographyHelpers.cs#L33-L60
-<!-- Digital Signature -->
-[SignSaveXml]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Cryptography/CryptographyHelpers.cs#L111-L146
-[XmlSignatureTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L91-L118
-[CreateRSACryptoServiceKeysTest]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L79-L87
-[CreateRSACryptoServiceKeys]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Cryptography/CryptographyHelpers.cs#L88-L101
-[PubliPrivateKeys]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/PubliPrivateKeys.xml#L1-L11
-[PubliKey]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/PubliKey.xml#L1-L5
-[catalog]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/catalog.example.xml#L1-L23
-[LoadVerifyXml]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams/Cryptography/CryptographyHelpers.cs#L161-L195
-[SignedXmlFile]: https://github.com/mpostol/TP/blob/a746ad26c7bf5c288efee7988eaffbb3810dfaec/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/SignedXmlFile.xml#L3-L42
+<!-- ../DataStreams.UnitTest -->
+[EncryptDecryptDataTest]: ../DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L49-L76
+[CryptographyHelpersUnitTest]: ../DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L23-L140
+[XmlSignatureTest]: ../DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L91-L118
+[CreateRSACryptoServiceKeysTest]: ../DataStreams.UnitTest/CryptographyHelpersUnitTest.cs#L79-L87
+[PubliPrivateKeys]: ../DataStreams.UnitTest/Instrumentation/PubliPrivateKeys.xml#L1-L11
+[PubliKey]: ../DataStreams.UnitTest/Instrumentation/PubliKey.xml#L1-L5
+[catalog]: ../DataStreams.UnitTest/Instrumentation/catalog.example.xml#L1-L23
+[SignedXmlFile]: ../DataStreams.UnitTest/Instrumentation/SignedXmlFile.xml#L3-L42
+

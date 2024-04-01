@@ -291,7 +291,7 @@ The functionality enabling the possibility to get access to a selected property 
 
 [udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
 
-[FileExample]: FileAndStream/FileExample.cs#L19-L32
+[FileExample]: FileAndStream/FileExample.cs#L19-L30
 [AttachedProperty]: Reflection/AttachedProperty.cs#L17-L46
 [AttributedClass]: Reflection/AttributedClass.cs#L17-L24
 [CustomAttribute]: Reflection/AttributedClass.cs#L27

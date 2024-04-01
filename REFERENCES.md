@@ -2,6 +2,11 @@
 
 ## Programming in Practice
 
+- Postol Mariusz; [Cybersecurity of External Streaming Data - Confidentiality][confidentiality] C# Corner, 2024.
+- Postol Mariusz; [Cybersecurity of External Streaming Data - Integrity][CI] C# Corner, 2024.
+- Postol Mariusz; [External Data Management (ExDM)][ExDM]; C# Corner, 2024
+- Postol Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, 2023
+- Postol Mariusz; [External Data - Attributes - Profiling Data Access][Attributes]; C# Corner, 2024
 - [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 - [Programming in Practice, Video Playlist of courses description on Youtube, 2023](https://www.youtube.com/playlist?list=PLC7zPvgw-Ybwya54i262_RfG5tEp2FSIt)
@@ -9,6 +14,12 @@
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
 - [GitHub repository mpostol/TP][TP] - C# in Practice - set of C# examples targeting education purpose
 - [Discussion panel on mpostol/TP][Discussion]
+
+[CI]: https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-integrity/
+[confidentiality]: https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-confidentiality/
+[ExDM]: https://www.c-sharpcorner.com/blogs/external-data-management-exdm
+[FileStream]: https://www.c-sharpcorner.com/article/external-data-file-and-stream-concepts
+[Attributes]: https://www.c-sharpcorner.com/article/external-data-attributes-profiling-data-access/
 
 ## How to reach me
 
