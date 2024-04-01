@@ -271,15 +271,7 @@ In essence, you can create a new language by establishing a set of guidelines fo
 
 ## See Also
 
-- [XSL\(T\) Languages][XSLW3C]
-- [Serialization in .NET][STLZTN]
-- [XML Schema Definition Tool (Xsd.exe)][XSD]
-- [Type Class][system.type]
-- [Implementation Examples][ie]
-- [Objects Serialization][ies]
-- [ISO/IEC 21778; International Standard; Information technology — The JSON data interchange syntax][ISOJSON]
-- [The JavaScript Object Notation (JSON) Data Interchange Format][RFCJSON]; Request for Comments:7159; 2020-01-21
-- [JSON Schema][CommunityJSON]
+- [References](..\REFERENCES.md#references)
 
 [CommunityJSON]: https://json-schema.org/specification#specification
 [ISOJSON]: https://www.iso.org/standard/71616.html
@@ -288,10 +280,8 @@ In essence, you can create a new language by establishing a set of guidelines fo
 [XSLW3C]: https://www.w3schools.com/xml/xsl_languages.asp
 [XSD]: http://msdn.microsoft.com/library/x6c1kb0s.aspx
 [STLZTN]: http://msdn.microsoft.com/library/7ay27kt9.aspx
-[system.type]: https://learn.microsoft.com/dotnet/api/system.type
 
-[ie]: DataStreams/README.md
-[ies]: DataStreams/READMESerilization.md
-[READMECryptography]: DataStreams/READMECryptography.md
+[ies]: DataStreams/READMESerialization.md#objects-serialization
+[READMECryptography]: DataStreams/READMECryptography.md#bitstream-cybersecurity
 [xmlpresentation]: DataStreams/README.md#xml-based-presentation
 [xml-based-validation]: DataStreams/README.md#xml-based-validation

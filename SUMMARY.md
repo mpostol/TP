@@ -1,4 +1,4 @@
-# Summary
+# Executive Summary
 
 * [Programming in Practice](README.md)
   * [References](REFERENCES.md)
@@ -28,12 +28,14 @@
 ## External Data Management
 
 * [Executive Summary](ExDataManagement/README.md)
+<!--  
   * [Fundamentals](ExDataManagement/READMEFundamentals.md)
   * [Prerequisites](ExDataManagement/READMEPrerequisites.md)
-* [Data Streams Preface](ExDataManagement/DataStreams/README.md)
-  * [Implementation Examples](ExDataManagement/DataStreams/DataStreams/README.md)
-  * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md)
-  * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md)
+-->
+* [Data Streams Preface](ExDataManagement/DataStreams/README.md#data-streams)
+  * [Implementation Examples](ExDataManagement/DataStreams/DataStreams/README.md#implementation-examples)
+  * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md#objects-serialization)
+  * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md#bitstream-cybersecurity)
 * [Functional Programming Preface](ExDataManagement/FunctionalProgramming/README.md)
   * [Implementation Examples](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
   * [Usage](ExDataManagement/FunctionalProgramming/FunctionalProgramming.UnitTest/README.md)

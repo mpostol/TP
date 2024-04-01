@@ -69,13 +69,4 @@ This section and subsections address examples of practical scenarios regarding v
 
 ## See also
 
-- [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
-- [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the markdown files collected in this repository. It is distributed online upon the open access rules.
-- [Discussion panel][Discussion]
-- [Postół. M, Programming Technologies 2021; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbyWXRTAe9m-ABP9YWmpLvUk)
-- [Postół. M, Programming Technologies 2020; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbwOD3GaSPl6kzKhDRmmrA-9)
-- [Postol. M, profile on Udemy.com][MPUdemy]
-
-[Discussion]: https://github.com/mpostol/TP/discussions
-[MPUdemy]: https://www.udemy.com/user/mariusz-postol/
-[udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
+- [References](..\REFERENCES.md#references)
