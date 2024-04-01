@@ -28,10 +28,6 @@
 ## External Data Management
 
 * [Executive Summary](ExDataManagement/README.md)
-<!--  
-  * [Fundamentals](ExDataManagement/READMEFundamentals.md)
-  * [Prerequisites](ExDataManagement/READMEPrerequisites.md)
--->
 * [Data Streams Preface](ExDataManagement/DataStreams/README.md#data-streams)
   * [Implementation Examples](ExDataManagement/DataStreams/DataStreams/README.md#implementation-examples)
   * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md#objects-serialization)
@@ -48,9 +44,6 @@
   * [ViewModel Usage](ExDataManagement\GraphicalData\ViewModelUnitTest\README.md)
   * [Model Implementation Examples](ExDataManagement/GraphicalData/GraphicalData.Model/README.md)
   * [Model Usage](ExDataManagement/GraphicalData/ModelUnitTest/README.md)
-<!--  
-* [Conclusion](ExDataManagement/READMEConclusion.md)
--->
 
 ## Adaptive Programming
 
