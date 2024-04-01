@@ -281,46 +281,34 @@ The functionality enabling the possibility to get access to a selected property 
 - [Serialization in .NET][STLZTN]
 - [XML Schema Definition Tool (Xsd.exe)][XSD]
 
-https://github.com/mpostol/TP/blob/ExDMUdemy/ExDataManagement/REFERENCES.md#references
-
 [XSLW3C]: https://www.w3schools.com/xml/xsl_languages.asp
 [XSD]: http://msdn.microsoft.com/library/x6c1kb0s.aspx
 [STLZTN]: http://msdn.microsoft.com/library/7ay27kt9.aspx
 [system.type]: https://learn.microsoft.com/dotnet/api/system.type
 [system.attribute]: https://learn.microsoft.com/dotnet/api/system.attribute
 [AttributeUsage]: https://learn.microsoft.com/dotnet/api/system.attributeusageattribute
+[Object]: https://learn.microsoft.com/dotnet/api/system.object
 
 [udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
-[FileExample]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/FileAndStream/FileExample.cs#L19-L32
 
-[AttachedProperty]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Reflection/AttachedProperty.cs#L17-L46
-
-[AttributedClass]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Reflection/AttributedClass.cs#L17-L24
-[CustomAttribute]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Reflection/AttributedClass.cs#L27
-
-[AttributedClassInstanceTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L46-L55
-[AttachedPropertyTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L57-L68
-[ObjectFactory]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L81-L101
-[AttributedClassTypeTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L39-L43
-[Siyova16]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L73-L79
-[typeof]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L41
-[CustomAttributeTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L24-L29
-[GoTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/ReflectionUnitTest.cs#L103
-
-[Catalog]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/Catalog.xsd.cs#L21-L55
-[Catalog.cs]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/Catalog.cs#L18-L120
-
-[ReadWRiteTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/SerializationUnitTest.cs#L42-L57
-[IStylesheetNameProvider]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/Serialization/IStylesheetNameProvider.cs#L17-L23
-
-[GoCS]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/GoCS.cmd#L1-L2
-
-[catalogexamplexml]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/Instrumentation/catalog.example.xml#L1-L23
-
-[Object]: https://learn.microsoft.com/dotnet/api/system.object
-[FileStreamUnitTest]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams.UnitTest/FileStreamUnitTest.cs#L19-L33
+[FileExample]: FileAndStream/FileExample.cs#L19-L32
+[AttachedProperty]: Reflection/AttachedProperty.cs#L17-L46
+[AttributedClass]: Reflection/AttributedClass.cs#L17-L24
+[CustomAttribute]: Reflection/AttributedClass.cs#L27
+[IStylesheetNameProvider]: Serialization/IStylesheetNameProvider.cs#L17-L23
 [Open]: FileAndStream/FileExample.cs#L24-L29
 
-<!--
-[Open]: https://github.com/mpostol/TP/blob/4114e2e9e99f3f23ca67f6a2229fe3c386a386ac/ExDataManagement/DataStreams/DataStreams/FileAndStream/FileExample.cs#L24-L29
--->
+[AttributedClassInstanceTest]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L46-L55
+[AttachedPropertyTest]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L57-L68
+[ObjectFactory]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L81-L101
+[AttributedClassTypeTest]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L39-L43
+[Siyova16]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L73-L79
+[typeof]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L41
+[CustomAttributeTest]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L24-L29
+[GoTest]: ../DataStreams.UnitTest/ReflectionUnitTest.cs#L103
+[Catalog]: ../DataStreams.UnitTest/Instrumentation/Catalog.xsd.cs#L21-L55
+[Catalog.cs]: ../DataStreams.UnitTest/Instrumentation/Catalog.cs#L18-L120
+[ReadWRiteTest]: ../DataStreams.UnitTest/SerializationUnitTest.cs#L42-L57
+[GoCS]: ../DataStreams.UnitTest/Instrumentation/GoCS.cmd#L1-L2
+[catalogexamplexml]: ../DataStreams.UnitTest/Instrumentation/catalog.example.xml#L1-L23
+[FileStreamUnitTest]: ../DataStreams.UnitTest/FileStreamUnitTest.cs#L19-L33
