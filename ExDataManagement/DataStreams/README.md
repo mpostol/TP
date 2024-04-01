@@ -271,7 +271,7 @@ In essence, you can create a new language by establishing a set of guidelines fo
 
 ## See Also
 
-- [References](../REFERENCES.md#references)
+- [References](./../../REFERENCES.md#references)
 
 [CommunityJSON]: https://json-schema.org/specification#specification
 [ISOJSON]: https://www.iso.org/standard/71616.html
