@@ -13,5 +13,7 @@
 
 # Preface
 
+- [Extension Methods](FunctionalProgramming/ExtensionMethods.md)
+
 > TBD: placeholder only
 > Path: ExDataManagement\FunctionalProgramming\README.md

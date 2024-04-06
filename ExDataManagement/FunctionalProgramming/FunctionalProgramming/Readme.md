@@ -25,11 +25,7 @@ The most important behavior of a function in the context of functional programmi
     }
 ```
 
-This predicate returns always `true` if the current string assigned to `stringToTest` is longer than 10.
-
-It represents the method that defines a set of criteria and determines whether the specified object meets those criteria.
-
-It eliminates side effects, which is one of the key motivations for using the functional programming approach to manage external data. In this scenario, the function can be sent and executed by a data management system and produce a set of related data.
+This predicate returns always `true` if the current string assigned to `stringToTest` is longer than 10. It represents the method that defines a set of criteria and determines whether the specified object meets those criteria. It eliminates side effects, which is one of the key motivations for using the functional programming approach to manage external data. In this scenario, the function can be sent and executed by a data management system and produce a set of related data.
 
 Usually, the function expressed in terms of selected language syntax must be translated to be useful and executable by the external system. To make the translation feasible the function must be syntactically embedded in an expression - a sequence of operators and operands. Before translation, it must be expressed using the object model in the form of an expression tree. The expression tree can be created by the compiler or grammatically using the API.
 
