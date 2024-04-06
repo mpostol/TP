@@ -1,4 +1,6 @@
-﻿<!--
+# Anonymous Functions
+
+<!--
 //____________________________________________________________________________________________________________________________________
 //
 //  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
@@ -11,17 +13,31 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Functional programming implementation
+# Anonymous Functions
 
-## Content
+## Lambda Expressions
 
-### Extension Methods
+A lambda expression with an expression on the right side of the `=>` operator is called an expression lambda. Expression lambdas are used extensively in the construction of [Expression Trees][ET]. An expression lambda returns the result of the expression and takes the following basic form:
 
-The class `ExtensionMethods` provides a few examples of extension methods.
+```C#
+(input-parameters) => expression
+```
 
-The UT located in the class `TP.Lecture.UnitTest.ExtensionMethodsUnitTest` contain test methods illustrating how to use the extension methods and points out differences between usage the instance and extension methods against the instance methods.
+Sometimes it is difficult or impossible for the compiler to infer the input types. When this occurs, you can specify the types explicitly as shown in the following example:
 
-### Anonymous Functions
+```C#
+(int x, string s) => s.Length > x
+```
+
+> If you are creating expression trees that are executed outside of the .NET Framework, such as in SQL Server, you should not use method calls in lambda expressions. The methods will have no meaning outside the context of the .NET common language runtime. For example:
+
+```C#
+() => SomeMethod()
+```
+
+<!-- ### Anonymous Method
+
+TBD -->
 
 ## See also
 

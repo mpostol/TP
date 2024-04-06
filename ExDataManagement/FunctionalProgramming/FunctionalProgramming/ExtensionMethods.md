@@ -15,23 +15,20 @@
 ## Table of Content <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. What's our problem?](#2-whats-our-problem)
-- [3. What is a static method?](#3-what-is-a-static-method)
-- [4. The use of extension methods](#4-the-use-of-extension-methods)
-- [5. Definition](#5-definition)
-- [6. Conclusion](#6-conclusion)
+- [2. What is a static method?](#2-what-is-a-static-method)
+- [3. The use of extension methods](#3-the-use-of-extension-methods)
+- [4. Definition](#4-definition)
+- [5. Conclusion](#5-conclusion)
 
 ## 1. Introduction
 
-This lesson is about extension methods.
-
-## 2. What's our problem?
+C# simulates existence of an instance method for a selected type via extension methods. To do this, the signature of the static method must have `this` keyword as the prefix of the the first parameter. In other words, extension methods are a kind of static method, that can be called as if they were instance methods of the first parameter type.
 
 Let's start by defining the problem. To illustrate the problem, let's consider a scenario where we want to invoke static methods in a cascade. I have defined two static methods in the `ExtensionMethods` class, which is a non-static class. The first `WordCount` whose `string` parameter is analyzed and the number of words this `string` contains is evaluated. The second method, `Even`, has an integer parameter and returns a boolean value that indicates whether the number is even or odd.
 
 However, in a project that wraps unit tests, there is a test showing how to call them sequentially. This is the method (`TypicalCallTestMethod`). It is responsible for returning the number of words in the sample text and checking whether the indicated number is odd. Here we have a test to check that this number is odd. We see that there are only three words in the string. This solution shows that to operate we need an additional variable into which we substitute the intermediate result of the first static method. The second static method will operate on this result.
 
-## 3. What is a static method?
+## 2. What is a static method?
 
 The solution is a linguistic construct called the Extension Method. It allows you to simulate calling static methods in a similar way to methods defined for the selected type. For example, methods for a selected instance of a class or interface. The next test contains just such a call; this is the test method where the WordCount and Event methods are cascaded into one expression. In the previous example, we had to declare an additional variable. Here we have the `_wordCount` variable, which... but in addition, all calculations were performed in two expressions. Here we have the first expression in the substitution instruction to the right of the substitution sign. The second expression is the current value of the `IsFalse` method. I suggest remembering this fact because it will be crucial for understanding the language constructs that allow you to integrate the programming language with the selected query language for external data repositories. Currently, the compiler reports an error that says that there is no `WordCount` method for the string and no extension method can be found by the compiler.
 
@@ -43,7 +40,7 @@ On the left, it is still possible to call the extension method classically, just
 
 We can already see the test result; it has passed, so these two invocations are equivalent. So we can summarize this part of the discussion as saying that for extension methods it is possible and equivalent to have a method call; in the form using the syntax for the extension method as for the instance method and traditional as for static methods.
 
-## 4. The use of extension methods
+## 3. The use of extension methods
 
 Let's go back to the class where the previously used methods were defined. I have defined another extension method for the `string` class. Intentionally it duplicates the definition of the same instance method exposed by the `string` class. Here we have the definition of the `string` class and, in this definition, we find a method with the same name. Since this is an extension method, you need to use two parameters instead of one. The first parameter indicates the type to be expanded, in this `string`. The second parameter is intended to pass the word that is to be searched for in the input string. There is only one statement in this method that throws an exception of the type `NotImplementedException`. Invocation of this method, and as the result execution of this statement has to cause the unit test to fail.
 
@@ -69,12 +66,12 @@ Let's look at the behavior of this method in several scenarios. The first one ma
 
 W przypadku wykorzystywania składni dla metody rozszerzającej; to kolejna metoda testowa; W tym przypadku znowu zmienna `_myInterface` jest null, ale wykonujemy metodę jako metodę rozszerzającą. Tutaj widzimy, że sprawdzamy, czy pierwszy parametr jest null to rzucamy exception. I w tym przypadku możemy potwierdzić, że ta metoda została wykonana i że w wyniku wykonania tej metody został wyrzucony wyjątek, co sygnalizowane jest w metodzie testowej atrybutem `ExpectedException`.
 
-## 5. Definition
+## 4. Definition
 
 So let's summarize what an extension method is. Well, it is a static method declared in a static class. Following the second condition, it must have at least one parameter. Additionally, this parameter must be preceded by the `this` keyword. To be visible, the namespace in which it is declared must be added to the list of default namespaces applying the `using` directive.
 
 To conclude the discussion on calling extension methods, it should be emphasized that in this case, we can use the invocation syntax exactly as we know it from calling methods defined as components of the selected type.
 
-## 6. Conclusion
+## 5. Conclusion
 
 It should be stressed that extension methods do not overwrite the members of an existing type. That is, they cannot be used to modify or replace existing type methods, so they do not work in this case; there is no similarity with inheriting from the base type and defining methods in the derived type. Another important feature of extension methods is that they can be invoked for null values because the compiler replaces the syntax for calling the extension method with the syntax for the static method. Therefore we should be aware that extension method invocation only mimics invocation of a type member. Sometimes it could confuse but it should be recognized as a trade-off considering the benefits we will learn later.
