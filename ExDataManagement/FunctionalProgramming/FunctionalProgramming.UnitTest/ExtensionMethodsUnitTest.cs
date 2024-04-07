@@ -35,7 +35,7 @@ namespace TP.FunctionalProgramming
     /// You can invoke the extension method with instance method syntax.
     /// </summary>
     [TestMethod]
-    public void SequentialCallTestMethod()
+    public void CascadedCallTestMethod()
     {
       string _TestString = "Hello Extension Methods";
       Assert.IsFalse(_TestString.WordCount().Even()); //To enable extension methods for a particular type, the definition must be visible.

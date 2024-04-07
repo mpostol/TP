@@ -19,24 +19,55 @@
 - [3. The use of extension methods](#3-the-use-of-extension-methods)
 - [4. Definition](#4-definition)
 - [5. Conclusion](#5-conclusion)
+- [6. See Also](#6-see-also)
 
 ## 1. Introduction
 
-C# simulates existence of an instance method for a selected type via extension methods. To do this, the signature of the static method must have `this` keyword as the prefix of the the first parameter. In other words, extension methods are a kind of static method, that can be called as if they were instance methods of the first parameter type.
+Object-oriented programming is not always beneficial. Static methods and a static class are language constructs committed to work without engaging object-oriented programming. There are several compelling reasons to use static constructs in C#. For example, static methods within a static class serve as utility functions. They allow you to group related functionality without the need for an instance. For example, the `System.Math` class provides static methods for common mathematical operations.
 
-Let's start by defining the problem. To illustrate the problem, let's consider a scenario where we want to invoke static methods in a cascade. I have defined two static methods in the `ExtensionMethods` class, which is a non-static class. The first `WordCount` whose `string` parameter is analyzed and the number of words this `string` contains is evaluated. The second method, `Even`, has an integer parameter and returns a boolean value that indicates whether the number is even or odd.
+The static class construct has unique characteristics that set it apart from regular (non-static) classes. A static class is defined using the `static` keyword. It can only contain **static members** (methods, fields, properties). Unlike non-static classes, a static class cannot be instantiated. You cannot create an instance of it using the `new` operator. Since there's no instance variable, you access the members of a static class directly using the definition name itself. For example, if you have a static class named `UtilityClass` with a public static method called `MethodA`, you invoke it like this:
 
-However, in a project that wraps unit tests, there is a test showing how to call them sequentially. This is the method (`TypicalCallTestMethod`). It is responsible for returning the number of words in the sample text and checking whether the indicated number is odd. Here we have a test to check that this number is odd. We see that there are only three words in the string. This solution shows that to operate we need an additional variable into which we substitute the intermediate result of the first static method. The second static method will operate on this result.
+``` C#
+   UtilityClass.MethodA(); 
+```
+
+In contrast to non-static classes, static classes cannot be inherited. A static constructor if present is called automatically before any member declared in that class is referenced. It ensures that necessary initialization occurs before any other code execution related to the static class.
+
+In summary, a static class provides a convenient way to group related static members. It's a powerful tool for organizing utility functions and other stateless operations. Therefore, the static class can be recognized as an organization unit gathering its members. Compared to namespace it supports encapsulation allowing controlling the visibility of members outside of the boundary of definitions.
+
+Because there are no variables of the static class type it is impossible to invoke the static methods using the instance method invocation syntax. Traditionally, to invoke a method defined inside a static class it must be prefixed by the class name. As a result, the invocations cannot be cascaded. For example, we can't call `A().B().C()` of A, B, and C methods, which are exposed by a static class because the selector "." may be applied only to a value but there is no value of the static class. To access the members of a static class directly the class name must be applied as a prefix. To overcome this obstacle the extension method has been introduced. Thanks to the C# programming language the existence of an instance method for a selected type can be simulated using the extension methods construct. To do this, the signature of the static method must have the `this` keyword as the prefix of the first argument. In other words, extension methods are a kind of static method, that can be called as if they were instance methods of the first argument type.
+
+To illustrate the problem, let's consider a scenario where we want to invoke static methods in a cascade. Cascading invocation is a technique where multiple method calls are chained together in a single expression. To investigate this scenario, I have defined two static methods in the [ExtensionMethods][ExtensionMethods] class. The first [WordCount][WordCount] whose `string` parameter is analyzed and the number of words this `string` argument contains is evaluated. The second method, `[Even][Even] has an integer argument and returns a boolean value that indicates whether the number is even or odd.
+
+In a project that wraps unit tests, the [TypicalCallTestMethod][TypicalCallTestMethod] is responsible for returning the number of words in the sample text and checking whether the evaluated number is odd. The following code snippet shows how to call them sequentially - typically using the syntax of invocation static methods.
+
+``` C#
+      string _TestString = "Hello Extension Methods";
+      int _wordCount = ExtensionMethods.WordCount(_TestString);
+      Assert.IsFalse(ExtensionMethods.Even(_wordCount));
+```
+
+This code snippet shows that we need an additional variable containing the intermediate result of the first static method. The second static method will operate on this result. Alternatively, we can apply a nested call but again we will end up with a necessity to use many independent expression constructs to evaluate nested actual arguments.
 
 ## 2. What is a static method?
 
-The solution is a linguistic construct called the Extension Method. It allows you to simulate calling static methods in a similar way to methods defined for the selected type. For example, methods for a selected instance of a class or interface. The next test contains just such a call; this is the test method where the WordCount and Event methods are cascaded into one expression. In the previous example, we had to declare an additional variable. Here we have the `_wordCount` variable, which... but in addition, all calculations were performed in two expressions. Here we have the first expression in the substitution instruction to the right of the substitution sign. The second expression is the current value of the `IsFalse` method. I suggest remembering this fact because it will be crucial for understanding the language constructs that allow you to integrate the programming language with the selected query language for external data repositories. Currently, the compiler reports an error that says that there is no `WordCount` method for the string and no extension method can be found by the compiler.
+The extension method is a linguistic construct. It allows you to simulate calling static methods in a similar way to methods defined as members for the selected type, for example, methods that are defined as members of non-static class types. The [CascadedCallTestMethod][CascadedCallTestMethod] contains just such a call. This is the test method where the `WordCount` and `Event` methods invocation are cascaded in one single expression evaluating argument that is passed to `Assert.IsFalse` method.
 
-For the example methods to become extension methods, we need to make several changes to the program text in question. So let's go back to the definition of both methods; I will organize the screen in such a way that I can see both the definitions of the methods and their use. The first thing we need to change in the text in question is that the class in which extension methods are defined must be static, so let's add the word static here. Another requirement for extension methods is that the first parameter of each extension method is preceded by the word `this`. So we have to add this word in one method and the other method.
+``` C#
+    Assert.IsFalse(_TestString.WordCount().Even());
+```
 
-At this point, the methods FULFILS the requirements of static methods,  namely they are defined in the static class and their first parameter is preceded by the word `this`. We can see on the left side of the screen that the compiler still reports an error. Previously these methods we used; they are visible all the time and all the time; there is no error here because we have preceded the name of the class name in which these methods are located and the name of the method with the name of the namespace in which they were defined. In this case, when we have a call like for instance, i.e. a call for extension methods, unfortunately, we have no place to insert the names of the namespaces where they were defined and therefore the compiler cannot locate them. But we have options here where we can import the namespace, we can indicate which namespace the compiler should use to find all the extension methods and at this point, the compilation errors are gone. However, it is still possible to invoke traditional methods; Maybe I'll close the method definition screen now.
+In contrast, previously we had to declare an additional variable to preserve the intermediate result and all calculations were performed in two independent expressions. 
 
-On the left, it is still possible to call the extension method classically, just like a static method. We can also check that both calls are equivalent considering only the returned value. Here we have `WordCount` in the form with a dot, like in case of instance invocation, and a classic call, as for the extension method. The test should give the correct result because these two invocations differ only in the call syntax, so they only enable the use of extension methods, they use the syntax that is used for instance methods for the selected reference type..
+To enable extension methods for a particular type, the declarations of them must be visible. At this point, the methods fulfill the requirements of static methods, namely, they are defined in the static class and their first parameter is preceded by the word `this`. additionally, the static class definition is visible thanks to using the same namespace.
+
+It is still possible to call the extension method classically, just like a static method. 
+
+``` C#
+    Assert.AreEqual<int>(_TestString.WordCount(), ExtensionMethods.WordCount(_TestString));
+```
+
+We can also check that both calls are equivalent considering only the returned value. Here we have `WordCount` in the form with a dot, like in case of instance invocation, and a classic call, as for the extension method. The test should give the correct result because these two invocations differ only in the invocation syntax, so they only enable the use of extension methods, they use the syntax that is used for instance methods for the selected reference type.
 
 We can already see the test result; it has passed, so these two invocations are equivalent. So we can summarize this part of the discussion as saying that for extension methods it is possible and equivalent to have a method call; in the form using the syntax for the extension method as for the instance method and traditional as for static methods.
 
@@ -75,3 +106,17 @@ To conclude the discussion on calling extension methods, it should be emphasized
 ## 5. Conclusion
 
 It should be stressed that extension methods do not overwrite the members of an existing type. That is, they cannot be used to modify or replace existing type methods, so they do not work in this case; there is no similarity with inheriting from the base type and defining methods in the derived type. Another important feature of extension methods is that they can be invoked for null values because the compiler replaces the syntax for calling the extension method with the syntax for the static method. Therefore we should be aware that extension method invocation only mimics invocation of a type member. Sometimes it could confuse but it should be recognized as a trade-off considering the benefits we will learn later.
+
+## 6. See Also
+
+- Static Classes and Static Class Members (C# Programming Guide). <https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members>.
+- What is a Static Class in C#? - C# Corner. <https://www.c-sharpcorner.com/UploadFile/74ce7b/static-class-in-C-Sharp/>
+- Static Class in C# with Examples - Dot Net Tutorials. <https://dotnettutorials.net/lesson/static-class-in-csharp/>
+- Static keyword in C# - GeeksforGeeks. <https://www.geeksforgeeks.org/static-keyword-in-c-sharp/>.
+- C# | Static Class - GeeksforGeeks. <https://www.geeksforgeeks.org/c-sharp-static-class/>
+
+[ExtensionMethods]: ExtensionMethods.cs#L19-L64
+[WordCount]: ExtensionMethods.cs#L26-L29
+[Even]: ExtensionMethods.cs#L36-L39
+[TypicalCallTestMethod]:  ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L27-L32
+[CascadedCallTestMethod]: ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L38-L43
