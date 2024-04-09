@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -22,13 +22,16 @@ namespace TP.FunctionalProgramming
     /// <param name="y">The y.</param>
     public delegate int PerformCalculation(int x, int y);
 
-    public event EventHandler PerformSumMethodCalled;
-
     /// <summary>
     /// The perform calculation variable
     /// </summary>
     /// <returns>System.Int32.</returns>
     public PerformCalculation PerformCalculationVar;
+
+    /// <summary>
+    /// An example of event
+    /// </summary>
+    public event EventHandler PerformSumMethodCalled;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DelegateExample"/> class.

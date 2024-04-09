@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DelegateExampleUnitTest.cs" />
     <Compile Include="ExtensionMethodsUnitTest.cs" />
+    <Compile Include="FunctionalProgrammingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AnonymousFunctionsUnitTest.cs" />
   </ItemGroup>
