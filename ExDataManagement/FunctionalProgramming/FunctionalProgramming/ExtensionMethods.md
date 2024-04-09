@@ -15,8 +15,8 @@
 ## Table of Content <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. What is a static method?](#2-what-is-a-static-method)
-- [3. The use of extension methods](#3-the-use-of-extension-methods)
+- [2. The Extension Methods in a Nutshell](#2-the-extension-methods-in-a-nutshell)
+- [3. The use of extension methods ✍🏻](#3-the-use-of-extension-methods-)
 - [4. Definition](#4-definition)
 - [5. Conclusion](#5-conclusion)
 - [6. See Also](#6-see-also)
@@ -49,7 +49,7 @@ In a project that wraps unit tests, the [TypicalCallTestMethod][TypicalCallTestM
 
 This code snippet shows that we need an additional variable containing the intermediate result of the first static method. The second static method will operate on this result. Alternatively, we can apply a nested call but again we will end up with a necessity to use many independent expression constructs to evaluate nested actual arguments.
 
-## 2. What is a static method?
+## 2. The Extension Methods in a Nutshell
 
 The extension method is a linguistic construct. It allows you to simulate calling static methods in a similar way to methods defined as members for the selected type, for example, methods that are defined as members of non-static class types. The [CascadedCallTestMethod][CascadedCallTestMethod] contains just such a call. This is the test method where the `WordCount` and `Event` methods invocation are cascaded in one single expression evaluating argument that is passed to `Assert.IsFalse` method.
 
@@ -57,23 +57,23 @@ The extension method is a linguistic construct. It allows you to simulate callin
     Assert.IsFalse(_TestString.WordCount().Even());
 ```
 
-In contrast, previously we had to declare an additional variable to preserve the intermediate result and all calculations were performed in two independent expressions. 
+In contrast, previously we had to declare an additional variable to preserve the intermediate result and all calculations were performed in two independent expressions.
 
 To enable extension methods for a particular type, the declarations of them must be visible. At this point, the methods fulfill the requirements of static methods, namely, they are defined in the static class and their first parameter is preceded by the word `this`. additionally, the static class definition is visible thanks to using the same namespace.
 
-It is still possible to call the extension method classically, just like a static method. 
+It is still possible to call the extension method traditionally, just like a static method. The following code snippet proves it.
 
 ``` C#
     Assert.AreEqual<int>(_TestString.WordCount(), ExtensionMethods.WordCount(_TestString));
 ```
 
-We can also check that both calls are equivalent considering only the returned value. Here we have `WordCount` in the form with a dot, like in case of instance invocation, and a classic call, as for the extension method. The test should give the correct result because these two invocations differ only in the invocation syntax, so they only enable the use of extension methods, they use the syntax that is used for instance methods for the selected reference type.
+In the above code snippet, both calls of the same method are equivalent considering the returned value. Here the `WordCount` method is invoked using the dot selector, like in case of instance invocation, and traditionally like the extension method. The test passes because these two invocations differ only in the syntax but have the same result.
 
-We can already see the test result; it has passed, so these two invocations are equivalent. So we can summarize this part of the discussion as saying that for extension methods it is possible and equivalent to have a method call; in the form using the syntax for the extension method as for the instance method and traditional as for static methods.
+We can summarize this part of the discussion by stating that it is possible and equivalent for the extension method to have a method call using the syntax derived from the invocation of instance method and traditional as for static methods.
 
-## 3. The use of extension methods
+## 3. The use of extension methods ✍🏻
 
-Let's go back to the class where the previously used methods were defined. I have defined another extension method for the `string` class. Intentionally it duplicates the definition of the same instance method exposed by the `string` class. Here we have the definition of the `string` class and, in this definition, we find a method with the same name. Since this is an extension method, you need to use two parameters instead of one. The first parameter indicates the type to be expanded, in this `string`. The second parameter is intended to pass the word that is to be searched for in the input string. There is only one statement in this method that throws an exception of the type `NotImplementedException`. Invocation of this method, and as the result execution of this statement has to cause the unit test to fail.
+Let's return to the class where the previously used methods were defined. I have defined another extension method for the `string` class. Intentionally it duplicates the definition of the same instance method exposed by the `string` class. Here we have the definition of the `string` class and, in this definition, we find a method with the same name. Since this is an extension method you need to use two parameters instead of one. The first parameter indicates the expanded type. In this example, it is `string`. The second parameter is intended to pass the word to be searched for in the input string. There is only one statement in this method that throws an exception of the type `NotImplementedException`. Invocation of this method, and as the result execution of this statement has to cause the unit test to fail.
 
 Now, let's look at the behavior when we are trying to invoke it. Let's get back to testing. Two test methods demonstrate the use of these methods. The first way is to use it as an extension method and use the instance method call syntax. We see a string here and we call the `Contains` method for this string. In this case, the test returns the expected result equal to true,  which means that the word `Hello` is in the source stream. It indicates that an instance method for the string is invoked, namely the one with the conflicting name. In the second test method, let's try to call this method classically, just like a static method avoiding invocation syntax using instance calls. In this case, we see that the test results in an exception being thrown, confirming that this time the static method was executed.
 
@@ -109,6 +109,7 @@ It should be stressed that extension methods do not overwrite the members of an 
 
 ## 6. See Also
 
+- [Extension Methods (C# Programming Guide) on MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 - Static Classes and Static Class Members (C# Programming Guide). <https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members>.
 - What is a Static Class in C#? - C# Corner. <https://www.c-sharpcorner.com/UploadFile/74ce7b/static-class-in-C-Sharp/>
 - Static Class in C# with Examples - Dot Net Tutorials. <https://dotnettutorials.net/lesson/static-class-in-csharp/>
