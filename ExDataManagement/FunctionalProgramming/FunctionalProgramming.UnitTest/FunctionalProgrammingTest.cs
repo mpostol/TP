@@ -1,5 +1,4 @@
-﻿
-//____________________________________________________________________________________________________________________________________
+﻿//____________________________________________________________________________________________________________________________________
 //
 //  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
@@ -11,6 +10,7 @@
 //_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static TP.FunctionalProgramming.FunctionalProgramming;
 
 namespace TP.FunctionalProgramming
 {
@@ -23,8 +23,10 @@ namespace TP.FunctionalProgramming
     [TestMethod]
     public void StringIsLongPredicateTest()
     {
-      Assert.IsTrue(FunctionalProgramming.StringIsLongPredicate("g5F|z*tC&yKJU$"));
-      Assert.IsFalse(FunctionalProgramming.StringIsLongPredicate("g5F|z"));
+      Assert.IsTrue(StringIsLongPredicate("g5F|z*tC&yKJU$"));
+      Assert.IsFalse(StringIsLongPredicate("g5F|z"));
     }
+
+    //public TP.FunctionalProgramming.FunctionalProgramming variable; //Error CS0723  Cannot declare a variable of static type 'FunctionalProgramming'
   }
 }
