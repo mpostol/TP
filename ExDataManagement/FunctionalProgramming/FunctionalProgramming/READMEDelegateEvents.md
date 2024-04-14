@@ -3,8 +3,6 @@
 - [Delegate and Events](#delegate-and-events)
   - [Delegates](#delegates)
   - [Events](#events)
-  - [DelegateVsExpressionTest](#delegatevsexpressiontest)
-  - [Praca domowa](#praca-domowa)
 
 ## Delegates
 
@@ -22,10 +20,10 @@ Delegates are similar to C++ function pointers, but delegates are fully object-o
 
 The definition of the event, i.e. `event`, can be found in this line. We see that we have the keyword `event` here, followed by an identifier and when we look at it, this identifier, as before, shows the delegation type. So this is a reference to the delegation type. Next, we have the identifier. In general, this entire definition is identical to the definition of the variable. So in this case we are also dealing with a delegation variable. The question is how the keyword `event` changes the variable's use. Namely, the word event limits the possibility of calling the methods pointed to, to which there are references in this variable, only to the inside of this class.
 
-
-
+<!-- PL
 ## Praca domowa
 
 No i praca domowa. Po pierwsze, chciałbym poprosić o przeanalizowanie kodu, który jest tutaj pokazany. On jest załączony w testach jednostkowych (`EventTestMethod`) i zrozumienie tego testu, pod kątem testowania zdarzenia. A drugie pytanie dotyczy błędy, który tam jest zakomentowany. Z jakiego powodu ten błąd wystepuje?
+-->
 
 [AnonymousFunctions]: README.AnonymousFunctions.md
