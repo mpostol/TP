@@ -1,7 +1,7 @@
 ﻿<!--
 //____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -13,22 +13,36 @@
 
 # Functional programming implementation
 
-## Content
+## Introduction
 
-### Extension Methods
+Object-oriented languages, including but not limited to C Sharp, incorporate several features that contribute to functional programming. Let’s explore some of these constructs:
 
-The class `ExtensionMethods` provides a few examples of extension methods.
+- [delegate and events](READMEDelegateEvents.md) - delegates are a fundamental construct in C# that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate variable with additional restrictions,
+- [anonymous functions](AnonymousFunctions.cs) - allow definition and use of inline methods that don't have names,
+- [extension methods](ExtensionMethods.md) - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain.
 
-The UT located in the class `TP.Lecture.UnitTest.ExtensionMethodsUnitTest` contain test methods illustrating how to use the extension methods and points out differences between usage the instance and extension methods against the instance methods.
+This folder provides examples of delegates, events, anonymous functions, and extension methods.
 
-### Anonymous Functions
+## Delegates and Events
 
-## See also
+The class [DelegateExample][DelegateExample] provides a few examples of delegates and events. Check out the section [Delegate and Events][DelegateEventsMD] to get details. The UT located in the class [DelegateExampleUnitTest][DelegateExampleUnitTest] contains test methods illustrating how to use the delegates and events.
 
-- [Anonymous Functions (C# Programming Guide)](https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)
-- [Expression Trees (C#)][ET]
-- [Expression Class \(System.Linq.Expressions.Expression\)][ExpressionClass]
-- [Extension Methods (C# Programming Guide) on MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
+## Extension Methods
 
-[ExpressionClass]:https://docs.microsoft.com/dotnet/api/system.linq.expressions.expression
-[ET]:https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/expression-trees/index
+The class [ExtensionMethods][ExtensionMethods] provides a few examples of extension methods. Check out the section [Extension Methods][ExtensionMethodsMD] to get details. The UT located in the class [ExtensionMethodsUnitTest][ExtensionMethodsUnitTest] contain test methods illustrating how to use the extension methods and points out differences between usage the instance and extension methods against the instance methods.
+
+## Anonymous Functions
+
+The class [AnonymousFunctions][AnonymousFunctions] provides a few examples of delegates and events. Check out the section [Anonymous Functions][AnonymousFunctionsMD] to get details. The UT located in the class [AnonymousFunctionsUnitTest][AnonymousFunctionsUnitTest] contains test methods illustrating how to use the delegates and events.
+
+[DelegateExample]: DelegateExample.cs#L16-L68
+[DelegateEventsMD]: READMEDelegateEvents.md
+[DelegateExampleUnitTest]: ..//FunctionalProgramming.UnitTest/DelegateExampleUnitTest.cs#L18-L73
+
+[ExtensionMethods]: ExtensionMethods.cs#L19-L64
+[ExtensionMethodsMD]: README.ExtensionMethods.md
+[ExtensionMethodsUnitTest]: ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L21-L76
+
+[AnonymousFunctions]: AnonymousFunctions.cs#L31-L146
+[AnonymousFunctionsMD]: README.AnonymousFunctions.md
+[AnonymousFunctionsUnitTest]: ../FunctionalProgramming.UnitTest/AnonymousFunctionsUnitTest.cs#L20-L109

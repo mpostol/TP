@@ -115,6 +115,7 @@ It should be stressed that extension methods do not overwrite the members of an 
 - Static Class in C# with Examples - Dot Net Tutorials. <https://dotnettutorials.net/lesson/static-class-in-csharp/>
 - Static keyword in C# - GeeksforGeeks. <https://www.geeksforgeeks.org/static-keyword-in-c-sharp/>.
 - C# | Static Class - GeeksforGeeks. <https://www.geeksforgeeks.org/c-sharp-static-class/>
+- [Extension Methods (C# Programming Guide) on MSDN](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
 [ExtensionMethods]: ExtensionMethods.cs#L19-L64
 [WordCount]: ExtensionMethods.cs#L26-L29
