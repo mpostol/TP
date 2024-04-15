@@ -18,8 +18,8 @@
 Object-oriented languages, including but not limited to C Sharp, incorporate several features that contribute to functional programming. Let’s explore some of these constructs:
 
 - [delegate and events](READMEDelegateEvents.md) - delegates are a fundamental construct in C# that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate variable with additional restrictions,
-- [anonymous functions](AnonymousFunctions.cs) - allow definition and use of inline methods that don't have names,
 - [extension methods](ExtensionMethods.md) - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain.
+- [anonymous functions](AnonymousFunctions.cs) - allow definition and use of inline methods that don't have names,
 
 This folder provides examples of delegates, events, anonymous functions, and extension methods.
 
