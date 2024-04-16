@@ -15,13 +15,13 @@
 
 ## Introduction
 
-Object-oriented languages, including but not limited to C Sharp, incorporate several features that contribute to functional programming. Let’s explore some of these constructs:
+Object-oriented languages, including but not limited to CSharp, incorporate several features that contribute to functional programming. Let’s explore some of these constructs:
 
-- [delegate and events](READMEDelegateEvents.md) - delegates are a fundamental construct in C# that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate variable with additional restrictions,
-- [extension methods](ExtensionMethods.md) - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain.
-- [anonymous functions](AnonymousFunctions.cs) - allow definition and use of inline methods that don't have names,
+- [delegate and events][DelegateExample] - delegates are a fundamental construct in CSharp that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate variable with additional restrictions,
+- [extension methods][ExtensionMethodsMD] - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain.
+- [anonymous functions][AnonymousFunctionsMD] - allow definition and use of inline methods that don't have names,
 
-This folder provides examples of delegates, events, anonymous functions, and extension methods.
+This folder provides examples that can be applied to explain the above concepts.
 
 ## Delegates and Events
 
@@ -33,7 +33,7 @@ The class [ExtensionMethods][ExtensionMethods] provides a few examples of extens
 
 ## Anonymous Functions
 
-The class [AnonymousFunctions][AnonymousFunctions] provides a few examples of delegates and events. Check out the section [Anonymous Functions][AnonymousFunctionsMD] to get details. The UT located in the class [AnonymousFunctionsUnitTest][AnonymousFunctionsUnitTest] contains test methods illustrating how to use the delegates and events.
+The class [AnonymousFunctions][AnonymousFunctions] provides a few examples of delegates and events. Check out the section [Anonymous Functions][AnonymousFunctionsMD] to get details. The UT located in the class [AnonymousFunctionsUnitTest][AnonymousFunctionsUnitTest] contains test methods illustrating how to use the Anonymous Functions amd Expression Tree.
 
 [DelegateExample]: DelegateExample.cs#L16-L68
 [DelegateEventsMD]: READMEDelegateEvents.md
