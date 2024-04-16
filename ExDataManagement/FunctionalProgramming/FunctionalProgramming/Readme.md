@@ -17,7 +17,7 @@
 
 Object-oriented languages, including but not limited to CSharp, incorporate several features that contribute to functional programming. Let’s explore some of these constructs:
 
-- [delegate and events][DelegateExample] - delegates are a fundamental construct in CSharp that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate variable with additional restrictions,
+- [delegate and events][DelegateEventsMD] - delegates are a fundamental construct in CSharp that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate variable with additional restrictions,
 - [extension methods][ExtensionMethodsMD] - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain.
 - [anonymous functions][AnonymousFunctionsMD] - allow definition and use of inline methods that don't have names,
 
