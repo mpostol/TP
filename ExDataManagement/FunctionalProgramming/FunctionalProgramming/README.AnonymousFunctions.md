@@ -23,7 +23,7 @@
 
 ## 1. Introduction
 
-Delegates do not explicitly contribute to functional programming, although they cannot be omitted in the context of anonymous functions language constructs. They are also vital for implementing inter-layer communication. Considering both arguments it is clear that delegated must be investigated in detail as a part of the introduction describing selected language constructs implicitly contributing to functional programming.
+Delegates do not explicitly contribute to functional programming, although they cannot be omitted in the context of anonymous functions language constructs. They are also vital for implementing inter-layer communication. Considering both arguments it is clear that delegated must be investigated in detail as a part of the introduction describing selected language constructs implicitly contributing to anonymous function. I don't know where the name anonymous function came from. I can only guess, but let's look at the definition of an anonymous method.
 
 Let's discuss anonymous functions, including
 
@@ -33,7 +33,35 @@ Let's discuss anonymous functions, including
 
 ## 2. Anonymous Method
 
-An example of an anonymous method is provided in this test method (`AnonymousMethodTest`). Let me remind you that an anonymous method is one of the kinds of anonymous functions. I don't know where the name anonymous function came from. I can only guess, but let's look at the definition of an anonymous method. We have a typical delegate variable declaration on the left side of this line. Alt-F12 will remind us that `CallBackTestDelegate` is simply a delegate type. This is a delegate variable to which we associate a value in the form of a reference to a set of methods. In the example the set contains only one member. The method belonging to this set is defined in the expression to the right of the equals sign. For such a definition, we have a list of parameters, and of course, we have a block, i.e. a sequence of instructions that will be executed when the method is called. Since we do not have a name assigned here, we call this type of definition anonymous. We cannot refer to it in any other way than through the delegation variable, but the delegation variable has a name, so it is not that we cannot refer to the anonymous definition. Of course, the difference between creating a delegation, as in this case, a delegation from a named method and a delegation from an unnamed method, is only that in this case we substitute a value into the variable and this means that we can change this value. But leaving these details aside, in the next line we see another alternative to defining references, similar to a reference to a variable, and therefore a delegation to a method, which is again defined here as anonymous, where we have a list of parameters and we have a block. I will skip the syntax details because they are known from lessons about the CSharp language.
+The following example of an anonymous method is located in the [AnonymousMethodCallBackTest][AnonymousMethodCallBackTest] test method.
+
+``` CSharp
+AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = delegate (bool _result) { _testResult = _result; };
+
+```
+
+Let me remind you that an anonymous method is one of the kinds of anonymous functions. We have a typical delegate variable declaration on the left side of the following line. Alt-F12 will remind us that [CallBackTestDelegate][CallBackTestDelegate] is simply a delegate type as follows:
+
+``` CSharp
+  internal delegate void CallBackTestDelegate(bool testResult);
+```
+
+[AnonymousMethodCallBackTest]: ../FunctionalProgramming.UnitTest/AnonymousFunctionsUnitTest.cs#L34-L42
+[CallBackTestDelegate]: AnonymousFunctions.cs#L35C5-L35C66
+
+This is a delegate variable to which we assign a value in the form of a reference to a set of methods. In the above example the set contains only one member, namely:
+
+``` CSharp
+   delegate (bool _result) { _testResult = _result; }
+```
+
+ The method belonging to this set is defined in the expression to the right of the equals sign. For such a definition, we have a list of parameters, and of course, we have a block, i.e. a sequence of instructions that will be executed when the method is called. Since we do not have a name assigned here, we call this type of definition anonymous. We cannot refer to it in any other way than through the delegate variable, but the delegate variable has a name, so it is not that we cannot refer to the anonymous definition. Of course, the difference between creating a delegate, as in this case, a delegate from a named method and a delegate from an unnamed method, is only that in this case we assign a value into the variable and this means that we can change this value.
+
+But leaving these details aside, in the next line we see another alternative to defining references, similar to a reference to a variable, and therefore a delegate to a method, which is again defined here as anonymous, where we have a list of parameters and we have a block. I will skip the syntax details because they are known from lessons about the CSharp language.
+
+``` CSharp
+
+```
 
 Indeed, we can substitute this reference to the method as an actual argument of the formal argument for the method we have already discussed, it is defined within this object and is used to check the internal consistency of the object. And here, as before, we have an invariant that checks whether a variable in this case; we don't have to create an object, we have a variable that changes the value to `true`.
 

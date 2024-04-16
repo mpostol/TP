@@ -46,7 +46,8 @@ namespace TP.FunctionalProgramming
     {
       AnonymousFunctions _newInstance = new AnonymousFunctions();
       bool _testResult = false;
-      _newInstance.ConsistencyCheck(_result => _testResult = _result);
+      AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = _result => _testResult = _result;
+      _newInstance.ConsistencyCheck(_CallBackTestResult);
       Assert.IsTrue(_testResult);
     }
 
