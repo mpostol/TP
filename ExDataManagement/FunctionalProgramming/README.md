@@ -40,9 +40,11 @@ This predicate returns always `true` if the current string assigned to `stringTo
 Object-oriented languages, including but not limited to C\#, incorporate several features that contribute to functional programming. Let’s explore some of these constructs:
 
 - [delegate and events](FunctionalProgramming/READMEDelegateEvents.md) - delegates are a fundamental construct in C# that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate with additional restrictions
-- [anonymous functions](FunctionalProgramming/AnonymousFunctions.cs) - allow definition and use of inline methods that don't have names
 - [extension methods](FunctionalProgramming/ExtensionMethods.md) - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain
+- [anonymous functions](FunctionalProgramming/README.AnonymousFunctions.md) - allow definition and use of inline methods that don't have names
 
- In programming languages, inline method definitions refer to a technique where the method header and its block of statements are located directly as an operand of expression where it is to be executed contributing to the evaluated result, rather than being defined in advance as a separate named construct. As a result the method definition is unnamed. The main goal is to compress the whole expression to one line of code.
+In programming languages, inline method definitions refer to a technique where the method header and its block of statements are located directly as an operand of expression where it is to be executed contributing to the evaluated result, rather than being defined in advance as a separate named construct (named block). As a result the method definition is unnamed. The main goal is to compress the whole expression to one line of code.
+
+Check out the sections [Functional(Programming Implementation](FunctionalProgramming/Readme.md) to get more about available examples.
 
 Check out the sections [Extension Methods](FunctionalProgramming/ExtensionMethods.md) and [Anonymous Functions](FunctionalProgramming/AnonymousFunctions.cs) to learn more on these concepts, which booth contributes to the Language Integration Query (LINQ) concept. The LINQ concept will be examined in detail as a main topic contributing to the Structural Data section.
