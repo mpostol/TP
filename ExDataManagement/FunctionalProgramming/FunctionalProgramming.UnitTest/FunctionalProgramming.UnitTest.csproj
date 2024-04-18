@@ -55,6 +55,7 @@
     <Compile Include="FunctionalProgrammingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AnonymousFunctionsUnitTest.cs" />
+    <Compile Include="StaticClassTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FunctionalProgramming\FunctionalProgramming.csproj">
