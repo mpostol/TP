@@ -14,7 +14,7 @@
 
 ## Table of Content <!-- omit in toc -->
 
-- [1. Static Methods and Static Class](#1-static-methods-and-static-class)
+- [1. Static Classes and Static Methods](#1-static-classes-and-static-methods)
 - [2. Extension Method](#2-extension-method)
   - [2.1. Extension Methods in a Nutshell](#21-extension-methods-in-a-nutshell)
   - [2.2. Collision with Instance Method](#22-collision-with-instance-method)
@@ -22,13 +22,13 @@
   - [2.4. Conclusion](#24-conclusion)
 - [3. See Also](#3-see-also)
 
-## 1. Static Methods and Static Class
+## 1. Static Classes and Static Methods
 
-Object-oriented programming is not always beneficial. Static methods and a static class are language constructs committed to work without engaging object-oriented programming. There are several compelling reasons to use static constructs in CSharp. For example, static methods within a static class serve as utility functions. They allow you to group implementation of related responsibility without any need to other with creating an instance.
+Object-oriented programming is not always beneficial. Static constructs like static classes and static methods are language concepts committed to work without engaging object-oriented programming. There are several compelling reasons to use static constructs in CSharp. For example, static methods within a static class serve as utility functions. They allow you to group implementation of related responsibilities without creating an instance.
 
-The `StaticClass` is an example and examples illustrating the use of the static class are located in the `StaticClassTestMethod`. After opening the test you may use the alt+F12 key to have both definitions on the screen. We will not discuss them in detail but there are a few things that need to be underlined. Especially, I will not discuss the issues related to the programming language itself. So if you need detailed information about the syntax of the static class definition you must check out the CSharp user guide.
+The [StaticClass][StaticClass] is an example of a static class. The [StaticClassTestMethod][StaticClassTestMethod] illustrating the usage of the static class is located in the [StaticClassTest][StaticClassTest]. We will not discuss them in detail, but a few things need to be underlined. In particular, I will not discuss the issues related to the programming language itself. So if you need detailed information about the syntax of the static class definition you must check out the CSharp user guide.
 
-The static class construct has unique characteristics that set it apart from regular (non-static) classes. A static class is defined using the `static` keyword. It can only contain **static members** (methods, fields, properties). Unlike non-static classes, a static class cannot be instantiated. You cannot create an instance of it using the `new` operator. Since there's no instance variable, you access the members of a static class directly using the definition name itself. For example, if you have a static class named `StaticClass` with a public static method called `StaticClassInitializer`, you invoke it like this:
+The static class construct has unique characteristics that set it apart from regular (non-static) classes. A static class is defined using the `static` keyword. It can only contain static members (methods, fields, properties). Unlike non-static classes, a static class cannot be instantiated. In other words, you cannot create an instance of it using the `new` operator. Since there's no instance variable, you access the members of a static class directly using the definition name itself. For example, if you have a static class named [StaticClass][StaticClass] with a public static method called `StaticClassInitializer`, you invoke it like this:
 
 ``` CSharp
       StaticClass.StaticClassInitializer(3.0, 1.0);
@@ -36,11 +36,11 @@ The static class construct has unique characteristics that set it apart from reg
 
 In contrast to non-static classes, static classes cannot be inherited. A static constructor if present is called automatically before any member declared in that class is referenced. It ensures that necessary initialization occurs before any other code execution related to the static class.
 
+Because there are no variables of the static class it is impossible to refer to members using the instance selector to operate on contributing members. By design, to refer to a member of a static class it must be prefixed by the class name instead. In other words, a static class selector "." has to be a postfix of a static class name.
+
+It is worth stressing that the static class cannot be used as the type defining the compatible values of a variable. As a result, we can state that the static class is not a type. You cannot instantiate the static class and cannot operate on values of that type. So in the sense of type, as a linguistic construct that defines a set of allowable values the static class cannot be used. On the other hand, a static class can contain variables and these variables can be modified. It may also contain the implementation of responsibility. What it is if it isn't the type because its features don't fulfill the type definition. Because it can contain members - I mean variables and methods for example - we can recognize the static class as an organization unit gathering internal definitions and declarations available in the context of the static class name.
+
 In summary, a static class provides a convenient way to group related static members. It's a powerful tool for organizing utility functions and other stateless operations. Therefore, the static class can be recognized as an organization unit gathering its members. In contrast with the namespace construct it supports encapsulation allowing controlling the visibility of members outside of the boundary of definitions.
-
-Because there are no variables of the static class it is impossible to refer to members using the instance selector to operate on contributing members. By design, to refer to a member of a static class it must be prefixed by the class name instead. To access the members of a static class directly the class name must be applied as a prefix. In other words, a static class selector "." has to be applied only to a static class name.
-
-It is worth stressing that the static class cannot be used as the type of a variable. As a result, we can state that in fact, the static class is not a type, you cannot instantiate the static class, and you cannot operate on values of that type. So in the sense of type, as a linguistic construct that defines a set of allowable values, a static class cannot be used. On the other hand, a static class can contain variables and these variables can be modified. It may also contain functionality. What it is if it isn't the type because its features don't fulfill the type definition. Because it can contain members - I mean variables and methods for example - we can recognize the static class as an organization unit gathering internal definitions and declarations available in the context of the static class name.
 
 ## 2. Extension Method
 
@@ -122,11 +122,15 @@ It should be stressed that extension methods do not overwrite the members of an 
 [static-class-in-csharp]: https://dotnettutorials.net/lesson/static-class-in-csharp/
 [MSDN.sc]: https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members
 [MSDN.EM]: https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods
+
 [ProtectedMyInterfaceMethodCall]: ExtensionMethods.cs#L58-L63
 [ExtensionMethods]: ExtensionMethods.cs#L19-L64
 [WordCount]: ExtensionMethods.cs#L26-L29
 [Even]: ExtensionMethods.cs#L36-L39
 [MyInterfaceMethod]: IMyInterface.cs#L16-L22
+[StaticClass]: StaticClass.cs#L21-L76
+[StaticClassTestMethod]: ../FunctionalProgramming.UnitTest/StaticClassTest.cs#L20-L31
+[StaticClassTest]: ../FunctionalProgramming.UnitTest/StaticClassTest.cs#L17-L32
 [TypicalCallTestMethod]:  ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L27-L32
 [CascadedCallTestMethod]: ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L38-L43
 
