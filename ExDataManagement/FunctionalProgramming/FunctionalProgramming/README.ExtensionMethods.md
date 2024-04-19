@@ -28,7 +28,17 @@ Object-oriented programming is not always beneficial. Static constructs like sta
 
 The [StaticClass][StaticClass] is an example of a static class. The [StaticClassTestMethod][StaticClassTestMethod] illustrating the usage of the static class is located in the [StaticClassTest][StaticClassTest]. We will not discuss them in detail, but a few things need to be underlined. In particular, I will not discuss the issues related to the programming language itself. So if you need detailed information about the syntax of the static class definition you must check out the CSharp user guide.
 
-The static class construct has unique characteristics that set it apart from regular (non-static) classes. A static class is defined using the `static` keyword. It can only contain static members (methods, fields, properties). Unlike non-static classes, a static class cannot be instantiated. In other words, you cannot create an instance of it using the `new` operator. Since there's no instance variable, you access the members of a static class directly using the definition name itself. For example, if you have a static class named [StaticClass][StaticClass] with a public static method called `StaticClassInitializer`, you invoke it like this:
+The static class construct has unique characteristics that set it apart from regular (non-static) classes. A static class is defined using the `static` keyword. It can only contain static members (methods, fields, properties). Unlike non-static classes, a static class cannot be instantiated. In other words, you cannot create an instance of it using the `new` operator. Since there's no instance variable, you access the members of a static class directly using the definition name itself. For example, if you have a static class named [StaticClass][StaticClass] with a public static method called [StaticClassInitializer][StaticClassInitializer]:
+
+``` CSharp
+    public static void StaticClassInitializer(double maxIncome, double minIncome)
+    {
+      MaxIncome = maxIncome;
+      MinIncome = minIncome;
+    }
+```
+
+you invoke it like this:
 
 ``` CSharp
       StaticClass.StaticClassInitializer(3.0, 1.0);
@@ -46,7 +56,7 @@ In summary, a static class provides a convenient way to group related static mem
 
 ### 2.1. Extension Methods in a Nutshell
 
-Because there are no variables of the static class type it is impossible to invoke the static methods using the instance method invocation syntax. Traditionally, to invoke a method defined inside a static class it must be prefixed by the class name. As a result, the invocations cannot be cascaded. For example, we can't call `A().B().C()` of A, B, and C methods, which are exposed by a static class because the selector "." may be applied only to a value but there is no value of the static class. To access the members of a static class directly the class name must be applied as a prefix. To overcome this obstacle the extension method concept has been introduced. Thanks to the C Sharp programming language the existence of an instance method for a selected type can be simulated using the extension methods construct. To do this, the signature of the static method must have the `this` keyword as the prefix of the first argument. In other words, extension methods are a kind of static method, that can be called as if they were instance methods of the first argument type.
+Because there are no variables of the static class type it is impossible to invoke the static methods using the instance method invocation syntax. Traditionally, to invoke a method defined inside a static class it must be prefixed by the class name. As a result, the invocations cannot be cascaded. For example, we can't call `A().B().C()` of A, B, and C methods, which are exposed by a static class because the selector "." may be applied only to a value but there is no value of the static class. To access the members of a static class directly the class name must be applied as a prefix. To overcome this obstacle the extension method concept has been introduced. Thanks to the extension method concept the existence of an instance method for a selected type can be simulated using the extension methods construct. To do this, the signature of the static method must have the `this` keyword as the prefix of the first argument. In other words, extension methods are a kind of static method, that can be called as if they were instance methods of the first argument type.
 
 To illustrate the problem, let's consider a scenario where we want to invoke static methods in a cascade. Cascading invocation is a technique where multiple method calls are chained together in a single expression. To investigate this scenario, I have defined two static methods in the [ExtensionMethods][ExtensionMethods] class. The first [WordCount][WordCount] whose `string` parameter is analyzed and the number of words this `string` argument contains is evaluated. The second method, `[Even][Even] has an integer argument and returns a boolean value that indicates whether the number is even or odd.
 
@@ -128,6 +138,7 @@ It should be stressed that extension methods do not overwrite the members of an 
 [WordCount]: ExtensionMethods.cs#L26-L29
 [Even]: ExtensionMethods.cs#L36-L39
 [MyInterfaceMethod]: IMyInterface.cs#L16-L22
+[StaticClassInitializer]: StaticClass.cs#L50-L54
 [StaticClass]: StaticClass.cs#L21-L76
 [StaticClassTestMethod]: ../FunctionalProgramming.UnitTest/StaticClassTest.cs#L20-L31
 [StaticClassTest]: ../FunctionalProgramming.UnitTest/StaticClassTest.cs#L17-L32
