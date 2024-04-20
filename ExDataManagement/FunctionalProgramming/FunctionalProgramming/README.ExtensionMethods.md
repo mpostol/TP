@@ -10,19 +10,10 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 -->
-# Extension Methods <!-- omit in toc -->
 
-## Table of Content <!-- omit in toc -->
+# Extension Methods
 
-- [1. Static Classes and Static Methods](#1-static-classes-and-static-methods)
-- [2. Extension Method](#2-extension-method)
-  - [2.1. Extension Methods in a Nutshell](#21-extension-methods-in-a-nutshell)
-  - [2.2. Collision with Instance Member](#22-collision-with-instance-member)
-  - [2.3. Instance Invocation for `null` Value](#23-instance-invocation-for-null-value)
-  - [2.4. Conclusion](#24-conclusion)
-- [3. See Also](#3-see-also)
-
-## 1. Static Classes and Static Methods
+## Static Classes and Static Methods
 
 Object-oriented programming is not always beneficial. Static constructs like static classes and static methods are language concepts committed to work without engaging object-oriented programming. There are several compelling reasons to use static constructs in CSharp. For example, static methods within a static class serve as utility functions. They allow you to group implementation of related responsibilities without creating an instance.
 
@@ -52,9 +43,9 @@ It is worth stressing that the static class cannot be used as the type defining 
 
 In summary, a static class provides a convenient way to group related static members. It's a powerful tool for organizing utility functions and other stateless operations. Therefore, the static class can be recognized as an organization unit gathering its members. In contrast with the namespace construct it supports encapsulation allowing controlling the visibility of members outside of the boundary of definitions.
 
-## 2. Extension Method
+## Extension Method
 
-### 2.1. Extension Methods in a Nutshell
+### Extension Methods in a Nutshell
 
 Because there are no variables of the static class type it is impossible to invoke the exposed by it methods using the instance method invocation syntax. To invoke a method defined as a member of a static class it must be prefixed by the class name. As a result, the invocations cannot be cascaded. For example, we can't call `A().B().C()` of A, B, and C methods, which are exposed by a static class because the selector `.` may be applied only to a value but there is no value of the static class. To access the members of a static class directly the class name must be added as a prefix. To overcome this obstacle the extension method concept has been introduced. Thanks to the extension method concept the existence of an instance method for a selected type can be simulated using the extension methods construct. To do this, the signature of the static method must have the `this` keyword as the prefix of the first argument. In other words, extension methods are a kind of static method, that can be called as if they were instance methods of the first argument type.
 
@@ -90,7 +81,7 @@ In the above code snippet, both calls of the same method are equivalent consider
 
 We can summarize this part of the discussion by stating that it is possible and equivalent for the extension method to have the syntax of invocation derived from the instance invocation of methods and classic as for static methods with the class name prefix.
 
-### 2.2. Collision with Instance Member
+### Collision with Instance Member
 
 Let's return to the [ExtensionMethods][ExtensionMethods] class where the previously used methods were defined. I have defined another extension method for the `string` class. Intentionally it duplicates the definition of the same instance method exposed by the `string` class. Here we have the definition of the `String` class:
 
@@ -112,7 +103,7 @@ The first way is to use it as an extension method and use the instance method ca
 
 Now we can summarize this discussion. If the name of an extension method conflicts with the name of a method for the extended type, it will not be invoked using the new syntax resembling the call for a member of the extended type. To make sure it is executed the typical calling syntax for a static method has to be used.
 
-### 2.3. Instance Invocation for `null` Value
+### Instance Invocation for `null` Value
 
 Analyzing the behavior of previously presented extension methods, we can observe there are no limits on what type is to be extended. It can be a reference type, as in the case of the [WordCount][WordCount] method, or a value type, as in the case of the [Even][Even] method. An interesting case is extending the interface. The [ProtectedMyInterfaceMethodCall][ProtectedMyInterfaceMethodCall] method uses the interface defined in the context of this example. This interface defines the [MyInterfaceMethod][MyInterfaceMethod] method which is executed provided that the first parameter of this method is not `null`, as follows
 
@@ -125,7 +116,7 @@ Analyzing the behavior of previously presented extension methods, we can observe
     }
 ```
 
-Let's look at the behavior of this method in several scenarios. The first one may be found in  the [NullCallExceptionTest][NullCallExceptionTest] method where the value of the `_myInterface` variable is null. 
+Let's look at the behavior of this method in several scenarios. The first one may be found in  the [NullCallExceptionTest][NullCallExceptionTest] method where the value of the `_myInterface` variable is null.
 
 ``` CSharp
       IMyInterface _myInterface = null;
@@ -135,13 +126,13 @@ Let's look at the behavior of this method in several scenarios. The first one ma
 
 For the `null` value calling the interface method results in the environment throwing an exception and signaling that it is impossible to call the instance method for the `null` value in case there is no instance. When using the instance invocation syntax for an extension the referred method is executed indeed. In this case, we can confirm that an exception was thrown as a result of the execution of this method.
 
-### 2.4. Conclusion
+### Conclusion
 
 So let's summarize what an extension method is. Well, it is a static method declared in a static class. Following the second condition, it must have at least one parameter. Additionally, this parameter must be preceded by the `this` keyword. To be visible, the namespace in which it is declared must be added to the list of default namespaces applying the `using` directive. For the extension methods we can use the invocation syntax exactly the same as for  calling methods defined as components of the selected type.
 
 It should be stressed that extension methods do not overwrite the members of an existing type. That is, they cannot be used to modify or replace existing type methods like in the case of inheriting from the base type and defining methods in the derived type. Another important feature of extension methods is that they can be invoked for null values because the compiler replaces the syntax for calling the extension method with the syntax for the static method. Therefore we should be aware that the extension method invocation only mimics the invocation of an instance member. Sometimes it could be confused but it should be recognized as a trade-off considering the benefits we will learn later.
 
-## 3. See Also
+## See Also
 
 - [Static Classes and Static Class Members - C\# Programming Guide][MSDN.sc]
 - [Static Class in C\# with Examples (Dot Net Tutorials)][static-class-in-csharp]

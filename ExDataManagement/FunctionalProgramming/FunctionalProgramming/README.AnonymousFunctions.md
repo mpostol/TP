@@ -11,17 +11,9 @@
 //____________________________________________________________________________________________________________________________
 -->
 
-# Anonymous Functions <!-- omit in toc -->
+# Anonymous Functions
 
-## Table of Content <!-- omit in toc -->
-
-- [1. Introduction](#1-introduction)
-- [2. Anonymous Method](#2-anonymous-method)
-- [3. Lambda Expressions](#3-lambda-expressions)
-- [4. Expression Tree](#4-expression-tree)
-- [5. See also](#5-see-also)
-
-## 1. Introduction
+## Introduction
 
 Delegates do not explicitly contribute to functional programming, although they cannot be omitted in the context of anonymous functions language constructs. They are also vital for implementing inter-layer communication. Considering both arguments it is clear that delegated must be investigated in detail as a part of the introduction describing selected language constructs implicitly contributing to anonymous function. I don't know where the name anonymous function came from. I can only guess, but let's look at the definition of an anonymous method.
 
@@ -31,7 +23,7 @@ Let's discuss anonymous functions, including
 - lambda expressions
 - expression tree
 
-## 2. Anonymous Method
+## Anonymous Method
 
 The following example of an anonymous method is located in the [AnonymousMethodCallBackTest][AnonymousMethodCallBackTest] test method.
 
@@ -56,7 +48,7 @@ The method belonging to this set is defined in the expression to the right of th
 
 For such a definition, we have a list of parameters, and of course, we have a block, i.e. a sequence of instructions that will be executed when the method is called. Since we do not have a name assigned here, we call this type of definition anonymous. We cannot refer to it in any other way than through the delegate variable, but the delegate variable has a name, so it is not that we cannot refer to the anonymous definition. Of course, the difference between creating a delegate, as in this case, a delegate from a named method and a delegate from an unnamed method, is only that in this case we assign a value into the variable and this means that we can change this value.
 
-## 3. Lambda Expressions
+## Lambda Expressions
 
 A lambda expression with an expression on the right side of the `=>` operator that is called an expression lambda. An expression lambda has the following syntax form:
 
@@ -83,7 +75,7 @@ If we compare the definition of a named method - here we have just such a named 
 
 Let's move on to the next incarnation of anonymous functions, namely the lambda expression. Here, in this test method, we have the same functionality as before, using the lambda expression. I would like to remind you that nothing has changed in this method. The delegate variable is still a formal parameter. Hence, the current argument must be a reference to a method with a compatible signature. What is written in round brackets is simply a method, the same method as before; with the same functionality. Just using a different syntax again. Moreover, this syntax can be further simplified. You can drop a type specification here and have the compiler determine all possible types. To make it infer the types, for example, the type of passed argument. Of course, knowing the definition of this method, you can easily deduce from this delegate what type of formal argument must be. So, again, comparing the definition of an anonymous method with a lambda expression, we can conclude that only syntax is different.
 
-## 4. Expression Tree
+## Expression Tree
 
 Expression lambdas are used extensively in the construction of [Expression Trees][ET]. Expression lambdas are a part of anonymous function concept. As an introduction let's come back to the question of what does the term anonymous function mean? There is another outstanding question of what is a reason of all these syntax changes that ira encountered in context of anonymous function? Why do we need another syntax construct of the same functionality that we had in the ([AnonymousMethodCallBackTest][AnonymousMethodCallBackTest]) method? Let's go back again to this entry while answering the question of what an anonymous function is.
 
@@ -123,7 +115,7 @@ This is important because object representation of an expression using the [Expr
 
 To make the translation possible all side effects must be omitted because the expression is to be executed in the context of external data source but not in a context of program and especially in the context of an instance of reference type. By design this requirement is well suited to be addressed by the functional programming style.
 
-## 5. See also
+## See also
 
 
 - [Anonymous Functions (Programming Guide)](https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)

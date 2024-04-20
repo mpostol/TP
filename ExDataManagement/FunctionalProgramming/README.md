@@ -11,7 +11,7 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Functional Programming
+# Preface
 
 Programming styles, also known as coding styles or code styles, are sets of rules or guidelines that govern the templating of source code. These styles help programmers read and understand code, maintain it, and reduce the likelihood of introducing errors. Let’s explore functional programming as one of them. It is a paradigm that emphasizes treating data processing as resembling mathematical functions. In other words, functions are first-class citizens in functional programming. Functional programming is recognized as a foundation for processing external structural data governed by a Database Management System (DBMS). The DBMS is software executed atop an appropriate platform or technology used to organize, store, retrieve, and manipulate data in an organized manner.
 
