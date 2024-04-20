@@ -46,10 +46,11 @@ namespace TP.FunctionalProgramming
     /// Test method of the rule: the existing class method cannot be replaced by an extension method.
     /// </summary>
     [TestMethod]
-    public void OverrideTestMethod()
+    public void CollisionWithInstanceMemberTest()
     {
-      string _TestString = "Hello Extension Methods";
-      Assert.IsTrue(_TestString.Contains("Hello")); //An extension method with the same name and signature as an interface or class method will never be called.
+      string testString = "Hello Extension Methods";
+      Assert.IsTrue(testString.Contains("Hello")); //An extension method with the same name and signature as an interface or class method will never be called.
+      Assert.ThrowsException<NotImplementedException>(() => ExtensionMethods.Contains(testString, "Hello"));
     }
 
     /// <summary>
