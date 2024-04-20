@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -13,6 +13,17 @@ using System;
 
 namespace TP.FunctionalProgramming
 {
+  /// <summary>
+  /// Define an example interface named IMyInterface.
+  /// </summary>
+  public interface IMyInterface
+  {
+    /// <summary>
+    /// Any class that implements IMyInterface must implement the method that matches the following signature.
+    /// </summary>
+    void MyInterfaceMethod();
+  }
+
   /// <summary>
   /// Class ExtensionMethods - defines a few extension methods.
   /// </summary>

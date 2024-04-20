@@ -35,7 +35,7 @@ namespace TP.FunctionalProgramming
     /// You can invoke the extension method with instance method syntax.
     /// </summary>
     [TestMethod]
-    public void SequentialCallTestMethod()
+    public void CascadedCallTestMethod()
     {
       string _TestString = "Hello Extension Methods";
       Assert.IsFalse(_TestString.WordCount().Even()); //To enable extension methods for a particular type, the definition must be visible.
@@ -46,32 +46,22 @@ namespace TP.FunctionalProgramming
     /// Test method of the rule: the existing class method cannot be replaced by an extension method.
     /// </summary>
     [TestMethod]
-    public void OverrideTestMethod()
+    public void CollisionWithInstanceMemberTest()
     {
-      string _TestString = "Hello Extension Methods";
-      Assert.IsTrue(_TestString.Contains("Hello")); //An extension method with the same name and signature as an interface or class method will never be called.
+      string testString = "Hello Extension Methods";
+      Assert.IsTrue(testString.Contains("Hello")); //An extension method with the same name and signature as an interface or class method will never be called.
+      Assert.ThrowsException<NotImplementedException>(() => ExtensionMethods.Contains(testString, "Hello"));
     }
 
     /// <summary>
-    /// Calling the instance method if the reference is null is impossible.
+    /// Instance method call if the reference is null
     /// </summary>
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
     public void NullCallExceptionTest()
     {
       IMyInterface _myInterface = null;
-      _myInterface.MyInterfaceMethod(); //Here the runtime throws the exception NullReferenceException.
-    }
-
-    /// <summary>
-    /// Calling the extension method if the reference is null proceeds normally.
-    /// </summary>
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void NullCallTest()
-    {
-      IMyInterface _myInterface = null;
-      _myInterface.ProtectedMyInterfaceMethodCall();
+      Assert.ThrowsException<NullReferenceException>(() => _myInterface.MyInterfaceMethod()); //Here the runtime throws the exception NullReferenceException.
+      Assert.ThrowsException<ArgumentNullException>(() => _myInterface.ProtectedMyInterfaceMethodCall()); //Here the ProtectedMyInterfaceMethodCall method is executed despite the reference being null.
     }
   }
 }
