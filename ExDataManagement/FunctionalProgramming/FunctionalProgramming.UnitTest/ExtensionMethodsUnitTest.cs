@@ -54,25 +54,14 @@ namespace TP.FunctionalProgramming
     }
 
     /// <summary>
-    /// Calling the instance method if the reference is null is impossible.
+    /// Instance method call if the reference is null
     /// </summary>
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
     public void NullCallExceptionTest()
     {
       IMyInterface _myInterface = null;
-      _myInterface.MyInterfaceMethod(); //Here the runtime throws the exception NullReferenceException.
-    }
-
-    /// <summary>
-    /// Calling the extension method if the reference is null proceeds normally.
-    /// </summary>
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void NullCallTest()
-    {
-      IMyInterface _myInterface = null;
-      _myInterface.ProtectedMyInterfaceMethodCall();
+      Assert.ThrowsException<NullReferenceException>(() => _myInterface.MyInterfaceMethod()); //Here the runtime throws the exception NullReferenceException.
+      Assert.ThrowsException<ArgumentNullException>(() => _myInterface.ProtectedMyInterfaceMethodCall()); //Here the ProtectedMyInterfaceMethodCall method is executed despite the reference being null.
     }
   }
 }

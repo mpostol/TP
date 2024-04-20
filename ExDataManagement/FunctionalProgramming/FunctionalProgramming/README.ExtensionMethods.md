@@ -18,10 +18,9 @@
 - [2. Extension Method](#2-extension-method)
   - [2.1. Extension Methods in a Nutshell](#21-extension-methods-in-a-nutshell)
   - [2.2. Collision with Instance Member](#22-collision-with-instance-member)
-- [3. Instance Invocation for `null` Value](#3-instance-invocation-for-null-value)
-  - [3.1. Definition](#31-definition)
-  - [3.2. Conclusion](#32-conclusion)
-- [4. See Also](#4-see-also)
+  - [2.3. Instance Invocation for `null` Value](#23-instance-invocation-for-null-value)
+  - [2.4. Conclusion](#24-conclusion)
+- [3. See Also](#3-see-also)
 
 ## 1. Static Classes and Static Methods
 
@@ -113,7 +112,7 @@ The first way is to use it as an extension method and use the instance method ca
 
 Now we can summarize this discussion. If the name of an extension method conflicts with the name of a method for the extended type, it will not be invoked using the new syntax resembling the call for a member of the extended type. To make sure it is executed the typical calling syntax for a static method has to be used.
 
-## 3. Instance Invocation for `null` Value
+### 2.3. Instance Invocation for `null` Value
 
 Analyzing the behavior of previously presented extension methods, we can observe there are no limits on what type is to be extended. It can be a reference type, as in the case of the [WordCount][WordCount] method, or a value type, as in the case of the [Even][Even] method. An interesting case is extending the interface. The [ProtectedMyInterfaceMethodCall][ProtectedMyInterfaceMethodCall] method uses the interface defined in the context of this example. This interface defines the [MyInterfaceMethod][MyInterfaceMethod] method which is executed provided that the first parameter of this method is not `null`, as follows
 
@@ -126,25 +125,27 @@ Analyzing the behavior of previously presented extension methods, we can observe
     }
 ```
 
-Let's look at the behavior of this method in several scenarios. The first one may be found in this test method where the value of the `_myInterface` variable is null. For the null value calling the interface method results in the environment throwing an exception and signaling that it is impossible to call the instance method for the null value in case there is no instance.
+Let's look at the behavior of this method in several scenarios. The first one may be found in  the [NullCallExceptionTest][NullCallExceptionTest] method where the value of the `_myInterface` variable is null. 
 
-W przypadku wykorzystywania składni dla metody rozszerzającej; to kolejna metoda testowa; W tym przypadku znowu zmienna `_myInterface` jest null, ale wykonujemy metodę jako metodę rozszerzającą. Tutaj widzimy, że sprawdzamy, czy pierwszy parametr jest null to rzucamy exception. I w tym przypadku możemy potwierdzić, że ta metoda została wykonana i że w wyniku wykonania tej metody został wyrzucony wyjątek, co sygnalizowane jest w metodzie testowej atrybutem `ExpectedException`.
+``` CSharp
+      IMyInterface _myInterface = null;
+      Assert.ThrowsException<NullReferenceException>(() => _myInterface.MyInterfaceMethod());
+      Assert.ThrowsException<ArgumentNullException>(() => _myInterface.ProtectedMyInterfaceMethodCall());
+```
 
-### 3.1. Definition
+For the `null` value calling the interface method results in the environment throwing an exception and signaling that it is impossible to call the instance method for the `null` value in case there is no instance. When using the instance invocation syntax for an extension the referred method is executed indeed. In this case, we can confirm that an exception was thrown as a result of the execution of this method.
 
-So let's summarize what an extension method is. Well, it is a static method declared in a static class. Following the second condition, it must have at least one parameter. Additionally, this parameter must be preceded by the `this` keyword. To be visible, the namespace in which it is declared must be added to the list of default namespaces applying the `using` directive.
+### 2.4. Conclusion
 
-To conclude the discussion on calling extension methods, it should be emphasized that in this case, we can use the invocation syntax exactly as we know it from calling methods defined as components of the selected type.
+So let's summarize what an extension method is. Well, it is a static method declared in a static class. Following the second condition, it must have at least one parameter. Additionally, this parameter must be preceded by the `this` keyword. To be visible, the namespace in which it is declared must be added to the list of default namespaces applying the `using` directive. For the extension methods we can use the invocation syntax exactly the same as for  calling methods defined as components of the selected type.
 
-### 3.2. Conclusion
+It should be stressed that extension methods do not overwrite the members of an existing type. That is, they cannot be used to modify or replace existing type methods like in the case of inheriting from the base type and defining methods in the derived type. Another important feature of extension methods is that they can be invoked for null values because the compiler replaces the syntax for calling the extension method with the syntax for the static method. Therefore we should be aware that the extension method invocation only mimics the invocation of an instance member. Sometimes it could be confused but it should be recognized as a trade-off considering the benefits we will learn later.
 
-It should be stressed that extension methods do not overwrite the members of an existing type. That is, they cannot be used to modify or replace existing type methods, so they do not work in this case; there is no similarity with inheriting from the base type and defining methods in the derived type. Another important feature of extension methods is that they can be invoked for null values because the compiler replaces the syntax for calling the extension method with the syntax for the static method. Therefore we should be aware that extension method invocation only mimics invocation of an instance member. Sometimes it could confuse but it should be recognized as a trade-off considering the benefits we will learn later.
+## 3. See Also
 
-## 4. See Also
-
-- [Extension Methods (C# Programming Guide) on MSDN][MSDN.EM]
-- [Static Classes and Static Class Members (C# Programming Guide)][MSDN.sc]
-- [Static Class in C# with Examples - Dot Net Tutorials.][static-class-in-csharp]
+- [Static Classes and Static Class Members - C\# Programming Guide][MSDN.sc]
+- [Static Class in C\# with Examples (Dot Net Tutorials)][static-class-in-csharp]
+- [Extension Methods (C\# Programming Guide) on MSDN][MSDN.EM]
 
 [static-class-in-csharp]: https://dotnettutorials.net/lesson/static-class-in-csharp/
 [MSDN.sc]: https://learn.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members
@@ -166,6 +167,7 @@ It should be stressed that extension methods do not overwrite the members of an 
 [TypicalCallTestMethod]:  ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L27-L32
 [CascadedCallTestMethod]: ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L38-L43
 [ExtensionMethodsUnitTest]: ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L21-L76
+[NullCallExceptionTest]: ../FunctionalProgramming.UnitTest/ExtensionMethodsUnitTest.cs#L61-L65
 
 <!--
 Research:
