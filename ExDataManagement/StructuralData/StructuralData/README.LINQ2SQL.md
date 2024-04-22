@@ -9,14 +9,4 @@
 //________________________________________________________________________________________________________________
 -->
 
-# Structural Data - Implementation Examples
-
-## Introduction
-
-## LINQ query and methods syntax
-
-## LINQ to object
-
-## LINQ to SQL
-
-## Conclusion
+# LINQ to SQL

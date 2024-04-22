@@ -1,16 +1,15 @@
+<!--
+//________________________________________________________________________________________________________________
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the 
+// discussion panel at https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//________________________________________________________________________________________________________________
+-->
+
 # Structural Data Preface
-
-## Lesson 08 - Anonymous function and lambda expression
-
-## Lesson 09 - Extension method
-
-## Lesson 10 - LINQ query and methods syntax
-
-## Lesson 11 - LINQ to object
-
-## Lesson 12 - LINQ to SQL
-
-### Conclusion
 
 In both examples, LINQ operations remain essentially the same. The difference lies in the data source to which LINQ expressions are applied.
 
@@ -25,16 +24,3 @@ If the source implements `IQueryable<T>` (which extends `IEnumerable<T>`) then o
 * [LINQ to SQL tools in Visual Studio](https://docs.microsoft.com/visualstudio/data-tools/linq-to-sql-tools-in-visual-studio2?view=vs-2017)
 * [LINQ to SQL](https://docs.microsoft.com/dotnet/framework/data/adonet/sql/linq/)
 * [Entity Framework Documentation](https://docs.microsoft.com/ef/)
-
-<!--
-//____________________________________________________________________________________________________________________________________
-//
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
-//
-//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
-//
-//  https://github.com/mpostol/TP/discussions/182
-//
-//  by introducing yourself and telling us what you do with this community.
-//_____________________________________________________________________________________________________________________________________
--->
