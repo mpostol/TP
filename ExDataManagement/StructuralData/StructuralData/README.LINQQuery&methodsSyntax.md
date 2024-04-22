@@ -9,16 +9,13 @@
 //________________________________________________________________________________________________________________
 -->
 
-# LINQ query and methods syntax
+# LINQ expression - query and methods syntax
 
-- [LINQ query and methods syntax](#linq-query-and-methods-syntax)
+- [LINQ expression - query and methods syntax](#linq-expression---query-and-methods-syntax)
   - [Introduction](#introduction)
   - [Structure Dane Fundamentals](#structure-dane-fundamentals)
   - [External Repositories](#external-repositories)
-  - [Iterowanie a filtrowanie](#iterowanie-a-filtrowanie)
-    - [Wstęp](#wstęp)
-  - [Praca z kodem](#praca-z-kodem)
-    - [Składnia kwerendy](#składnia-kwerendy)
+  - [Iteration vs Filtering](#iteration-vs-filtering)
 
 ## Introduction
 
@@ -63,9 +60,7 @@ There is a fundamental difference between operating on streaming and structured 
 - By design, streaming data is serialized and deserialized into local structured data as an entity stored in a file
 - Access to external structured data is provided through queries that are carried out in the DBMS process, i.e. remotely, and data processing can take place both remotely and locally.
 
-## Iterowanie a filtrowanie
-
-### Wstęp
+## Iteration vs Filtering
 
 Usually, in the case of data sequences, for example, a sequence of records from a personal database, we process them iteratively, i.e. we repeat selected activities for each element of the sequence, starting from the first element up to the end of the sequence. The need to perform queries remotely via the DBMS forces the process to be divided into two stages:
 
@@ -74,18 +69,11 @@ Usually, in the case of data sequences, for example, a sequence of records from 
 
 In the case of external data repositories, we have no alternative to this scenario. However, in practice, it also turned out that such an approach is a good scenario when operating on local data in the working memory of the program.
 
-## Praca z kodem
-
-### Składnia kwerendy
-
 Let's start the analysis of access mechanisms to structured data with a unit test, which checks that two methods defined in a separate library return the same result.
 
 The first method [ForeachExample][ForeachExample] contains a sequence of instructions that processes an array containing a few words. As a result of using the `foreach` statement and the if statement, all words that start with "g" are selected inside the `foreach` statement and added to the list defined as _wordQuery. Finally, in the return statement, we concatenate all the selected words in the list, separate them with a semicolon, and return them as a single string.
 
 The [QuerySyntax][QuerySyntax] method implements exactly the same algorithm and operates on an identical array of words, based on which the value of the _wordQuery variable is evaluated. Again, the return value is concatenated into a string of words separated by commas.
-
-[ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
-[QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
 
 Because:
 
@@ -140,10 +128,11 @@ W pierwszym kroku wyrażenie LINQ nie jest wykonywane, tylko tłumaczone tak, by
 - może być wykonany lokalnie jako wyrażenie
 - może być przetłumaczony na dowolny język dedykowany dla wybranego repozytorium i wysłany do niego w celu zdalnego wykonania
 
-Scenariusz, w którym tłumaczymy wyrażenie na inny język i wykonujemy kwerendę zdalnie wymaga spełnienia dodatkowych warunkach, o których opowiem później.
+Scenariusz, w którym tłumaczymy wyrażenie na inny język i wykonujemy kwerendę zdalnie wymaga spełnienia dodatkowych warunków, o których opowiem później.
 
 Rozważmy jeszcze teoretyczny scenariusz, w którym użyjemy instrukcji foreach i zmiennej reprezentującej zewnętrzne repozytorium. Ponieważ w obu przypadkach zmienna ta musi implementować interfejs IEnumerable, jest to nawet praktycznie możliwe. Jednak w takim przypadku nie można zrealizować wstępnej selekcji i wszystkie dane muszą być skopiowane do lokalnej pamięci ze zdalnego repozytorium, aby mogły być wykorzystane przez tą instrukcję.
-Takie rozbicie procesu przetwarzania na selekcję i operowanie na podzbiorze danych, które zostały wyselekcjonowane, ma zastosowanie nie tylko do zewnętrznych repozytoriów, gdzie musi być zastosowane. Mianowicie, jest przydatne również, gdy trzeba rozdzielić miejsce występowania w programie preselekcji danych i ich przetwarzania w celu poprawy efektywności procesu tworzenie programu dzięki możliwości koncentracji uwagi na wybranych aspektach implementacji algorytmu, a w tym przypadku na selekcji danych i operowaniu na danych.
+
+Takie rozbicie procesu przetwarzania na selekcję i w związku z tym operowanie tylko na podzbiorze danych, które zostały wyselekcjonowane, ma zastosowanie nie tylko do zewnętrznych repozytoriów, gdzie musi być zastosowane. Mianowicie, jest przydatne również, gdy trzeba rozdzielić miejsce występowania w programie preselekcji danych i ich przetwarzania w celu poprawy efektywności procesu tworzenie programu dzięki możliwości koncentracji uwagi na wybranych aspektach implementacji algorytmu, a w tym przypadku na selekcji danych i operowaniu na danych.
 
 ## Praca domowa
 
@@ -175,6 +164,8 @@ Poprawność odpowiedzi na to pytanie i co ważniejsze jakie są konsekwencje mo
 Ważnym słowem w tym pytaniu jest „musimy”, no bo jeśli musimy to pytanie „czy warto?” staje się bezzasadne. Jeśli musimy to nie trzeba już szukać innych kryteriów uzasadniających wykorzystanie typów anonimowych.  
 -->
 
+[ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
+[QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
 [TestDataGenerator]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
 [Person]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
 [CDCatalog]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L72
