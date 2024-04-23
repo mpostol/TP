@@ -92,22 +92,32 @@ The expression in the second method is called a LINQ.
 
 Language-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the programming language. In the above snippet, the query syntax has been applied. Later, we will also analyze a different form compliant with the method syntax.
 
+It should be clearly emphasized here that we have an instruction in the `ForeachExample` method. In contrast, in `QuerySyntax` we have an expression, so they cannot be compared - because they are two different language constructs. We can only talk about their similar role in the sequence of value determination, but we cannot speak about their equivalence.
+
+It is worth noting that in both cases there is the `_words` variable representing the data source with a certain sequence of values. A sequence is characterized by the fact that its first element is known and for each element except the last one its successor is known. Complex data that is characterized by such relationships between elements is represented by the `IEnumerable` type.
+
+The F12 key will take us to the definition of this interface. From this definition, we see that it contains one method: GetEnumerator. Again, the F12 opens the definition of the `IEnumerator` interface, and using the Alt-F12 key opens the non-generic definition of the same interface. The definition of this type shows that the selection of components of the returned object involves highlighting one element, called the `Current` one. However, the MoveNext method confirms that this composition is a sequence.
+
+Returning to the analysis of our sample code, it should be emphasized that the `_words` variable must be of a type implementing the `IEnumerable` interface. This is due to the language requirements of the definition of the `foreach` statement and LINQ expression.
+
+However, since we can use two different language structures to implement the same information processing algorithm, we must formulate an objective condition allowing us to choose one of them in a specific case. In other words, we have to address the question: why do we need two similar language constructs and two different ways of operating on data sequences? To answer this question, we need to know one more feature of LINQ expressions.
+
+So let's move on to the next example. The [QuerySyntaxSideEffectTest][QuerySyntaxSideEffectTest] unit test was used to call another implementation of a similar algorithm for determining a string value based on the content of the array as before, i.e. containing a few words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to removing words starting with the letter q, but placed in the code after the instruction containing the LINQ expression. According to its semantics, an expression is responsible for selecting words for q. Here we can notice a certain contradiction, namely, an expression is a sequence of operations that are performed to determine one value of a base type, which can be predicted in advance at the compilation stage, i.e. when writing the program. However, if the operations described by a LINQ expression were successfully performed, the `_wordQuery` variable should contain a string of selected words and the following  instruction modifying the data source
+
+``` CSharp
+       _words[2] = "pear";
+```
+
+could not affect the final result of the operation. Unfortunately it is not true in this case. This time, the result is an empty string. How to explain this?
+
+[QuerySyntaxSideEffectTest]: ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L28-L31
+[QuerySyntaxSideEffect]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L39-L47
+
 <!--
-Tu trzeba wyraźnie podkreślić, że w pierwszej metodzie mamy instrukcję, natomiast w drugim wrażenie, więc nie można ich porównywać – bo to dwie różne konstrukcje językowe. Można jedynie mówić o ich podobnej roli w sekwencji wyznaczania wartości, natomiast nie można mówić o ich ekwiwalentności.
-
-Warto tu jednak zauważyć, że w obu przypadkach mam do czynienia ze zmienną, która reprezentuje źródło danych tworzących pewien ciąg wartości. Ciąg charakteryzuje się tym, że znany jest jego pierwszy element i dla każdego element z wyjątkiem ostatniego znany jest jego następnik. Dane złożone, które charakteryzują się takimi relacjami pomiędzy elementami są reprezentowane przez typ IEnumerable.
-
 #### IEnumerable
-
-Tradycyjnie klawisz F12 przeniesie nas do definicji tego interfejsu. Z definicji tej widzimy, że zawiera on jedną metodę: GetEnumerator. I znowu używając klawisza F12 otwieramy definicję interfejsu `IEnumerator`, natomiast klawiszem Alt-F12 definicję niegeneryczną tego samego interfejsu. Z definicji tego typu wynika, że selekcja składowych zwracanego obiektu polega na wyróżnieniu jednego elementu zwanego aktualnym. Natomiast istnienie metody MoveNext potwierdza, że to złożenie jest ciągiem.
-
-Wracając do analizy naszego kodu przykładowego, trzeba podkreślić, że w obu rozważanych przypadkach, tzn. w obu metodach zmienna _words musi być typu implementującego interfejs `IEnumerable`. Wynika to z wymagań językowych definicji instrukcji foreach i wyrażenia LINQ.
-
-Skoro jednak dwie różne konstrukcje językowe możemy wykorzystać do implementacji tego samego algorytmu przetwarzania informacji musimy sformułować obiektywne kryterium pozwalające wybrać jedno z nich w konkretnym przypadku. Innymi słowy musimy zaadresować pytanie: po co nam dwie konstrukcje językowe, a zatem dwa różne sposoby operowania na ciągach danych. Aby odpowiedzieć na to pytanie musimy poznać jeszcze jedną właściwość wyrażeń LINQ.
 
 Przejdźmy zatem do kolejnego przykładu. Ten test jednostkowy został wykorzystany do wywołania kolejnej implementacji podobnego algorytmu wyznaczania wartości typu string na podstawie zawartości tablicy jak poprzednio, a więc zawierajacej kilka słów. W odróżnieniu od poprzedniej implementacji, w metodzie [QuerySyntaxSideEffect][QuerySyntaxSideEffect] dodano jedną instrukcję modyfikującą tablicę źródłową w ten sposób, aby wyeliminować w niej słowa zaczynające się na literę q, ale umieszczoną w kodzie po instrukcji zawierającej wyrażenie LINQ, które zgodnie z jego semantyką jest odpowiedzialne za dokonanie selekcji słów na q. Tu możemy zauważyć pewną sprzeczność, a mianowicie wyrażenie to ciąg operacji, które są wykonywany w celu wyznaczenia jednej wartości o typie bazowym, który z góry da się przewidzieć na etapie kompilacji, więc w trakcie pisania programu. Gdyby jednak operacje opisane wyrażeniem LINQ były skutecznie wykonane, to zmienna _wordQuery powinna zawierać ciąg wybranych słów i instrukcja modyfikacji źródła danych w linijce 41 kodu nie mogłaby wpłynąć na końcowy rezultat działania, a w tym przypadku rezultatem jest pusty string. Jak to wyjaśnić?
 
-[QuerySyntaxSideEffect]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L39-L47
 
 Na razie, aby próbować to wyjaśnić, musimy użyć naszej wyobraźni. Wyobraźmy sobie zatem, że zmienna _words zgodnie z semantyką tego wyrażenia faktycznie reprezentuje zewnętrzne źródło danych, np. bazę danych. Innymi słowy wyobraźmy sobie, że zmienna `_words` to nie tablica w pamięci lokalnej, tylko tablica w relacyjnej bazie danych. Takie założenie całkowicie rujnuje rozumienie wyrażenia jako złożonej ale ciągle lokalnej operacji wyznaczania wartości. Aby ten scenariusz mógł być zrealizowany muszą się zdarzyć następujące operacje:
 
