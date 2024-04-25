@@ -229,4 +229,3 @@ Praca domowa- wykorzystać metody nazwane i sprawdzić rezultat.
 [TestDataGenerator]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
 [Person]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
 [CDCatalog]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L72
-

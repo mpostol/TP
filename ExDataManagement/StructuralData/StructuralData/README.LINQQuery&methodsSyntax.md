@@ -13,13 +13,12 @@
 
 - [LINQ expression - query and methods syntax](#linq-expression---query-and-methods-syntax)
   - [Introduction](#introduction)
-  - [Structure Dane Fundamentals](#structure-dane-fundamentals)
   - [External Repositories](#external-repositories)
   - [Iteration vs Filtering](#iteration-vs-filtering)
 
 ## Introduction
 
-This section is focused on structural data. We will discuss the term structured data in detail in a moment, but for now let's decipher the LINQ abbreviation, which comes from the English Language Integrated Query. When expanding this abbreviation, it is necessary to indicate the following elements that this term includes:
+We will discuss the term structured data in detail in a moment, but for now let's decipher the LINQ abbreviation, which comes from the English Language Integrated Query. When expanding this abbreviation, it is necessary to indicate the following elements that this term includes:
 
 1. Extension of the basic programming language with a new syntax called Query Syntax
 2. Extending the basic language with new semantics for LINQ expressions expressed using this syntax
@@ -27,20 +26,6 @@ This section is focused on structural data. We will discuss the term structured 
 4. Extension of the .NET library with namespaces offering new mechanisms for accessing structured external data
 
 Here I introduced a new term, namely "LINQ expression", so we need to explain what makes this expression different from other expressions. Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve access to structured data managed by external resources.
-
-## Structure Dane Fundamentals
-
-Generally speaking, we can say that data processing is carried out through the operations performed. From this point of view, we can divide the data into:
-
-1. Simple data - in this case, the data can be processed by a single operation, it is one action as a result of which the value is referred to as one whole. For example, changing the sign of an int variable.
-2. Complex data – here the data is composed of components. Therefore, to operate on complex data we need a selector operation to select a component that is to be subject to an operation. The selection method is determined by the data type, e.g. index for arrays and field selection for class or structure.
-3. Structured data - by design, the distinguishing feature is that individual data items in a structure are selected based on intentionally programmed relationships between items
-
-Let's analyze this case using sample code. An example is the [Person][Person] and [CDCatalog][CDCatalog] classes, which are defined in the [TestDataGenerator][TestDataGenerator] class. In the program code, we see that the [CDCatalog][CDCatalog] class has references to an object of the [Person][Person] class to represent information about the author of the CD. The [Person][Person] class, on the other hand, contains a representation of a set of albums released by one author, so it has references to objects of the [CDCatalog][CDCatalog] class. This code snippet is included in the unit testing project and will be used later to analyze the use cases of the LINQ expression.
-
-Now let's perform a graphical analysis of the code. We can see the references between classes in the diagram. Therefore, structured data, i.e. a certain set of objects interconnected by references, is often called a graph.
-
-![PersonCodeMap](../.Media/PersonCodeMap.png)
 
 ## External Repositories
 
@@ -179,6 +164,3 @@ Ważnym słowem w tym pytaniu jest „musimy”, no bo jeśli musimy to pytanie 
 
 [ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
 [QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
-[TestDataGenerator]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
-[Person]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
-[CDCatalog]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L72
