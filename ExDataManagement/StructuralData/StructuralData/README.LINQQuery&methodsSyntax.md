@@ -110,39 +110,42 @@ So let's move on to the next example. The [QuerySyntaxSideEffectTest][QuerySynta
 
 could not affect the final result of the operation. Unfortunately it is not true in this case. This time, the result is an empty string. How to explain this?
 
+So let's move on to the next example. This unit test was used to call another implementation of a similar algorithm for determining a string value based on the contents of an array as before, i.e. containing several words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to eliminate words starting with the letter q, but placed in the code after the instruction containing the LINQ expression, which, according to its semantics, is responsible for selecting words for q. Here we can notice a certain contradiction. An expression is a sequence of operations performed to determine one base type value, which can be predicted in advance at the compilation stage, i.e., when writing the program. However, if the operations described by the LINQ expression were successfully performed, the _wordQuery variable should contain a string of selected words, and the [data source modification statement][QuerySyntaxSideEffectL45] should not affect the final result of the operation but in this case, the result is an empty text. How do I explain this?
+
+``` CSharp
+      _words[2] = "pear";
+```
+
+For now, we have to use our imagination to try to explain it. So let's imagine that the _words variable, according to the semantics of this expression, actually represents an external data source, e.g. a database. In other words, imagine that the `_words` variable is not an array in local memory, but a table in a relational database. This assumption completely changes the understanding of an expression as a complex but still local value evaluation activity. For this scenario to be realized, the following operations must happen:
+
+- the expression must be translated into a query written in a language understandable by the external repository, e.g. an SQL query if the expression is to be executed in a relational database
+- the query must be transferred somehow to the database management system (another process), often implemented remotely on a different hardware and system platform
+- After receiving the query, the external process begins to execute it, carrying out the operations described therein, provided, of course, that they are positively authorized in the context of some identity and its permissions
+- After completion of the execution, the result is returned in the form of a stream of values. This string can be further processed locally by subsequent program instructions
+
+To avoid compromising your imagination and patience too much, I promise we'll discuss a specific example to illustrate this scenario soon.
+
+Now let's go back to the previous example and try to summarize the effect of using a LINQ expression. Due to the need to gain access to external data, we must clearly distinguish two phases in the algorithm:
+
+- selection in advance data that is subject to further processing
+- processing selected data following process needs
+
+In the first step, the LINQ expression is not executed but translated so that it can be represented as an object. The reference to this object is assigned to the _wordQuery variable. In other words, when a LINQ expression is executed, the value of the `_wordQuery` variable represents what needs to be done to determine the value of the expression. This recipe can be used later in two ways:
+
+- can be executed locally as an expression
+- can be translated into any domain-specific language compliant with a selected external repository and sent to it for remote execution
+
+The scenario in which an expression is translated into another language and a query is executed remotely requires additional conditions to be met. We will come back to this topic later.
+
+Let's consider a theoretical scenario in which we use the foreach statement and a variable representing an external repository. Since in both cases this variable must implement the `IEnumerable` interface, this is even practically possible. However, in this case, pre-selection cannot be performed and all data must be fetched to local storage from the remote repository to be used by this instruction.
+
+This breakdown of the processing into data selection and data processing applies not only to external repositories where it must be used. Namely, it is also useful when it is necessary to separate the place of data pre-selection and processing in the program to improve the software development performance according to the separation of concern principle.  The separation of concern (SoC) is the fundamental principle in software engineering and design. It aims to break down complex systems into smaller, more manageable parts.
+
 [QuerySyntaxSideEffectTest]: ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L28-L31
 [QuerySyntaxSideEffect]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L39-L47
+[QuerySyntaxSideEffectL45]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L45
 
 <!--
-#### IEnumerable
-
-Przejdźmy zatem do kolejnego przykładu. Ten test jednostkowy został wykorzystany do wywołania kolejnej implementacji podobnego algorytmu wyznaczania wartości typu string na podstawie zawartości tablicy jak poprzednio, a więc zawierajacej kilka słów. W odróżnieniu od poprzedniej implementacji, w metodzie [QuerySyntaxSideEffect][QuerySyntaxSideEffect] dodano jedną instrukcję modyfikującą tablicę źródłową w ten sposób, aby wyeliminować w niej słowa zaczynające się na literę q, ale umieszczoną w kodzie po instrukcji zawierającej wyrażenie LINQ, które zgodnie z jego semantyką jest odpowiedzialne za dokonanie selekcji słów na q. Tu możemy zauważyć pewną sprzeczność, a mianowicie wyrażenie to ciąg operacji, które są wykonywany w celu wyznaczenia jednej wartości o typie bazowym, który z góry da się przewidzieć na etapie kompilacji, więc w trakcie pisania programu. Gdyby jednak operacje opisane wyrażeniem LINQ były skutecznie wykonane, to zmienna _wordQuery powinna zawierać ciąg wybranych słów i instrukcja modyfikacji źródła danych w linijce 41 kodu nie mogłaby wpłynąć na końcowy rezultat działania, a w tym przypadku rezultatem jest pusty string. Jak to wyjaśnić?
-
-
-Na razie, aby próbować to wyjaśnić, musimy użyć naszej wyobraźni. Wyobraźmy sobie zatem, że zmienna _words zgodnie z semantyką tego wyrażenia faktycznie reprezentuje zewnętrzne źródło danych, np. bazę danych. Innymi słowy wyobraźmy sobie, że zmienna `_words` to nie tablica w pamięci lokalnej, tylko tablica w relacyjnej bazie danych. Takie założenie całkowicie rujnuje rozumienie wyrażenia jako złożonej ale ciągle lokalnej operacji wyznaczania wartości. Aby ten scenariusz mógł być zrealizowany muszą się zdarzyć następujące operacje:
-
-- wyrażenie musi być przetłumaczone na kwerendę zapisaną w języku zrozumiałym dla zewnętrznego repozytorium, np. kwerendę SQL w przypadku zamiaru realizacji wyrażenia w relacyjnej bazie danych
-- kwerenda musi być wysłana do innego procesu, często realizowanego zdalnie na innej platformie sprzętowej i systemowej
-- Po odebraniu kwerendy proces przystępuje do jej wykonania realizując opisane w niej operacje, oczywiście pod warunkiem pozytywnej ich autoryzacji w kontekście jakiejś tożsamości i jej uprawnień
-- Po zakończeniu realizacji zwracany jest rezultat w postaci ciągu wartości. Ciąg ten może być przetwarzany dalej lokalnie przez kolejne instrukcje programu
-
-Aby zbytnio nie narażać wyobraźni i cierpliwości na szwank, obiecuję, że omówimy konkretny przykład ilustrujący ten scenariusz.
-
-Wróćmy teraz do poprzedniego przykładu i spróbujmy podsumować skutek wykorzystania wyrażenia LINQ, a nie jednej z operacji iteracyjnego przetwarzania danych. Z uwagi na konieczność uzyskania dostępu do danych zewnętrznych musimy w algorytmie wydzielić wyraźnie dwie fazy:
-
-- Wstępną selekcję danych podlegających dalszemu przetwarzaniu
-- Przetwarzanie wyselekcjonowanych danych zgodnie z potrzebami procesowymi
-
-W pierwszym kroku wyrażenie LINQ nie jest wykonywane, tylko tłumaczone tak, by mogło być reprezentowane jako obiekt. Referencja do tego obiektu jest podstawiana do zmiennej _wordQuery. Innymi słowy po wykonaniu wyrażenia LINQ wartość zmiennej `_wordQuery` reprezentuje przepis co trzeba zrobić, by wyznaczyć wartość wyrażenia. Przepis ten może być wykorzystany później na dwa sposoby:
-
-- może być wykonany lokalnie jako wyrażenie
-- może być przetłumaczony na dowolny język dedykowany dla wybranego repozytorium i wysłany do niego w celu zdalnego wykonania
-
-Scenariusz, w którym tłumaczymy wyrażenie na inny język i wykonujemy kwerendę zdalnie wymaga spełnienia dodatkowych warunków, o których opowiem później.
-
-Rozważmy jeszcze teoretyczny scenariusz, w którym użyjemy instrukcji foreach i zmiennej reprezentującej zewnętrzne repozytorium. Ponieważ w obu przypadkach zmienna ta musi implementować interfejs IEnumerable, jest to nawet praktycznie możliwe. Jednak w takim przypadku nie można zrealizować wstępnej selekcji i wszystkie dane muszą być skopiowane do lokalnej pamięci ze zdalnego repozytorium, aby mogły być wykorzystane przez tą instrukcję.
-
-Takie rozbicie procesu przetwarzania na selekcję i w związku z tym operowanie tylko na podzbiorze danych, które zostały wyselekcjonowane, ma zastosowanie nie tylko do zewnętrznych repozytoriów, gdzie musi być zastosowane. Mianowicie, jest przydatne również, gdy trzeba rozdzielić miejsce występowania w programie preselekcji danych i ich przetwarzania w celu poprawy efektywności procesu tworzenie programu dzięki możliwości koncentracji uwagi na wybranych aspektach implementacji algorytmu, a w tym przypadku na selekcji danych i operowaniu na danych.
 
 ## Praca domowa
 
