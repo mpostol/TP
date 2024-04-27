@@ -135,30 +135,41 @@ Now let's look at the graphical analysis of the code. As a result - after config
 
 ![PersonCodeMap](../.Media/PersonCodeMap.png)
 
-<!--
+An example is the [Person][Person] and [CDCatalog][CDCatalog] classes, which are defined in the [TestDataGenerator][TestDataGenerator] class. In the program code we see that the [CDCatalog][CDCatalog] class has references, so a reference, to an object of the [Person][Person] class to represent information about the author of the CD. It is a one-to-one relationship. However, the [Person][Person] class contains a collection of CDs released by a single author, so it has references to objects of the [CDCatalog][CDCatalog] class. This time the relationship is one to many. These references are available as an object implementing `IEnumerable`, and such an object can be used as a data source in a foreach statement and a LINQ expression.
 
-Przykład to klasy [Person][Person] i [CDCatalog][CDCatalog], które zostały zdefiniowane w klasie [TestDataGenerator][TestDataGenerator]. W kodzie programu widzimy, że klasa [CDCatalog][CDCatalog] ma odwołania, więc referencję, do obiektu klasy [Person][Person], aby reprezentować informacje o autorze płyty CD. Jest to relacja jeden do jeden. Natomiast klasa [Person][Person] zawiera kolekcję płyt wydanych przez jednego autora, więc ma referencje do obiektów klasy [CDCatalog][CDCatalog]. Tym razem relacja jest jeden do wielu. Te referencje są dostępne jako obiekt implementujący `IEnumerable`, a taki obiekt może być wykorzystany jako źródło danych i być użyty w instrukcji foreach i wyrażeniu LINQ.
+## DataSet to create structural data
 
-Alternatywnym sposobem tworzenia danych strukturalnych jest wykorzystanie dedykowanego edytora, który pozwala na definiowanie danych z wykorzystaniem interfejsu graficznego. Aby rozpocząć pracę, w wybranym miejscu projektu należy dodać składnik `DataSet`, który znajdziemy w zestawie dostępnych składników Visual Studio. Łatwiej go znaleźć, jeśli ograniczmy liczbę wyświetlanych składników przez wybór Data na drzewku kategorii. Używając tego podejścia - dla porównania - proponuję zdefiniować funkcjonalnie ekwiwalentną strukturę danych do omówionej poprzednio. Nazwijmy ją `Catalog`.
+An alternative way to create structured data is to use a dedicated editor that allows you to define data using a graphical interface. To start working, add the `DataSet` component, which can be found in the set of available Visual Studio components, in a selected place in the project. It is easier to find them if we limit the number of displayed components by selecting Date in the category tree. Using this approach - for comparison - I propose to define a functionally equivalent data structure to the one discussed previously. Let's call it `Catalog`.
 
-Po utworzeniu pojawia się nowy wieloskładnikowy element w wybranym miejscu. Klikając dwa razy w element grupujący te składniki, pojawia się z kolei edytor graficzny. Pozwala on dodać tabele danych, ich wiersze i zdefiniować relacje pomiędzy nimi. Ja wstępnie przygotowałem dwie DataTable (tabele danych) analogicznie do klas z poprzedniego przykładu. Pomiędzy nimi zdefiniowałem również relację jak poprzednio. Właściwości tej relacji możemy również edytować w osobnym okienku edytora, które otwieramy z menu kontekstowego. Poprzednio zdefiniowane klasy będę wykorzystywał w testach jednostkowych do zainicjowania, tak zdefiniowanej struktury danych, co potwierdza ich ekwiwalentność z punktu widzenie reprezentowanej informacji.
+Once created, the new multi-component item appears in the selected location. By double-clicking on the element grouping these components, the graphic editor appears. It allows you to add data tables, and their rows and define relationships between them. I have initially prepared two `DataTable` items, similar to the classes from the previous example. I also defined the relationship between them as before. We can also edit the properties of this relationship in a separate editor window, which we open from the context menu. I will use the previously defined classes in unit tests to initialize the data structure, which confirms their equivalence from the point of view of the represented information.
 
-Zaprojektowanie tej struktury skutkuje automatycznie wygenerowanym tekstem programu, który ją implementuje w klasie częściowej. Widzimy, że tym razem program zawiera wiele klas, z których każda reprezentuje dedykowane informacje. Całą strukturę reprezentuje klasa [Catalog][CatalogDataSet], a wszystkie pozostałe są zdefiniowane jako jej klasy częściowe. Autora reprezentuje klasa o nazwie [PersonRow][PersonRow], natomiast płytę CD [CDCatalogEntityRow][CDCatalogEntityRow].
+Designing this structure results in automatically generated program text that implements it in a partial class. We see that this time the program contains multiple classes, each representing dedicated information. The entire structure is represented by the [Catalog][CatalogDataSet] class, and all others are defined as its internal class definitions. The author is represented by a class named [PersonRow][PersonRow], and the CD is represented by [CDCatalogEntityRow][CDCatalogEntityRow].
 
-[CatalogDataSet]: 
-[PersonRow]: 
-[CDCatalogEntityRow]: 
+Since the [Catalog][CatalogDataSet] class is a partial class, we can implement custom functionality in a separate file. As before, there are three methods implementing the same algorithm in three different ways, namely selecting a list of people indicated by the method parameter. We will return to these implementations in the context of unit tests, which we will use for a more detailed comparative analysis of these three implementations.
 
-Ponieważ klasa [Catalog][CatalogDataSet] jest klasą częściową możemy w osobnym pliku zaimplementować własną funkcjonalność. Podobnie jak poprzednio umieszczono tu trzy metody implementujące na trzy różne sposoby ten sam algorytm, a mianowicie wybór listy osób wskazanych przez parametr metody. Do implementacji tych wrócimy w kontekście testów jednostkowych, które użyjemy do bardziej szczegółowej analizy porównawczej tych trzech implementacji.
+Since the generated text of the [Catalog][CatalogDataSet] class is over 1000 lines, I now suggest analyzing it using the Show on Code Map function. The resulting graphical representation of the text describes the content of the generated classes and shows the relationships between them. The goal of the analysis is to find similar relationships that we had previously in classes created manually.
 
-Ponieważ wygenerowany teks klasy [Catalog][CatalogDataSet] to ponad 1000 linii, proponuję teraz dokonać jego analizy korzystając z funkcji Show on Code Map. Otrzymana reprezentacja graficzna tekstu zawiera opis zawartości wygenerowanych klas i pokazuje relacje pomiędzy nimi. Celem analizy jest znalezienie podobnych relacji, jakie mieliśmy poprzednio w klasach utworzonych ręcznie.
 
-Analiza z wykorzystaniem tego narzędzia wymaga odpowiedniego wykorzystania filtrów tak, aby na ekranie znalazły się tylko istotne składniki definicji. W tym przypadku szukamy klasy [PersonRow][PersonRow] i składnika udostępniającego relacje do obiektów klasy [CDCatalogEntityRow][CDCatalogEntityRow]. Ta relacja wiele do jednego pomiędzy [PersonRow][PersonRow] i [CDCatalogEntityRow][CDCatalogEntityRow] jest zaimplementowana jako metoda GetCDCatalogRows, która zwraca tablicę obiektów typu [CDCatalogEntityRow][CDCatalogEntityRow].
+``` CSharp
+            public CDCatalogEntityRow[] GetCDCatalogRows() {
+                if ((this.Table.ChildRelations["ArtistRelation"] == null)) {
+                    return new CDCatalogEntityRow[0];
+                }
+                else {
+                    return ((CDCatalogEntityRow[])(base.GetChildRows(this.Table.ChildRelations["ArtistRelation"])));
+                }
+            }
+```
 
-Przejdźmy teraz do wyszukania relacji w drugą stronę a mianowicie relacji, która połączy płytę CD z jej autorem. I znowu musimy odpowiednio skonfigurować filtry wyświetlania, aby obrazek był czytelny dla potrzeb tej prezentacji. W klasie [CDCatalogEntityRow][CDCatalogEntityRow] relacja jeden do jednego łącząca odpowiedni obiekt typu [PersonRow][PersonRow] jest zrealizowana przez property (właściwość) o nazwie takiej jak klasa docelowa, a mianowicie [PersonRow][PersonRow].
+Analysis using this tool requires an appropriate configuration of filters so that only the most important components of the definition appear on the screen. In this case, we are looking for the [PersonRow][PersonRow] class and a component that provides relationships to objects of the [CDCatalogEntityRow][CDCatalogEntityRow] class. This many-to-one relationship between [PersonRow][PersonRow] and [CDCatalogEntityRow][CDCatalogEntityRow] is implemented as the [GetCDCatalogRows][GetCDCatalogRows] method, which returns an array of objects of type [CDCatalogEntityRow][CDCatalogEntityRow].
 
-Przejdzmy teraz do analizy dodanych metod w kontekście testów jednostkowych filtrujących dane z tak utworzonej struktury. Metody te zlokalizowano jako składowe klasy [Catalog][CatalogDataSet], a właściwie w jej wewnętrznej klasie [PersonRow][PersonRow].
-W pierwszej użyto instrukcję foreach i wewnętrzną instrukcję if odpowiedzialną za filtrowanie zawartości tabeli zgodnie z wartością parametru metody.
+[GetCDCatalogRows]: LINQ%20to%20object/Catalog.Designer.cs#L1227-L1234
+
+Let's now move on to finding the relationship in the opposite direction, namely the relationship that will connect the CD with its author. And again, we need to properly configure the display filters to make the image readable for this presentation. In the [CDCatalogEntityRow][CDCatalogEntityRow] class, the one-to-one relationship connecting the corresponding [PersonRow][PersonRow] object is implemented by a property with the same name as the target class, namely [PersonRow][PersonRow].
+
+Let us now move on to the analysis of the added methods in the context of unit tests filtering data from the structure created in this way. These methods are located as components of the [Catalog][CatalogDataSet] class, or rather in its internal class [PersonRow][PersonRow].
+
+The first [FilterPersonsByLastName_ForEachTest][FilterPersonsByLastName_ForEachTest] uses the `foreach` statement and an internal if statement responsible for filtering the table content according to the value of the method parameter.
 
 ``` CSharp
       public IEnumerable<PersonRow> FilterPersonsByLastName_ForEach(string lastName)
@@ -171,40 +182,12 @@ W pierwszej użyto instrukcję foreach i wewnętrzną instrukcję if odpowiedzia
       }
 ```
 
-W teście oprócz zwracanej przez metodę wartości badany jest również typ zwracanego obiektu oraz wynik wywołania jego metody ToString. Z rezultatu widzimy, że zwracany jest obiekt generycznej klasy `List`, której parametrem typu jest [PersonRow][PersonRow]. To kolejny dowód na to, że w tym przypadku wynikiem jest kolekcja wybranych wartości, a więc wynik działania wspomnianych instrukcji.
+In addition to the value returned by the method, the type of the returned value and the result of calling its `ToString` method are also examined. Based on the result analysis it could be stated that an object of the generic class `List` is returned. Its type parameter is [PersonRow][PersonRow]. This is the next proof that the result is a collection of selected values.
 
-W kolejnym teście [FilterPersonsByLastName_ForEachTest][FBLN_ForEachTest] badamy zwracany rezultat metody implementującej ten sam algorytm filtrowania, ale zaimplementowany z użyciem wyrażenia LINQ zapisanego jako ciąg operacji z wykorzystaniem metod rozszerzających. Tm razem zwracany typ obiektu wyniku działania metody jest inny, co ponownie potwierdza, że w przypadku wyrażeń klasy LINQ zwracana jest obiektowa reprezentacja samego wyrażenia, a nie wynik jego działania.
+In the [FilterPersonsByLastName_QuerySyntaxTest][FilterPersonsByLastName_QuerySyntaxTest] we examine the returned value of a method implementing the same filtering algorithm but implemented using a LINQ expression written using the query syntax as a sequence of operations using extension methods. This time the returned object type of the method result is different, which again confirms that LINQ expressions return an object representation of the expression itself, not its result.
 
-Ostatni test dotyczy implementacji metody wykorzystującej wyrażenie LINQ zapisane zgodnie ze składnią kwerendy. Tym razem wynik jest identyczny do poprzedniego, co potwierdza, że rezultat użycia wyrażenia LINQ jest zawsze taki sam niezależnie od użytej składni. Oczywiście to twierdzenie jest prawdziwe tak długo jak długo kompilator radzi sobie z tłumaczeniem tekstu programu na postać umożliwiającą takie przekształcenie w trakcie jego realizacji.
+The last test [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName_MethodSyntaxTest] concerns the implementation of a method using a LINQ expression written following the method syntax. This time the result is identical to the previous one, confirming that the result of using a LINQ expression is always the same regardless of the syntax used. Of course, this statement is true as long as the compiler can translate the program text into a form that allows such transformation during its execution.
 
-[FBLN_ForEachTest]: FilterPersonsByLastName_ForEachTest
-[FBLN_QuerySyntaxTest]: FilterPersonsByLastName_QuerySyntaxTest
-[FBLN_MethodSyntaxTest]: FilterPersonsByLastName_MethodSyntaxTest
-
-## 4. Praca domowa i zakończenie
-
-Na koniec lekcji, jak zwykle, praca domowa.
-
-W przykładzie ilustrującym konwersję kwerendy LINQ do postaci wyrażenia zapisanego jako ciąg operacji należy dokonać kilku istotnych modyfikacji.
-
-Tekst programu znajdziemy w klasie LinqMethodSyntaxExamples, gdzie zdefiniowano trzy metody z wykorzystaniem zapisu wyrażenia LINQ jako ciągu operacji.
-
-W tych metodach należy:
-
-- Zastąpić użyte metody rozszerzające własnymi metodami
-- Zastąpić wyrażenia lambda delegacjami do własnych metod nazwanych
-- Zastąpić typ anonimowy własnym typem nazwanym
-- Zmodyfikować odpowiednio testy jednostkowe
-
-Najlepiej zrobić to w osobnej klasie.
-
-W tej lekcji to już wszystko. Dziękuję za poświęcony czas i zapraszam do obejrzenia następnej lekcji w której pójdziemy krok naprzód i wykorzystamy wyrażenie LINQ do preselekcji danych z zewnętrznego źródła. Będzie nim relacyjna baza danych.
-
-[MP1]
-
-Praca domowa- wykorzystać metody nazwane i sprawdzić rezultat.
-
--->
 ## See also
 
 - [Person][Person]
@@ -220,3 +203,10 @@ Praca domowa- wykorzystać metody nazwane i sprawdzić rezultat.
 [TestDataGenerator]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
 [Person]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
 [CDCatalog]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L72
+[FilterPersonsByLastName_ForEachTest]:     ../StructuralDataUnitTest/LINQ_to_objectUnitTest.cs#L44-L57
+[FilterPersonsByLastName_QuerySyntaxTest]: ../StructuralDataUnitTest/LINQ_to_objectUnitTest.cs#L60-L73
+[FilterPersonsByLastName_MethodSyntaxTest]: ../StructuralDataUnitTest/LINQ_to_objectUnitTest.cs#L76-L89
+
+[CatalogDataSet]: LINQ%20to%20object/Catalog.Designer.cs#L25-L1304
+[PersonRow]: LINQ%20to%20object/Catalog.Designer.cs#L1136-L1235
+[CDCatalogEntityRow]: LINQ%20to%20object/Catalog.Designer.cs#L959-L1131
