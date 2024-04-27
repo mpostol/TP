@@ -11,32 +11,13 @@
 
 # LINQ to Object
 
-<!--
+In this chapter, we will continue to discuss topics related to structured data and the possibility of creating queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for Language Integrated Query. Let's start with a few definitions, explanations, and directions for searching for new solutions to improve access to external data. Here we will again return to the previously introduced term LINQ expression written using the query syntax and compare it with the regular expression.
 
-## 1. Wprowadzenie
+By definition, an expression is a sequence of operations and operands. The previously discussed expression written using query syntax does not look like such a sequence at first glance but it must be reduced to such a sequence, so it must be converted to a form consistent with this definition.
 
-W trakcie tej lekcji będziemy kontynuowali omawianie tematyki dotyczącej danych strukturalnych i możliwość tworzenia kwerend z wykorzystaniem wyrażeń klasy LINQ – przypomnę, że skrót LINQ pochodzi od angielskiego Language Integrated Query, co w tłumaczeniu oznacza zintegrowany język zapytań.
+The main goal of introducing the LINQ expressions to programming language is to create queries in a domain-specific language compliant with a remote database management system. It allows prefetching data from external repositories, such as relational databases. But earlier we noticed that data pre-selection also makes sense in the case of local structured data, i.e. a certain object graph. The next challenge of this lesson is to discuss issues related to the design, creation, maintenance, and use of such a structure. Here we will encounter a challenge of how LINQ can help us.
 
-## 2. Jaki mamy problem
-
-### 2.1. Wprowadzenie
-
-Zacznijmy od kilu definicji, wyjaśnień i wskazania kierunków poszukiwań nowych rozwiązań w zakresie usprawnienia zarządzania dostępem do danych zewnętrznych.
-
-### 2.2. Zakres lekcji
-
-Tu jeszcze raz wrócimy do poznanego poprzednio terminu „wyrażenie klasy LINQ” zapisanego zgodnie ze składnią query sysntax - co tłumaczymy jako składnia zapytań - i wtedy przypomnę, czym oprócz składni, różni się wyraźnie tej klasy od innych wyrażeń nie należących do grupy wyrażeń klasy LINQ.
-
-Zgodnie z definicją, wyrażenie to ciąg operacji i operandów. Omówione wcześniej wyrażenie zapisane z wykorzystaniem składni zapytań, na pierwszy rzut oka na taki ciąg nie wygląda, a przecież musi dać się do takiego ciągu sprowadzić, więc być skonwertowane do postaci zgodnej z tą definicją z wykorzystaniem metod rozszerzających, wyrażeń lambda i typów anonimowych.
-Wyrażenia LINQ powstały, aby umożliwić zapisanie w języku programowania kwerendy umożliwiające zdalną preselekcję w zewnętrznych repozytoriach danych, przykładowo relacyjnych bazach danych. Ale wcześniej zauważyliśmy, że preselekcja danych ma również sens w przypadku lokalnych danych strukturalnych, czyli pewnego grafu obiektów. Kolejnym zatem wyzwaniem tej lekcji jest omówienie zagadnień związanych z projektowaniem, tworzeniem, utrzymaniem i wykorzystaniem takiej struktury. Tu również spróbujemy odpowiedzieć na pytanie jak LINQ może nam pomóc.
-
-## 3. Praca z kodem
-
-### 3.1. Składnia kwerendy
-
-Zgodnie z planem wróćmy zatem na chwilę do poprzedniej lekcji i przypomnijmy sobie postać wyrażenia LINQ zapisanego z wykorzystaniem składni kwerendy.
-
-Wyrażenie LINQ w postaci kwerendy znajdziemy w omówionej poprzednio metodzie [QuerySyntax][QuerySyntax]:
+So let's recall the form of a LINQ expression written using query syntax. An example of the LINQ expression written using  query syntax can be found in the method[QuerySyntax][QuerySyntax]:
 
 ``` CSharp
     public static string QuerySyntax()
@@ -49,19 +30,19 @@ Wyrażenie LINQ w postaci kwerendy znajdziemy w omówionej poprzednio metodzie [
     }
 ```
 
-Jak już mówiłem, zgodnie z definicją wyrażenie to ciąg operacji i operandów, natomiast składnia tekstu w przykładowym kodzie zawiera nowe słowa kluczowe, jak `from`, `where`, `selekt` ale nie wygląda jak ciąg operacji, a przecież musi dać się do takiego ciągu sprowadzić, by moc ten tekst nazywać wyrażeniem. No dobrze, a co jeśli nie. Jakie są konsekwencje. W takim przypadku ponieważ nie będziemy mogli nazwać tego zapisu wyrażeniem to w konsekwencji nie będziemy mogli do niego zastosować semantyki wyrażenia, czyli wiedzy o tym jak jest ono realizowane, inaczej, co ten zapis oznacza.
+As I have already said, according to the definition, an expression is a sequence of operations and operands. At the same time, the text composition in the example code contains new keywords, such as `from`, `where`, and `select`, but it does not look like a sequence of operations, and yet it must be able to translate such a sequence to be able to call this text an expression. Okay, what if not? What are the consequences? In such a case, since we will not be able to call this entry an expression, we will not be able to apply the semantics of the expression to it, i.e. knowledge about how it is implemented, in other words, what this entry means.
 
-Zamiast dorabiać nową teorię do prawej strony instrukcji podstawienia, wydaje się, że prościej będzie spróbować konwersji tej składni do znanej nam dobrze składni wyrażenia, które jest ciągiem operacji i ich operandów. Tu trzeba zauważyć, że konwersja - inaczej przekształcenie - z jednej składni do innej oznacza działanie na tekście programu. A to z kolei oznacza, że konwersję tę może dokonać każdy programista.
+Instead of adding a new theory to the right side of the assignment instruction, it seems that it will be simpler to try to convert this syntax to the well-known syntax of an expression, which is a sequence of operations and their operands. It should be noted that conversion - or translation - from one syntax to another means acting on the program text. This, in turn, means that any developer can perform this conversion.
 
-W konwersji bardzo pomocna, a nawet można powiedzieć niezastąpiona, będzie konstrukcja „metoda rozszerzająca”, którą poznaliśmy wcześniej, kiedy uczyliśmy się podstaw programowania funkcyjnego.
+The extension method concept will be helpful and even - one might say - irreplaceable to convert the syntax and obtain the typical syntax of an expression.  We learned this concept when examining the basics of functional programming.
 
-Ale teraz przechodząc do sedna tematu, zacznijmy od tego, że zgodnie z wymaganiami wyrażenia LINQ źródło danych, w naszym przykładzie wartość wyrażenia występującego po słowie kluczowym in musi implementować interfejs IEnumerable. Jeśli tak, to wykorzystajmy koncepcję wspomnianej wcześniej metody rozszerzającej do rozszerzenia właśnie tego interfejsu.
+## Method Syntax
 
-### 3.2. Konwersja składni kwerendy do typowej składni wyrażenia
+But now coming to the point, let's start with the observation that as required by a LINQ expression, the data source, in our example, the value of the expression following the `in` keyword must implement the `IEnumerable` interface. If so, let's use the extension method concept to extend this interface.
 
-Korzystając z tej podpowiedzi już czas na poszukanie rozwiązania, które umożliwi nam dokonanie konwersji omówionej składni wyrażenia zapisanej w postaci kwerendy na wyrażenie zapisane w postaci ciągu operacji i ich operandów z wykorzystaniem wspomnianych metod rozszerzających, ale również wyrażeń lambda i typów anonimowych. Wszystkie te konstrukcje poznaliśmy już poprzednio. Ich znaczenie jest fundamentalne, więc jeśli są wątpliwości co do ich pełnego zrozumienia proponuje wrócić do tych tematów przed dalszą kontynuacją rozważań nad wyrażeniem LINQ.
+Using this hint, it's time to look for a solution that will allow us to convert the expression syntax written in the form of a query into an expression written as a sequence of operations and their operands using the mentioned extension methods, but also lambda expressions and anonymous types. We have already learned about all these constructs. Their importance is fundamental, so if there is any doubt about their full understanding, I suggest returning to these topics before continuing to learn the details of the LINQ expression.
 
-Przykładowy tekst po konwersji znajduje się w metodzie [MethodSyntax][MethodSyntax], 
+An example text after conversion can be found in the [MethodSyntax][MethodSyntax] method,
 
 ``` CSharp
 
@@ -73,7 +54,7 @@ Przykładowy tekst po konwersji znajduje się w metodzie [MethodSyntax][MethodSy
     }
 ```
 
-którą znajdziemy w klasie [LinqMethodSyntaxExamples][LinqMethodSyntaxExamples]. Metoda ta jest testowana w osobnym teście jednostkowym
+which can be found in the [LinqMethodSyntaxExamples][LinqMethodSyntaxExamples] class. This method is tested in a separate unit test [MethodSyntaxTest][MethodSyntaxTest]
 
 ``` CHarp
 
@@ -83,46 +64,45 @@ którą znajdziemy w klasie [LinqMethodSyntaxExamples][LinqMethodSyntaxExamples]
     }
 
 ```
-Wynik testu oraz treść metody wskazują, że jest ona funkcjonalnie ekwiwalentną z poprzednio omówioną metodą.
 
-[QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
-[MethodSyntax]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L21-L26
-[LinqMethodSyntaxExamples]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L19-L47
-[MethodSyntaxTest]: ../StructuralDataUnitTest/LinqMethodSyntaxExamplesUnitTest.cs#L21-L24
+The test result and the content of the method indicate that it is functionally equivalent to the previously discussed method.
 
-W omawianym przykładzie pierwszą metodą rozszerzającą, którą wykorzystano w procesie konwersji jest metoda [where]. Oczywiście zbieżność nazw słowa kluczowego `where` w składni zapytań i nazwy metody w transformacji tego tekstu do ciągu operacji i ich operandów nie jest przypadkowa. Innymi słowy nazwa metody jest ekwiwalentna do słowa kluczowego where w składni kwerendy.
+In the example discussed, the first extension method used in the conversion process is the 'where' method. Of course, the similarity of the names of the keyword `where` in the query syntax and the name of the method in the transformation of this text to a sequence of operations and their operands is not accidental. In other words, the method name is equivalent to the where keyword in the query syntax.
 
-Używając skrótu „go to definition” menu kontekstowego albo klawisza F12 przeniesiemy się do definicji metody where. Po przewinięciu kilku ekranów widać, że znajduje się ona w statycznej klasie `Enumerable` biblioteki .NET. 
+Using the `go to definition` menu entry or the F12 key, we will move to the definition of the `where` method. After scrolling a few screens, you can see that it is in the static `Enumerable` class of the .NET library.
 
-- filmik
+- animated gif illustrating this
 
-Klasa ta zawiera również wszystkie pozostałe metody, które są niezbędne do realizacji opisanej operacji konwersji. To ważne stwierdzenie i warto je zapamiętać dla zrozumienia odpowiedzi na postawione już wcześniej zadane co to jest wyrażenie LINQ i czym się ono różni od wyrażeń nie należących do tej kategorii wyrażeń. Jak wspomniałem, to pytanie padło już wcześniej , ale wrócimy do niego jeszcze raz.
+This class also contains all other methods that are necessary to perform the described conversion operation. This is an important statement and is worth remembering to understand the answer to the previously asked questions about what the difference is between the  LINQ and regular expressions. As I mentioned, this question has been asked before, but we'll come back to it again.
 
-Kolejnym słowem kluczowym w składni kwerendy jest `selekt`. I znów możemy zastosować metodę rozszerzającą interfejsu `IEnumerable`, ponieważ metoda where zwraca obiekt implementujący ten interfejs. Jak widzimy z definicji klasy Enumerable większość metod rozszerzających zlokalizowanych w klasie Enumerable to funkcje zwracające obiekty implementujące wspomniany interfejs.
+The next keyword in the query syntax is `select`. Again, we can use the extension method of the `IEnumerable` interface because the where method returns an object implementing this interface. As we can see from the definition of the Enumerable class, most of the extension methods located in the Enumerable class are functions that return objects implementing the mentioned interface.
 
-Wróćmy ponownie do tekstu omawianej metody, która zawiera wyrażenie LINQ po konwersji do postaci ciągu operacji.
+Let's go back to the text of the method in question, which contains a LINQ expression after conversion to a string of operations.
 
-Mając wiedzę na temat konwersji kwerendy LINQ do postaci sekwencji wywołań metod zastanówmy się teraz co zrobić z konstrukcjami występującymi po słowach kluczowych where i selekt. Na pierwszy rzut oka wyglądają jak wyrażenia i faktycznie ich składnia jest zgodna ze składnią wyrażenia. Jednak metoda where jest wywoływana na rzecz ciągu elementów, a zatem to wyrażenie musi być wykonywane na rzecz każdego elementu w źródle danych. W tym przypadku sprawdzamy czy pierwsza litera każdego słowa w tablicy to g. Aby to było możliwe zgodnie z semantyką języka musimy je zastąpić metodą, która będzie miała jeden parametr o typie zgodnym z typem elementu w źródle i będzie zwracała wartość true lub false. Ponieważ nie możemy do metody przesłać innej metody jako argumentu, wykorzystajmy koncepcję delegacji, więc referencji do metody. Dodatkowo możemy to zapisać jako funkcja anonimowa z wykorzystaniem składni wyrażenia lambda.
+Now that we know how to convert a LINQ query into a sequence of method calls, let's consider what to do with the constructs following the where and select keywords. At first glance, they look like expressions, and in fact, their syntax follows the syntax of an expression. However, the where method is called on a sequence of elements, so this expression must be executed on every element in the data source. In this case, we check whether the first letter of each word in the array is `g`. To make this possible, following the semantics of the language, we must replace them with a method that will have one parameter with a type consistent with the element type in the source and will return a true or false value. Since we cannot send another method as an argument to a method, let's use the concept of delegate, i.e. references to a method. Additionally, we can write this as an anonymous function using lambda expression syntax.
 
-Podobnie możemy postąpić z wyrażeniem występującym po słowie selekt i zastąpić je delegacją do metody zapisanej jak wyrażenie lambda. W naszym przykładzie ta metoda zwraca wartość argumentu aktualnego, a więc robi nic i dlatego z następnego przykładu została usunięta.
+We can do a similar thing with the expression following the word 'select' and replace it with a delegate to a method using the lambda expression syntax. In our example, this method returns the value of the current argument, so it does nothing and is therefore removed from the next example.
 
-Popatrzmy teraz na tekst metody otrzymanej w wynik przekształcenia kwerendy w kontekście testu jednostkowego. Test pokazuje, że rezultat jest identyczny jak dla metody wykorzystującej zapis w postaci kwerendy LINQ.
+Now let's look at the method text resulting from the query transformation in the context of a unit test. The test shows that the result is identical to the method using the LINQ query syntax.
 
-Zbadajmy zatem, czy po konwersji kwerendy LINQ do postaci ciągu operacji nadal zachowuje on cechy wskazujące, że podobnie jak poprzednio wyrażenie nie jest wykonywane w instrukcji podstawienia, a tylko konwertowane do obiektu reprezentującego to wyrażenie w celu przygotowania do ewentualnego dalszego tłumaczenia na postać zgodną z językiem zapytań obowiązującym dla wybranego repozytorium, przykładowo relacyjnej bazy danych. W trakcie następnej lekcji omówimy właśnie taki przykład, w którym wyrażenie LINQ będzie konwertowane do postaci kwerendy SQL zgodnie z wymaganiami tego repozytorium.
+## Postponing execution of the LINQ expression
 
-Aby to sprawdzić, podobnie jak poprzednio, modyfikujemy źródło danych pomiędzy instrukcją podstawienia wartości otrzymanego z wyrażenia po konwersji do zmiennej _wordQuery i instrukcją sprawdzającą ostateczny wynik w teście jednostkowym. Ponieważ w wyniku spodziewamy się listy słów na g, a otrzymujemy pusty string, możemy postawić tezę, że operacja wyznaczenia wartości jest odroczona podobnie jak poprzednio, natomiast w linii
+So let's check whether, after converting a LINQ query to an operation stream, it still retains features indicating that, as before, the expression is not executed in the assignment statement, but only converted to an object representing this expression in preparation for possible further translation into a form compliant with the language queries valid for the selected repository, for example a relational database. We will later discuss an example in which a LINQ expression will be converted to an SQL query as required by this repository.
+
+To check this, similarly as before, we modify the data source between the statement to assign the value obtained from the expression after conversion to the _wordQuery variable and the statement to check the final result in the unit test. Since the result we expect is a list of words starting with g, and we receive an empty text, we can state that the operation of determining the value is postponed similarly to before, while in the line
 
 ``` CSharp
   IEnumerable<string> _wordQuery = _words.Where<string>(word => word[0] == 'g');
 ```
+the `_wordQuery` variable will be assigned a value representing only the description of the expression located to the right of the assignment character. In other words, the syntax of a LINQ expression does not matter to its features. In other words, writing an expression as a query or a string of operations has no impact on the semantics of this notation. In both cases, talk about a LINQ expression regardless of the form of notation. Since the behavior of LINQ expressions differs significantly from the behavior of regular we have to return to the question of how to distinguish them.
 
-do zmiennej `_wordQuery` będzie podstawiana jakaś wartość reprezentująca tylko opis wyrażenia, które znajduje się po prawej stronie znaku podstawienia. Innymi słowy składnia wyrażenia LINQ nie ma znaczenia dla jego cech. Innymi słowy zapisanie wyrażenia w postaci kwerendy lub ciągu operacji nie ma wpływu na semantyke tego zapisu. W obu przypadkach mówić o wyrażeniu LINQ bez względu na postać zapisu. Ponieważ zachowanie wyrażeń LINQ znacznie odbiega od zachowań innych wyrażeń, które do tej grupy nie należą musimy wrócić do pytania, jak je rozróżnić.
+Earlier we said that conversion to a string of operations requires the use of extension methods defined in the `Enumerable` class. As we know, for each type you can create your extension methods, and also for the `IEnumerable` interface. It is therefore possible to also use these methods during the operations discussed. This is of course possible, but the expression will no longer be a LINQ expression and, as a result, cannot be converted to a query that can be executed remotely in an external repository as an equivalent operation. The use of only methods belonging to the `Enumerable` class in an expression is the first distinguishing feature of a LINQ class expression, but not the only one.
 
-Wcześniej mówiliśmy, że konwersja do postaci ciągu operacji wymaga użycia metod rozszerzających zdefiniowanych w klasie Enumerable. Jak wiemy dla każdego typu można utworzyć własne metody rozszerzające, więc do `IEnumerable` również. Jest zatem możliwe, aby w ciągu omawianych operacji użyć również tych własnych metod. To oczywiście jest możliwe, ale wyrażenie przestanie być wyrażeniem LINQ i w rezultacie nie będzie mogło być konwertowane do kwerendy, która możne być wykonywana zdalnie w zewnętrznym repozytorium jako ekwiwalentna operacja. Użycie w wyrażeniu wyłącznie metod należących do klasy `Enumerable` jest pierwszym wyróżnikiem wyrażenia klasy LINQ, ale nie jedynym.
+The sample program that demonstrates the process of converting the query syntax of a LINQ expression to a stream of operations used lambda expressions as the operands for these operations. Here it is worth asking whether delegates to named custom methods can be used instead. The answer is yes, but in this case, you need to be aware that such methods may not be known in the external repository and how to refer to them in a query written in a language dedicated to this repository. This is another criterion for distinguishing LINQ and regular expressions.
 
-W przykładowym programie, który ilustrował proces konwersji składni kwerendy wyrażenia LINQ do postaci ciągu operacji, użyto wyrażeń lambda jako operandów dla tych operacji. Tu warto sobie zadać pytani, czy w ich miejsce można użyć delegacji do własnych metod nazwanych. Odpowiedź jest, że oczywiście tak, tylko w takim przypadku trzeba sobie zdawać sprawę z faktu, że takie metody mogą nie być znane w zewnętrznym repozytorium i jak się do nich odwołać w kwerendzie zapisanej w języku dedykowanym dla tego repozytorium. I to jest kolejne kryterium pozwalające na odróżnienie wyrażeń klasy LINQ.
+## Anonymous type
 
-Aby opisać kolejne musimy dokonać analizy następnej metody testowej i związanej z nią metody bibliotecznej [AnonymousType]. 
+To describe the next ones, we need to analyze the next test method and the related library method [AnonymousType][AnonymousType].
 
 ``` CSharp
     public static string AnonymousType()
@@ -137,23 +117,23 @@ Aby opisać kolejne musimy dokonać analizy następnej metody testowej i związa
     }
 ```
 
-Metoda ta wybiera z tablicy elementów 'Customer' wszystkie pozycje w których property City == "Phoenix". Na ich podstawie zwracany jest ciąg wartości typu anonimowego. W metodzie selekt do tworzenia nowych wartości użyto typu anonimowego. Tu jednak rodzi się wątpliwość, czy użycie tego typu jest niezbędne. Czy można w metodzie selekt tworzyć nowe wartości korzystając z własnego typu nazwanego. W ramach pracy domowej proponuję sprawdzić to oraz to czy wyrażenie nadal będzie miało cechy wyrażenia klasy LINQ. Tu jednak zauważmy, że własny typ może nie być znany w kontekście języka kwerend używanego dla wybranego zewnętrznego repozytorium danych. Typy anonimowe to zbiór wartości, który zawsze można przekształcić do ciągu par {klucz, wartość}, co jest reprezentacją łatwo dającą się użyć w kontekście dowolnego języka kwerend dla zewnętrznego repozytorium danych.
+This method selects from the array of 'Customer' elements all items in which the following condition is true
 
-### 3.3. Lokalne dane strukturalne 
+``` CSharp
+City == "Phoenix".
+```
 
-Relatywnie dużo czasu poświęciliśmy na omówienie wyrażenia LINQ w kontekście danych strukturalnych zgromadzonych i udostępnianych przez zewnętrzne repozytoria danych ale wszystkie operacje w przykładowym tekście programu były wykonywane na danych lokalnych. Choć były to dane złożone, przykładowo tablica, to nie reprezentowały relacji pomiędzy niezależnymi obiektami, więc nie korzystaliśmy z danych strukturalnych. Przyjrzyjmy się teraz jak projektować, tworzyć, utrzymywać i wykorzystywać takie struktury. Tu również spróbujemy odpowiedzieć na pytanie jak LINQ może nam pomóc. W szczególności, jeśli jest potrzeba odrębnej preselekcji danych w przypadku lokalnych danych strukturalnych, czyli pewnego grafu obiektów.
+Based on them, a sequence of anonymous type values is returned - the select method uses an anonymous type to create new values. However, there is a doubt as to whether the use of this type is necessary. Is it possible to create new values in the `select` method using a custom-named type? As part of your homework, I suggest checking this scenario and whether the expression will still have the characteristics of a LINQ class expression. Note that the custom type may not be known in the context of the query language used for the selected external data repository. Anonymous types are a set of values that can always be converted to a sequence of ordered pairs (key, value), which is a representation that could be easily implemented in the context of any query language compliant with any external data repository.
 
-Podstawowym sposobem tworzenia danych strukturalnych jest definiowanie własnych klas i łączenie ich z wykorzystaniem referencji. Takie właśnie podejście ilustruje definicja klas dla przykładowej struktury, którą omówiliśmy wczesniej. Kod ten znajduje się w projekcie testów jednostkowych i zawiera dwie klasy, pomiędzy którymi występują relacje.
+## 3.3. Local Structural Data
 
-Popatrzmy teraz na analizę graficzną kodu. W rezultacie po zmianie ustawień filtrowania możemy wspomniane relacje pomiędzy klasami zobaczyć na rysunku. W przypadku danych lokalnych relacje pomiędzy obiektami są realizowane za pośrednictwem zmiennych referencyjnych.
+We spent a relatively large amount of time discussing LINQ expression in the context of structured data collected and made available by external data repositories but all operations in the sample program text were performed on local data. Although this was complex data - an array for example - it did not represent relationships between independent objects, so we did not use structured data. Now, let's look at how to design, create, maintain, and use such structures. Here we will also try to answer how LINQ can help us. In particular, if there is a need for separate data pre-selection in the case of local structured data, i.e. a certain object graph.
 
--->
+In object-oriented programming, the basic way to create structured data is to define custom classes and link them using references. This approach is illustrated by the [Person][Person] class definition. This code is located in the unit test project and contains two classes with relationships between them.
+
+Now let's look at the graphical analysis of the code. As a result - after configuring the appropriate filtering settings - we can see the mentioned relationships between classes in the figure. In the case of local data, relationships between objects are implemented through reference variables.
 
 ![PersonCodeMap](../.Media/PersonCodeMap.png)
-
-- [Person][Person]
-- [CDCatalog][CDCatalog]
-- [TestDataGenerator][TestDataGenerator]
 
 <!--
 
@@ -225,7 +205,18 @@ W tej lekcji to już wszystko. Dziękuję za poświęcony czas i zapraszam do ob
 Praca domowa- wykorzystać metody nazwane i sprawdzić rezultat.
 
 -->
+## See also
 
+- [Person][Person]
+- [CDCatalog][CDCatalog]
+- [TestDataGenerator][TestDataGenerator]
+
+[QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
+[MethodSyntax]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L21-L26
+[LinqMethodSyntaxExamples]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L19-L47
+[AnonymousType]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L37-L46
+
+[MethodSyntaxTest]: ../StructuralDataUnitTest/LinqMethodSyntaxExamplesUnitTest.cs#L21-L24
 [TestDataGenerator]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
 [Person]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
 [CDCatalog]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L72
