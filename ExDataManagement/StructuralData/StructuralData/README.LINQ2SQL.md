@@ -11,6 +11,12 @@
 
 # LINQ to SQL
 
+- [LINQ to SQL](#linq-to-sql)
+  - [Introduction](#introduction)
+  - [Database Deployment](#database-deployment)
+  - [Database Usage](#database-usage)
+
+
 ## Introduction
 
 In this chapter, we will continue to discuss structured data and the ability to create queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for language-integrated query. This time, we will use these queries to pre-select data from the relational database.
@@ -48,7 +54,7 @@ It's a very diverse environment, so the real challenge is:
 
 LINQ expression, i.e. language integrated query, is a technology integrated with a programming language that allows for the implementation of many of the mentioned goals. Therefore, we will devote this lesson to familiarize ourselves with this mechanism in the context of relational databases as an example that can also be expanded and used for other external data repositories.
 
-## Database Example
+## Database Deployment
 
 To have something to practice on, we will start by creating a sample database and connection setup using the Visual Studio design environment. To make the example useful, we also need to create metadata describing the structure of the data in the database. We will call this metadata database schema. By design, the database schema is a logical representation of how data should be organized and stored within a database system. It acts as a blueprint that defines the structure and relationships of data. Think of it as the skeleton of the database, outlining the essential components.
 
@@ -92,10 +98,33 @@ Designing this structure results in automatically generated program text that im
 
 ![DBML Content](../.Media/DGMLDiagram.png)
 
+The [CatalogDataContext][CatalogDataContextDGML] class inherits from `DataContext`from the .NET library. This inheritance shows how polymorphism was used to meet individual needs and the base class to implement common requirements for functionality dedicated to operating on the database as one whole. This class also implements the IDisposable interface, which should be used to properly manage the lifetime and state of an object created from this class.
+
+Since the auto-generated text contains several hundred lines, I now suggest analyzing it using the Show on Code Map function. The resulting graphical representation of the text, i.e. the diagram, describes the content of the generated classes and shows the relationships between them. The goal of the analysis is to find similar relationships that we had previously in classes created manually. As we have already established, the generated text contains three classes, which can be seen in the created diagram. After filtering out the elements that are unnecessary for this analysis, it can be seen that the [Person][PersonDGML] class representing the author of the disc and [CDCatalogEntity][CDCatalogEntityDGML] representing the disc are recursively connected.
+
+![Catalog DGML Code Map](../.Media/CatalogDGMLCodeMap.png)
+
+First, we look for the [CDCatalogEntity][CDCatalogEntityDGML] class and the one-to-one relationship connecting the CD with its author, namely the [Person][PersonDGML] class. It is implemented by a property with the same name as the target class, namely [Person][PersonDGML]. It returns a reference to an instance of the [Person][PersonDGML] class.
+
+Let's now move on to find a relationship in the opposite direction, namely the relationship that will connect the author represented by the [Person][PersonDGML] class and all his records, i.e. a member that provides relationships between instances of the [Person][PersonDGML] class and instances of the [CDCatalogEntity][CDCatalogEntityDGML] class. This many-to-one relationship is implemented as the CDCatalogEntities property, which returns a reference to the generic `EntitySet` instance. As you can see, in the created program text, an instance of this type is a collection of the [CDCatalogEntity][CDCatalogEntityDGML] instances.
+
+Since the [CatalogDataContext][CatalogDataContextDGMLCustom] class, which represents the database as one whole, is a partial class, we can implement our custom functionality dedicated to individual needs in a separate file containing a separate partial part. In our case, we will limit the code to examples of using various kinds of LINQ expressions and compare them with typical iteration operations.
+
+Therefore, as before, there are three methods implementing the same algorithm in three different ways, namely selecting a list of people indicated by the method parameter. We will return to these implementations in the context of unit tests, which we will use for a more detailed comparative analysis of these three implementations.
+
+Additionally, this class contains the [AddContent][AddContentDGMLCustom] method, which is intended for adding initial data to the database. Additionally, the [TruncateAllData][TruncateAllDataDGMLCustom] method is used to clean the database content. It is useful in unit tests to ensure that the initial conditions of the test are uniform.
+
+The first method used to compare different data filtering implementations uses the foreach statement. In the second, the filtering algorithm was written using the LINQ query expression. The last implementation uses the method syntax of the LINQ expression. We will examine the features of individual implementations using unit tests. It should be emphasized again that the tests we will discuss in a moment are not intended to check the correctness of the proposed solutions, but only to test their features.
+
+## Database Usage
+
+
+[TruncateAllDataDGMLCustom]: LINQ%20to%20SQL/Catalog.cs#L76-L81
+[AddContentDGMLCustom]: LINQ%20to%20SQL/Catalog.cs#L21-L46
 [CatalogDataContextDGML]: LINQ%20to%20SQL/Catalog.designer.cs#L26-L471
 [PersonDGML]: LINQ%20to%20SQL/Catalog.designer.cs#L89-L248
 [CDCatalogEntityDGML]: LINQ%20to%20SQL/Catalog.designer.cs#L251-L471
-
+[CatalogDataContextDGMLCustom]: LINQ%20to%20SQL/Catalog.cs#L19-L83
 <!--
 
 In both examples, LINQ operations remain essentially the same. The difference lies in the data source to which LINQ expressions are applied.
@@ -107,25 +136,6 @@ If the source implements `IQueryable<T>` (which extends `IEnumerable<T>`) then o
 -->
 
 <!--
-### 3.2. Lokalna replika bazy
-
-Klasa CatalogDataContext dziedziczy z DataContext, której definicja znajduje się w bibliotece środowiska .NET. To dziedziczenie pokazuje, jak wykorzystano polimorfizm do realizacji potrzeb indywidualnych i klasy bazowej do implementacji wymagań wspólnych dotyczących funkcjonalności dedukowanej do operowania na bazie danych jako pewnej całości. Klasa ta implementuje również interfejs IDisposable, co należy wykorzystać do odpowiedniego zarządzania czasem życia i stanem obiektu utworzonego z tej klasy.
-
-Ponieważ auto-generowany tekst zawiera kilkaset linii, proponuję teraz, aby dokonać jego analizy korzystając z funkcji Show on Code Map. Otrzymana reprezentacja graficzna tekstu, czyli diagram zawiera opis zawartości wygenerowanych klas i pokazuje relacje pomiędzy nimi. Celem analizy jest znalezienie podobnych relacji, jakie mieliśmy poprzednio w klasach utworzonych ręcznie. Jak już to ustaliliśmy w wygenerowanym tekście znajdują się trzy klasy, które widać na utworzonym diagramie. Po odfiltrowaniu zbędnych do tej analizy elementów widać, że klasa Person reprezentująca autora płyty i CDCatalogEntity reprezentująca płytę są połączone ze sobą rekurencyjnie.
-
-W pierwszej kolejności szukamy klasy CDCatalogEntity i relacji jeden do jednego łączącej płytę CD z jej autorem, a mianowicie klasą Person. Jest ona zrealizowana przez property (właściwość) o nazwie takiej jak klasa docelowa, a mianowicie Person. Jak to widać na ekranie zwraca ona referencje do obiektu klasy Person.
-
-Przejdźmy teraz do wyszukania relacji w drugą stronę, a mianowicie relacji która połączy autora reprezentowanego przez klasę Person i wszystkie jego płyty, czyli składnika udostępniającego relacje do obiektów klasy CDCatalogEntity. Ta relacja wiele do jednego jest zaimplementowana jako właściwość CDCatalogEntities, która zwraca obiekt generyczny typu EntitySet. Jak widać to w utworzonym tekście programu obiekt tego typu jest kolekcją obiektów typu CDCatalogEntity.
-
-Ponieważ klasa CatalogDataContext , która reprezentuje funkcjonalność bazy danych, jest klasą częściową możemy w osobnym pliku zaimplementować własną funkcjonalność dedykowana do indywidualnych potrzeb. W naszym przypadku ograniczymy się przykładów użycia różnych from wyrażeń LINQ i porównamy je z typowymi operacjami iteracyjnymi.
-
-Zatem podobnie jak poprzednio umieszczono tu trzy metody implementujące na trzy różne sposoby ten sam algorytm, a mianowicie wybór listy osób wskazanych przez parametr metody. Do implementacji tych wrócimy w kontekście testów jednostkowych, które użyjemy do bardziej szczegółowej analizy porównawczej tych trzech implementacji.
-
-Dodatkowo klasa ta zawiera metodę AddContent, która przeznaczona jest do dodawania nowych danych do bazy.
-W pierwszej metodzie porównawczej różne implementacji filtrowania danych wykorzystano instrukcję foreach. W drugiej algorytm filtrowania zapisano wykorzystując wyrażenie LINQ zapisane jako kwerenda. W kolejnej implementacji wykorzystano wyrażenie LINQ zapisane jako ciąg operacji
-Metoda TruncateAllData jest przeznaczona do czyszczenia zawartości bazy. Jest ona wykorzystywana w testach jednostkowych do zagwarantowania jednakowych warunków rozpoczęcia testu.
-
-Cech poszczególnych metod będziemy badali wykorzystując testy jednostkowe. Tu należy podkreślić jednak, że testy do których za chwilę przejdziemy nie są przeznaczone to kontroli poprawności proponowanych rozwiązań, ale tylko do badania ich właściwości.
 
 ### 3.3. Korzystanie z bazy
 
