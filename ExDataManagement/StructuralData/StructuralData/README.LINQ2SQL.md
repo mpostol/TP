@@ -15,7 +15,8 @@
   - [Introduction](#introduction)
   - [Database Deployment](#database-deployment)
   - [Database Usage](#database-usage)
-
+    - [Database Connection](#database-connection)
+    - [Creating SQL Queries](#creating-sql-queries)
 
 ## Introduction
 
@@ -66,7 +67,7 @@ Since the examples discussed require access to a database, it is necessary to pr
 
 So we'll start by creating a sample database file. The example is located in the unit test project in a separate folder. The folder name doesn't matter. Our library is indeed educational, not production-oriented, but this approach allows us to design a library implementing the data layer in such a way that it is completely independent of the DBMS implementation method and does not contain elements dedicated to the test environment. Thanks to this, it can be later used in production without the need to modify the program text.
 
-Therefore, in the selected place in the project, from the context menu, select add a new element. A window appears with a vast variety of components that we can potentially add to the project. Let's limit the list of proposals by selecting `Date` in the list of available categories. The component we need is a `Service-based Database`. It is added to the project already with the name `CDCatalog`. As a result, two files are attached to the project. Select cop always to make sure that they are copied to the target folder after the program compilation is completed. We will come back to this issue later because it is a condition for the correct use of the relational database imitation created this way.
+Therefore, in the selected place in the project, from the context menu, select add a new element. A window appears with a vast variety of components that we can potentially add to the project. Let's limit the list of proposals by selecting `Date` in the list of available categories. The component we need is a `Service-based Database`. It is added to the project already with the name `CDCatalog`. As a result, two files are attached to the project. Select the option `copy always` to make sure that they are copied to the output folder after the program compilation is completed. We will come back to this issue later because it is a condition for the correct use of the relational database imitation created this way.
 
 ![Create in-process db](../.Media/CreatinInMemoryDB.gif)
 
@@ -94,37 +95,86 @@ This editor allows you to transfer tables from a previously connected SQL server
 
 The created diagram resembles a UML class diagram. In this diagram, as I mentioned, the classes were automatically connected using associations. This association in the diagram is a consequence of the foreign key used to define the relationship between table entities in the database. It must therefore be implemented in the program code as a reference value to introduce similar structural dependencies into the program. We can edit relationship properties in a separate editor window, which we open from the context menu.
 
-Designing this structure results in automatically generated program text that implements it in partial classes. This time, the program contains three classes representing dedicated information. The database is represented by the [CatalogDataContext][CatalogDataContextDGML] class. The author is represented by a class called [Person][PersonDGML], and the CD is represented by the [CDCatalogEntity][CDCatalogEntityDGML] class. It is worth noting that all classes are partial so that additional definitions can be added in a separate file, thus meeting individual needs related to the implemented data processing algorithm.
+Designing this structure results in automatically generated program text that implements it in partial classes. This time, the program contains three classes representing dedicated information. The database is represented by the [CatalogDataContext][CatalogDataContextDBML] class. The author is represented by a class called [Person][PersonDBML], and the CD is represented by the [CDCatalogEntity][CDCatalogEntityDBML] class. It is worth noting that all classes are partial so that additional definitions can be added in a separate file, thus meeting individual needs related to the implemented data processing algorithm.
 
-![DBML Content](../.Media/DGMLDiagram.png)
+![DBML Content](../.Media/DBMLDiagram.png)
 
-The [CatalogDataContext][CatalogDataContextDGML] class inherits from `DataContext`from the .NET library. This inheritance shows how polymorphism was used to meet individual needs and the base class to implement common requirements for functionality dedicated to operating on the database as one whole. This class also implements the IDisposable interface, which should be used to properly manage the lifetime and state of an object created from this class.
+The [CatalogDataContext][CatalogDataContextDBML] class inherits from `DataContext`from the .NET library. This inheritance shows how polymorphism was used to meet individual needs and the base class to implement common requirements for functionality dedicated to operating on the database as one whole. This class also implements the IDisposable interface, which should be used to properly manage the lifetime and state of an object created from this class.
 
-Since the auto-generated text contains several hundred lines, I now suggest analyzing it using the Show on Code Map function. The resulting graphical representation of the text, i.e. the diagram, describes the content of the generated classes and shows the relationships between them. The goal of the analysis is to find similar relationships that we had previously in classes created manually. As we have already established, the generated text contains three classes, which can be seen in the created diagram. After filtering out the elements that are unnecessary for this analysis, it can be seen that the [Person][PersonDGML] class representing the author of the disc and [CDCatalogEntity][CDCatalogEntityDGML] representing the disc are recursively connected.
+Since the auto-generated text contains several hundred lines, I now suggest analyzing it using the Show on Code Map function. The resulting graphical representation of the text, i.e. the diagram, describes the content of the generated classes and shows the relationships between them. The goal of the analysis is to find similar relationships that we had previously in classes created manually. As we have already established, the generated text contains three classes, which can be seen in the created diagram. After filtering out the elements that are unnecessary for this analysis, it can be seen that the [Person][PersonDBML] class representing the author of the disc and [CDCatalogEntity][CDCatalogEntityDBML] representing the disc are recursively connected.
 
-![Catalog DGML Code Map](../.Media/CatalogDGMLCodeMap.png)
+![Catalog DBML Code Map](../.Media/CatalogDBMLCodeMap.png)
 
-First, we look for the [CDCatalogEntity][CDCatalogEntityDGML] class and the one-to-one relationship connecting the CD with its author, namely the [Person][PersonDGML] class. It is implemented by a property with the same name as the target class, namely [Person][PersonDGML]. It returns a reference to an instance of the [Person][PersonDGML] class.
+First, we look for the [CDCatalogEntity][CDCatalogEntityDBML] class and the one-to-one relationship connecting the CD with its author, namely the [Person][PersonDBML] class. It is implemented by a property with the same name as the target class, namely [Person][PersonDBML]. It returns a reference to an instance of the [Person][PersonDBML] class.
 
-Let's now move on to find a relationship in the opposite direction, namely the relationship that will connect the author represented by the [Person][PersonDGML] class and all his records, i.e. a member that provides relationships between instances of the [Person][PersonDGML] class and instances of the [CDCatalogEntity][CDCatalogEntityDGML] class. This many-to-one relationship is implemented as the CDCatalogEntities property, which returns a reference to the generic `EntitySet` instance. As you can see, in the created program text, an instance of this type is a collection of the [CDCatalogEntity][CDCatalogEntityDGML] instances.
+Let's now move on to find a relationship in the opposite direction, namely the relationship that will connect the author represented by the [Person][PersonDBML] class and all his records, i.e. a member that provides relationships between instances of the [Person][PersonDBML] class and instances of the [CDCatalogEntity][CDCatalogEntityDBML] class. This many-to-one relationship is implemented as the CDCatalogEntities property, which returns a reference to the generic `EntitySet` instance. As you can see, in the created program text, an instance of this type is a collection of the [CDCatalogEntity][CDCatalogEntityDBML] instances.
 
-Since the [CatalogDataContext][CatalogDataContextDGMLCustom] class, which represents the database as one whole, is a partial class, we can implement our custom functionality dedicated to individual needs in a separate file containing a separate partial part. In our case, we will limit the code to examples of using various kinds of LINQ expressions and compare them with typical iteration operations.
+Since the [CatalogDataContext][CatalogDataContextDBMLCustom] class, which represents the database as one whole, is a partial class, we can implement our custom functionality dedicated to individual needs in a separate file containing a separate partial part. In our case, we will limit the code to examples of using various kinds of LINQ expressions and compare them with typical iteration operations.
 
 Therefore, as before, there are three methods implementing the same algorithm in three different ways, namely selecting a list of people indicated by the method parameter. We will return to these implementations in the context of unit tests, which we will use for a more detailed comparative analysis of these three implementations.
 
-Additionally, this class contains the [AddContent][AddContentDGMLCustom] method, which is intended for adding initial data to the database. Additionally, the [TruncateAllData][TruncateAllDataDGMLCustom] method is used to clean the database content. It is useful in unit tests to ensure that the initial conditions of the test are uniform.
+Additionally, this class contains the [AddContent][AddContentDBMLCustom] method, which is intended for adding initial data to the database. Additionally, the [TruncateAllData][TruncateAllDataDBMLCustom] method is used to clean the database content. It is useful in unit tests to ensure that the initial conditions of the test are uniform.
 
 The first method used to compare different data filtering implementations uses the foreach statement. In the second, the filtering algorithm was written using the LINQ query expression. The last implementation uses the method syntax of the LINQ expression. We will examine the features of individual implementations using unit tests. It should be emphasized again that the tests we will discuss in a moment are not intended to check the correctness of the proposed solutions, but only to test their features.
 
 ## Database Usage
 
+### Database Connection
 
-[TruncateAllDataDGMLCustom]: LINQ%20to%20SQL/Catalog.cs#L76-L81
-[AddContentDGMLCustom]: LINQ%20to%20SQL/Catalog.cs#L21-L46
-[CatalogDataContextDGML]: LINQ%20to%20SQL/Catalog.designer.cs#L26-L471
-[PersonDGML]: LINQ%20to%20SQL/Catalog.designer.cs#L89-L248
-[CDCatalogEntityDGML]: LINQ%20to%20SQL/Catalog.designer.cs#L251-L471
-[CatalogDataContextDGMLCustom]: LINQ%20to%20SQL/Catalog.cs#L19-L83
+Let's now move on to analyzing example methods for filtering data from the database in the context of unit tests. They act as services that provide access to structured data to higher layers. The important issues here are the connection to the database, building SQL queries, and their implementation in the context of this connection. Since data is processed locally using a certain partial replica of the database located in the in-process memory the query creation must be harmonized with the structure of this replica.
+
+To apply this approach, a file with the database content was attached to the test project. To prevent tests from modifying their content each time they are executed, it must be copied to the testing workspace. For this purpose, the `DeploymentItem` attribute is used, whose job is to copy the file to a local folder with a predictable name before running tests in this class. This attribute copies the file using the current path to the output folder where the compiler places its results. This allows you to copy files regardless of the compiler configuration you are currently using.
+
+For a previously added database file to be copied by the compiler (or rather by the `msbuild` program) it must have the appropriate property set to the option `copy always` in the settings file. We can do this using the context menu for this file, in this case, the `CDCatalog` file with the `mdf` extension.
+
+The [ClassInitializationMethod][ClassInitializationMethod] method is responsible for creating a valid connection string based on the known location where the database file is copied and the template text enabling the use of the Visual Studio environment to emulate a connection to the database server, i.e. the DBMS. The designated stream of characters will be further used to establish a connection with an imitation of the database DBMS.
+
+The database is represented by the local replica as an object of the [CatalogDataContext][CatalogDataContextDBMLCustom] class. Because this class implements the `IDisposable` interface, it is instantiated in the using statement, which guarantees calling the Dispose method whenever the `_newCatalog` variable leaves the visibility scope, so the object to which it stores references can no longer be directly used in the program. A connection string is passed to the constructor of this class, which indicates that the created object is responsible for managing the connection and the session created on its basis. The session stores the context in which communication takes place between the local objects creating the database replica and the DBMS. Within this context, the identity that will be used to authorize operations requested by the local replica to the remote DBMS is important.
+
+``` CSharp
+      using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
+      { ... }
+```
+
+Typically, a database contains data reflecting the state of a certain process, which means that it is necessary to depend on the history of operations applied to this database. As a consequence, from the point of view of tests, the content of the database becomes unpredictable - it is not determined in time. To ensure predictable unit test results, the database content must also be predictable. The purpose of the [PrepareData][PrepareData] method is to solve this problem. It creates objects and connects them into a graph with repeatable and known content. We will use it as test data that will serve as initialization data. To initialize the database, we must create objects with types consistent with the contents of the tables in the database and combine them into an equivalent structure. The created graph has no additional functionality, so it can be treated as a Data Transfer Object (DTO). In the presented case, it is more of a graph than a single object, but this is an irrelevant detail.
+
+``` CSharp
+          _newCatalog.AddContent(TestDataGenerator.PrepareData());
+```
+
+Concrete classes that meet DTO requirements have been defined in the unit tests project, so they are not visible in the main library. To implement the `AddContent` method, let's use the dependency injection programming pattern. According to it, the parameter type of this method is abstract, it is two interfaces `IPerson` and `ICDCatalog` combined into a structure, which can be implemented depending on the needs. This approach allows you to separate the specific data source, i.e. the place the data is created, from the place it is used.
+
+Let's move on to an example, and the example is the [Person][Person] and [CDCatalog][CDCatalog] classes that have been defined in the TestDataGenerator class. In the program code, we see that the [CDCatalog][CDCatalog] class has references, i.e. a reference, to the instance of the [Person][Person] class to represent information about the author of the CD. It is a one-to-one relationship. The [Person][Person] class, on the other hand, contains a representation of a set of albums released by a single author, so it has references to instances of the [CDCatalog][CDCatalog] class. This time the relationship is one-to-many. These references are available as an object that implements `IEnumerable`, and such an object can be used as a data source in a foreach statement and a LINQ expression.
+
+### Creating SQL Queries
+
+As previously noted, all operations performed on the database must be described in the appropriate language for the selected DBMS. Since we use a relational database in the example, its natural language is SQL, but we write the program in C#. Using three implementations of the same data preselecting algorithm, we will examine how to deal with this problem without using SQL directly.
+
+The [FilterPersonsByLastName_ForEach][FilterPersonsByLastName_ForEach] method uses the foreach statement and an internal if statement responsible for filtering the table contents according to the value of the method parameter. In the [FilterPersonsByLastName_ForEachTest][FilterPersonsByLastName_ForEachTest], the type of the returned object and the result of calling its `ToString` method are also examined in addition to the value returned by the method. As a result, we see that an object of the generic `List` class is returned, with the type parameter of [Person][Person] type. This is further proof that in this case, the result is a collection of selected values, and therefore the result of the above-mentioned instructions. The consequence of such an implementation is the need to download all values from the [Persons][Persons] table to make locally a final decision about the selection of the data.
+
+In the second test [FilterPersonsByLastName_QuerySyntaxTest][FilterPersonsByLastName_QuerySyntaxTest], we examine the [FilterPersonsByLastName_QuerySyntax][FilterPersonsByLastName_QuerySyntax] method implementing the same algorithm but using the LINQ query expression. The test result is identical to the previous one, but this time the returned object type of the method result is different, which again confirms that LINQ expressions return an object representation of the expression itself, not its result. Of course, this statement is true as long as the compiler manages to translate the program text into a form that allows such transformation to an object-oriented form during its execution.
+
+In the [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName_MethodSyntaxTest] test, we examine the result returned from the [FilterPersonsByLastName_MethodSyntax][FilterPersonsByLastName_MethodSyntax] method implementing the same filtering algorithm but written using the method syntax of LINQ expression. Again, the test result is identical to the previous one, and additionally, examining the type of the returned object gives the same result as before, which confirms that the result of using a LINQ expression is always the same regardless of the syntax used.
+
+[FilterPersonsByLastName_ForEachTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L60-L80
+[FilterPersonsByLastName_MethodSyntaxTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L106-L126
+[FilterPersonsByLastName_QuerySyntaxTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L83-L103
+[Person]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
+[CDCatalog]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L72
+[PrepareData]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L19-L27
+[ClassInitializationMethod]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L28-L36
+
+[FilterPersonsByLastName_MethodSyntax]: LINQ%20to%20SQL/Catalog.cs#L61-L64
+[FilterPersonsByLastName_QuerySyntax]: LINQ%20to%20SQL/Catalog.cs#L55-L60
+[FilterPersonsByLastName_ForEach]: LINQ%20to%20SQL/Catalog.cs#L47-L54
+[Persons]: LINQ%20to%20SQL/Catalog.designer.cs#L71-L77
+[TruncateAllDataDBMLCustom]: LINQ%20to%20SQL/Catalog.cs#L76-L81
+[AddContentDBMLCustom]: LINQ%20to%20SQL/Catalog.cs#L21-L46
+[CatalogDataContextDBML]: LINQ%20to%20SQL/Catalog.designer.cs#L26-L471
+[PersonDBML]: LINQ%20to%20SQL/Catalog.designer.cs#L89-L248
+[CDCatalogEntityDBML]: LINQ%20to%20SQL/Catalog.designer.cs#L251-L471
+[CatalogDataContextDBMLCustom]: LINQ%20to%20SQL/Catalog.cs#L19-L83
+
 <!--
 
 In both examples, LINQ operations remain essentially the same. The difference lies in the data source to which LINQ expressions are applied.
@@ -137,39 +187,6 @@ If the source implements `IQueryable<T>` (which extends `IEnumerable<T>`) then o
 
 <!--
 
-### 3.3. Korzystanie z bazy
-
-#### 3.3.1. Wstęp
-
-Przejdźmy teraz do analizy przykładowych metod filtrujących dane z bazy danych w kontekście testów jednostkowych. Pełnią one rolę usług zapewniających dostęp do danych strukturalnych warstwom wyższym. Tu istotnymi zagadnieniami są połączenie do bazy danych, budowanie kwerend SQL i ich realizacja w kontekście tego połączenia. Ponieważ lokalnie dane przetwarzane są z wykorzystaniem pewnej pamięciowej repliki bazy, o której mówiliśmy poprzednio, trzeba harmonizować proces tworzenia kwerend ze strukturą tej repliki.
-
-#### 3.3.2. Połączenie do bazy danych
-
-Jak zwykle wykorzystamy testy jednostkowe do analizy wybranych cech omawianego zagadnienia. Wszystkie testy są zlokalizowane w jednym pliku. Ponieważ testowane metody wymagają dostępu do bazy danych niezbędne jest stworzenie na te potrzeby serwera pełniącego rolę DBMS i publikującego dane zgodnie z wcześniej zaprojektowanym schematem. Ponieważ tekst programu znajduje się w publicznym repozytorium i może być wykorzystywany w różnych środowiskach, zastosowanie tu rzeczywistego serwera SQL jest warunkiem bardzo trudnym do spełnienia. Jednym ze sposobów rozwiązania tego problemu jest wykorzystanie środowiska Visual Studio w roli właśnie takiego serwera. Wymaga to dostępu do pliku bazy danych w trakcie realizacji testów, które muszą znać bezwzględną ścieżkę do niego.
-
-Aby wykorzystać to podejście do projektu testowego został dołączony plik z zawartością bazy danych. Aby testy nie modyfikowały jego zawartości za każdym razem, kiedy są wykonywane, należy go skopiować do przestrzeni roboczej testu. W tym celu wykorzystano atrybut DeploymentItem, którego zadaniem jest spowodowanie skopiowania pliku do lokalnego folderu o przewidywalnej nazwie przed uruchomieniem testów w tej klasie. Atrybut ten powoduje kopiowanie pliku korzystając z aktualnej ścieżki do miejsca, gdzie kompilator umieszcza rezultaty swojego działania. To pozwala kopiować pliki niezależnie od używanej aktualnie konfiguracji kompilatora.
-
-Aby uprzednio dodany plik bazy danych był kopiowane przez kompilator, a właściwie przez program msbuild, musi mieć ustawioną odpowiednią właściwość w pliku konfiguracyjnym projektu. Możemy tego dokonać korzystając z menu kontekstowego dla tego pliku, w tym przypadku pliku CDCatalog z rozszerzeniem mdf.
-
-Metoda ClassInitializationMethod jest odpowiedzialna za utworzenie aktualnego connection string na podstawie znanego miejsca, gdzie jest kopiowany plik bazy danych oraz tekstu szablonu umożliwiającego wykorzystanie środowiska Visual Studio do emulowania połączenia z serwerem bazy danych, więc z DBMS. Wyznaczony ciąg znaków będzie dalej wykorzystany do zestawienia połączenia z naszą imitacją bazy danych.
-
-Baza danych jest reprezentowana w lokalnej replice jako obiekt klasy CatalogDataContext. Ponieważ klasa ta implementuje interfejs IDisposable utworzenie nowego obiektu tej klasy umieściłem w instrukcji using, która gwarantuje wywołanie metody Dispose zawsze, kiedy zmienna _newCatalog wyjdzie z zakresu widzialności, więc obiekt do którego przechowuje referencje nie będzie mógł być już bezpośrednio wykorzystany w programie. Do konstruktora tej klasy jest przekazywany connection string, co świadczy o tym, że utworzony obiekt jest odpowiedzialny za zarządzanie połączeniem i utworzoną na jego bazie sesją. Sesja przechowuje kontekst w którym odbywa się komunikacja pomiędzy lokalnym obiektami tworzącymi replikę bazy i DBMS. W ramach tego kontekstu bardzo ważna jest tożsamość, która będzie używana do autoryzacji operacji zlecanych poprzez lokalną replikę do zdalnego DBMS.
-
-Zwykle baza danych zawiera dane odzwierciedlające stan pewnego procesu, a to oznacza konieczność uzależnienia się od historii operacji wykonywanych na tej bazie. W konsekwencji, z punktu widzenia testów zawartość bazy staje się nieprzewidywalna – nie jest zdeterminowana w czasie. Aby zapewnić przewidywalny rezultat testów jednostkowych, zawartość bazy musi być też przewidywalna. Celem metody PrepareData jest rozwiązanie tego problemu. Tworzy ona obiekty i łączy je w graf o powtarzalnej i znanej zwartości. Wykorzystamy go jako dane testowe, które posłużą jako dane inicjacyjne. Aby zainicjować bazę musimy utworzyć obiekty o typach zgodnych z zawartością tabel w bazie i połączyć je w ekwiwalentną strukturę. Utworzony graf nie ma dodatkowej funkcjonalności, więc może być traktowany jako obiekt transferowy w terminologii angielskiej nazywany Data Transfer Object (DTO). W naszym przypadku jest to bardziej graf niż pojedynczy obiekt, ale to już nieistotny szczegół.
-
-Klasy spełniające wymagania DTO zostały zdefiniowane w testach jednostkowych, więc w bibliotece nie są znane. Aby zaimplementować metodę AddContent posłużmy się wzorcem wstrzykiwania zależności. Zgodnie z nim typ parametru tej metody jest abstrakcyjny, to dwa interfejsy IPerson i ICDCatalog połączone w strukturę, które mogą być zaimplementowane w zależności od potrzeb. Takie podejście pozwala odprzęgnąć konkretne źródło danych, więc sposób powstawania danych, od sposobu ich wykorzystania.
-
-Przejdźmy do przykładu, a przykład to klasy Person i CDCatalog, które zostały zdefiniowane w klasie TestDataGenerator. W kodzie programu widzimy, że klasa CDCatalog ma odwołania, więc referencję, do obiektu klasy Person, aby reprezentować informacje o autorze płyty CD. Jest to relacja jeden do jeden. Natomiast klasa Person zawiera reprezentację zbioru płyt wydanych przez jednego autora, więc ma referencje do obiektów klasy CDCatalog. Tym razem relacja jest jeden do wielu. Te referencje są dostępne jako obiekt implementujący IEnumerable, a taki obiekt może być wykorzystany jako źródło danych w instrukcji foreach i wyrażeniu LINQ.
-
-#### 3.3.3. Budowanie kwerend SQL
-
-Jak wcześniej zaznaczyłem wszystkie operacje wykonywane na bazie danych muszą być opisane w odpowiednim języku dla wybranego DBMS. Ponieważ w przykładzie wykorzystujemy bazę relacyjną, więc jej naturalnym językiem jest SQL, ale program piszemy w C#. Popatrzmy na trzech implementacjach tego samego algorytmu preselekcji danych jak sobie z tym problemem poradzić, żeby nie używać bezpośrednio języka SQL.
-
-W pierwszej metodzie użyto instrukcję foreach i wewnętrzną instrukcję if odpowiedzialną za filtrowanie zawartości tabeli zgodnie z wartością parametru metody. W teście oprócz zwracanej przez metodę wartości badany jest również typ zwracanego obiektu oraz wynik wywołania jego metody ToString. Z rezultatu widzimy, że zwracany jest obiekt generycznej klasy List, której parametrem typu jest Person. To kolejny dowód na to, że w tym przypadku wynikiem jest kolekcja wybranych wartości, a więc wynik działania wspomnianych instrukcji. Konsekwencją takiej implementacji jest konieczność ściągnięcia wszystkich wartości z tablicy Persons by lokalnie podjąć decyzję o wyborze poszukiwanych danych.
-
-W drugim teście badamy implementację metody wykorzystującej wyrażenie LINQ zapisane zgodnie ze składnią kwerendy. Wynik testu jest identyczny z poprzednim, ale tym razem zwracany typ obiektu wyniku działania metody jest inny, co ponownie potwierdza, że w przypadku wyrażeń klasy LINQ zwracana jest obiektowa reprezentacja samego wyrażenia, a nie wynik jego działania. Oczywiście to twierdzenie jest prawdziwe tak długo, jak długo kompilator radzi sobie z tłumaczeniem tekstu programu na postać umożliwiającą takie przekształcenie do postaci obiektowej w trakcie jego realizacji.
-
-W kolejnym teście badamy rezultat zwracany z metody realizującej ten sam algorytm filtrowania, ale zaimplementowany z użyciem wyrażenia LINQ zapisanego, jako ciąg operacji z wykorzystaniem metod rozszerzających. I znów wynik testu jest identyczny do poprzedniego i dodatkowo badanie typu zwracanego obiektu daje ten sam wynik jak poprzednio, a to potwierdza, że rezultat użycia wyrażenia LINQ jest zawsze taki sam niezależnie od użytej składni.
 
 Tu warto zauważyć, że tekst zwracany z metody ToString dla obiektu będącego wynikiem działania  badanych metod wykorzystujących wyrażenia LINQ przypomina kwerendę SQL. Ja ten tekst zapisałem do osobnego pliku, który teraz otworzymy w osobnym edytorze. Faktycznie teraz widzimy, że jest to typowa kwerenda selekt. Przed wysłaniem do zdalnego DBMS musi być jeszcze uzupełniona o wartość parametru metody, w której będzie wykorzystana.
 
