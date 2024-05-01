@@ -17,6 +17,7 @@
   - [Database Usage](#database-usage)
     - [Database Connection](#database-connection)
     - [Creating SQL Queries](#creating-sql-queries)
+    - [Mapping](#mapping)
 
 ## Introduction
 
@@ -156,6 +157,28 @@ In the second test [FilterPersonsByLastName_QuerySyntaxTest][FilterPersonsByLast
 
 In the [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName_MethodSyntaxTest] test, we examine the result returned from the [FilterPersonsByLastName_MethodSyntax][FilterPersonsByLastName_MethodSyntax] method implementing the same filtering algorithm but written using the method syntax of LINQ expression. Again, the test result is identical to the previous one, and additionally, examining the type of the returned object gives the same result as before, which confirms that the result of using a LINQ expression is always the same regardless of the syntax used.
 
+It is worth noting that the text returned from the `ToString` method for an object resulting from the operation of the tested methods using LINQ expressions resembles an SQL query. I saved this [text][FilterPersonsByLastNamesql] to a separate file and added it below. We now see that this is a typical select query. Before being sent to the remote DBMS, it must be supplemented with the parameter value of the method in which it will be used.
+
+``` SQL
+SELECT [t0].[Id], [t0].[FirstName], [t0].[LastName], [t0].[Age]
+FROM [dbo].[Person] AS [t0]
+WHERE [t0].[LastName] = @p0
+```
+
+Let's try to explain this result. Using the "go to definition" shortcut in the context menu or the F12 key, we will move to the definition of the where method. We see that this is a method that extends the `IQueryable` interface and is located in the static `Queryable` class of the .NET library. This class also contains all the other methods necessary to implement LINQ expressions. This is an important statement and is worth remembering to understand the answer to the previously asked question: what is a LINQ class expression and how does it differ from expressions that do not belong to this class? As I mentioned, this question was already asked in the previous lesson, but we will try to answer it again.
+
+Based on the analysis of the program text, we conclude that `Where` is a method extending the `IQueryable` interface. The definition of this interface is empty, but the inheritance chain indicates that this interface also requires an implementation of the `IEnumerable` interface. So again we can say that we are dealing with a LINQ expression. Since we did not receive an SQL query previously, this does not explain the different behavior of the LINQ expression compared with the regular expression. The difference is the non-generic interface `IQueryable`, which is also in the inheritance list. Its definition shows that it requires the implementation of three getters, which are used by the .NET environment to translate the internal representation of a LINQ expression into its external SQL equivalent. Implementation of these properties-getters determines which language will be chosen as the target language.
+
+![IQuerable](../.Media/IQueable.gif)
+
+Since a LINQ expression always looks the same - it has the same syntax regardless of the data source, the key question here is how to learn that it will be translated into a query of an external data repository and not executed locally on data residing in-process local memory. The answer should be sought by analyzing the origin of the definition of the return value used as a data source, i.e. after the word in or as the first operand in a LINQ expression written using method syntax, i.e. in the presented example it is the value returned by `Persons` property. Going to the definition of this property, we can see that it returns the value of the generic type `Table`. Further analysis, the origin of the definition of this type leads to the Microsoft component `System.Data.Linq`. The definition of this type indicates that it implements the `IQueryable` interface. Since it is a component of LINQ to SQL technology, its implementation guarantees conversion to SQL queries.
+
+It must be stressed once again that the syntax of a LINQ expression does not unambiguously answer the question of what will happen when the expression must be executed instead of translated. In other words, there is a weak connection between syntax and semantics, so the meaning of the text is not clear, which can lead to very troublesome errors.
+
+### Mapping
+
+
+[FilterPersonsByLastNamesql]: LINQ%20to%20SQL/FilterPersonsByLastName.sql#L1-L3
 [FilterPersonsByLastName_ForEachTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L60-L80
 [FilterPersonsByLastName_MethodSyntaxTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L106-L126
 [FilterPersonsByLastName_QuerySyntaxTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L83-L103
@@ -186,17 +209,6 @@ If the source implements `IQueryable<T>` (which extends `IEnumerable<T>`) then o
 -->
 
 <!--
-
-
-Tu warto zauważyć, że tekst zwracany z metody ToString dla obiektu będącego wynikiem działania  badanych metod wykorzystujących wyrażenia LINQ przypomina kwerendę SQL. Ja ten tekst zapisałem do osobnego pliku, który teraz otworzymy w osobnym edytorze. Faktycznie teraz widzimy, że jest to typowa kwerenda selekt. Przed wysłaniem do zdalnego DBMS musi być jeszcze uzupełniona o wartość parametru metody, w której będzie wykorzystana.
-
-Spróbujmy wytłumaczyć ten rezultat. Używając skrótu „go to definition” menu kontekstowego albo klawisza F12 przeniesiemy się do definicji metody where. Widzimy, że jest to metoda rozszerzająca interfejs `IQueryable` i znajduje się ona w statycznej klasie `Queryable` biblioteki .NET. Klasa ta zawiera również wszystkie pozostałe metody, które są niezbędne do realizacji wyrażeń LINQ. To ważne stwierdzenie i warto je zapamiętać dla zrozumienia odpowiedzi na postawione już wcześniej pytanie co to jest wyrażenie klasy LINQ i czym się ono różni od wyrażeń nie należących do tej klasy. Jak wspomniałem, to pytanie padło już w trakcie poprzedniej lekcji, ale wrócimy do niego jeszcze raz.
-
-Na podstawie analizy tekstu programu stwierdzamy, że Where tym razem jest metodą rozszerzającą interfejs `IQueryable`. Jak widzimy, definicja tego interfejsu jest pusta, ale łańcuch dziedziczenia wskazuje, że interfejs ten wymaga również implementacji interfejsu IEnumerable. Zatem znowu możemy powiedzieć, że mamy do czynienia z wyrażeniem LINQ. Ponieważ poprzednio nie otrzymaliśmy kwerendy SQL to nie tłumaczy innego zachowania się wyrażenia LINQ tym razem. Różnicę stanowi niegeneryczny interfejs `IQueryable`, który jest również na liście dziedziczenia. Jego definicja pokazuje, że wymaga on zaimplementowania trzech geterów, które właśnie są wykorzystywane przez środowisko .NET to przetłumaczenie wewnętrznej reprezentacji wyrażenia LINQ na jego zewnętrzny odpowiednik. O tym jaki język zostanie wybrany jako język docelowy decyduje właśnie implementacja tych properties – geterów.
-
-Ponieważ wyrażenie LINQ zawsze wygląda tak samo – ma tą samą składnię niezależnie od źródła danych, kluczowym pytaniem tu jest, jak stwierdzić, że zostanie ono przetłumaczone na kwerendę zewnętrznego repozytorium danych strukturalnych, a nie wykonane lokalnie na danych znajdujących się w pamięci lokalnej procesu. Odpowiedzi należy szukać analizując pochodzenie definicji wartości zwracanej i użytej w roli źródła danych, a więc po słowie in lub jako pierwszy składnik w wyrażeniu LINQ zapisanym jako ciąg operacji, czyli w naszym przykładzie wartość zwracana przez Persons. Przechodząc do definicji tej property można stwierdzić, że zwraca ona wartość generycznego typu Table. Dalsza analiza pochodzenie definicji tego typu wiedzie do komponentu Microsoft’u System.Data.Linq, a definicja tego typu wskazuje, że implementuje on interfejs `IQueryable`. Ponieważ jest to komponent technologii LINQ to SQL, więc jego implementacja gwarantuje konwersję na kwerendy SQL.
-
-Tu jeszcze raz podkreślmy, że składnia wyrażenia LINQ nie odpowiada jednoznacznie na pytanie, co się stanie, jak wyrażenie zostanie wykonane. Innymi słowy tu powiązanie składni z semantyką, więc znaczeniem tekstu nie jest jednoznaczne, co może prowadzić do bardzo kłopotliwych błędów.
 
 #### 3.3.4. Mapowanie
 
