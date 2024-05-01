@@ -177,7 +177,15 @@ It must be stressed once again that the syntax of a LINQ expression does not una
 
 ### Mapping
 
+One more puzzle remains, namely the implementation of `IQueryable` in the `Table` type is responsible for converting the internal representation of the LINQ expression into an SQL query. Looking at the example and recovered SQL query, we see that the conversion operation can only be successful if it has some additional information, such as table name, column name, and data types in individual columns. In order not to change the programming language, the conversion operation to SQL must be performed dynamically, i.e. during program execution.
 
+Therefore, it is reasonable to ask: how to obtain this information, or rather recover it, during the implementation of the program?
+
+First, note that the `Table` type is generic. So let's analyze the type of its current parameter for the selected example, i.e. `Person`. Going to the definition of this class, we see that it is preceded by the `Table` attribute. The answer is obvious - reflection, i.e. metadata is recovered from the definitions of auto-generated types using reflection mechanisms.
+
+Reflection has already been discussed earlier, so you can remember if there are any doubts about its operation. This knowledge will be needed because the next test method [ObjectRelationalMappingTest][ObjectRelationalMappingTest] shows how the data needed for translation can be recovered in the implementation of the `IQuerable` interface.
+
+[ObjectRelationalMappingTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L147-L164
 [FilterPersonsByLastNamesql]: LINQ%20to%20SQL/FilterPersonsByLastName.sql#L1-L3
 [FilterPersonsByLastName_ForEachTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L60-L80
 [FilterPersonsByLastName_MethodSyntaxTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L106-L126
@@ -211,12 +219,6 @@ If the source implements `IQueryable<T>` (which extends `IEnumerable<T>`) then o
 <!--
 
 #### 3.3.4. Mapowanie
-
-Pozostaje jeszcze jedna zagadka, a mianowicie implementacja `IQueryable` w typie Table jest odpowiedzialna za dokonanie konwersji wewnętrznej reprezentacji wyrażenia LINQ na kwerendę SQL. Patrząc na przykładową, odzyskaną kwerendę SQL widzimy, że operacja konwersji może się udać jedynie wtedy, jeśli dysponuje kilkoma dodatkowymi informacjami, jak: nazwa tablicy, nazwa kolumn oraz typy danych w poszczególnych kolumnach. Ponieważ mówimy o implementacji, więc operacja konwersji na SQL musi być realizowana dynamicznie, czyli w trakcie wykonywania programu.
-
-Zatem zasadnym jest pytanie: jak te informacje pozyskać, lub raczej odzyskać w czasie realizacji programu?
-
-Po pierwsze zauważmy, że typ Table jest typem generycznym. Przeanalizujmy zatem typ jego parametru aktualnego dla wybranego przykładu, czyli Person. Przechodząc do definicji tej klasy widzimy, że jest ona poprzedzona atrybutem Table. Odpowiedź zatem nasuwa się sama – refleksja, więc odzyskiwanie meta danych z definicji auto-generowanych typów korzystając z mechanizmów refleksji.
 
 O refleksji było już wcześniej, więc można sobie przypomnieć, jeśli są jakieś wątpliwości co do jej działania, a wiedza ta będzie potrzebna, bo kolejna metoda testowa `ObjectRelationalMappingTest` pokazuje jak można potrzebne do konwersji dane odzyskać w implementacji interfejsu IQuerable.
 
