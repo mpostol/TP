@@ -17,9 +17,19 @@ Generally speaking, we can say that data processing is carried out through the e
 2. **Complex data** – here the data is composed of components. Therefore, to operate on complex data we need a selector operation to select a component that is to be subject to an operation. The selection method is determined by the data type, e.g. index for arrays and field selection for class or structure.
 3. **Structured data** - by design, the distinguishing feature is that individual data items in a structure are selected based on intentionally programmed relationships between items.
 
-This section is focused on structural data. Let's analyze this case using sample code. An example is the [Person][Person] and [CDCatalog][CDCatalog] classes, which are defined in the [TestDataGenerator][TestDataGenerator] class. In the program code, we see that the [CDCatalog][CDCatalog] class has references to an object of the [Person][Person] class to represent information about the author of the CD. The [Person][Person] class, on the other hand, contains a representation of a set of albums released by one author, so it has references to objects of the [CDCatalog][CDCatalog] class. This code snippet is included in the unit testing project and will be used later to analyze the use cases of the LINQ expression.
+This section is focused on structural data. Let's analyze this case using sample code. An example is the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. We can see the a reference between interfaces in the diagram.
 
-Now let's perform a graphical analysis of the code. We can see the references between classes in the diagram. Therefore, structured data, i.e. a certain set of objects interconnected by references, is often called a graph.
+![PersonCodeMap](.Media/IPersonCodeMap.png)
+
+The mentioned interfaces are abstract definitions. To instantiate a graph of objects based on these definitions they have to be implemented first. We will analyze a few different implementations of them. In contrast, they always represent the same structure built up using reference types added to the [IPerson][IPerson] definition and mentioned in the following line:
+
+``` CSharp
+    IEnumerable<ICDCatalog> CDs { get; }
+```
+
+An example implementation of them is the [Person][Person] and [CDCatalog][CDCatalog] couple of classes, which are defined in the [TestDataGenerator][TestDataGenerator] class. It is worth stressing here that it is a fully manual implementation. In the referred snippet, the [Person][Person] class contains a representation of a set of albums released by one author, so it has references to instances of the [CDCatalog][CDCatalog] type. This code snippet is included in the unit test project and used later to analyze the next use case of creating a similar structure but this time using a dedicated embedded tool.
+
+Now let's perform a graphical analysis of the presented code. We can see the same reference between classes in the diagram. This relationship between types is a result of the relationship between the interfaces and can be used to create structured data, i.e. a certain group of objects interconnected by references. This group is often called a graph.
 
 ![PersonCodeMap](.Media/PersonCodeMap.png)
 
@@ -31,6 +41,8 @@ Now let's perform a graphical analysis of the code. We can see the references be
 * [LINQ to SQL](https://docs.microsoft.com/dotnet/framework/data/adonet/sql/linq/)
 * [Entity Framework Documentation](https://docs.microsoft.com/ef/)
 
+[IPerson]: StructuralData/Data/IPerson.cs#L16-L22
+[ICDCatalog]: StructuralData/Data/ICDCatalog.cs#L14-L19
 [TestDataGenerator]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
-[Person]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
-[CDCatalog]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L72
+[Person]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L58
+[CDCatalog]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L60-L70
