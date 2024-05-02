@@ -18,7 +18,7 @@
 
 ## Introduction
 
-We will discuss the term structured data in detail in a moment, but for now let's decipher the LINQ abbreviation, which comes from the English Language Integrated Query. When expanding this abbreviation, it is necessary to indicate the following elements that this term includes:
+We will briefly discuss the term structure data in detail, but for now, let's decipher the LINQ abbreviation - it states for Language Integrated Query. When expanding this abbreviation, it is necessary to indicate the following elements that this term includes:
 
 1. Extension of the basic programming language with a new syntax called Query Syntax
 2. Extending the basic language with new semantics for LINQ expressions expressed using this syntax
@@ -87,15 +87,7 @@ Returning to the analysis of our sample code, it should be emphasized that the `
 
 However, since we can use two different language structures to implement the same information processing algorithm, we must formulate an objective condition allowing us to choose one of them in a specific case. In other words, we have to address the question: why do we need two similar language constructs and two different ways of operating on data sequences? To answer this question, we need to know one more feature of LINQ expressions.
 
-So let's move on to the next example. The [QuerySyntaxSideEffectTest][QuerySyntaxSideEffectTest] unit test was used to call another implementation of a similar algorithm for determining a string value based on the content of the array as before, i.e. containing a few words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to removing words starting with the letter q, but placed in the code after the instruction containing the LINQ expression. According to its semantics, an expression is responsible for selecting words for q. Here we can notice a certain contradiction, namely, an expression is a sequence of operations that are performed to determine one value of a base type, which can be predicted in advance at the compilation stage, i.e. when writing the program. However, if the operations described by a LINQ expression were successfully performed, the `_wordQuery` variable should contain a string of selected words and the following  instruction modifying the data source
-
-``` CSharp
-       _words[2] = "pear";
-```
-
-could not affect the final result of the operation. Unfortunately it is not true in this case. This time, the result is an empty string. How to explain this?
-
-So let's move on to the next example. This unit test was used to call another implementation of a similar algorithm for determining a string value based on the contents of an array as before, i.e. containing several words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to eliminate words starting with the letter q, but placed in the code after the instruction containing the LINQ expression, which, according to its semantics, is responsible for selecting words for q. Here we can notice a certain contradiction. An expression is a sequence of operations performed to determine one base type value, which can be predicted in advance at the compilation stage, i.e., when writing the program. However, if the operations described by the LINQ expression were successfully performed, the _wordQuery variable should contain a string of selected words, and the [data source modification statement][QuerySyntaxSideEffectL45] should not affect the final result of the operation but in this case, the result is an empty text. How do I explain this?
+So let's move on to the next example. This unit test was used to call another implementation of a similar algorithm for determining a string value based on the contents of an array as before, i.e. containing several words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to eliminate words starting with the letter q, but placed in the code after the instruction containing the LINQ expression, which, according to its semantics, is responsible for selecting words for q. Here we can notice a certain contradiction. An expression is a sequence of operations performed to determine one base type value, which can be predicted in advance at the compilation stage, i.e., when writing the program. However, suppose the operations described by the LINQ expression were successfully performed. In that case, the _wordQuery variable should contain a string of selected words, and the [data source modification statement][QuerySyntaxSideEffectL45] should not affect the final result of the operation. Unfortunately, the result is an empty text so the previous statement is false. How do I explain this?
 
 ``` CSharp
       _words[2] = "pear";
@@ -105,10 +97,8 @@ For now, we have to use our imagination to try to explain it. So let's imagine t
 
 - the expression must be translated into a query written in a language understandable by the external repository, e.g. an SQL query if the expression is to be executed in a relational database
 - the query must be transferred somehow to the database management system (another process), often implemented remotely on a different hardware and system platform
-- After receiving the query, the external process begins to execute it, carrying out the operations described therein, provided, of course, that they are positively authorized in the context of some identity and its permissions
-- After completion of the execution, the result is returned in the form of a stream of values. This string can be further processed locally by subsequent program instructions
-
-To avoid compromising your imagination and patience too much, I promise we'll discuss a specific example to illustrate this scenario soon.
+- after receiving the query, the external process begins to execute it, carrying out the operations described therein, provided, of course, that they are positively authorized in the context of some identity and its permissions
+- after completion of the execution, the result is returned in the form of a stream of values. This string can be further processed locally by subsequent program instructions
 
 Now let's go back to the previous example and try to summarize the effect of using a LINQ expression. Due to the need to gain access to external data, we must clearly distinguish two phases in the algorithm:
 
