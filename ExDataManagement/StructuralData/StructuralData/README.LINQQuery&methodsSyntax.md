@@ -87,11 +87,13 @@ Returning to the analysis of our sample code, it should be emphasized that the `
 
 However, since we can use two different language structures to implement the same information processing algorithm, we must formulate an objective condition allowing us to choose one of them in a specific case. In other words, we have to address the question: why do we need two similar language constructs and two different ways of operating on data sequences? To answer this question, we need to know one more feature of LINQ expressions.
 
-So let's move on to the next example. This unit test was used to call another implementation of a similar algorithm for determining a string value based on the contents of an array as before, i.e. containing several words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to eliminate words starting with the letter q, but placed in the code after the instruction containing the LINQ expression, which, according to its semantics, is responsible for selecting words for q. Here we can notice a certain contradiction. An expression is a sequence of operations performed to determine one base type value, which can be predicted in advance at the compilation stage, i.e., when writing the program. However, suppose the operations described by the LINQ expression were successfully performed. In that case, the _wordQuery variable should contain a string of selected words, and the [data source modification statement][QuerySyntaxSideEffectL45] should not affect the final result of the operation. Unfortunately, the result is an empty text so the previous statement is false. How do I explain this?
+So let's move on to the next example. This unit test was used to call another implementation of a similar algorithm for determining a string value based on the contents of an array as before, i.e. containing several words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to eliminate words starting with the letter q, but placed in the code after the instruction containing the LINQ expression, which, according to its semantics, is responsible for selecting words for q. Here we can notice a certain contradiction. An expression is a sequence of operations performed to determine one base type value, which can be predicted in advance at the compilation stage, i.e., when writing the program. However, suppose the operations described by the LINQ expression were successfully performed. In that case, the _wordQuery variable should contain a string of selected words, and the [data source modification statement][QuerySyntaxSideEffectL45] should not affect the final result of the operation. Unfortunately.
 
 ``` CSharp
       _words[2] = "pear";
 ```
+
+Based on the [QuerySyntaxSideEffectTest][QuerySyntaxSideEffectTest] it can be observed that the result, nevertheless, is an empty text so the previous statement is false. How do I explain this?
 
 For now, we have to use our imagination to try to explain it. So let's imagine that the _words variable, according to the semantics of this expression, actually represents an external data source, e.g. a database. In other words, imagine that the `_words` variable is not an array in local memory, but a table in a relational database. This assumption completely changes the understanding of an expression as a complex but still local value evaluation activity. For this scenario to be realized, the following operations must happen:
 
@@ -100,25 +102,27 @@ For now, we have to use our imagination to try to explain it. So let's imagine t
 - after receiving the query, the external process begins to execute it, carrying out the operations described therein, provided, of course, that they are positively authorized in the context of some identity and its permissions
 - after completion of the execution, the result is returned in the form of a stream of values. This string can be further processed locally by subsequent program instructions
 
-Now let's go back to the previous example and try to summarize the effect of using a LINQ expression. Due to the need to gain access to external data, we must clearly distinguish two phases in the algorithm:
+Now let's go back to the previous example and try summarizing the effect of using a LINQ expression. Due to the need to gain access to external data, we must clearly distinguish two stages in the algorithm:
 
-- selection in advance data that is subject to further processing
-- processing selected data following process needs
+- selection of data that will be subject to further processing
+- processing selected data following process needs and using an implemented algorithm
 
-In the first step, the LINQ expression is not executed but translated so that it can be represented as an object. The reference to this object is assigned to the _wordQuery variable. In other words, when a LINQ expression is executed, the value of the `_wordQuery` variable represents what needs to be done to determine the value of the expression. This recipe can be used later in two ways:
+In the first step, the LINQ expression is not executed but prepared for translation only and represented as an object. The reference to this object is assigned to the _wordQuery variable. In other words, when a LINQ expression is executed, the value of the `_wordQuery` variable represents what needs to be done to determine the value of the expression. This recipe can be used later in two ways:
 
-- can be executed locally as an expression
+- can be executed locally as an regular expression
 - can be translated into any domain-specific language compliant with a selected external repository and sent to it for remote execution
 
 The scenario in which an expression is translated into another language and a query is executed remotely requires additional conditions to be met. We will come back to this topic later.
 
 Let's consider a theoretical scenario in which we use the foreach statement and a variable representing an external repository. Since in both cases this variable must implement the `IEnumerable` interface, this is even practically possible. However, in this case, pre-selection cannot be performed and all data must be fetched to local storage from the remote repository to be used by this instruction.
 
-This breakdown of the processing into data selection and data processing applies not only to external repositories where it must be used. Namely, it is also useful when it is necessary to separate the place of data pre-selection and processing in the program to improve the software development performance according to the separation of concern principle.  The separation of concern (SoC) is the fundamental principle in software engineering and design. It aims to break down complex systems into smaller, more manageable parts.
+This breakdown into (a) selection of relevant data and (b) processing of only selected data applies not only to external repositories where it must be used. Namely, it is also useful when it is necessary to separate the place of data pre-selection and processing in the program to improve the software development performance according to the separation of concern principle.  The separation of concern (SoC) is the fundamental principle in software engineering. It aims to break down complex problems into smaller, more manageable parts.
 
 [QuerySyntaxSideEffectTest]: ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L28-L31
 [QuerySyntaxSideEffect]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L39-L47
 [QuerySyntaxSideEffectL45]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L45
+[ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
+[QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
 
 <!--
 
@@ -151,6 +155,3 @@ Poprawność odpowiedzi na to pytanie i co ważniejsze jakie są konsekwencje mo
 
 Ważnym słowem w tym pytaniu jest „musimy”, no bo jeśli musimy to pytanie „czy warto?” staje się bezzasadne. Jeśli musimy to nie trzeba już szukać innych kryteriów uzasadniających wykorzystanie typów anonimowych.  
 -->
-
-[ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
-[QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
