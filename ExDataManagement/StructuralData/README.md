@@ -17,9 +17,9 @@ Generally speaking, we can say that data processing is carried out through the e
 2. **Complex data** – here the data is composed of components. Therefore, to operate on complex data we need a selector operation to select a component that is to be subject to an operation. The selection method is determined by the data type, e.g. index for arrays and field selection for class or structure.
 3. **Structured data** - by design, the distinguishing feature is that individual data items in a structure are selected based on intentionally programmed relationships between items.
 
-This section is focused on structural data. Let's analyze this case using sample code. An example is the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. We can see the a reference between interfaces in the diagram.
+This section is focused on structural data. Let's analyze this case using sample code in the context of intentionally programmed relationships between items. As an example consider the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. They are abstract definitions but a reference between interfaces in the diagram could be distinguished.
 
-![PersonCodeMap](.Media/IPersonCodeMap.png)
+![Person Code Map Interface](.Media/IPersonCodeMap.png)
 
 The mentioned interfaces are abstract definitions. To instantiate a graph of objects based on these definitions they have to be implemented first. We will analyze a few different implementations of them. In contrast, they always represent the same structure built up using reference types added to the [IPerson][IPerson] definition and mentioned in the following line:
 
