@@ -25,10 +25,6 @@ This section is focused on structural data. Let's analyze this case using sample
 
 Because the mentioned interfaces are abstract definitions, they must be implemented first to instantiate a graph of objects based on them. We will analyze a few different implementations of them. Despite the differences, they always represent the same structure built up using reference types added to the [IPerson][IPerson] definition and mentioned in the following line:
 
-``` CSharp
-    IEnumerable<ICDCatalog> CDs { get; }
-```
-
 The [Person][Person] and [CDCatalog][CDCatalog] classes are example implementations of them, which are defined in the [TestDataGenerator][TestDataGenerator] class. It is worth stressing here that it is a fully manual implementation. In the referred snippet, the [Person][Person] class contains a representation of a set of albums released by one author, so it has references to instances of the [CDCatalog][CDCatalog] type. This code snippet is included in the unit test project and used later to analyze the next use case of creating a similar structure but using a dedicated embedded tool this time.
 
 Now, let's perform a graphical analysis of the presented code. We can see the same reference between classes in the diagram. This relationship is inherited from the interface definition. As a result, the concrete classes can be used to create structured data, i.e. a certain group of objects interconnected by references. This group is often called a graph.
