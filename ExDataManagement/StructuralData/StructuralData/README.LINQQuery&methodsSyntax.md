@@ -9,23 +9,23 @@
 //________________________________________________________________________________________________________________
 -->
 
-# LINQ expression - query and methods syntax
+# LINQ expression
 
-- [LINQ expression - query and methods syntax](#linq-expression---query-and-methods-syntax)
+- [LINQ expression](#linq-expression)
   - [Introduction](#introduction)
-  - [External Repositories](#external-repositories)
   - [Iteration vs Filtering](#iteration-vs-filtering)
+  - [Deferred Execution of the LINQ Expression](#deferred-execution-of-the-linq-expression)
 
 ## Introduction
 
-We will briefly discuss the term structure data in detail, but for now, let's decipher the LINQ abbreviation - it states for Language Integrated Query. When expanding this abbreviation, it is necessary to indicate the following elements that this term includes:
+We can get the impression from the previous section, that data is data, and it doesn't matter where it comes from provided it is reliable. Following this deep and generic thought, we should propose a common mechanism that can be used to fetch the necessary data processing from any available source. The only possible way to design this mechanism is by utilizing expandability. Expandability has to allow the possibility of adaptation of this mechanism to any external and internal kind of data repository. A powerful feature in C# that allows you to perform queries against data directly within the language is a technology called LINQ. The LINQ abbreviation stands for Language Integrated Query. Language-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the programming language. It is necessary to indicate the following elements that this term includes:
 
-1. Extension of the basic programming language with a new syntax called Query Syntax
-2. Extending the basic language with new semantics for LINQ expressions expressed using this syntax
-3. Extending the compiler with new mechanisms (I don't hesitate to use this term) for a revolutionary way of implementing LINQ expressions in the code
+1. Extension of the basic programming language with a new syntax called query and method syntax
+2. Extending the basic language with new semantics for LINQ expressions
+3. Extending the compiler with new mechanisms for a revolutionary way of implementing LINQ expressions in the code
 4. Extension of the .NET library with namespaces offering new mechanisms for accessing structured external data
 
-Here I introduced a new term, namely "LINQ expression", so we need to explain what makes this expression different from other expressions. Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve access to structured data managed by external resources.
+Here I introduced the new term"LINQ expression". Hence, it is needed to explain what makes this expression different from typical expressions. Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve access to structured data managed by external resources.
 
 ## Iteration vs Filtering
 
@@ -40,9 +40,7 @@ Because:
 1. in both methods, the last statement is the same
 2. returned result is the same for both cases
 
-we can conclude that the expression in the second method plays a similar role as the `foreach` statement in the first method.
-
-The expression in the second method is called a LINQ.
+we can conclude that the expression in the [QuerySyntax][QuerySyntax] method plays a similar role as the `foreach` statement in the [ForeachExample][ForeachExample] method. The following expression in the [QuerySyntax][QuerySyntax] method is called a LINQ expression.
 
 ``` CSharp
       IEnumerable<string> _wordQuery = from word in _words
@@ -50,32 +48,38 @@ The expression in the second method is called a LINQ.
                                        select word;
 ```
 
-Language-Integrated Query (LINQ) is the name for a set of technologies based on the integration of query capabilities directly into the programming language. In the above snippet, the query syntax has been applied. Later, we will also analyze a different form compliant with the method syntax.
+In the above code snippet, the query syntax has been applied. Later, we will also analyze a different form compliant with the method syntax.
 
-It should be clearly emphasized here that we have an instruction in the `ForeachExample` method. In contrast, in `QuerySyntax` we have an expression, so they cannot be compared - because they are two different language constructs. We can only talk about their similar role in the sequence of value determination, but we cannot speak about their equivalence.
+It should be emphasized here that we have an instruction in the [ForeachExample][ForeachExample] method. In contrast, in the [QuerySyntax][QuerySyntax] method there is an expression so they cannot be compared directly because they are two different language constructs. We can only talk about their similar role in the sequence of the return value determination, but we cannot speak about their equivalence. The iterative `foreach` loop instruction refers to a process or sequence of steps that are iterated over the elements contained in a data source to achieve a desired outcome. In contrast, the main aim of the LINQ expression is to select only relevant data from the data source. In both cases, the data source is an expression returning a value implementing the IEnumerable interface.
 
 It is worth noting that in both cases there is the `_words` variable representing the data source with a certain sequence of values. A sequence is characterized by the fact that its first element is known and for each element except the last one its successor is known. Complex data that is characterized by such relationships between elements is represented by the `IEnumerable` type.
 
-The F12 key will take us to the definition of this interface. From this definition, we see that it contains one method: GetEnumerator. Again, the F12 opens the definition of the `IEnumerator` interface, and using the Alt-F12 key opens the non-generic definition of the same interface. The definition of this type shows that the selection of components of the returned object involves highlighting one element, called the `Current` one. However, the MoveNext method confirms that this composition is a sequence.
+The F12 key will take us to the definition of this interface. From this definition, we see that it contains one method: GetEnumerator. Again, the F12 opens the definition of the `IEnumerator` interface, and using the Alt-F12 key opens the non-generic definition of the same interface. The definition of this type shows that the selection of components of the returned object involves highlighting one element, called the `Current` one. However, the `MoveNext` method confirms that this composition is a sequence. This property returns  true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the sequence.
 
 Returning to the analysis of our sample code, it should be emphasized that the `_words` variable must be of a type implementing the `IEnumerable` interface. This is due to the language requirements of the definition of the `foreach` statement and LINQ expression.
 
 However, since we can use two different language structures to implement the same information processing algorithm, we must formulate an objective condition allowing us to choose one of them in a specific case. In other words, we have to address the question: why do we need two similar language constructs and two different ways of operating on data sequences? To answer this question, we need to know one more feature of LINQ expressions.
 
-So let's move on to the next example. This unit test was used to call another implementation of a similar algorithm for determining a string value based on the contents of an array as before, i.e. containing several words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method, one instruction has been added to modify the source array in such a way as to eliminate words starting with the letter q, but placed in the code after the instruction containing the LINQ expression, which, according to its semantics, is responsible for selecting words for q. Here we can notice a certain contradiction. An expression is a sequence of operations performed to determine one base type value, which can be predicted in advance at the compilation stage, i.e., when writing the program. However, suppose the operations described by the LINQ expression were successfully performed. In that case, the _wordQuery variable should contain a string of selected words, and the [data source modification statement][QuerySyntaxSideEffectL45] should not affect the final result of the operation. Unfortunately.
+## Deferred Execution of the LINQ Expression
+
+So let's move on to the [QuerySyntaxSideEffectTest][QuerySyntaxSideEffectTest] test method. This unit test was used to call another implementation of a similar algorithm determining a string value based on the content of an array as before, i.e. containing several words. Unlike the previous implementation, in the [QuerySyntaxSideEffect][QuerySyntaxSideEffect] method under testing, one instruction has been added to modify the source array in such a way as to eliminate words starting with the letter q, but placed in the code after the assignment instruction containing the LINQ expression, which, according to its semantics, is responsible for selecting words for q.
+
+Here we can notice a certain contradiction. An expression is a sequence of operations performed to determine a value of type, which can be predictable in advance at the compilation stage, i.e., when writing the program.
+
+However, suppose that the operations described by the LINQ expression are successfully performed. In that case, the _wordQuery variable should contain a string of selected words, and the [data source modification statement][QuerySyntaxSideEffectL45] should not affect the final result of the operation.
 
 ``` CSharp
       _words[2] = "pear";
 ```
 
-Based on the [QuerySyntaxSideEffectTest][QuerySyntaxSideEffectTest] it can be observed that the result, nevertheless, is an empty text so the previous statement is false. How do I explain this?
+Unfortunately, based on the [QuerySyntaxSideEffectTest][QuerySyntaxSideEffectTest] it can be observed that the result, is an empty text so the previous statement is false. How do I explain this?
 
-For now, we have to use our imagination to try to explain it. So let's imagine that the _words variable, according to the semantics of this expression, actually represents an external data source, e.g. a database. In other words, imagine that the `_words` variable is not an array in local memory, but a table in a relational database. This assumption completely changes the understanding of an expression as a complex but still local value evaluation activity. For this scenario to be realized, the following operations must happen:
+For now, we have to use our imagination to try to explain it. So let's imagine that the _words variable, according to the semantics of this expression, actually represents an external data source, e.g. a database. In other words, imagine that the `_words` variable represents a table in a relational database. Locally it contains only in-process data necessary for processing activity and fetched from an external resource. This assumption completely changes the understanding of an expression as a complex but still local value evaluation activity. For this scenario to be realized, the following operations must happen:
 
 - the expression must be translated into a query written in a language understandable by the external repository, e.g. an SQL query if the expression is to be executed in a relational database
 - the query must be transferred somehow to the database management system (another process), often implemented remotely on a different hardware and system platform
 - after receiving the query, the external process begins to execute it, carrying out the operations described therein, provided, of course, that they are positively authorized in the context of some identity and its permissions
-- after completion of the execution, the result is returned in the form of a stream of values. This string can be further processed locally by subsequent program instructions
+- after completion of the execution, the result is returned in the form of a stream of values. This stream can be further processed locally by subsequent program instructions
 
 Now let's go back to the previous example and try summarizing the effect of using a LINQ expression. Due to the need to gain access to external data, we must clearly distinguish two stages in the algorithm:
 
@@ -84,7 +88,7 @@ Now let's go back to the previous example and try summarizing the effect of usin
 
 In the first step, the LINQ expression is not executed but prepared for translation only and represented as an object. The reference to this object is assigned to the _wordQuery variable. In other words, when a LINQ expression is executed, the value of the `_wordQuery` variable represents what needs to be done to determine the value of the expression. This recipe can be used later in two ways:
 
-- can be executed locally as an regular expression
+- can be executed against a local data source as an typical expression
 - can be translated into any domain-specific language compliant with a selected external repository and sent to it for remote execution
 
 The scenario in which an expression is translated into another language and a query is executed remotely requires additional conditions to be met. We will come back to this topic later.

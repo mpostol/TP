@@ -11,6 +11,12 @@
 
 # Structural Data
 
+- [Structural Data](#structural-data)
+  - [In-process Structural Data](#in-process-structural-data)
+  - [DataSet to create structural data](#dataset-to-create-structural-data)
+  - [External Repositories](#external-repositories)
+  - [See also](#see-also)
+
 ## In-process Structural Data
 
 Generally speaking, we can say that data processing is carried out through the execution of operations. From this point of view, we can divide the data into:
