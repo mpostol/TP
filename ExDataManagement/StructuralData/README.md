@@ -23,7 +23,7 @@ This section is focused on structural data. Let's analyze this case using sample
 
 ![Person Code Map Interface](.Media/IPersonCodeMap.png)
 
-Because the mentioned interfaces are abstract definitions, they must be implemented first to instantiate a graph of objects based on them. We will analyze a few different implementations of them. Despite the differences, they always represent the same structure built up using reference types added to the [IPerson][IPerson] definition and mentioned in the following line:
+Because the mentioned interfaces are abstract definitions, they must be implemented first to instantiate a graph of objects based on them. We will analyze a few different implementations of them. Despite the differences, they always represent the same structure built up using reference types.
 
 The [Person][Person] and [CDCatalog][CDCatalog] classes are example implementations of them, which are defined in the [TestDataGenerator][TestDataGenerator] class. It is worth stressing here that it is a fully manual implementation. In the referred snippet, the [Person][Person] class contains a representation of a set of albums released by one author, so it has references to instances of the [CDCatalog][CDCatalog] type. This code snippet is included in the unit test project and used later to analyze the next use case of creating a similar structure but using a dedicated embedded tool this time.
 
@@ -91,7 +91,7 @@ Usually, in the case of data sequences, for example, a sequence of records from 
 - selection of data that meets a certain criterion
 - processing only preselected data locally
 
-In the case of external data repositories, we have no alternative to this scenario. However, in practice, it also turned out that such an approach is a good scenario when operating on local in-process data gathered the working memory of the program.
+In the case of external data repositories, we have no alternative to deploy this scenario. However, in practice, it also turned out that such an approach is a good scenario when operating on local in-process data gathered in the working memory.
 
 ## See also
 
