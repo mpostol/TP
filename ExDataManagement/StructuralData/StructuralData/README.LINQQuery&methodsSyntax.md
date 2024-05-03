@@ -27,32 +27,7 @@ We will briefly discuss the term structure data in detail, but for now, let's de
 
 Here I introduced a new term, namely "LINQ expression", so we need to explain what makes this expression different from other expressions. Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve access to structured data managed by external resources.
 
-## External Repositories
-
-In general, the data managed by external repositories can be grouped as follows:
-
-- Bitstreams offered by the file system and network
-- Data structures offered by database management systems
-
-Topics related to the use of bitstreams have already been discussed and we will not return to them now. So let's go straight to discussing issues in the context of accessing external repositories managed structured data.
-
-We already answered the question of what structured data is and how to process it as part of the process responsible for hosting our program. External data means that it is managed by an independent process. This process has two tasks: data sharing and data processing. This requires that it has allocated resources, such as processor, memory, files, network, etc. Consequently, we must talk about a database management system. An example is a relational database. In a relational database, data is processed using SQL. SQL stands for Structured Query Language.
-
-Unlike files, a DBMS allows you to share data. This means that if we want to use the file we have to open it and as a result, it is locked for exclusive use by the modifying process. There is no such limitation for databases, but access to data is carried out using queries. Such queries can be handled sequentially ensuring data consistency.
-
-There is a fundamental difference between operating on streaming and structured data managed by an external system:
-
-- By design, streaming data is serialized and deserialized into local structured data as an entity stored in a file
-- Access to external structured data is provided through queries that are carried out in the DBMS process, i.e. remotely, and data processing can take place both remotely and locally.
-
 ## Iteration vs Filtering
-
-Usually, in the case of data sequences, for example, a sequence of records from a personal database, we process them iteratively, i.e. we repeat selected activities for each element of the sequence, starting from the first element up to the end of the sequence. The need to perform queries remotely via the DBMS forces the process to be divided into two stages:
-
-- selection of data that meets a certain criterion
-- processing only selected data locally
-
-In the case of external data repositories, we have no alternative to this scenario. However, in practice, it also turned out that such an approach is a good scenario when operating on local data in the working memory of the program.
 
 Let's start the analysis of access mechanisms to structured data with a unit test, which checks that two methods defined in a separate library return the same result.
 
