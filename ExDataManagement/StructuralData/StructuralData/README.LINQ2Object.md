@@ -13,7 +13,6 @@
 
 - [LINQ to Object](#linq-to-object)
   - [Introduction](#introduction)
-  - [Anonymous type](#anonymous-type)
   - [Local Structural Data](#local-structural-data)
   - [DataSet to create structural data](#dataset-to-create-structural-data)
   - [See also](#see-also)

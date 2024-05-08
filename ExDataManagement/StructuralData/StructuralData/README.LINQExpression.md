@@ -23,6 +23,7 @@
   - [Anonymous Type](#anonymous-type)
     - [Query Syntax](#query-syntax)
     - [Method Syntax](#method-syntax)
+  - [Summary](#summary)
 
 ## Introduction
 
@@ -182,32 +183,44 @@ This breakdown into (a) selection of relevant data and (b) processing of only se
 
 So let's check whether, after converting the LINQ expression from query syntax to method syntax, it still retains features indicating that, as before, the LINQ expression execution is deferred to make room for possible further translation into a form compliant with the language queries valid for the selected repository, for example, a relational database.
 
-To check this, similarly as before, we modify the data source between the statement assigning a value obtained from the expression after conversion to the _wordQuery variable and the statement to check the final result in the unit test. Since the result we expect is a list of words starting with g, and we receive an empty text, we can state that the operation of determining the value is deferred similarly as before. 
+To check this, similarly as before, we modify the data source between the statement assigning a value obtained from the expression after conversion to the _wordQuery variable and the statement to check the final result in the unit test. Since the result we expect is a list of words starting with g, and we receive an empty text, we can state that the operation of determining the value is deferred similarly as before.
 
 ### Conclusion
 
-Again, in the line
-
-``` CSharp
-  IEnumerable<string> _wordQuery = _words.Where<string>(word => word[0] == 'g');
-```
-
-the `_wordQuery` variable is assigned a value representing only the description of the expression located on the right-hand side of the assignment symbol. In other words, the syntax of a LINQ expression does not matter to its features. In other words, writing an expression using query syntax or method syntax has no impact on the semantics of this notation. In both cases, we deal with LINQ expression regardless of the syntax applied. Since the behavior of LINQ expressions differs significantly from the behavior of typical expressions we have to return to the question of how to distinguish them.
-
-Earlier we said that conversion from query syntax to the method syntax requires the use of extension methods defined in the `Enumerable` class. For each type definition, we can create custom extension methods and this is also true for the `IEnumerable` interface, as we know. Hence, It is also possible to use these methods during the syntax conversion. This is of course possible, but the expression will no longer be a LINQ expression and, as a result, cannot be converted to a query that can be executed remotely in an external repository as an equivalent operation. Using only methods belonging to the `Enumerable` class in the target expression is the first distinguishing feature of the LINQ expression, but not the only one.
-
-The code snippets in [LinqMethodSyntaxExamples][LinqMethodSyntaxExamples] demonstrate the process of converting the query syntax of a LINQ expression to the method syntax using lambda expressions as the operands for these operations. Here it is worth asking whether delegates to named custom methods can be used instead of anonymous methods. The answer is yes, but in this case, you need to be aware that such methods may not be known in the external repository making unable reference to them in a query written in a language dedicated to this repository. A similar limitation must be considered in the case of custom types. This is another criterion for distinguishing LINQ and regular expressions.
+Again, the `_wordQuery` variable is assigned a value representing only the description of the expression located on the right-hand side of the assignment symbol. In other words, the syntax of a LINQ expression does not matter to its features. In other words, writing an expression using query syntax or method syntax has no impact on the semantics of this notation. We deal with LINQ expression regardless of the syntax applied in both cases.
 
 ## Anonymous Type
 
 ### Query Syntax
 
-To describe the next conditions having an impact on the classification of the LINQ expression the next test method must be analyzed and the related library method [AnonymousType][AnonymousTypeQS]
+To describe the next conditions having an impact on the classification of the LINQ expression the [AnonymousTypeTest][AnonymousTypeTestQS] test method together with the [AnonymousType][AnonymousTypeQS]  method under test must be the subject of further research. The text is added below for your convenience.
 
+``` CSharp
+    public static string AnonymousType()
+    {
+      Customer[] customers = new Customer[] { new Customer() { City = "Phoenix", Name = "Name1", Revenue=11.0E3F  },
+                                              new Customer() { City = "NewYork", Name = "Name2", Revenue=12.0E4F   },
+                                              new Customer() { City = "Phoenix", Name = "Name3", Revenue=13.0E4F   },
+                                              new Customer() { City = "Washington", Name = "Name4", Revenue=14.0E4F   }
+      };
+      var _customerQuery = from _customer in customers
+                           where _customer.City == "Phoenix"
+                           select new { _customer.Name, _customer.Revenue };
+      return string.Join("; ", _customerQuery.Select(x => $"{x.Name}:{x.Revenue.ToString("F", CultureInfo.InvariantCulture)}").ToArray<string>());
+    }
+```
+
+This method selects from the array of 'Customer' elements all items in which the following condition is hold
+
+``` CSharp
+City == "Phoenix".
+```
+
+As a result, a sequence of anonymous type values is returned by the expression preceded by the `select` keyword. However, there is doubt as to whether the use of the anonymous type is necessary. Is it possible to create new values by the `select` expression using a custom-named type?  Note that the custom type may not be known in the context of the query language used for the selected external data repository. Anonymous types are a set of values that can always be converted to a sequence of ordered pairs (key, value), which is a representation that could be easily implemented in the context of any query language compliant with any external data repository.
 
 ### Method Syntax
 
-To describe the next conditions having an impact on the classification of the LINQ expression the next test method must be analyzed and the related library method [AnonymousType][AnonymousTypeMS].
+In addition to query syntax, the LINQ method syntax may be used. The same functionality using method syntax has been implemented in the following method  
 
 ``` CSharp
     public static string AnonymousType()
@@ -222,56 +235,35 @@ To describe the next conditions having an impact on the classification of the LI
     }
 ```
 
-This method selects from the array of 'Customer' elements all items in which the following condition is hold
+The text is also available in the [AnonymousType compliant with the method syntax][AnonymousTypeMS] method. As previously, based on the [AnonymousTypeTest][AnonymousTypeTestMS] implemented for the method syntax it can be proved that both solutions return the same result.
+
+## Summary
+
+The code snippets in the [LinqMethodSyntaxExamples][LinqMethodSyntaxExamples] class
 
 ``` CSharp
-City == "Phoenix".
+  public static class LinqMethodSyntaxExamples {...}
 ```
 
-Based on them, a sequence of anonymous type values is returned - the select method uses an anonymous type to create new values. However, there is a doubt as to whether the use of this type is necessary. Is it possible to create new values in the `select` method using a custom-named type?  Note that the custom type may not be known in the context of the query language used for the selected external data repository. Anonymous types are a set of values that can always be converted to a sequence of ordered pairs (key, value), which is a representation that could be easily implemented in the context of any query language compliant with any external data repository.
+demonstrate the process of converting the query syntax of a LINQ expression to the method syntax using lambda expressions as the operands for these operations. Here it is worth asking whether delegates to named custom methods can be used instead of anonymous methods. The answer is yes, but in this case, you need to be aware that such methods may not be known in the external repository making unable reference to them in a query written in a language dedicated to this repository. A similar limitation must be considered in the case of custom types. Both requirements must be taken into consideration to distinguish LINQ typical expressions.
+
+Because the LINQ expression's behavior differs significantly from the behavior of typical expressions the question of how to distinguish them must be addressed. Earlier we said that conversion from query syntax to the method syntax requires the use of extension methods defined in the `Enumerable` class. We can create custom extension methods for each type definition, which is also true for the `IEnumerable` interface, as we know. Hence, Using these methods during the syntax conversion is also possible. Of course, this is possible but the expression will no longer be a LINQ expression and, as a result, cannot be automatically converted by the development environment to an external query that can be executed remotely in a repository as an equivalent operation. Using methods belonging to the `Enumerable` class may be obtained using only query syntax and letting the compiler do the rest. In contrast, using the extension methods, lambda expressions, and anonymous types allows the developer to understand the program better in terms of a programming language because query syntax and method syntax have the same meaning.
+
+Finally, we can conclude that the LINQ expression is to be converted to an internal representation as long as the compiler is able to translate the expression to the internal representation considering the final aim to be achieved. If it is impossible for some reason an expression must be immediately executed or a compilation error may occur.
 
 [LinqMethodSyntaxExamples]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L19-L48
-[MethodSyntax]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L21-L26
-[AnonymousTypeMS]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L37-L46
+[MethodSyntax]:             LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L21-L27
+[AnonymousTypeMS]:          LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L38-L47
 
-[ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
-[QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
-[QuerySyntaxSideEffect]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L39-L47
+[ForeachExample]:           LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
+[QuerySyntax]:              LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
+[QuerySyntaxSideEffect]:    LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L39-L47
 [QuerySyntaxSideEffectL45]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L45
-[AnonymousTypeQS]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L49-L60
+[AnonymousTypeQS]:          LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L49-L60
 
 [QuerySyntaxForeachExampleTest]: ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L21-L25
-[QuerySyntaxSideEffectTest]: ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L28-L31
-[MethodSyntaxTest]: ../StructuralDataUnitTest/LinqMethodSyntaxExamplesUnitTest.cs#L21-L24
+[QuerySyntaxSideEffectTest]:     ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L28-L31
+[AnonymousTypeTestQS]:           ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L34-L37
 
-<!--
-
-## Praca domowa
-
-### Kod
-
-Przejdźmy do zdefiniowania pracy domowej, a w ramach pracy domowej zagadka. Ilustracją do niej jest metoda AnonymousType i skojarzona z nią metoda testowa, które znajdują się w przykładowym kodzie programu.
-
-Aby odpowiedzieć na pytania, które zaraz zadam, po pierwsze, trzeba przeanalizować kod przykładowy, by go zrozumieć. Nie powinno to być trudne, bo jest bardzo podobny do omówionych w ramach tej lekcji przykładów, a mianowicie w tej metodzie wybieramy wszystkie obiekty klasy Customer spełniajcie warunek zdefiniowany w konstrukcji where wyrażenia LINQ. W konstrukcji select natomiast tworzymy obiekty zawierające wybrane dane odczytane z obiektów Customer.
-
-Następnie z lekcji poprzednich trzeba przypomnieć sobie, z lekcji poprzednich, dwa tematy:
-
-- co to jest typ anonimowy?
-- co oznacz słowo kluczowe var w przedstawionym programie?
-
-### Prezentacja
-
-I teraz pytania:
-
-- Czy w przykładowym kodzie programu możemy wykorzystać typ nazwany i tworzyć obiekty tego typu w konstrukcji select?
-Proszę udzielić odpowiedzi niezależnie dla dwóch przypadków:
-
-- Zmienna customers reprezentuje lokalny obiekt, jak w tym przykładzie
-- Zmienna customers reprezentuje wybrane dane w zewnętrznym repozytorium, przykładowo jest tabelą w relacyjnej bazie danych
-
-Poprawność odpowiedzi na to pytanie i co ważniejsze jakie są konsekwencje można sprawdzić modyfikując kod tak, aby testować odroczenie wykonania wyrażenia LINQ, tak jak to robiliśmy poprzednio. Poprawna odpowiedź na to pytanie powinna być podpowiedzią do następnego pytania
-
-- Czy i kiedy musimy korzystać z typów anonimowych ?
-
-Ważnym słowem w tym pytaniu jest „musimy”, no bo jeśli musimy to pytanie „czy warto?” staje się bezzasadne. Jeśli musimy to nie trzeba już szukać innych kryteriów uzasadniających wykorzystanie typów anonimowych.  
--->
+[MethodSyntaxTest]:              ../StructuralDataUnitTest/LinqMethodSyntaxExamplesUnitTest.cs#L21-L24
+[AnonymousTypeTestMS]:           ../StructuralDataUnitTest/LinqMethodSyntaxExamplesUnitTest.cs#L33-L36
