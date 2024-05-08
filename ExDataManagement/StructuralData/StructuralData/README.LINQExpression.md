@@ -9,9 +9,9 @@
 //________________________________________________________________________________________________________________
 -->
 
-# LINQ expression
+# LINQ Expression
 
-- [LINQ expression](#linq-expression)
+- [LINQ Expression](#linq-expression)
   - [Introduction](#introduction)
   - [Iteration vs Filtering](#iteration-vs-filtering)
   - [LINQ Expression - Query Syntax](#linq-expression---query-syntax)
@@ -19,7 +19,10 @@
   - [Deferred Execution of the LINQ Expression](#deferred-execution-of-the-linq-expression)
     - [Query Syntax Expression](#query-syntax-expression)
     - [Method Syntax Expression](#method-syntax-expression)
-  - [Conclusion](#conclusion)
+    - [Conclusion](#conclusion)
+  - [Anonymous Type](#anonymous-type)
+    - [Query Syntax](#query-syntax)
+    - [Method Syntax](#method-syntax)
 
 ## Introduction
 
@@ -181,7 +184,7 @@ So let's check whether, after converting the LINQ expression from query syntax t
 
 To check this, similarly as before, we modify the data source between the statement assigning a value obtained from the expression after conversion to the _wordQuery variable and the statement to check the final result in the unit test. Since the result we expect is a list of words starting with g, and we receive an empty text, we can state that the operation of determining the value is deferred similarly as before. 
 
-## Conclusion
+### Conclusion
 
 Again, in the line
 
@@ -195,13 +198,47 @@ Earlier we said that conversion from query syntax to the method syntax requires 
 
 The code snippets in [LinqMethodSyntaxExamples][LinqMethodSyntaxExamples] demonstrate the process of converting the query syntax of a LINQ expression to the method syntax using lambda expressions as the operands for these operations. Here it is worth asking whether delegates to named custom methods can be used instead of anonymous methods. The answer is yes, but in this case, you need to be aware that such methods may not be known in the external repository making unable reference to them in a query written in a language dedicated to this repository. A similar limitation must be considered in the case of custom types. This is another criterion for distinguishing LINQ and regular expressions.
 
-[LinqMethodSyntaxExamples]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L19-L47
-[MethodSyntax]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L21-L26
+## Anonymous Type
 
+### Query Syntax
+
+To describe the next conditions having an impact on the classification of the LINQ expression the next test method must be analyzed and the related library method [AnonymousType][AnonymousTypeQS]
+
+
+### Method Syntax
+
+To describe the next conditions having an impact on the classification of the LINQ expression the next test method must be analyzed and the related library method [AnonymousType][AnonymousTypeMS].
+
+``` CSharp
+    public static string AnonymousType()
+    {
+      Customer[] customers = new Customer[] { new Customer() { City = "Phoenix", Name = "Name1", Revenue=11.0E3F  },
+                                              new Customer() { City = "NewYork", Name = "Name2", Revenue=12.0E4F   },
+                                              new Customer() { City = "Phoenix", Name = "Name3", Revenue=13.0E4F   },
+                                              new Customer() { City = "Washington", Name = "Name4", Revenue=14.0E4F   }
+      };
+      var _customerQuery = customers.Where(_customer => _customer.City == "Phoenix").Select(_customer => new { _customer.Name, _customer.Revenue });
+      return String.Join("; ", _customerQuery.Select(x => $"{x.Name}:{x.Revenue.ToString("F", CultureInfo.InvariantCulture)}").ToArray<string>());
+    }
+```
+
+This method selects from the array of 'Customer' elements all items in which the following condition is hold
+
+``` CSharp
+City == "Phoenix".
+```
+
+Based on them, a sequence of anonymous type values is returned - the select method uses an anonymous type to create new values. However, there is a doubt as to whether the use of this type is necessary. Is it possible to create new values in the `select` method using a custom-named type?  Note that the custom type may not be known in the context of the query language used for the selected external data repository. Anonymous types are a set of values that can always be converted to a sequence of ordered pairs (key, value), which is a representation that could be easily implemented in the context of any query language compliant with any external data repository.
+
+[LinqMethodSyntaxExamples]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L19-L48
+[MethodSyntax]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L21-L26
+[AnonymousTypeMS]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L37-L46
+
+[ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
 [QuerySyntax]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L30-L37
 [QuerySyntaxSideEffect]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L39-L47
 [QuerySyntaxSideEffectL45]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L45
-[ForeachExample]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L20-L28
+[AnonymousTypeQS]: LINQQueryAndMethodsSyntax/LinqQuerySyntaxExamples.cs#L49-L60
 
 [QuerySyntaxForeachExampleTest]: ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L21-L25
 [QuerySyntaxSideEffectTest]: ../StructuralDataUnitTest/LinqQuerySyntaxExamplesUnitTest.cs#L28-L31

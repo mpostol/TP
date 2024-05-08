@@ -20,34 +20,9 @@
 
 ## Introduction
 
-In this chapter, we will continue to discuss topics related to structured data and the possibility of creating queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for Language Integrated Query. Let's start with a few definitions, explanations, and directions for searching for new solutions to improve access to external data. Here we will again return to the previously introduced term LINQ expression written using the query syntax and compare it with the regular expression.
+In this chapter, we will continue to discuss topics related to structure data and the possibility of creating queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for Language Integrated Query. Let's start with a few definitions, explanations, and directions for searching for new solutions to improve access to external data. Here we will again return to the previously introduced term LINQ expression written using the query syntax and compare it with the typical expression.
 
 The main goal of embedding the LINQ expressions into the programming language is to create a construct that allows automatic preparation of queries in a domain-specific language compliant with a remote database management system without leaving a comfort zone, I mean to change the programming language. It allows prefetching data from external repositories (for example relational databases) using the same programming environment. But we also noticed that pre-selection makes sense in the case of local data structures, i.e. certain object graphs. Here we will encounter a challenge of how LINQ can help.
-
-## Anonymous type
-
-To describe the next conditions having an impact on the classification of the LINQ expression the next test method must be analyzed and the related library method [AnonymousType][AnonymousType].
-
-``` CSharp
-    public static string AnonymousType()
-    {
-      Customer[] customers = new Customer[] { new Customer() { City = "Phoenix", Name = "Name1", Revenue=11.0E3F  },
-                                              new Customer() { City = "NewYork", Name = "Name2", Revenue=12.0E4F   },
-                                              new Customer() { City = "Phoenix", Name = "Name3", Revenue=13.0E4F   },
-                                              new Customer() { City = "Washington", Name = "Name4", Revenue=14.0E4F   }
-      };
-      var _customerQuery = customers.Where(_customer => _customer.City == "Phoenix").Select(_customer => new { _customer.Name, _customer.Revenue });
-      return String.Join("; ", _customerQuery.Select(x => $"{x.Name}:{x.Revenue.ToString("F", CultureInfo.InvariantCulture)}").ToArray<string>());
-    }
-```
-
-This method selects from the array of 'Customer' elements all items in which the following condition is hold
-
-``` CSharp
-City == "Phoenix".
-```
-
-Based on them, a sequence of anonymous type values is returned - the select method uses an anonymous type to create new values. However, there is a doubt as to whether the use of this type is necessary. Is it possible to create new values in the `select` method using a custom-named type?  Note that the custom type may not be known in the context of the query language used for the selected external data repository. Anonymous types are a set of values that can always be converted to a sequence of ordered pairs (key, value), which is a representation that could be easily implemented in the context of any query language compliant with any external data repository.
 
 ## Local Structural Data
 
@@ -116,8 +91,6 @@ The last test [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName
 - [Person][Person]
 - [CDCatalog][CDCatalog]
 - [TestDataGenerator][TestDataGenerator]
-
-[AnonymousType]: LINQQueryAndMethodsSyntax/LinqMethodSyntaxExamples.cs#L37-L46
 
 [TestDataGenerator]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
 [Person]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47

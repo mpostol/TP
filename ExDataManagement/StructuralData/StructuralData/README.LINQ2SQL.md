@@ -47,12 +47,12 @@ Database operations are executed and data between the mentioned locations is tra
 - Communication protocols in the case of a distributed system - this is usually also part of the operating system
 - Query language interpreter in DBMS software, for example, SQL language processor
 
-It's a very diverse environment, so the real challenge is:
+It's a very diverse environment, so the real challenge is how to:
 
-- how to ensure proper training of programmers
-- how to minimize the possibility of making mistakes
-- how to ensure a consistent diagnostic system
-- how to ensure the possibility of transferring solutions between various environments, for example changing the operating system,
+- ensure proper training of programmers
+- minimize the possibility of making mistakes
+- ensure a consistent diagnostic system
+- ensure the possibility of transferring solutions between various environments, for example changing the operating system,
 
 LINQ expression, i.e. language integrated query, is a technology integrated with a programming language that allows for the implementation of many of the mentioned goals. Therefore, we will devote this lesson to familiarize ourselves with this mechanism in the context of relational databases as an example that can also be expanded and used for other external data repositories.
 
@@ -60,7 +60,7 @@ LINQ expression, i.e. language integrated query, is a technology integrated with
 
 To have something to practice on, we will start by creating a sample database and connection setup using the Visual Studio design environment. To make the example useful, we also need to create metadata describing the structure of the data in the database. We will call this metadata database schema. By design, the database schema is a logical representation of how data should be organized and stored within a database system. It acts as a blueprint that defines the structure and relationships of data. Think of it as the skeleton of the database, outlining the essential components.
 
-Since the database functionality is implemented as an independent external process called Database Management System ( DBMS) the program we have developed cannot directly use its functionality. Instead, it uses the intermediary of the operating system by using a local data cache to indirectly operate on the database. As a result, we have a solution similar to the well-known proxy pattern. Additionally, for local program needs, the replica represents the schema and is a process data buffer. Typically, this is a partial replica that is not fully functionally equivalent to the DBMS and contains only selected data. And here we have a problem with how to define the criterion for selecting data in the buffer. These issues will be our concern in this part of the lesson.
+Since the database functionality is implemented as an independent external process called Database Management System (DBMS) the program we have developed cannot directly use its functionality. Instead, it uses the intermediary of the operating system by using a local data cache to indirectly operate on the database. As a result, we have a solution similar to the well-known proxy pattern. Additionally, for local program needs, the replica represents the schema and is a process data buffer. Typically, this is a partial replica that is not fully functionally equivalent to the DBMS and contains only selected data. And here we have a problem with how to define the criterion for selecting data in the buffer. These issues will be our concern in this part of the lesson.
 
 The next issue is using the database in a custom program. We will examine selected issues related to this topic using unit tests. For a local replica to be useful, it must be interconnected with the database. In addition to creating appropriate communication channels between the replica and the DBMS, they are connected by a session responsible for authentication and authorization of operations performed on the database. Operations on the database and the data deposited in it are performed based on a formal description, in this case, compliant with the SQL language. Creating error-free SQL queries in the context of a custom program written using another programming language is another challenge we have to face. If we use expressions written using query syntax written in a programming language, we can automatically translate them into any other language, including SQL. How to do it? An attempt to answer this question is included in this part, which will concern mapping definitions in the local replica and remote database schema.
 
