@@ -15,6 +15,8 @@
   - [Introduction](#introduction)
   - [Local Structural Data](#local-structural-data)
   - [DataSet to create structural data](#dataset-to-create-structural-data)
+    - [Creating](#creating)
+    - [Using](#using)
   - [See also](#see-also)
 
 ## Introduction
@@ -27,42 +29,13 @@ The main goal of embedding the LINQ expressions into the programming language is
 
 We spent a relatively large amount of time discussing LINQ expression in the context of structured data collected and made available by external data repositories but all operations in the sample program text were performed on local data. Although this was complex data - an array for example - it did not represent relationships between independent objects, so we did not use structured data. Now, let's look at how to design, create, maintain, and use such structures. Here we will also try to answer how LINQ can help us. In particular, if there is a need for separate data pre-selection in the case of local structured data, i.e. a certain object graph.
 
-In object-oriented programming, the basic way to create structured data is to define custom classes and link them using references. This approach is illustrated by the [Person][Person] class definition. This code is located in the unit test project and contains two classes with relationships between them.
-
-Now let's look at the graphical analysis of the code. As a result - after configuring the appropriate filtering settings - we can see the mentioned relationships between classes in the figure. In the case of local data, relationships between objects are implemented through reference variables.
-
-![PersonCodeMap](../.Media/PersonCodeMap.png)
-
 An example is the [Person][Person] and [CDCatalog][CDCatalog] classes, which are defined in the [TestDataGenerator][TestDataGenerator] class. In the program code we see that the [CDCatalog][CDCatalog] class has references, so a reference, to an object of the [Person][Person] class to represent information about the author of the CD. It is a one-to-one relationship. However, the [Person][Person] class contains a collection of CDs released by a single author, so it has references to objects of the [CDCatalog][CDCatalog] class. This time the relationship is one to many. These references are available as an object implementing `IEnumerable`, and such an object can be used as a data source in a foreach statement and a LINQ expression.
 
 ## DataSet to create structural data
 
-An alternative way to create structured data is to use a dedicated editor that allows you to define data using a graphical interface. To start working, add the `DataSet` component, which can be found in the set of available Visual Studio components, in a selected place in the project. It is easier to find them if we limit the number of displayed components by selecting Date in the category tree. Using this approach - for comparison - I propose to define a functionally equivalent data structure to the one discussed previously. Let's call it `Catalog`.
+### Creating
 
-Once created, the new multi-component item appears in the selected location. By double-clicking on the element grouping these components, the graphic editor appears. It allows you to add data tables, and their rows and define relationships between them. I have initially prepared two `DataTable` items, similar to the classes from the previous example. I also defined the relationship between them as before. We can also edit the properties of this relationship in a separate editor window, which we open from the context menu. I will use the previously defined classes in unit tests to initialize the data structure, which confirms their equivalence from the point of view of the represented information.
-
-Designing this structure results in automatically generated program text that implements it in a partial class. We see that this time the program contains multiple classes, each representing dedicated information. The entire structure is represented by the [Catalog][CatalogDataSet] class, and all others are defined as its internal class definitions. The author is represented by a class named [PersonRow][PersonRow], and the CD is represented by [CDCatalogEntityRow][CDCatalogEntityRow].
-
-Since the [Catalog][CatalogDataSet] class is a partial class, we can implement custom functionality in a separate file. As before, there are three methods implementing the same algorithm in three different ways, namely selecting a list of people indicated by the method parameter. We will return to these implementations in the context of unit tests, which we will use for a more detailed comparative analysis of these three implementations.
-
-Since the generated text of the [Catalog][CatalogDataSet] class is over 1000 lines, I now suggest analyzing it using the Show on Code Map function. The resulting graphical representation of the text describes the content of the generated classes and shows the relationships between them. The goal of the analysis is to find similar relationships that we had previously in classes created manually.
-
-``` CSharp
-            public CDCatalogEntityRow[] GetCDCatalogRows() {
-                if ((this.Table.ChildRelations["ArtistRelation"] == null)) {
-                    return new CDCatalogEntityRow[0];
-                }
-                else {
-                    return ((CDCatalogEntityRow[])(base.GetChildRows(this.Table.ChildRelations["ArtistRelation"])));
-                }
-            }
-```
-
-Analysis using this tool requires an appropriate configuration of filters so that only the most important components of the definition appear on the screen. In this case, we are looking for the [PersonRow][PersonRow] class and a component that provides relationships to objects of the [CDCatalogEntityRow][CDCatalogEntityRow] class. This many-to-one relationship between [PersonRow][PersonRow] and [CDCatalogEntityRow][CDCatalogEntityRow] is implemented as the [GetCDCatalogRows][GetCDCatalogRows] method, which returns an array of objects of type [CDCatalogEntityRow][CDCatalogEntityRow].
-
-[GetCDCatalogRows]: LINQ%20to%20object/Catalog.Designer.cs#L1227-L1234
-
-Let's now move on to finding the relationship in the opposite direction, namely the relationship that will connect the CD with its author. And again, we need to properly configure the display filters to make the image readable for this presentation. In the [CDCatalogEntityRow][CDCatalogEntityRow] class, the one-to-one relationship connecting the corresponding [PersonRow][PersonRow] object is implemented by a property with the same name as the target class, namely [PersonRow][PersonRow].
+### Using
 
 Let us now move on to the analysis of the added methods in the context of unit tests filtering data from the structure created in this way. These methods are located as components of the [Catalog][CatalogDataSet] class, or rather in its internal class [PersonRow][PersonRow].
 

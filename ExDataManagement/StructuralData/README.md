@@ -12,12 +12,13 @@
 # Structural Data
 
 - [Structural Data](#structural-data)
-  - [In-process Structural Data](#in-process-structural-data)
-  - [DataSet to create structural data](#dataset-to-create-structural-data)
+  - [Introduction](#introduction)
+  - [Graph of Objects - In-process Structural Data](#graph-of-objects---in-process-structural-data)
+  - [Internal Repositories](#internal-repositories)
   - [External Repositories](#external-repositories)
   - [See also](#see-also)
 
-## In-process Structural Data
+## Introduction
 
 Generally speaking, we can say that data processing is carried out through the execution of operations. From this point of view, we can divide the data into:
 
@@ -25,11 +26,13 @@ Generally speaking, we can say that data processing is carried out through the e
 2. **Complex data** – here the data is composed of components. Therefore, to operate on complex data we need a selector operation to select a component that is to be subject to an operation. The selection method is determined by the data type, e.g. index for arrays and field selection for class or structure.
 3. **Structured data** - by design, the distinguishing feature is that individual data items in a structure are selected based on intentionally programmed relationships between items.
 
-This section is focused on structural data. Let's analyze this case using sample code in the context of intentionally programmed relationships between items. As an example consider the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. They are abstract definitions but a reference between interfaces in the diagram could be distinguished.
+This section is focused on structural data. In object-oriented programming, the basic way to create structured data is to define custom classes and link them using references. Let's analyze this case using sample code in the context of intentionally programmed relationships between items. As an example consider the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. They are abstract definitions but a reference between interfaces in the diagram could be distinguished.
 
 ![Person Code Map Interface](.Media/IPersonCodeMap.png)
 
 Because the mentioned interfaces are abstract definitions, they must be implemented first to instantiate a graph of objects based on them. We will analyze a few different implementations of them. Despite the differences, they always represent the same structure built up using reference types.
+
+## Graph of Objects - In-process Structural Data
 
 The [Person][Person] and [CDCatalog][CDCatalog] classes are example implementations of them, which are defined in the [TestDataGenerator][TestDataGenerator] class. It is worth stressing here that it is a fully manual implementation. In the referred snippet, the [Person][Person] class contains a representation of a set of albums released by one author, so it has references to instances of the [CDCatalog][CDCatalog] type. This code snippet is included in the unit test project and used later to analyze the next use case of creating a similar structure but using a dedicated embedded tool this time.
 
@@ -39,7 +42,7 @@ Now, let's perform a graphical analysis of the presented code. We can see the sa
 
 This approach is dedicated to be used for modeling in-process data. At run-time, in-process data refers to data that occurs and is maintained within the boundaries of a single operating system process. At design time it must be formally described by types. This design activity may be recognized as data modeling. In the case of object-oriented programming, it delivers an object model, i.e. a group of interconnected types definitions. Unfortunately, by design maintained by the program in-process data is limited only to necessary or relevant for further processing data. Deployment of communication, archival, and user interface access to external data is also required. Continuing discussion on the main topic, namely external data management the main goal of this section is to continue this discussion in the context of structural data.
 
-## DataSet to create structural data
+## Internal Repositories
 
 An alternative way to create in-process structured data is to use a dedicated editor that allows you to define data using a graphical interface. To start working, add the `DataSet` component, which can be found in the set of available Visual Studio components, in a selected place in the project. It is easier to find them if we limit the number of displayed components by selecting Date in the category tree. Using this approach - for comparison - I propose to define a functionally equivalent data structure to the one discussed previously. Let's call it `Catalog`.
 
@@ -107,13 +110,14 @@ In the case of external data repositories, we have no alternative to deploy this
 - [LINQ to SQL](https://docs.microsoft.com/dotnet/framework/data/adonet/sql/linq/)
 - [Entity Framework Documentation](https://docs.microsoft.com/ef/)
 
-[IPerson]: StructuralData/Data/IPerson.cs#L16-L22
-[ICDCatalog]: StructuralData/Data/ICDCatalog.cs#L14-L19
-[CatalogDataSet]: StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L25-L1304
-[PersonRow]: StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L1136-L1235
-[CDCatalogEntityRow]: StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L959-L1131
-[GetCDCatalogRows]: StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L1227-L1234
+[IPerson]:            StructuralData/Data/IPerson.cs#L16-L22
+[ICDCatalog]:         StructuralData/Data/ICDCatalog.cs#L14-L19
 
-[TestDataGenerator]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
-[Person]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L58
-[CDCatalog]: StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L60-L70
+[CatalogDataSet]:     StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L25-L1304
+[PersonRow]:          StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L1136-L1235
+[CDCatalogEntityRow]: StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L959-L1131
+[GetCDCatalogRows]:   StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L1227-L1234
+
+[TestDataGenerator]:  StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
+[Person]:             StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L58
+[CDCatalog]:          StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L60-L70
