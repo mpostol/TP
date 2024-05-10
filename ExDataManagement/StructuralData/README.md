@@ -14,8 +14,8 @@
 - [Structural Data](#structural-data)
   - [Introduction](#introduction)
   - [Graph of Objects - In-process Structural Data](#graph-of-objects---in-process-structural-data)
-  - [Internal Repositories](#internal-repositories)
   - [External Repositories](#external-repositories)
+  - [Internal Repositories](#internal-repositories)
   - [See also](#see-also)
 
 ## Introduction
@@ -42,41 +42,6 @@ Now, let's perform a graphical analysis of the presented code. We can see the sa
 
 This approach is dedicated to be used for modeling in-process data. At run-time, in-process data refers to data that occurs and is maintained within the boundaries of a single operating system process. At design time it must be formally described by types. This design activity may be recognized as data modeling. In the case of object-oriented programming, it delivers an object model, i.e. a group of interconnected types definitions. Unfortunately, by design maintained by the program in-process data is limited only to necessary or relevant for further processing data. Deployment of communication, archival, and user interface access to external data is also required. Continuing discussion on the main topic, namely external data management the main goal of this section is to continue this discussion in the context of structural data.
 
-## Internal Repositories
-
-An alternative way to create in-process structured data is to use a dedicated editor that allows you to define data using a graphical interface. To start working, add the `DataSet` component, which can be found in the set of available Visual Studio components, in a selected place in the project. It is easier to find them if we limit the number of displayed components by selecting Date in the category tree. Using this approach - for comparison - I propose to define a functionally equivalent data structure to the one discussed previously. Let's call it `Catalog`.
-
-![Catalog DataSet](.Media/CatalogDataSet.gif)
-
-Once created, the new multi-component item appears in the selected location. By double-clicking on the element grouping these components, the graphic editor appears. It allows you to add data tables, and their rows and define relationships between them. I have initially prepared two `DataTable` items, similar to the classes from the previous example. I also defined the relationship between them as before. We can also edit the properties of this relationship in a separate editor window, which we open from the context menu. I will use the previously defined classes in unit tests to initialize the data structure, which confirms their equivalence from the point of view of the represented information.
-
-![Catalog DataSet Content](.Media/CatalodDataSetEditor.gif)
-
-Designing this structure results in automatically generated program text that implements it in a partial class. We see that this time the program contains multiple classes, each representing dedicated information. The entire structure is represented by the [Catalog][CatalogDataSet] class, and all others are defined as its internal class definitions. The author is represented by a class named [PersonRow][PersonRow], and the CD is represented by [CDCatalogEntityRow][CDCatalogEntityRow].
-
-Since the [Catalog][CatalogDataSet] class is a partial class, we can implement custom functionality in a separate file. As before, there are three methods implementing the same algorithm in three different ways, namely selecting a list of people indicated by the method parameter. We will return to these implementations in the context of unit tests, which we will use for a more detailed comparative analysis of these three implementations.
-
-Since the generated text of the [Catalog][CatalogDataSet] class is over 1000 lines, I now suggest analyzing it using the Show on Code Map function. The resulting graphical representation of the text describes the content of the generated classes and shows the relationships between them. The goal of the analysis is to find similar relationships that we had previously in classes created manually.
-
-![Catalog Code Map](.Media/CatalogCodeMap.png)
-
-Analysis using this tool requires an appropriate configuration of filters so that only the most important components of the definition appear on the screen. In this case, we are looking for the [PersonRow][PersonRow] class and a component that provides relationships to objects of the [CDCatalogEntityRow][CDCatalogEntityRow] class. This many-to-one relationship between [PersonRow][PersonRow] and [CDCatalogEntityRow][CDCatalogEntityRow] is implemented as the [GetCDCatalogRows][GetCDCatalogRows] method, which returns an array of objects of type [CDCatalogEntityRow][CDCatalogEntityRow].
-
-``` CSharp
-            public CDCatalogEntityRow[] GetCDCatalogRows() {
-                if ((this.Table.ChildRelations["ArtistRelation"] == null)) {
-                    return new CDCatalogEntityRow[0];
-                }
-                else {
-                    return ((CDCatalogEntityRow[])(base.GetChildRows(this.Table.ChildRelations["ArtistRelation"])));
-                }
-            }
-```
-
-Let's now move on to finding the relationship in the opposite direction, namely the relationship that will connect the CD with its author. And again, we need to properly configure the display filters to make the image readable for this presentation. In the [CDCatalogEntityRow][CDCatalogEntityRow] class, the one-to-one relationship connecting the corresponding [PersonRow][PersonRow] object is implemented by a property with the same name as the target class, namely [PersonRow][PersonRow].
-
-Let us now move on to the analysis of the added methods in the context of unit tests filtering data from the structure created in this way. These methods are located as components of the [Catalog][CatalogDataSet] class, or rather in its internal class [PersonRow][PersonRow].
-
 ## External Repositories
 
 In general, the data managed by external repositories can be grouped as follows:
@@ -102,6 +67,10 @@ Usually, in the case of data sequences, for example, a sequence of records from 
 
 In the case of external data repositories, we have no alternative to deploy this scenario. However, in practice, it also turned out that such an approach is a good scenario when operating on local in-process data gathered in the working memory.
 
+## Internal Repositories
+
+An alternative way to create in-process structured data is to use a dedicated editor that allows you to define data using a graphical interface.
+
 ## See also
 
 - [Language Integrated Query (LINQ)](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq)
@@ -112,11 +81,6 @@ In the case of external data repositories, we have no alternative to deploy this
 
 [IPerson]:            StructuralData/Data/IPerson.cs#L16-L22
 [ICDCatalog]:         StructuralData/Data/ICDCatalog.cs#L14-L19
-
-[CatalogDataSet]:     StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L25-L1304
-[PersonRow]:          StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L1136-L1235
-[CDCatalogEntityRow]: StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L959-L1131
-[GetCDCatalogRows]:   StructuralData/LINQ%20to%20object/Catalog.Designer.cs#L1227-L1234
 
 [TestDataGenerator]:  StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
 [Person]:             StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L58
