@@ -9,21 +9,18 @@
 //________________________________________________________________________________________________________________
 -->
 
-# 1. LINQ to Object
+# LINQ to Object
 
-- [1. LINQ to Object](#1-linq-to-object)
-  - [1.1. Introduction](#11-introduction)
-  - [1.2. DataSet - Creating Structural Data](#12-dataset---creating-structural-data)
-  - [1.3. DataSet - Usage](#13-dataset---usage)
-  - [1.4. See also](#14-see-also)
+- [LINQ to Object](#linq-to-object)
+  - [DataSet - Creating Structural Data](#dataset---creating-structural-data)
+  - [DataSet - Usage](#dataset---usage)
+  - [See also](#see-also)
 
-## 1.1. Introduction
+## DataSet - Creating Structural Data
 
-In this chapter, we will continue to discuss topics related to structural data and the possibility of creating queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for Language Integrated Query. The main goal of embedding the LINQ expressions into the programming language is to create a construct that allows automatic preparation of queries in a domain-specific language compliant with a remote database management system without leaving a comfort zone, I mean to change the programming language. It allows data management in external repositories (for example relational databases) using the same development environment.
+This section continues on topics related to structural data and the possibility of creating queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for Language Integrated Query. The main goal of embedding the LINQ expressions into the programming language is to create a construct that allows automatic preparation of queries in a domain-specific language compliant with a remote database management system without leaving a comfort zone, I mean to change the programming language. But we also noticed that pre-selection of data makes sense in the case of local data structures, i.e. certain object graphs. Here we will encounter a challenge of how LINQ can help.
 
-## 1.2. DataSet - Creating Structural Data
-
-An alternative way to create in-process structured data manually is to use a dedicated editor that allows you to define object model using a graphical interface. To start working, add the `DataSet` component, which can be found in the set of available Visual Studio components, in a selected place in the project. It is easier to find them if we limit the number of displayed components by selecting `Date` in the category tree. Using this approach - for comparison - I propose to define a functionally equivalent data structure to the one discussed previously. Let's call it `Catalog`.
+An alternative way to create in-process structured data manually by defining custom types interconnected by references is to use a dedicated editor that allows you to specify an object model using a graphical interface. To start working, add the `DataSet` component, which can be found in the set of available Visual Studio components, in a selected place in the project. It is easier to find them if we limit the number of displayed components by selecting `Date` in the category tree. Using this approach - for comparison - I propose to define a functionally equivalent data structure to the one discussed previously. Let's call it `Catalog`.
 
 ![Catalog DataSet](../.Media/CatalogDataSet.gif)
 
@@ -39,7 +36,7 @@ Since the generated text of the [Catalog][CatalogDataSet] class is over 1000 lin
 
 ![Catalog Code Map](../.Media/CatalogCodeMap.png)
 
-Analysis using this tool requires an appropriate configuration of filters so that only the most important components of the definition appear on the screen. In this case, we are looking for the [PersonRow][PersonRow] class and a component that provides relationships to objects of the [CDCatalogEntityRow][CDCatalogEntityRow] class. This many-to-one relationship between [PersonRow][PersonRow] and [CDCatalogEntityRow][CDCatalogEntityRow] is implemented as the [GetCDCatalogRows][GetCDCatalogRows] method, which returns an array of objects of type [CDCatalogEntityRow][CDCatalogEntityRow].
+Analysis using this tool requires an appropriate configuration of filters so that only the most important components of the definition appear on the screen. In this case, we are looking for the [PersonRow][PersonRow] class and a component that provides relationships to objects of the [CDCatalogEntityRow][CDCatalogEntityRow] class. This many-to-one relationship between [PersonRow][PersonRow] and [CDCatalogEntityRow][CDCatalogEntityRow] is implemented as the [GetCDCatalogRows][GetCDCatalogRows] method, which returns an array of the type [CDCatalogEntityRow][CDCatalogEntityRow] instances.
 
 ``` CSharp
             public CDCatalogEntityRow[] GetCDCatalogRows() {
@@ -56,7 +53,7 @@ Let's now move on to finding the relationship in the opposite direction, namely 
 
 Let us now move on to the analysis of the added methods in the context of unit tests filtering data from the structure created in this way. These methods are located as components of the [Catalog][CatalogDataSet] class, or rather in its internal class [PersonRow][PersonRow].
 
-## 1.3. DataSet - Usage
+## DataSet - Usage
 
 Let us now move on to the analysis of the added methods in the context of unit tests filtering data from the structure created in this way. These methods are located as components of the [Catalog][CatalogDataSet] class, or rather in its internal class [PersonRow][PersonRow].
 
@@ -79,7 +76,7 @@ In the [FilterPersonsByLastName_QuerySyntaxTest][FilterPersonsByLastName_QuerySy
 
 The last test [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName_MethodSyntaxTest] concerns the implementation of a method using a LINQ expression written following the method syntax. This time the result is identical to the previous one, confirming that the result of using a LINQ expression is always the same regardless of the syntax used. Of course, this statement is true as long as the compiler can translate the program text into a form that allows such transformation during its execution.
 
-## 1.4. See also
+## See also
 
 - [Person][Person]
 - [CDCatalog][CDCatalog]
