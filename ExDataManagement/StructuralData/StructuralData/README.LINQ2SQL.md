@@ -120,15 +120,22 @@ The first method used to compare different data filtering implementations uses t
 
 ### Database Connection
 
-Let's now move on to analyzing example methods for filtering data from the database in the context of unit tests. They act as services that provide access to structured data to higher layers. The important issues here are the connection to the database, building SQL queries, and their implementation in the context of this connection. Since data is processed locally using a certain partial replica of the database located in the in-process memory the query creation must be harmonized with the structure of this replica.
+Let's now analyze example methods for filtering data from the database in the context of unit tests. They act as services that provide access to structural data to higher layers. The important issues here are
 
-To apply this approach, a file with the database content was attached to the test project. To prevent tests from modifying their content each time they are executed, it must be copied to the testing workspace. For this purpose, the `DeploymentItem` attribute is used, whose job is to copy the file to a local folder with a predictable name before running tests in this class. This attribute copies the file using the current path to the output folder where the compiler places its results. This allows you to copy files regardless of the compiler configuration you are currently using.
+- connection to the database
+- creating SQL queries
+- their execution in the context of the connection
+- disconnection from the database
+
+Since data is processed locally using a certain partial snapshot of the database located in the in-process memory the query creation must be harmonized with the structure of this replica.
+
+A file with the database content was attached to the test project to apply this approach. To prevent tests from modifying their content each time they are executed, it must be copied to the testing workspace. For this purpose, the `DeploymentItem` attribute is used, whose job is to copy the file to a local folder with a predictable name before running tests in this class. This attribute copies the file using the current path to the output folder where the compiler places its results. This allows you to copy files regardless of the compiler configuration you are currently using.
 
 For a previously added database file to be copied by the compiler (or rather by the `msbuild` program) it must have the appropriate property set to the option `copy always` in the settings file. We can do this using the context menu for this file, in this case, the `CDCatalog` file with the `mdf` extension.
 
 The [ClassInitializationMethod][ClassInitializationMethod] method is responsible for creating a valid connection string based on the known location where the database file is copied and the template text enabling the use of the Visual Studio environment to emulate a connection to the database server, i.e. the DBMS. The designated stream of characters will be further used to establish a connection with an imitation of the database DBMS.
 
-The database is represented by the local replica as an object of the [CatalogDataContext][CatalogDataContextDBMLCustom] class. Because this class implements the `IDisposable` interface, it is instantiated in the using statement, which guarantees calling the Dispose method whenever the `_newCatalog` variable leaves the visibility scope, so the object to which it stores references can no longer be directly used in the program. A connection string is passed to the constructor of this class, which indicates that the created object is responsible for managing the connection and the session created on its basis. The session stores the context in which communication takes place between the local objects creating the database replica and the DBMS. Within this context, the identity that will be used to authorize operations requested by the local replica to the remote DBMS is important.
+The local snapshot represents the database as an instance of the [CatalogDataContext][CatalogDataContextDBMLCustom] class. Because this class implements the `IDisposable` interface, it is instantiated in the using statement, which guarantees calling the 'Dispose' method whenever the `_newCatalog` variable leaves the visibility scope, so the object to which it stores references can no longer be directly used in the program. A connection string is passed to the constructor of this class, which indicates that the created object is responsible for managing the connection and the session created on its basis. The session stores the context in which communication between the local objects creating the database replica and the DBMS takes place. Within this context, the identity that will be used to authorize operations requested by the local replica to the remote DBMS is important.
 
 ``` CSharp
       using (CatalogDataContext _newCatalog = new CatalogDataContext(m_ConnectionString))
