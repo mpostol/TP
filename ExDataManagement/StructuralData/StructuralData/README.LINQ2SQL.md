@@ -142,27 +142,28 @@ The local snapshot represents the database as an instance of the [CatalogDataCon
       { ... }
 ```
 
-Typically, a database contains data reflecting the state of a certain process, which means that it is necessary to depend on the history of operations applied to this database. As a consequence, from the point of view of tests, the content of the database becomes unpredictable - it is not determined in time. To ensure predictable unit test results, the database content must also be predictable. The purpose of the [PrepareData][PrepareData] method is to solve this problem. It creates objects and connects them into a graph with repeatable and known content. We will use it as test data that will serve as initialization data. To initialize the database, we must create objects with types consistent with the contents of the tables in the database and combine them into an equivalent structure. The created graph has no additional functionality, so it can be treated as a Data Transfer Object (DTO). In the presented case, it is more of a graph than a single object, but this is an irrelevant detail.
+Typically, a database contains data reflecting the state of a certain process, which means that it is necessary to depend on the history of operations applied to this database. As a consequence, from the point of view of tests, the content of the database becomes unpredictable - it is not determined in time. To ensure predictable unit test results, the database content must also be predictable. The purpose of the [PrepareData][PrepareData] method is to solve this problem. It creates objects and connects them into a graph with repeatable and known content. We will use it as test data that will serve as initialization data. To initialize the database, we must create objects with types consistent with the content of the tables and combine them into an equivalent structure. The created graph has no additional functionality so it can be treated as a Data Transfer Object (DTO).
 
 ``` CSharp
           _newCatalog.AddContent(TestDataGenerator.PrepareData());
 ```
 
-Concrete classes that meet DTO requirements have been defined in the unit tests project, so they are not visible in the main library. To implement the `AddContent` method, let's use the dependency injection programming pattern. According to it, the parameter type of this method is abstract, it is two interfaces `IPerson` and `ICDCatalog` combined into a structure, which can be implemented depending on the needs. This approach allows you to separate the specific data source, i.e. the place the data is created, from the place it is used.
+Concrete classes that meet DTO requirements have been defined in the unit tests project, so they are not visible in the main library. To implement the `AddContent` method, let's use the dependency injection programming pattern. According to it, the parameter type of this method is abstract, it is two interfaces `IPerson` and `ICDCatalog` combined into a structure, which can be implemented depending on the needs. This approach allows separation of the specific data source, i.e. the place the data is created, from the place it is used.
 
-Let's move on to an example, and the example is the [Person][Person] and [CDCatalog][CDCatalog] classes that have been defined in the TestDataGenerator class. In the program code, we see that the [CDCatalog][CDCatalog] class has references, i.e. a reference, to the instance of the [Person][Person] class to represent information about the author of the CD. It is a one-to-one relationship. The [Person][Person] class, on the other hand, contains a representation of a set of albums released by a single author, so it has references to instances of the [CDCatalog][CDCatalog] class. This time the relationship is one-to-many. These references are available as an object that implements `IEnumerable`, and such an object can be used as a data source in a foreach statement and a LINQ expression.
+The first examples to be analyzed are the [Person][Person] and [CDCatalog][CDCatalog] classes that have been defined in the 'TestDataGenerator' class. In this code snippet, we can observe that the [CDCatalog][CDCatalog] class has a reference to an instance of the [Person][Person] class to represent information about the author of the CD. It is a one-to-one relationship. The [Person][Person] class, on the other hand, contains a representation of a set of albums released by a single author, so it has references to instances of the [CDCatalog][CDCatalog] class. This time the relationship is one-to-many, so the references are available as an object that implements `IEnumerable`, and such an object can be used as a data source in a `foreach` statement and a LINQ expression.
 
 ### Creating SQL Queries
 
-As previously noted, all operations performed on the database must be described in the appropriate language for the selected DBMS. Since we use a relational database in the example, its natural language is SQL, but we write the program in C#. Using three implementations of the same data preselecting algorithm, we will examine how to deal with this problem without using SQL directly.
+As previously noted, all operations performed on the database must be described in a domain-specific language for the selected DBMS. Since we use a relational database in the example, its natural language is SQL, but we write the program in C#. Using three implementations of the same data preselecting algorithm, we will examine how to deal with this problem without using SQL directly.
 
-The [FilterPersonsByLastName_ForEach][FilterPersonsByLastName_ForEach] method uses the foreach statement and an internal if statement responsible for filtering the table contents according to the value of the method parameter. In the [FilterPersonsByLastName_ForEachTest][FilterPersonsByLastName_ForEachTest], the type of the returned object and the result of calling its `ToString` method are also examined in addition to the value returned by the method. As a result, we see that an object of the generic `List` class is returned, with the type parameter of [Person][Person] type. This is further proof that in this case, the result is a collection of selected values, and therefore the result of the above-mentioned instructions. The consequence of such an implementation is the need to download all values from the [Persons][Persons] table to make locally a final decision about the selection of the data.
+The [FilterPersonsByLastName_ForEach][FilterPersonsByLastName_ForEach] method uses the `foreach` statement and an internal if statement responsible for filtering the table contents according to the value of the method parameter. In the [FilterPersonsByLastName_ForEachTest][FilterPersonsByLastName_ForEachTest], the type of the returned object and the result of calling its `ToString` method are also examined in addition to the value returned by the method. As a result, we see that an instance of the generic `List` class is returned, with the type parameter of [Person][Person] type. This is further proof that in this case, the result is a collection of selected values, and therefore the result of the above-mentioned instructions. The consequence of such an implementation is the need to download all values from the [Persons][Persons] table to make locally a final decision about the selection of the data.
 
-In the second test [FilterPersonsByLastName_QuerySyntaxTest][FilterPersonsByLastName_QuerySyntaxTest], we examine the [FilterPersonsByLastName_QuerySyntax][FilterPersonsByLastName_QuerySyntax] method implementing the same algorithm but using the LINQ query expression. The test result is identical to the previous one, but this time the returned object type of the method result is different, which again confirms that LINQ expressions return an object representation of the expression itself, not its result. Of course, this statement is true as long as the compiler manages to translate the program text into a form that allows such transformation to an object-oriented form during its execution.
+In the second test [FilterPersonsByLastName_QuerySyntaxTest][FilterPersonsByLastName_QuerySyntaxTest] method, we examine the [FilterPersonsByLastName_QuerySyntax][FilterPersonsByLastName_QuerySyntax] method implementing the same algorithm but using the LINQ query expression. The test result is identical to the previous one. This time the returned object type of the method result is different, which again confirms that LINQ expressions return an object containing a representation of the expression, not its result. Of course, this statement is true as long as the compiler manages to translate the program text into a form that allows such transformation to an object-oriented form.
 
-In the [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName_MethodSyntaxTest] test, we examine the result returned from the [FilterPersonsByLastName_MethodSyntax][FilterPersonsByLastName_MethodSyntax] method implementing the same filtering algorithm but written using the method syntax of LINQ expression. Again, the test result is identical to the previous one, and additionally, examining the type of the returned object gives the same result as before, which confirms that the result of using a LINQ expression is always the same regardless of the syntax used.
+In the [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName_MethodSyntaxTest] method the result returned from the [FilterPersonsByLastName_MethodSyntax][FilterPersonsByLastName_MethodSyntax] method is examined. 
+It implements the same filtering algorithm but is written using the method syntax of the LINQ expression. Again, the test result is identical to the previous one, and additionally, examining the type of the returned object gives the same result as before, which confirms that the result of using a LINQ expression is always the same regardless of the syntax used.
 
-It is worth noting that the text returned from the `ToString` method for an object resulting from the operation of the tested methods using LINQ expressions resembles an SQL query. I saved this [text][FilterPersonsByLastNamesql] to a separate file and added it below. We now see that this is a typical select query. Before being sent to the remote DBMS, it must be supplemented with the parameter value of the method in which it will be used.
+It is worth noting that the text returned from the `ToString` method for an object resulting from the operation of the tested methods using LINQ expressions resembles an SQL query. I saved this [text][FilterPersonsByLastNamesql] to a separate file and added it below. Before being sent to the remote DBMS the current value of the method argument is added.
 
 ``` SQL
 SELECT [t0].[Id], [t0].[FirstName], [t0].[LastName], [t0].[Age]
@@ -170,25 +171,21 @@ FROM [dbo].[Person] AS [t0]
 WHERE [t0].[LastName] = @p0
 ```
 
-Let's try to explain this result. Using the "go to definition" shortcut in the context menu or the F12 key, we will move to the definition of the where method. We see that this is a method that extends the `IQueryable` interface and is located in the static `Queryable` class of the .NET library. This class also contains all the other methods necessary to implement LINQ expressions. This is an important statement and is worth remembering to understand the answer to the previously asked question: what is a LINQ class expression and how does it differ from expressions that do not belong to this class? As I mentioned, this question was already asked in the previous lesson, but we will try to answer it again.
+Let's try to explain this result. Using the "go to definition" shortcut of the context menu or the F12 keyboard key moves the view scope to the definition of the `Where` method. This method extends the `IQueryable` interface and is located in the static `Queryable` class of the .NET library. This class also contains all the other methods necessary to implement LINQ expressions using the method syntax. This is an important statement and is worth remembering to understand the answer to the asked question previously: what is a LINQ class expression and how does it differ from expressions that do not belong to this class? As I mentioned, this question was already asked but we will try to answer it again.
 
-Based on the analysis of the program text, we conclude that `Where` is a method extending the `IQueryable` interface. The definition of this interface is empty, but the inheritance chain indicates that this interface also requires an implementation of the `IEnumerable` interface. So again we can say that we are dealing with a LINQ expression. Since we did not receive an SQL query previously, this does not explain the different behavior of the LINQ expression compared with the regular expression. The difference is the non-generic interface `IQueryable`, which is also in the inheritance list. Its definition shows that it requires the implementation of three getters, which are used by the .NET environment to translate the internal representation of a LINQ expression into its external SQL equivalent. Implementation of these properties-getters determines which language will be chosen as the target language.
+Based on the analysis of the program text, we conclude that `Where` is a method extending the `IQueryable` interface. The definition of this interface is empty, but the inheritance chain indicates that this interface also requires an implementation of the `IEnumerable` interface. So again we can say that we are dealing with a LINQ expression. Since we did not receive an SQL query previously, this does not explain the different behavior of the LINQ expression compared with the regular expression. The difference is the non-generic interface `IQueryable` - also in the inheritance list. Its definition shows that it requires the implementation of three getters, which are used by the .NET environment to translate the internal representation of a LINQ expression into its external SQL equivalent. Implementation of these properties-getters determines which language will be chosen as the target language.
 
 ![IQuerable](../.Media/IQueable.gif)
 
 Since a LINQ expression always looks the same - it has the same syntax regardless of the data source, the key question here is how to learn that it will be translated into a query of an external data repository and not executed locally on data residing in-process local memory. The answer should be sought by analyzing the origin of the definition of the return value used as a data source, i.e. after the word in or as the first operand in a LINQ expression written using method syntax, i.e. in the presented example it is the value returned by `Persons` property. Going to the definition of this property, we can see that it returns the value of the generic type `Table`. Further analysis, the origin of the definition of this type leads to the Microsoft component `System.Data.Linq`. The definition of this type indicates that it implements the `IQueryable` interface. Since it is a component of LINQ to SQL technology, its implementation guarantees conversion to SQL queries.
 
-It must be stressed once again that the syntax of a LINQ expression does not unambiguously answer the question of what will happen when the expression must be executed instead of translated. In other words, there is a weak connection between syntax and semantics, so the meaning of the text is not clear, which can lead to very troublesome errors.
-
 ### Mapping
 
-One more puzzle remains, namely the implementation of `IQueryable` in the `Table` type is responsible for converting the internal representation of the LINQ expression into an SQL query. Looking at the example and recovered SQL query, we see that the conversion operation can only be successful if it has some additional information, such as table name, column name, and data types in individual columns. In order not to change the programming language, the conversion operation to SQL must be performed dynamically, i.e. during program execution.
+One more puzzle remains, namely the implementation of `IQueryable` in the `Table` type is responsible for converting the internal representation of the LINQ expression into an SQL query. Looking at the example and recovered SQL query, we see that the conversion operation can only be successful if it has some additional information, such as table name, column name, and data types in individual columns. In order not to change the programming language, the conversion operation to SQL must be performed dynamically, i.e. during program execution. Therefore, it is reasonable to ask: how to obtain this information, or rather recover it, during the implementation of the program?
 
-Therefore, it is reasonable to ask: how to obtain this information, or rather recover it, during the implementation of the program?
+First, note that the `Table` type is generic. So let's analyze the type of its current parameter for the selected example, i.e. `Person`. Going to the definition of this class we see that it is preceded by the `Table` attribute. The answer is obvious - **reflection**, i.e. metadata is recovered from the definitions of auto-generated types using reflection mechanisms.
 
-First, note that the `Table` type is generic. So let's analyze the type of its current parameter for the selected example, i.e. `Person`. Going to the definition of this class, we see that it is preceded by the `Table` attribute. The answer is obvious - reflection, i.e. metadata is recovered from the definitions of auto-generated types using reflection mechanisms.
-
-Reflection has already been discussed earlier, so you can remember if there are any doubts about its operation. This knowledge will be needed because the next test method [ObjectRelationalMappingTest][ObjectRelationalMappingTest] shows how the data needed for translation can be recovered in the implementation of the `IQuerable` interface.
+Reflection has already been discussed earlier, so you can remember if there are any doubts about its operation. This knowledge will be needed because the next test method [ObjectRelationalMappingTest][ObjectRelationalMappingTest] shows how the data needed for translation can be recovered in the implementation of the `IQueryable` interface.
 
 [ObjectRelationalMappingTest]: ../StructuralDataUnitTest/LINQ_to_SQLDataServiceUnitTests.cs#L147-L164
 [FilterPersonsByLastNamesql]: LINQ%20to%20SQL/FilterPersonsByLastName.sql#L1-L3
@@ -210,38 +207,3 @@ Reflection has already been discussed earlier, so you can remember if there are 
 [PersonDBML]: LINQ%20to%20SQL/Catalog.designer.cs#L89-L248
 [CDCatalogEntityDBML]: LINQ%20to%20SQL/Catalog.designer.cs#L251-L471
 [CatalogDataContextDBMLCustom]: LINQ%20to%20SQL/Catalog.cs#L19-L83
-
-<!--
-
-In both examples, LINQ operations remain essentially the same. The difference lies in the data source to which LINQ expressions are applied.
-
-If the source implements `IEnumerable<T>` then operations with additional conditions are generally performed in memory, as in this case of LINQ to Objects.
-
-If the source implements `IQueryable<T>` (which extends `IEnumerable<T>`) then operations with additional conditions may result in optimization, that translates to SQL queries enriched with these conditions that are generally performed on the database, as in the case of LINQ to SQL.
-
--->
-
-<!--
-
-#### 3.3.4. Mapowanie
-
-O refleksji było już wcześniej, więc można sobie przypomnieć, jeśli są jakieś wątpliwości co do jej działania, a wiedza ta będzie potrzebna, bo kolejna metoda testowa `ObjectRelationalMappingTest` pokazuje jak można potrzebne do konwersji dane odzyskać w implementacji interfejsu IQuerable.
-
-## 4. Praca domowa i zakończenie
-
-### 4.1. Wstęp
-
-Na koniec lekcji, jak zwykle, praca domowa.
-
-### 4.2. Zakres
-
-Pokazana metoda wykorzystuje wyrażenie LINQ, w którym tworzone są obiekty typu anonimowego. Trzeba przekształcić ją tak aby zwracała wyrażenie LINQ podobnie jak inne metody w tej klasie, a nie jak to jest teraz sformatowany string z wstawionymi wynikami selekcji.
-
-Następne zadanie dotyczy jej metody testowej – znajdźmy ją w tekście programu. W ramach zadania trzeba dopisać w tej metodzie niezmiennik - przypomnę metodę z klasy Assert- niezmiennik ten ma sprawdzać zwracany tekst kwerendy SQL.
-
-Kolejne zadanie dotyczy modyfikacji omawianej metody selekcji, w której w miejsce metod rozszerzających LINQ trzeba użyć własnych metod rozszerzających. Tu wystarczy sprawdzić jaki to ma wpływ na zwracany rezultat. Podobnie, trzeba sprawdzić jaki wpływ na typ zwracanej wartości ma zastąpienie wyrażenia lambda przez metody nazwane i typu anonimowego przez własny i auto-generowany typ nazwany.
-
-## 5. Zakończenie
-
-W tej lekcji to już wszystko. Dziękuję za poświęcony czas. Tą lekcją kończymy grupę tematyczną związaną z operowaniem na danych strukturalnych dostępnych w zewnętrznych repozytoriach. Omówione tu przykłady ograniczyliśmy do współdziałania z relacyjną bazą danych. Musimy jednak pamiętać, że poznane konstrukcje językowe są uniwersalne i rozszerzalne. Innymi słowy mogą być wykorzystane w kontekście dowolnego repozytorium i zaadoptowane do własnych potrzeb.
--->
