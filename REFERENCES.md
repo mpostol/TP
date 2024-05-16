@@ -8,9 +8,10 @@
 - Postol Mariusz; [PiP - External Streaming Data - Useful Concepts - Part 1](https://www.c-sharpcorner.com/article/pip-external-streaming-data-useful-concepts-part-1/) C# Corner, Mar 27, 2024
 - Postol Mariusz; [Programming in Practice Discipline](https://www.c-sharpcorner.com/article/programming-in-practice-discipline/) C# Corner,  Feb 27, 2024.
 - Postol Mariusz; [External Streaming Data - Bitstream Format](https://www.c-sharpcorner.com/article/external-streaming-data-bitstream-format/)  C# Corner, Feb 14, 2024.
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Confidentiality][confidentiality] C# Corner, 2024.
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Integrity][CI] C# Corner, 2024.
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Non-repudiation)][ExDM]; C# Corner, Feb 14, 2024
+- Postol Mariusz; [Cybersecurity of External Streaming Data - Confidentiality][confidentiality] C# Corner, Feb 14, 2024.
+- Postol Mariusz; [Cybersecurity of External Streaming Data - Integrity][CI] C# Corner, Feb 14, 2024.
+- Postol Mariusz; [Cybersecurity of External Streaming Data - Non-repudiation)](https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-non-repudiation/); C# Corner, Feb 14, 2024
+- Postol Mariusz; [External Data Management (ExDM))][ExDM]; C# Corner,  Jan 09, 2024
 - Postol Mariusz; [External Data - Attributes - Profiling Data Access][Attributes]; C# Corner,  Jan 06, 2024
 - Postol Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, Jan 03, 2024
 - [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
