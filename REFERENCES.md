@@ -30,12 +30,12 @@
 
 ## How to reach me
 
-- [Postol. M, profile on Udemy.com][MPUdemy]
-- [Postol. M, profile on GitHub.com][MPGitHub]
-- [Postół. M, profile on LinkedIn](https://pl.linkedin.com/in/mpostol)
-- [MPostol M, profile on ResearchGate](https://www.researchgate.net/profile/Mariusz-Postol)
-- [MPostol M, profile on ORCID](https://orcid.org/0000-0002-9669-0565)
-- [Postół. M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
+- [Postół M, profile on Udemy.com][MPUdemy]
+- [Postół M, profile on GitHub.com][MPGitHub]
+- [Postół M, profile on LinkedIn](https://pl.linkedin.com/in/mpostol)
+- [Postół M, profile on ResearchGate](https://www.researchgate.net/profile/Mariusz-Postol)
+- [Postół M, profile on ORCID](https://orcid.org/0000-0002-9669-0565)
+- [Postół M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
 
 [MPUdemy]:https://www.udemy.com/user/mariusz-postol/
 [udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21

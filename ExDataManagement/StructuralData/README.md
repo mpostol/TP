@@ -25,14 +25,18 @@
 Generally speaking, we can say that data processing is carried out through the execution of operations. From this point of view, we can divide the data into:
 
 1. **Simple data** - in this case, the data can be processed by a single operation, it is one action as a result of which the value is referred to as one whole. For example, changing the sign of an int variable.
-2. **Complex data** – here the data is composed of components. Therefore, to operate on complex data we need a selector operation to select a component that is to be subject to an operation. The selection method is determined by the data type, e.g. index for arrays and field selection for class or structure.
+2. **Complex data** – here the data is composed of components. Therefore, to operate on complex data we need a selector operation to select a component that is to be subject to an operation. The data type determines the selection method, e.g. index for arrays and field selection for class or structure.
 3. **Structured data** - by design, the distinguishing feature is that individual data items in a structure are selected based on intentionally programmed relationships between items.
 
-This section is focused on structural data. In object-oriented programming, the basic way to create structural data is to define custom types and link them using references. Let's analyze this case using sample code in the context of intentionally programmed relationships between items. As an example consider the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. They are abstract definitions but a reference between interfaces in the diagram could be distinguished.
+This section is focused on structural data. In object-oriented programming, the basic way to create structural data is to define custom types and interconnect them using references. Let's analyze this case using sample code in the context of intentionally programmed relationships between items. As an example consider the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. They are abstract definitions but a reference between interfaces in the diagram could be distinguished.
 
 ![Person Code Map Interface](.Media/IPersonCodeMap.png)
 
 Because the mentioned interfaces are abstract definitions, they must be implemented first to instantiate a graph of objects based on them. We will analyze a few different implementations of them. Despite the differences, they always represent the same structure built up using reference types.
+
+To operate on complex data we need a selector operation to select a component that is to be subject to an operation (for example, index for arrays and field selection for class or structure). By design, the distinguishing feature of the structural data is that individual data items in a structure are selected based on intentionally programmed relationships between items. As a result, a selector operation must be replaced by a kind of browsing or query mechanism. Using browsing operations the data is explored by applying a navigation through available references to discover relevant content. By design, the Database Management Systems don't support object-oriented programming, hence instead of browsing the query must be used. Query operations are used to retrieve specific data from a database to in-process snapshots that offer a buffering operation. A query is usually expressed in a domain-specific language. For example, using SQL to retrieve specific rows from a database table based on conditions is a query operation.
+
+A technology called LINQ is a powerful feature in C# language that allows performing queries against data directly within the language. The LINQ abbreviation stands for Language Integrated Query. LINQ is the name for a set of technologies based on the integration of query capabilities directly into the programming language. The subsection [LINQ Expression][LINQ Expression] presents the LINQ in detail.
 
 ## Graph of Objects - In-process Structural Data
 
@@ -122,8 +126,8 @@ In conclusion, we can state that the development environment is completely diffe
 - [LINQ to SQL](https://docs.microsoft.com/dotnet/framework/data/adonet/sql/linq/)
 - [Entity Framework Documentation](https://docs.microsoft.com/ef/)
 
-[LINQ2Object]:        StructuralData/README.LINQ2Object.md
 [LINQ Expression]:    StructuralData\README.LINQExpression.md
+[LINQ2Object]:        StructuralData/README.LINQ2Object.md
 [LINQ2SQL]:           StructuralData/README.LINQ2SQL.md
 
 [IPerson]:            StructuralData/Data/IPerson.cs#L16-L22
