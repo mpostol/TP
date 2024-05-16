@@ -17,6 +17,8 @@
   - [External Repositories](#external-repositories)
   - [Internal Repositories](#internal-repositories)
   - [See also](#see-also)
+    - [Sections](#sections)
+    - [Online Documentation](#online-documentation)
 
 ## Introduction
 
@@ -106,14 +108,23 @@ In conclusion, we can state that the development environment is completely diffe
 
 ## See also
 
+### Sections
+
+- [Section LINQ Expression][LINQ Expression]
+- [Section LINQ to Object][LINQ2Object]
+- [Section LINQ to SQL][LINQ2SQL]
+
+### Online Documentation
+
 - [Language Integrated Query (LINQ)](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq)
 - [Query Syntax and Method Syntax in LINQ (C#)](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq)
 - [LINQ to SQL tools in Visual Studio](https://docs.microsoft.com/visualstudio/data-tools/linq-to-sql-tools-in-visual-studio2?view=vs-2017)
 - [LINQ to SQL](https://docs.microsoft.com/dotnet/framework/data/adonet/sql/linq/)
 - [Entity Framework Documentation](https://docs.microsoft.com/ef/)
-- [Section LINQ to Object][LINQ2Object]
 
-[LINQ2Object]: StructuralData/README.LINQ2Object.md
+[LINQ2Object]:        StructuralData/README.LINQ2Object.md
+[LINQ Expression]:    StructuralData\README.LINQExpression.md
+[LINQ2SQL]:           StructuralData/README.LINQ2SQL.md
 
 [IPerson]:            StructuralData/Data/IPerson.cs#L16-L22
 [ICDCatalog]:         StructuralData/Data/ICDCatalog.cs#L14-L19
