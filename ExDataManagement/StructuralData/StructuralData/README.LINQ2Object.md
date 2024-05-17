@@ -11,11 +11,6 @@
 
 # LINQ to Object
 
-- [LINQ to Object](#linq-to-object)
-  - [DataSet - Creating Structural Data](#dataset---creating-structural-data)
-  - [DataSet - Usage](#dataset---usage)
-  - [See also](#see-also)
-
 ## DataSet - Creating Structural Data
 
 This section continues on topics related to structural data and the possibility of creating queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for Language Integrated Query. The main goal of embedding the LINQ expressions into the programming language is to create a construct that allows automatic preparation of queries in a domain-specific language compliant with a remote database management system without leaving a comfort zone, I mean to change the programming language. But we also noticed that pre-selection of data makes sense in the case of local data structures, i.e. certain object graphs. Here we will encounter a challenge of how LINQ can help.
@@ -75,16 +70,6 @@ In addition to the value returned by the method, the type of the returned value 
 In the [FilterPersonsByLastName_QuerySyntaxTest][FilterPersonsByLastName_QuerySyntaxTest] we examine the returned value of a method implementing the same filtering algorithm but implemented using a LINQ expression written using the query syntax as a sequence of operations using extension methods. This time the returned object type of the method result is different, which again confirms that LINQ expressions return an object representation of the expression itself, not its result.
 
 The last test [FilterPersonsByLastName_MethodSyntaxTest][FilterPersonsByLastName_MethodSyntaxTest] concerns the implementation of a method using a LINQ expression written following the method syntax. This time the result is identical to the previous one, confirming that the result of using a LINQ expression is always the same regardless of the syntax used. Of course, this statement is true as long as the compiler can translate the program text into a form that allows such transformation during its execution.
-
-## See also
-
-- [Person][Person]
-- [CDCatalog][CDCatalog]
-- [TestDataGenerator][TestDataGenerator]
-
-[TestDataGenerator]: ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L17-L73
-[Person]:            ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L29-L47
-[CDCatalog]:         ../StructuralDataUnitTest/Instrumentation/TestDataGenerator.cs#L61-L70
 
 [FilterPersonsByLastName_ForEachTest]:     ../StructuralDataUnitTest/LINQ_to_objectUnitTest.cs#L44-L57
 [FilterPersonsByLastName_QuerySyntaxTest]: ../StructuralDataUnitTest/LINQ_to_objectUnitTest.cs#L60-L73

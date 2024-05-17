@@ -11,20 +11,6 @@
 
 # LINQ Expression
 
-- [LINQ Expression](#linq-expression)
-  - [Introduction](#introduction)
-  - [Iteration vs Filtering](#iteration-vs-filtering)
-  - [LINQ Expression - Query Syntax](#linq-expression---query-syntax)
-  - [LINQ Expression - Method Syntax](#linq-expression---method-syntax)
-  - [Deferred Execution of the LINQ Expression](#deferred-execution-of-the-linq-expression)
-    - [Query Syntax Expression](#query-syntax-expression)
-    - [Method Syntax Expression](#method-syntax-expression)
-    - [Conclusion](#conclusion)
-  - [Anonymous Type](#anonymous-type)
-    - [Query Syntax](#query-syntax)
-    - [Method Syntax](#method-syntax)
-  - [Summary](#summary)
-
 ## Introduction
 
 An impression can be made from the section [Structural Data](../README.md#structural-data) that

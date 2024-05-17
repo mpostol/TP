@@ -11,14 +11,6 @@
 
 # Structural Data
 
-- [Structural Data](#structural-data)
-  - [Introduction](#introduction)
-  - [External Repositories](#external-repositories)
-  - [Internal Repositories](#internal-repositories)
-  - [See also](#see-also)
-    - [Subsections](#subsections)
-    - [Online Documentation](#online-documentation)
-
 ## Introduction
 
 Generally speaking, we can say that data processing is carried out through the execution of operations. From this point of view, we can divide the data into:

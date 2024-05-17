@@ -11,14 +11,6 @@
 
 # LINQ to SQL
 
-- [LINQ to SQL](#linq-to-sql)
-  - [Introduction](#introduction)
-  - [Database Deployment](#database-deployment)
-  - [Database Usage](#database-usage)
-    - [Database Connection](#database-connection)
-    - [Creating SQL Queries](#creating-sql-queries)
-    - [Mapping](#mapping)
-
 ## Introduction
 
 In this chapter, we will continue discussing structural data and the ability to create queries using LINQ expressions. Let me remind you that the LINQ abbreviation stands for language-integrated query. This time, we will use these queries to pre-select data from the relational database.
@@ -174,7 +166,7 @@ Let's try to explain this result. Using the "go to definition" shortcut of the c
 
 Based on the analysis of the program text, we conclude that `Where` is a method extending the `IQueryable` interface. The definition of this interface is empty, but the inheritance chain indicates that this interface also requires an implementation of the `IEnumerable` interface. So again we can say that we are dealing with a LINQ expression. Since we did not receive an SQL query previously, this does not explain the different behavior of the LINQ expression compared with the regular expression. The difference is the non-generic interface `IQueryable` - also in the inheritance list. Its definition shows that it requires the implementation of three getters, which are used by the .NET environment to translate the internal representation of a LINQ expression into its external SQL equivalent. Implementation of these properties-getters determines which language will be chosen as the target language.
 
-![IQuerable](../.Media/IQueable.gif)
+![IQueryable](../.Media/IQueable.gif)
 
 Since a LINQ expression always looks the same - it has the same syntax regardless of the data source, the key question here is how to learn that it will be translated into a query of an external data repository and not executed locally on data residing in-process local memory. The answer should be sought by analyzing the origin of the definition of the return value used as a data source, i.e. after the word in or as the first operand in a LINQ expression written using method syntax, i.e. in the presented example it is the value returned by `Persons` property. Going to the definition of this property, we can see that it returns the value of the generic type `Table`. Further analysis, the origin of the definition of this type leads to the Microsoft component `System.Data.Linq`. The definition of this type indicates that it implements the `IQueryable` interface. Since it is a component of LINQ to SQL technology, its implementation guarantees conversion to SQL queries.
 
