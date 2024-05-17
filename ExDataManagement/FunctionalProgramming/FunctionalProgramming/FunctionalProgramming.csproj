@@ -44,12 +44,16 @@
     <Compile Include="AnonymousFunctions.cs" />
     <Compile Include="DelegateExample.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FunctionalProgramming.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="IMyInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticClass.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.AnonymousFunctions.md" />
+    <None Include="README.ExtensionMethods.md" />
     <None Include="Readme.md" />
+    <None Include="READMEDelegateEvents.md" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

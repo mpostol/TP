@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -30,15 +30,6 @@ namespace TP.FunctionalProgramming
 
   public class AnonymousFunctions
   {
-    #region predicate
-
-    public static bool StringIsLongPredicate(string stringToTest)
-    {
-      return stringToTest.Length > 10;
-    }
-
-    #endregion predicate
-
     #region test instrumentation
 
     internal delegate void CallBackTestDelegate(bool testResult);

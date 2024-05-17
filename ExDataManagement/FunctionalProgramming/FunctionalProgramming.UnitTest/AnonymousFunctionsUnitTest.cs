@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -20,23 +20,18 @@ namespace TP.FunctionalProgramming
   public class AnonymousFunctionsUnitTest
   {
     [TestMethod]
-    public void StringIsLongPredicateTest()
-    {
-      Assert.IsTrue(AnonymousFunctions.StringIsLongPredicate("g5F|z*tC&yKJU$"));
-    }
-
-    [TestMethod]
     public void NamedMethodCallBackTest()
     {
       AnonymousFunctions _newInstance = new AnonymousFunctions();
       CallBackTestClass _callBackResult = new CallBackTestClass();
       Assert.IsFalse(_callBackResult.m_TestResult);
-      _newInstance.ConsistencyCheck(new AnonymousFunctions.CallBackTestDelegate(_callBackResult.CallBackTestResult));
+      AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = new AnonymousFunctions.CallBackTestDelegate(_callBackResult.CallBackTestResult);
+      _newInstance.ConsistencyCheck(_CallBackTestResult);
       Assert.IsTrue(_callBackResult.m_TestResult);
     }
 
     [TestMethod]
-    public void AnonymousMethodTest()
+    public void AnonymousMethodCallBackTest()
     {
       AnonymousFunctions _newInstance = new AnonymousFunctions();
       bool _testResult = false;
@@ -47,11 +42,12 @@ namespace TP.FunctionalProgramming
     }
 
     [TestMethod]
-    public void LambdaCallTest()
+    public void LambdaExpressionCallBackTest()
     {
       AnonymousFunctions _newInstance = new AnonymousFunctions();
       bool _testResult = false;
-      _newInstance.ConsistencyCheck(_result => _testResult = _result);
+      AnonymousFunctions.CallBackTestDelegate _CallBackTestResult = _result => _testResult = _result;
+      _newInstance.ConsistencyCheck(_CallBackTestResult);
       Assert.IsTrue(_testResult);
     }
 
@@ -97,6 +93,8 @@ namespace TP.FunctionalProgramming
       //_newInstance.OnStateChanged(_newInstance, _newInstance.CurrentStateHandler.CurrentState);  //Error CS0070  The event 'AnonymousFunctions.OnStateChanged' can only appear on the left hand side of += or -= (except when used from within the type 'AnonymousFunctions')
     }
 
+    #region Instrumentation
+
     private class CallBackTestClass
     {
       internal bool m_TestResult = false;
@@ -106,5 +104,7 @@ namespace TP.FunctionalProgramming
         m_TestResult = returnResult;
       }
     }
+
+    #endregion Instrumentation
   }
 }

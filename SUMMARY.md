@@ -1,3 +1,16 @@
+<!--
+//____________________________________________________________________________________________________________________________________
+//
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
+//
+//  https://github.com/mpostol/TP/discussions/182
+//
+//  by introducing yourself and telling us what you do with this community.
+//_____________________________________________________________________________________________________________________________________
+-->
+
 # Executive Summary
 
 * [Programming in Practice](README.md)
@@ -35,11 +48,14 @@
   * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md)
 * Functional Programming
   * [Preface](ExDataManagement/FunctionalProgramming/README.md)
-  * [Implementation Examples](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
-* Structural Data
-  * [Preface](ExDataManagement/StructuralData/README.md)
-  * [Implementation Examples](ExDataManagement/StructuralData/StructuralData/README.md)
-  * [Usage](ExDataManagement/StructuralData/StructuralDataUnitTest/README.md)
+  * [Implementation](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
+  * [Delegate and Events](ExDataManagement/FunctionalProgramming/FunctionalProgramming/READMEDelegateEvents.md)
+  * [Extension Methods](ExDataManagement/FunctionalProgramming/FunctionalProgramming/README.ExtensionMethods.md)
+  * [Anonymous Functions](ExDataManagement/FunctionalProgramming/FunctionalProgramming/README.AnonymousFunctions.md)
+* [Structural Data](ExDataManagement/StructuralData/README.md)
+  * [LINQ Expression](ExDataManagement/StructuralData/StructuralData/README.LINQExpression.md)
+  * [LINQ to Object](ExDataManagement/StructuralData/StructuralData/README.LINQ2Object.md)
+  * [LINQ to SQL](ExDataManagement/StructuralData/StructuralData/README.LINQ2SQL.md)
 * Graphical Data
   * [Preface](ExDataManagement/GraphicalData/README.md)
   * [View Implementation Examples](ExDataManagement\GraphicalData\GraphicalData.View\README.md)

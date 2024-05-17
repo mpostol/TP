@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -57,12 +57,12 @@ namespace TP.StructuralDataUnitTest
     }
 
     [TestMethod]
-    public void FilterPersonsByLastName_MethodSyntaxTest()
+    public void FilterPersonsByLastName_QuerySyntaxTest()
     {
       using (Catalog _newCatalog = new Catalog())
       {
         _newCatalog.AddContent(TestDataGenerator.PrepareData());
-        IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_MethodSyntax("Person");
+        IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_QuerySyntax("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Linq.WhereEnumerableIterator`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
         Assert.AreEqual<string>("System.Linq.Enumerable+WhereEnumerableIterator`1[TP.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
@@ -73,12 +73,12 @@ namespace TP.StructuralDataUnitTest
     }
 
     [TestMethod]
-    public void FilterPersonsByLastName_QuerySyntaxTest()
+    public void FilterPersonsByLastName_MethodSyntaxTest()
     {
       using (Catalog _newCatalog = new Catalog())
       {
         _newCatalog.AddContent(TestDataGenerator.PrepareData());
-        IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_QuerySyntax("Person");
+        IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_MethodSyntax("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Linq.WhereEnumerableIterator`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
         Assert.AreEqual<string>("System.Linq.Enumerable+WhereEnumerableIterator`1[TP.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
