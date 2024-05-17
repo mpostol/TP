@@ -38,7 +38,6 @@ namespace TP.StructuralDataUnitTest.Instrumentation
           _assignedCDs.Add(new CDCatalog()
           {
             Country = $"Country{i}",
-            Person = this,
             Price = 0,
             Title = $"Title{i}",
             Year = (ushort)(2000 + i)
@@ -62,11 +61,10 @@ namespace TP.StructuralDataUnitTest.Instrumentation
     {
       #region ICDCatalog
 
-      public string Title { get; set; }
       public string Country { get; set; }
       public decimal Price { get; set; }
+      public string Title { get; set; }
       public ushort Year { get; set; }
-      public Person Person { get; set; }
 
       #endregion ICDCatalog
     }

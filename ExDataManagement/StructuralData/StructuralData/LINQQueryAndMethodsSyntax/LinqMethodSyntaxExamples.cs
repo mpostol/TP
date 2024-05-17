@@ -21,6 +21,7 @@ namespace TP.StructuralData.LINQQueryAndMethodsSyntax
     public static string MethodSyntax()
     {
       string[] _words = { "apple", "strawberry", "grape", "peach", "banana" };
+      //IEnumerable<string> _wordQuery = from word in _words where word[0] == 'g' select word;
       IEnumerable<string> _wordQuery = _words.Where<string>(word => word[0] == 'g').Select<String, String>(word => word);
       return String.Join(";", _wordQuery.ToArray());
     }

@@ -18,3 +18,9 @@ assignees: 'mpostol'
 - [ ] Update the repository front page
 - [ ] Update the GitHub pages documentation
 - [ ] Close this issue and the parent milestone
+
+``` txt
+//Alpha, Bravo, Charlie, Delta, Echo, Foxtrot, Golf, Hotel, India, Juliet, 
+//Kilo, Lima, Mike, November, Oscar, Papa, Quebec, Romeo, Sierra, Tango,
+//Uniform, Victor, Whiskey, X-Ray, Yankee, Zulu 
+```
