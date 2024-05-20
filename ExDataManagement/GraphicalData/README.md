@@ -15,6 +15,44 @@
 
 ## Preface
 
+### Graphical Data as a kind of external data
+
+This folder concerns selected issues related to the representation of process information in graphical form. It tries to answer how to build a graphical user interface. However, it must be emphasized that, following the main title, we will focus on issues related to the CSharp programming language, i.e. its syntax and semantics. Unfortunately, we cannot completely avoid **problems** related to the design environment used, so Visual Studio and employing another language, Extensible Application Markup Language, XAMLfor short. Unfortunately, learning this language is beyond the scope of the course. However, I must reassure you that knowing it is not a condition for understanding any of the issues discussed.
+
+Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve the handling of graphic data. Let's start with a drawing used already several times to illustrate what we would talk about. In the figure, the text of our program has been compiled, entered into memory, and has become a process managed by the computer's operating system. The operating system strongly defends the integrity of resources committed to the process. This defense measure is encapsulation. It forces to use the operating system when it is needed to exchange data with the external environment, including the computer screen.
+
+![ProgramLayered Design Pattern](.Media/CoursImageProgramLayeredDesignPattrn.png)
+
+The figure shows the program text as a layered structure. The reasons for the employment of layers have already been discussed. Previously, we talked about issues related to managing external data employing repositories. In general, three classes of external data have been distinguished:
+
+- **streaming**: files, network packets
+- **structural**: databases
+- **graphical**: Graphical User Interface (GUI)
+
+The external data is recognized as the data we must pull or push from outside of the process hosting the computer program.
+
+Streams provided by the file system are one of the options that we can use as a repository. In this case, data is stored as a stream of bits, which we can transform into process data and vice versa using serialization and deserialization operations.
+
+Another option, which we also talked about in some detail, is databases, i.e. an external structured data management system (Database Management System, DBMS for short). The purpose of a DBMS is to consistently store and archive data in compliance with a certain scheme that allows for archiving complex data and creating relationships between individual entities of this data at the same time. Data is accessed and processed by the DBMS using a certain query language.
+
+In this chapter, the graphical representation of information is the main topic for discussion, i.e. graphical data in a form that allows communication with the user. This forces us to place our considerations in the context of broadly understood natural language, in which, as the classic statement, “A picture is worth a thousand words”. This saying suggests that visual representations can convey complex ideas or emotions more effectively than lengthy descriptions. This adage highlights the power of visual communication—a single image can represent complex ideas more effectively than lengthy descriptions.
+
+Unfortunately, as usual, when we deal with a non-standard representation, we have to struggle with interpreting the meaning of the created image. This is often frustrating for developers because it could mean bad quality of their work when quality measures are unclear. I will cite a situation in which the team demonstrated a new application to our American partner, as an example. We were very proud of the application and the presentation went very well - we received much praise. There was only one major drawback - the colors of the profile used turned out to be un-American, even though we tried to apply those sent to us in a GIF.
+
+So much for the theory, but how to deal with it? The information, or knowledge, represented by a certain image is read from by interpreting it. So creating graphics will require considering aesthetic impressions, which requires appealing to an undefined sense of beauty. The image must also meet the requirements of ergonomics, i.e. be adapted to the psychophysical capabilities of the user, i.e. a human being - according to Wikipedia, this requires knowledge in the field of psychology, sociology, physiology, hygiene, medicine, anthropometry, and technical sciences, e.g. machine construction. Without a doubt, a computer is a machine. Moreover, each program implements a certain algorithm, i.e. automation of a selected process. Therefore, the behavior of the screen, which becomes the dashboard controlling the course of this process, must be directly related to this process, and this requires domain knowledge related to the process.
+
+The list of fields involved in human-machine communication included computers, and this is our stuff, to put it colloquially. The image on its screen must be the result of our program. A program is a text created by a programmer, and a programmer is not a superman who know everything I have just mentioned, especially which colors are American, so let me return to the real-life scenario I mentioned earlier.
+
+This is our first **problem**: involving other specialists, including but not limited to direct users, in the GUI design process. Let's go back to the national colors anecdote again, if we don't know what the American color means, let's give our friend from overseas a chance to prove herself. But let's not exaggerate and do not require technical knowledge from her, especially knowledge of a programming language.
+
+### GUI as a tree containing controls as nodes
+
+An image is a composition of colored pixels. They must be composed in such a way as to represent selected process information, i.e. its state or behavior. Similarly to the case of data in memory, which we process without directly referring to their binary representation, we do not create a GUI by laboriously assembling pixels into a coherent composition. Moreover, as I mentioned earlier, the GUI is a dashboard controlling the process, so it must also behave dynamically, including enabling data entry and issuing commands.
+
+An image is a composition of colored pixels. They must be composed in such a way as to represent selected process information, i.e. its state or behavior. Similarly to the case of data in memory, which we process without directly referring to their binary representation, we do not create a GUI by laboriously assembling pixels into a coherent composition. Moreover, as I mentioned earlier, the GUI is a dashboard controlling the process, so it must also behave dynamically, including enabling data entry and issuing commands.
+
+The next **problem** is how to ensure the appropriate level of abstraction, i.e. how to hide the details related to the creation of an image on the screen. Let's introduce two concepts here: control and rendering. Hiding details always leads to coming to terms with the fact that something is happening beyond our control. We've seen this while generating SQL queries from LINQ expressions. As with LINQ, we need to use a specific technology to express our considerations in a practical practical context backed by examples. I chose Windows Presentation Foundation (the more familiar-sounding abbreviation WPF), but I will try not to lose the generality of the discussion. A discussion of WPF requires a separate course, and we will stay as close as possible to issues related to the practice of using the CSharp language.
+
 - XAML - Description of the Graphical Interface
 - MVVM Programming Design Pattern
 
@@ -52,39 +90,13 @@ It is a type that encapsulates user interface functionality and is used in clien
   - [Praca domowa](#praca-domowa)
   - [Zakończenie](#zakończenie)
 
-Tą lekcją zaczynamy nowy cykl, poświęcony omówieniu wybranych zagadnień związanych z reprezentacją informacji procesowej w postaci graficznej, a mianowicie spróbuję w żołnierskich słowach odpowiedzieć na pytanie jak zbudować graficzny interfejs użytkownika. Muszę tu jednak podkreślić, że zgodnie z głównym tytułem kursu będę się koncentrował na zagadnieniach związanych z językiem programowania C#, więc jego składnią i semantyką. Niestety nie możemy całkowicie tu uciec od zagadnień związanych z wykorzystywanym środowiskiem projektowym, więc Visual Studio oraz wykorzystaniem kolejnego języka Extensible Application Markup Language, w skrócie xaml. Niestety poznanie tego języka jest poza zakresem kursu. Tu jednak muszę uspokoić, jego znajomość nie jest warunkiem koniecznym, to nie jest warunek zrozumienia żadnej z lekcji w tej grupie tematycznej.
-
 ## Jaki mamy problem
 
 ### Wstęp
 
-Zacznijmy od kilu definicji, wyjaśnień i wskazania kierunków poszukiwań nowych rozwiązań, w zakresie usprawnienia operowania danymi graficznymi. Na początek zacznijmy od rysunku, który już kilka razy przydał się do zobrazowania o czym będziemy mówili. Na pokazanej ilustracji tekst naszego programu został skompilowany, wprowadzony do pamięci i stał się procesem zarządzanym przez system operacyjny komputera. System operacyjny silnie broni integralności zasobów przekazanych do procesu. Ta obrona to hermetyzacja, która zmusza do korzystania z systemu operacyjnego w przypadku konieczności wymiany danych z otoczeniem zewnętrznym, a w tym z ekranem komputera.
-
-Rysunek przedstawia program jako konstrukcję warstwową. Przyczyny wprowadzenia warstw zostały już omówione i proponuję ponownie szczegółowo nie wracać do tego tematu teraz. Poprzednio mówiliśmy o zagadnieniach związanych z zarządzaniem zewnętrznymi repozytoriami danymi. Strumienie udostępniane przez system plików to jedna z opcji, którą możemy wykorzystać w roli repozytorium.  W tym przypadku dane są przechowywane jako strumień bitów, który możemy przekształcić w dane przetwarzane w ramach procesu i na odwrót z wykorzystaniem operacji serializacji i deserializacji. Tu warto przypomnieć, że było kilka lekcji na ten temat.
-
-Kolejna opcja, o której również mówiliśmy dość szczegółowo, to bazy danych, a więc pewien zewnętrzny systemem zarządzania danymi strukturalnymi (Database Management System, w skrócie DBMS). Celem DBMS jest spójne przechowywanie i archiwizowanie danych zgodnie z pewnym schematem, który pozwala na archiwizowanie danych złożonych i jednocześnie tworzenie relacji pomiędzy poszczególnymi bytami tych danych. Dane są udostępniane i przetwarzane przez DBMS z wykorzystaniem pewnego języka zapytań.
-
-W tej lekcji omówimy graficzną reprezentację informacji, czyli dane graficzne w postaci umożliwiającej  komunikację z użytkownikiem. To zmusza, aby tym razem nasze rozważania były osadzone w kontekście szeroko rozumianego języka naturalnego, w którym jak mówi klasyk, rysunek zastępuje tysiąc słów. Skoro padło słowo język, to musimy wrócić do naszej definicji języka. Według niej język zawiera trzy definicje składowe, a mianowicie
-
-- alfabet – czyli zbiór znaków,
-- reguły składniowe – czyli jak znaki łączyć w poprawne ich ciągi i
-- reguły semantyczne pozwalające przypisać znaczenie do tak utworzonych ciągów znaków.
-
-W przypadku współczesnego ekranu komputerowego alfabet to zbiór kolorowych pikseli, które nasz program będzie traktował jako słowo binarne. I tu już zaczynają się schody, bo długość tego słowa - limitująca przecież ilość kolorów - może zależeć od konkretnego sprzętu, więc być różna dla poszczególnych instancji naszego programu, który musi być zawsze taki sam. Tą niejednorodność da się jeszcze jakoś obejść. Natomiast, znacznie gorzej jest z regułami składniowymi i semantycznymi kompozycji pikseli. Niestety jak zwykle, kiedy mamy do czynienia z językiem naturalnym w miejsce przypisania informacji do poprawnie utworzonych ciągów znaków musimy borykać się z interpretacją znaczenia utworzonej kompozycji pikseli. To często jest dla programistów frustrujące, ponieważ prowadzi do kwestionowania jakości ich pracy w sytuacji, kiedy miary jakości są niedookreślone. Jako przykład przytoczę sytuację, w której zespół demonstrował nową aplikację naszemu amerykańskiemu partnerowi. Z aplikacji byliśmy bardzo dumni i pokaz wypadł super dobrze - dostaliśmy wiele pochwał. Było tylko jedno bardzo zasadnicze zastrzeżenie – kolory zastosowanego motywu okazały się nie amerykańskie, tak dosłownie nie amerykańskie, pomimo że próbowaliśmy dokładnie naśladować te, przesłane nam kiedyś w gifie.
-
 ### Informacja
 
-Tyle teoria, ale jak sobie z tym poradzić – to prawdziwe wyzwanie dla tej części kursu. Wychodząc mu naprzeciw proponuję zdefiniować kierunki dalszych poszukiwań. Informacja, czyli wiedza która jest reprezentowana przez pewien obraz jest z niego odczytywana na drodze interpretacji. Więc tworzenie grafiki będzie wymagało uwzględnienia wrażeń estetycznych, co wymaga odwoływania się do niedookreślonego poczucia piękna. Obrazek musi również spełniać wymagania ergonomii, czyli być dostosowanym do możliwości psychofizycznych użytkownika, więc człowieka – to zgodnie z Wikipedią wymaga wiedzy z zakresu psychologii, socjologii, fizjologii, higieny, medycyny, antropometrii oraz nauk technicznych, np. budowy maszyn. Bez wątpienia – komputer to maszyna – to już przerabialiśmy na samym wstępie tej przygody intelektualnej. Co więcej, każdy program to implementacja pewnego algorytmu, czyli automatyzacja wybranego procesu. Zatem zachowanie ekranu, który staje się pulpitem sterujący przebiegiem tego procesu, musi być bezpośrednio związane z tym procesem, a to wymaga wiedzy dziedzinowej związanej z procesem.
-
-Na liście dziedzin uwikłanych w komunikację człowiek-maszyna był komputer, a to już nasza działka, mówiąc kolokwialnie. Obrazek na jego ekranie musi być wynikiem działania naszego programu. Program to tekst utworzony przez programistę, a programiści to nie nadludzie, którzy znają się na wszystkim o czym przed chwilą mówiłem, a w szczególności na tym, które kolory są amerykańskie, że wrócę do przytoczonej wcześniej z życia wziętej dykteryjki.
-
-To nasz pierwszy problem, a mianowicie jak włączyć innych specjalistów, a w tym bezpośrednich użytkowników w proces projektowania GUI. Jeszcze raz wróćmy do dykteryjki, jeśli nie wiemy co to znaczy kolor amerykański, dajmy szansę wykazać się naszej koleżance z za Oceanu. Tylko bez przesady nie wymagajmy od niej technicznej wiedzy, a w szczególności znajomości jakiegoś języka programowania.
-
 ### GUI jako drzewo kontrolek
-
-Obrazek jest ciągiem kolorowych pikseli. Muszą się one komponować w taki sposób, aby reprezentować wybrane informacje procesowe, tzn. jego stan lub zachowanie. Podobnie jak w przypadku danych w pamięci, które przecież przetwarzamy nie odwołując się bezpośrednio do ich binarnej reprezentacji, również GUI nie tworzymy mozolnie składając piksele w spójną kompozycję. Co więcej, jak wspomniałem wcześniej GUI stanowi pulpit sterujący przebiegiem procesu, więc musi również zachowywać się dynamicznie, a w tym umożliwiać wprowadzanie danych i wydawanie poleceń.
-
-Kolejnym problemem jest zatem to, jak zapewnić odpowiedni poziom abstrakcji, tzn. ukryć szczegóły związane z powstawaniem obrazka. Wprowadzimy tu dwa pojęcia kontrolka i renderowanie.  Ukrywanie szczegółów zawsze prowadzi do pogodzenia się z faktem, że coś się dzieje poza naszą kontrolą. Mieliśmy z tym już do czynienia w przypadku generowania kwerend SQL na podstawie wyrażeń LINQ. Podobnie jak w przypadku LINQ, aby nasze rozważania były osadzone w kontekście praktycznych przykładów, musimy użyć konkretnej technologii. Wybrałem Windows Presentation Foundation (w skrócie bardziej swojsko brzmiący skrót WPF), ale postaram się, byśmy nie stracili ogólności rozważań.  Omówienie WPF wymaga osobnego kursu, a my pozostaniemy możliwie blisko zagadnieniom związanym z praktyką wykorzystania języka C#.
 
 ## Wykorzystanie
 
