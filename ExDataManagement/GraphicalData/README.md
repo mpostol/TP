@@ -14,10 +14,10 @@
 # Graphical Data
 
 - [Graphical Data](#graphical-data)
-  - [Preface](#preface)
-    - [Graphical Data as a kind of external data](#graphical-data-as-a-kind-of-external-data)
-    - [Deploring Graphical User Interface](#deploring-graphical-user-interface)
-    - [GUI - Tree of Control](#gui---tree-of-control)
+  - [Graphical User Interface (GUI) - Preface](#graphical-user-interface-gui---preface)
+    - [External Data](#external-data)
+    - [GUI - Deployment](#gui---deployment)
+    - [GUI - Tree of Controls](#gui---tree-of-controls)
   - [Sample Program](#sample-program)
   - [Introduction](#introduction)
     - [From General to Detailed Data](#from-general-to-detailed-data)
@@ -25,17 +25,17 @@
     - [Rendering](#rendering)
     - [Blend](#blend)
 
-## Preface
+## Graphical User Interface (GUI) - Preface
 
-### Graphical Data as a kind of external data
+This folder concerns selected issues related to the representation of process information in graphical form. It tries to answer how to build a graphical user interface. Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve the handling of graphic data.
 
-This folder concerns selected issues related to the representation of process information in graphical form. It tries to answer how to build a graphical user interface. Unfortunately, we cannot completely avoid **problems** related to the design environment used, so Visual Studio and employing a domain-specific language, [Extensible Application Markup Language][XAML], XAML for short. Unfortunately, learning this language is beyond the scope of this paper. However, I must reassure you that detailed knowledge of the XAML is not a condition for understanding any of the issues discussed.
+### External Data
 
-Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve the handling of graphic data. Let's start with a drawing used already several times to illustrate what we would talk about. In the figure, the text of our program has been compiled, entered into memory, and has become a process managed by the computer's operating system. The operating system strongly defends the integrity of resources committed to the process. This defense measure is encapsulation. It forces to use the operating system when it is needed to exchange data with the external environment, including a remote or local computer screen.
+Let's start with a drawing used already several times to illustrate what we would talk about. In the figure below, the text of our program has been compiled, entered into memory, and has become a process managed by the computer's operating system. The operating system strongly defends the integrity of resources committed to the process. This defense measure is encapsulation. It forces to use the operating system when it is needed to exchange data with the external environment, including a remote or local computer screen.
 
-![ProgramLayered Design Pattern](.Media/CoursImageProgramLayeredDesignPattrn.png)
+![Program Layered Design Pattern](.Media/CoursImageProgramLayeredDesignPattrn.png)
 
-The figure shows the program text as a layered structure. The reasons for the employment of layers have already been discussed. Previously, we talked about issues related to managing external data employing repositories. In general, three classes of external data have been distinguished:
+The figure shows the program text as a layered structure. The reasons for the employment of layers have already been discussed. Previously, we talked about issues related to managing external data employing repositories. In general, three kinds of external data have been distinguished:
 
 - **streaming**: files, network packets
 - **structural**: databases
@@ -47,9 +47,9 @@ Streams provided by the file system are one of the options that we can use as a 
 
 Another option, which we also discussed in some detail, is databases, i.e. an external structured data management system (Database Management System, DBMS for short). The purpose of a DBMS is to consistently store and archive data in compliance with a certain scheme that allows for archiving complex data and creating relationships between individual entities of this data simultaneously. Data is accessed and processed by the DBMS using a certain query language.
 
-In this section, the graphical representation of information is the main topic for discussion, i.e. graphical data in a form that allows communication by a computer with the environment. This forces us to place our considerations in the context of broadly understood natural language, in which, as the classic statement, “A picture is worth a thousand words”. This adage suggests that visual representations can convey complex ideas or emotions more effectively than lengthy descriptions. This phrase highlights the power of visual communication—a single image can represent complex ideas more effectively than lengthy descriptions.
+### GUI - Deployment
 
-### Deploring Graphical User Interface
+In this section, the graphical representation of information is the main topic for discussion, i.e. graphical data in a form that allows communication by a computer with the environment. This forces us to place our considerations in the context of broadly understood natural language, in which, as the classic statement, “A picture is worth a thousand words”. This adage suggests that visual representations can convey complex ideas or emotions more effectively than lengthy descriptions. This phrase highlights the power of visual communication—a single image can represent complex ideas more effectively than lengthy descriptions.
 
 Unfortunately, as usual, when we deal with a non-standard representation, we have to struggle with interpreting the meaning of the created image. This is often frustrating for developers because it could mean bad quality of their work when quality measures are unclear. I will cite a situation while the team demonstrated a new application to our American partner. We were very proud of the application and the presentation went very well - we received much praise. There was only one major drawback - the dominating color of the style turned out to be un-American, even though we tried to apply those sent to us in a GIF.
 
@@ -59,13 +59,15 @@ The list of fields involved in human-machine communication included computers, a
 
 Hence, how to involve other specialists, including but not limited to direct users, in the GUI design process should be our first **problem**. Let's go back to the national colors anecdote again, if we don't know what the American color means, let's give our friend from overseas a chance to prove herself. But let's not exaggerate and do not require technical knowledge from her, especially knowledge of a programming language.
 
-### GUI - Tree of Control
+### GUI - Tree of Controls
 
 An image is a composition of colored pixels. They must be composed in such a way as to represent selected process information, i.e. its state or behavior. Similarly to the case of data in memory, which we process without directly referring to their binary representation, we do not create a GUI by laboriously assembling pixels into a coherent composition. Moreover, as I mentioned earlier, the GUI is a dashboard controlling the process, so it must also behave dynamically, including data entry and events handling.
 
 Hence, The next **problem** is how to ensure the appropriate level of abstraction, i.e. how to hide the details related to maintaining an image on the screen. Let's introduce two concepts here: control and rendering. Hiding details always leads to coming to terms with the fact that something is happening beyond our control. We've seen this while generating SQL queries from LINQ expressions. As with LINQ, we need to use a specific technology to express our considerations in a practical context backed by examples. I chose Windows Presentation Foundation (the more familiar-sounding abbreviation WPF), but I will try not to lose the generality of the discussion. A discussion of WPF requires a separate course, and we will stay as close as possible to issues related to the practice of using the CSharp language.
 
 To stay close to any programming language we need to focus our discussion on types. Returning to the question of what is the control in programming language. Now, only one answer looks feasible, namely, It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. In other words, by design, a control is a class. There are a bunch of derived classes inherited from it, for example, the `Button` class. It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface.
+
+Unfortunately, we cannot completely avoid **problems** related to the design environment used, so Visual Studio and employing a domain-specific language, [Extensible Application Markup Language][XAML], XAML for short. Unfortunately, learning this language is beyond the scope of this paper. However, I must reassure you that detailed knowledge of the XAML is not a condition for understanding any of the issues discussed.
 
 ## Sample Program
 
