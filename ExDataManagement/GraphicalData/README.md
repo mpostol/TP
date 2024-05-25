@@ -22,8 +22,10 @@
     - [Introduction](#introduction)
     - [Master and Detailed View](#master-and-detailed-view)
     - [Entering Data](#entering-data)
+    - [Pop-up window](#pop-up-window)
     - [Rendering](#rendering)
   - [Independent Editor](#independent-editor)
+  - [See also](#see-also)
 
 ## Graphical User Interface (GUI) - Preface
 
@@ -91,23 +93,27 @@ Another feature of the user interface is revealed when you click on a complex da
 
 ### Entering Data
 
-Hovering the mouse over another data area reveals another feature, namely the ability to enter new or modify current data. We see a case of modification on the screen. Here again, a question for ergonomics experts, not programmers: how does the user know that this text is editable?
+Hovering the mouse over another data area reveals another feature - the ability to enter new or modify current data. We see a case of modification on the screen. Here again, a question for ergonomics experts, not programmers: how does the user know that the text is editable?
 
 After modifying the data, we can simulate the dynamic behavior of the interface, namely, clicking the button above the text starts the procedure for processing a new value for the selected data, in this case, confirmed by displaying a window signaling the end of the operation. Here we have another problem: how to ensure that the application is **responsive**, i.e. that the interface in question is not frozen when the requested operation takes a noticeably long time.
 
-There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new window. Again, this window appears on an adjacent screen, so I must drag it to my workspace. I will use this window to demonstrate two scenarios. The first is that the user interface may depend on the state, i.e., the history of previously performed operations. The second is that the user decides what data he wants to see.
+### Pop-up window
 
-There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new window. Again, this window appears on an adjacent screen, so I must drag it to my workspace. I will use this window to demonstrate two scenarios. The first is that the user interface may depend on the state, i.e., the history of previously performed operations. The second is that the user decides what data he wants to see.
+There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new modal window. While this window is open, users cannot interact with other parts of the program until they close it. I will use this window to demonstrate two scenarios. The first is that the user interface may depend on the state, i.e., the history of previously performed operations. The second is that the user decides what data he wants to see.
 
-In the new window, the buttons are again gray rectangles, and the white rectangle on the right is the space reserved for displaying data. The keys are gray, but the bottom is shaded (inactive). To make it active, you need to click the upper button, which simulates a scenario in which two operations must be performed in sequence, i.e. performing a certain operation only creates a situation that enables the possibility of triggering another one. For example, you must select a file first to analyze the data. Of course, ergonomics comes into play again, and how to clearly show this dependency on the screen.
+There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new window. I will use this window to demonstrate two scenarios. The first is that the user interface may depend on the state, i.e., the history of previously performed operations. The second is that the user may decide what data is to be exposed. It is important if data is organized using infinitive cycles.
 
-In this case, the data is simulated, but in the part on the right-hand side of this window, they are displayed in the form of a tree that can be expanded to any depth. This may resemble a situation in which we dynamically download subsequent data from an external repository following the user's current needs. This scenario is particularly useful when retrieving all the data leads to an infinite loop due to recursion, or cyclic references, and the amount of data displayed depends on the user's needs.
+In the new window, the buttons are again gray rectangles, and the white rectangle on the right is the space reserved for displaying data. The buttons are gray, but the bottom is shaded (inactive). To make it active, you need to click the upper button, which simulates a scenario in which two operations must be performed in sequence, i.e. performing a certain operation only creates a situation that enables the possibility of triggering another one. For example, you must select a file first to analyze the data. Of course, ergonomics comes into play again because there is a question that must be addressed, namely how to clearly show this dependency on the screen.
 
-Let me remind you once again that the interface presented here is not related to the specific needs of the selected process. It is also worth remembering its features in the context of analyzing the text of an example program that implements it.
+In this case, the data is simulated and on the right-hand side of this window, the data is displayed in the form of a tree that can be expanded to any depth. This may resemble a situation in which we dynamically download subsequent data from an external repository following the user's current needs. This scenario is particularly useful when retrieving all the data leads to an infinite loop due to recursion, or cyclic references, and the amount of data displayed depends on the user's needs.
+
+Once again, let me remind you that the user interface presented here is not related to the specific needs of any process. It is also worth remembering its features and behavior because it will be analyzed in the context of the example program that implements it.
 
 In the sample application, we saw two windows that have just served as a repository and user interface for input and output process data. Additionally, these windows made it possible to control the program's behavior. Since the program, i.e. the text, is responsible for all this, let's find the places in the program responsible for graphics, data, and the behavior of the user interface, respectively. In this lesson, we are only interested in graphics. We'll cover data and behavior in the next lesson.
 
 ### Rendering
+
+In the sample application, we saw two windows that have just served as a repository and user interface for input and output process data. Additionally, these windows made it possible to control the program's behavior. Since the program, i.e. the text, is responsible for all this, let's find the places in the program responsible for graphics, data, and the behavior of the user interface, respectively. We are only interested in graphics. We'll cover data and behavior in a separate part.
 
 Without going into details, the project has a folder in which I have collected files responsible for rendering windows on the screen, i.e. creating their appearance based on the formal description in the program text. In other words, it is a complex process of converting our text into a composition of screen pixels. Because it is a repeatable process, it can be completely automated.
 
@@ -121,7 +127,7 @@ A slightly more difficult issue is emphasizing that we use buttons, i.e. clickab
 
 The proposed approach is a static solution, i.e. the selected colors and shapes cannot be treated as process data. The situation changes if the color selection is to be the result of a processing process, for example, we may change the background to a shade of red if the calculation results are above alarming value. Similarly, the screen can change if you want the button to appear only in certain situations. These colors and shapes become a representation of process information, i.e. data that must change according to a certain relationship connecting data with the picture on the screen.
 
-33 See also
+## See also
 
 - [Extensible Application Markup Language][XAML]
 
