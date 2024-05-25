@@ -13,6 +13,9 @@
 
 # MVVM Programming Design Pattern
 
+- MVVM Programming Design Pattern
+
+
 <!--
 # Wzorzec MVVM
 

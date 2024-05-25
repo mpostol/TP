@@ -16,24 +16,23 @@
 - [Graphical Data](#graphical-data)
   - [Preface](#preface)
     - [Graphical Data as a kind of external data](#graphical-data-as-a-kind-of-external-data)
-    - [GUI as a tree containing controls as nodes](#gui-as-a-tree-containing-controls-as-nodes)
+    - [Deploring Graphical User Interface](#deploring-graphical-user-interface)
+    - [GUI - Tree of Control](#gui---tree-of-control)
+    - [What is control?](#what-is-control)
   - [Sample Program](#sample-program)
   - [Introduction](#introduction)
     - [From General to Detailed Data](#from-general-to-detailed-data)
     - [Entering Data](#entering-data)
     - [Rendering](#rendering)
     - [Blend](#blend)
-  - [Research](#research)
-    - [What is control?](#what-is-control)
-  - [See also](#see-also)
 
 ## Preface
 
 ### Graphical Data as a kind of external data
 
-This folder concerns selected issues related to the representation of process information in graphical form. It tries to answer how to build a graphical user interface. However, it must be emphasized that, following the main title, we will focus on issues related to the CSharp programming language, i.e. its syntax and semantics. Unfortunately, we cannot completely avoid **problems** related to the design environment used, so Visual Studio and employing another language, Extensible Application Markup Language, XAMLfor short. Unfortunately, learning this language is beyond the scope of the course. However, I must reassure you that knowing it is not a condition for understanding any of the issues discussed.
+This folder concerns selected issues related to the representation of process information in graphical form. It tries to answer how to build a graphical user interface. Unfortunately, we cannot completely avoid **problems** related to the design environment used, so Visual Studio and employing a domain-specific language, [Extensible Application Markup Language][XAML], XAML for short. Unfortunately, learning this language is beyond the scope of this paper. However, I must reassure you that detailed knowledge of the XAML is not a condition for understanding any of the issues discussed.
 
-Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve the handling of graphic data. Let's start with a drawing used already several times to illustrate what we would talk about. In the figure, the text of our program has been compiled, entered into memory, and has become a process managed by the computer's operating system. The operating system strongly defends the integrity of resources committed to the process. This defense measure is encapsulation. It forces to use the operating system when it is needed to exchange data with the external environment, including the computer screen.
+Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve the handling of graphic data. Let's start with a drawing used already several times to illustrate what we would talk about. In the figure, the text of our program has been compiled, entered into memory, and has become a process managed by the computer's operating system. The operating system strongly defends the integrity of resources committed to the process. This defense measure is encapsulation. It forces to use the operating system when it is needed to exchange data with the external environment, including a remote or local computer screen.
 
 ![ProgramLayered Design Pattern](.Media/CoursImageProgramLayeredDesignPattrn.png)
 
@@ -43,29 +42,33 @@ The figure shows the program text as a layered structure. The reasons for the em
 - **structural**: databases
 - **graphical**: Graphical User Interface (GUI)
 
-The external data is recognized as the data we must pull or push from outside of the process hosting the computer program.
+The external data is determined as the data we must pull or push from outside the process hosting the computer program.
 
-Streams provided by the file system are one of the options that we can use as a repository. In this case, data is stored as a stream of bits, which we can transform into process data and vice versa using serialization and deserialization operations.
+Streams provided by the file system are one of the options that we can use as a repository to gather the process data. In this case, data is stored as a stream of bits, which we can transform into process data and vice versa using serialization and deserialization operations.
 
-Another option, which we also talked about in some detail, is databases, i.e. an external structured data management system (Database Management System, DBMS for short). The purpose of a DBMS is to consistently store and archive data in compliance with a certain scheme that allows for archiving complex data and creating relationships between individual entities of this data at the same time. Data is accessed and processed by the DBMS using a certain query language.
+Another option, which we also discussed in some detail, is databases, i.e. an external structured data management system (Database Management System, DBMS for short). The purpose of a DBMS is to consistently store and archive data in compliance with a certain scheme that allows for archiving complex data and creating relationships between individual entities of this data simultaneously. Data is accessed and processed by the DBMS using a certain query language.
 
-In this chapter, the graphical representation of information is the main topic for discussion, i.e. graphical data in a form that allows communication with the user. This forces us to place our considerations in the context of broadly understood natural language, in which, as the classic statement, “A picture is worth a thousand words”. This saying suggests that visual representations can convey complex ideas or emotions more effectively than lengthy descriptions. This adage highlights the power of visual communication—a single image can represent complex ideas more effectively than lengthy descriptions.
+In this section, the graphical representation of information is the main topic for discussion, i.e. graphical data in a form that allows communication by a computer with the environment. This forces us to place our considerations in the context of broadly understood natural language, in which, as the classic statement, “A picture is worth a thousand words”. This adage suggests that visual representations can convey complex ideas or emotions more effectively than lengthy descriptions. This phrase highlights the power of visual communication—a single image can represent complex ideas more effectively than lengthy descriptions.
 
-Unfortunately, as usual, when we deal with a non-standard representation, we have to struggle with interpreting the meaning of the created image. This is often frustrating for developers because it could mean bad quality of their work when quality measures are unclear. I will cite a situation in which the team demonstrated a new application to our American partner, as an example. We were very proud of the application and the presentation went very well - we received much praise. There was only one major drawback - the colors of the profile used turned out to be un-American, even though we tried to apply those sent to us in a GIF.
+### Deploring Graphical User Interface
 
-So much for the theory, but how to deal with it? The information, or knowledge, represented by a certain image is read from by interpreting it. So creating graphics will require considering aesthetic impressions, which requires appealing to an undefined sense of beauty. The image must also meet the requirements of ergonomics, i.e. be adapted to the psychophysical capabilities of the user, i.e. a human being - according to Wikipedia, this requires knowledge in the field of psychology, sociology, physiology, hygiene, medicine, anthropometry, and technical sciences, e.g. machine construction. Without a doubt, a computer is a machine. Moreover, each program implements a certain algorithm, i.e. automation of a selected process. Therefore, the behavior of the screen, which becomes the dashboard controlling the course of this process, must be directly related to this process, and this requires domain knowledge related to the process.
+Unfortunately, as usual, when we deal with a non-standard representation, we have to struggle with interpreting the meaning of the created image. This is often frustrating for developers because it could mean bad quality of their work when quality measures are unclear. I will cite a situation while the team demonstrated a new application to our American partner. We were very proud of the application and the presentation went very well - we received much praise. There was only one major drawback - the dominating color of the style turned out to be un-American, even though we tried to apply those sent to us in a GIF.
 
-The list of fields involved in human-machine communication included computers, and this is our stuff, to put it colloquially. The image on its screen must be the result of our program. A program is a text created by a programmer, and a programmer is not a superman who know everything I have just mentioned, especially which colors are American, so let me return to the real-life scenario I mentioned earlier.
+So much for the theory, but how to deal with it? The information, or knowledge, represented by a certain image is read from by interpreting it. So creating graphics will require considering aesthetic impressions, which requires appealing to an undefined sense of beauty. The image must also meet the requirements of ergonomics, i.e. be adapted to the psychophysical capabilities of the user, i.e. a human being. This requires knowledge in the domains of psychology, sociology, physiology, hygiene, medicine, anthropometry, and technical sciences, e.g. machine construction. Without a doubt, a computer is a machine. Moreover, each program implements a certain algorithm, i.e. a knowledge of how to automate a selected process. Therefore, the behavior of the screen, which becomes the dashboard controlling the course of this process, must be directly related to this process, and this requires domain knowledge related to the process.
 
-This is our first **problem**: involving other specialists, including but not limited to direct users, in the GUI design process. Let's go back to the national colors anecdote again, if we don't know what the American color means, let's give our friend from overseas a chance to prove herself. But let's not exaggerate and do not require technical knowledge from her, especially knowledge of a programming language.
+The list of fields involved in human-machine communication included computers, and this is our stuff, to put it colloquially. The image on its screen must be the result of our program. A program is a text created by a programmer, and a programmer is not a Superman who knows everything I have just mentioned, especially which colors are American, so let me return to the real-life anecdote I mentioned earlier.
 
-### GUI as a tree containing controls as nodes
+Hence, how to involve other specialists, including but not limited to direct users, in the GUI design process should be our first **problem**. Let's go back to the national colors anecdote again, if we don't know what the American color means, let's give our friend from overseas a chance to prove herself. But let's not exaggerate and do not require technical knowledge from her, especially knowledge of a programming language.
 
-An image is a composition of colored pixels. They must be composed in such a way as to represent selected process information, i.e. its state or behavior. Similarly to the case of data in memory, which we process without directly referring to their binary representation, we do not create a GUI by laboriously assembling pixels into a coherent composition. Moreover, as I mentioned earlier, the GUI is a dashboard controlling the process, so it must also behave dynamically, including enabling data entry and issuing commands.
+### GUI - Tree of Control
 
-An image is a composition of colored pixels. They must be composed in such a way as to represent selected process information, i.e. its state or behavior. Similarly to the case of data in memory, which we process without directly referring to their binary representation, we do not create a GUI by laboriously assembling pixels into a coherent composition. Moreover, as I mentioned earlier, the GUI is a dashboard controlling the process, so it must also behave dynamically, including enabling data entry and issuing commands.
+An image is a composition of colored pixels. They must be composed in such a way as to represent selected process information, i.e. its state or behavior. Similarly to the case of data in memory, which we process without directly referring to their binary representation, we do not create a GUI by laboriously assembling pixels into a coherent composition. Moreover, as I mentioned earlier, the GUI is a dashboard controlling the process, so it must also behave dynamically, including data entry and events handling.
 
-The next **problem** is how to ensure the appropriate level of abstraction, i.e. how to hide the details related to the creation of an image on the screen. Let's introduce two concepts here: control and rendering. Hiding details always leads to coming to terms with the fact that something is happening beyond our control. We've seen this while generating SQL queries from LINQ expressions. As with LINQ, we need to use a specific technology to express our considerations in a practical practical context backed by examples. I chose Windows Presentation Foundation (the more familiar-sounding abbreviation WPF), but I will try not to lose the generality of the discussion. A discussion of WPF requires a separate course, and we will stay as close as possible to issues related to the practice of using the CSharp language.
+Hence, The next **problem** is how to ensure the appropriate level of abstraction, i.e. how to hide the details related to maintaining an image on the screen. Let's introduce two concepts here: control and rendering. Hiding details always leads to coming to terms with the fact that something is happening beyond our control. We've seen this while generating SQL queries from LINQ expressions. As with LINQ, we need to use a specific technology to express our considerations in a practical context backed by examples. I chose Windows Presentation Foundation (the more familiar-sounding abbreviation WPF), but I will try not to lose the generality of the discussion. A discussion of WPF requires a separate course, and we will stay as close as possible to issues related to the practice of using the CSharp language.
+
+### What is control?
+
+It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. A Control is a base class used in .NET applications, and the MSDN documentation explains it in detail. There is a bunch of derived classes that inherit from it, for example, Button.
 
 ## Sample Program
 
@@ -73,7 +76,7 @@ The next **problem** is how to ensure the appropriate level of abstraction, i.e.
 
 The best way to illustrate the basic issues related to representing process information using a graphical user interface is to present them in the context of a sample program and its user interface.
 
-The sample code in the repository includes a project that contains the user interface and can be run as a standalone application. We can run it directly using the operating system interface. However, I suggest starting it directly from Visual Studio. There is a menu entry to launch a new instance in diagnostic mode. As a result, a process is created to which resources are allocated. We can observe this using diagnostic tools. Unfortunately, discussing how to use these tools is beyond the scope of this paper. 
+The sample code in the repository includes a project that contains the user interface and can be run as a standalone application. We can run it directly using the operating system interface. However, I suggest starting it directly from Visual Studio. There is a menu entry to launch a new instance in diagnostic mode. As a result, a process is created to which resources are allocated. We can observe this using diagnostic tools. Unfortunately, discussing how to use these tools is beyond the scope of this paper.
 
 I'll now try to find the GUI output of the program I have just started. It's on the adjacent screen, so I have to move it to the recording area of this video. As we can see, it is a typical Windows application window in which we can distinguish the header and the necessary useful content. The header is a title, i.e. some text and two keys for scaling the window relative to the monitor screen and the third one for ending the process that runs our program.
 
@@ -119,19 +122,11 @@ A slightly more difficult issue is emphasizing that we use buttons, i.e. clickab
 
 The proposed approach is a static solution, i.e. the selected colors and shapes cannot be treated as process data. The situation changes if the color selection is to be the result of a processing process, for example, we may change the background to a shade of red if the calculation results are above alarming value. Similarly, the screen can change if you want the button to appear only in certain situations. These colors and shapes become a representation of process information, i.e. data that must change according to a certain relationship connecting data with the picture on the screen.
 
-## Research
+33 See also
 
-- XAML - Description of the Graphical Interface
-- MVVM Programming Design Pattern
+- [Extensible Application Markup Language][XAML]
 
-### What is control?
-
-It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. A Control is a base class used in .NET applications, and the MSDN documentation explains it in detail. There is a bunch of derived classes that inherit from it, for example, Button.
-
-## See also
-
-- [XAML in WPF](https://docs.microsoft.com/dotnet/framework/wpf/advanced/xaml-in-wpf)
-- [TreeView Overview](https://docs.microsoft.com/dotnet/framework/wpf/controls/treeview-overview?view=netframework-4.7.2)
+[XAML]: README.XAML.md
 
 <!--
 
