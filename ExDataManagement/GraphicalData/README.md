@@ -19,11 +19,11 @@
     - [GUI - Deployment](#gui---deployment)
     - [GUI - Tree of Controls](#gui---tree-of-controls)
   - [Sample Program](#sample-program)
-  - [Introduction](#introduction)
+    - [Introduction](#introduction)
     - [From General to Detailed Data](#from-general-to-detailed-data)
     - [Entering Data](#entering-data)
     - [Rendering](#rendering)
-    - [Blend](#blend)
+  - [Independent Editor](#independent-editor)
 
 ## Graphical User Interface (GUI) - Preface
 
@@ -65,13 +65,13 @@ An image is a composition of colored pixels. They must be composed in such a way
 
 Hence, The next **problem** is how to ensure the appropriate level of abstraction, i.e. how to hide the details related to maintaining an image on the screen. Let's introduce two concepts here: control and rendering. Hiding details always leads to coming to terms with the fact that something is happening beyond our control. We've seen this while generating SQL queries from LINQ expressions. As with LINQ, we need to use a specific technology to express our considerations in a practical context backed by examples. I chose Windows Presentation Foundation (the more familiar-sounding abbreviation WPF), but I will try not to lose the generality of the discussion. A discussion of WPF requires a separate course, and we will stay as close as possible to issues related to the practice of using the CSharp language.
 
-To stay close to any programming language we need to focus our discussion on types. Returning to the question of what is the control in programming language. Now, only one answer looks feasible, namely, It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. In other words, by design, a control is a class. There are a bunch of derived classes inherited from it, for example, the `Button` class. It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface.
+To stay close to any programming language we need to focus our discussion on types. Returning to the question of what is control in a programming language, only one answer looks feasible, namely, It is a type that encapsulates user interface functionality that is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. In other words, by design, a control is a class. There are a bunch of derived classes inherited from it, for example, the `Button` class. It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface.
 
 Unfortunately, we cannot completely avoid **problems** related to the design environment used, so Visual Studio and employing a domain-specific language, [Extensible Application Markup Language][XAML], XAML for short. Unfortunately, learning this language is beyond the scope of this paper. However, I must reassure you that detailed knowledge of the XAML is not a condition for understanding any of the issues discussed.
 
 ## Sample Program
 
-## Introduction
+### Introduction
 
 The best way to illustrate the basic issues related to representing process information using a graphical user interface is to present them in the context of a sample program and its user interface.
 
@@ -111,7 +111,7 @@ In the sample application, we saw two windows that have just served as a reposit
 
 Without going into details, the project has a folder in which I have collected files responsible for rendering windows on the screen, i.e. creating their appearance based on the formal description in the program text. In other words, it is a complex process of converting our text into a composition of screen pixels. Because it is a repeatable process, it can be completely automated.
 
-### Blend
+## Independent Editor
 
 Let's select one of these files and in the context menu we see that it can be edited in Blend - whatever it means - let's choose this option. It takes a while and finally, we will see the appearance of our sample window in an independent editor called Blend.
 
