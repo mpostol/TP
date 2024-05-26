@@ -18,12 +18,10 @@
     - [External Data](#external-data)
     - [GUI - Deployment](#gui---deployment)
     - [GUI - Tree of Controls](#gui---tree-of-controls)
-  - [Sample Program](#sample-program)
-    - [Introduction](#introduction)
+  - [Starting Sample Program](#starting-sample-program)
     - [Master and Detailed View](#master-and-detailed-view)
-    - [Entering Data](#entering-data)
-    - [Pop-up window](#pop-up-window)
-    - [Rendering](#rendering)
+  - [Entering Data](#entering-data)
+  - [Pop-up window](#pop-up-window)
   - [Independent Editor](#independent-editor)
   - [See also](#see-also)
 
@@ -71,11 +69,11 @@ To stay close to any programming language we need to focus our discussion on typ
 
 Unfortunately, we cannot completely avoid **problems** related to the design environment used, so Visual Studio and employing a domain-specific language, [Extensible Application Markup Language][XAML], XAML for short. Unfortunately, learning this language is beyond the scope of this paper. However, I must reassure you that detailed knowledge of the XAML is not a condition for understanding any of the issues discussed.
 
-## Sample Program
+## Starting Sample Program
 
-### Introduction
+The best way to illustrate the basic issues related to representing process information using a graphical user interface is to present them in the context of the user interface of a sample program. The sample code in the repository includes a project that contains the user interface and can be run as a standalone application. We can run it directly using the operating system interface. However, I suggest starting it from Visual Studio. There is a menu entry to launch a new instance in diagnostic mode. As a result, a process is created to which resources are allocated. We can observe this using diagnostic tools. Unfortunately, discussing how to use these tools is beyond the scope of this paper. Once again, the user interface presented here is not related to the specific needs of any process. It is also worth remembering its features and behavior because it will be analyzed in the context of the example program that implements it.
 
-The best way to illustrate the basic issues related to representing process information using a graphical user interface is to present them in the context of the user interface of a sample program. The sample code in the repository includes a project that contains the user interface and can be run as a standalone application. We can run it directly using the operating system interface. However, I suggest starting it from Visual Studio. There is a menu entry to launch a new instance in diagnostic mode. As a result, a process is created to which resources are allocated. We can observe this using diagnostic tools. Unfortunately, discussing how to use these tools is beyond the scope of this paper. As we can see, it is a typical Windows application window in which we can distinguish the header and the necessary useful content. The header is a title, i.e. some text and two keys for scaling the window relative to the monitor screen and the third one for ending the process that runs our program.
+As we can see, it is a typical Windows application window in which we can distinguish the header and the necessary useful content. The header is a title, i.e. some text and two keys for scaling the window relative to the monitor screen and the third one for ending the process that runs our program.
 
 ![Sample Program](.Media/SampleProgram.gif)
 
@@ -91,7 +89,7 @@ Another feature of the user interface is revealed when you click on a complex da
 
 ![Master and slave view](.Media/ComplexDetailedView.gif)
 
-### Entering Data
+## Entering Data
 
 Hovering the mouse over another data area reveals another feature - the ability to enter new or modify current data. We see a case of modification on the screen. Here again, a question for ergonomics experts, not programmers: how does the user know that the text is editable?
 
@@ -99,27 +97,21 @@ After modifying the data, we can simulate the dynamic behavior of the interface,
 
 ![Entering Data](.Media/EnteringData.gif)
 
-### Pop-up window
+## Pop-up window
 
-There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new modal window. While this window is open, users cannot interact with other parts of the program until they close it. I will use this window to demonstrate two scenarios. The first is that the user interface may depend on the state, i.e., the history of previously performed operations. The second is that the user decides what data he wants to see.
+There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new modal window. While this window is open, users cannot interact with other parts of the program until they close it. I will use this window to demonstrate two scenarios. The first scenario is that the user interface may depend on the state, i.e., the history of previously performed operations. The second one is that the user decides what data he wants to see.
 
-There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new window. I will use this window to demonstrate two scenarios. The first is that the user interface may depend on the state, i.e., the history of previously performed operations. The second is that the user may decide what data is to be exposed. It is important if data is organized using infinitive cycles.
+In the new window, the buttons are again gray rectangles, and the white rectangle on the right-hand side is the space reserved for displaying data. The buttons are gray, but one is shaded (inactive). To make it active, you need to click the upper button, which simulates a scenario in which two operations must be performed in sequence, i.e. performing a certain operation only creates a situation that enables the possibility of triggering another one. For example, you must select a file first to analyze the data. Of course, ergonomics comes into play again because there is a question that must be addressed, namely how to clearly show this dependency on the screen.
 
-In the new window, the buttons are again gray rectangles, and the white rectangle on the right is the space reserved for displaying data. The buttons are gray, but the bottom is shaded (inactive). To make it active, you need to click the upper button, which simulates a scenario in which two operations must be performed in sequence, i.e. performing a certain operation only creates a situation that enables the possibility of triggering another one. For example, you must select a file first to analyze the data. Of course, ergonomics comes into play again because there is a question that must be addressed, namely how to clearly show this dependency on the screen.
+In this case, the data is simulated and on the right-hand side of this window, the data is displayed in the tree form that can be expanded to any depth. This may resemble a situation in which we dynamically download subsequent data from an external repository following the user's current needs. This scenario is useful when retrieving all the data leads to an infinite loop due to recursion, or cyclic references, and the amount of data displayed depends on the user's needs.
 
-In this case, the data is simulated and on the right-hand side of this window, the data is displayed in the form of a tree that can be expanded to any depth. This may resemble a situation in which we dynamically download subsequent data from an external repository following the user's current needs. This scenario is particularly useful when retrieving all the data leads to an infinite loop due to recursion, or cyclic references, and the amount of data displayed depends on the user's needs.
+![Pop-up window](.Media/Pop-upWindow.gif)
 
-Once again, let me remind you that the user interface presented here is not related to the specific needs of any process. It is also worth remembering its features and behavior because it will be analyzed in the context of the example program that implements it.
-
-In the sample application, we saw two windows that have just served as a repository and user interface for input and output process data. Additionally, these windows made it possible to control the program's behavior. Since the program, i.e. the text, is responsible for all this, let's find the places in the program responsible for graphics, data, and the behavior of the user interface, respectively. In this lesson, we are only interested in graphics. We'll cover data and behavior in the next lesson.
-
-### Rendering
+## Independent Editor
 
 In the sample application, we saw two windows that have just served as a repository and user interface for input and output process data. Additionally, these windows made it possible to control the program's behavior. Since the program, i.e. the text, is responsible for all this, let's find the places in the program responsible for graphics, data, and the behavior of the user interface, respectively. We are only interested in graphics. We'll cover data and behavior in a separate part.
 
 Without going into details, the project has a folder in which I have collected files responsible for rendering windows on the screen, i.e. creating their appearance based on the formal description in the program text. In other words, it is a complex process of converting our text into a composition of screen pixels. Because it is a repeatable process, it can be completely automated.
-
-## Independent Editor
 
 Let's select one of these files and in the context menu we see that it can be edited in Blend - whatever it means - let's choose this option. It takes a while and finally, we will see the appearance of our sample window in an independent editor called Blend.
 
