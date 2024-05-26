@@ -97,6 +97,8 @@ Hovering the mouse over another data area reveals another feature - the ability 
 
 After modifying the data, we can simulate the dynamic behavior of the interface, namely, clicking the button above the text starts the procedure for processing a new value for the selected data, in this case, confirmed by displaying a window signaling the end of the operation. Here we have another problem: how to ensure that the application is **responsive**, i.e. that the interface in question is not frozen when the requested operation takes a noticeably long time.
 
+![Entering Data](.Media/EnteringData.gif)
+
 ### Pop-up window
 
 There is one more button left. He demonstrates a scenario where the content of a window is insufficient and you need to open a new modal window. While this window is open, users cannot interact with other parts of the program until they close it. I will use this window to demonstrate two scenarios. The first is that the user interface may depend on the state, i.e., the history of previously performed operations. The second is that the user decides what data he wants to see.
