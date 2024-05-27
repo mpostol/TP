@@ -19,7 +19,7 @@
     - [GUI - Deployment](#gui---deployment)
     - [GUI - Tree of Controls](#gui---tree-of-controls)
   - [Starting Sample Program](#starting-sample-program)
-    - [Master and Detailed View](#master-and-detailed-view)
+  - [Master-Detail Interface](#master-detail-interface)
   - [Entering Data](#entering-data)
   - [Pop-up window](#pop-up-window)
   - [Designing User Interface](#designing-user-interface)
@@ -81,13 +81,15 @@ As for aesthetic impressions, we will not delve into the topic. But of course, w
 
 These problematic issues probably include issues related to the ergonomics of this interface. The example is only for educational purposes, but even here a lot can be done in this respect. So I'll move on to functionality, i.e. data and behavior of this interface. These white rectangles are places where data is exchanged between the program instance and its user. These gray rectangles are buttons that change color when you hover the mouse over them, indicating that you can click them. Without worrying about the aesthetics of the solution, let's assume that the background color of the part of the window in which the data is displayed as a result of clicking one of the keys is not ideal, not to mention that it is not American and requires consultation with someone who knows what it should be like. We cannot assume that the consultant is a developer.
 
-### Master and Detailed View
+## Master-Detail Interface
 
-As a result of the mouse hovering on the data area, the background has changed, we can assume that they constitute a whole, so they are complex data. Complex data is an entity in which we can distinguish and select components. As an example of a problem related to the ergonomics of the solution, we can point out that grouping requires some action undertaken by a user. Hence, this grouping should always be visible. For a programmer, this grouping may not be obvious, and the need to graphically highlight the grouping may be an unconscious need.
+As a result of the mouse hovering on the data area, the background has changed, we can assume that they contain a whole, so they are complex data. Complex data is an entity in which we can distinguish and select components. As an example of a problem related to the ergonomics of the solution, we can point out that grouping requires some action undertaken by a user. Hence, this grouping should always be visible. For a programmer, this grouping may not be obvious, and the need to graphically highlight the grouping may be an unconscious need.
 
 Another feature of the user interface is revealed when you click on a complex data, which causes further details to appear in other parts of the interface. Here, ergonomics specialists will probably question the lack of relationship emphasis between selected data and complex data, i.e. how we know that on the right side we have details of what was selected on the left side.
 
-![Master and slave view](.Media/ComplexDetailedView.gif)
+Both parts constitute a master-detail interface. The master-detail view is a common design pattern in Graphical User Interfaces (GUIs). The master view displays a list of items. When you click on an item in the master view, the detail view shows the specific details related to that item. The master-detail design represents a one-to-many relationship for your data.
+
+![Master and Detail View](.Media/ComplexDetailedView.gif)
 
 ## Entering Data
 
