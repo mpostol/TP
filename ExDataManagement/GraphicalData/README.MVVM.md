@@ -11,23 +11,86 @@
 //_________________________________________________________________________________________________________________________
 -->
 
-# MVVM Programming Design Pattern
+# MVVM Programming Design Pattern <!-- omit in toc -->
 
-- MVVM Programming Design Pattern
+## Table of content <!-- omit in toc -->
+
+- [1. Introduction](#1-introduction)
+- [2. What's our problem?](#2-whats-our-problem)
+  - [2.1. Image manipulation](#21-image-manipulation)
+  - [2.2. Layered Model](#22-layered-model)
+  - [2.3. Dependency injection](#23-dependency-injection)
+- [3. Dynamically Modification of Image Features](#3-dynamically-modification-of-image-features)
+  - [3.1. Introduction](#31-introduction)
+  - [3.2. Control Visibility](#32-control-visibility)
+  - [3.3. Modification of other features](#33-modification-of-other-features)
+  - [3.4. Limited Role of Code-behind](#34-limited-role-of-code-behind)
+
+## 1. Introduction
+
+We continue discussing selected issues related to the engineering of creating a graphical user interface - GUI for short. Previously, we discussed general design requirements and software mechanisms for creating a GUI. Now I will try to answer the question of how to animate the interface image.
+
+In the case of graphic data, a window is a self-contained graphical unit created by the program and managed by the operating system. Managed means moving, enlarging, reducing, etc. This, of course, is not surprising since the development of the first Windows operating system, in which the window is the basis for human-machine communication.
+
+The program can, of course, use several windows, as well as several databases or several files. In all cases, we can talk about an independent external data repository. In the case of Windows, however, we must consider an important difference, namely the interaction is two-way. In the case of databases, we can also expect the need to consider dynamic data change, but only in the case of Windows, we must respond to user commands.
+
+So let's see how to deal with these problems.
+
+## 2. What's our problem?
+
+Traditionally - to introduce elementary order - let's start by defining the most important problems and indicating directions for further search for solutions regarding application architecture in the context of communication with the user using the MVVM pattern that stands for model, view, view-mode.
+
+### 2.1. Image manipulation
+
+Manipulating an image, i.e. changing its features, such as color and appearance, is the first task at the edge between the program and the graphical representation of data. Here we will return to the XAML language with the question of where to dynamically modify image features. The image is described in a new language not created to implement an operating algorithm, i.e. business logic. On the other hand, this language uses the types defined in CSharp, so the point of contact is only how to use it.
+
+### 2.2. Layered Model
+
+should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. To achieve this only the upper layer may refer to the underneath layer. In contrast, the lower layer must be composed in such a way that it doesn't depend on the upper layer. hence, the inter-layer reference must be unidirectional, often called hierarchical.
+
+The program should have a layered structure - it's easy to say, but what is a layer? The program is text and has a stream structure instead - it is a sequence of characters. Of course, in this principle the concept of a layer is abstract, but to say that the program architecture is layered, we must somehow implement this concept so that everyone knows what a layer is. We will learn a specific implementation called MVVM which stands for model, view, and view-model.
+
+### 2.3. Dependency injection
+
+It is not difficult to imagine a scenario in which, when performing a certain operation in the Logic layer, we need additional information from the user, for example, a file name. Obtaining this information requires communication with the user, which means engaging the Presentation layer and displaying a pop-up window. However, the Logic layer should be constructed so that it is not aware of the existence of the Presentation layer, because it is above it. In this scenario, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new discussion. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern perse dependency injection or rather the automation of dependency injection, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
+
+## 3. Dynamically Modification of Image Features
+
+### 3.1. Introduction
+
+Let's start by determining how we can bring the content of the interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying image features**, editing data through it, and responding to user commands. In other words, the task is as follows: interconnecting the previously generated GUI image with the process data.
+
+The basic solution that we already know is showing on the screen a Window. The primary Window is opened by the environment. However, in this project, we have one more window that appears after clicking one of the keys. Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up, if everything goes well. This means that the View layer is responsible for what the window should look like. However, in the ViewModel layer underneath, we must decide when it should be exposed on the screen. It is worth recalling here that a window is a class that inherits from the Window class and for the window to appear, you need to call the `Show` method, which we can see in the Window class definition preview.
+
+The basic solution that we already know is showing on the screen a Window. The primary Window is opened by the environment. However, in this project, we have one more window that appears after clicking one of the keys. Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up, if everything goes well. This means that the View layer is responsible for what the window should look like. However, in the ViewModel layer underneath, we must decide when it should be exposed on the screen. It is worth recalling here that a window is a class that inherits from the Window class and for the window to appear, you need to call the `Show` method, which we can see in the Window class definition preview.
+
+### 3.2. Control Visibility
+
+> _**ChatGPT**_: The `Control` class is a part of the inheritance chain for control types. The `Control` class is a base class for most of the user interface elements. It provides common functionality that all controls share, such as styling, layout, and input handling. So, when you create a new control type like these controls inherit from the `Control` class and therefore gain all the properties, methods, and events defined in the `Control` class. A `UserControl` is a customizable control that allows you to combine existing controls and add custom logic to create a reusable user interface component. It's useful for encapsulating complex UI parts that you can use across different parts of your program.
+
+Looking at the content of the definition of this class written in XAML, we see that the displayed controls create a tree structure, i.e. the references of internal controls, for example, `TreeView`, are added to the collection of external objects. The containment hierarchy is determined by the structure of the XML file. Theoretically, by manipulating the contents of these collections by adding and removing elements from them, you can influence the content of the window. Since this is quite an unusual procedure and this functionality can be easily replaced, we will not analyze this approach further, it is simply a waste of time.
+
+Instead of adding controls to the parent control's collection, we can use the Visibility property. It takes one of the three values ​​that we see on the screen. Therefore, a practical tip is to add all the controls that may appear on the screen at the stage of designing a static image and then dynamically change this property as needed.
+
+Sometimes the controls may be visible on the screen but in static mode. An example of such a mode is an inactive key, i.e. one that is visible on the screen but cannot be clicked and therefore issue an appropriate command. Another property, this time called IsEnabled, can be used for this purpose. I'm changing it statically here, but in reality, it has to be done dynamically depending on the state the process is in. It is worth mentioning here that the XAML language allows you to define the GUI as a state machine and control its appearance depending on the state the interface is in. This allows us to group controls and control them by changing the state of the entire part of the user interface, not just by changing individual properties of the controls. Since our goal here and now is not to learn the XAML language, I refer anyone interested in learning this mechanism in detail and the XAML language in general to other materials dedicated to this topic.
+
+### 3.3. Modification of other features
+
+Similarly, by modifying the values ​​of various properties, we change other features of the controls, such as color, shape, filling method, etc. There are many of them, so the previously learned Blend editor may be useful in this respect.
+
+What to modify to revitalize the interface is the first important question. But now we come to the second question, namely where to make modifications. Of course, there are several answers to this question, and let's now try to analyze them and make some general practical recommendations.
+
+We already know the first answer to the question of where to modify, that place is, of course, the XAML text. Modification in XAML has the disadvantage that it is essentially limited to constant substitution. It should be emphasized here that default values ​​are already substituted for each property defined by the controls, so there is no need to modify anything for typical behavior. An example is Visibility, whose default value is of course Visible. Of course, this language allows us to assign not only constants but its use to implement algorithms not directly related to GUI control is not a good idea.
+
+### 3.4. Limited Role of Code-behind
+
+The XAML text and its associated CSharp text, called code behind, form one class (one definition) because they are partial definitions. Of course, all properties can therefore be modified in the code behind. However, this solution has several drawbacks. Let's narrow the discussion only to the following three that can be recognized as excluding this approach.
 
 
 <!--
 # Wzorzec MVVM
 
-- [Wzorzec MVVM](#wzorzec-mvvm)
-  - [Wprowadzenie](#wprowadzenie)
-  - [Jaki mamy problem](#jaki-mamy-problem)
-    - [Manipulowanie obrazkiem](#manipulowanie-obrazkiem)
-    - [Model warstwowy mvvm](#model-warstwowy-mvvm)
-    - [Wstrzykiwanie zależności](#wstrzykiwanie-zależności)
   - [Dynamiczne Modyfikowanie Cech obrazka](#dynamiczne-modyfikowanie-cech-obrazka)
-    - [Widoczność kontrolki](#widoczność-kontrolki)
-    - [Modyfikacja innych cech](#modyfikacja-innych-cech)
     - [Ograniczona Rola Code-behind](#ograniczona-rola-code-behind)
     - [Code behind - dependency injection (Binding)](#code-behind---dependency-injection-binding)
   - [Obsługa widoku poprzez powiązania](#obsługa-widoku-poprzez-powiązania)
@@ -54,61 +117,11 @@
     - [Diagram kontroli zależności](#diagram-kontroli-zależności)
   - [Zakończenie](#zakończenie)
 
-## Wprowadzenie
-
-W tej lekcji kontynuujemy cykl dedykowany omówieniu wybranych zagadnień związanych z inżynierią tworzenia graficznego interfejsu użytkownika – w skrócie GUI od angielskiego graphical user interface. W trakcie poprzednich lekcji tej grupy tematycznej omówiliśmy ogólne wymagania dotyczące projektowania i programowe mechanizmy tworzenia GUI. Natomiast teraz odpowiem na pytanie jak ożywić obrazek interfejsu?
-
-Na podstawie dotychczasowych doświadczeń możemy zauważyć, że w przypadku danych graficznych okienko, czyli window jest samo-wystarczającą jednostką, która jest tworzona przez program i zarządzana przez system operacyjny. Tu zarządzane oznacza przesuwanie, powiększanie, pomniejszana, itd. To oczywiście nie dziwi od czasów powstania pierwszych systemów operacyjnych Windows, w których podstawą komunikacji człowiek maszyna jest właśni okno.
-
-Program może oczywiście wykorzystywać jednocześnie klika okienek, podobnie jak kilka baz danych, czy kilka plików. W każdym z tych przypadków możemy mówić o niezależnym zewnętrznym repozytorium danych. W przypadku okienek musimy liczyć się jednak z istotną różnicą, a mianowicie w tym przypadku interakcja jest dwukierunkowa. W przypadku baz danych też możemy spodziewać się konieczności uwzględnienia dynamicznych zmian danych, jednak tylko w przypadku okienek musimy reagować na polecenia użytkownika.
-
-Zobaczmy zatem jak sobie z tymi problemami poradzić. Mam prośbę o cierpliwość, bo to jest jedna z dłuższych i bardziej wymagających lekcji.
-
-## Jaki mamy problem
-
-Tradycyjnie – by wprowadzić elementarny porządek - zacznijmy od zdefiniowania najważniejszych problemów i wskazania kierunków dalszych poszukiwań rozwiązań dotyczących architektury aplikacji w kontekście komunikacji z użytkownikiem z wykorzystaniem wzorca MVVM to jest skrót od angielskiego model, view, view-mode, czyli w wolnym tłumaczeniu model, widok i widok modelu.
-
-### Manipulowanie obrazkiem
-
-Manipulowanie obrazkiem, czyli zmiana jego cech,  jak  kolor i wygląd,  to pierwsze zadanie leżące na styku program i graficzna reprezentacja danych. Tu wrócimy do języka zaml z pytaniem, gdzie dynamicznie modyfikować cechy obrazka. Obrazek opisany jest nowym językiem, który nie powstał po to, by w nim implementować algorytm działania, czyli logikę biznesową. Z drugiej strony język ten bezpośrednio wykorzystuje typy zdefiniowane w CSharp, więc punkt styku jest, tylko jak go wykorzystać.
-
-### Model warstwowy mvvm
-
-Zgodnie z dobrze znanymi zasadami inżynierii oprogramowania program powinien mieć konstrukcję warstwową. Konstrukcja warstwowa oznacza, że co najmniej jest warstwa wyższa i niższa, choć zwykle warstw jest więcej. Żebyśmy wiedzieli, która z nich jest wyższa to tylko ona musi się odwoływać do warstwy niższej. Warstwa niższa musi być skonstruowana tak, by nie wiedzieć o istnieniu warstwy wyższej. Czyli odwołania muszą być jednokierunkowe, często nazywamy je hierarchicznymi.
-
-Program powinien mieć konstrukcję warstwową – to łatwo powiedzieć, ale co to jest warstwa. Program to tekst i ma raczej budowę strumieniową – to ciąg znaków. Oczywiście w tej zasadzie pojęcie warstwy jest abstrakcyjne, ale żeby stwierdzić, że architektura programu jest warstwowa musimy to pojęcie jakoś zaimplementować tak, by każdy wiedział co to jest warstwa. Poznamy tu konkretną implementację zwaną mvvm od angielskiego model, view i view-model, czyli w wolnym tłumaczeniu: model, widok i model widoku.
-
-### Wstrzykiwanie zależności
-
-Nie trudno sobie wyobrazić scenariusz, w którym realizując pewną operację w warstwie Logiki potrzebujemy dodatkowych informacji od użytkownika, przykładowo nazwy pliku. Uzyskanie tych informacji wymaga komunikacji z użytkownikiem, a więc zaangażowania warstwy Prezentacji i wyświetlenia okienka zwanego pop-up. No ale przecież warstwa Logiki powinna być skonstruowana tak, żeby nie miała świadomości istnienia warstwy Prezentacji, ba ta jest nad nią. W tej sytuacji pomocy będziemy szukali we wzorcu Wstrzykiwanie zależności, a po angielski Dependency Injection. Ci którzy o tym wzorcu już coś słyszeli mogą poczuć niepokój, że to nie kolejny punkt w lekcji, tylko wstęp do nowego kursu. Faktycznie obawy są uzasadnione, ponieważ na ten temat napisano już wiele opracowań, powstało wiele framework'ów i terminów pochodnych choćby Inversion of Control, czyli w wolnym tłumaczeniu odwrócenie sterowania. Nie wchodząc w spory terminologiczne i nie rozstrzygając, czy te publikacje i rozwiązania dotyczą wstrzykiwania zależności perse, czy raczej automatyzacji wstrzykiwania zależności spróbujemy rozwiązać problem i rozprząc warstwy by uniknąć odwołań cyklicznych pomiędzy nimi, czyli rekurencji w architekturze.
-
 ## Dynamiczne Modyfikowanie Cech obrazka
-
-Zacznijmy od określenia w jaki sposób możemy ożywić zawartość interfejsu. Sformułowanie ożywić jest oczywiście kolokwializmem, który oznacza **dynamiczne modyfikowanie cech obrazka**, edycję danych za jego pośrednictwem i reagowanie na polecenia użytkownika. Innymi słowy, zadanie jest takie: sprząc uprzednio wygenerowany obrazek GUI z danymi procesowymi.
-
-Podstawowym narzędziem, które już znamy to wyświetlanie okien. Okno podstawowe jest otwierane przez środowisko. Natomiast w tym projekcie mamy jeszcze jedno okno, które pojawia się po kliknięciu na jeden z klawiszy. Nie wnikając teraz w szczegóły przyjmijmy, że kliknięcie na klawisz ma powodować konieczność wykonania w tle jakiejś ciężkiej pracy - przykładowo czytany i analizowany jest plik - i w konsekwencji wyświetlane jest inne okienko – czyli typowy pop-up, jeśli wszystko się uda. Czyli tu decydujemy jak ma wyglądać okienko, ale decyzje o tym czy będzie ono wyświetlone podejmujemy w części odpowiedzialnej za realizację algorytmu przetwarzania danych procesowych. Tu warto przypomnieć, że okienko to klasa, która dziedziczy z klasy Window i żeby okienko się pojawiło trzeba wywołać metodę Show, którą widzimy w podglądzie definicji klasy Window.
-
-Patrząc na zawartość definicji tej klasy zapisanej w języku xaml widzimy, że wyświetlane kontrolki tworzą strukturę drzewa, tzn. referencje kontrolek wewnętrznych, przykładowo TreeView, są dodawane do kolekcji obiektów zewnętrznych. O hierarchii zawierania decyduje struktura pliku xml. Teoretycznie zatem manipulując zawartością tych kolekcji przez dodawanie i usuwanie z nich elementów można wpływać na zawartość okna. Ponieważ to dość nietypowe postępowanie i funkcjonalność tą łatwo zastąpić nie będziemy tego podejścia dalej analizować, po prostu szkoda czasu.
-
-### Widoczność kontrolki
-
-Zamiast dodawać kontrolki do kolekcji kontrolki nadrzędnej możemy wykorzystać właściwość  Visibility. Przyjmuje ona jedną z trzech wartości, które widzimy na ekranie. Praktyczna rada zatem jest taka, aby na etapie projektowania statycznego obrazka dodać wszystkie kontrolki, które mogą pojawiać się na ekranie i dopiero dynamicznie zmieniać odpowiednio do potrzeb tą właściwość.
-
-Czasami kontrolki mogą być widoczne na ekranie, ale w trybie statycznym. Przykładem takiego trybu jest nieaktywny klawisz, tzn. taki, który jest widoczny na ekranie, ale nie można go kliknąć, więc wydać stosownego polecenia. Kolejna właściwość, tym razem o nazwie IsEnabled może być wykorzystana w tym celu. Ja tu ją zmieniam statycznie, ale w rzeczywistości trzeba to robić dynamicznie w zależności od stanu, w jakim znajduje się proces. Tu warto wspomnieć, że język xaml umożliwia zdefiniowanie GUI jako maszyny stanu i sterowanie wyglądem w zależności od stanu, w jakim interfejs się znajduje. Dzięki temu możemy kontrolki grupować i sterować nimi poprzez zmianę stanu całego interfejsu, a nie poprzez zmianę poszczególnych właściwości kontrolek. Ponieważ naszym celem tu i teraz nie jest poznanie języka zaml, więc wszystkich zainteresowanych szczegółowym poznaniem tego mechanizmu i w ogóle języka zaml odsyłam do innych materiałów dedykowanych dla tego tematu.
-
-### Modyfikacja innych cech
-
-Podobnie modyfikując wartości różnych właściwości zmieniamy inne cechy kontrolek jak: kolor, kształt, sposób wypełniania, itd. Jest ich bardzo dużo, więc w tym zakresie może okazać się przydatny  poznany wcześniej edytor Blend.
-
-Co modyfikować, by ożywić interfejs, to pierwsze ważne pytanie. Ale teraz przechodzimy do drugiego pytania, które brzmi: gdzie modyfikować. Oczywiście jest kilka odpowiedzi na to pytanie i spróbujmy je teraz przeanalizować i sformułować jakieś ogólne praktyczne zalecenia.
-
-Pierwszą odpowiedź na pytanie, gdzie modyfikować, już znamy, tym miejscem jest oczywiście tekst XAML. Modyfikacja w XAML ma tę wadę, że w zasadzie ogranicza się do podstawiania stałych. Tu trzeba podkreślić, że do każdej właściwości zdefiniowanej przez kontrolki są już podstawiane wartości domyślne, więc dla typowego zachowania nie trzeba nic modyfikować. Przykładem jest  Visibility, którego wartością domyślną jest oczywiście Visible. Oczywiście język ten pozwala na podstawiania nie tylko stałych, ale jego użycie do implementacji algorytmów nie związanych bezpośrednio ze sterowaniem GUI, to nie jest dobry pomysł.
 
 ### Ograniczona Rola Code-behind
 
-Tekst XAML i skojarzony z nim CSharp, zwany code behind, tworzą razem jedną klasę, bo są to definicje częściowe. Oczywiście wszystkie właściwości mogą być zatem modyfikowane w code-behind. To rozwiązanie ma jednak kilka wad. Ograniczmy się do omówienia trzech, którym można nadać status limitujące.  
-
-Pierwsza wada związana jest z ewidentnym złamaniem w takim przypadku zasady **separation of concerns**. W bardzo wolnym tłumaczeniu ta zasada znaczy unikanie konieczności wykorzystania podzielności uwagi, a w istocie zachęca do koncentrowania się wyłącznie na pojedynczych dobrze odseparowanych zagadnieniach. Ma to związek z psychologią i stwierdzonymi ułomnościami przebiegu naszych procesów myślowych, jeśli rozwiązujemy problem wielowątkowy. W naszym przypadku jeśli pracujemy nad GUI, to nie pracujmy jednocześnie nad automatyzacją procesu, czyli implementacją algorytmów przetwarzania danych procesowych. Skoncentrujmy się wyłącznie na komunikacji człowiek maszyna.
+👉🏻 Pierwsza wada związana jest z ewidentnym złamaniem w takim przypadku zasady **separation of concerns**. W bardzo wolnym tłumaczeniu ta zasada znaczy unikanie konieczności wykorzystania podzielności uwagi, a w istocie zachęca do koncentrowania się wyłącznie na pojedynczych dobrze odseparowanych zagadnieniach. Ma to związek z psychologią i stwierdzonymi ułomnościami przebiegu naszych procesów myślowych, jeśli rozwiązujemy problem wielowątkowy. W naszym przypadku jeśli pracujemy nad GUI, to nie pracujmy jednocześnie nad automatyzacją procesu, czyli implementacją algorytmów przetwarzania danych procesowych. Skoncentrujmy się wyłącznie na komunikacji człowiek maszyna.
 
 Jest jeszcze jedna bardzo wymierna wada, a mianowicie jednym z popularnych sposobów sprawdzania poprawności programu jest zastosowanie **testów jednostkowych**. Oprócz testowania poprawności są one również szczególnie przydatne do sprawdzenia, czy w tekście programu nie zostały wprowadzone istotne modyfikacje, które mogą mieć efekt uboczny i wymagać uwzględnienia w innych częściach programu. Ja dodatkowo i trochę nietypowo używam testów w przykładach do kursu tak, aby  pokazać wybrane cechy omawianych rozwiązań. Testy jednostkowe mają tę wadę, że nie mają wsparcia dla graficznego interfejsu użytkownika. By je można było stosować w możliwie szerokim zakresie,  dane i funkcjonalność tego interfejsu powinny być odseparowane tak, by można było dla nich utworzyć niezależne testy jednostkowe bez konieczności uruchamiania renderingu grafiki. W naszym przykładzie ten podział zrealizowałem poprzez umieszczenie sterowania grafiką w osobnym projekcie, który w nazwie ma przyrostek View.
 
