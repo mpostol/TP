@@ -11,7 +11,7 @@
 //_________________________________________________________________________________________________________________________
 -->
 
-# MVVM Programming Design Pattern <!-- omit in toc -->
+# MVVM Program Design Pattern <!-- omit in toc -->
 
 ## Table of content <!-- omit in toc -->
 
@@ -55,7 +55,7 @@ Manipulating an image, i.e. changing its features, such as color and appearance,
 
 ### 2.2. Layered Model
 
-should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. To achieve this only the upper layer may refer to the underneath layer. In contrast, the lower layer must be composed in such a way that it doesn't depend on the upper layer. hence, the inter-layer reference must be unidirectional, often called hierarchical.
+According to well-known principles of software engineering, the program should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. To achieve this only the upper layer may refer to the underneath layer. In contrast, the lower layer must be composed in such a way that it doesn't depend on the upper layer. hence, the inter-layer reference must be unidirectional, often called hierarchical.
 
 The program should have a layered structure - it's easy to say, but what is a layer? The program is text and has a stream structure instead - it is a sequence of characters. Of course, in this principle the concept of a layer is abstract, but to say that the program architecture is layered, we must somehow implement this concept so that everyone knows what a layer is. We will learn a specific implementation called MVVM which stands for model, view, and view-model.
 
