@@ -19,21 +19,31 @@
 - [2. What's our problem?](#2-whats-our-problem)
   - [2.1. Image manipulation](#21-image-manipulation)
   - [2.2. Layered Model](#22-layered-model)
-  - [2.3. Dependency injection](#23-dependency-injection)
-- [3. Dynamically Modification of Image Features](#3-dynamically-modification-of-image-features)
+  - [2.3. Displaying Pop-up Window](#23-displaying-pop-up-window)
+- [3. Modification of Screen Image](#3-modification-of-screen-image)
   - [3.1. Introduction](#31-introduction)
-  - [3.2. Control Visibility](#32-control-visibility)
+  - [3.2. Visibility](#32-visibility)
   - [3.3. Modification of other features](#33-modification-of-other-features)
-  - [3.4. Limited Role of Code-behind](#34-limited-role-of-code-behind)
-  - [3.5. Code behind - dependency injection (Binding)](#35-code-behind---dependency-injection-binding)
-- [Bindings - View and ViewModel Interoperability](#bindings---view-and-viewmodel-interoperability)
-  - [Coupling Control Types with Data Source](#coupling-control-types-with-data-source)
-  - [DataContext](#datacontext)
-  - [Binding](#binding)
-  - [DataBinding](#databinding)
-  - [INotifyPropertyChange](#inotifypropertychange)
-  - [ICommand](#icommand)
-  - [RelayCommand](#relaycommand)
+- [4. Code-behind](#4-code-behind)
+  - [4.1. Responsibility](#41-responsibility)
+  - [4.2. Dependency injection](#42-dependency-injection)
+- [5. Bindings - Layers Interoperability](#5-bindings---layers-interoperability)
+  - [5.1. Coupling Control Types with Data Source](#51-coupling-control-types-with-data-source)
+  - [5.2. DataContext](#52-datacontext)
+  - [5.3. Binding](#53-binding)
+  - [5.4. DataBinding](#54-databinding)
+  - [5.5. INotifyPropertyChange](#55-inotifypropertychange)
+  - [5.6. ICommand](#56-icommand)
+- [6. Layered Architecture](#6-layered-architecture)
+  - [6.1. Introduction](#61-introduction)
+  - [6.2. Layer Implementation using project concept](#62-layer-implementation-using-project-concept)
+  - [6.3. MVVM as Sub-layers of the Presentation Layer](#63-mvvm-as-sub-layers-of-the-presentation-layer)
+  - [6.4. Diagram View](#64-diagram-view)
+  - [6.5. Porządkowanie diagramu](#65-porządkowanie-diagramu)
+  - [6.6. Jak Zaimplementować](#66-jak-zaimplementować)
+  - [6.7. Implementacja warstw ogólnej architektury programu](#67-implementacja-warstw-ogólnej-architektury-programu)
+  - [6.8. Powody Wprowadzenia Warstw](#68-powody-wprowadzenia-warstw)
+  - [6.9. Wstrzykiwanie zależności View](#69-wstrzykiwanie-zależności-view)
 
 ## 1. Introduction
 
@@ -55,15 +65,15 @@ Manipulating an image, i.e. changing its features, such as color and appearance,
 
 ### 2.2. Layered Model
 
-According to well-known principles of software engineering, the program should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. To achieve this only the upper layer may refer to the underneath layer. In contrast, the lower layer must be composed in such a way that it doesn't depend on the upper layer. hence, the inter-layer reference must be unidirectional, often called hierarchical.
+According to well-known principles of software engineering, the program should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. To achieve this architecture only the upper layer may refer to the underneath layer. In contrast, the lower layer must be composed in such a way that it doesn't depend on the upper layer. Hence, the inter-layer reference must be unidirectional, often called hierarchical. Because the hierarchy should be vertical the relationship should be top to bottom.
 
 The program should have a layered structure - it's easy to say, but what is a layer? The program is text and has a stream structure instead - it is a sequence of characters. Of course, in this principle the concept of a layer is abstract, but to say that the program architecture is layered, we must somehow implement this concept so that everyone knows what a layer is. We will learn a specific implementation called MVVM which stands for model, view, and view-model.
 
-### 2.3. Dependency injection
+### 2.3. Displaying Pop-up Window
 
-It is not difficult to imagine a scenario in which, when performing a certain operation in the Logic layer, we need additional information from the user, for example, a file name. Obtaining this information requires communication with the user, which means engaging the Presentation layer and displaying a pop-up window. However, the Logic layer should be constructed so that it is not aware of the existence of the Presentation layer, because it is above it. In this scenario, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new discussion. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern perse dependency injection or rather the automation of dependency injection, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
+It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires communication with the user, which means engaging the topmost layer and displaying a pop-up window. However, the layer underneath should be constructed so that it is not aware of the existence of the upper layer, because it is above it. In this scenario, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern perse dependency injection or rather the automation of dependency injection, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
 
-## 3. Dynamically Modification of Image Features
+## 3. Modification of Screen Image
 
 ### 3.1. Introduction
 
@@ -73,7 +83,7 @@ The basic solution that we already know is showing on the screen a Window. The p
 
 The basic solution that we already know is showing on the screen a Window. The primary Window is opened by the environment. However, in this project, we have one more window that appears after clicking one of the keys. Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up, if everything goes well. This means that the View layer is responsible for what the window should look like. However, in the ViewModel layer underneath, we must decide when it should be exposed on the screen. It is worth recalling here that a window is a class that inherits from the Window class and for the window to appear, you need to call the `Show` method, which we can see in the Window class definition preview.
 
-### 3.2. Control Visibility
+### 3.2. Visibility
 
 > _**ChatGPT**_: The `Control` class is a part of the inheritance chain for control types. The `Control` class is a base class for most of the user interface elements. It provides common functionality that all controls share, such as styling, layout, and input handling. So, when you create a new control type like these controls inherit from the `Control` class and therefore gain all the properties, methods, and events defined in the `Control` class. A `UserControl` is a customizable control that allows you to combine existing controls and add custom logic to create a reusable user interface component. It's useful for encapsulating complex UI parts that you can use across different parts of your program.
 
@@ -91,7 +101,9 @@ What to modify to revitalize the interface is the first important question. But 
 
 We already know the first answer to the question of where to modify, that place is, of course, the XAML text. Modification in XAML has the disadvantage that it is essentially limited to constant substitution. It should be emphasized here that default values ​​are already substituted for each property defined by the controls, so there is no need to modify anything for typical behavior. An example is Visibility, whose default value is of course Visible. Of course, this language allows us to assign not only constants but its use to implement algorithms not directly related to GUI control is not a good idea.
 
-### 3.4. Limited Role of Code-behind
+## 4. Code-behind
+
+### 4.1. Responsibility
 
 The XAML text and its associated CSharp text, called code behind, form one class (one definition) because they are partial definitions. Of course, all properties can therefore be modified in the code behind. However, this solution has several drawbacks. Let's narrow the discussion only to the following three that can be recognized as excluding this approach.
 
@@ -103,7 +115,7 @@ The next disadvantage is also tangible. In a project dedicated to the GUI, we se
 
 To sum up, placing the text of a program implementing any activities related to process data processing in the code-behind, i.e. in this part of the program, violates the principle of separation of concerns, limits the possibility of using unit tests, and limits the portability of the solution. These are limiting remarks and lead to the conclusion - let's not do it, it's not a good idea.
 
-### 3.5. Code behind - dependency injection (Binding)
+### 4.2. Dependency injection
 
 What about this piece of text? Am I contradicting myself? I will come back to this point, for now, please trust me that this is following the recommendations, and theoretically, this text can be removed, but it is not that simple. Again, the recommendation is the code-behind should not contain any line of code except the required one. This exception is vital here.
 
@@ -113,13 +125,13 @@ How to cut this Gordian knot? So far, the discussion has been reactive, ending w
 
 The functionality of the scenario in which XAML is only a transparent data relay has been implemented in WPF technology. To transfer data, it must first be downloaded from some source. We don't have much choice here, they have to be objects, or rather their properties - described by types. Since these types must already be related to process data processing, their definition is dedicated to the needs of this process, which is located in the GraphicalData project. The View layer has references to this project. However, when WPF was implemented - and specifically the transfer mechanism - it could not have known these types. Data transfer in WPF is a generic mechanism, so it cannot refer to specific types, although it can have references to those types. This leads to the conclusion that we cannot use type definitions in this process, so what is left is only reflection, which allows us to recreate these definitions during program execution, which should not worry us much, because we are not the ones who have to use them and, consequently, know.
 
-## Bindings - View and ViewModel Interoperability
+## 5. Bindings - Layers Interoperability
 
-### Coupling Control Types with Data Source
+### 5.1. Coupling Control Types with Data Source
 
-Let's look at an example. In the lower right corner of the window, we use a `TextBox` control. Its task is to write and possibly read text, i.e. a string of characters. The current value, so what is on the screen is provided via the `Text` property. Since we expect reading and writing, the equal sign after the `Text` name must mean transferring the current value to/from the selected place. We already know that this selected place must be a property of some object. The word `Binding` means that it is attached somehow to ActionText. Hence, the ActionText identifier is probably the name of the property defined in one of our types. Let's try to find this type using the Visual Studio context menu navigation. As we can see, it works and the property has the name as expected.
+Let's look at an example. In the lower right corner of the window, we use a `TextBox` control. Its task is to write and possibly read text, i.e. a stream of characters. The current value, so what is on the screen is provided via the `Text` property. Since we expect reading and writing, the equal sign after the `Text` name must mean transferring the current value to/from the selected place. We already know that this selected place must be a property of some object. The word `Binding` means that it is attached somehow to ActionText. Hence, the ActionText identifier is probably the name of the property defined in one of our types. Let's try to find this type using the Visual Studio context menu navigation. As we can see, it works and the property has the name as expected.
 
-### DataContext
+### 5.2. DataContext
 
 As you can notice, the navigation works, so VisualStudio has no doubts about the type of instance this property comes from. If Visual Studio knows it, I guess we should know it too. The answer to this question is in these three lines of the `MainWindow` XAML definition.
 
@@ -137,35 +149,57 @@ Let's start with the middle one, in which we have the full class name, but the n
 
 Finally, at run-time, we can consider this object as both a source and a repository of process data dedicated to the GUI, in other words, it is a kind of GUI replica. From a data point of view, it creates a sort of mirror of what is on the screen.
 
-### Binding
+### 5.3. Binding
 
 Let's go back to the previous example with the `TextBox` control and coupling its `Text` property with the `ActionText` property from the class whose instance was assigned to `DataContext`. Here, there is a magic word `Binding` that may be recognized as an invocation to transfer value between. When asked how this happens and what the word `Binding` means, i.e. when asked about the semantics of this notation, I usually receive an answer like this it is some magic wand, which should be read as an internal implementation of WPF, and `Binding` is a keyword of the XAML language. And this explanation would be sufficient, although it is a colloquialism. Unfortunately, usually, we need to understand when this transfer takes place. The answer to this question is fundamental to understanding the requirements for the classes that can be used to create an object whose reference is assigned to the `DataContext` property. To find the answer, let's try to go to the definition of this word using the context menu or the F12 key.
 
-### DataBinding
+### 5.4. DataBinding
 
 It turns out that `Binding` is the identifier of a class or rather a constructor of this class. This must consequently mean that at this point a magic wand means creating a `Binding` instance responsible for transferring values ​​from one property to another. The properties defined in this type allow you to control how this transfer is performed. We can see their list here. Since this object must operate on unknown types, reflection is used. This means that this mechanism is rarely analyzed in detail. The colloquial explanation previously given that the transfer is somehow carried out is quite common because it has its advantages in the context of describing the effect. 
 
 > I propose to create a class definition that will simulate this action and provide the functionality of assigning the selected value to the indicated property of an object whose type is unknown.
 
-### INotifyPropertyChange
+### 5.5. INotifyPropertyChange
 
-### ICommand
+As I mentioned earlier, using properties defined in the `Binding` type, we can parameterize the transfer process and, for example, limit its direction. Operations described by XAML text are performed once at the beginning of the program when the MainWindow instance is created. Therefore, we cannot here specify the time moments in which this transfer should be carried out. To determine the moments when an object of the `Binding` type should trigger this transfer, let's look at the structure of the `ActionText` property from the `MainViewWindow` type. Here we see that the setter performs two methods in addition to assigning values ​​to the local field. In the context of the problem posed, we need to call the RaisePropertyChanged method. This method activates an event that is required to implement the `INotifyPropertyChanged` interface. This event is used by objects of the `Binding` class to invoke the transfer of values. By activating this event, we call methods called handlers whose delegates have been added to the event, i.e. we indirectly perform this transfer through these handlers. If the class does not implement this interface or the activation of the PropertyChanged event required by the mentioned interface does not occur, the new value will not be passed to and will not be refreshed on the screen - the screen will be static.
 
-### RelayCommand
+It is typical communication where the `MainViewWindow` instance notifies about the selected value change and the `MainWindow` instance pulls a new value and displays it. In this kind of communication the `MainViewWindow` has a publisher role and the `MainWindow` is the subscriber. It is worth stressing that communication is a run-time activity. It is initiated in the opposite direction compared with the design time types relationship. Hence we can recognize it as an inversion of control or a callback communication method.
+
+### 5.6. ICommand
+
+The analysis of the previous examples shows the operation of the screen content synchronization mechanism with the property values ​​of classes dedicated to providing data for the GUI, which creates a kind of memory replica of the screen. Now we need to explain the sequence of operations carried out as a consequence of issuing a command by the user interface, e.g. clicking on the on-screen key - `Button`. We have an example here, and its `Command` property has been associated, as before, with something with the identifier `ShowTreeViewMainWindowCommend`. Using navigation in Visual Studio, we can go to the definition of this identifier and notice that it is again a property from the `MainViewWindow` class, but this time of the type `ICommand`. This time, this binding is not used to copy the property value but to convert a key click on the screen, e.g. using a mouse, into calling the `Execute` operation, which is defined in the `ICommand` interface and must be implemented in the class that serves to create an object and substitute a reference to it into this property.
+
+For the sake of simplicity, this interface is implemented by a helper class called `RelayCommand`. In the constructor of this class, you should place a delegation to the method to be called as a result of the command execution. Please follow the use of the second constructor. The second constructor is helpful in dynamically changing the active state of a key. This can block future events, i.e. realize a state machine. And this is exactly the scenario implemented in the sample program. Please note the `RaiseCanExecuteChanged` method omitted in the previous explanation.
+
+## 6. Layered Architecture
+  
+### 6.1. Introduction
+
+The next topic is a layered model called MVVM. It stands for model, view, view-model. According to good engineering practices, the program should be constructed using a layered design pattern. A layer is an abstract concept recognized as a program architecture design pattern formed as a hierarchy of layers where the upper layer refers only to the underneath layer.
+
+In other words, we will talk about the program architecture keeping in mind that the program is only a sequence of characters. Here, unfortunately, I often encounter the practice of disregarding the principles of layered program structure, because it complicates, and limits, and it is easier and possible to live without it, etc. Let us note that we have three significantly different worlds here. The first is the model mentioned in the topic, i.e. MVVM. We don't see any signs of his presence yet, but he appeared in the context of engineering a graphical user interface. The second one is a typical program architecture, which also distinguishes three layers, but this time called presentation, logic, and data. The third world lacks of layers. If these worlds exist there are probably some reasons behind each of them, even trivial ones, such as lack of knowledge. To rule out a lack of knowledge, let's take a closer look at this topic.
+
+Let's start with the fact that our sample program has three projects. The first one with the View suffix is ​​based on Framework 4.61, so it is dedicated to a specific implementation of the .NET library. This limits the portability on other hardware and system platforms, but there is no option because WPF is a technology dedicated to Windows. The remaining projects are based on .NET Standard. .NET Standard is an abstract definition of the .NET library, i.e. it does not contain any implementation, only abstract definitions. Thanks to this, projects based on the .NET standard are portable and once the library is compiled, it can be implemented on any system platform for which there is a .NET implementation. Without going into details, we can illustrate the relationship between these projects as follows. There is a legend for those curious about what the individual arrows mean. Now, for the sake of simplicity, we are only interested in the direction of these arrows.
+
+### 6.2. Layer Implementation using project concept
+
+### 6.3. MVVM as Sub-layers of the Presentation Layer
+
+### 6.4. Diagram View
+
+### 6.5. Porządkowanie diagramu
+
+### 6.6. Jak Zaimplementować
+
+### 6.7. Implementacja warstw ogólnej architektury programu
+
+### 6.8. Powody Wprowadzenia Warstw
+
+### 6.9. Wstrzykiwanie zależności View
 
 <!--
 # Wzorzec MVVM
 
-  - [Model warstwowy](#model-warstwowy)
-    - [Model Warstwowy Wprowadzenie](#model-warstwowy-wprowadzenie)
-    - [Czy projekt może być warstwą](#czy-projekt-może-być-warstwą)
-    - [MVVM jako podwarstwy warstwa prezentacji](#mvvm-jako-podwarstwy-warstwa-prezentacji)
-    - [Diagram View](#diagram-view)
-    - [Porządkowanie diagramu](#porządkowanie-diagramu)
-    - [Jak Zaimplementować](#jak-zaimplementować)
-    - [Implementacja warstw ogólnej architektury programu](#implementacja-warstw-ogólnej-architektury-programu)
-    - [Powody Wprowadzenia Warstw](#powody-wprowadzenia-warstw)
-    - [Wstrzykiwanie zależności View](#wstrzykiwanie-zależności-view)
   - [Praca domowa](#praca-domowa)
     - [Refleksja](#refleksja)
     - [Wstrzykiwanie zaleznosci](#wstrzykiwanie-zaleznosci)
@@ -174,27 +208,11 @@ It turns out that `Binding` is the identifier of a class or rather a constructor
 
 ## Dynamiczne Modyfikowanie Cech obrazka
 
-👉🏻 Okazuje się, że `Binding` jest identyfikatorem klasy, a właściwie bezparametrowego konstruktora tej klasy. To w konsekwencji musi oznaczać, że w tym miejscu magia kina oznacza utworzenie obiektu typu Binding, który odpowiada za transfer wartości z jednej właściwości do drugiej. Właściwości zdefiniowane w tym  typie pozwalają na sterowanie sposobem realizacji tego transferu. Tu możemy zobaczyć ich listę. Ponieważ obiekt ten musi operować na nieznanych typach wykorzystywana jest refleksja. To powoduje, że mechanizm ten rzadko jest analizowany w szczegółach i kolokwialne tłumaczenie poprzednio przytoczone, że transfer jest jakoś realizowany jest dość powszechne, bo ma swoje zalety w kontekście opisu skutku. W ramach pracy domowej proponuję stworzyć definicję klasy, która zasymiluje to działanie i dostarczy funkcjonalność podstawiania wybranej wartości do wskazanej właściwości obiektu, którego typ nie jest znany.
-
-### INotifyPropertyChange
-
-Jak wspomniałem wcześniej używając właściwości zdefiniowanych w typie `Binding` możemy parametryzować przebieg transferu i na przykład ograniczyć jego kierunek. Operacje, które są opisane tekstem XAML są realizowane jednorazowo na początku programu, kiedy obiekt MainWindow jest tworzony. Nie możemy zatem określić tu chwil czasowych, w których ten transfer powinien być realizowany. Aby określić te chwile czasowe, w której obiekt typu Binding powinien dokonać tego transferu prześledźmy budowę właściwości ActionText pochodzącej z naszego typu. Tu widzimy, że seter oprócz podstawienia wartości do lokalnego pola wykonuje dwie metody. W kontekście postawionego problemu dla nas istotne jest wywołanie metody RaisePropertyChanged. Metoda ta aktywuje zdarzenie - event, który jest wymagany do zaimplementowania interfejsu INotifyPropertyChanged. Właśnie to zdarzenie wykorzystywane jest przez obiekty klasy Binding do rozpoczęcia transferu wartości. Aktywując to zdarzenie wywołujemy metody zwane handlerami, których delegaty zostały zasubskrybowane do zdarzenia, czyli to my dokonujemy pośrednio tego transferu za pośrednictwem tych handlerów. Jeśli klasa nie implementuje tego interfejsu lub jeśli taka aktywacja zdarzenia PropertyChanged wymaganego przez wspomniany interfejs nie nastąpi, nowa wartość nie zostanie przekazana i nie będzie wyświetlona na ekranie – ekran będzie statyczny.
-
-### ICommand
-
-Analiza poprzednich przykładów pokazuje działanie mechanizmu synchronizacji zawartości ekranu z wartościami właściwości klas dedykowanych do udostępniania danych na potrzeby GUI, które tworzą rodzaj pamięciowej repliki ekranu. Teraz musimy jeszcze tylko wyjaśnić sekwencję operacji realizowanych w konsekwencji wydania polecenia przez użytkownika interfejsu, np. kliknięcia na klawisz ekranowy - `Button`. Przykład mamy tu, a jego właściwość `Command` została podobnie jak poprzednio skojarzona z czymś o identyfikatorze `ShowTreeViewMainWindowCommend`. Korzystając z nawigacji w Visual Studio możemy przejść do definicji tego identyfikatora i zauważamy, że jest to znowu właściwość z naszej klasy, ale tym razem typu `ICommand`. Tym razem to powiązanie nie służy to kopiowania wartości właściwości, tylko do zamiany kliknięcia klawisza na ekranie, np. z wykorzystaniem myszki, na wywołanie operacji `Execute`, która jest zdefiniowana w interfejsie `ICommand` i zatem musi być zaimplementowana w klasie, która służy do utworzenia obiektu i podstawienia referencji do niego do tej właściwości.
-
-### RelayCommand
-
-Dla ułatwienia ten interfejs został zaimplementowany przez klasę pomocniczą o nazwie `RelayCommand`. W konstruktorze tej klasy należy umieścić delegację do metody, która ma być wywołana w wyniku realizacji polecenia. W ramach pracy domowej proszę prześledzić zastosowanie drugiego konstruktora. Ten konstruktor jest pomocny w dynamicznej zmianie stanu aktywności klawisza. Można to wykorzystać, aby uwzględnić zdarzenia przeszłe do ewentualnego blokowania zdarzeń przyszłych, czyli zrealizować maszynę stanu. I właśnie taki scenariusz w przykładowym programie został zaimplementowany. Proszę zwrócić tu uwagę na pominiętą w poprzedniej analizie metodę  `RaiseCanExecuteChanged`.
+👉🏻 
 
 ## Model warstwowy
 
 ### Model Warstwowy Wprowadzenie
-
-Kolejnym tematem tej lekcji jest **warstwowy model** architektoniczny nazwany mvvm. Ten skrót pochodzi od angielskiego model, view, view-model, czyli model, widok i model widoku. Zgodnie z dobrymi praktykami inżynierii program powinien być skonstruowany z wykorzystaniem warstw. Warstwa to pojęcie abstrakcyjne i charakteryzuje się tym, że w takim modelu warstwy wyższe odwołują się wyłącznie do warstwy sąsiedniej leżącej poniżej.
-
-Innymi słowy będziemy mówić o architekturze programu. Tu niestety często spotykam się z praktyką lekceważenia zasad warstwowej budowy programu, bo to komplikuje, bo to ogranicza, bo bez tego jest łatwiej i da się żyć, itd. Zauważmy, że mamy tu trzy istotnie różniące się światy. Pierwszy to model wymieniony w temacie, czyli mvvm. Oznak jego bytności jeszcze nie widzimy, ale pojawił się on w kontekście inżynierii tworzenia graficznego interfejsu użytkownika. Drugi, to model wielokrotnie używany w trakcie kursu, w którym wyróżniono też trzy warstwy, ale tym razem nazwane prezentacja, logika i dane. Trzeci świat, to całkowity brak warstw. Skoro te światy istnieją, to pewnie za każdym z nich stoją jakieś powody, choćby błahe, jak brak wiedzy. Żeby wykluczyć brak wiedzy, przyjrzyjmy się temu tematowi z bliska.
 
 Zacznijmy od tego, że nasz program przykładowy ma dwa projekty. Pierwszy z przyrostkiem View bazuje na Framework 4.61, więc jest dedykowany dla konkretnej implementacji biblioteki .NET. To ogranicza pole manewru w zakresie jego wykorzystania na innych platformach sprzętowych i systemowych, ale wyjścia nie ma, bo WPF jest technologią dedykowaną dla Windows. Drugi projekt bazuje na .NET Standard. .NET Standard jest abstrakcyjną definicją biblioteki .NET, tzn. nie zawiera żądnej implementacji, a jedynie abstrakcyjne definicje. Dziki temu projekty bazujące na .NET standard są przenośne i raz skompilowana biblioteka może być realizowana na każdej platformie systemowej, dla której istnieje implementacja .NET. Nie wchodząc w szczegóły, zależność pomiędzy tymi projektami możemy zilustrować w następujący sposób. Dla dociekliwych co oznaczają poszczególne strzałki jest legenda. Na potrzeby tej lekcji nas będzie interesował tylko zwrot tych strzałek.
 
