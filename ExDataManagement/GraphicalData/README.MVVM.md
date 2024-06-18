@@ -25,6 +25,15 @@
   - [3.2. Control Visibility](#32-control-visibility)
   - [3.3. Modification of other features](#33-modification-of-other-features)
   - [3.4. Limited Role of Code-behind](#34-limited-role-of-code-behind)
+  - [3.5. Code behind - dependency injection (Binding)](#35-code-behind---dependency-injection-binding)
+- [Bindings - View and ViewModel Interoperability](#bindings---view-and-viewmodel-interoperability)
+  - [Coupling Control Types with Data Source](#coupling-control-types-with-data-source)
+  - [DataContext](#datacontext)
+  - [Binding](#binding)
+  - [DataBinding](#databinding)
+  - [INotifyPropertyChange](#inotifypropertychange)
+  - [ICommand](#icommand)
+  - [RelayCommand](#relaycommand)
 
 ## 1. Introduction
 
@@ -86,21 +95,67 @@ We already know the first answer to the question of where to modify, that place 
 
 The XAML text and its associated CSharp text, called code behind, form one class (one definition) because they are partial definitions. Of course, all properties can therefore be modified in the code behind. However, this solution has several drawbacks. Let's narrow the discussion only to the following three that can be recognized as excluding this approach.
 
+1. The first drawback is related to the obvious violation of the principle of **separation of concerns**. This principle means avoiding the need to divide attention and encourages focusing only on single, well-separated issues. Probably,  this is a result of the human limitation of thought processes when solving a multi-threaded problem. In our case, if we are working on the GUI, we are not also working on process automation, i.e. algorithms implementation related to the process in concern. Let's focus solely on human-machine communication.
+
+There is another very tangible disadvantage, namely one of the popular ways of checking the correctness of a program is the use of unit tests. In addition to testing for correctness, they are also useful for checking whether significant modifications have been made to the program text that may have side effects and require inclusion in other parts of the program. Additionally, and somewhat unusually, I use tests in examples to show selected features of the solutions discussed, and not to check the correctness of the examples discussed. Unit tests have the property that they do not support testing of a graphical user interface. Hence, to be used as widely as possible, the concerns of graphical representation and interface behavior controlling this interface should be separated so that independent unit tests can be created for them without the need to run graphics rendering. In our example, I implemented this separation by implementing interface behavior controlling in a separate project implementing the ViewModel layer according to the MVVM pattern.
+
+The next disadvantage is also tangible. In a project dedicated to the GUI, we see a hard dependency, i.e. a reference to **PresentationFramework**. This prevents the results generated here from being used on operating systems other than Microsoft Windows. So the program becomes hard to portable. Placing text here that is not directly related to graphics control violates another principle of programming engineering, namely reusability, so again loosely translated it means the possibility of reusing the text - in this case for another GUI technology. The possibility of re-use translates directly into money because if it is not portable, a similar program text must be written again and, what is worse, it must be maintained later.
+
+To sum up, placing the text of a program implementing any activities related to process data processing in the code-behind, i.e. in this part of the program, violates the principle of separation of concerns, limits the possibility of using unit tests, and limits the portability of the solution. These are limiting remarks and lead to the conclusion - let's not do it, it's not a good idea.
+
+### 3.5. Code behind - dependency injection (Binding)
+
+What about this piece of text? Am I contradicting myself? I will come back to this point, for now, please trust me that this is following the recommendations, and theoretically, this text can be removed, but it is not that simple. Again, the recommendation is the code-behind should not contain any line of code except the required one. This exception is vital here.
+
+Since the place where the user interface comes to life should not be XAML and code-behind, it must be other parts of the program. Here, unfortunately, we encounter a barrier related to type compliance control. Namely, you first need to know these types to control type compatibility. Suppose technologically unrelated projects are to be independent, as is the case with the `GraphicalData' project. In that case, they cannot know these types because they will become dependent on the technology and the elaborate plan will fail.
+
+How to cut this Gordian knot? So far, the discussion has been reactive, ending with a statement of what we cannot do. As we can guess, the solution is, of course, compromise. As a compromise - first - we will limit the roles of the controls that make up the View layer to the role of an intermediary passing data between users of the interface and the layers lying below the View layer. We will return to the layered architecture topic later in this article but as a result of simplifying we can treat the `View` layer as a separate project. Returning to the role of the intermediary, this role of the intermediary is limited to, colloquially speaking, transparently transferring data from and to the screen. Occasionally, as part of this operation, we may provide a conversion operation, e.g. date format depending on the natural language used by the interface user. Additionally, the GUI interface must be responsible for activating appropriate functionality in response to user commands.
+
+The functionality of the scenario in which XAML is only a transparent data relay has been implemented in WPF technology. To transfer data, it must first be downloaded from some source. We don't have much choice here, they have to be objects, or rather their properties - described by types. Since these types must already be related to process data processing, their definition is dedicated to the needs of this process, which is located in the GraphicalData project. The View layer has references to this project. However, when WPF was implemented - and specifically the transfer mechanism - it could not have known these types. Data transfer in WPF is a generic mechanism, so it cannot refer to specific types, although it can have references to those types. This leads to the conclusion that we cannot use type definitions in this process, so what is left is only reflection, which allows us to recreate these definitions during program execution, which should not worry us much, because we are not the ones who have to use them and, consequently, know.
+
+## Bindings - View and ViewModel Interoperability
+
+### Coupling Control Types with Data Source
+
+Let's look at an example. In the lower right corner of the window, we use a `TextBox` control. Its task is to write and possibly read text, i.e. a string of characters. The current value, so what is on the screen is provided via the `Text` property. Since we expect reading and writing, the equal sign after the `Text` name must mean transferring the current value to/from the selected place. We already know that this selected place must be a property of some object. The word `Binding` means that it is attached somehow to ActionText. Hence, the ActionText identifier is probably the name of the property defined in one of our types. Let's try to find this type using the Visual Studio context menu navigation. As we can see, it works and the property has the name as expected.
+
+### DataContext
+
+As you can notice, the navigation works, so VisualStudio has no doubts about the type of instance this property comes from. If Visual Studio knows it, I guess we should know it too. The answer to this question is in these three lines of the `MainWindow` XAML definition.
+
+``` xaml
+    <Window.DataContext>
+      <vm:MainViewModel />
+    </Window.DataContext>
+```
+
+Let's start with the middle one, in which we have the full class name, but the namespace has been replaced by the two-letter `vm` alias defined a few lines above. The class definition has been opened as a result of previous navigation to a property containing the text for the `TextBox` control. Let's consider what the class name means here. For the sake of simplicity, let's first look up the meaning of the `DataContext` identifier. It is the name of the property. It is of the object type. The `object` is the base type for all types. Since it's a property, we can only read it or assign a new value. Having discarded all the absurd propositions, it is easy to guess that the only correct answer is that the `MainViewModel` identifier here means a parameter-less constructor of the `MainViewModel` type, and this entire fragment should be recognized as the equivalent of an association statement to the `DataContext` property of a newly created instance of the `MainViewModel` type. In other words, it is equivalent to the following statement
+
+``` CSharp
+  DataContext = new MainViewModel();
+```
+
+Finally, at run-time, we can consider this object as both a source and a repository of process data dedicated to the GUI, in other words, it is a kind of GUI replica. From a data point of view, it creates a sort of mirror of what is on the screen.
+
+### Binding
+
+Let's go back to the previous example with the `TextBox` control and coupling its `Text` property with the `ActionText` property from the class whose instance was assigned to `DataContext`. Here, there is a magic word `Binding` that may be recognized as an invocation to transfer value between. When asked how this happens and what the word `Binding` means, i.e. when asked about the semantics of this notation, I usually receive an answer like this it is some magic wand, which should be read as an internal implementation of WPF, and `Binding` is a keyword of the XAML language. And this explanation would be sufficient, although it is a colloquialism. Unfortunately, usually, we need to understand when this transfer takes place. The answer to this question is fundamental to understanding the requirements for the classes that can be used to create an object whose reference is assigned to the `DataContext` property. To find the answer, let's try to go to the definition of this word using the context menu or the F12 key.
+
+### DataBinding
+
+It turns out that `Binding` is the identifier of a class or rather a constructor of this class. This must consequently mean that at this point a magic wand means creating a `Binding` instance responsible for transferring values ​​from one property to another. The properties defined in this type allow you to control how this transfer is performed. We can see their list here. Since this object must operate on unknown types, reflection is used. This means that this mechanism is rarely analyzed in detail. The colloquial explanation previously given that the transfer is somehow carried out is quite common because it has its advantages in the context of describing the effect. 
+
+> I propose to create a class definition that will simulate this action and provide the functionality of assigning the selected value to the indicated property of an object whose type is unknown.
+
+### INotifyPropertyChange
+
+### ICommand
+
+### RelayCommand
 
 <!--
 # Wzorzec MVVM
 
-  - [Dynamiczne Modyfikowanie Cech obrazka](#dynamiczne-modyfikowanie-cech-obrazka)
-    - [Ograniczona Rola Code-behind](#ograniczona-rola-code-behind)
-    - [Code behind - dependency injection (Binding)](#code-behind---dependency-injection-binding)
-  - [Obsługa widoku poprzez powiązania](#obsługa-widoku-poprzez-powiązania)
-    - [Sprzęganie kontrolek z danymi](#sprzęganie-kontrolek-z-danymi)
-    - [DataContext](#datacontext)
-    - [Binding](#binding)
-    - [DataBinding – użycie refleksji](#databinding--użycie-refleksji)
-    - [INotifyPropertyChange](#inotifypropertychange)
-    - [ICommand](#icommand)
-    - [RelayCommand](#relaycommand)
   - [Model warstwowy](#model-warstwowy)
     - [Model Warstwowy Wprowadzenie](#model-warstwowy-wprowadzenie)
     - [Czy projekt może być warstwą](#czy-projekt-może-być-warstwą)
@@ -119,43 +174,7 @@ The XAML text and its associated CSharp text, called code behind, form one class
 
 ## Dynamiczne Modyfikowanie Cech obrazka
 
-### Ograniczona Rola Code-behind
-
-👉🏻 Pierwsza wada związana jest z ewidentnym złamaniem w takim przypadku zasady **separation of concerns**. W bardzo wolnym tłumaczeniu ta zasada znaczy unikanie konieczności wykorzystania podzielności uwagi, a w istocie zachęca do koncentrowania się wyłącznie na pojedynczych dobrze odseparowanych zagadnieniach. Ma to związek z psychologią i stwierdzonymi ułomnościami przebiegu naszych procesów myślowych, jeśli rozwiązujemy problem wielowątkowy. W naszym przypadku jeśli pracujemy nad GUI, to nie pracujmy jednocześnie nad automatyzacją procesu, czyli implementacją algorytmów przetwarzania danych procesowych. Skoncentrujmy się wyłącznie na komunikacji człowiek maszyna.
-
-Jest jeszcze jedna bardzo wymierna wada, a mianowicie jednym z popularnych sposobów sprawdzania poprawności programu jest zastosowanie **testów jednostkowych**. Oprócz testowania poprawności są one również szczególnie przydatne do sprawdzenia, czy w tekście programu nie zostały wprowadzone istotne modyfikacje, które mogą mieć efekt uboczny i wymagać uwzględnienia w innych częściach programu. Ja dodatkowo i trochę nietypowo używam testów w przykładach do kursu tak, aby  pokazać wybrane cechy omawianych rozwiązań. Testy jednostkowe mają tę wadę, że nie mają wsparcia dla graficznego interfejsu użytkownika. By je można było stosować w możliwie szerokim zakresie,  dane i funkcjonalność tego interfejsu powinny być odseparowane tak, by można było dla nich utworzyć niezależne testy jednostkowe bez konieczności uruchamiania renderingu grafiki. W naszym przykładzie ten podział zrealizowałem poprzez umieszczenie sterowania grafiką w osobnym projekcie, który w nazwie ma przyrostek View.
-
-Kolejna wada jest równie wymierna. W projekcie dedykowanym dla GUI widzimy twardą zależność, czyli referencję do **PresentationFramework**. To uniemożliwia używanie generowanych tu rezultatów na systemach operacyjnych innych niż Microsoft Windows. Więc program staje się nieprzenośny. Umieszczenie tu tekstu nie związanego bezpośrednio ze sterowaniem grafiką łamie kolejną zasadę inżynierii programowania, a mianowicie reusability, więc znowu w wolnym tłumaczeniu oznacza to możliwość ponownego wykorzystania tekstu - w tym przypadku dla innej technologii GUI. Możliwość ponownego wykorzystania, to już bezpośrednie przełożenie na pieniądze, bo w przypadku braku przenośności podobny tekst programu trzeba jeszcze raz napisać, a co gorsza później go utrzymać.
-
-Podsumowując, umieszczenie tekstu programu implementującego jakiekolwiek działania związane z przetwarzaniem danych procesowych w code-behind, a więc w tej części programu, łamie zasadę separation of concerns, ogranicza możliwość korzystania z testów jednostkowych i ogranicza przenośność rozwiązania. To uwagi limitujące i prowadzą do wniosku – nie róbmy tego, to nie jest dobry pomysł.
-
-### Code behind - dependency injection (Binding)
-
-A co z tym fragmentem tekstu. Czy przypadkiem sam sobie nie zaprzeczam. To tego jeszcze wrócę, na razie proszę przyjąć na wiarę odpowiedź, że to jest zgodnie z zaleceniami, a ten tekst teoretycznie można usunąć, ale to nie takie proste.
-
-Skoro miejscem ożywienia interfejsu użytkownika nie powinien być XAML i code-behind to muszą być inne części programu. Tu niestety napotykamy na barierę związaną z kontrolą zgodności typów. A mianowicie, żeby kontrolować zgodność typów, to najpierw te typy trzeba znać. Skoro projekty technologicznie nie związane z GUI mają być niezależne, jak to jest w naszym przypadku dla projektu `GraphicalData`, nie mogą znać tych typów, bo staną się zależne od technologii i cały misterny plan spali na panewce.
-
-Jak przeciąć ten węzeł gordyjski? Do tej pory dyskusja była reaktywna, mianowicie kończyła się stwierdzeniem czego nie możemy zrobić. Jak się możemy domyślać, rozwiązaniem jest oczywiście kompromis. W ramach kompromisu - po pierwsze - ograniczymy role kontrolek, które tworzą warstwę View do roli pośrednika przekazującego dane pomiędzy użytkownikami interfejsu i warstwami leżącymi poniżej tej warstwy. Do kwestii warstw jeszcze wrócimy w dalszej części lekcji, więc dla uproszczenia tu warstwę View możemy traktować, jako osobny projekt. Wracając do roli pośrednika, ta rola pośrednika ogranicza się do kolokwialnie mówiąc przezroczystego kopiowania danych z i na ekran. W szczególnych przypadkach w ramach tego kopiowania możemy przewidzieć operację konwersji, np. format daty w zależności od języka naturalnego używanego przez użytkownika interfejsu. Dodatkowo interfejs GUI musi być odpowiedzialny za uruchamianie odpowiedniej funkcjonalności w reakcji na polecenia użytkownika.
-
-Funkcjonalność do scenariusza, w którym XAML jest tylko przezroczystym przekaźnikiem danych została zaimplementowana w technologii WPF. Żeby przekazywać dane, to najpierw trzeba je pobrać z jakiegoś źródła. Tu nie mamy wielkiego wyboru, to muszą być obiekty, a właściwie ich właściwości – properties – opisane typami. Ponieważ te typy muszą już być związane z przetwarzaniem danych procesowych, więc ich definicja jest dedykowana do potrzeb tego procesu, więc nasza i znajduje się w projekcie GraphicalData do którego projekt zawierający View ma referencje. Jednak Microsoft implementując WPF – a konkretnie mechanizm kopiowania - tych typów nie mógł znać. Transfer danych w WPF jest mechanizmem generycznym, więc nie może odwoływać się do konkretnych typów, mimo, że może mieć referencje do tych typów. To prowadzi do wniosku, że nie możemy w tym procesie korzystać z definicji typów, więc cóż zostaje tylko refleksja, co nas nie specjalnie powinno zmartwić, bo to nie my musimy jej używać, a w konsekwencji jej znać.
-
-## Obsługa widoku poprzez powiązania
-
-### Sprzęganie kontrolek z danymi
-
-Popatrzmy na przykład. W prawym dolnym rogu okienka używamy kontrolki typu TextBox. Jej zadaniem jest wypisywać i ewentualnie czytać tekst, czyli ciąg znaków. Aktualna wartość, więc to co jest na ekranie jest dostępne za pośrednictwem właściwości Text. Ponieważ oczekujemy czytania i pisania więc znak równości za nazwą Text musi oznaczać transferuj aktualną wartość do/z wybranego miejsca. Wiemy już, że tym wybranym miejscem musi być właściwość jakiegoś obiektu. Słowo `Binding` możemy przetłumaczyć na powiąż, więc prawdopodobnie ActionText jest to właściwość zdefiniowana w jakimś naszym typie. Spróbujmy ten typ znaleźć korzystając z nawigacji w menu kontekstowym Visual Studio. Jak widzimy to działa i właściwość ma faktycznie nazwę zgodną z oczekiwaniami.
-
-### DataContext
-
-Jak widać nawigacja działa, czyli VisualStudio nie ma wątpliwości z jakiego typu pochodzi ta właściwość. Skoro Visual Studio to wie, to chyba my też powinniśmy wiedzieć. Odpowiedź na to pytanie znajduje się w tych trzech linijkach tekstu. Zacznijmy od środkowej, w której mamy pełną nazwę klasy z tym, że przestrzeń nazw została zastąpiona przez dwuliterowy alias vm zdefiniowany zresztą kilka linijek wyżej. Niestety tym razem nawigacja do definicji nie działa, ale definicja klasy jest otwarta w wyniku wcześniejszego poszukiwania właściwości zawierającej tekst do kontrolki TextBox. Zastanówmy się co oznacza nazwa klasy w tym miejscu. Aby uprościć sprawę, najpierw poszukajmy znaczenia identyfikatora DataContext. Jest to właściwość typu object, więc typu bazowego dla wszystkich typów. Skoro właściwość to możemy tylko odczytać lub podstawić do niej jakąś wartość. Odrzuciwszy wszystkie absurdalne propozycje, łatwo wydedukować jedyną poprawna odpowiedź, a mianowicie, że identyfikator MainViewModel w tym miejscu oznacza konstruktor bezparametrowy, a cały ten fragment należy rozumieć jako ekwiwalent instrukcji podstawienia do właściwości DataContext nowo utworzonego z wykorzystaniem tego konstruktora obiektu. Obiekt ten możemy uważać jednocześnie za źródło i repozytorium danych procesowych dedykowanych dla GUI, innymi słowy to rodzaj repliki GUI. Z punktu widzenia danych tworzy on rodzaj repliki tego co jest na ekranie.
-
-### Binding
-
-Wróćmy jeszcze do poprzedniego przykładu z kontrolką TextBox i sprzężenia jej właściwości Text z właściwością ActionText pochodzącą z klasy, której obiekt został podstawiony do DataContext. Występuje tu magiczne słowo `Binding`, które możemy przetłumaczyć transferuj wartość pomiędzy. Na pytanie jak to się dzieje i co oznacza słowo `Binding`, czyli na pytanie o semantykę tego zapisu zwykle otrzymuję odpowiedz: to jakaś magia kina, co należy czytać wewnętrzna implementacja WPF, a `Binding` to słowo kluczowe języka XAML. I to tłumaczenie byłoby wystarczające, choć jest to kolokwializm, gdyby nie fakt, że musimy zrozumieć, kiedy ten transfer ma miejsce. Odpowiedź na to pytanie jest fundamentalna do zrozumienia wymagań dla klas, które mogą być wykorzystane do utworzenia obiektu, którego referencja jest podstawiana do właściwości `DataContext`. Aby znaleźć odpowiedź spróbujmy przejść do definicji tego słowa używając menu kontekstowego lub klawisza F12.
-
-### DataBinding – użycie refleksji
-
-Okazuje się, że `Binding` jest identyfikatorem klasy, a właściwie bezparametrowego konstruktora tej klasy. To w konsekwencji musi oznaczać, że w tym miejscu magia kina oznacza utworzenie obiektu typu Binding, który odpowiada za transfer wartości z jednej właściwości do drugiej. Właściwości zdefiniowane w tym  typie pozwalają na sterowanie sposobem realizacji tego transferu. Tu możemy zobaczyć ich listę. Ponieważ obiekt ten musi operować na nieznanych typach wykorzystywana jest refleksja. To powoduje, że mechanizm ten rzadko jest analizowany w szczegółach i kolokwialne tłumaczenie poprzednio przytoczone, że transfer jest jakoś realizowany jest dość powszechne, bo ma swoje zalety w kontekście opisu skutku. W ramach pracy domowej proponuję stworzyć definicję klasy, która zasymiluje to działanie i dostarczy funkcjonalność podstawiania wybranej wartości do wskazanej właściwości obiektu, którego typ nie jest znany.
+👉🏻 Okazuje się, że `Binding` jest identyfikatorem klasy, a właściwie bezparametrowego konstruktora tej klasy. To w konsekwencji musi oznaczać, że w tym miejscu magia kina oznacza utworzenie obiektu typu Binding, który odpowiada za transfer wartości z jednej właściwości do drugiej. Właściwości zdefiniowane w tym  typie pozwalają na sterowanie sposobem realizacji tego transferu. Tu możemy zobaczyć ich listę. Ponieważ obiekt ten musi operować na nieznanych typach wykorzystywana jest refleksja. To powoduje, że mechanizm ten rzadko jest analizowany w szczegółach i kolokwialne tłumaczenie poprzednio przytoczone, że transfer jest jakoś realizowany jest dość powszechne, bo ma swoje zalety w kontekście opisu skutku. W ramach pracy domowej proponuję stworzyć definicję klasy, która zasymiluje to działanie i dostarczy funkcjonalność podstawiania wybranej wartości do wskazanej właściwości obiektu, którego typ nie jest znany.
 
 ### INotifyPropertyChange
 
