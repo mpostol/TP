@@ -18,6 +18,8 @@
 - [1. Introduction (Preface)](#1-introduction-preface)
   - [1.1. Technology Selection](#11-technology-selection)
   - [1.2. Program Bootstrap](#12-program-bootstrap)
+  - [Changes tracing](#changes-tracing)
+  - [Why XML](#why-xml)
 - [2. What is control?](#2-what-is-control)
 - [3. See also](#3-see-also)
 
@@ -34,6 +36,15 @@ The next problem is how to ensure the appropriate level of abstraction, i.e. hid
 ### 1.2. Program Bootstrap
 
 It may sound mysterious at first, but the fact that the graphical user interface is an element of the program is obvious to everyone. However, it is not so obvious to everyone that it is not an integral part of the executing program process. Let's look at the diagram below, where we see the GUI as something external to the process. Like streaming and structured data. This interface can even be deployed on another physical machine. In such a case, the need for communication between machines must also be considered. As a result, we must look at the interface and the running program as two independent entities operating in asynchronous environments. So the problem is how to synchronize its content and behavior with the program flow. In this article, we will only discuss the relationship between the creation of the GUI and the lifetime of the program instance.
+
+### Changes tracing
+
+Let's go back for a moment to the previous article describing how to use the independent Blend program while working on the UI appearance. After finishing work in Blend, we can return to creating the program text, i.e. return to Visual Studio. An additional note: Blend is an independent program that can be executed using the operating system interface, including the file browser context menu. It is independent, provided that the results of its work can be uploaded to the repository as an integral part of the entire program and the history of its changes can be tracked. This will only be possible if its output is text. This is our programmers' demand today, which must be followed without any compromise. This is an additional reason why graphic formats such as GIF, JPG, and PowerPoint files, to name only selected ones for determining the appearance of the GUI are generally a bad idea.
+
+Let's see how this postulate is implemented in the proposed scenario. After returning to Visual Studio, we notice that one of the files has changed. After opening it in the editor, we see that it is a file with XML syntax, i.e. a text file, although next to it there is a similar image. Let's close the picture because we should focus on the text itself. However, it should be noted that the image-text relationship exists. Going to the folder where this file is located, we can analyze its changes. I suggest not wasting time on analyzing the changes in the file itself. It is better to spend this time understanding the content and role of this document as a part of our program. So let's go back to Visual Studio.
+
+### Why XML
+
 
 ## 2. What is control?
 
@@ -63,12 +74,6 @@ It is a type that encapsulates user interface functionality and is used in clien
   - [Zakończenie](#zakończenie)
 
 ## Praca z kodem
-
-### Śledzenie Zmian
-
-Wróćmy na chwilę do poprzedniej lekcji, w trakcie której korzystając z niezależnego programu Blend pracowaliśmy nad wyglądem obrazka generowanego przez przykładowy program. Po zakończeniu pracy w programie Blend, możemy wrócić do tworzenia tekstu programu, czyli wrócić do Visual Studio. Tu dodatkowa uwaga, Blend to niezależny program, który można uruchomić korzystając z interfejsu systemu operacyjnego, a w tym z menu kontekstowego przeglądarki plików. Jest on niezależny przy zastrzeżeniu, że wyniki jego pracy da się wrzucić do repozytorium jako integralna część całego programu i śledzić historię jego zmian. To będzie możliwe tylko wtedy, jeśli wynik jego działania będą tekstem. To dziś nasz, programistów postulat, który musi być przestrzegany bez żadnych kompromisów. To dodatkowy powód, dlaczego formaty graficzne jak gif, JPG i pliki PowerPoint, żeby ograniczyć się tylko do popularnych rozwiązań ustalania wyglądu GUI, to generalnie zły pomysł.
-
-Zobaczmy zatem jak ten postulat jest zrealizowany w proponowanym scenariuszu. Po powrocie do Visual Studio możemy zauważyć, że zmienił się jeden z plików. Po jego otwarciu w edytorze widzimy, że to plik o składni xml, a więc plik tekstowy, choć obok jest podobny obrazek ja poprzednio. Zamykam obrazek, bo jako programiści koncentrujemy się na samy tekście. Tu jednak trzeba zauważyć, że relacja obrazek tekst istnieje, teraz tylko trzeba ją określić. Przechodząc do folderu, gdzie znajduje się ten plik, możemy dokonać analizy jego zmian. Korzystając z narzędzia, które akurat mam zainstalowane mogę te różnice pokazać. Zmiany są na czerwono. Przy okazji, tu widzimy kolejny przykład GUI, czyli informacji procesowej reprezentowanej graficznie. U mnie procesem jest tekst programu w trakcie jego edycji. W tej reprezentacji każda litera to kompozycja pikseli, a czerwony kolor to informacja – tu jest zmiana. Proponuję nie tracić cennego czasu na analizowanie samych zmian w pliku. Lepiej ten czas poświęcić na zrozumienie treści i roli tego dokumentu, jako pewnego fragmentu naszego programu. Wróćmy zatem do Visual Studio.
 
 ### Czemu xml
 
