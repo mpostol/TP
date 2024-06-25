@@ -11,27 +11,41 @@
 //_________________________________________________________________________________________________________________________
 -->
 
-# XAML - Description of the Graphical Interface
+# XAML - Description of the Graphical Interface <!-- omit in toc -->
 
-- XAML - Description of the Graphical Interface
+## Table of content <!-- omit in toc -->
 
-## What is control?
+- [1. Introduction (Preface)](#1-introduction-preface)
+  - [1.1. Technology Selection](#11-technology-selection)
+  - [1.2. Program Bootstrap](#12-program-bootstrap)
+- [2. What is control?](#2-what-is-control)
+- [3. See also](#3-see-also)
+
+## 1. Introduction (Preface)
+
+In this article, we continue the series dedicated to discussing selected issues related to the representation of process information in graphical form. The main goal is to address selected topics in the context of graphics, which is used as a kind of control panel for the business process. Generating such graphics requires a formal description. In this section, we use a dedicated domain-specific language (Extensible Application Markup Language - XAML for short). It is used to describe formally what we see on the screen. A new language - it sounds disturbing - especially since learning this language is beyond the scope of this publication. Fortunately, in-depth knowledge of it is not required. This is not a necessary condition to understand any of the topics in concern. The main goal is to examine selected topics bounded to generating a graphical user interface based on its formal description, which we programmers can somehow integrate into the entire program.
+
+An image is a sequence of colored pixels. They must be composed in such a way as to represent selected process information, i.e. its state or behavior. Similarly to the case of data residing in memory, which we do not process by directly referring to their binary representation, we do not create a graphical user interface (GUI for short) by laboriously assembling pixels into a coherent composition. Moreover, as I mentioned earlier, the GUI is a dashboard controlling the process, so it must also behave dynamically, including enabling data entry and issuing commands.
+
+### 1.1. Technology Selection
+
+The next problem is how to ensure the appropriate level of abstraction, i.e. hide the details related to the creation of the image and not lose the ability to keep it under control. As usual, for our considerations to be based on practical examples we must use a specific technology. I chose the Windows Presentation Foundation (WPF). Still, I will try to ensure that we do not lose the generality of the considerations regardless of this choice. An important component of this technology is the XAML language, which we will use to achieve an appropriate level of abstraction. A discussion of WPF requires a separate course, and we will stay as close as possible to the topics related to the practice of using the CSharp language to deploy a Graphical User Interface.
+
+### 1.2. Program Bootstrap
+
+It may sound mysterious at first, but the fact that the graphical user interface is an element of the program is obvious to everyone. However, it is not so obvious to everyone that it is not an integral part of the executing program process. Let's look at the diagram below, where we see the GUI as something external to the process. Like streaming and structured data. This interface can even be deployed on another physical machine. In such a case, the need for communication between machines must also be considered. As a result, we must look at the interface and the running program as two independent entities operating in asynchronous environments. So the problem is how to synchronize its content and behavior with the program flow. In this article, we will only discuss the relationship between the creation of the GUI and the lifetime of the program instance.
+
+## 2. What is control?
 
 It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. A Control is a base class used in .NET applications, and the MSDN documentation explains it in detail. There is a bunch of derived classes that inherit from it, for example, Button.
 
-## See also
+## 3. See also
 
 - [XAML in WPF](https://docs.microsoft.com/dotnet/framework/wpf/advanced/xaml-in-wpf)
 - [TreeView Overview](https://docs.microsoft.com/dotnet/framework/wpf/controls/treeview-overview?view=netframework-4.7.2)
 
 <!-- 
-# Dane graficzne - Generowanie Interfejsu Graficznego
-
 - [Dane graficzne - Generowanie Interfejsu Graficznego](#dane-graficzne---generowanie-interfejsu-graficznego)
-  - [Wprowadzenie](#wprowadzenie)
-    - [Wstęp](#wstęp)
-    - [Wybór Technologii](#wybór-technologii)
-    - [Uruchomienie programu](#uruchomienie-programu)
   - [Praca z kodem](#praca-z-kodem)
     - [Śledzenie Zmian](#śledzenie-zmian)
     - [Czemu xml](#czemu-xml)
@@ -48,29 +62,11 @@ It is a type that encapsulates user interface functionality and is used in clien
   - [Praca domowa](#praca-domowa)
   - [Zakończenie](#zakończenie)
 
-## Wprowadzenie
-
-W tej lekcji kontynuujemy cykl dedykowany omówieniu wybranych zagadnień związanych z reprezentacją informacji procesowej w postaci graficznej. W trakcie poprzedniej lekcji omówiliśmy ogólne zagadnienia dotyczące metodyki projektowania graficznego interfejsu użytkownika. Teraz omówimy zagadnienia związane z generowaniem grafiki, która jest dopasowana do automatyzowanego procesu biznesowego. Wygenerowanie takiej grafiki wymaga formalnego opisu. W trakcie tej lekcji będziemy odwoływać się do języka Extensible Application Markup Language, w skrócie xaml. On właśnie służy do tego, aby formalnie opisać to co widzimy na ekranie. Nowy język, to brzmi niepokojąco, tym bardziej, że poznanie tego języka jest poza zakresem kursu. Na szczęście jego pogłębiona znajomość nie jest wymagana. To nie jest warunek konieczny do zrozumienia żadnej z lekcji w tej grupie tematycznej.
-
-### Wstęp
-
-Zacznijmy od kilu definicji, wyjaśnień i wskazania kierunków poszukiwań nowych rozwiązań, w zakresie generowania graficznego interfejsu użytkownika na podstawie jego formalnego opisu, który my programiści możemy jakoś wkomponować w cały program. Pamiętajmy, że nadal celem jest rozdzielenie odpowiedzialności.
-
-Obrazek jest ciągiem kolorowych pikseli. Muszą one się komponować w taki sposób, aby reprezentować wybrane informacje procesu, tzn. jego stan lub zachowanie. Podobnie jak w przypadku danych rezydujących w pamięci, których przecież nie przetwarzamy odwołując się bezpośrednio do ich binarnej reprezentacji, również graficzny interfejs użytkownika (w skrócie GUI od angielskiego graphical user interface) nie tworzymy mozolnie składając piksele w spójną kompozycję. Co więcej, jak wspomniałem wcześniej GUI stanowi pulpit sterujący przebiegiem procesu, więc musi również zachowywać się dynamicznie, a w tym umożliwiać wprowadzanie danych i wydawanie poleceń.
-
-### Wybór Technologii
-
-Kolejnym problemem jest zatem, jak zapewnić odpowiedni poziom abstrakcji, tzn. ukryć szczegóły związane z powstawaniem obrazka. Podobnie jak w każdym przypadku, aby nasze rozważania były osadzone na praktycznych przykładach musimy użyć konkretnej technologii. Wybrałem Windows Presentation Foundation (w skrócie bardziej swojsko brzmiący skrót WPF), ale postaram się, byśmy niezależnie od tego wyboru nie stracili ogólności rozważań. Ważnym elementem składowym tej technologii jest właśnie język xaml, który użyjemy, aby ten wspomniany poziom abstrakcji uzyskać. Omówienie WPF wymaga osobnego kursu, a my pozostaniemy możliwie blisko zagadnieniom związanym z praktyką wykorzystania języka CSharp.
-
-### Uruchomienie programu
-
-Może to zabrzmi na początku zagadkowo, ale to że graficzny interfejs użytkownika jest elementem programu jest czymś oczywistym dla wszystkich. Nie dla wszystkich jest już natomiast takie oczywiste to, że nie jest on integralną częścią procesu realizującego program. Popatrzmy jeszcze raz na rysunek, gdzie widzimy GUI jako coś zewnętrznego w stosunku do procesu. Podobnie jak dane strumieniowe i strukturalne. Interfejs ten może nawet powstać na innej fizycznej maszynie. W takim przypadku dodatkowo trzeba uwzględnić konieczność komunikacji pomiędzy maszynami. W konsekwencji na interfejs i działający program musimy patrzeć jak na dwa niezależne byty działające w asynchronicznych środowiskach. Więc problemem jest jak synchronizować jago zawartość i zachowanie z przebiegiem programu. W tej lekcji nie odpowiemy do końca na to pytanie, a jedynie omówimy jaka jest relacja pomiędzy jego powstaniem i czasem życia instancji programu. Dwustronna synchronizacja to już temat dla następne lekcji.
-
 ## Praca z kodem
 
 ### Śledzenie Zmian
 
-Wróćmy na chwilę do poprzedniej lekcji, w trakcie której korzystając z niezależnego programu Blend pracowaliśmy nad wyglądem obrazka generowanego przez przykładowy program Po zakończeniu pracy w programie Blend, możemy wrócić do tworzenia tekstu programu, czyli wrócić do Visual Studio. Tu dodatkowa uwaga, Blend to niezależny program, który można uruchomić korzystając z interfejsu systemu operacyjnego, a w tym z menu kontekstowego przeglądarki plików. Jest on niezależny przy zastrzeżeniu, że wyniki jego pracy da się wrzucić do repozytorium jako integralna część całego programu i śledzić historię jego zmian. To będzie możliwe tylko wtedy, jeśli wynik jego działania będą tekstem. To dziś nasz, programistów postulat, który musi być przestrzegany bez żadnych kompromisów. To dodatkowy powód, dlaczego formaty graficzne jak gif, JPG i pliki PowerPoint, żeby ograniczyć się tylko do popularnych rozwiązań ustalania wyglądu GUI, to generalnie zły pomysł.
+Wróćmy na chwilę do poprzedniej lekcji, w trakcie której korzystając z niezależnego programu Blend pracowaliśmy nad wyglądem obrazka generowanego przez przykładowy program. Po zakończeniu pracy w programie Blend, możemy wrócić do tworzenia tekstu programu, czyli wrócić do Visual Studio. Tu dodatkowa uwaga, Blend to niezależny program, który można uruchomić korzystając z interfejsu systemu operacyjnego, a w tym z menu kontekstowego przeglądarki plików. Jest on niezależny przy zastrzeżeniu, że wyniki jego pracy da się wrzucić do repozytorium jako integralna część całego programu i śledzić historię jego zmian. To będzie możliwe tylko wtedy, jeśli wynik jego działania będą tekstem. To dziś nasz, programistów postulat, który musi być przestrzegany bez żadnych kompromisów. To dodatkowy powód, dlaczego formaty graficzne jak gif, JPG i pliki PowerPoint, żeby ograniczyć się tylko do popularnych rozwiązań ustalania wyglądu GUI, to generalnie zły pomysł.
 
 Zobaczmy zatem jak ten postulat jest zrealizowany w proponowanym scenariuszu. Po powrocie do Visual Studio możemy zauważyć, że zmienił się jeden z plików. Po jego otwarciu w edytorze widzimy, że to plik o składni xml, a więc plik tekstowy, choć obok jest podobny obrazek ja poprzednio. Zamykam obrazek, bo jako programiści koncentrujemy się na samy tekście. Tu jednak trzeba zauważyć, że relacja obrazek tekst istnieje, teraz tylko trzeba ją określić. Przechodząc do folderu, gdzie znajduje się ten plik, możemy dokonać analizy jego zmian. Korzystając z narzędzia, które akurat mam zainstalowane mogę te różnice pokazać. Zmiany są na czerwono. Przy okazji, tu widzimy kolejny przykład GUI, czyli informacji procesowej reprezentowanej graficznie. U mnie procesem jest tekst programu w trakcie jego edycji. W tej reprezentacji każda litera to kompozycja pikseli, a czerwony kolor to informacja – tu jest zmiana. Proponuję nie tracić cennego czasu na analizowanie samych zmian w pliku. Lepiej ten czas poświęcić na zrozumienie treści i roli tego dokumentu, jako pewnego fragmentu naszego programu. Wróćmy zatem do Visual Studio.
 
