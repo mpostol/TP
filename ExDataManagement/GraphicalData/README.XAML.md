@@ -18,9 +18,17 @@
 - [1. Introduction (Preface)](#1-introduction-preface)
   - [1.1. Technology Selection](#11-technology-selection)
   - [1.2. Program Bootstrap](#12-program-bootstrap)
-  - [Changes tracing](#changes-tracing)
-  - [Why XML](#why-xml)
-- [2. What is control?](#2-what-is-control)
+  - [1.3. Changes tracing](#13-changes-tracing)
+  - [1.4. Why XML](#14-why-xml)
+  - [1.5. Integration of functionality and graphics](#15-integration-of-functionality-and-graphics)
+  - [1.6. Partial Class](#16-partial-class)
+  - [1.7. XAML-Semantics](#17-xaml-semantics)
+  - [1.8. Control and rendering](#18-control-and-rendering)
+  - [1.9. GUI as a Tree of Controls](#19-gui-as-a-tree-of-controls)
+  - [1.10. What is a control?](#110-what-is-a-control)
+  - [1.11. XAML Compilation Process](#111-xaml-compilation-process)
+  - [1.12. Conversion of XAML to CSharp](#112-conversion-of-xaml-to-csharp)
+- [2. Bootstrap Sequence](#2-bootstrap-sequence)
 - [3. See also](#3-see-also)
 
 ## 1. Introduction (Preface)
@@ -37,103 +45,63 @@ The next problem is how to ensure the appropriate level of abstraction, i.e. hid
 
 It may sound mysterious at first, but the fact that the graphical user interface is an element of the program is obvious to everyone. However, it is not so obvious to everyone that it is not an integral part of the executing program process. Let's look at the diagram below, where we see the GUI as something external to the process. Like streaming and structured data. This interface can even be deployed on another physical machine. In such a case, the need for communication between machines must also be considered. As a result, we must look at the interface and the running program as two independent entities operating in asynchronous environments. So the problem is how to synchronize its content and behavior with the program flow. In this article, we will only discuss the relationship between the creation of the GUI and the lifetime of the program instance.
 
-### Changes tracing
+### 1.3. Changes tracing
 
 Let's go back for a moment to the previous article describing how to use the independent Blend program while working on the UI appearance. After finishing work in Blend, we can return to creating the program text, i.e. return to Visual Studio. An additional note: Blend is an independent program that can be executed using the operating system interface, including the file browser context menu. It is independent, provided that the results of its work can be uploaded to the repository as an integral part of the entire program and the history of its changes can be tracked. This will only be possible if its output is text. This is our programmers' demand today, which must be followed without any compromise. This is an additional reason why graphic formats such as GIF, JPG, and PowerPoint files, to name only selected ones for determining the appearance of the GUI are generally a bad idea.
 
 Let's see how this postulate is implemented in the proposed scenario. After returning to Visual Studio, we notice that one of the files has changed. After opening it in the editor, we see that it is a file with XML syntax, i.e. a text file, although next to it there is a similar image. Let's close the picture because we should focus on the text itself. However, it should be noted that the image-text relationship exists. Going to the folder where this file is located, we can analyze its changes. I suggest not wasting time on analyzing the changes in the file itself. It is better to spend this time understanding the content and role of this document as a part of our program. So let's go back to Visual Studio.
 
-### Why XML
+### 1.4. Why XML
 
+Probably the first surprise is that instead of CSharp we have XML. There are at least two reasons for this. The first is that the graphics rendering process is not related to the implementation of algorithms in the CSharp language. As I have emphasized many times, there are many languages ​​that we can use for this purpose. So the first reason is the portability of the work result. The second reason is related to the use of the Blend editor, i.e. a software tool. Let me remind you that the XML standard was created as a language intended for exchanging data between programs, i.e. for application integration. Here we see how it works in practice for Blend and Visual Studio. Blend and Visual Studio are two independent programs whose functionality is compatible with each other.
 
-## 2. What is control?
+### 1.5. Integration of functionality and graphics
 
-It is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. A Control is a base class used in .NET applications, and the MSDN documentation explains it in detail. There is a bunch of derived classes that inherit from it, for example, Button.
+From the point of view of graphic design, the fact that we are dealing with XML should not worry us much. All that is needed is for people who know colors and shapes to give us the generated file, which we will attach to the project and Visual Studio will do the rest. Unfortunately, this approach is too good to be true. This whole elaborate plan comes down to the fact that sooner or later - and as we can guess rather sooner - we have to start talking about integrating the image with process functionality, which is what we are paid for. Functionality is current process data and interface behavior. However, we define data, i.e. sets of allowed values ​​and operations performed on them, using types and we need to start talking about them.
+
+### 1.6. Partial Class
+
+Looking for a solution to this puzzle of what is ours and what is the result of some editor's operation. We may start by noticing a seemingly trivial fact, namely the file we have edited. is paired with another file. When we open its pair, we find that it contains CSharp text. Moreover, we see the word partial, so it contains a partial definition of the class. Maybe these two files create one class, one type, as we talked about previously discussion related to the topic of partial definitions, i.e. partial. In the previously discussed cases of partial definitions, I showed that the final type definition is created by mixing the text of the individual parts. This only makes sense if the parts are written in the same language - they have the same syntax and semantics. In the case under consideration, this is not met. Here, trying to mix texts with different components must lead to a result that is not compatible with any language. Our suspicions are confirmed because as we can see the first element of this file contains the `class` attribute and the name of the partial class that is paired.
+
+### 1.7. XAML-Semantics
+
+The syntax and semantics of XML files defined by the specification are not sufficient to explain our concerns. Let's try to explain what the word `Grid` means in a piece of XAML text taken from an example in the repository.
+
+From the context menu, we can go to the definition of this word and see that an additional window opens with the definition of the class with the same name. There is a parameter-less constructor for this class. This allows us to guess that the meaning of this entry is as follows: call the parameter-less constructor and, consequently, create and initialize an object of this class. Analyzing the subsequent elements and attributes of this XML file, we see that they refer to properties, i.e. properties of this class.
+
+### 1.8. Control and rendering
+
+To put it simply, rendering is an activity of creating a composition of pixels on the screen following some formal description - in our case, it is turning text into a living image. Since we compose pixels on the screen, we can only talk about the program execution time. In the case of object-oriented programming, this formal description existing during program execution must be a set of objects connected in a structure, i.e. a graph. Objects are instantiated based on reference types. Therefore, the types that we will use to describe the image must have a common feature, namely an assigned shape. Therefore, the entire image must be a composition of typical shapes that enable the implementation of two additional functions, such as entering data and executing commands. Additionally, these shapes must also be adaptable to current needs. All this can be achieved thanks to the polymorphism paradigm and properties of types.
+
+### 1.9. GUI as a Tree of Controls
+
+So let's go back to the XAML file, where we see the mechanism for creating objects. And now we know that the objects we create must have a common feature, namely, that they can be rendered. If an object is created, what should we do with a reference to it - for example, we create an object based on the definition of the `Grid` class. If nothing, the garbage collector will deal with it immediately to destroy it. Therefore, let us assume that each object created in compliance with the hierarchy of elements of an XML file is a collection of internal objects. In such a case, the mentioned `Grid` object would be added to the `MainWindow` class, but it is not a collection. Note that it inherits from the `Window` class, which may already be or contain such a collection. As a result, a tree of objects is created, the root element of which - i.e. the trunk - is the `MainWindow` class, which is a partial class and inherits from the `Window` class.
+
+### 1.10. What is a control?
+
+A systematic discussion of the XAML language is a topic for an independent examination. Let's assume we get an XAML document from the work of aesthetics, ergonomics, and business process specialists. Without going into the details of this file, we can notice that the image created on the screen is also tree-like and consists of images that are further composed of subsequent images. In our example, the window is a kind of array whose cells contain a list, keys, text fields, etc. In other words, each object we have created is rendered on the screen, i.e. each class formally describing this object must have an associated appearance, so the rules for creating a certain pixel composition. These classes are commonly called controls. So, without going into details, a control is a class definition that implements functionality reproducing a certain shape and behavior on the screen.
+
+In other words, any control is a type that encapsulates user interface functionality and is used in client-side applications. This type has associated shape and responsibility to be used on the graphical user interface. The `Control` is a base class used in .NET applications, and the MSDN documentation explains it in detail. A bunch of derived classes inheriting from this class have been added to the GUI framework, for example, `Button`.
+
+### 1.11. XAML Compilation Process
+
+Therefore, we can consider it very likely to be a scenario in which a document written in compliance with a certain language based on XML syntax is converted to the CSharp language. After this, they can be merged into one unified text, creating a unified class definition as a result of merging it from two parts. As a result, we can return to the well-known world of programming in CSharp. We call this new language XAML. According to the scenario presented here, we do not need to know this language. And that would be true as long as a static image is to be created. However, we need to bring it to life, i.e. visualize the process state and the behavior of the processing process, i.e. display process data, enable data editing, and respond to user commands. We can be reassured by the fact that, in addition to the XAML part, we have a part in CSharp, called code-behind. Additionally, if the compiler can convert XAML to CSharp, maybe we can write everything in CSharp right away. The answer to the question of whether it is possible not to use XAML is yes, so the temptation is great. Unfortunately, this approach is costly. Before we start estimating them, we need to understand where they come from, but remember that we have three options. Only Blend, only CSharp, and some combination of them.
+
+### 1.12. Conversion of XAML to CSharp
+
+To estimate the previously mentioned costs of converting XAML to CSharp and better understand the mechanisms of operation of the environment, we need to look at what the compiler does based on the analysis of the program text. Let's do a short analysis without going into details. In the class constructor, we will find a call to the `InitializeComponent` method, which - at first glance - is not present, but the compiler does not report an error, so it is there somewhere. From the context menu, let's go to the definition in the text where this method is defined. From the header of the open file we can see that this text is automatically generated, but also note that it does not contain a simple conversion of the XAML text to CSharp, but instead passes the path to the XAML file to the `LoadComponent` method. The functionality of this method is provided by the library, but from the description we can learn that it creates all objects using reflection. Reflection is a higher level of education and these are the costs. Without reflection, error-free conversion of XAML to CSharp is generally impractical or even impossible.
+
+## 2. Bootstrap Sequence
+
+In object-oriented programming, launching a program must cause instantiation and initialization of a first object. Its constructor therefore contains the instruction that is first executed by the operating system process to be a platform for running the program. This raises the question of how to find it.
+
+Each project contains a configuration file. In the project, its content can be read using the context menu. And here we find the place where we can choose the starting object. There is only one to choose from, and its name syntax resembles a type name. Since this is a type, it is worth asking how the environment selects types to this list. Could there be more items on this list?
+
+Since this is a starting object, the identifier in the dropbox must be the class name. We find the `App` type in the class view tree. After opening, we see that it is XML-compliant text. Notice that this file is one of a pair of linked files. The second one is a CSharp file, but it's just an empty definition and doesn't even have a constructor. This is another example of a partial class written in two languages, so we expect XAML to CSharp conversion and text mixing. In this method, we can find a reference to the XAML file, namely an assignment to the `StartupUri` property pointing to the previously parsed file containing the definition of the graphical user interface, often called shell.
+
+It is worth paying attention to the fact that this class inherits from the `Application` class. The definition of this class is practically empty, i.e. it doesn't even have a constructor, which means that the default constructor is executed, i.e. does nothing. However, this allows you to define your parameter-less constructor. You can also overwrite selected methods from the base class to adapt the behavior to the program's individual needs. We can locate the required auxiliary activities using the mentioned language constructs here before implementing business logic. A typical example is preparing the infrastructure related to program execution tracking, calling the `Dispose` operation for all objects that require it before the program ends, and creating additional objects related to business logic or preparing the infrastructure for dependency injection.
 
 ## 3. See also
 
 - [XAML in WPF](https://docs.microsoft.com/dotnet/framework/wpf/advanced/xaml-in-wpf)
 - [TreeView Overview](https://docs.microsoft.com/dotnet/framework/wpf/controls/treeview-overview?view=netframework-4.7.2)
-
-<!-- 
-- [Dane graficzne - Generowanie Interfejsu Graficznego](#dane-graficzne---generowanie-interfejsu-graficznego)
-  - [Praca z kodem](#praca-z-kodem)
-    - [Śledzenie Zmian](#śledzenie-zmian)
-    - [Czemu xml](#czemu-xml)
-    - [Integracja funkcjonalności i grafiki](#integracja-funkcjonalności-i-grafiki)
-    - [Klasa częściowa](#klasa-częściowa)
-    - [xaml-semantyka - tworzenie nowych obiektów](#xaml-semantyka---tworzenie-nowych-obiektów)
-    - [Kontrolka i renderowanie](#kontrolka-i-renderowanie)
-    - [GUI jako drzewo kontrolek](#gui-jako-drzewo-kontrolek)
-    - [Co to jest kontrolka](#co-to-jest-kontrolka)
-    - [Kompilacja xaml](#kompilacja-xaml)
-    - [Konwersja xaml na CSharp](#konwersja-xaml-na-csharp)
-    - [Refleksja](#refleksja)
-  - [Sekwencja uruchomienia](#sekwencja-uruchomienia)
-  - [Praca domowa](#praca-domowa)
-  - [Zakończenie](#zakończenie)
-
-## Praca z kodem
-
-### Czemu xml
-
-Pewnie pierwszym zaskoczeniem jest to, że zamiast CSharp mamy xml. Są tego co najmniej dwa powody. Pierwszym jest to, że proces renderingu grafiki nie jest związany z implementacją algorytmów akurat w języku CSharp. Jak to wielokrotnie podkreślałem jest wiele języków, które możemy wykorzystać w tym celu. Więc pierwszy powód to przenośność rezultatu pracy. Drugi powód jest związany z użyciem edytora Blend, więc jakiegoś narzędzia programowego. Przypomnę, że standard xml, tak w ogóle powstał jako język przeznaczony do wymiany danych pomiędzy programami, czyli do integracji aplikacji. Tu widzimy, jak to działa w praktyce dla Blend i Visual Studio. Blend i Visual Studio to właśnie dwa niezależne programy, których funkcjonalność jest kompatybilna względem siebie.
-
-### Integracja funkcjonalności i grafiki
-
-Z punktu widzenia projektowania grafiki fakt, że mamy do czynienia z xml nas specjalnie nie powinien martwić. Wystarczy, że osoby znające się na kolorach i kształtach dadzą nam wygenerowany plik, który my dołączymy do projektu i nich Visual Studio zrobi resztę. No niestety to podejście jest zbyt piękne, by było realne. Cały ten misterny plan rozbija się o fakt, że prędzej czy później - a jak się możemy domyślać raczej prędzej - musimy zacząć mówić o integracji obrazka z funkcjonalnością procesową, a więc to za co nam płacą. Funkcjonalność to aktualne dane procesowe i zachowanie się interfejsu. My natomiast dane, czyli zbiory dopuszczanych wartości i operacje na nich realizowanych, definiujemy używając typów i o nich musimy zacząć mówić.
-
-### Klasa częściowa
-
-Szukanie rozwiązania tego dylematu, co nasze, a co wynik działania jakiegoś edytora, rozpoczniemy od zauważenia pozornie błahego faktu, a mianowicie plik, który edytowaliśmy jest połączony w parę z innym plikiem. Jak otworzymy jego parę w edytorze to stwierdzamy, że jest to tekst CSharp. Co więcej widzimy słowo partial, więc zawiera on częściową definicję klasy. A może te dwa pliki tworzą jedną klasę, jeden typ zgodnie z tym o czym mówiliśmy poprzednio w temacie definicji częściowych, czyli partial. W omawianych poprzednio przypadkach definicji częściowych pokazywałem, że ostateczna definicja powstaje w wyniku zmieszania tekstu poszczególnych części. To ma sens tylko wtedy, jeśli części są napisane w tym samym języku, więc mają tą samą składnię i semantykę. W rozważanym przypadku to oczywiście nie jest spełnione. Tu próba mieszania tekstów o różnych składniach musi doprowadzić do rezultatu, który nie jest zgodny z żadnym językiem. Wróćmy zatem do poprzedniego pliku xml. Nasze podejrzenia się potwierdzają,  bo jak widzimy, w pierwszym elemencie tego pliku jest atrybut `class` i nazwa klasy częściowej, która jest połączona w parę.
-
-### xaml-semantyka - tworzenie nowych obiektów
-
-Składnia i semantyka plików xml zdefiniowana przez specyfikację tego standardu nie jest wystarczająca do wyjaśnienia naszych obaw, ale przecież do każdego pliku xml możemy dodać własne reguły semantyczne, które określą przykładowo, co tu oznacza słowo `Grid`. Z menu kontekstowego możemy przejść do definicji tego słowa i widzimy, że otwiera się dodatkowe okienko z definicja klasy o tej samej nazwie i gdzie wyróżniony jest konstruktor bezparametrowy dla tej klasy. To pozwala uprawdopodobnić tezę, że znaczenie tego zapisu jest następujące: wywołaj konstruktor bezparametrowy i w konsekwencji utwórz i zainicjuj obiekt tej klasy.
-Analizując kolejne elementy i atrybuty tego pliku xml widzimy, że odwołują się one do properties, czyli właściwości tej klasy.
-
-### Kontrolka i renderowanie
-
-Upraszczając, renderowanie to proces tworzenia kompozycji pikseli na ekranie korzystając z jakiegoś opisu – czyli u nas to zamiana tekstu w żywy obraz. Ponieważ układamy piksele na ekranie, to możemy mówić wyłącznie o czasie realizacji programu. W przypadku programowania obiektowego ten jakiś opis istniejący w trakcie realizacji programu musi być zbiorem obiektów połączonych w strukturę, a więc grafem. Obiekty są tworzone na podstawie typów. Zatem typy, które użyjemy do opisu obrazka muszą mieś wspólną cechę, a mianowicie przypisany kształt. Cały obrazek zatem musi być kompozycją typowych kształtów, które umożliwiają realizację dwóch dodatkowych funkcji, jak wprowadzanie danych i wykonywanie poleceń. Dodatkowo te kształty muszą również dać się adoptować do aktualnych potrzeb, co widzieliśmy w przypadku sposobu wypełnienia wybranego fragmentu ekranu. To wszystko można zrealizować dzięki polimorfizmowi i właściwościom czyli property typów.
-
-### GUI jako drzewo kontrolek
-
-Wróćmy zatem do pliku xaml, w którym widzimy mechanizm tworzenia obiektów. I teraz już wiemy, że tworzone obiekty muszą mieć wspólną cechę, a mianowicie dać się renderować. Skoro powstaje obiekt, to co zrobić z referencją do niego – przykładowo tworzymy obiekt na podstawie definicji klasy Grid. Jeśli nic, to garbage collector zajmie się nim natychmiast by go unicestwi. Przyjmijmy zatem tezę, że każdy obiekt utworzony zgodnie z hierarchią elementów pliku xml to kolekcja obiektów wewnętrznych. W takim przypadku wspomniany obiekt Grid byłby dodany do naszej klasy, ale przecież ona nie jest kolekcją. Tu zauważmy, że dziedziczy ona z klasy Window, która już taką kolekcję może być lub ją zawierać. W rezultacie tworzy się drzewko obiektów, którego elementem centralnym – czyli pniem - jest nasza klasa, która jest klasą częściową i dziedziczy z klasy Window.
-
-### Co to jest kontrolka
-
-Systematyczne omówienie języka xaml to temat na osobny kurs, więc tu przyjmijmy, że dostajemy ten plik jako rezultat działania specjalistów od estetyki, ergonomii i procesu biznesowego. Bez wnikania w szczegóły tego pliku, możemy zauważyć, że utworzony na ekranie obrazek też ma drzewiastą naturę i składa się z obrazków, które dalej składają się z następnych obrazków. W naszym przykładzie okienko to rodzaj tablicy, w komórkach której znajdują się lista, klawisze, pola tekstowe, itd. Innymi słowy każdy obiekt, który utworzyliśmy jest renderowany na ekranie, czyli każda klasa opisująca formalnie ten obiekt musi mieć skojarzony wygląd, więc reguły tworzenia pewnej kompozycji pikseli. Te klasy nazywamy potocznie kontrolkami. Więc nie wchodząc w szczegóły kontrolka to klasa, która implementuje funkcjonalność pozwalającą odwzorować pewien kształt i zachowanie na ekranie.
-
-### Kompilacja xaml
-
-Za wielce prawdopodobny możemy zatem przyjąć scenariusz, w którym plik xml napisany zgodnie z regułami pewnego języka bazującego na składni xml, jest konwertowany do języka CSharp i następnie możemy już te ujednolicone składniowo i semantycznie teksty wymieszać, tworząc z dwóch części ujednoliconą definicję klasę, a więc wrócić do dobrze znanego nam świata programowania w CSharp. Ten nowy język nazywamy xaml. Zgodnie z przedstawionym tu scenariuszem nie musimy nawet tego języka znać. I to by była prawda, gdyby wystarczyło utworzyć statyczny obrazek. My jednak musimy go ożywić, tzn. zobrazować stan procesu i zachowanie procesu przetwarzania, a więc wyświetlić dane procesowe, umożliwić ich edycję i reagować na polecenia użytkownika. Do tego tematu wrócimy w trakcie następnej lekcji. Może nas uspokajać fakt, że oprócz części w xaml mamy część w CSharp, zwaną code-behind i to że skoro kompilator może dokonać konwersji xaml na CSharp, to może my możemy wszystko napisać od razu w CSharp. Odpowiedź na pytanie czy jest to możliwe by nie używać xaml, jest twierdząca, więc pokusa jest duża. Niestety są koszta i to niemałe. Przed przejsciem do ich szacowania, musimy zrozumieć skąd się biorą, ale pamiętajmy, że mamy trzy opcje. Tylko Blend, tylko CSharp i jakaś ich kombinacja.
-
-### Konwersja xaml na CSharp
-
-Żeby te wspomniane poprzednio koszty konwersji zaml na CSharp oszacować i lepiej zrozumieć mechanizmy działania środowiska, musimy popatrzeć, co robi kompilator na podstawie analizy tekstu programu. Zróbmy krótką analizę bez wnikania w szczegóły. W konstruktorze klasy znajdziemy wywołanie metody InitializeComponent, której - na pierwszy rzut oka - nie ma w tekście programu, ale kompilator nie zgłasza błędu, więc gdzieś jest. Z menu kontekstowego przejdźmy do definicji w tekście, gdzie ta metoda jest zdefiniowana. Z nagłówka otwartego pliku widzimy, że ten tekst jest automatycznie wygenerowany, ale zauważmy też, że nie zawiera on prostej konwersji tekstu zaml na CSharp, natomiast przekazuje on ścieżkę do pliku zaml do metody LoadComponent. Funkcjonalność tej metody jest dostarczana przez bibliotekę, ale z opisu możemy się dowiedzieć, że to ona tworzy wszystkie obiekty używając refleksji. Refleksja to wyższy stopień wtajemniczenia i to są te koszty. Bez refleksji konwersja 1:1 zaml na CSharp w ogólnym przypadku jest niemożliwa.
-
-### Refleksja
-
-Refleksja to temat, o którym mówiliśmy już trochę, więc można do niego wrócić. Tu jednak zakończymy nasze dociekania. Wrócimy jeszcze do tego tematu w następnej lekcji w kontekście automatycznego wiązania warstw w czasie komponowania programu polegającego na tworzeniu obiektów i wykorzystaniu referencji do nich by utworzyć strukturę obiektów odpowiedzialną za kompozycję, dwukierunkowy transfer danych i zachowanie się GUI.
-
-## Sekwencja uruchomienia
-
-W programowaniu obiektowym uruchomienie aplikacji musi skutkować utworzeniem pierwszego obiektu. Jego konstruktor zatem zawiera instrukcję, która jest jako pierwsza realizowana przez proces utworzony przez system operacyjny. Tu rodzi się pytanie, jak ją znaleźć.
-
-Każdy projekt zawiera swój plik konfiguracyjny. W analizowanym projekcie jego zawartość można odczytać korzystając z menu kontekstowego. I tu znajdujemy miejsce, w którym możemy wybrać obiekt startowy. Do wyboru jest tylko jeden, a składnia jego nazwy przypomina nazwę typu. Skoro to jest typ, to tu warto sobie zadać pytanie jak środowisko deleguje typy do tej listy? Czy tu może być więcej elementów na tej liście?
-
-Skoro to ma być obiekt startowy to identyfikator w dropboxie musi być nazwą klasy. W drzewku class view znajdujemy odpowiedni typ. Po otwarciu widzimy, że jest to teks zgodny z xml z rozszerzeniem zaml. Po synchronizacji z resztą plików można zauważyć, że plik ten jest jednym z pary połączonych plików. Drugim jest plikiem CSharp, ale jest to pusta definicja i nie ma tu nawet konstruktora. Jest to kolejny przykład klasy częściowej napisanej w dwóch językach, a więc spodziewamy się konwersji zaml na CSharp i mieszania tekstów. Wynik konwersji możemy znaleźć wracając do drzewka klas. W dolnej części okna znajduje się lista dwóch metod. Wybierając dowolną z nich otwiera się tekst, który został wygenerowany automatycznie i który zawiera metodę statyczną o nazwie Main tworzącą obiekt tej klasy. Wywołuje ona metodę instancji utworzonej klasy Initialize. W tej metodzie możemy znaleźć odwołanie do pliku zaml, a mianowicie podstawienie do property StartupUri wskazujące na poprzednio analizowany plik zawierający definicję graficznego interfejsu użytkownika, często zwanego shell.
-
-Tu warto zwrócić uwagę, na fakt, że ta klasa dziedziczy po klasie Application. W ramach pracy domowej proszę sprawdzić, czy można zadeklarować więcej klas, które dziedziczą po klasie Application i jak to wpływa na zwartość drop-box’a w konfiguracji projektu. Definicja tej klasy jest praktycznie pusta, tzn. nie ma nawet konstruktora, co oznacza, że wykonywany jest konstruktor domyślny, czyli rób nic. Co jednak pozawala na to, żeby tu zdefiniować własny konstruktor bezparametrowy. Można też nadpisać wybrane metody zklasy bazowej, by zachowanie dopasować do indywidualnych potrzeb programu. Z wykorzystaniem wspomnianych konstrukcji językowych tu możemy zlokalizować wymagane działania pomocnicze przed rozpoczęciem realizacji logiki biznesowe. Typowym przykładem jest przygotowanie infrastruktury związanej ze śledzeniem programu, wywoływanie przed zakończeniem programu operacji Dispose dla wszystkich obiektów, które tego wymagają, ale również tworzenie dodatkowych obiektów związanych z logika biznesową lub przygotowanie infrastruktury do wstrzykiwania zależności.
-
-## Praca domowa
-
-Na koniec lekcji, jak zwykle, praca domowa. Aby następna lekcja była bardziej zrozumiała proponuję trzy zadania w ramach pracy domowej.
-
-Po pierwsze, proszę utworzyć własny projekt WPF i zmienić domyślny obiekt startowy. Drugie zadanie to dodać dwie metody, które będą wywołane odpowiednio na początku i na końcu programu. Wszystko to sprawdzić w testach jednostkowych. Uprzedzam, że to ostanie zadanie nie jest banalne.
-
-## Zakończenie
-
-W tej lekcji to już wszystko. Dziękuję za poświęcony czas. W następnej lekcji będziemy kontynuowali omawianie tych zagadnień ze szczególny uwzględnieniem odprzężenia widoku oraz danych/funkcjonalności, które sterują interfejsem graficznym. Omówione tu przykłady ograniczyłem do współdziałania z technologią WPF. Musimy jednak pamiętać, że poznane konstrukcje językowe są uniwersalne i rozszerzalne, innymi słowy mogą być wykorzystane również w kontekście innych technologii.
-
--->
