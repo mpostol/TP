@@ -29,12 +29,6 @@
   - [3.4. MVVM Implementation Using Project Concept](#34-mvvm-implementation-using-project-concept)
   - [3.5. MVVM implementation Conclusion](#35-mvvm-implementation-conclusion)
   - [3.6. Layered architecture Benefits](#36-layered-architecture-benefits)
-- [4. Bindings - User Interface Interoperability](#4-bindings---user-interface-interoperability)
-  - [4.1. Coupling Controls with Data](#41-coupling-controls-with-data)
-  - [4.2. DataContext](#42-datacontext)
-  - [4.3. Binding](#43-binding)
-  - [4.4. INotifyPropertyChange](#44-inotifypropertychange)
-  - [4.5. ICommand](#45-icommand)
 
 ## 1. Introduction
 
@@ -62,7 +56,7 @@ It is not difficult to imagine a scenario in which, when performing a certain op
 
 Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up scenario - if everything goes well. This means we must deal with
 
-- event handling - deciding when a window should be exposed on the screen. 
+- event handling - deciding when a window should be exposed on the screen.
 - view - deciding what the window should look like.
 
 It is worth recalling here that a window is a class that inherits from the `Window` class and for the window to appear you need to call the [Show][Show] method.
@@ -135,7 +129,6 @@ If the application is to be built according to the MVVM model, we can decide how
 
 After taking a closer look at the example implementation of the `View` layer in the `MainWindow` class, we notice that the empty code-behind rule is not fully held. The exception we see here is solely related to ensuring layer decoupling - i.e. ensuring hierarchical references.
 
-
 ### 3.3. MVVM as Sub-layers of the Presentation Layer
 
 The MVVM is a design pattern commonly used in Windows Presentation Foundation (WPF for short) to structure the code and separate concerns. Let me stress, here, we have the word _"presentation"_ in the name, in the context of the master architecture, we can assume that the layers of the MVVM model contribute to the presentation layer of the PLD master architectural model. Assuming that MVVM is an implementation of the Presentation layer in the master PLD model let's next answer a question: how to derive implementation methodology of the MVVM from the general layered model concept?
@@ -164,14 +157,14 @@ Let's start with the fact that our sample program has three projects. The first 
 
 Using this example, let's define a few simplified rules that will make it easier to implement the MVVM programming pattern.
 
-1. Only definitions that refer to types defined in the PresentationFramework should be gathered in the View layer. 
-2. These definitions can only refer to types defined in the ViewModel layer. 
+1. Only definitions that refer to types defined in the PresentationFramework should be gathered in the View layer.
+2. These definitions can only refer to types defined in the ViewModel layer.
 3. By design, include text written in XAML and empty definitions in the code-behind part in the View layer.
 4. In the `ViewModel` layer, define all types which are  bound to the properties of the controls.
 5. Placing definitions of auxiliary types here to meet the requirements for this layer is optional. Due to the universal nature of these implementations, we often use external libraries.
 6. To put it simply, the Model layer is everything else related to implementation of the Presentation layer of the master PLD programming pattern. The Model layer encapsulates the functionality and data-related operations relevant to implementing a graphical user interface and ensuring a clean separation from the UI rest of the program. It allows developers to work on business logic independently of the view, making the application easier to test, maintain, and evolve.
 
-Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the Presentation, Logic, and Data (PLD) master programming pattern. By design, to implement the MVVM collect types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between namespaces, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer. 
+Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the Presentation, Logic, and Data (PLD) master programming pattern. By design, to implement the MVVM collect types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between namespaces, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer.
 
 When implementing layers using namespaces, we must consider the problem that these layers are not visible in the solution with the naked eye. A trade-off seems to be keeping folder names and namespaces in sync. The relationship is loose, but when you create a new class in a selected folder, it is added to a namespace whose name is created as a hierarchical combination of the default name, the names of the folders that make up the hierarchy, and with a suffix determined by the name of the final folder in the hierarchy.
 
@@ -186,65 +179,11 @@ Hierarchical architecture is often contrasted with spaghetti architecture if spa
 5. Efficiency of the design process may be increased by applying the principle of separation of concerns, i.e. good planning of layers will avoid being distracted by solving several threads at the same time.
 6. Layers can not only be implemented into separate projects but deployed on other physical machines. (a) Executing the same layer in parallel on many computers horizontal scalability is deployed. (b) The ability to execute individual layers on independent hardware platforms means vertical scalability.
 
-## 4. Bindings - User Interface Interoperability
-
-### 4.1. Coupling Controls with Data
-
-Let's look at an [example][TextBox] where the `TextBox` control is used. Its task is to expose a text on the screen, i.e. a stream of characters. The current value, so what is on the screen, is provided via the `Text` property. By design, it allows reading and writing `string` value. The equal sign after the `Text` identifier must mean transferring the current value to/from the selected place. We already know that the selected place must be a property of some object. The word `Binding` means that it is attached somehow to [ActionText][ActionText]. Hence, the [ActionText][ActionText] identifier is probably the name of the property defined in one of our types. Let's find this type using the Visual Studio context menu navigation. As we can see, it works and the property has the name as expected.
-
-![asas](.Media/TextBox-ActionText.gif)
-
-### 4.2. DataContext
-
-As you can notice, the navigation works, so VisualStudio has no doubts about the type of instance this property comes from. If Visual Studio knows it, I guess we should know it too. The answer to this question is in these three lines of the `MainWindow` XAML definition.
-
-``` xaml
-    <Window.DataContext>
-      <vm:MainViewModel />
-    </Window.DataContext>
-```
-
-Let's start with the middle line, where we have the full class name. The namespace has been replaced by the `vm` alias defined a few lines above. The class definition has been opened as a result of previous navigation to a property containing the text for the `TextBox` control. Let's consider what the class name means here. For the sake of simplicity, let's first look up the meaning of the `DataContext` identifier. It is the name of the property. It is of the object type. The `object` is the base type for all types. Since it's a property, we can read or assign a new value to it. Having discarded all the absurd propositions, it is easy to guess that the `MainViewModel` identifier here means a parameter-less constructor of the `MainViewModel` type, and this entire fragment should be recognized as the equivalent of an association statement to the `DataContext` property of a newly created instance of the `MainViewModel` type. In other words, it is equivalent to the following statement
-
-``` CSharp
-  DataContext = new MainViewModel();
-```
-
-Finally, at run-time, we can consider this object as a source and repository of process data used by the user interface. From a data point of view, it creates a kind of mirror of what is on the screen.
-
-### 4.3. Binding
-
-Let's go back to the previous example with the `TextBox` control and coupling its `Text` property with the [ActionText][ActionText] property from the class whose instance was assigned to `DataContext`. Here, there is a magic word `Binding` that may be recognized as a virtual connection to transfer values between. When asked how this happens and what the word `Binding` means, i.e. when asked about the semantics of this notation, I usually receive an answer like this it is some magic wand, which should be read as an internal implementation of WPF, and `Binding` is a keyword of the XAML language. This explanation would be sufficient, although it is a colloquialism and simplification. Unfortunately, at least, we need to understand when this transfer is undertaken. The answer to this question is fundamental to understanding the requirements for the classes that can be used to create an object whose reference is assigned to the `DataContext` property. The main goal is to keep the screen up to date. To find the answer, let's try to go to the definition of this word using the context menu or the F12 key.
-
-![sdsds](.Media/TextBox-ActionText.gif) <!-- zrobić gifa -->
-
-It turns out that `Binding` is the identifier of a class or rather a constructor of this class. This must consequently mean that at this point a magic wand means creating a `Binding` instance responsible for transferring values ​​from one property to another. The properties defined in the `Binding` type can be used to control how this transfer is performed. Since this object must operate on unknown types, reflection is used. This means that this mechanism is rarely analyzed in detail. The colloquial explanation previously given that the transfer is somehow carried out is quite common because it has its advantages in the context of describing the effect.
-
-The [AttachedProperty][AttachedProperty] class definition simulates this action providing the functionality of assigning a value to the indicated property of an object whose type is unknown.
-
-### 4.4. INotifyPropertyChange
-
-As I mentioned earlier, using properties defined in the `Binding` type, we can parameterize the transfer process and, for example, limit its direction. Operations described by XAML text are performed once at the beginning of the program when the MainWindow instance is created. Therefore, we cannot here specify the point in time when this transfer should be carried out. To determine the point in time when an object of the `Binding` type should trigger this transfer, let's look at the structure of the [ActionText][ActionText] property from the `MainViewWindow` type. Here we see that the setter performs two additional methods. In the context of the main problem, the `RaisePropertyChanged` method is invoked. This method activates an event required to implement the `INotifyPropertyChanged` interface. This event is used by objects of the `Binding` class to invoke the current value transfer. By activating this event, we call methods whose delegates have been added to the event. If the class does not implement this interface or the activation of the `PropertyChanged` event required by the mentioned interface does not occur, the new value will not be passed to and will not be refreshed on the screen - the screen will be static.
-
-It is typical communication where the `MainViewWindow` instance notifies about the selected value change and the `MainWindow` instance pulls a new value and displays it. In this kind of communication the `MainViewWindow` has a publisher role and the `MainWindow` is the subscriber. It is worth stressing that communication is a run-time activity. It is initiated in the opposite direction compared with the design time types relationship. Hence we can recognize it as an inversion of control or a callback communication method.
-
-### 4.5. ICommand
-
-The analysis of the previous examples shows the screen content synchronization mechanism with the property values change ​​of classes dedicated to providing data for the GUI. Now we need to explain the sequence of operations carried out as a consequence of issuing a command by the user interface, e.g. clicking on the on-screen key - `Button`. We have an example here, and its `Command` property has been associated, as before, with something with the identifier [ShowTreeViewMainWindowCommend][ShowTreeViewMainWindowCommend]. Using navigation in Visual Studio, we can go to the definition of this identifier and notice that it is again a property from the `MainViewWindow` class, but this time of the type `ICommand`. This time, this binding is not used to copy the property value but to convert a key click on the screen, e.g. using a mouse, into calling the `Execute` operation, which is defined in the `ICommand` interface and must be implemented in the class that serves to create an object and substitute a reference to it into this property.
-
-For the sake of simplicity, the `ICommand` interface is implemented by a helper class called [RelayCommand][RelayCommand]. In the constructor of this class, you should place a delegate to the method to be called as a result of the command execution. The second constructor is helpful in dynamically changing the state of a button on the screen. This can block future events, i.e. realize a state machine. And this is exactly the scenario implemented in the examined example program. Please note the `RaiseCanExecuteChanged` method omitted in the previous explanation.
-
-[ExDataManagement]: https://github.com/mpostol/TP/blob/5.13-India/
 [Show]:             https://learn.microsoft.com/dotnet/api/system.windows.window.show
 [Control]:          https://learn.microsoft.com/dotnet/api/system.windows.controls.control
 [Visibility]:       https://learn.microsoft.com/dotnet/api/system.windows.uielement.visibility
 [IsEnabled]:        https://learn.microsoft.com/dotnet/api/system.windows.uielement.isenabled
 
-
+[ExDataManagement]: https://github.com/mpostol/TP/blob/5.13-India/
 [MainWindow]:       https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.View/MainWindow.xaml#L1-L46
 [OnInitialized]:    https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.View/MainWindow.xaml.cs#L27-L33
-[TextBox]:          https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.View/MainWindow.xaml#L44
-[ActionText]:       https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.ViewModel/MainViewModel.cs#L74-L83
-[AttachedProperty]: https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/DataStreams/DataStreams/Reflection/AttachedProperty.cs#L20-L27
-[RelayCommand]:     https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.ViewModel/MVVMLight/RelayCommand.cs#L24-L101
-[ShowTreeViewMainWindowCommend]: https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.ViewModel/MainViewModel.cs#L104-L107

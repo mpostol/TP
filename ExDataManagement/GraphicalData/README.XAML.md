@@ -29,7 +29,13 @@
   - [1.11. XAML Compilation Process](#111-xaml-compilation-process)
   - [1.12. Conversion of XAML to CSharp](#112-conversion-of-xaml-to-csharp)
 - [2. Bootstrap Sequence](#2-bootstrap-sequence)
-- [3. See also](#3-see-also)
+- [3. Bindings - User Interface Interoperability](#3-bindings---user-interface-interoperability)
+  - [3.1. Coupling Controls with Data](#31-coupling-controls-with-data)
+  - [3.2. DataContext](#32-datacontext)
+  - [3.3. Binding](#33-binding)
+  - [3.4. INotifyPropertyChange](#34-inotifypropertychange)
+  - [3.5. ICommand](#35-icommand)
+- [4. See also](#4-see-also)
 
 ## 1. Introduction (Preface)
 
@@ -101,7 +107,61 @@ Since this is a starting object, the identifier in the dropbox must be the class
 
 It is worth paying attention to the fact that this class inherits from the `Application` class. The definition of this class is practically empty, i.e. it doesn't even have a constructor, which means that the default constructor is executed, i.e. does nothing. However, this allows you to define your parameter-less constructor. You can also overwrite selected methods from the base class to adapt the behavior to the program's individual needs. We can locate the required auxiliary activities using the mentioned language constructs here before implementing business logic. A typical example is preparing the infrastructure related to program execution tracking, calling the `Dispose` operation for all objects that require it before the program ends, and creating additional objects related to business logic or preparing the infrastructure for dependency injection.
 
-## 3. See also
+## 3. Bindings - User Interface Interoperability
+
+### 3.1. Coupling Controls with Data
+
+Let's look at an [example][TextBox] where the `TextBox` control is used. Its task is to expose a text on the screen, i.e. a stream of characters. The current value, so what is on the screen, is provided via the `Text` property. By design, it allows reading and writing `string` value. The equal sign after the `Text` identifier must mean transferring the current value to/from the selected place. We already know that the selected place must be a property of some object. The word `Binding` means that it is attached somehow to [ActionText][ActionText]. Hence, the [ActionText][ActionText] identifier is probably the name of the property defined in one of our types. Let's find this type using the Visual Studio context menu navigation. As we can see, it works and the property has the name as expected.
+
+![asas](.Media/TextBox-ActionText.gif)
+
+### 3.2. DataContext
+
+As you can notice, the navigation works, so VisualStudio has no doubts about the type of instance this property comes from. If Visual Studio knows it, I guess we should know it too. The answer to this question is in these three lines of the `MainWindow` XAML definition.
+
+``` xaml
+    <Window.DataContext>
+      <vm:MainViewModel />
+    </Window.DataContext>
+```
+
+Let's start with the middle line, where we have the full class name. The namespace has been replaced by the `vm` alias defined a few lines above. The class definition has been opened as a result of previous navigation to a property containing the text for the `TextBox` control. Let's consider what the class name means here. For the sake of simplicity, let's first look up the meaning of the `DataContext` identifier. It is the name of the property. It is of the object type. The `object` is the base type for all types. Since it's a property, we can read or assign a new value to it. Having discarded all the absurd propositions, it is easy to guess that the `MainViewModel` identifier here means a parameter-less constructor of the `MainViewModel` type, and this entire fragment should be recognized as the equivalent of an association statement to the `DataContext` property of a newly created instance of the `MainViewModel` type. In other words, it is equivalent to the following statement
+
+``` CSharp
+  DataContext = new MainViewModel();
+```
+
+Finally, at run-time, we can consider this object as a source and repository of process data used by the user interface. From a data point of view, it creates a kind of mirror of what is on the screen.
+
+### 3.3. Binding
+
+Let's go back to the previous example with the `TextBox` control and coupling its `Text` property with the [ActionText][ActionText] property from the class whose instance was assigned to `DataContext`. Here, there is a magic word `Binding` that may be recognized as a virtual connection to transfer values between. When asked how this happens and what the word `Binding` means, i.e. when asked about the semantics of this notation, I usually receive an answer like this it is some magic wand, which should be read as an internal implementation of WPF, and `Binding` is a keyword of the XAML language. This explanation would be sufficient, although it is a colloquialism and simplification. Unfortunately, at least, we need to understand when this transfer is undertaken. The answer to this question is fundamental to understanding the requirements for the classes that can be used to create an object whose reference is assigned to the `DataContext` property. The main goal is to keep the screen up to date. To find the answer, let's try to go to the definition of this word using the context menu or the F12 key.
+
+![TextBox Binding to ActionText](.Media/TextBox-ActionText.gif)
+
+It turns out that `Binding` is the identifier of a class or rather a constructor of this class. This must consequently mean that at this point a magic wand means creating a `Binding` instance responsible for transferring values ​​from one property to another. The properties defined in the `Binding` type can be used to control how this transfer is performed. Since this object must operate on unknown types, reflection is used. This means that this mechanism is rarely analyzed in detail. The colloquial explanation previously given that the transfer is somehow carried out is quite common because it has its advantages in the context of describing the effect.
+
+The [AttachedProperty][AttachedProperty] class definition simulates this action providing the functionality of assigning a value to the indicated property of an object whose type is unknown.
+
+### 3.4. INotifyPropertyChange
+
+As I mentioned earlier, using properties defined in the `Binding` type, we can parameterize the transfer process and, for example, limit its direction. Operations described by XAML text are performed once at the beginning of the program when the MainWindow instance is created. Therefore, we cannot here specify the point in time when this transfer should be carried out. To determine the point in time when an object of the `Binding` type should trigger this transfer, let's look at the structure of the [ActionText][ActionText] property from the `MainViewWindow` type. Here we see that the setter performs two additional methods. In the context of the main problem, the `RaisePropertyChanged` method is invoked. This method activates an event required to implement the `INotifyPropertyChanged` interface. This event is used by objects of the `Binding` class to invoke the current value transfer. By activating this event, we call methods whose delegates have been added to the event. If the class does not implement this interface or the activation of the `PropertyChanged` event required by the mentioned interface does not occur, the new value will not be passed to and will not be refreshed on the screen - the screen will be static.
+
+It is typical communication where the `MainViewWindow` instance notifies about the selected value change and the `MainWindow` instance pulls a new value and displays it. In this kind of communication the `MainViewWindow` has a publisher role and the `MainWindow` is the subscriber. It is worth stressing that communication is a run-time activity. It is initiated in the opposite direction compared with the design time types relationship. Hence we can recognize it as an inversion of control or a callback communication method.
+
+### 3.5. ICommand
+
+The analysis of the previous examples shows the screen content synchronization mechanism with the property values change ​​of classes dedicated to providing data for the GUI. Now we need to explain the sequence of operations carried out as a consequence of issuing a command by the user interface, e.g. clicking on the on-screen key - `Button`. We have an example here, and its `Command` property has been associated, as before, with something with the identifier [ShowTreeViewMainWindowCommend][ShowTreeView]. Using navigation in Visual Studio, we can go to the definition of this identifier and notice that it is again a property from the `MainViewWindow` class, but this time of the type `ICommand`. This time, this binding is not used to copy the property value but to convert a key click on the screen, e.g. using a mouse, into calling the `Execute` operation, which is defined in the `ICommand` interface and must be implemented in the class that serves to create an object and substitute a reference to it into this property.
+
+For the sake of simplicity, the `ICommand` interface is implemented by a helper class called [RelayCommand][RelayCommand]. In the constructor of this class, you should place a delegate to the method to be called as a result of the command execution. The second constructor is helpful in dynamically changing the state of a button on the screen. This can block future events, i.e. realize a state machine. And this is exactly the scenario implemented in the examined example program. Please note the `RaiseCanExecuteChanged` method omitted in the previous explanation.
+
+## 4. See also
 
 - [XAML in WPF](https://docs.microsoft.com/dotnet/framework/wpf/advanced/xaml-in-wpf)
 - [TreeView Overview](https://docs.microsoft.com/dotnet/framework/wpf/controls/treeview-overview?view=netframework-4.7.2)
+
+[TextBox]:          https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.View/MainWindow.xaml#L44
+[ActionText]:       https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.ViewModel/MainViewModel.cs#L74-L83
+[AttachedProperty]: https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/DataStreams/DataStreams/Reflection/AttachedProperty.cs#L20-L27
+[RelayCommand]:     https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.ViewModel/MVVMLight/RelayCommand.cs#L24-L101
+[ShowTreeView]:     https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.ViewModel/MainViewModel.cs#L104-L107
