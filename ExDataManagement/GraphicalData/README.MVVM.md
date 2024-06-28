@@ -16,12 +16,13 @@
 ## Table of content <!-- omit in toc -->
 
 - [1. Introduction](#1-introduction)
-- [2. Deployment](#2-deployment)
+  - [1.1. Preface](#11-preface)
+  - [1.2. UI Elements Appearance](#12-ui-elements-appearance)
+  - [1.3. UI Modification](#13-ui-modification)
+  - [1.4. Code-behind](#14-code-behind)
+- [2. GUI Selected Patterns](#2-gui-selected-patterns)
   - [2.1. Window and Pop-up Window](#21-window-and-pop-up-window)
-  - [2.2. UI Elements Appearance](#22-ui-elements-appearance)
-  - [2.3. GUI Modification](#23-gui-modification)
-  - [2.4. Master-detail GUI pattern](#24-master-detail-gui-pattern)
-  - [2.5. Code-behind](#25-code-behind)
+  - [2.2. Master-detail GUI pattern](#22-master-detail-gui-pattern)
 - [3. Layered Architecture](#3-layered-architecture)
   - [3.1. Introduction](#31-introduction)
   - [3.2. View - Inversion of Control](#32-view---inversion-of-control)
@@ -32,7 +33,11 @@
 
 ## 1. Introduction
 
-In the case of graphic data, a window is a self-contained graphical unit created by the program and managed by the operating system. Managed means moving, enlarging, reducing, etc. This, of course, is not surprising since the development of the first Windows operating system, in which the window is the basis for human-machine communication.
+### 1.1. Preface
+
+To follow the discussion in this respect check out the [ExDataManagement.sln][ExDataManagement] solution. All examples are available in the [5.13-India tag][ExDataManagement]. All the examples in concern have been added to the `GraphicalData` folder.
+
+In the case of graphic data, a program window is a self-contained graphical unit created by the program and managed by the operating system. Managed means moving, enlarging, reducing, etc. This, of course, is not surprising since the development of the first Windows operating system, in which the window is the basis for human-machine communication.
 
 The program can, of course, use several windows, as well as several databases or several files. In all cases, we can talk about an independent external data repository. In the case of Windows, however, we must consider an important difference, namely the interaction is two-way. In the case of databases, we can also expect the need to consider dynamic data change. However, only in the case of using the Windows operating system (OS), programs must respond to events triggered by the user.
 
@@ -46,22 +51,7 @@ The program should have a layered structure - it's easy to say, but what is a la
 
 It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath. It may be recognized as a confusion that it should be constructed so it is not aware of the existence of the upper layer, because it is above it. In scenarios like this, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
 
-## 2. Deployment
-
-### 2.1. Window and Pop-up Window
-
- Let's start a Discussion about a graphical user interface implementation by determining how we can bring the content of a program user interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying graphics on the compute screen features**, editing data through it, and responding to user commands. The basic element to compose a Graphical User Interface, we already know, is a Window. An example is shown in the figure below. The primary element (Window ) is created during the bootstrapping by an executing platform according to the description in the program sequence. However, in the examined project, we have one more window. It appears after clicking one of the keys (in Fig. below).
-
-![Pop-up Window](.Media/Pop-upWindow.gif)
-
-Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up scenario - if everything goes well. This means we must deal with
-
-- event handling - deciding when a window should be exposed on the screen.
-- view - deciding what the window should look like.
-
-It is worth recalling here that a window is a class that inherits from the `Window` class and for the window to appear you need to call the [Show][Show] method.
-
-### 2.2. UI Elements Appearance
+### 1.2. UI Elements Appearance
 
 The window element is an organization unit composed using controls. The control UI element is any type that inherits directly or indirectly from the [Control][Control] type. The [Control][Control] class is a base class for most of the user interface elements. It means that types inheriting from the base [Control][Control] type can be rendered on the screen. In other words, they have a graphical representation.
 
@@ -71,19 +61,13 @@ Instead of adding controls to the parent control's collection, we can use the [V
 
 Sometimes controls may be visible on the screen but in static mode. An example of such a mode is an inactive key. The inactive key is visible on the screen but cannot be clicked. Another property, called [IsEnabled][IsEnabled], can be used for this purpose. It can be changed dynamically depending on the state the process is in. It is worth mentioning that GUI should be considered a state machine and the appearance of controls depends on the state of the UI. Hence, the controls should be grouped to change the state only of the selected part of the UI, not just by changing the individual controls.
 
-### 2.3. GUI Modification
+### 1.3. UI Modification
 
 Similarly, by modifying the values ​​of various properties, we change other features of the controls, such as color, shape, filling method, etc. There are many of them. What to modify to refresh the user interface is the first important question. But now we come to the second question of where to make modifications. Of course, there are several answers to this question, and let's now try to analyze them and make some general practical recommendations.
 
 We already know the first answer to the question of where to modify. Of course, it is the `XAML` text. Modification in `XAML` has a disadvantage in that it is essentially limited to assigning constants. It should be emphasized here that default values ​​are already assigned for each property defined by the controls, so there is no need to modify anything for typical behavior. An example is `Visibility`, whose default value is `Visible`. This language allows us to assign any values compliant with the appropriate type but its use to implement algorithms not directly related to GUI control is not a good idea.
 
-### 2.4. Master-detail GUI pattern
-
-The master-detail GUI pattern is commonly used in software applications to display hierarchical data. The master view displays a list or summary of items (e.g., records, files, contacts, products). Users can select an item from this list. When a user selects an item from the master view, the detail view updates to show detailed information about that item. It provides a more comprehensive view, including additional data and related details. Depending on the capability of the hardware the detail view may be displayed on the same window, on the pop-up window, or a window replacing the master one.
-
-In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further.
-
-### 2.5. Code-behind
+### 1.4. Code-behind
 
 Code-behind is a term used to describe the code joined with the `XAML` text. Both form one class definition because they are partial definitions. Therefore, all properties of this type can be modified in the code-behind part. However, this solution has several drawbacks. Let's narrow the discussion to the following ones that can be recognized as a good reason to exclude this approach.
 
@@ -101,11 +85,32 @@ How to cut this Gordian knot? So far, the discussion has been reactive, ending w
 
 The functionality of the scenario in which `XAML` is only a transparent data relay has been implemented in WPF technology. To transfer data, it must first be pulled from some source. We don't have much choice here, they have to be objects, or rather their properties - described by types. Since these types must already be related to process data processing, their definition is dedicated to the needs of this process, which is located in the `GraphicalData.View` project. The `View` layer has references to this project. However, when WPF was implemented - specifically the transfer mechanism - it could not have known these types. Data transfer in WPF is a generic mechanism, so it cannot refer to specific types, although it can have references to data holed of these types. This leads to the conclusion that we cannot use type definitions in this process, so what is left is only reflection, which allows us to recover these definitions during program execution, which should not worry us much, because we are not the ones who have to use them directly and, consequently know this technology.
 
+## 2. GUI Selected Patterns
+
+### 2.1. Window and Pop-up Window
+
+ Let's start a Discussion about a graphical user interface implementation by determining how we can bring the content of a program user interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying graphics on the compute screen features**, editing data through it, and responding to user commands. The basic element to compose a Graphical User Interface, we already know, is a Window. An example is shown in the figure below. The primary element (Window ) is created during the bootstrapping by an executing platform according to the description in the program sequence. However, in the examined project, we have one more window. It appears after clicking one of the keys (in Fig. below).
+
+![Pop-up Window](.Media/Pop-upWindow.gif)
+
+Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up scenario - if everything goes well. This means we must deal with
+
+- event handling - deciding when a window should be exposed on the screen.
+- view - deciding what the window should look like.
+
+It is worth recalling here that a window is a class that inherits from the `Window` class and for the window to appear you need to call the [Show][Show] method.
+
+### 2.2. Master-detail GUI pattern
+
+The master-detail GUI pattern is commonly used in software applications to display hierarchical data. The master view displays a list or summary of items (e.g., records, files, contacts, products). Users can select an item from this list. When a user selects an item from the master view, the detail view updates to show detailed information about that item. It provides a more comprehensive view, including additional data and related details. Depending on the capability of the hardware the detail view may be displayed on the same window, on the pop-up window, or a window replacing the master one.
+
+In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further.
+
 ## 3. Layered Architecture
   
 ### 3.1. Introduction
 
-Before examining the gathered examples, first I must remind you that to make the discussion practical we must apply the layered pattern to the program text but not to the thinking process. The main goal is to apply the layered pattern rules directly to the program text as a result of the implementation of the algorithm derived from a research process. To promote a practical approach, I propose investigating this issue in the context of the syntax and semantics of a selected programming language. Although we are using a concrete development environment, the main hope is that the proposed approach is easily portable. All the examples in concern have been added to the `GraphicalData` folder. Check out the [ExDataManagement.sln][ExDataManagement] solution to follow the discursion in this respect. All examples are available in the [5.13-India tag][ExDataManagement].
+Before examining the gathered examples, first I must remind you that to make the discussion practical we must apply the layered pattern to the program text but not to the thinking process. The main goal is to apply the layered pattern rules directly to the program text as a result of the implementation of the algorithm derived from a research process. To promote a practical approach, I propose investigating this issue in the context of the syntax and semantics of a selected programming language. Although we are using a concrete development environment, the main hope is that the proposed approach is easily portable.
 
 According to good engineering practices, the program should be constructed using a layered design pattern. A layer is an abstract concept recognized as a program architecture design pattern formed as a hierarchy of layers where the upper layer refers only to the underneath layer. An example of a layered model is MVVM. It stands for Model, View, ViewModel.
 
