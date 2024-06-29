@@ -23,39 +23,32 @@
 - [2. GUI Selected Patterns](#2-gui-selected-patterns)
   - [2.1. Window and Pop-up Window](#21-window-and-pop-up-window)
   - [2.2. Master-detail GUI pattern](#22-master-detail-gui-pattern)
-- [3. Layered Architecture](#3-layered-architecture)
+- [3. MVVM Layered Architecture](#3-mvvm-layered-architecture)
   - [3.1. Introduction](#31-introduction)
   - [3.2. View - Inversion of Control](#32-view---inversion-of-control)
   - [3.3. MVVM as Sub-layers of the Presentation Layer](#33-mvvm-as-sub-layers-of-the-presentation-layer)
   - [3.4. MVVM Implementation Using Project Concept](#34-mvvm-implementation-using-project-concept)
   - [3.5. MVVM implementation Conclusion](#35-mvvm-implementation-conclusion)
   - [3.6. Layered architecture Benefits](#36-layered-architecture-benefits)
+- [4. See also](#4-see-also)
 
 ## 1. Introduction
 
 ### 1.1. Preface
 
-To follow the discussion in this respect check out the [ExDataManagement.sln][ExDataManagement] solution. All examples are available in the [5.13-India tag][ExDataManagement]. All the examples in concern have been added to the `GraphicalData` folder.
+Let's start by defining the most important problems and indicating directions for further search for solutions regarding application architecture in the context of communication with the user using the MVVM pattern that stands for Model-View-ViewMode.To follow the discussion in this respect check out the [ExDataManagement.sln][ExDataManagement] solution. All examples are available in the [5.13-India tag][ExDataManagement]. All the examples in concern have been added to the `GraphicalData` folder.
 
-In the case of graphic data, a program window is a self-contained graphical unit created by the program and managed by the operating system. Managed means moving, enlarging, reducing, etc. This, of course, is not surprising since the development of the first Windows operating system, in which the window is the basis for human-machine communication.
+In the case of user interface (UI), a program window is a self-contained graphical unit created by the program and managed by the operating system. Managed means moving, enlarging, reducing, etc. This, of course, is not surprising since the development of the first Windows operating system, in which the window is the basis for human-machine communication.
 
-The program can, of course, use several windows, as well as several databases or several files. In all cases, we can talk about an independent external data repository. In the case of Windows, however, we must consider an important difference, namely the interaction is two-way. In the case of databases, we can also expect the need to consider dynamic data change. However, only in the case of using the Windows operating system (OS), programs must respond to events triggered by the user.
+The program can, of course, use several windows, as well as several databases or several files. In all cases, we can talk about an independent external data repository. In the case of Windows, however, we must consider an important difference, namely the interaction is two-way. In the case of databases, we can also expect the need to consider dynamic data change. However, only in the case of using the Windows operating system (OS), programs must respond directly to events triggered by the user.
 
-Let's start by defining the most important problems and indicating directions for further search for solutions regarding application architecture in the context of communication with the user using the MVVM pattern that stands for Model-View-ViewMode.
-
-Manipulating an image, i.e. changing its features, such as form, color, and appearance, is the first task at the edge between the program and the graphical representation of data. Here we return to the question of where to dynamically modify the image. The image is described in the `XAML` language not created to implement an operating algorithm, i.e. business logic. On the other hand, this language uses the types defined in CSharp. Hence, there must be a trade-off between graphic customization and process-related behavior implementation.
-
-According to best practice of software engineering rules any program should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. Only the upper layer may refer to the underneath layer. In contrast, the lower layers must be composed so that they don't depend on the upper layer. Hence, the inter-layer reference must be unidirectional, often called hierarchical. Because the hierarchy should be vertical the relationship should be top to bottom.
-
-The program should have a layered structure - it's easy to say, but what is a layer? The program is text containing a stream of characters instead. Of course, in this principle the concept of a layer is abstract, but to say that the program architecture is layered, we must somehow implement this concept so that everyone knows what a layer is. In this respect, a programming pattern called MVVM is examined which stands for Model-View-ViewModel.
-
-It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath. It may be recognized as a confusion that it should be constructed so it is not aware of the existence of the upper layer, because it is above it. In scenarios like this, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
+Manipulating an image, i.e. changing its features, such as form, color, and appearance, is the first task at the edge between the program and the graphical representation of data. Here we return to the question of where to modify the image dynamically. The image is described by the [XAML][XAML] language not created to implement an operating algorithm, i.e. business logic. On the other hand, this language uses the types defined in CSharp. Hence, a trade-off between graphic customization and process-related behavior must be implemented.
 
 ### 1.2. UI Elements Appearance
 
 The window element is an organization unit composed using controls. The control UI element is any type that inherits directly or indirectly from the [Control][Control] type. The [Control][Control] class is a base class for most of the user interface elements. It means that types inheriting from the base [Control][Control] type can be rendered on the screen. In other words, they have a graphical representation.
 
-Looking at the content of an example class defining the main program window [MainWindow][MainWindow], we see that the displayed controls create a tree structure. The content is described using the XAML domain-specific language defined atop the `XML` technology. The references of internal controls, for example, `TreeView`, are added to the collection of containing elements. The containment hierarchy is determined by the structure of the `XML` document. Theoretically, by manipulating the contents of these collections by adding and removing elements, you can change the window's content and behavior. Because this approach is limited to the design stage of the program life cycle we will not analyze it further.
+Looking at the content of an example defining the main program window [MainWindow][MainWindow], we see that the displayed controls create a tree structure. The content is described using the XAML domain-specific language defined atop the `XML` language. The references of internal controls, for example, `TreeView`, are added to the collection of containing elements. The containment hierarchy is determined by the structure of the `XML` document. Theoretically, by manipulating the contents of these collections by adding and removing elements, you can change the window's content and behavior. Because this approach is limited to the design stage of the program life cycle we will not analyze it further.
 
 Instead of adding controls to the parent control's collection, we can use the [Visibility][Visibility] property. It takes one of the following values `Collapsed`, `Hidden`, and  `Visible`. Therefore, a practical tip is to add all the controls that may appear on the screen when designing a static image and then dynamically change this property as needed.
 
@@ -63,13 +56,15 @@ Sometimes controls may be visible on the screen but in static mode. An example o
 
 ### 1.3. UI Modification
 
-Similarly, by modifying the values ​​of various properties, we change other features of the controls, such as color, shape, filling method, etc. There are many of them. What to modify to refresh the user interface is the first important question. But now we come to the second question of where to make modifications. Of course, there are several answers to this question, and let's now try to analyze them and make some general practical recommendations.
+Similarly, by modifying the values ​​of various properties, we change other features of the controls, such as color, shape, filling method, etc. There are many of them. What to modify to refresh the user interface is the first important question. But now we come to the second question of where to make modifications. Of course, there are several answers to this question.
 
 We already know the first answer to the question of where to modify. Of course, it is the `XAML` text. Modification in `XAML` has a disadvantage in that it is essentially limited to assigning constants. It should be emphasized here that default values ​​are already assigned for each property defined by the controls, so there is no need to modify anything for typical behavior. An example is `Visibility`, whose default value is `Visible`. This language allows us to assign any values compliant with the appropriate type but its use to implement algorithms not directly related to GUI control is not a good idea.
 
 ### 1.4. Code-behind
 
-Code-behind is a term used to describe the code joined with the `XAML` text. Both form one class definition because they are partial definitions. Therefore, all properties of this type can be modified in the code-behind part. However, this solution has several drawbacks. Let's narrow the discussion to the following ones that can be recognized as a good reason to exclude this approach.
+Code-behind is a term used to describe the code joined with the `XAML` text. Both form one class definition because they are partial definitions. Therefore, all properties of this instance and all controls can be modified in the code-behind part.
+
+However, this solution has several drawbacks. Let's narrow the discussion to the following ones that can be recognized as a good reason to exclude this approach.
 
 1. The first drawback relates to the obvious violation of the principle of **separation of concerns**. This principle means avoiding the need to divide attention and encourages focusing only on single, well-separated issues. Probably,  this is a result of the human limitation of thought processes when solving a multi-threaded problem. In our case, if we are working on the GUI, we are not also working on process automation, i.e. algorithms implementation related to the process in concern. Let's focus solely on human-machine communication.
 2. There is another very tangible disadvantage, namely one of the popular ways of checking the correctness of a program is the use of unit tests. Unit tests have the property that they do not support testing of a graphical user interface. Hence, to be used as widely as possible, the concerns of graphical representation and interface behavior controlling this interface should be separated so that independent unit tests can be created for them without the need to run graphics rendering. In our example, I have achieved this separation by implementing interface behavior in the project `GraphicalData.ViewModel` implementing the ViewModel layer according to the MVVM pattern.
@@ -77,7 +72,7 @@ Code-behind is a term used to describe the code joined with the `XAML` text. Bot
 
 To sum up, placing the text of a program implementing any activities related to process data processing in the code-behind, violates the principle of separation of concerns, limits the possibility of using unit tests, and limits the portability of the solution. This analize lead to the conclusion - let's not do it, it's not a good idea.
 
-What about overriding the [OnInitialized][OnInitialized] in the `MainWindow` class? Am I contradicting myself? I will come back to this point. For now, please trust me that this is following the recommendations. Again, the recommendation says **the code-behind should not contain any line of code except the required one**. This exception is vital here.
+What about overriding the [OnInitialized][OnInitialized] in the [MainWindow][MainWindow] class? Am I contradicting myself? I will come back to this point. For now, please trust me that this is following the recommendations. Again, the recommendation says **the code-behind should not contain any line of code except the required one**. This exception is vital here.
 
 Since the place where the user interface comes to life should not be XAML and code-behind, it must be other parts of the program. Here, unfortunately, we encounter a barrier related to type compliance control. Namely, you first need to know these types to control type compatibility. Suppose technologically unrelated projects are to be independent, as is the case with the `GraphicalData.ViewModel` and `GraphicalData.Model` projects. In that case, the mentioned projects cannot refer to the control types because they will become dependent on the technology and the elaborate plan will fail.
 
@@ -88,6 +83,8 @@ The functionality of the scenario in which `XAML` is only a transparent data rel
 ## 2. GUI Selected Patterns
 
 ### 2.1. Window and Pop-up Window
+
+It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath. It may be recognized as a confusion that it should be constructed so it is not aware of the existence of the upper layer, because it is above it. In scenarios like this, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
 
  Let's start a Discussion about a graphical user interface implementation by determining how we can bring the content of a program user interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying graphics on the compute screen features**, editing data through it, and responding to user commands. The basic element to compose a Graphical User Interface, we already know, is a Window. An example is shown in the figure below. The primary element (Window ) is created during the bootstrapping by an executing platform according to the description in the program sequence. However, in the examined project, we have one more window. It appears after clicking one of the keys (in Fig. below).
 
@@ -106,18 +103,22 @@ The master-detail GUI pattern is commonly used in software applications to displ
 
 In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further.
 
-## 3. Layered Architecture
+## 3. MVVM Layered Architecture
   
 ### 3.1. Introduction
 
+According to best practice of software engineering rules any program should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. As a result, the inter-layer reference must be unidirectional, often called hierarchical. Because the hierarchy should be vertical the relationship should be top to bottom.
+
+The program should have a layered structure - it's easy to say, but what is a layer? The program is text containing a stream of characters instead. Of course, in this principle the concept of a layer is abstract, but to say that the program architecture is layered, we must somehow implement this concept so that everyone knows what a layer is. In this respect, a programming pattern called MVVM is examined which stands for Model-View-ViewModel.
+
 Before examining the gathered examples, first I must remind you that to make the discussion practical we must apply the layered pattern to the program text but not to the thinking process. The main goal is to apply the layered pattern rules directly to the program text as a result of the implementation of the algorithm derived from a research process. To promote a practical approach, I propose investigating this issue in the context of the syntax and semantics of a selected programming language. Although we are using a concrete development environment, the main hope is that the proposed approach is easily portable.
 
-According to good engineering practices, the program should be constructed using a layered design pattern. A layer is an abstract concept recognized as a program architecture design pattern formed as a hierarchy of layers where the upper layer refers only to the underneath layer. An example of a layered model is MVVM. It stands for Model, View, ViewModel.
+A layer is an abstract concept recognized as a program architecture design pattern formed as a hierarchy of layers where the upper layer refers only to the underneath layer. An example of a layered model is MVVM. It stands for Model, View, ViewModel.
 
 In other words, we will talk about the program architecture keeping in mind that the program is only a sequence of characters. Here, unfortunately, I often encounter the practice of disregarding the principles of layered program structure, because it only complicates matters, and limits, and it is easier and possible to live without it, etc. Let us note that we have three significantly different approaches to this.
 
-1. **PLD**: the second one is a typical program architecture, which also distinguishes three layers, but this time called presentation, logic, and data (PLD for short).
-1. **MVVM**: the first is the model mentioned in the topic, i.e. MVVM. We don't see any signs of its presence yet, but it appeared in the context of engineering a graphical user interface (GUI).
+1. **PLD**: it is a typical program architecture, which distinguishes three layers called presentation, logic, and data (PLD for short).
+1. **MVVM**: the layered model mentioned in the topic tat appears in the context of engineering a graphical user interface (GUI).
 1. **Spaghetti**: In the third approach there are no layers at all.
 
 If these approaches exist there are probably some reasons behind each of them, even trivial ones, such as lack of knowledge. To rule out a lack of knowledge let's take a closer look at this topic.
@@ -130,9 +131,9 @@ The namespace construct could be a relief to help make up a boundary of a set an
 
 ### 3.2. View - Inversion of Control
 
-If the application is to be built according to the MVVM model, we can decide how the window should look only in the View layer. In the layer below we can decide when it should be displayed. Displaying another window, often called a pop-up, is the result of clicking on the basic window key, which is handled in the view model layer, which is a separate project in our case. Let me remind you that a window is an object of some type. In this scenario, we ask for the `ViewModel` to create this object and display it. Consequently, as part of this service, the `ViewModel` layer should instantiate an appropriate pop-up window object and display it, but this requires a reference to the `View` layer and, as a result, leads to recursion that is prohibited here. When multiple projects are used, it is not only a problem of breaking the rules, but also the inability to add cyclical dependence of projects to each other.
+If the application is to be built according to the MVVM model, we can decide how the window should look only in the View layer. In the layer below we can decide when it should be displayed. Displaying another window, often called a **pop-up**, is the result of clicking on the basic window key, which is handled in the view model layer, which is a separate project in our case. Let me remind you that a window is an object of some type. In this scenario, we ask for the `ViewModel` to create this object and display it. Consequently, as part of this service, the `ViewModel` layer should instantiate an appropriate **pop-up** window object and display it, but this requires a reference to the `View` layer and, as a result, leads to recursion that is prohibited here. When multiple projects are used, it is not only a problem of breaking the rules, but also the inability to add cyclical dependence of projects to each other.
 
-After taking a closer look at the example implementation of the `View` layer in the `MainWindow` class, we notice that the empty code-behind rule is not fully held. The exception we see here is solely related to ensuring layer decoupling - i.e. ensuring hierarchical references.
+After taking a closer look at the example implementation of the `View` layer in the [MainWindow][MainWindow] class, we notice that the empty code-behind rule is not fully held. The exception we see here is solely related to ensuring layer decoupling, i.e. ensuring hierarchical references.
 
 ### 3.3. MVVM as Sub-layers of the Presentation Layer
 
@@ -169,7 +170,7 @@ Using this example, let's define a few simplified rules that will make it easier
 5. Placing definitions of auxiliary types here to meet the requirements for this layer is optional. Due to the universal nature of these implementations, we often use external libraries.
 6. To put it simply, the Model layer is everything else related to implementation of the Presentation layer of the master PLD programming pattern. The Model layer encapsulates the functionality and data-related operations relevant to implementing a graphical user interface and ensuring a clean separation from the UI rest of the program. It allows developers to work on business logic independently of the view, making the application easier to test, maintain, and evolve.
 
-Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the Presentation, Logic, and Data (PLD) master programming pattern. By design, to implement the MVVM collect types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between namespaces, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer.
+Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the Presentation, Logic, and Data (`PLD`) master programming pattern. By design, to implement the MVVM collect types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between namespaces, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer.
 
 When implementing layers using namespaces, we must consider the problem that these layers are not visible in the solution with the naked eye. A trade-off seems to be keeping folder names and namespaces in sync. The relationship is loose, but when you create a new class in a selected folder, it is added to a namespace whose name is created as a hierarchical combination of the default name, the names of the folders that make up the hierarchy, and with a suffix determined by the name of the final folder in the hierarchy.
 
@@ -183,6 +184,12 @@ Hierarchical architecture is often contrasted with spaghetti architecture if spa
 4. The lack of cyclic references improves modifications and limits side effects. This way maintenance costs can be reduced.
 5. Efficiency of the design process may be increased by applying the principle of separation of concerns, i.e. good planning of layers will avoid being distracted by solving several threads at the same time.
 6. Layers can not only be implemented into separate projects but deployed on other physical machines. (a) Executing the same layer in parallel on many computers horizontal scalability is deployed. (b) The ability to execute individual layers on independent hardware platforms means vertical scalability.
+
+## 4. See also
+
+- [XAML overview][XAML]
+
+[XAML]: https://learn.microsoft.com/dotnet/desktop/wpf/xaml
 
 [Show]:             https://learn.microsoft.com/dotnet/api/system.windows.window.show
 [Control]:          https://learn.microsoft.com/dotnet/api/system.windows.controls.control
