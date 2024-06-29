@@ -62,7 +62,9 @@ We already know the first answer to the question of where to modify. Of course, 
 
 ### 1.4. Code-behind
 
-Code-behind is a term used to describe the code joined with the `XAML` text. Both form one class definition because they are partial definitions. Therefore, all properties of this instance and all controls can be modified in the code-behind part.
+Code-behind is a term used to describe the code joined with the `XAML` text. An example is in the [MainWindow][MainWindow] class. Both form one class definition because they are partial definitions. Therefore, all properties of this instance and all controls can be modified in the code-behind part.
+
+![Code Behind](.Media/CodeBehind.gif)
 
 However, this solution has several drawbacks. Let's narrow the discussion to the following ones that can be recognized as a good reason to exclude this approach.
 
