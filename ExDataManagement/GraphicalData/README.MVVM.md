@@ -21,12 +21,11 @@
   - [UI Modification](#ui-modification)
   - [Code-behind](#code-behind)
 - [MVVM Layered Architecture](#mvvm-layered-architecture)
-  - [Introduction](#introduction-1)
-  - [View - Inversion of Control](#view---inversion-of-control)
-  - [MVVM as Sub-layers of the Presentation Layer](#mvvm-as-sub-layers-of-the-presentation-layer)
+  - [Preface](#preface-1)
+  - [MVVM Implementation Using Namespace Concept](#mvvm-implementation-using-namespace-concept)
   - [MVVM Implementation Using Project Concept](#mvvm-implementation-using-project-concept)
   - [MVVM implementation Conclusion](#mvvm-implementation-conclusion)
-  - [Layered architecture Benefits](#layered-architecture-benefits)
+  - [Layered Architecture Benefits](#layered-architecture-benefits)
 - [Selected Patterns](#selected-patterns)
   - [Master-detail GUI pattern](#master-detail-gui-pattern)
   - [Pop-up Window](#pop-up-window)
@@ -84,10 +83,9 @@ How to cut this Gordian knot? So far, the discussion has been reactive, ending w
 
 The functionality of the scenario in which `XAML` is only a transparent data relay has been implemented in WPF technology. To transfer data, it must first be pulled from or pushed to some source. We don't have much choice here, they have to be objects, or rather their properties - described by types. Since these types must already be related to process data processing, their definition is dedicated to the needs of this process, which is located in the `GraphicalData.View` project. The `View` layer has references to this project. However, when WPF was implemented - specifically the transfer mechanism - it could not have known these types. Data transfer in WPF is a generic mechanism, so it cannot refer to specific types at design time, although it can have references to data holders of these types at run-time. This leads to the conclusion that we cannot use type definitions in this process, so what is left is only reflection, which allows us to recover these definitions during program execution, which should not worry us much, because we are not the ones who have to use them directly and, consequently know this technology. A kind of relief is the [IntelliSense][IntelliSense] code-completion aid, which simulates run time scenario at design time program development stage.
 
-
 ## MVVM Layered Architecture
   
-### Introduction
+### Preface
 
 According to best practice of software engineering rules any program should have a layered architecture. Layered architecture means that one layer may be recognized as upper and a second one as a lower one although there are usually more layers. So that we can distinguish which one is higher. As a result, the inter-layer reference must be unidirectional, often called hierarchical. Because the hierarchy should be vertical the relationship should be top to bottom.
 
@@ -95,33 +93,31 @@ The program should have a layered structure - it's easy to say, but what is a la
 
 Before examining the gathered examples, first I must remind you that to make the discussion practical we must apply the layered pattern to the program text but not to the thinking process. The main goal is to apply the layered pattern rules directly to the program text as a result of the implementation of the algorithm derived from a research process. To promote a practical approach, I propose investigating this issue in the context of the syntax and semantics of a selected programming language. Although we are using a concrete development environment, the main hope is that the proposed approach is easily portable.
 
-A layer is an abstract concept recognized as a program architecture design pattern formed as a hierarchy of layers where the upper layer refers only to the underneath layer. An example of a layered model is MVVM. It stands for Model, View, ViewModel.
+We will talk about the program architecture keeping in mind that the program is only a sequence of characters. Here, unfortunately, I often encounter the practice of disregarding the principles of layered program structure, because it only complicates matters, and limits, and it is easier and possible to live without it, etc. Let us note that we have three significantly different approaches to this.
 
-In other words, we will talk about the program architecture keeping in mind that the program is only a sequence of characters. Here, unfortunately, I often encounter the practice of disregarding the principles of layered program structure, because it only complicates matters, and limits, and it is easier and possible to live without it, etc. Let us note that we have three significantly different approaches to this.
-
-1. **PLD**: it is a typical program architecture, which distinguishes three layers called presentation, logic, and data (PLD for short).
-1. **MVVM**: the layered model mentioned in the topic tat appears in the context of engineering a graphical user interface (GUI).
+1. **PLD**: a typical program architecture, which distinguishes three layers called presentation, logic, and data (PLD for short).
+1. **MVVM**: the layered model mentioned in the topic that appears in the context of engineering a graphical user interface (GUI).
 1. **Spaghetti**: In the third approach there are no layers at all.
 
 If these approaches exist there are probably some reasons behind each of them, even trivial ones, such as lack of knowledge. To rule out a lack of knowledge let's take a closer look at this topic.
 
-Simplifying, by design, the master PLD layered program design pattern applies to the program as one whole - keeping in mind - that the program is just a text. A program is just a text compliant with a selected programming language. Hence the pattern including the layers and layers relationship must be expressed using terminology defined by the language itself. Further discussion may depend on the selection of a concrete programming language. Therefore, according to the rules, further discussion is conducted using CSharp as the programming language and Visual Studio as the development environment.
+Simplifying, by design, the master PLD layered program design pattern applies to the program as one whole - keeping in mind - that the program is just a text.
 
-The layered architecture is also an abstract term and must be implemented somehow. High-level programming languages are designed to be more intuitive and user-friendly for human programmers. They usually use the custom types definitions as building blocks that take responsibility for implementing the algorithm/data in concern. To implement the layers I propose **sets of custom-type definitions**. In maths, the set is a group of well-defined entities called members. The set notion is well known from high school education, hence we may skip deep diving into this theory. In the proposed approach the well-defined entity is a custom type - a language construct. The only important thing is how to recognize the membership. There must be a boundary that we can use to distinguish if a type belongs to the selected set or not. To make the layer unambiguous it must be assumed that any type belongs only to one set, to one layer. This way we can convert the discussion about mathematical sets to an examination of types grouping. Now we must answer a question about how to recognize the membership of a type. In other words the fact of being a member of a selected group.
+![Program Layered Design Pattern](.Media/CoursImageProgramLayeredDesignPattrn.png)
 
-The namespace construct could be a relief to help make up a boundary of a set and finally of a layer. Namespaces are used to organize and provide a level of separation of program parts and to avoid name collisions. The namespace unique name could be used as a prefix of an identifier of the definition to make the full name unique in the program scope. On the other hand, the namespace can also be considered a container or an organization unit of definitions. This concept perfectly fits the idea of grouping or formally enforcing set membership of types. Let's examine how this works in context of the MVVM programming pattern withe the goal to build a Graphical User Interface (GUI for short).
+The MVVM is a design pattern commonly used in [Windows Presentation Foundation (WPF for short)][WPF] to structure the code and separate concerns. Let me stress, here, we have the word _"presentation"_ in the name, in the context of the master architecture, we can assume that the layers of the MVVM model contribute to the presentation layer of the PLD master architectural model. Assuming that MVVM is an implementation of the Presentation layer in the master PLD model let's next answer a question: how to derive implementation methodology of the MVVM from the general layered model concept?
 
-### View - Inversion of Control
+Spaghetti means that there are no layers at all. This approach should be justified in the context of section [Layered architecture Benefits][Benefits]
 
-If the application is to be built according to the MVVM model, we can decide how the window should look only in the View layer. In the layer below we can decide when it should be displayed. Displaying another window, often called a **pop-up**, is the result of clicking on the basic window key, which is handled in the view model layer, which is a separate project in our case. Let me remind you that a window is an object of some type. In this scenario, we ask for the `ViewModel` to create this object and display it. Consequently, as part of this service, the `ViewModel` layer should instantiate an appropriate **pop-up** window object and display it, but this requires a reference to the `View` layer and, as a result, leads to recursion that is prohibited here. When multiple projects are used, it is not only a problem of breaking the rules, but also the inability to add cyclical dependence of projects to each other.
+### MVVM Implementation Using Namespace Concept
 
-After taking a closer look at the example implementation of the `View` layer in the [MainWindow][MainWindow] class, we notice that the empty code-behind rule is not fully held. The exception we see here is solely related to ensuring layer decoupling, i.e. ensuring hierarchical references.
+A program is just a text compliant with a selected programming language. Hence the pattern including the layers and layers relationship must be expressed using terminology defined by the language. Therefore, further discussion may depend on a concrete programming language selection. The examples are prepared using CSharp as the programming language and Visual Studio as the development environment. Hopefully, the proposal may be easily portable to other environments.
 
-### MVVM as Sub-layers of the Presentation Layer
+The layered architecture is an abstract term and must be implemented somehow. High-level programming languages are designed to be more intuitive and user-friendly for human programmers. They usually use the custom types definitions as building blocks that take responsibility for implementing the algorithm and process information in concern. To implement the layers I propose **sets of custom-type definitions**. In maths, the set is a group of well-defined entities called members. The set notion is well known from high school education, hence we may skip deep diving into this theory. In the proposed approach the well-defined entity is a custom type - a language construct. The only important thing is how to recognize the membership. There must be a boundary that we can use to distinguish if a type belongs to the selected set or not. To make the layer unambiguous it must be assumed that any type belongs only to one set, to one layer. This way we can convert the discussion about mathematical sets to an examination of types grouping. Now we must answer a question about how to recognize the membership of a type. In other words the fact of being a member of a selected group.
 
-The MVVM is a design pattern commonly used in Windows Presentation Foundation (WPF for short) to structure the code and separate concerns. Let me stress, here, we have the word _"presentation"_ in the name, in the context of the master architecture, we can assume that the layers of the MVVM model contribute to the presentation layer of the PLD master architectural model. Assuming that MVVM is an implementation of the Presentation layer in the master PLD model let's next answer a question: how to derive implementation methodology of the MVVM from the general layered model concept?
+The namespace construct could be a relief to help make up a set's boundary and finally a layer. Namespaces are used to organize and provide a level of separation of program parts and to avoid name collisions. The namespace unique name could be used as a prefix of an identifier of definitions to make the full name unique in the program scope. On the other hand, the namespace can also be considered a container or an organization unit of definitions. This concept perfectly fits the idea of grouping or formally enforcing set membership of types. Let's examine how this works in the context of the MVVM programming pattern to build a Graphical User Interface (GUI for short).
 
-A namespace is a linguistic construct that contains a group of type definitions, so it is a good candidate for implementing also MVVM layers. It's also easy to isolate text within a namespace of your choice. So, using filters, let's remove all organizational elements related to the tool. In the example, it is the folder and projects. After tidying up the diagram, we see that the MVVM layers have been implemented as namespaces. Within layers, there may be additional namespaces containing definitions of auxiliary types. For example, I have defined two auxiliary classes that facilitate the implementation and control of the correct use of this pattern and provide the functionality needed for the `ViewModel` layer. Implementations of two interfaces, namely `INotifyPropertyChange` and `ICommand` may be found in the `MVVMLight` sub-namespace.
+A namespace is a linguistic construct that contains a group of type definitions, so it is a good candidate for implementing also MVVM layers. It's also easy to isolate text within a namespace of your choice. So, using filters, let's remove all organizational elements related to the tool. In the example, it is the folder and projects. After tidying up the diagram, we see that the MVVM layers have been implemented as namespaces. Within layers, there may be additional namespaces containing definitions of auxiliary types. For example, I have defined two auxiliary classes that facilitate the implementation and control of the correct use of this pattern and provide the implementation of responsibility needed for the `ViewModel` layer. Implementations of two interfaces, namely `INotifyPropertyChange` and `ICommand` may be found in the `MVVMLight` sub-namespace.
 
 This concept is illustrated in the figure below. In this diagram, we can recognize three main layers created using the proposed method. It was generated from the text gathered in the `GraphicalData` folder. This image has been created using a code analytic tool embedded in the development environment. Thanks to this image - after removing unimportant parts - we can distinguish three layers View, ViewModel, and Model. It is also worth noting that internally, inside the layer circular references are perfectly OK. Let me recall that only between layers we must have unidirectional top-down dependencies.
 
@@ -137,7 +133,7 @@ From the development environment point of view, a project is just an organizatio
 
 ![MVVM Layered Architecture Using Projects](.Media/MVVMLayeredArchitectureProjectBased.png)
 
-This example proves that while implementing the MVVM pattern it is possible to gather text describing the interface graphics - the View layer - in a separate project. It groups all references to WPF technology, namely to a certain group of types, whose definitions are tightly coupled with execution platform features.
+This example proves that while implementing the MVVM pattern it is possible to gather text describing the interface graphics - the `View` layer - in a separate project. It groups all references to WPF technology, namely to a certain group of types, whose definitions are tightly coupled with execution platform features.
 
 Let's start with the fact that our sample program has three projects. The first one with the `View` suffix is ​​based on Framework Net 6.0 for Windows OS, so it is dedicated to a specific implementation of the .NET library. This limits the portability on other hardware and system platforms, but there is no option because WPF is a technology dedicated to Windows. The remaining projects are based on .NET Standard. .NET Standard is an abstract definition of the .NET library, i.e. it does not contain any implementation, only abstract definitions. Thanks to this, projects based on the .NET standard are portable and once the library is compiled, it can be deployed on any system platform for which there is a .NET implementation. Without going into details, we can illustrate the relationship between these projects as follows.
 
@@ -145,18 +141,18 @@ Let's start with the fact that our sample program has three projects. The first 
 
 Using this example, let's define a few simplified rules that will make it easier to implement the MVVM programming pattern.
 
-1. Only definitions that refer to types defined in the PresentationFramework should be gathered in the View layer.
-2. These definitions can only refer to types defined in the ViewModel layer.
-3. By design, include text written in XAML and empty definitions in the code-behind part in the View layer.
-4. In the `ViewModel` layer, define all types which are  bound to the properties of the controls.
-5. Placing definitions of auxiliary types here to meet the requirements for this layer is optional. Due to the universal nature of these implementations, we often use external libraries.
-6. To put it simply, the Model layer is everything else related to implementation of the Presentation layer of the master PLD programming pattern. The Model layer encapsulates the functionality and data-related operations relevant to implementing a graphical user interface and ensuring a clean separation from the UI rest of the program. It allows developers to work on business logic independently of the view, making the application easier to test, maintain, and evolve.
+1. Only definitions that refer to types defined in the `PresentationFramework` should be gathered in the `View` layer.
+2. These definitions can only refer to types defined in the `ViewModel` layer.
+3. By design, include text written in XAML and empty definitions in the code-behind part in the `View` layer.
+4. In the `ViewModel` layer, define all types which are bound to the properties of the controls.
+5. Placing definitions of auxiliary types here to meet the requirements for the `ViewModel` layer is optional. Due to the universal nature of these implementations, we often use external libraries.
+6. To put it simply, the `Model` layer is everything else related to implementation of the `Presentation` layer of the master PLD` programming pattern. The `Model` layer encapsulates the functionality and data-related operations relevant to implementing a graphical user interface and ensuring a clean separation from the UI rest of the program. It allows developers to work on business logic independently of the UI, making the application easier to test, maintain, and evolve.
 
-Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the Presentation, Logic, and Data (`PLD`) master programming pattern. By design, to implement the MVVM collect types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between namespaces, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer.
+Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the `Presentation`, Logic, and `Data` (`PLD`) master programming pattern. By design, to implement the `MVVM` collect types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between namespaces, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer.
 
 When implementing layers using namespaces, we must consider the problem that these layers are not visible in the solution with the naked eye. A trade-off seems to be keeping folder names and namespaces in sync. The relationship is loose, but when you create a new class in a selected folder, it is added to a namespace whose name is created as a hierarchical combination of the default name, the names of the folders that make up the hierarchy, and with a suffix determined by the name of the final folder in the hierarchy.
 
-### Layered architecture Benefits
+### Layered Architecture Benefits
 
 Hierarchical architecture is often contrasted with spaghetti architecture if spaghetti can be called architecture at all. To prove there is no alternative let's summarize what we got in return for the layered architecture.
 
@@ -165,17 +161,21 @@ Hierarchical architecture is often contrasted with spaghetti architecture if spa
 3. Layered architecture enables portability from platform to platform.
 4. The lack of cyclic references improves modifications and limits side effects. This way maintenance costs can be reduced.
 5. Efficiency of the design process may be increased by applying the principle of separation of concerns, i.e. good planning of layers will avoid being distracted by solving several threads at the same time.
-6. Layers can not only be implemented into separate projects but deployed on other physical machines. (a) Executing the same layer in parallel on many computers horizontal scalability is deployed. (b) The ability to execute individual layers on independent hardware platforms means vertical scalability.
+6. Layers can not only be implemented into separate projects but deployed on other physical machines. (a) Horizontal scalability is deployed by executing the same layer in parallel on many computers. (b) Vertical scalability means an ability to execute individual layers on independent hardware platforms.
 
 ## Selected Patterns
 
 ### Master-detail GUI pattern
 
-The master-detail GUI pattern is commonly used in software applications to display hierarchical data. The master view displays a list or summary of items (e.g., records, files, contacts, products). Users can select an item from this list. When a user selects an item from the master view, the detail view updates to show detailed information about that item. It provides a more comprehensive view, including additional data and related details. Depending on the capability of the hardware the detail view may be displayed on the same window, on the pop-up window, or a window replacing the master one.
+In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further. The master-detail GUI pattern is commonly used in software applications to display hierarchical data. The master view displays a list or summary of items (e.g. records, files, contacts, products). Users can select an item from this list. When a user selects an item from the master view, the detail view updates to show detailed information about that item. It provides a more comprehensive view, including additional data and related details. Depending on the capability of the hardware the detail view may be displayed on the same window, on the pop-up window, or a window replacing the master one.
 
-In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further.
+![Master Detail](.Media/Master-detail.gif)
 
 ### Pop-up Window
+
+If the application is to be built according to the MVVM model, we can decide how the window should look only in the `View` layer. In the layer below we can decide when it should be displayed. Displaying another window, often called a **pop-up**, is the result of clicking on the basic window key, which is handled in the `View` model layer (implemented in a separate project). Let me remind you that a window is an object of some type. In this scenario, we ask for the `ViewModel` to create this object and display it. Consequently, as part of this service, the `ViewModel` layer should instantiate an appropriate **pop-up** window object and display it, but this requires a reference to the `View` layer and, as a result, leads to recursion that is prohibited here. When multiple projects are used, it is not only a problem of breaking the rules, but also the inability to add cyclical dependence of projects to each other.
+
+After taking a closer look at the example implementation of the `View` layer in the [MainWindow][MainWindow] class, we notice that the empty code-behind rule is not fully held. The exception we see here is solely related to ensuring layer decoupling, i.e. ensuring hierarchical references.
 
 It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath. It may be recognized as a confusion that it should be constructed so it is not aware of the existence of the upper layer, because it is above it. In scenarios like this, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
 
@@ -193,9 +193,11 @@ It is worth recalling here that a window is a class that inherits from the `Wind
 ## See also
 
 - [XAML overview][XAML]
+- [Desktop Guide (WPF .NET)][WPF]
 - [IntelliSense in Visual Studio][IntelliSense]
 
 [XAML]: https://learn.microsoft.com/dotnet/desktop/wpf/xaml
+[WPF]:  https://learn.microsoft.com/dotnet/desktop/wpf/overview/
 
 [Show]:         https://learn.microsoft.com/dotnet/api/system.windows.window.show
 [Control]:      https://learn.microsoft.com/dotnet/api/system.windows.controls.control
@@ -208,3 +210,4 @@ It is worth recalling here that a window is a class that inherits from the `Wind
 [OnInitialized]:    https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.View/MainWindow.xaml.cs#L27-L33
 
 [mvvm-layered-architecture]: README.MVVM.md#mvvm-layered-architecture
+[Benefits]:                  README.MVVM.md#layered-architecture-benefits
