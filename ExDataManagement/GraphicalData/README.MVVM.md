@@ -16,9 +16,9 @@
 ## Table of content <!-- omit in toc -->
 
 - [Introduction](#introduction)
-  - [UI Elements Appearance](#ui-elements-appearance)
-  - [UI Modification](#ui-modification)
-  - [Code-behind](#code-behind)
+- [UI Elements Appearance](#ui-elements-appearance)
+- [UI Modification](#ui-modification)
+- [Code-behind](#code-behind)
 - [MVVM Layered Architecture](#mvvm-layered-architecture)
   - [Preface](#preface)
   - [MVVM Implementation Using Namespace Concept](#mvvm-implementation-using-namespace-concept)
@@ -26,7 +26,7 @@
   - [Layered Architecture Benefits](#layered-architecture-benefits)
   - [MVVM implementation Conclusion](#mvvm-implementation-conclusion)
 - [Selected Scenarios](#selected-scenarios)
-  - [Master-detail GUI pattern](#master-detail-gui-pattern)
+  - [Master-detail Pattern](#master-detail-pattern)
   - [Pop-up Window](#pop-up-window)
 - [See also](#see-also)
 
@@ -40,7 +40,7 @@ The program can, of course, use several windows, as well as several databases or
 
 Manipulating an image, i.e. changing its features, such as form, color, and appearance, is the first task at the edge between the program and the graphical representation of process information. Here we return to the question of where to modify the image dynamically. The image is described by the [XAML][XAML] language not created to implement an operating algorithm, i.e. business logic. On the other hand, this language uses the types defined in CSharp. Hence, a trade-off between graphic customization and process-related behavior must be implemented.
 
-### UI Elements Appearance
+## UI Elements Appearance
 
 The window element is an organization unit composed using controls. The control UI element is any type that inherits directly or indirectly from the [Control][Control] type. The [Control][Control] class is the base class for most user interface elements. It means that types inheriting from the base [Control][Control] type can be rendered on the screen. In other words, they have a graphical representation.
 
@@ -50,13 +50,13 @@ Instead of adding controls to the parent control's collection, we can use the [V
 
 Sometimes controls may be visible on the screen but in static mode. An example of this mode is an inactive key. The inactive key is visible on the screen but cannot be clicked. Another property, called [IsEnabled][IsEnabled], can be used for this purpose. It can be changed dynamically depending on the state the process is in. It is worth mentioning that GUI should be considered a state machine and the appearance of controls depends on the state of the UI. Hence, the controls should be grouped to change the state only of the selected part of the UI, not just by changing the individual controls.
 
-### UI Modification
+## UI Modification
 
 Similarly, by modifying the values ​​of various properties, we change other features of the controls, such as color, shape, filling method, etc. There are many of them. What to modify to refresh the user interface is the first important question. But now we come to the second question of where to make modifications. Of course, there are several answers to this question.
 
 We already know the first answer to the question of where to modify. Of course, it is the `XAML` text. Modification in `XAML` has a disadvantage in that it is essentially limited to assigning constants. It should be emphasized here that default values ​​are already assigned for each property defined by the controls, so there is no need to modify anything for typical behavior. An example is `Visibility`, whose default value is `Visible`. This language allows us to assign any values compliant with the appropriate type but its use to implement algorithms not directly related to GUI control is not a good idea.
 
-### Code-behind
+## Code-behind
 
 Code-behind is a term used to describe the code joined with the `XAML` text. An example is in the [MainWindow][MainWindow] class. Both form one class definition because they are partial definitions. Therefore, all properties of this instance and all containing controls can be modified in the code-behind part.
 
@@ -126,7 +126,7 @@ As a side effect of using the embedded tool to analyze the architecture of the p
 
 Namespace construct is one option to distinguish sets and finally create layers. The purpose of implementing layers using independent projects may be to minimize the program area dependent on technology. On the other hand, minimizing the number of projects in a solution reduces maintenance costs and dependency hell. Hence, if there are no special reasons it may not be worth forcing separate projects. However, for education purposes, we are dealing with a scenario where portability is critical, so separating projects is justified. Let me give you an example. A graphical user interface should be implemented differently for desktop devices with high-resolution monitors and smartphone devices. So let's try to put forward the thesis that layers can be implemented using projects.
 
-From the development environment point of view, a project is just an organization unit within the solution. Solution and project are concepts related to the tool like Visual Studio, and not to the program text consistent with the selected programming language. This would indicate that using projects to implement layers is not a good idea. It looks like this concept has nothing in common with the programming language. However, we must consider an important project feature within a solution - the project is also a compilation unit. Therefore, its content must be consistent and compliant with a programming language. Hence, despite everything, it can be treated as the boundary of a set containing type definitions. Unidirectional and hierarchical top-down relationships can be implemented using the References/Dependencies branches. 
+From the development environment point of view, a project is just an organization unit within the solution. Solution and project are concepts related to the tool like Visual Studio, and not to the program text consistent with the selected programming language. This would indicate that using projects to implement layers is not a good idea. It looks like this concept has nothing in common with the programming language. However, we must consider an important project feature within a solution - the project is also a compilation unit. Therefore, its content must be consistent and compliant with a programming language. Hence, despite everything, it can be treated as the boundary of a set containing type definitions. Unidirectional and hierarchical top-down relationships can be implemented using the References/Dependencies branches.
 
 Additionally, in the case of projects compared to namespaces, type definitions visibility (encapsulation - OOP paradigm) control can be employed, which should further facilitate the implementation of a layer as a set of type definitions and hierarchical unidirectional relationships between layers. The same code snippet is shown in the figure below but now exposes projects as implementation of the MVVM layers.
 
@@ -152,19 +152,19 @@ Hierarchical architecture is often contrasted with spaghetti architecture if spa
 Using this example, let's define a few simplified rules that will make it easier to implement the MVVM programming pattern.
 
 1. Only definitions that refer to types defined in the `PresentationFramework` should be gathered in the `View` layer.
-2. These definitions can only refer to types defined in the `ViewModel` layer.
+2. These definitions must refer only to types defined in the `ViewModel` layer.
 3. By design, include text written in XAML and empty definitions in the code-behind part in the `View` layer.
-4. In the `ViewModel` layer, define all types which are bound to the properties of the controls.
-5. Placing definitions of auxiliary types here to meet the requirements for the `ViewModel` layer is optional. Due to the universal nature of these implementations, we often use external libraries.
-6. To put it simply, the `Model` layer is everything else related to implementation of the `Presentation` layer of the master PLD` programming pattern. The `Model` layer encapsulates the functionality and data-related operations relevant to implementing a graphical user interface and ensuring a clean separation from the UI rest of the program. It allows developers to work on business logic independently of the UI, making the application easier to test, maintain, and evolve.
+4. In the `ViewModel` layer, define only type definitions that are bound to the properties of the controls.
+5. Locating definitions of auxiliary types in the `ViewModel` layer to meet the requirements is optional. Due to the universal nature of these implementations, we often use external libraries.
+6. To put it simply, the `Model` layer is everything else related to the implementation of the `Presentation` layer of the master `PLD` programming pattern. The `Model` layer encapsulates the responsibility and data-related operations relevant to implementing a graphical user interface and ensuring a clean separation from the UI rest of the program. It allows developers to work on business logic independently of the UI, making the application easier to test, maintain, and evolve.
 
-Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the `Presentation`, Logic, and `Data` (`PLD`) master programming pattern. By design, to implement the `MVVM` collect types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between namespaces, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer.
+Let me stress again. The `MVVM` is a programming pattern well suited to implementing the presentation layer in the `Presentation`, `Logic`, and `Data` (`PLD`) master programming pattern. By design,  the `MVVM` collects types in namespaces to maintain only hierarchical references between them. Therefore, a critical error for a layered architecture is if cyclic references occur between layers, i.e. if starting from any layer and moving along the dependency arrows you manage to return to the same namespace. You should also avoid situations where namespaces do not refer exclusively to the underneath layer.
 
 When implementing layers using namespaces, we must consider the problem that these layers are not visible in the solution with the naked eye. A trade-off seems to be keeping folder names and namespaces in sync. The relationship is loose, but when you create a new class in a selected folder, it is added to a namespace whose name is created as a hierarchical combination of the default name, the names of the folders that make up the hierarchy, and with a suffix determined by the name of the final folder in the hierarchy.
 
 ## Selected Scenarios
 
-### Master-detail GUI pattern
+### Master-detail Pattern
 
 In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further. The master-detail GUI pattern is commonly used in software applications to display hierarchical data. The master view displays a list or summary of items (e.g. records, files, contacts, products). Users can select an item from this list. When a user selects an item from the master view, the detail view updates to show detailed information about that item. It provides a more comprehensive view, including additional data and related details. Depending on the capability of the hardware the detail view may be displayed on the same window, on the pop-up window, or a window replacing the master one.
 
@@ -172,22 +172,24 @@ In this scenario, users start by scanning the master view to find the item they�
 
 ### Pop-up Window
 
-If the application is to be built according to the MVVM model, we can decide how the window should look only in the `View` layer. In the layer below we can decide when it should be displayed. Displaying another window, often called a **pop-up**, is the result of clicking on the basic window key, which is handled in the `View` model layer (implemented in a separate project). Let me remind you that a window is an object of some type. In this scenario, we ask for the `ViewModel` to create this object and display it. Consequently, as part of this service, the `ViewModel` layer should instantiate an appropriate **pop-up** window object and display it, but this requires a reference to the `View` layer and, as a result, leads to recursion that is prohibited here. When multiple projects are used, it is not only a problem of breaking the rules, but also the inability to add cyclical dependence of projects to each other.
+It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath.
 
-After taking a closer look at the example implementation of the `View` layer in the [MainWindow][MainWindow] class, we notice that the empty code-behind rule is not fully held. The exception we see here is solely related to ensuring layer decoupling, i.e. ensuring hierarchical references.
+If a program is to be built according to the MVVM model, we can decide how the window should look only in the `View` layer. In the layer underneath we can decide when it should be displayed. Displaying another window, called **pop-up**, is a result of clicking on the basic window key, which is handled in the `View` model layer (implemented in a separate project). Let me remind you that a window is an object of some type. In this scenario, we ask for the `ViewModel` to instantiate a type and show it on the screen. Consequently, as part of this service, the `ViewModel` layer should instantiate an appropriate **pop-up** window object and display it, but this requires a reference to the `View` layer and, as a result, leads to recursion that is prohibited for the MVVM model. When multiple projects are used, it is not only a problem of breaking the rules, but also the inability to add cyclical dependence of projects to each other.
 
-It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath. It may be recognized as a confusion that it should be constructed so it is not aware of the existence of the upper layer, because it is above it. In scenarios like this, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
+After taking a closer look at the example implementation of the `View` layer in the [MainWindow][MainWindow] class, we notice that the "empty code-behind" rule is not fully held. The exception is solely related to layer decoupling, i.e. ensuring hierarchical references at design time and communication in both directions at run-time.
 
- Let's start a Discussion about a graphical user interface implementation by determining how we can bring the content of a program user interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying graphics on the compute screen features**, editing data through it, and responding to user commands. The basic element to compose a Graphical User Interface, we already know, is a Window. An example is shown in the figure below. The primary element (Window ) is created during the bootstrapping by an executing platform according to the description in the program sequence. However, in the examined project, we have one more window. It appears after clicking one of the keys (in Fig. below).
+It may be recognized as a confusion that the `ViewModel` layer should be constructed so it is not aware of the existence of the upper layer. At the same time, it is expected that this layer is showing a pop-up window. To address this contradiction, we should look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been defined. An example is "Inversion of Control". Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
+
+Let's start a Discussion about a graphical user interface implementation by determining how we can bring the content of a program user interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying graphics features on the compute screen**, editing data through it, and responding to user commands. The basic element to compose a Graphical User Interface, we already know, is a Window. An example is shown in the figure below. The primary element (Window) is created during the bootstrapping by an executing platform according to the description in the program sequence. However, in the examined project, we have one more window. It appears after clicking one of the keys (in Fig. below).
 
 ![Pop-up Window](.Media/Pop-upWindow.gif)
 
-Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up scenario - if everything goes well. This means we must deal with
+Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up scenario - if everything goes well. This means that we must deal with
 
 - event handling - deciding when a window should be exposed on the screen.
 - view - deciding what the window should look like.
 
-It is worth recalling here that a window is a class that inherits from the `Window` class and for the window to appear you need to call the [Show][Show] method.
+It is worth recalling here that a window is a class that inherits from the `Window` class and for the window to appear you need to call the [Show][Show] method. The solution is the [OnInitialized][OnInitialized] method.
 
 ## See also
 
