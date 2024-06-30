@@ -20,9 +20,6 @@
   - [UI Elements Appearance](#ui-elements-appearance)
   - [UI Modification](#ui-modification)
   - [Code-behind](#code-behind)
-- [Selected Patterns](#selected-patterns)
-  - [Window and Pop-up Window](#window-and-pop-up-window)
-  - [Master-detail GUI pattern](#master-detail-gui-pattern)
 - [MVVM Layered Architecture](#mvvm-layered-architecture)
   - [Introduction](#introduction-1)
   - [View - Inversion of Control](#view---inversion-of-control)
@@ -30,6 +27,9 @@
   - [MVVM Implementation Using Project Concept](#mvvm-implementation-using-project-concept)
   - [MVVM implementation Conclusion](#mvvm-implementation-conclusion)
   - [Layered architecture Benefits](#layered-architecture-benefits)
+- [Selected Patterns](#selected-patterns)
+  - [Master-detail GUI pattern](#master-detail-gui-pattern)
+  - [Pop-up Window](#pop-up-window)
 - [See also](#see-also)
 
 ## Introduction
@@ -84,28 +84,6 @@ How to cut this Gordian knot? So far, the discussion has been reactive, ending w
 
 The functionality of the scenario in which `XAML` is only a transparent data relay has been implemented in WPF technology. To transfer data, it must first be pulled from or pushed to some source. We don't have much choice here, they have to be objects, or rather their properties - described by types. Since these types must already be related to process data processing, their definition is dedicated to the needs of this process, which is located in the `GraphicalData.View` project. The `View` layer has references to this project. However, when WPF was implemented - specifically the transfer mechanism - it could not have known these types. Data transfer in WPF is a generic mechanism, so it cannot refer to specific types at design time, although it can have references to data holders of these types at run-time. This leads to the conclusion that we cannot use type definitions in this process, so what is left is only reflection, which allows us to recover these definitions during program execution, which should not worry us much, because we are not the ones who have to use them directly and, consequently know this technology. A kind of relief is the [IntelliSense][IntelliSense] code-completion aid, which simulates run time scenario at design time program development stage.
 
-## Selected Patterns
-
-### Window and Pop-up Window
-
-It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath. It may be recognized as a confusion that it should be constructed so it is not aware of the existence of the upper layer, because it is above it. In scenarios like this, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
-
- Let's start a Discussion about a graphical user interface implementation by determining how we can bring the content of a program user interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying graphics on the compute screen features**, editing data through it, and responding to user commands. The basic element to compose a Graphical User Interface, we already know, is a Window. An example is shown in the figure below. The primary element (Window ) is created during the bootstrapping by an executing platform according to the description in the program sequence. However, in the examined project, we have one more window. It appears after clicking one of the keys (in Fig. below).
-
-![Pop-up Window](.Media/Pop-upWindow.gif)
-
-Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up scenario - if everything goes well. This means we must deal with
-
-- event handling - deciding when a window should be exposed on the screen.
-- view - deciding what the window should look like.
-
-It is worth recalling here that a window is a class that inherits from the `Window` class and for the window to appear you need to call the [Show][Show] method.
-
-### Master-detail GUI pattern
-
-The master-detail GUI pattern is commonly used in software applications to display hierarchical data. The master view displays a list or summary of items (e.g., records, files, contacts, products). Users can select an item from this list. When a user selects an item from the master view, the detail view updates to show detailed information about that item. It provides a more comprehensive view, including additional data and related details. Depending on the capability of the hardware the detail view may be displayed on the same window, on the pop-up window, or a window replacing the master one.
-
-In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further.
 
 ## MVVM Layered Architecture
   
@@ -188,6 +166,29 @@ Hierarchical architecture is often contrasted with spaghetti architecture if spa
 4. The lack of cyclic references improves modifications and limits side effects. This way maintenance costs can be reduced.
 5. Efficiency of the design process may be increased by applying the principle of separation of concerns, i.e. good planning of layers will avoid being distracted by solving several threads at the same time.
 6. Layers can not only be implemented into separate projects but deployed on other physical machines. (a) Executing the same layer in parallel on many computers horizontal scalability is deployed. (b) The ability to execute individual layers on independent hardware platforms means vertical scalability.
+
+## Selected Patterns
+
+### Master-detail GUI pattern
+
+The master-detail GUI pattern is commonly used in software applications to display hierarchical data. The master view displays a list or summary of items (e.g., records, files, contacts, products). Users can select an item from this list. When a user selects an item from the master view, the detail view updates to show detailed information about that item. It provides a more comprehensive view, including additional data and related details. Depending on the capability of the hardware the detail view may be displayed on the same window, on the pop-up window, or a window replacing the master one.
+
+In this scenario, users start by scanning the master view to find the item they’re interested in. Once they select an item, the detail view updates dynamically to show relevant details. Users can navigate back to the master view or select another item to explore further.
+
+### Pop-up Window
+
+It is not difficult to imagine a scenario in which, when performing a certain operation, we need additional details from the user, for example, a file name. Obtaining this information requires additional at-hock communication with the user, which means engaging the topmost layer and displaying a pop-up window. This event must be handled by the layer underneath. It may be recognized as a confusion that it should be constructed so it is not aware of the existence of the upper layer, because it is above it. In scenarios like this, we will look for help in the Dependency Injection programming pattern. Those who have already heard something about this pattern may feel anxious that it is not another point in the discussion, but an introduction to a completely new topic. The concerns are justified, because many publications have already been written on this topic, and many frameworks and derivative terms have been created. An example is Inversion of Control. Without getting into academic disputes and deciding whether these publications and solutions concern dependency injection itself or the automation of dependency injection rather, we will try to solve the problem and separate the layers to avoid cyclical references between them, i.e. recursion in the architecture.
+
+ Let's start a Discussion about a graphical user interface implementation by determining how we can bring the content of a program user interface to "make it alive". The phrase "make it alive" is a colloquialism that means **dynamically modifying graphics on the compute screen features**, editing data through it, and responding to user commands. The basic element to compose a Graphical User Interface, we already know, is a Window. An example is shown in the figure below. The primary element (Window ) is created during the bootstrapping by an executing platform according to the description in the program sequence. However, in the examined project, we have one more window. It appears after clicking one of the keys (in Fig. below).
+
+![Pop-up Window](.Media/Pop-upWindow.gif)
+
+Without going into details, let's assume that clicking a key causes some hard work to be performed in the background - for example, a file is being read and analyzed - and as a result, another window is displayed - a typical pop-up scenario - if everything goes well. This means we must deal with
+
+- event handling - deciding when a window should be exposed on the screen.
+- view - deciding what the window should look like.
+
+It is worth recalling here that a window is a class that inherits from the `Window` class and for the window to appear you need to call the [Show][Show] method.
 
 ## See also
 
