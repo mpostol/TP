@@ -72,7 +72,7 @@ However, this solution has several drawbacks. Let's narrow the discussion to the
 
 To sum up, placing the text of a program implementing any activities related to process data processing in the code-behind, violates the principle of separation of concerns, limits the possibility of using unit tests, and limits the portability of the solution. This analysis leads to the conclusion - let's not do it, it's not a good idea.
 
-What about overriding the [OnInitialized][OnInitialized] in the [MainWindow][MainWindow] class? Am I contradicting myself? I will come back to this point. For now, please trust me that this is following the recommendations. Again, the recommendation says **the code-behind should not contain any line of code except the required one**. This exception is vital here.
+What about overriding the [OnInitialized][OnInitialized] in the `MainWindow` class? Am I contradicting myself? I will come back to this point. For now, please trust me that this is following the recommendations. Again, the recommendation says **the code-behind should not contain any line of code except the required one**. This exception is vital here.
 
 Since the place where the user interface comes to life should not be `XAML` and code-behind, it must be other parts of the program. Here, unfortunately, we encounter a barrier related to type compliance control. Namely, you first need to know these types to control type compatibility. Suppose technologically unrelated projects are to be independent, as is the case with the `GraphicalData.ViewModel` and `GraphicalData.Model` projects. In that case, the mentioned projects cannot refer to the control types because they will become dependent on the technology and the elaborate plan will fail.
 
