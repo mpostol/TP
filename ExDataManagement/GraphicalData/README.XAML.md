@@ -114,7 +114,11 @@ The implementation of this method is provided by the library, but from the descr
 
 In object-oriented programming, launching a program must cause instantiation and initialization of a first object. Its constructor therefore contains the instruction that is first executed by the operating system process to be a platform for running the program. This raises the question of how to find it.
 
-Each project contains a configuration file. In the project, its content can be read using the context menu. And here we find the place where we can choose the starting object. There is only one to choose from, and its name syntax resembles a type name. Since this is a type, it is worth asking how the environment selects types to this list. Could there be more items on this list?
+Each project contains a configuration file. In the project, its content can be read using the context menu. And here we find the place where we can choose the starting object. There is only one to choose from, and its name syntax resembles a type name.
+
+![Bootstrap Sequence](.Media/BootstrapSequence.gif)
+
+Since this is a type, it is worth asking how the environment selects types to this list. Could there be more items on this list?
 
 Since this is a starting object, the identifier in the dropbox must be the class name. We find the `App` type in the class view tree. After opening, we see that it is XML-compliant text. Notice that this file is one of a pair of linked files. The second one is a CSharp file, but it's just an empty definition and doesn't even have a constructor. This is another example of a partial class written in two languages, so we expect XAML to CSharp conversion and text mixing. In this method, we can find a reference to the XAML file, namely an assignment to the `StartupUri` property pointing to the previously parsed file containing the definition of the graphical user interface, often called shell.
 
