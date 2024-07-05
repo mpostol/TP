@@ -11,24 +11,7 @@
 //_________________________________________________________________________________________________________________________
 -->
 
-# MVVM Program Design Pattern <!-- omit in toc -->
-
-## Table of content <!-- omit in toc -->
-
-- [Introduction](#introduction)
-- [UI Elements Appearance](#ui-elements-appearance)
-- [UI Modification](#ui-modification)
-- [Code-behind](#code-behind)
-- [MVVM Layered Architecture](#mvvm-layered-architecture)
-  - [Preface](#preface)
-  - [MVVM Implementation Using Namespace Concept](#mvvm-implementation-using-namespace-concept)
-  - [MVVM Implementation Using Project Concept](#mvvm-implementation-using-project-concept)
-  - [Layered Architecture Benefits](#layered-architecture-benefits)
-  - [MVVM implementation Conclusion](#mvvm-implementation-conclusion)
-- [Selected Scenarios](#selected-scenarios)
-  - [Master-detail Pattern](#master-detail-pattern)
-  - [Pop-up Window](#pop-up-window)
-- [See also](#see-also)
+# MVVM Program Design Pattern
 
 ## Introduction
 
