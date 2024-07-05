@@ -101,7 +101,7 @@ In other words, any control is a type that encapsulates user interface functiona
 
 It may sound mysterious at first, but the fact that the graphical user interface is an element of the program is obvious to everyone. However, it is not so obvious to everyone that it is not an integral part of the executing program process. Let's look at the diagram below, where we see the GUI as something external to the program. Like streaming and structured data. This interface can even be deployed on another physical machine. In such a case, the need for communication between machines must also be considered.
 
-![Program Layered Design Pattern](.media/CoursImageProgramLayeredDesignPattrn.png)
+![Program Layered Design Pattern](.Media/CoursImageProgramLayeredDesignPattrn.png)
 
 As a result, we must look at the User Interface and the running program as two independent entities operating in asynchronous environments. So the problem is how to synchronize its content and behavior with the program flow.
 
