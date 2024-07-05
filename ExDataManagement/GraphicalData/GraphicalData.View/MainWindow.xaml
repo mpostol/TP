@@ -7,40 +7,40 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="Auto">
     <Window.DataContext>
-      <vm:MainViewModel />
+        <vm:MainViewModel />
     </Window.DataContext>
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="2*" />
-      <ColumnDefinition Width="3*" />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="4*" />
-      <RowDefinition />
-      <RowDefinition />
-    </Grid.RowDefinitions>
-    <ListBox ItemsSource="{Binding Users}" SelectedItem="{Binding CurrentUser}" Grid.Column="0" Grid.Row="0">
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <StackPanel Orientation="Vertical">
-            <Label Content="{Binding Name}" />
-            <CheckBox VerticalAlignment="Center" IsChecked="{Binding Active}" IsEnabled="False" />
-            <Label Content="{Binding Age}" />
-          </StackPanel>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
-    <Grid Grid.Column="1" Grid.Row="0">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-      </Grid.RowDefinitions>
-      <TextBox Text="{Binding CurrentUser.Name}" Grid.Column="0" Grid.Row="0" />
-      <TextBox Text="{Binding CurrentUser.Age}" Grid.Column="0" Grid.Row="1" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding Users}" SelectedItem="{Binding CurrentUser}" Grid.Column="0" Grid.Row="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding Name}" />
+                        <CheckBox VerticalAlignment="Center" IsChecked="{Binding Active}" IsEnabled="False" />
+                        <Label Content="{Binding Age}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBox Text="{Binding CurrentUser.Name}" Grid.Column="0" Grid.Row="0" />
+            <TextBox Text="{Binding CurrentUser.Age}" Grid.Column="0" Grid.Row="1" />
+        </Grid>
+        <Button Content="Click the button to load new data" Grid.Column="0" Grid.Row="1" Command="{Binding FetchDataCommend}" />
+        <Button Command="{Binding ShowTreeViewMainWindowCommend}" Content="Click the button to display TreeView Window" Grid.Column="0" Grid.Row="2" Width="Auto" />
+        <Button Content="Click to display text below" Grid.Column="1" Grid.Row="1" Command="{Binding DisplayTextCommand}" />
+        <TextBox Text="{Binding ActionText}" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" />
     </Grid>
-    <Button Content="Click the button to load new data" Grid.Column="0" Grid.Row="1" Command="{Binding FetchDataCommend}" />
-    <Button Content="Click the button to display TreeView Window" Grid.Column="0" Grid.Row="2" Width="Auto" Command="{Binding ShowTreeViewMainWindowCommend}" />
-    <Button Content="Click to display text below" Grid.Column="1" Grid.Row="1" Command="{Binding DisplayTextCommand}" />
-    <TextBox Text="{Binding ActionText}" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" />
-  </Grid>
 </Window>
