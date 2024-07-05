@@ -11,7 +11,7 @@
 //_________________________________________________________________________________________________________________________
 -->
 
-# XAML - Description of the Graphical Interface
+# User Interface Description
 
 ## Introduction
 
@@ -163,14 +163,15 @@ For the sake of simplicity, the `ICommand` interface is implemented by a helper 
 
 [AttachedProperty]:       ../DataStreams/DataStreams/Reflection/AttachedProperty.cs#L20-L27
 
+[RelayCommand]:           GraphicalData.ViewModel/MVVMLight/RelayCommand.cs#L24-L101
+[ActionText]:             GraphicalData.ViewModel/MainViewModel.cs#L74-L83
+[ShowTreeView]:           GraphicalData.ViewModel/MainViewModel.cs#L104-L107
+[MainViewWindow]:         GraphicalData.ViewModel/MainViewModel.cs#L20-L150
+[RaiseCanExecuteChanged]: GraphicalData.ViewModel/MVVMLight/RelayCommand.cs#L88-L91
+
 [TextBox]:                GraphicalData.View/MainWindow.xaml#L44
 [Grid]:                   GraphicalData.View/MainWindow.xaml#L12-L45
 [DataContext]:            GraphicalData.View/MainWindow.xaml#L9-L11
-[ActionText]:             GraphicalData.ViewModel/MainViewModel.cs#L74-L83
-[RelayCommand]:           GraphicalData.ViewModel/MVVMLight/RelayCommand.cs#L24-L101
-[ShowTreeView]:           GraphicalData.ViewModel/MainViewModel.cs#L104-L107
 [InitializeComponent]:    GraphicalData.View/MainWindow.xaml.cs#L23-L26
 [MainWindow]:             GraphicalData.View/MainWindow.xaml.cs#L21-L34
 [App]:                    GraphicalData.View/App.xaml#L1-L7
-[MainViewWindow]:         GraphicalData.ViewModel/MainViewModel.cs#L20-L150
-[RaiseCanExecuteChanged]: GraphicalData.ViewModel/MVVMLight/RelayCommand.cs#L88-L91
