@@ -32,9 +32,7 @@
 
 ## Introduction
 
-Let's start by defining the most important problems and indicating directions for further search for solutions regarding application architecture in the context of communication with the user using the MVVM pattern that stands for Model-View-ViewMode.To follow the discussion in this respect check out the [ExDataManagement.sln][ExDataManagement] solution. All examples are available in the [5.13-India tag][ExDataManagement]. All the examples in concern have been added to the `GraphicalData` folder.
-
-In the case of user interface (UI), a program window is a self-contained graphical unit created by the program and managed by the operating system. Managed means moving, enlarging, reducing, etc. This, of course, is not surprising since the development of the first Windows operating system, in which the window is the basis for human-machine communication.
+Let's start by defining the most important problems and indicating directions for further search for solutions regarding application architecture in the context of communication with the user using the MVVM pattern that stands for Model-View-ViewMode. In the case of user interface (UI), a program window is a self-contained graphical unit created by the program and managed by the operating system. Managed means moving, enlarging, reducing, etc. This, of course, is not surprising since the development of the first Windows operating system, in which the window is the basis for human-machine communication.
 
 The program can, of course, use several windows, as well as several databases or several files. In all cases, we can talk about an independent external data repository. In the case of Windows, however, we must consider an important difference, namely the interaction is two-way. In the case of databases, we can also expect the need to consider dynamic data change. However, only in the case of using the Windows operating system (OS), programs must respond directly to events triggered by the user.
 
@@ -206,9 +204,8 @@ It is worth recalling here that a window is a class that inherits from the `Wind
 [IsEnabled]:    https://learn.microsoft.com/dotnet/api/system.windows.uielement.isenabled
 [IntelliSense]: https://learn.microsoft.com/visualstudio/ide/using-intellisense
 
-[ExDataManagement]: https://github.com/mpostol/TP/blob/5.13-India/
-[MainWindow]:       https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.View/MainWindow.xaml#L1-L46
-[OnInitialized]:    https://github.com/mpostol/TP/blob/5.13-India/ExDataManagement/GraphicalData/GraphicalData.View/MainWindow.xaml.cs#L27-L33
+[MainWindow]:       GraphicalData.View/MainWindow.xaml#L1-L46
+[OnInitialized]:    GraphicalData.View/MainWindow.xaml.cs#L27-L33
 
 [mvvm-layered-architecture]: README.MVVM.md#mvvm-layered-architecture
 [Benefits]:                  README.MVVM.md#layered-architecture-benefits
