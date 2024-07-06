@@ -4,8 +4,7 @@
 
 - Postol Mariusz; [Programming in Practice - Graphical User Interface (GUI)][GUIMasterArticle]; C# Corner; May 30, 2024
 - Postol Mariusz; [Programming in Practice - GUI - MVVM Program Design Pattern][MVVMSecondArticle]; C# Corner; Jul 03, 2024
-- Postol Mariusz; 
-[GUIXAML]: https://www.c-sharpcorner.com/article/programming-in-practice-gui-xaml-description-of-the-user-interface/
+- Postol Mariusz; [Programming in Practice - GUI - XAML - Description of the User Interface][GUIXAML]; C# Corner; waiting for acceptance
 - Postol Mariusz; [Programming in Practice - LINQ Expression](https://www.c-sharpcorner.com/article/programming-in-practice-linq-expression/) C# Corner, May 06, 2024
 - Postol Mariusz; [Information Computation Mastery: Serialization](https://www.c-sharpcorner.com/article/information-computation-mastery-serialization/) C# Corner,  Apr 01, 2024
 - Postol Mariusz; [Information Computation Mastery: Challenges, Concepts, Implementation](https://www.c-sharpcorner.com/article/information-computation-mastery-challenges-concepts-implementation/), C# Corner, Mar 28, 2024
@@ -95,3 +94,4 @@
 [vdpnt]:               https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
 [GUIMasterArticle]:    https://www.c-sharpcorner.com/article/programming-in-practice-graphical-user-interface-gui/
 [MVVMSecondArticle]:   https://www.c-sharpcorner.com/article/programming-in-practice-gui-mvvm-program-design-pattern/
+[GUIXAML]:             https://www.c-sharpcorner.com/article/programming-in-practice-gui-xaml-description-of-the-user-interface/
