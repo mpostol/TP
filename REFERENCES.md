@@ -2,6 +2,10 @@
 
 ## Programming in Practice
 
+- Postol Mariusz; [Programming in Practice - Graphical User Interface (GUI)][GUIMasterArticle]; C# Corner; May 30, 2024
+- Postol Mariusz; [Programming in Practice - GUI - MVVM Program Design Pattern][MVVMSecondArticle]; C# Corner; Jul 03, 2024
+- Postol Mariusz; 
+[GUIXAML]: https://www.c-sharpcorner.com/article/programming-in-practice-gui-xaml-description-of-the-user-interface/
 - Postol Mariusz; [Programming in Practice - LINQ Expression](https://www.c-sharpcorner.com/article/programming-in-practice-linq-expression/) C# Corner, May 06, 2024
 - Postol Mariusz; [Information Computation Mastery: Serialization](https://www.c-sharpcorner.com/article/information-computation-mastery-serialization/) C# Corner,  Apr 01, 2024
 - Postol Mariusz; [Information Computation Mastery: Challenges, Concepts, Implementation](https://www.c-sharpcorner.com/article/information-computation-mastery-challenges-concepts-implementation/), C# Corner, Mar 28, 2024
@@ -36,15 +40,6 @@
 - [Postół M, profile on ResearchGate](https://www.researchgate.net/profile/Mariusz-Postol)
 - [Postół M, profile on ORCID](https://orcid.org/0000-0002-9669-0565)
 - [Postół M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
-
-[MPUdemy]:https://www.udemy.com/user/mariusz-postol/
-[udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
-[udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
-[MPGitHub]:https://github.com/mpostol
-
-[TP]: https://github.com/mpostol/TP
-[Discussion]: https://github.com/mpostol/TP/discussions
-[vdpnt]: https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
 
 ## C\#
 
@@ -86,6 +81,17 @@
 - [XSL\(T\) Languages](https://www.w3schools.com/xml/xsl_languages.asp)
 - [Xsd.exe](http://msdn.microsoft.com/library/x6c1kb0s.aspx)
 
-[csharpguid]: https://docs.microsoft.com/dotnet/csharp/programming-guide/
-[ExpressionClass]:https://docs.microsoft.com/dotnet/api/system.linq.expressions.expression
-[ET]:https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/expression-trees/index
+
+[csharpguid]:          https://docs.microsoft.com/dotnet/csharp/programming-guide/
+[ExpressionClass]:     https://docs.microsoft.com/dotnet/api/system.linq.expressions.expression
+[ET]:                  https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/expression-trees/index
+[MPUdemy]:             https://www.udemy.com/user/mariusz-postol/
+[udemyPiPIC]:          https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
+[udemyPiPES]:          https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
+[MPGitHub]:            https://github.com/mpostol
+
+[TP]:                  https://github.com/mpostol/TP
+[Discussion]:          https://github.com/mpostol/TP/discussions
+[vdpnt]:               https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
+[GUIMasterArticle]:    https://www.c-sharpcorner.com/article/programming-in-practice-graphical-user-interface-gui/
+[MVVMSecondArticle]:   https://www.c-sharpcorner.com/article/programming-in-practice-gui-mvvm-program-design-pattern/
