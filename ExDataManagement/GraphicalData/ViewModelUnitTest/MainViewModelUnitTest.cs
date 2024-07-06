@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -12,9 +12,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.ComponentModel;
-using TP.GraphicalData.ViewModel;
+using TP.GraphicalData.ViewMode.Test.Instrumentation;
 
-namespace TP.GraphicalData.ViewMode
+namespace TP.GraphicalData.ViewModel.Test
 {
   /// <summary>
   /// The <seealso cref="MainViewModel"/> class unit test
@@ -25,7 +25,7 @@ namespace TP.GraphicalData.ViewMode
     [TestMethod]
     public void CreatorTestMethod()
     {
-      MainViewModel _vm = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
+      MainViewModel _vm = new MainViewModel(new ModelImplementation4Testing());
       Assert.IsFalse(String.IsNullOrEmpty(_vm.ActionText));
       Assert.IsNotNull(_vm.MessageBoxShowDelegate);
       Assert.IsNotNull(_vm.DisplayTextCommand);
@@ -37,7 +37,7 @@ namespace TP.GraphicalData.ViewMode
     [TestMethod]
     public void MyCommandTest()
     {
-      MainViewModel _vm = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
+      MainViewModel _vm = new MainViewModel(new ModelImplementation4Testing());
       int _boxShowCount = 0;
       _vm.MessageBoxShowDelegate = (messageBoxText) =>
       {
@@ -53,7 +53,7 @@ namespace TP.GraphicalData.ViewMode
     [TestMethod]
     public void ActionTextTestMethod()
     {
-      MainViewModel _vm = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
+      MainViewModel _vm = new MainViewModel(new ModelImplementation4Testing());
       Assert.IsTrue(_vm.DisplayTextCommand.CanExecute(null));
       _vm.ActionText = String.Empty;
       Assert.IsFalse(_vm.DisplayTextCommand.CanExecute(null));
@@ -62,7 +62,7 @@ namespace TP.GraphicalData.ViewMode
     [TestMethod]
     public void MyTestMethod()
     {
-      Object DataContext = new MainViewModel(new Instrumentation.ModelImplementation4Testing());
+      Object DataContext = new MainViewModel(new ModelImplementation4Testing());
       Assert.IsInstanceOfType(DataContext, typeof(INotifyPropertyChanged));
       int executionCount = 0;
       ((INotifyPropertyChanged)DataContext).PropertyChanged += (x, y) => { Assert.AreEqual<string>("ActionText", y.PropertyName); executionCount++; };
