@@ -11,11 +11,11 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Graphical User Interface (GUI)
+# Graphical Data
 
 ## Preface
 
-This folder concerns selected issues related to the representation of process information in graphical form. It tries to answer how to build a graphical user interface. Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve the handling of graphic data.
+This part concerns selected issues related to the representation of process information in graphical form. It tries to answer how to build the **Graphical User Interface (GUI)**. Let's start with a few definitions, explanations, and indications of directions for searching for new solutions to improve the handling of **Graphic Data**.
 
 ### External Data
 
