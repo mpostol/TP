@@ -24,21 +24,20 @@
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
 - [GitHub repository mpostol/TP][TP] - C# in Practice - set of C# examples targeting education purpose
 - [Discussion panel on mpostol/TP][Discussion]
-
-[CI]: https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-integrity/
-[confidentiality]: https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-confidentiality/
-[ExDM]: https://www.c-sharpcorner.com/blogs/external-data-management-exdm
-[FileStream]: https://www.c-sharpcorner.com/article/external-data-file-and-stream-concepts
-[Attributes]: https://www.c-sharpcorner.com/article/external-data-attributes-profiling-data-access/
+- [Postół M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
 
 ## How to reach me
 
-- [Postół M, profile on Udemy.com][MPUdemy]
-- [Postół M, profile on GitHub.com][MPGitHub]
+- [Postół M, profile on GitHub](https://github.com/mpostol)
+- [Postół M, profile on Udemy](https://www.udemy.com/user/mariusz-postol/)
 - [Postół M, profile on LinkedIn](https://pl.linkedin.com/in/mpostol)
 - [Postół M, profile on ResearchGate](https://www.researchgate.net/profile/Mariusz-Postol)
+- [Postół M, profile on youtube](https://www.youtube.com/@mariuszpostol)
+- [Postół M, profile on nuget](https://www.nuget.org/profiles/mpostol)
 - [Postół M, profile on ORCID](https://orcid.org/0000-0002-9669-0565)
-- [Postół M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
+- [Postół M, profile on facebook](https://www.facebook.com/mariusz.postol/)
+- [Postół M, profile on wordpress](http://mpostol.wordpress.com/)
+- [Postół M, profile on c-sharpcorner](https://www.c-sharpcorner.com/members/mariusz-postol)
 
 ## C\#
 
@@ -91,6 +90,12 @@
 [TP]:                  https://github.com/mpostol/TP
 [Discussion]:          https://github.com/mpostol/TP/discussions
 [vdpnt]:               https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
+
+[CI]:                  https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-integrity/
+[confidentiality]:     https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-confidentiality/
+[ExDM]:                https://www.c-sharpcorner.com/blogs/external-data-management-exdm
+[FileStream]:          https://www.c-sharpcorner.com/article/external-data-file-and-stream-concepts
+[Attributes]:          https://www.c-sharpcorner.com/article/external-data-attributes-profiling-data-access/
 [GUIMasterArticle]:    https://www.c-sharpcorner.com/article/programming-in-practice-graphical-user-interface-gui/
 [MVVMSecondArticle]:   https://www.c-sharpcorner.com/article/programming-in-practice-gui-mvvm-program-design-pattern/
 [GUIXAML]:             https://www.c-sharpcorner.com/article/programming-in-practice-gui-xaml-description-of-the-user-interface/
