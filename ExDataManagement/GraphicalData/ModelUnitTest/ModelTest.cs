@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -11,7 +11,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TP.GraphicalData.Model
+namespace TP.GraphicalData.Model.Test
 {
   /// <summary>
   /// Place to test the Model sublayer
