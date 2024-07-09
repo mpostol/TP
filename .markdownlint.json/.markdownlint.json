@@ -1,9 +1,0 @@
-{
-    "MD013": false,
-    "MD024": true,
-    "MD033": {
-        "allowed_elements": [
-            "iframe"
-        ]
-    }
-}
