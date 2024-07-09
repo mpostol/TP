@@ -45,6 +45,8 @@ In this video, I present an executive summary of the Programming in Practice edu
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Z0McLzBolhI?si=gnHG80GOSVJ4Uucl" title="Programming in Practice - Executive Summary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+[![Video Title](https://img.youtube.com/vi/)](https://www.youtube.com/watch?v=Z0McLzBolhI)
+
 ## Repository Content
 
 ### Preface
