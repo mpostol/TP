@@ -40,8 +40,7 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 In this video, I present an executive summary of the Programming in Practice educational path. To get more, consider enrolling in [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as an extended examples organization unit that is a foundation for the `Programming in Practice` paradigm. The course is for all serious about improving the software development skills education methodology including but not limited to teachers and lecturers wanting to improve the software development skills education methodology. It is all about engineering atop University knowledge and practical experience as a foundation.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Z0McLzBolhI?si=gnHG80GOSVJ4Uucl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-</iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Z0McLzBolhI?si=gnHG80GOSVJ4Uucl" title="Programming in Practice - Executive Summary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Repository Content
 
