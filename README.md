@@ -58,7 +58,7 @@ My point is that we could distinguish between two kinds of education:
 1. **learning** - focused on knowledge (concepts, standards, best practices, etc) adoption
 1. **training** - focused on product deployment
 
-The extended examples gathered in this repository focus on learning - the improvement of your knowledge related to software engineering as a field of computer science covering topics like the systematic design, development, testing, maintenance, and evolution of software. My goal is that it will be beneficial for you in the long run. The extended examples have been selected and prepared considering that **simplification is not a mother of simplicity**.
+The extended examples gathered in this repository focus on learning - the improvement of your knowledge related to software engineering as a field of computer science covering topics like the systematic design, development, testing, maintenance, and evolution of software. My goal is that it will be beneficial for you in the long run. The extended examples have been selected and prepared considering that **simplification is not a mother of simplicity**
 
 The code extended examples address the following application domains:
 

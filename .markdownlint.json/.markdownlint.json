@@ -1,7 +1,7 @@
 {
     "MD013": false,
     "MD024": true,
-    "no-inline-html": {
+    "MD033": {
         "allowed_elements": [
             "iframe"
         ]
