@@ -8,7 +8,7 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 |   Release    | Title                                                                 |          DOI           |
 | :----------: | --------------------------------------------------------------------- | :--------------------: |
-| [5.2][REL52] | [External Data Added to the ebook][REL52]                        | [![DOI][BDG52]][DOI52] |
+| [5.2][REL52] | [External Data Added to the ebook][REL52]                             | [![DOI][BDG52]][DOI52] |
 | [5.1][REL51] | [Information Computation Udemy Course Online Publication][udemyPiPIC] | [![DOI][BDG51]][DOI51] |
 | [4.3][REL43] | TUL IT Classes 2023 Summer Semester                                   | [![DOI][BDG43]][DOI43] |
 | [4.0][REL40] | Distributed Programming                                               | [![DOI][BDG40]][DOI40] |
@@ -18,7 +18,7 @@ software engineering, sequential programming, adaptive programming, concurrent p
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
 > [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
-12701909
+
 
 [REL52]: https://github.com/mpostol/TP/releases/tag/5.2
 [DOI52]: https://doi.org/10.5281/zenodo.12701909
