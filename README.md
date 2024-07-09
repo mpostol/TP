@@ -38,9 +38,9 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 ## Executive Summary
 
-In this video, I present an executive summary of the Programming in Practice educational path. To get more, consider enrolling in [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as an extended examples organization unit that is a foundation for the `Programming in Practice` paradigm. The course is for all serious about improving the software development skills education methodology including but not limited to teachers and lecturers wanting to improve the software development skills education methodology. It is all about engineering atop University knowledge and practical experience as a foundation.
+In this short video, I present an executive summary (3 min) of the Programming in Practice educational path. To get more, consider enrolling in [Programming in Practice - Executive Summary; free Udemy course][udemyPiPES]; This free course explains the role of this repository as a collection of extended examples that is a foundation for the `Programming in Practice` paradigm. The course is for all serious about improving the software development skills education methodology including but not limited to teachers and lecturers wanting to improve the software development skills education methodology. It is all about engineering atop University knowledge and practical experience as a foundation. Press the play button to open the video on `YouTube`.
 
-[![Programming in Practice - Executive Summary](.Common/CourseImage_1080-1080.Youtube.png)](https://www.youtube.com/embed/Z0McLzBolhI)
+[![Programming in Practice - Executive Summary](.Common/PiPREADME.Youtube.png)](https://www.youtube.com/embed/Z0McLzBolhI)
 
 ## Repository Content
 
@@ -145,9 +145,7 @@ Consider also enrolling in the following courses:
 
 ## Contributing
 
-I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'.
-
-You must agree to the contributor license agreement before I can accept your changes.
+I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'. You must agree to the contributor license agreement before I can accept your changes.
 
 ## How to reach me
 
@@ -158,9 +156,9 @@ To get more on my activity and projects currently I am working on:
 - :cloud_with_lightning: [visit the discussion][Discussion]
 - 🔭 I’m currently working on: Programming in Practice education path
 - 👯 I’m looking to collaborate on **External Data Management**
-- 💬 ask me about sequential, concurrent, parallel, real-time, and distributed software engineering including but not limited to design patterns, agile management, and testing.
+- 💬 ask me about sequential, concurrent, parallel, real-time, and distributed program engineering including but not limited to design patterns, agile management, and testing.
 
-There are also available my profiles on social media:
+The following profiles on social media are also a good starting point:
 
 - [Postół M, profile on GitHub][MPGitHub]
 - [Postół M, profile on Udemy][MPUdemy]
@@ -171,7 +169,7 @@ There are also available my profiles on social media:
 - [Postół M, profile on ORCID](https://orcid.org/0000-0002-9669-0565)
 - [Postół M, profile on facebook](https://www.facebook.com/mariusz.postol/)
 - [Postół M, profile on wordpress](http://mpostol.wordpress.com/)
-- [Postół M, profile on c-sharpcorner](https://www.c-sharpcorner.com/members/mariusz-postol)
+- [Postół M, profile on CSharp Corner](https://www.c-sharpcorner.com/members/mariusz-postol)
 
 ## See also
 
