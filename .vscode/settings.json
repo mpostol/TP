@@ -10,6 +10,7 @@
     ],
     "dotnet.defaultSolution": "disable",
     "cSpell.words": [
+        "iframe",
         "MVVM",
         "Pendrive",
         "typeof"
