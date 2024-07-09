@@ -1,4 +1,4 @@
-# Programming in Practice [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases)
+# Programming in Practice
 
 ## Key words
 
@@ -40,7 +40,7 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 In this short video, I present an executive summary (3 min) of the Programming in Practice educational path. To get more, consider enrolling in [Programming in Practice - Executive Summary; free Udemy course][udemyPiPES]; This free course explains the role of this repository as a collection of extended examples that is a foundation for the `Programming in Practice` paradigm. The course is for all serious about improving the software development skills education methodology including but not limited to teachers and lecturers wanting to improve the software development skills education methodology. It is all about engineering atop University knowledge and practical experience as a foundation. Press the play button to open the video on `YouTube`.
 
-[![Programming in Practice - Executive Summary](.Common/PiPREADME.Youtube.png)](https://www.youtube.com/embed/Z0McLzBolhI)
+[![Programming in Practice - Executive Summary](../.Common/PiPREADME.Youtube.png)](https://www.youtube.com/embed/Z0McLzBolhI)
 
 ## Repository Content
 
