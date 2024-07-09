@@ -10,6 +10,8 @@
     <Company>MPostol</Company>
     <PackageProjectUrl>https://www.udemy.com/user/mariusz-postol/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mpostol/TP</RepositoryUrl>
+    <AssemblyName>TP.GraphicalData.View</AssemblyName>
+    <RootNamespace>TP.GraphicalData.View</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -12,7 +12,7 @@
 using System.Collections.Generic;
 using TP.GraphicalData.Model;
 
-namespace TP.GraphicalData.ViewMode.Instrumentation
+namespace TP.GraphicalData.ViewMode.Test.Instrumentation
 {
   /// <summary>
   /// The <seealso cref="ModelSublayerAPI"/> implementation for the testing purpose

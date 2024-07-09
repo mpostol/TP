@@ -2,7 +2,7 @@
 
 ## Key words
 
-software engineering, sequential programming, software design, education, code examples, information computation, external data, information processing, data processing, dependency injection, inversion of control, concurrent programming, adaptive-programming, distributed programming.
+software engineering, sequential programming, adaptive programming, concurrent programming, rel-time programming, distributed programming, education, code examples, information computation, external data, information processing, data processing, dependency injection, inversion of control.
 
 ## Major Releases
 
@@ -36,6 +36,12 @@ software engineering, sequential programming, software design, education, code e
 
 [TULIT]: https://it.p.lodz.pl/
 
+## Executive Summary
+
+In this short video, I present an executive summary (3 min) of the Programming in Practice educational path. To get more, consider enrolling in [Programming in Practice - Executive Summary; free Udemy course][udemyPiPES]; This free course explains the role of this repository as a collection of extended examples that is a foundation for the `Programming in Practice` paradigm. The course is for all serious about improving the software development skills education methodology including but not limited to teachers and lecturers wanting to improve the software development skills education methodology. It is all about engineering atop University knowledge and practical experience as a foundation. Press the play button to open the video on `YouTube`.
+
+[![Programming in Practice - Executive Summary](.Common/PiPREADME.Youtube.png)](https://www.youtube.com/embed/Z0McLzBolhI)
+
 ## Repository Content
 
 ### Preface
@@ -46,10 +52,10 @@ software engineering, sequential programming, software design, education, code e
 
 My point is that we could distinguish between two kinds of education:
 
-1. training - focused on products adoption and maintenance
-2. learning - focused on knowledge (concepts, standards, best practices, etc) adoption and maintenance
+1. **learning** - focused on knowledge (concepts, standards, best practices, etc) adoption
+1. **training** - focused on product deployment
 
-The extended examples gathered in this repository focus on learning - the improvement of your knowledge related to software engineering as a field of computer science covering topics like the systematic design, development, testing, maintenance, and evolution of software. My goal is that it will be beneficial for you in the long run. The extended examples have been selected and prepared considering that **simplification is not a mother of simplicity**.
+The extended examples gathered in this repository focus on learning - the improvement of your knowledge related to software engineering as a field of computer science covering topics like the systematic design, development, testing, maintenance, and evolution of software. My goal is that it will be beneficial for you in the long run. The extended examples have been selected and prepared considering that **simplification is not a mother of simplicity**
 
 The code extended examples address the following application domains:
 
@@ -89,7 +95,7 @@ The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects example
 
 ### Concurrent Programming (CW)
 
-It is a programming paradigm that allows writing a program that formally describes the execution of instructions as a result of nondeterministic events. Concurrency is when multiple sequences of instructions are run in overlapping periods. In other words, the instructions sequence execution is undetermined in advance. Concurrency may be implemented explicitly using constructs like the Thread type, or implicitly using a concept like asynchronous programming. The gathered examples address selected concepts unique for concurrent programming, namely critical section, race condition, synchronization,  communication, and deadlocks, to name only the most important.
+It is a programming paradigm that allows writing a program that formally describes the execution of instructions as a result of nondeterministic events. Concurrency is when multiple sequences of instructions are run in overlapping periods. In other words, the instructions sequence execution is undetermined in advance. Concurrency may be implemented explicitly using constructs like the Thread type, or implicitly using a concept like asynchronous programming. The gathered examples address selected concepts unique for concurrent programming, namely critical section, race condition, synchronization, communication, and deadlocks, to name only the most important.
 
 The [ConcurrentProgramming](ConcurrentProgramming/README.md) folder collects examples that can serve as a certain pattern with the broadest possible applicability addressing the mentioned above application domain.
 
@@ -107,7 +113,7 @@ The [DistributedProgramming](DistributedProgramming/README.md) folder collects e
 
 To be compliant with the license of the repository the below copyright notice shall be included in all copies or substantial portions of the software and associated documentation files (the "Software").
 
-Copyright (c) 2023 Mariusz Postol
+Copyright (c) 2024 Mariusz Postol
 
 A DOI number, which stands for "Digital Object Identifier," is a unique alphanumeric identifier assigned to a digital object, such as an academic article, book, dataset, software, or other scholarly work. It provides a permanent link and a standardized way to identify and locate digital content on the internet. Because this repository has a DOI, use the DOI in your citation for the article or any derived work, like this:
 
@@ -132,20 +138,38 @@ I have activated the [Discussion][Discussion] space for this repository.
 
 To follow any activity in the repository, switch on the `Watch` functionality. If you find the project interesting, please star the repository using the `Star` button. Starring a repository also shows appreciation to the repository maintainer for their work. You can star repositories and topics to keep track of projects you find interesting and discover related content in your news feed. Check out [Saving repositories with stars](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars) to get more.
 
-**To get more on my activity and projects currently I am working on**:
+Consider also enrolling in the following courses:
+
+- [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
+- [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+
+## Contributing
+
+I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'. You must agree to the contributor license agreement before I can accept your changes.
+
+## How to reach me
+
+To get more on my activity and projects currently I am working on:
 
 - 📫 [join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
 - 👀 [follow me on YouTube](https://youtu.be/YPdL0bc0Xmo)
 - :cloud_with_lightning: [visit the discussion][Discussion]
 - 🔭 I’m currently working on: Programming in Practice education path
-- 👯 I’m looking to collaborate on **External Data Management**, **Object-oriented Internet**
-- 💬 ask me about sequential, concurrent, parallel, real-time, and distributed software engineering including but not limited to design patterns, agile management, and testing.
+- 👯 I’m looking to collaborate on **External Data Management**
+- 💬 ask me about sequential, concurrent, parallel, real-time, and distributed program engineering including but not limited to design patterns, agile management, and testing.
 
-## Contributing
+The following profiles on social media are also a good starting point:
 
-I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'.
-
-You must agree to the contributor license agreement before I can accept your changes.
+- [Postół M, profile on GitHub][MPGitHub]
+- [Postół M, profile on Udemy][MPUdemy]
+- [Postół M, profile on LinkedIn](https://pl.linkedin.com/in/mpostol)
+- [Postół M, profile on ResearchGate](https://www.researchgate.net/profile/Mariusz-Postol)
+- [Postół M, profile on youtube](https://www.youtube.com/@mariuszpostol)
+- [Postół M, profile on nuget](https://www.nuget.org/profiles/mpostol)
+- [Postół M, profile on ORCID](https://orcid.org/0000-0002-9669-0565)
+- [Postół M, profile on facebook](https://www.facebook.com/mariusz.postol/)
+- [Postół M, profile on wordpress](http://mpostol.wordpress.com/)
+- [Postół M, profile on CSharp Corner](https://www.c-sharpcorner.com/members/mariusz-postol)
 
 ## See also
 
@@ -153,27 +177,22 @@ You must agree to the contributor license agreement before I can accept your cha
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
 - [Discussion panel][Discussion]
-- [Postół. M, Programming Technologies 2021; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbyWXRTAe9m-ABP9YWmpLvUk)
-- [Postół. M, Programming Technologies 2020; Recorded lectures](https://youtube.com/playlist?list=PLC7zPvgw-YbwOD3GaSPl6kzKhDRmmrA-9)
 - [Postół. M, Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
-- [Postół. M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
-- [Postol. M, profile on Udemy.com][MPUdemy]
-- [Join me on LinkedIn](https://pl.linkedin.com/in/mpostol)
-- [References](REFERENCES.md)
+You may check out the document [References](REFERENCES.md) to encounter other relevant in this context publications.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578244.svg)](https://doi.org/10.5281/zenodo.2578244) - This DOI represents all versions, and will always resolve to the latest one.
-[![Build Status](https://caseu.visualstudio.com/TP/_apis/build/status/mpostol.TP?branchName=master)](https://caseu.visualstudio.com/TP/_build/latest?definitionId=2&branchName=master) - Build Status
 
-[MPUdemy]:https://www.udemy.com/user/mariusz-postol/
+[MPGitHub]:   https://github.com/mpostol
+[MPUdemy]:    https://www.udemy.com/user/mariusz-postol/
 [udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
 [udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
 [Discussion]: https://github.com/mpostol/TP/discussions
-[vdpnt]: https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
+[vdpnt]:      https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
 
 <!--
 //____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -181,5 +200,5 @@ You must agree to the contributor license agreement before I can accept your cha
 //
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
-
+[![Build Status](https://caseu.visualstudio.com/TP/_apis/build/status/mpostol.TP?branchName=master)](https://caseu.visualstudio.com/TP/_build/latest?definitionId=2&branchName=master) - Build Status
 -->

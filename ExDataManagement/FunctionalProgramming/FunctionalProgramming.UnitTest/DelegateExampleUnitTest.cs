@@ -36,7 +36,7 @@ namespace TP.FunctionalProgramming
     }
 
     [TestMethod]
-    public void MulticastTestMethod()
+    public void MultiCastTestMethod()
     {
       DelegateExample _newInstance = new DelegateExample();
       _newInstance.PerformCalculationVar = _newInstance.PerformSumMethod;

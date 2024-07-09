@@ -15,9 +15,9 @@
 
 Generally speaking, we can say that data processing is carried out through the execution of operations. From this point of view, we can divide the data into:
 
-1. **Simple data** - in this case, the data can be processed by a single operation, it is one action as a result of which the value is referred to as one whole. For example, changing the sign of an int variable.
-2. **Complex data** – here the data is composed of components. Therefore, to operate on complex data we apply a selector operation to select a component that is to be subject to an operation. The data type determines the selection method, e.g. index for arrays and field selection for class or structure.
-3. **Structured data** - by design, the distinguishing feature is that individual data items in a structure are selected based on intentionally programmed relationships between items.
+1. **Simple** - in this case, the data can be processed by a single operation, it is one action as a result of which the value is referred to as one whole. For example, changing the sign of an int variable.
+2. **Complex** – here the data is composed of components. Therefore, to operate on complex data we apply a selector operation to select a component that is to be subject to an operation. The data type determines the selection method, e.g. index for arrays and field selection for class or structure.
+3. **Structural** - by design, the distinguishing feature is that individual data items in a structure are selected based on intentionally programmed relationships between items.
 
 This section is focused on structural data. In object-oriented programming, the basic way to create structural data is to define custom types and interconnect them using references. Let's analyze this case using sample code in the context of intentionally programmed relationships between items. As an example consider the [IPerson][IPerson] and [ICDCatalog][ICDCatalog] interfaces. Now let's perform a graphical analysis of the code. They are abstract definitions but a reference between interfaces in the diagram could be distinguished.
 

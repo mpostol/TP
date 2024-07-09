@@ -15,7 +15,7 @@
 
 ## Key words
 
-software engineering, education, learning, external data, data management, streaming data, structural data, graphical data
+software engineering, sequential programming education, learning, code examples,  information processing, external data: streaming data, structural data, graphical data
 
 ## Introduction
 

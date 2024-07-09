@@ -46,9 +46,7 @@
   * [Implementation Examples](ExDataManagement/DataStreams/DataStreams/README.md)
   * [Objects Serialization](ExDataManagement/DataStreams/DataStreams/READMESerialization.md)
   * [Cryptography](ExDataManagement/DataStreams/DataStreams/READMECryptography.md)
-* Functional Programming
-  * [Preface](ExDataManagement/FunctionalProgramming/README.md)
-  * [Implementation](ExDataManagement/FunctionalProgramming/FunctionalProgramming/Readme.md)
+* [Functional Programming](ExDataManagement/FunctionalProgramming/README.md)
   * [Delegate and Events](ExDataManagement/FunctionalProgramming/FunctionalProgramming/READMEDelegateEvents.md)
   * [Extension Methods](ExDataManagement/FunctionalProgramming/FunctionalProgramming/README.ExtensionMethods.md)
   * [Anonymous Functions](ExDataManagement/FunctionalProgramming/FunctionalProgramming/README.AnonymousFunctions.md)
@@ -56,13 +54,9 @@
   * [LINQ Expression](ExDataManagement/StructuralData/StructuralData/README.LINQExpression.md)
   * [LINQ to Object](ExDataManagement/StructuralData/StructuralData/README.LINQ2Object.md)
   * [LINQ to SQL](ExDataManagement/StructuralData/StructuralData/README.LINQ2SQL.md)
-* Graphical Data
-  * [Preface](ExDataManagement/GraphicalData/README.md)
-  * [View Implementation Examples](ExDataManagement\GraphicalData\GraphicalData.View\README.md)
-  * [ViewModel Implementation Examples](ExDataManagement\GraphicalData\GraphicalData.ViewModel\README.md)
-  * [ViewModel Usage](ExDataManagement\GraphicalData\ViewModelUnitTest\README.md)
-  * [Model Implementation Examples](ExDataManagement/GraphicalData/GraphicalData.Model/README.md)
-  * [Model Usage](ExDataManagement/GraphicalData/ModelUnitTest/README.md)
+* [Graphical Data](ExDataManagement/GraphicalData/README.md)
+  * [MVVM Program Design Pattern](ExDataManagement/GraphicalData/README.MVVM.md)
+  * [User Interface Description](ExDataManagement/GraphicalData/README.XAML.md)
 
 ## Adaptive Programming
 
