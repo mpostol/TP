@@ -19,7 +19,6 @@ software engineering, sequential programming, adaptive programming, concurrent p
 >
 > [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
 
-
 [REL52]: https://github.com/mpostol/TP/releases/tag/5.2
 [DOI52]: https://doi.org/10.5281/zenodo.12701909
 [BDG52]: https://zenodo.org/badge/DOI/10.5281/zenodo.12701909.svg

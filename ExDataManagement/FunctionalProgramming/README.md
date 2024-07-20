@@ -11,7 +11,7 @@
 //_____________________________________________________________________________________________________________________________________
 -->
 
-# Preface
+# Functional Programming
 
 Programming styles, also known as coding styles or code styles, are sets of rules or guidelines that govern the templating of source code. These styles help programmers read and understand code, maintain it, and reduce the likelihood of introducing errors. Let’s explore functional programming as one of them. It is a paradigm that emphasizes treating data processing as resembling mathematical functions. In other words, functions are first-class citizens in functional programming. Functional programming is recognized as a foundation for processing external structural data governed by a Database Management System (DBMS). The DBMS is software executed atop an appropriate platform or technology used to organize, store, retrieve, and manipulate data in an organized manner.
 
@@ -40,7 +40,7 @@ This predicate returns always `true` if the current string assigned to `stringTo
 Object-oriented languages, including but not limited to C\#, incorporate several features that contribute to functional programming. Let’s explore some of these constructs:
 
 - [delegate and events](FunctionalProgramming/READMEDelegateEvents.md) - delegates are a fundamental construct in C# that enables late binding scenarios allowing the definition of a type-safe reference to a method; an event is essentially a delegate with additional restrictions
-- [extension methods](FunctionalProgramming/ExtensionMethods.md) - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain
+- [extension methods](FunctionalProgramming/README.ExtensionMethods.md) - the extension method to use for static methods invocation syntax similar to the invocation of type members methods and finally cascading execution chain
 - [anonymous functions](FunctionalProgramming/README.AnonymousFunctions.md) - allow definition and use of inline methods that don't have names
 
 In programming languages, inline method definitions refer to a technique where the method header and its block of statements are located directly as an operand of expression where it is to be executed contributing to the evaluated result, rather than being defined in advance as a separate named construct (named block). As a result the method definition is unnamed. The main goal is to compress the whole expression to one line of code.
