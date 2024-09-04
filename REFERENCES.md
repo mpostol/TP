@@ -2,6 +2,7 @@
 
 ## Programming in Practice
 
+- Postol Mariusz; [Programming in Practice - File Concept](https://www.c-sharpcorner.com/article/programming-in-practice-file-concept/); C# Corner; May 30, 2024
 - Postol Mariusz; [Programming in Practice - Graphical User Interface (GUI)][GUIMasterArticle]; C# Corner; May 30, 2024
 - Postol Mariusz; [Programming in Practice - GUI - MVVM Program Design Pattern][MVVMSecondArticle]; C# Corner; Jul 03, 2024
 - Postol Mariusz; [Programming in Practice - GUI - XAML - Description of the User Interface][GUIXAML]; C# Corner; Jul 09, 2024
