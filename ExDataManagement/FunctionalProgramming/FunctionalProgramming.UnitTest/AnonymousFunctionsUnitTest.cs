@@ -19,6 +19,17 @@ namespace TP.FunctionalProgramming
   [TestClass]
   public class AnonymousFunctionsUnitTest
   {
+    /// <summary>
+    /// While raising this delegate variable the null-conditional operator is not applied.
+    /// Hence, this argument must not be null to prevent throwing an exception.
+    /// </summary>
+    [TestMethod]
+    public void NullCallBack()
+    {
+      AnonymousFunctions _newInstance = new AnonymousFunctions();
+      Assert.ThrowsException<NullReferenceException>(() => _newInstance.ConsistencyCheck(null));
+    }
+
     [TestMethod]
     public void NamedMethodCallBackTest()
     {

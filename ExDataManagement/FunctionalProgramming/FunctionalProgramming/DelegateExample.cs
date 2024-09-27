@@ -26,7 +26,7 @@ namespace TP.FunctionalProgramming
     /// The perform calculation variable
     /// </summary>
     /// <returns>System.Int32.</returns>
-    public PerformCalculation PerformCalculationVar;
+    public PerformCalculation PerformCalculationVar = null;
 
     /// <summary>
     /// An example of event
@@ -38,8 +38,6 @@ namespace TP.FunctionalProgramming
     /// </summary>
     public DelegateExample()
     {
-      PerformCalculationVar = new PerformCalculation(PerformSumMethod);
-      PerformCalculationVar = new PerformCalculation(PerformSubtractMethod);
       //PerformCalculationVar = new PerformCalculation(PerformSubtractDoubleMethod); //No overload for 'DelegateExample.PerformSubtractDoubleMethod(double, double)' matches delegate 'DelegateExample.PerformCalculation'
     }
 

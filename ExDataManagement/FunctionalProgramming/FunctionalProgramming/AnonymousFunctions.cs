@@ -34,6 +34,18 @@ namespace TP.FunctionalProgramming
 
     internal delegate void CallBackTestDelegate(bool testResult);
 
+    /// <summary>
+    /// Invoking this method the consistency of this state machine is checked. 
+    /// The result is transferred to the user through the <paramref name="testResult"/> delegate pointing 
+    /// out a method invoked to transfer the check result. While raising this delegate variable 
+    /// the null-conditional operator is not applied. Hence, this argument must not be null to prevent 
+    /// throwing an exception.
+    /// </summary>
+    /// <param name="testResult">This parameter contains a delegate value pointing out a method invoked 
+    /// to transfer the check result. This argument must not be null to prevent throwing an exception.
+    /// </param>
+    /// <exception cref="NullReferenceException">exception thrown if the <paramref name="testResult"/> evaluates to null.
+    /// </exception>
     [Conditional("DEBUG")]
     internal void ConsistencyCheck(CallBackTestDelegate testResult)
     {

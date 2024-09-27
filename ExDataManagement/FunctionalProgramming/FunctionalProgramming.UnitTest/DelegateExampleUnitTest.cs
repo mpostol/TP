@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -14,9 +14,48 @@ using System;
 
 namespace TP.FunctionalProgramming
 {
+  /// <summary>
+  /// This testing class reveals features of delegate.
+  /// </summary>
   [TestClass]
   public class DelegateExampleUnitTest
   {
+    /// <summary>
+    /// Typically the delegate value is instantiated using a new operator.
+    /// It is possible to instantiate the delegate value by applying more concise syntax
+    /// using only the method name or definition of the anonymous function.
+    /// </summary>
+    [TestMethod]
+    public void Instantiation()
+    {
+      DelegateExample _newInstance = new DelegateExample();
+      _newInstance.PerformCalculationVar = new DelegateExample.PerformCalculation(PerformSumMethod);// Delegate value instantiation using new operator
+      Assert.IsNotNull(_newInstance.PerformCalculationVar);
+      Assert.AreEqual<int>(5, _newInstance.PerformCalculationVar(2, 2));
+      _newInstance = new DelegateExample();
+      _newInstance.PerformCalculationVar = PerformSumMethod; // Auto instantiation using only method name.
+                                                             // It looks like assignment of a method to delegate variable
+      Assert.IsNotNull(_newInstance.PerformCalculationVar);
+      Assert.AreEqual<int>(5, _newInstance.PerformCalculationVar(2, 2));
+      _newInstance.PerformCalculationVar = (x, y) => x + y + 1;
+      Assert.IsNotNull(_newInstance.PerformCalculationVar);
+      Assert.AreEqual<int>(5, _newInstance.PerformCalculationVar(2, 2));
+    }
+
+    /// <summary>
+    /// The delegate variable is of reference type - the null value can be assigned.
+    /// It indicates that invocation of the delegate variable containing null throws an exception.
+    /// Thanks to the null-conditional operator nothing is invoked if the delegate variable evaluates to null
+    /// </summary>
+    [TestMethod]
+    public void NullInvocation()
+    {
+      DelegateExample _newInstance = new DelegateExample();
+      _newInstance.PerformCalculationVar = null;
+      Assert.ThrowsException<NullReferenceException>(() => _newInstance.PerformCalculationVar(0, 0));
+      _newInstance.PerformCalculationVar?.Invoke(0, 0); //thanks to the null-conditional operator nothing is invoked
+    }
+
     [TestMethod]
     public void SumTestMethod()
     {
@@ -63,6 +102,12 @@ namespace TP.FunctionalProgramming
       Assert.AreSame(_args, EventArgs.Empty);
     }
 
+    /// <summary>
+    /// This function adds the values of two integers and returns the result incremented by 1.
+    /// </summary>
+    /// <param name="x">The first parameter used by the add operation</param>
+    /// <param name="y">The second parameter used by the add operation</param>
+    /// <returns>the sum of x and y parameters incremented by 1</returns>
     private int PerformSumMethod(int x, int y)
     {
       checked
