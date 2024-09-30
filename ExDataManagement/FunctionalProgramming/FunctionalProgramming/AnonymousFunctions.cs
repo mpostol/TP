@@ -10,6 +10,7 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace TP.FunctionalProgramming
@@ -35,13 +36,13 @@ namespace TP.FunctionalProgramming
     internal delegate void CallBackTestDelegate(bool testResult);
 
     /// <summary>
-    /// Invoking this method the consistency of this state machine is checked. 
-    /// The result is transferred to the user through the <paramref name="testResult"/> delegate pointing 
-    /// out a method invoked to transfer the check result. While raising this delegate variable 
-    /// the null-conditional operator is not applied. Hence, this argument must not be null to prevent 
+    /// Invoking this method the consistency of this state machine is checked.
+    /// The result is transferred to the user through the <paramref name="testResult"/> delegate pointing
+    /// out a method invoked to transfer the check result. While raising this delegate variable
+    /// the null-conditional operator is not applied. Hence, this argument must not be null to prevent
     /// throwing an exception.
     /// </summary>
-    /// <param name="testResult">This parameter contains a delegate value pointing out a method invoked 
+    /// <param name="testResult">This parameter contains a delegate value pointing out a method invoked
     /// to transfer the check result. This argument must not be null to prevent throwing an exception.
     /// </param>
     /// <exception cref="NullReferenceException">exception thrown if the <paramref name="testResult"/> evaluates to null.
@@ -63,7 +64,10 @@ namespace TP.FunctionalProgramming
 
     public IStateHandler CurrentStateHandler { get; private set; }
 
-    public event EventHandler<State> OnStateChanged;
+    /// <summary>
+    /// event declarations sample code
+    /// </summary>
+    public event EventHandler<State> OnStateChanged = null;
 
     #endregion state machine context
 
@@ -71,11 +75,16 @@ namespace TP.FunctionalProgramming
 
     private abstract class StateHandlerBase : IStateHandler
     {
+      /// <summary>
+      /// constructor of the <see cref="StateHandlerBase"/>
+      /// </summary>
+      /// <param name="context">source of event notification</param>
       public StateHandlerBase(AnonymousFunctions context)
       {
         m_Context = context;
         m_Context.CurrentStateHandler = this;
-        m_Context.OnStateChanged?.Invoke(context, CurrentState);
+        m_Context.OnStateChanged?.Invoke(context, CurrentState); //Invocation of all the methods added to OnStateChanged, if any,
+                                                                 //CurrentState contains the event data transfered to users.
       }
 
       public abstract State CurrentState { get; }

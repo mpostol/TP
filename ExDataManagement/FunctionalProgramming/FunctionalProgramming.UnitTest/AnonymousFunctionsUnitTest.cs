@@ -102,6 +102,7 @@ namespace TP.FunctionalProgramming
       _newInstance.CurrentStateHandler.GoToIdle();
       Assert.AreEqual<State>(State.Idle, _currentState);
       //_newInstance.OnStateChanged(_newInstance, _newInstance.CurrentStateHandler.CurrentState);  //Error CS0070  The event 'AnonymousFunctions.OnStateChanged' can only appear on the left hand side of += or -= (except when used from within the type 'AnonymousFunctions')
+      //_newInstance.OnStateChanged = null;  //Error CS0070  The event 'AnonymousFunctions.OnStateChanged' can only appear on the left hand side of += or -= (except when used from within the type 'AnonymousFunctions')
     }
 
     #region Instrumentation
