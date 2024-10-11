@@ -1,7 +1,7 @@
 ---
-name: DP Refactoring
-about: Suggest an idea for the DP project
-title: 'DP ....'
+name: IP Refactoring
+about: Suggest an idea for the IP project
+title: 'IP ....'
 labels: 'Refactoring'
 assignees: ''
 ---

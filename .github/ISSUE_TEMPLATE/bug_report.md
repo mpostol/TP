@@ -1,7 +1,7 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: '<provide bud description'
+about: Report a bug to help us improve the code
+title: '<provide the bug description'
 labels: 'bug'
 assignees: ''
 ---
@@ -9,6 +9,12 @@ assignees: ''
 ## Describe the bug
 
 A clear and concise description of what the bug is.
+
+## List of tasks to be accomplished
+
+- [ ] Task 1
+- [ ] Task 2
+- [ ] TBD
 
 ## To Reproduce
 

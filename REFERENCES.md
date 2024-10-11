@@ -50,7 +50,6 @@
 - [Anonymous Functions (C# Programming Guide)](https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)
 - [Expression Trees][ET]
 - [Extension Methods](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
-- [Expression Trees][ET]
 - [Extending Metadata Using Attributes](https://docs.microsoft.com/dotnet/standard/attributes/index)
 - [Partial Classes and Methods](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)
 - [Constraints on type parameters](https://docs.microsoft.com/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)
