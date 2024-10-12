@@ -2,6 +2,7 @@
 
 ## Programming in Practice
 
+- Postol Mariusz; [Programming in Practice - Delegates and Events; video](https://www.c-sharpcorner.com/article/programming-in-practice-delegates-and-events/); C# Corner; Oct 07 2024
 - Postol Mariusz; [Programming in Practice - File Concept](https://www.c-sharpcorner.com/article/programming-in-practice-file-concept/); C# Corner; May 30, 2024
 - Postol Mariusz; [Programming in Practice - Graphical User Interface (GUI)][GUIMasterArticle]; C# Corner; May 30, 2024
 - Postol Mariusz; [Programming in Practice - GUI - MVVM Program Design Pattern][MVVMSecondArticle]; C# Corner; Jul 03, 2024
@@ -18,14 +19,14 @@
 - Postol Mariusz; [External Data Management (ExDM))][ExDM]; C# Corner,  Jan 09, 2024
 - Postol Mariusz; [External Data - Attributes - Profiling Data Access][Attributes]; C# Corner,  Jan 06, 2024
 - Postol Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, Jan 03, 2024
-- [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
-- [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
-- [Programming in Practice, Video Playlist of courses description on Youtube, 2023](https://www.youtube.com/playlist?list=PLC7zPvgw-Ybwya54i262_RfG5tEp2FSIt)
+- Postol Mariusz; [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
+- Postol Mariusz; [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+- Postol Mariusz; [Programming in Practice, Video Playlist of courses description on Youtube, 2023](https://www.youtube.com/playlist?list=PLC7zPvgw-Ybwya54i262_RfG5tEp2FSIt)
 - [Postół. M, Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
-- [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
+- Postol Mariusz; [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
 - [GitHub repository mpostol/TP][TP] - C# in Practice - set of C# examples targeting education purpose
 - [Discussion panel on mpostol/TP][Discussion]
-- [Postół M, Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
+- Postol Mariusz; [Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
 
 ## How to reach me
 
