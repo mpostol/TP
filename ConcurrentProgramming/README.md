@@ -17,7 +17,8 @@
     - [1.3.2. Multithreading or concurrent programming](#132-multithreading-or-concurrent-programming)
   - [1.4. Distributed Programming - Network Nodes Communication (out of scope)](#14-distributed-programming---network-nodes-communication-out-of-scope)
 - [2. Fundamentals](#2-fundamentals)
-- [3. Critical Section ✍🏻](#3-critical-section-)
+- [3. Common Data Consistency](#3-common-data-consistency)
+  - [3.1. Critical Section ✍🏻](#31-critical-section-)
 - [4. Threads Synchronization ✍🏻](#4-threads-synchronization-)
 - [5. Threads Communication ✍🏻](#5-threads-communication-)
 - [6. Real-Time Programming ✍🏻](#6-real-time-programming-)
@@ -193,7 +194,9 @@ The Readers-Writers, Producer-Consumer, Publisher-Subscriber design patterns are
 
 > TBD
 
-## 3. Critical Section ✍🏻
+## 3. Common Data Consistency
+
+### 3.1. Critical Section ✍🏻
 
 - **Definition**: A critical section is a part of the code that accesses shared resources and must not be executed by more than one thread at a time.
 - **Implementation**: Use synchronization mechanisms like locks (mutexes), and monitors to ensure that only one thread can enter the critical section at a time.
@@ -229,14 +232,3 @@ The Readers-Writers, Producer-Consumer, Publisher-Subscriber design patterns are
 - [Real-Time Programming Helpers Library; GitHub repository](https://github.com/mpostol/RealTime)
 - [Managed threading; MSDN](https://docs.microsoft.com/dotnet/standard/threading/)
 - [List of all references](../REFERENCES.md#references)
-
-  Severity Code   | Description| Project| File Line| Suppression State
----------|----------|---------|---------|
-| Warning (active) | NETSDK1138 | The target framework 'net5.0-windows' is out of support and will not receive security updates in the future. Please refer to <https://aka.ms/dotnet-core-support> for more information about the support policy. | PresentationView | C:\Program Files\dotnet\sdk\8.0.403\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.EolTargetFrameworks.targets 32 |
-| | | | | |
-
-Column A | Column B | Column C
----------|----------|---------
- A1 | The target framework 'net5.0-windows' is out of support and will not receive security updates in the future. Please refer to <https://aka.ms/dotnet-core-support> for more information about the support policy. | C1
- A2 | B2 | C2
- A3 | B3 | C3
