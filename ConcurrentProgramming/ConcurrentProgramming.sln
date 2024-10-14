@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Threading", "Threading\Threading.csproj", "{048964DB-DD76-4E44-8944-819336DE6FFB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingUnitTest", "ThreadingUnitTest\ThreadingUnitTest.csproj", "{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Introduction", "01-Introduction", "{714FF0A4-62BB-4299-A636-A271FD362B9D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -49,14 +45,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{048964DB-DD76-4E44-8944-819336DE6FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{048964DB-DD76-4E44-8944-819336DE6FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{048964DB-DD76-4E44-8944-819336DE6FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{048964DB-DD76-4E44-8944-819336DE6FFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEA36658-FEC8-44E1-BC27-5873A1E6F4E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
