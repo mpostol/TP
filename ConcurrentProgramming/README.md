@@ -229,3 +229,14 @@ The Readers-Writers, Producer-Consumer, Publisher-Subscriber design patterns are
 - [Real-Time Programming Helpers Library; GitHub repository](https://github.com/mpostol/RealTime)
 - [Managed threading; MSDN](https://docs.microsoft.com/dotnet/standard/threading/)
 - [List of all references](../REFERENCES.md#references)
+
+  Severity Code   | Description| Project| File Line| Suppression State
+---------|----------|---------|---------|
+| Warning (active) | NETSDK1138 | The target framework 'net5.0-windows' is out of support and will not receive security updates in the future. Please refer to <https://aka.ms/dotnet-core-support> for more information about the support policy. | PresentationView | C:\Program Files\dotnet\sdk\8.0.403\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.EolTargetFrameworks.targets 32 |
+| | | | | |
+
+Column A | Column B | Column C
+---------|----------|---------
+ A1 | The target framework 'net5.0-windows' is out of support and will not receive security updates in the future. Please refer to <https://aka.ms/dotnet-core-support> for more information about the support policy. | C1
+ A2 | B2 | C2
+ A3 | B3 | C3

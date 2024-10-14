@@ -23,6 +23,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationModel", "Presen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationViewModelTest", "PresentationViewModelTest\PresentationViewModelTest.csproj", "{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Fundamentals", "02-Fundamentals", "{9CD92A26-3971-4BB6-A246-02DD0BE3EDE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-CommonDataConsistency", "03-CommonDataConsistency", "{827AC87B-E6C6-422A-A8EA-A8A06835E7ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Synchronization", "04-Synchronization", "{6D532753-A18A-4AB7-8A6A-830F6668B744}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05-Communication", "05-Communication", "{20429409-B6E9-4781-B409-A0A09A59BFB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06-Real-TimeProgramming", "06-Real-TimeProgramming", "{4DF351E7-784A-46BE-8583-C03C8A5AA9AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundamentals", "Fundamentals\Fundamentals.csproj", "{D656C8BE-A19F-4D90-85F5-3C23195B33AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDataConsistency", "CommonDataConsistency\CommonDataConsistency.csproj", "{1CCA366E-1D6A-4449-9346-53CE90F4EFE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +67,14 @@ Global
 		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D656C8BE-A19F-4D90-85F5-3C23195B33AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D656C8BE-A19F-4D90-85F5-3C23195B33AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D656C8BE-A19F-4D90-85F5-3C23195B33AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D656C8BE-A19F-4D90-85F5-3C23195B33AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CCA366E-1D6A-4449-9346-53CE90F4EFE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CCA366E-1D6A-4449-9346-53CE90F4EFE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CCA366E-1D6A-4449-9346-53CE90F4EFE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CCA366E-1D6A-4449-9346-53CE90F4EFE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +84,8 @@ Global
 		{B2380645-D767-4E38-835A-3CA87C22CD20} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
 		{A106D92E-B514-4FC0-BDE4-5DE1B8590060} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
 		{552FA4FE-BF99-4395-8BA5-CEDD87857DA5} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
+		{D656C8BE-A19F-4D90-85F5-3C23195B33AA} = {9CD92A26-3971-4BB6-A246-02DD0BE3EDE5}
+		{1CCA366E-1D6A-4449-9346-53CE90F4EFE1} = {827AC87B-E6C6-422A-A8EA-A8A06835E7ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4ACB1EF2-3819-4CE2-9F11-F8DBD7CDDFEC}
