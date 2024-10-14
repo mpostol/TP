@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Synchronization", "Synchron
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Communication", "Communication\Communication.csproj", "{1B46B056-D61C-4D43-99E2-5A6F2942A382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeProgramming", "RealTimeProgramming\RealTimeProgramming.csproj", "{B634E80A-9634-4D88-B4EC-E59DB5C46E0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeProgramming", "RealTimeProgramming\RealTimeProgramming.csproj", "{B634E80A-9634-4D88-B4EC-E59DB5C46E0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +86,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{C3B041B9-20C2-4920-B0E5-CFE5784FC6E4} = {714FF0A4-62BB-4299-A636-A271FD362B9D}
 		{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
 		{B2380645-D767-4E38-835A-3CA87C22CD20} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
 		{A106D92E-B514-4FC0-BDE4-5DE1B8590060} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
