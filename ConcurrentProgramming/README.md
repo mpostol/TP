@@ -19,8 +19,8 @@
 - [2. Fundamentals](#2-fundamentals)
 - [3. Common Data Consistency](#3-common-data-consistency)
   - [3.1. Critical Section ✍🏻](#31-critical-section-)
-- [4. Threads Synchronization ✍🏻](#4-threads-synchronization-)
-- [5. Threads Communication ✍🏻](#5-threads-communication-)
+- [4. Synchronization ✍🏻](#4-synchronization-)
+- [5. Communication ✍🏻](#5-communication-)
 - [6. Real-Time Programming ✍🏻](#6-real-time-programming-)
 - [7. See also](#7-see-also)
 
@@ -202,13 +202,15 @@ The Readers-Writers, Producer-Consumer, Publisher-Subscriber design patterns are
 - **Implementation**: Use synchronization mechanisms like locks (mutexes), and monitors to ensure that only one thread can enter the critical section at a time.
 - **Synchronization**: Techniques to control the access of multiple threads to shared resources to prevent conflicts.
 
-## 4. Threads Synchronization ✍🏻
+## 4. Synchronization ✍🏻
 
 - **Locks (Mutexes)**: Ensure mutual exclusion by allowing only one thread to access a resource at a time.
 - **Semaphores**: Counting mechanisms that control access to a resource by multiple threads.
 - **Monitors**: High-level synchronization constructs that combine mutual exclusion and condition variables. (Hoare's monitor concept - MFT)
 
-## 5. Threads Communication ✍🏻
+Ref [WaitHandle class and lightweight synchronization types](https://learn.microsoft.com/dotnet/standard/threading/overview-of-synchronization-primitives)
+
+## 5. Communication ✍🏻
 
 - **Shared Memory**: Threads communicate by reading and writing to shared variables. Requires careful synchronization to avoid race conditions.
 - **Message Passing**: Threads or processes communicate by sending messages to each other, which can help avoid issues related to shared memory.
@@ -231,4 +233,5 @@ The Readers-Writers, Producer-Consumer, Publisher-Subscriber design patterns are
 - [Programming in Practice; GitHub repository](https://github.com/mpostol/TP)
 - [Real-Time Programming Helpers Library; GitHub repository](https://github.com/mpostol/RealTime)
 - [Managed threading; MSDN](https://docs.microsoft.com/dotnet/standard/threading/)
+- [Overview of synchronization primitives](https://learn.microsoft.com/dotnet/standard/threading/overview-of-synchronization-primitives)
 - [List of all references](../REFERENCES.md#references)
