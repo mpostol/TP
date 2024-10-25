@@ -4,12 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Introduction", "01-Introduction", "{714FF0A4-62BB-4299-A636-A271FD362B9D}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-		..\README.md = ..\README.md
-	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReactiveInteractiveUserInterface", "ReactiveInteractiveUserInterface", "{C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceApplicationArchitecture", "ReferenceApplicationArchitecture", "{C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationView", "ReactiveInteractiveUserInterface\GraphicalUserInterface\PresentationView.csproj", "{0109D5AC-DA81-4E6E-AA70-D4AF4B7A10D1}"
 EndProject
@@ -41,7 +37,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeProgramming", "Real
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundamentalsTest", "FundamentalsTest\FundamentalsTest.csproj", "{5644D643-F468-4A8D-9201-0A82DEF881AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationModelTest", "ReactiveInteractiveUserInterface\PresentationModelTest\PresentationModelTest.csproj", "{51FE83FF-A0DF-4622-BBAF-78EA62BD2907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationModelTest", "ReactiveInteractiveUserInterface\PresentationModelTest\PresentationModelTest.csproj", "{51FE83FF-A0DF-4622-BBAF-78EA62BD2907}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution", ".Solution", "{DE3FD7B3-8549-40D7-9515-C8C5E02F9DB8}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Project", ".Project", "{16A93E74-367C-42CC-A7C6-282B7594FDE9}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

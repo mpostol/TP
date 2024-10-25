@@ -82,11 +82,11 @@ namespace PresentationViewModelTest
       #endregion private
     }
 
+    //TODO CP Improve Architecture Structure of Reference Program #419 - improve the testing method
     [TestMethod]
     public void BehaviorTestMethod()
     {
       MainWindowViewModel window = new MainWindowViewModel(new ModelFixture());
-      //TODO this method must be implemented
       Assert.Inconclusive("TBDO");
       window.PropertyChanged += (sender, e) => Window_BallChanged(sender, e);
       Assert.IsNotNull(window.Balls);
