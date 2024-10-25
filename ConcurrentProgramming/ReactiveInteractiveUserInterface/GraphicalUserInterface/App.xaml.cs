@@ -1,14 +1,12 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2024 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
-//  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
-using System;
 using System.Windows;
 
 namespace TP.ConcurrentProgramming.PresentationView
@@ -17,12 +15,5 @@ namespace TP.ConcurrentProgramming.PresentationView
   /// Interaction logic for App.xaml
   /// </summary>
   public partial class App : Application
-  {
-    protected override void OnDeactivated(EventArgs e)
-    {
-      if (this.MainWindow is MainWindow window)
-        window.Dispose();
-      base.OnDeactivated(e);
-    }
-  }
+  { }
 }
