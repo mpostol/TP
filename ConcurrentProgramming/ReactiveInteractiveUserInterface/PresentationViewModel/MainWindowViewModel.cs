@@ -1,11 +1,10 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2024 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
-//  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
 using System;
@@ -16,15 +15,17 @@ using TP.ConcurrentProgramming.PresentationViewModel.MVVMLight;
 namespace TP.ConcurrentProgramming.PresentationViewModel
 {
   public class MainWindowViewModel : ViewModelBase, IDisposable
-
   {
     #region public API
 
-    public MainWindowViewModel()
+    public MainWindowViewModel() : this(null)
     {
-      //CP - layers must be tested independently #313
+    }
+
+    public MainWindowViewModel(ModelAbstractApi modelLayerAPI)
+    {
       //TODO CP - use singleton design pattern to implement ModelAbstractApi factoring #314
-      ModelLayer = ModelAbstractApi.CreateApi();
+      ModelLayer = modelLayerAPI == null ? ModelAbstractApi.CreateApi() : modelLayerAPI;
       IDisposable observer = ModelLayer.Subscribe<IBall>(x => Balls.Add(x));
       ModelLayer.Start();
     }
