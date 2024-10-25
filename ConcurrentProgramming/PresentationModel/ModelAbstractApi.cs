@@ -27,10 +27,9 @@ namespace TP.ConcurrentProgramming.PresentationModel
 
   public abstract class ModelAbstractApi : IObservable<IBall>, IDisposable
   {
-    public static ModelAbstractApi CreateApi()
+    public static ModelAbstractApi CreateModel()
     {
-      PresentationModel model = new PresentationModel();
-      return model;
+      return modelInstance.Value;
     }
 
     public abstract void Start();
@@ -46,5 +45,11 @@ namespace TP.ConcurrentProgramming.PresentationModel
     public abstract void Dispose();
 
     #endregion IDisposable
+
+    #region private
+
+    private static Lazy<ModelAbstractApi> modelInstance = new Lazy<ModelAbstractApi>(() => new PresentationModel());
+
+    #endregion private
   }
 }
