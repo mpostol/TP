@@ -24,8 +24,7 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
 
     public MainWindowViewModel(ModelAbstractApi modelLayerAPI)
     {
-      //TODO CP - use singleton design pattern to implement ModelAbstractApi factoring #314
-      ModelLayer = modelLayerAPI == null ? ModelAbstractApi.CreateApi() : modelLayerAPI;
+      ModelLayer = modelLayerAPI == null ? ModelAbstractApi.CreateModel() : modelLayerAPI;
       IDisposable observer = ModelLayer.Subscribe<IBall>(x => Balls.Add(x));
       ModelLayer.Start();
     }
