@@ -16,17 +16,25 @@ namespace TP.ConcurrentProgramming.PresentationView
   /// <summary>
   /// View implementation
   /// </summary>
-  public partial class MainWindow : Window, IDisposable
+  public partial class MainWindow : Window
   {
     public MainWindow()
     {
+      Random random = new Random();
       InitializeComponent();
+      MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
+      viewModel.Start(random.Next(3, 10));
     }
 
-    public void Dispose()
+    /// <summary>
+    /// Raises the <seealso cref="System.Windows.Window.Closed"/> event.
+    /// </summary>
+    /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
+    protected override void OnClosed(EventArgs e)
     {
-      if (this.DataContext is MainWindowViewModel viewModel)
+      if (DataContext is MainWindowViewModel viewModel)
         viewModel.Dispose();
+      base.OnClosed(e);
     }
   }
 }

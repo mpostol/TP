@@ -19,14 +19,17 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
     #region public API
 
     public MainWindowViewModel() : this(null)
-    {
-    }
+    { }
 
     public MainWindowViewModel(ModelAbstractApi modelLayerAPI)
     {
       ModelLayer = modelLayerAPI == null ? ModelAbstractApi.CreateModel() : modelLayerAPI;
-      IDisposable observer = ModelLayer.Subscribe<IBall>(x => Balls.Add(x));
-      ModelLayer.Start();
+      Observer = ModelLayer.Subscribe<IBall>(x => Balls.Add(x));
+    }
+
+    public void Start(int numberOfBalls)
+    {
+      ModelLayer.Start(numberOfBalls);
     }
 
     public ObservableCollection<IBall> Balls { get; } = new ObservableCollection<IBall>();
@@ -35,16 +38,37 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
 
     #region IDisposable
 
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!disposedValue)
+      {
+        if (disposing)
+        {
+          Balls.Clear();
+          Observer.Dispose();
+          ModelLayer.Dispose();
+        }
+
+        // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+        // TODO: set large fields to null
+        disposedValue = true;
+      }
+    }
+
     public void Dispose()
     {
-      ModelLayer.Dispose();
+      // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+      Dispose(disposing: true);
+      GC.SuppressFinalize(this);
     }
 
     #endregion IDisposable
 
     #region private
 
+    private IDisposable Observer = null;
     private ModelAbstractApi ModelLayer;
+    private bool disposedValue;
 
     #endregion private
   }
