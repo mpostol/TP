@@ -9,17 +9,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Linq;
 
 namespace TP.ConcurrentProgramming.PresentationModel
 {
   /// <summary>
-  /// Class PresentationModel - implements the <see cref="ModelAbstractApi" />
+  /// Class Model - implements the <see cref="ModelAbstractApi" />
   /// </summary>
-  internal class PresentationModel : ModelAbstractApi
+  internal class Model : ModelAbstractApi
   {
-    public PresentationModel()
+    public Model()
     {
       eventObservable = Observable.FromEventPattern<BallChaneEventArgs>(this, "BallChanged");
     }
@@ -30,6 +31,7 @@ namespace TP.ConcurrentProgramming.PresentationModel
     {
       foreach (ModelBall item in Balls2Dispose)
         item.Dispose();
+      Balls2Dispose.Clear();
     }
 
     public override IDisposable Subscribe(IObserver<IBall> observer)
@@ -62,5 +64,21 @@ namespace TP.ConcurrentProgramming.PresentationModel
     private List<IDisposable> Balls2Dispose = new List<IDisposable>();
 
     #endregion private
+
+    #region TestingInfrastructure
+
+    [Conditional("DEBUG")]
+    internal void CheckIfBalls2DisposeIsAssigned(Action<IList<IDisposable>> returnBalls2DisposeList)
+    {
+      returnBalls2DisposeList(Balls2Dispose);
+    }
+
+    [Conditional("DEBUG")]
+    internal void CheckBalls2Dispose(Action<int> returnNumberOfBalls)
+    {
+      returnNumberOfBalls(Balls2Dispose.Count);
+    }
+
+    #endregion TestingInfrastructure
   }
 }
