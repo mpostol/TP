@@ -14,7 +14,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic
   {
     #region Layer Factory
 
-    public static BusinessLogicAbstractAPI CreateModel()
+    public static BusinessLogicAbstractAPI GetBusinessLogicLayer()
     {
       return modelInstance.Value;
     }
