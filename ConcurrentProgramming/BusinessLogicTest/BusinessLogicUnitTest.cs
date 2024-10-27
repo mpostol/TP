@@ -10,38 +10,43 @@
 
 using TP.ConcurrentProgramming.BusinessLogic;
 
-namespace BusinessLogicTest
+namespace TP.ConcurrentProgramming.BusinessLogicTest
 {
   [TestClass]
   public class BusinessLogicUnitTest
   {
     [TestMethod]
-    public void BusinessLogicConstructorTestMethod()
+    public void ConstructorTestMethod()
     {
-      BusinessLogicAbstractAPI instance1 = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      BusinessLogicAbstractAPI instance2 = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      Assert.AreSame(instance1, instance2);
+      BusinessLogicImplementation newInstance = new BusinessLogicImplementation();
+      Assert.ThrowsException<NotImplementedException>(() => newInstance.Dispose());
+      Assert.AreEqual<Dimensions>(new(10.0, 10.0, 10.0), newInstance.GetDimensions);
+      IEnumerable<IDisposable>? ballsToDisposeList = null;
+      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
+      Assert.IsNotNull(ballsToDisposeList);
+      int numberOfBalls = 0;
+      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
+      Assert.AreEqual<int>(0, numberOfBalls);
     }
 
     [TestMethod]
     public void StartTestMethod()
     {
-      BusinessLogicAbstractAPI instance = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      Assert.ThrowsException<NotImplementedException>(() => instance.Start(10));
+      BusinessLogicImplementation newInstance = new BusinessLogicImplementation();
+      newInstance.Start(10);
+      int numberOfBalls = 0;
+      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
+      Assert.AreEqual<int>(10, numberOfBalls);
     }
 
     [TestMethod]
-    public void DisposeTestMethod()
+    public void OnNewBallCreatingTestMethod()
     {
-      BusinessLogicAbstractAPI instance = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      Assert.ThrowsException<NotImplementedException>(() => instance.Dispose());
-    }
-
-    [TestMethod]
-    public void GetDimensionsTestMethod()
-    {
-      BusinessLogicAbstractAPI instance = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      Assert.AreEqual<Dimensions>(new(10.0, 10.0, 10.0), instance.GetDimensions);
+      int numberOfBalls = 0;
+      BusinessLogicImplementation newInstance = new BusinessLogicImplementation();
+      newInstance.OnNewBallCreating += (source, x) => { numberOfBalls++; Assert.AreSame<object?>(newInstance, source); };
+      newInstance.Start(10);
+      Assert.AreEqual<int>(10, numberOfBalls);
     }
   }
 }

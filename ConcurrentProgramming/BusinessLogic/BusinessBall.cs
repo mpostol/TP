@@ -10,14 +10,18 @@
 
 namespace TP.ConcurrentProgramming.BusinessLogic
 {
-  internal class BusinessLogic : BusinessLogicAbstractAPI
+  internal class BusinessBall : IBall
   {
-    public override void Dispose()
+    public Position position;
+    
+    public BusinessBall(double yStart, double xStart)
     {
-      throw new NotImplementedException();
+      position = new Position(yStart, xStart);
     }
 
-    public override IEnumerable<IBall> Start(int numberOfBalls)
+    public event EventHandler<Position>? NewPositionNotification;
+
+    public void Dispose()
     {
       throw new NotImplementedException();
     }

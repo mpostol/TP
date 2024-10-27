@@ -13,11 +13,11 @@ namespace TP.ConcurrentProgramming.PresentationModelTest
     public void ConstructorTest()
     {
       Model newInstance = new();
-      IList<IDisposable>? BallsToDisposeList = null;
-      newInstance.CheckIfBalls2DisposeIsAssigned(x => BallsToDisposeList = x);
-      Assert.IsNotNull(BallsToDisposeList);
+      IList<IDisposable>? ballsToDisposeList = null;
+      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
+      Assert.IsNotNull(ballsToDisposeList);
       int numberOfBalls = 0;
-      newInstance.CheckIfBalls2DisposeIsAssigned(x => BallsToDisposeList = x);
+      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
       newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
       Assert.AreEqual<int>(0, numberOfBalls);
       newInstance.Start(10);

@@ -10,7 +10,7 @@
 
 namespace TP.ConcurrentProgramming.BusinessLogic
 {
-  public abstract class BusinessLogicAbstractAPI: IDisposable
+  public abstract class BusinessLogicAbstractAPI : IDisposable
   {
     #region Layer Factory
 
@@ -21,9 +21,13 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     #endregion Layer Factory
 
+    #region Layer API
+
+    public abstract event EventHandler<NewBallNotificationEventArgs> OnNewBallCreating;
+
     public readonly Dimensions GetDimensions = new(10.0, 10.0, 10.0);
 
-    public abstract IEnumerable<IBall> Start(int numberOfBalls);
+    public abstract void Start(int numberOfBalls);
 
     #region IDisposable
 
@@ -31,18 +35,30 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     #endregion IDisposable
 
+    #endregion Layer API
+
     #region private
 
-    private static Lazy<BusinessLogicAbstractAPI> modelInstance = new Lazy<BusinessLogicAbstractAPI>(() => new BusinessLogic());
+    private static Lazy<BusinessLogicAbstractAPI> modelInstance = new Lazy<BusinessLogicAbstractAPI>(() => new BusinessLogicImplementation());
 
     #endregion private
   }
 
-  public record Dimensions(double BallDimension, double TableHeight, double TableWidth);
-  public record Position(double x, double y);
-
-  public interface IBall
+  public class NewBallNotificationEventArgs : EventArgs
   {
-    event EventHandler<Position> NewPositionNotification;
+    public NewBallNotificationEventArgs(IBall newBall) : base()
+    {
+      Ball = newBall;
+    }
+
+    public IBall Ball { get; init; }
   }
+}
+
+public record Dimensions(double BallDimension, double TableHeight, double TableWidth);
+public record Position(double x, double y);
+
+public interface IBall : IDisposable
+{
+  event EventHandler<Position> NewPositionNotification;
 }
