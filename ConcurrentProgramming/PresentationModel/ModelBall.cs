@@ -14,7 +14,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace TP.ConcurrentProgramming.PresentationModel
+namespace TP.ConcurrentProgramming.Presentation.Model
 {
   internal class ModelBall : IBall, IDisposable
   {

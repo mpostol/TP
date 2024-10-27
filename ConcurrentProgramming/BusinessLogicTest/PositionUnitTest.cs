@@ -13,22 +13,17 @@ using TP.ConcurrentProgramming.BusinessLogic;
 namespace TP.ConcurrentProgramming.BusinessLogicTest
 {
   [TestClass]
-  public class BusinessLogicAbstractAPIUnitTest
+  public class PositionUnitTest
   {
     [TestMethod]
-    public void BusinessLogicConstructorTestMethod()
+    public void ConstructorTestMethod()
     {
-      BusinessLogicAbstractAPI instance1 = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      BusinessLogicAbstractAPI instance2 = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      Assert.AreSame(instance1, instance2);
-      instance1.Dispose();
-      Assert.ThrowsException<ObjectDisposedException>(() => instance2.Dispose());
-    }
-
-    [TestMethod]
-    public void GetDimensionsTestMethod()
-    {
-      Assert.AreEqual<Dimensions>(new(10.0, 10.0, 10.0), BusinessLogicAbstractAPI.GetDimensions);
+      Random random = new Random();
+      double initialX = random.NextDouble();
+      double initialY = random.NextDouble();
+      IPosition position = new Position(initialX, initialY);
+      Assert.AreEqual<double>(initialX, position.x);
+      Assert.AreEqual<double>(initialY, position.y);
     }
   }
 }

@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.ObjectModel;
-using TP.ConcurrentProgramming.PresentationModel;
+using TP.ConcurrentProgramming.Presentation.Model;
 using TP.ConcurrentProgramming.PresentationViewModel.MVVMLight;
 
 namespace TP.ConcurrentProgramming.PresentationViewModel

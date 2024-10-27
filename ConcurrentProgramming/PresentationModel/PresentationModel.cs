@@ -13,7 +13,7 @@ using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Linq;
 
-namespace TP.ConcurrentProgramming.PresentationModel
+namespace TP.ConcurrentProgramming.Presentation.Model
 {
   /// <summary>
   /// Class Model - implements the <see cref="ModelAbstractApi" />

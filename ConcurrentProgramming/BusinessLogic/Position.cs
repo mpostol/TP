@@ -7,19 +7,25 @@
 //  https://github.com/mpostol/TP/discussions/182
 //
 //_____________________________________________________________________________________________________________________________________
-using TP.ConcurrentProgramming.Presentation.Model;
 
-namespace TP.ConcurrentProgramming.PresentationModelTest
+namespace TP.ConcurrentProgramming.BusinessLogic
 {
-  [TestClass]
-  public class ModelAbstractAPITest
+  internal record Position : IPosition
   {
-    [TestMethod]
-    public void SingletonConstructorTestMethod()
+    #region IPosition
+
+    public double x { get; init; }
+    public double y { get; init; }
+
+    #endregion IPosition
+
+    /// <summary>
+    /// Creates new instance of <seealso cref="IPosition"/> and initialize all properties
+    /// </summary>
+    public Position(double posX, double posY)
     {
-      ModelAbstractApi instance1 = ModelAbstractApi.CreateModel();
-      ModelAbstractApi instance2 = ModelAbstractApi.CreateModel();
-      Assert.AreSame<ModelAbstractApi>(instance1, instance2);
+      x = posX;
+      y = posY;
     }
   }
 }

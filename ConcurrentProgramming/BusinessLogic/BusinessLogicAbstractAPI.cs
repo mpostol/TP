@@ -23,11 +23,9 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     #region Layer API
 
-    public abstract event EventHandler<NewBallNotificationEventArgs> OnNewBallCreating;
+    public static readonly Dimensions GetDimensions = new(10.0, 10.0, 10.0);
 
-    public readonly Dimensions GetDimensions = new(10.0, 10.0, 10.0);
-
-    public abstract void Start(int numberOfBalls);
+    public abstract void Start(int numberOfBalls, Action<IPosition, IBall> upperLayerHandler);
 
     #region IDisposable
 
@@ -43,22 +41,17 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     #endregion private
   }
-
-  public class NewBallNotificationEventArgs : EventArgs
-  {
-    public NewBallNotificationEventArgs(IBall newBall) : base()
-    {
-      Ball = newBall;
-    }
-
-    public IBall Ball { get; init; }
-  }
 }
 
 public record Dimensions(double BallDimension, double TableHeight, double TableWidth);
-public record Position(double x, double y);
+
+public interface IPosition
+{
+  double x { get; init; }
+  double y { get; init; }
+}
 
 public interface IBall : IDisposable
 {
-  event EventHandler<Position> NewPositionNotification;
+  event EventHandler<IPosition> NewPositionNotification;
 }

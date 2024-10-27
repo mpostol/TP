@@ -14,48 +14,80 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 {
   internal class BusinessLogicImplementation : BusinessLogicAbstractAPI
   {
+    #region ctor
+
+    public BusinessLogicImplementation()
+    {
+      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
+    }
+
+    #endregion ctor
+
     #region BusinessLogicAbstractAPI
 
     public override void Dispose()
     {
-      throw new NotImplementedException();
+      if (Disposed)
+        throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
+      foreach (IBall item in BallsList)
+        item.Dispose();
+      MoveTimer.Dispose();
+      BallsList.Clear();
+      Disposed = true;
     }
 
-    public override void Start(int numberOfBalls)
+    public override void Start(int numberOfBalls, Action<IPosition, IBall> upperLayerHandler)
     {
+      if (Disposed) 
+        throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
+      if (upperLayerHandler == null) 
+        throw new ArgumentNullException(nameof(upperLayerHandler));
       Random random = new Random();
       for (int i = 0; i < numberOfBalls; i++)
       {
-        BusinessBall newBall = new BusinessBall(random.Next(100, 400 - 100), random.Next(100, 400 - 100));
-        Balls2Dispose.Add(newBall);
-        OnNewBallCreating?.Invoke(this, new NewBallNotificationEventArgs(newBall));
+        Position startingPosition = new Position(random.Next(100, 400 - 100), random.Next(100, 400 - 100));
+        BusinessBall newBall = new BusinessBall(startingPosition);
+        upperLayerHandler(startingPosition, newBall);
+        BallsList.Add(newBall);
       }
     }
-
-    public override event EventHandler<NewBallNotificationEventArgs> OnNewBallCreating;
 
     #endregion BusinessLogicAbstractAPI
 
     #region private
 
-    private List<IBall> Balls2Dispose = new List<IBall>();
+    private bool Disposed = false;
+    private readonly Timer MoveTimer;
+    private Random RandomGenerator = new();
+    private List<BusinessBall> BallsList = new();
+
+    private void Move(object? x)
+    {
+      foreach (BusinessBall item in BallsList)
+        item.Move(new Position((RandomGenerator.NextDouble() - 0.5) * 10, (RandomGenerator.NextDouble() - 0.5) * 10));
+    }
 
     #endregion private
 
     #region TestingInfrastructure
 
     [Conditional("DEBUG")]
-    internal void CheckIfBalls2DisposeIsAssigned(Action<IList<IBall>> returnBalls2DisposeList)
+    internal void CheckIfBalls2DisposeIsAssigned(Action<IEnumerable<IBall>> returnBalls2DisposeList)
     {
-      returnBalls2DisposeList(Balls2Dispose);
+      returnBalls2DisposeList(BallsList);
     }
 
     [Conditional("DEBUG")]
     internal void CheckBalls2Dispose(Action<int> returnNumberOfBalls)
     {
-      returnNumberOfBalls(Balls2Dispose.Count);
+      returnNumberOfBalls(BallsList.Count);
     }
 
+    [Conditional("DEBUG")]
+    internal void CheckObjectDisposed(Action<bool> returnInstanceDisposed)
+    {
+      returnInstanceDisposed(Disposed);
+    }
     #endregion TestingInfrastructure
   }
 }

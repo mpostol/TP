@@ -8,22 +8,60 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
+using System.Diagnostics;
+
 namespace TP.ConcurrentProgramming.BusinessLogic
 {
   internal class BusinessBall : IBall
   {
-    public Position position;
-    
-    public BusinessBall(double yStart, double xStart)
+    public BusinessBall(Position startingPosition)
     {
-      position = new Position(yStart, xStart);
+      position = startingPosition;
     }
 
-    public event EventHandler<Position>? NewPositionNotification;
+    #region IBall
+
+    public event EventHandler<IPosition>? NewPositionNotification;
 
     public void Dispose()
     {
-      throw new NotImplementedException();
+      if (disposed)
+        throw new ObjectDisposedException(nameof(BusinessBall));
+      disposed = true;
+      NewPositionNotification = null;
     }
+
+    #endregion IBall
+
+    #region private
+
+    internal void Move(Position delta)
+    {
+      if (disposed)
+        throw new ObjectDisposedException(nameof(BusinessBall));
+      position = new Position(position.x + delta.x, position.y + delta.y);
+      NewPositionNotification?.Invoke(this, position);
+    }
+
+    private bool disposed = false;
+    private Position position = new Position(0.0, 0.0);
+
+    #endregion private
+
+    #region TestingInfrastructure
+
+    [Conditional("DEBUG")]
+    internal void CheckIfBalls2DisposeIsAssigned(Action<EventHandler<IPosition>?> returnNewPositionNotification)
+    {
+      returnNewPositionNotification(NewPositionNotification);
+    }
+
+    [Conditional("DEBUG")]
+    internal void CheckIfLocalDisposedVariable(Action<bool> returnDisposed)
+    {
+      returnDisposed(disposed);
+    }
+
+    #endregion TestingInfrastructure
   }
 }

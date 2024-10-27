@@ -12,7 +12,7 @@ using System;
 using System.ComponentModel;
 using System.Reactive;
 using System.Reactive.Linq;
-using TP.ConcurrentProgramming.PresentationModel;
+using TP.ConcurrentProgramming.Presentation.Model;
 using TP.ConcurrentProgramming.PresentationViewModel;
 
 namespace PresentationViewModelTest

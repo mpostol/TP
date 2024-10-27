@@ -13,14 +13,12 @@ using TP.ConcurrentProgramming.BusinessLogic;
 namespace TP.ConcurrentProgramming.BusinessLogicTest
 {
   [TestClass]
-  public class BusinessLogicUnitTest
+  public class BusinessLogicImplementationUnitTest
   {
     [TestMethod]
     public void ConstructorTestMethod()
     {
       BusinessLogicImplementation newInstance = new BusinessLogicImplementation();
-      Assert.ThrowsException<NotImplementedException>(() => newInstance.Dispose());
-      Assert.AreEqual<Dimensions>(new(10.0, 10.0, 10.0), newInstance.GetDimensions);
       IEnumerable<IDisposable>? ballsToDisposeList = null;
       newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
       Assert.IsNotNull(ballsToDisposeList);
@@ -30,22 +28,37 @@ namespace TP.ConcurrentProgramming.BusinessLogicTest
     }
 
     [TestMethod]
-    public void StartTestMethod()
+    public void DisposeTestMethod()
     {
       BusinessLogicImplementation newInstance = new BusinessLogicImplementation();
-      newInstance.Start(10);
+      newInstance.Dispose();
+      bool newInstanceDisposed = false;
+      newInstance.CheckObjectDisposed(x => newInstanceDisposed = x);
+      Assert.IsTrue(newInstanceDisposed);
+      IEnumerable<IBall>? ballsToDisposeList = null;
+      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
+      Assert.IsNotNull(ballsToDisposeList);
+      foreach (IBall item in ballsToDisposeList)
+        Assert.ThrowsException<ObjectDisposedException>(() => item.Dispose());
       int numberOfBalls = 0;
       newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
-      Assert.AreEqual<int>(10, numberOfBalls);
+      Assert.AreEqual<int>(0, numberOfBalls);
+      Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Dispose());
+      Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Start(0, (position, ball) => { }));
     }
 
     [TestMethod]
-    public void OnNewBallCreatingTestMethod()
+    public void StartTestMethod()
     {
-      int numberOfBalls = 0;
       BusinessLogicImplementation newInstance = new BusinessLogicImplementation();
-      newInstance.OnNewBallCreating += (source, x) => { numberOfBalls++; Assert.AreSame<object?>(newInstance, source); };
-      newInstance.Start(10);
+      int called = 0;
+      int numberOfBalls2Create = 10;
+      newInstance.Start(
+        numberOfBalls2Create, 
+        (startingPosition, ball) => { called++; Assert.IsTrue(startingPosition.x >= 0); Assert.IsTrue(startingPosition.y >= 0); Assert.IsNotNull(ball); });
+      Assert.AreEqual<int>(numberOfBalls2Create, called);
+      int numberOfBalls = 0;
+      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
       Assert.AreEqual<int>(10, numberOfBalls);
     }
   }

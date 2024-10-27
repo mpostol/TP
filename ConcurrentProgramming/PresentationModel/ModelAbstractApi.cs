@@ -10,7 +10,7 @@
 using System;
 using System.ComponentModel;
 
-namespace TP.ConcurrentProgramming.PresentationModel
+namespace TP.ConcurrentProgramming.Presentation.Model
 {
   public interface IBall : INotifyPropertyChanged
   {
