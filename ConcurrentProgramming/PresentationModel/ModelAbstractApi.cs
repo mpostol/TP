@@ -19,11 +19,6 @@ namespace TP.ConcurrentProgramming.Presentation.Model
     double Diameter { get; }
   }
 
-  public class BallChaneEventArgs : EventArgs
-  {
-    public IBall Ball { get; internal set; }
-  }
-
   public abstract class ModelAbstractApi : IObservable<IBall>, IDisposable
   {
     public static ModelAbstractApi CreateModel()
@@ -47,7 +42,7 @@ namespace TP.ConcurrentProgramming.Presentation.Model
 
     #region private
 
-    private static Lazy<ModelAbstractApi> modelInstance = new Lazy<ModelAbstractApi>(() => new Model());
+    private static Lazy<ModelAbstractApi> modelInstance = new Lazy<ModelAbstractApi>(() => new ModelImplementation());
 
     #endregion private
   }

@@ -29,8 +29,6 @@ namespace TP.ConcurrentProgramming.BusinessLogic
     {
       if (Disposed)
         throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
-      foreach (IBall item in BallsList)
-        item.Dispose();
       MoveTimer.Dispose();
       BallsList.Clear();
       Disposed = true;

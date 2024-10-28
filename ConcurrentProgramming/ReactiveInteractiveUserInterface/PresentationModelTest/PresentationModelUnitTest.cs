@@ -8,30 +8,74 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
-using TP.ConcurrentProgramming.Presentation.Model;
+using TP.ConcurrentProgramming.BusinessLogic;
 
-namespace TP.ConcurrentProgramming.PresentationModelTest
+namespace TP.ConcurrentProgramming.Presentation.Model.Test
 {
   [TestClass]
   public class PresentationModelUnitTest
   {
     [TestMethod]
-    public void ConstructorTest()
+    public void DisposeTestMethod()
     {
-      Model newInstance = new();
-      IList<IDisposable>? ballsToDisposeList = null;
-      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
-      Assert.IsNotNull(ballsToDisposeList);
-      int numberOfBalls = 0;
-      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
-      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
-      Assert.AreEqual<int>(0, numberOfBalls);
-      newInstance.Start(10);
-      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
-      Assert.AreEqual<int>(10, numberOfBalls);
-      newInstance.Dispose();
-      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
-      Assert.AreEqual<int>(0, numberOfBalls);
+      UnderneathLayerFixture underneathLayerFixture = new UnderneathLayerFixture();
+      ModelImplementation? newInstance = null;
+      using (newInstance = new(underneathLayerFixture))
+      {
+        newInstance.CheckObjectDisposed(x => Assert.IsFalse(x));
+        newInstance.CheckUnderneathLayerAPI(x => Assert.AreSame(underneathLayerFixture, x));
+        newInstance.CheckBallChangedEvent(x => Assert.IsTrue(x));
+        Assert.IsFalse(underneathLayerFixture.Disposed);
+      }
+      newInstance.CheckObjectDisposed(x => Assert.IsTrue(x));
+      newInstance.CheckUnderneathLayerAPI(x => Assert.AreSame(underneathLayerFixture, x));
+      Assert.IsTrue(underneathLayerFixture.Disposed);
+      Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Dispose());
     }
+
+    [TestMethod]
+    public void StartTestMethod()
+    {
+      UnderneathLayerFixture underneathLayerFixture = new UnderneathLayerFixture();
+      using (ModelImplementation newInstance = new(underneathLayerFixture))
+      {
+        newInstance.CheckBallChangedEvent(x => Assert.IsTrue(x));
+        IDisposable subscription = newInstance.Subscribe(x => { });
+        newInstance.CheckBallChangedEvent(x => Assert.IsFalse(x));
+        newInstance.Start(10);
+        Assert.AreEqual<int>(10, underneathLayerFixture.NumberOfBalls);
+        subscription.Dispose();
+        newInstance.CheckBallChangedEvent(x => Assert.IsTrue(x));
+      }
+    }
+
+    #region testing instrumentation
+
+    private class UnderneathLayerFixture : BusinessLogicAbstractAPI
+    {
+      #region testing instrumentation
+
+      internal bool Disposed = false;
+      internal int NumberOfBalls = 0;
+
+      #endregion testing instrumentation
+
+      #region BusinessLogicAbstractAPI
+
+      public override void Dispose()
+      {
+        Disposed = true;
+      }
+
+      public override void Start(int numberOfBalls, Action<IPosition, BusinessLogic.IBall> upperLayerHandler)
+      {
+        NumberOfBalls = numberOfBalls;
+        Assert.IsNotNull(upperLayerHandler);
+      }
+
+      #endregion BusinessLogicAbstractAPI
+    }
+
+    #endregion testing instrumentation
   }
 }

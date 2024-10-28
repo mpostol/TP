@@ -9,7 +9,7 @@
 
 using System;
 using System.Windows;
-using TP.ConcurrentProgramming.PresentationViewModel;
+using TP.ConcurrentProgramming.Presentation.ViewModel;
 
 namespace TP.ConcurrentProgramming.PresentationView
 {
@@ -23,7 +23,7 @@ namespace TP.ConcurrentProgramming.PresentationView
       Random random = new Random();
       InitializeComponent();
       MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
-      viewModel.Start(random.Next(3, 10));
+      viewModel.Start(random.Next(5, 10));
     }
 
     /// <summary>

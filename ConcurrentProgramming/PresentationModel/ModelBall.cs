@@ -9,20 +9,21 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading;
+using TP.ConcurrentProgramming.BusinessLogic;
+using LogicIBall = TP.ConcurrentProgramming.BusinessLogic.IBall;
 
 namespace TP.ConcurrentProgramming.Presentation.Model
 {
-  internal class ModelBall : IBall, IDisposable
+  internal class ModelBall : IBall
   {
-    public ModelBall(double top, double left)
+    public ModelBall(double top, double left, LogicIBall underneathBall)
     {
       TopBackingField = top;
       LeftBackingField = left;
-      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
+      underneathBall.NewPositionNotification += NewPositionNotification;
     }
 
     #region IBall
@@ -51,7 +52,7 @@ namespace TP.ConcurrentProgramming.Presentation.Model
       }
     }
 
-    public double Diameter { get; internal set; }
+    public double Diameter { get; init; } = 0;
 
     #region INotifyPropertyChanged
 
@@ -61,35 +62,33 @@ namespace TP.ConcurrentProgramming.Presentation.Model
 
     #endregion IBall
 
-    #region IDisposable
-
-    public void Dispose()
-    {
-      MoveTimer.Dispose();
-    }
-
-    #endregion IDisposable
-
     #region private
 
     private double TopBackingField;
     private double LeftBackingField;
-    private Timer MoveTimer;
-    private Random Random = new Random();
+
+    private void NewPositionNotification(object sender, IPosition e)
+    {
+      Top = e.y; Left = e.x;
+    }
 
     private void RaisePropertyChanged([CallerMemberName] string propertyName = "")
     {
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private void Move(object state)
-    {
-      if (state != null)
-        throw new ArgumentOutOfRangeException(nameof(state));
-      Top = Top + (Random.NextDouble() - 0.5) * 10;
-      Left = Left + (Random.NextDouble() - 0.5) * 10;
-    }
-
     #endregion private
+
+    #region testing instrumentation
+
+    [Conditional("DEBUG")]
+    internal void SetLeft(double x)
+    { Left = x; }
+
+    [Conditional("DEBUG")]
+    internal void SettTop(double x)
+    { Top = x; }
+
+    #endregion testing instrumentation
   }
 }

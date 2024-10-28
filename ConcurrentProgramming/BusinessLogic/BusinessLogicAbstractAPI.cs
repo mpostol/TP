@@ -41,17 +41,25 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     #endregion private
   }
-}
+  /// <summary>
+  /// Immutable type representing table dimensions
+  /// </summary>
+  /// <param name="BallDimension"></param>
+  /// <param name="TableHeight"></param>
+  /// <param name="TableWidth"></param>
+  /// <remarks>
+  /// Must be abstract
+  /// </remarks>
+  public record Dimensions(double BallDimension, double TableHeight, double TableWidth);
 
-public record Dimensions(double BallDimension, double TableHeight, double TableWidth);
+  public interface IPosition
+  {
+    double x { get; init; }
+    double y { get; init; }
+  }
 
-public interface IPosition
-{
-  double x { get; init; }
-  double y { get; init; }
-}
-
-public interface IBall : IDisposable
-{
-  event EventHandler<IPosition> NewPositionNotification;
+  public interface IBall 
+  {
+    event EventHandler<IPosition> NewPositionNotification;
+  }
 }

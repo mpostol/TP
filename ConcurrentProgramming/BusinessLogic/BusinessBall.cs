@@ -23,28 +23,17 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     public event EventHandler<IPosition>? NewPositionNotification;
 
-    public void Dispose()
-    {
-      if (disposed)
-        throw new ObjectDisposedException(nameof(BusinessBall));
-      disposed = true;
-      NewPositionNotification = null;
-    }
-
     #endregion IBall
 
     #region private
 
     internal void Move(Position delta)
     {
-      if (disposed)
-        throw new ObjectDisposedException(nameof(BusinessBall));
       position = new Position(position.x + delta.x, position.y + delta.y);
       NewPositionNotification?.Invoke(this, position);
     }
 
-    private bool disposed = false;
-    private Position position = new Position(0.0, 0.0);
+    private Position position = new(0.0, 0.0);
 
     #endregion private
 
@@ -54,12 +43,6 @@ namespace TP.ConcurrentProgramming.BusinessLogic
     internal void CheckIfBalls2DisposeIsAssigned(Action<EventHandler<IPosition>?> returnNewPositionNotification)
     {
       returnNewPositionNotification(NewPositionNotification);
-    }
-
-    [Conditional("DEBUG")]
-    internal void CheckIfLocalDisposedVariable(Action<bool> returnDisposed)
-    {
-      returnDisposed(disposed);
     }
 
     #endregion TestingInfrastructure

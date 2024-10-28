@@ -8,20 +8,24 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Linq;
+using UnderneathLayerAPI = TP.ConcurrentProgramming.BusinessLogic.BusinessLogicAbstractAPI;
 
 namespace TP.ConcurrentProgramming.Presentation.Model
 {
   /// <summary>
   /// Class Model - implements the <see cref="ModelAbstractApi" />
   /// </summary>
-  internal class Model : ModelAbstractApi
+  internal class ModelImplementation : ModelAbstractApi
   {
-    public Model()
+    internal ModelImplementation() : this(null)
+    { }
+
+    internal ModelImplementation(UnderneathLayerAPI underneathLayer)
     {
+      layerBellow = underneathLayer == null ? UnderneathLayerAPI.GetBusinessLogicLayer() : underneathLayer;
       eventObservable = Observable.FromEventPattern<BallChaneEventArgs>(this, "BallChanged");
     }
 
@@ -29,9 +33,10 @@ namespace TP.ConcurrentProgramming.Presentation.Model
 
     public override void Dispose()
     {
-      foreach (ModelBall item in Balls2Dispose)
-        item.Dispose();
-      Balls2Dispose.Clear();
+      if (Disposed)
+        throw new ObjectDisposedException(nameof(Model));
+      layerBellow.Dispose();
+      Disposed = true;
     }
 
     public override IDisposable Subscribe(IObserver<IBall> observer)
@@ -41,13 +46,7 @@ namespace TP.ConcurrentProgramming.Presentation.Model
 
     public override void Start(int numberOfBalls)
     {
-      Random random = new Random();
-      for (int i = 0; i < numberOfBalls; i++)
-      {
-        ModelBall newBall = new ModelBall(random.Next(100, 400 - 100), random.Next(100, 400 - 100)) { Diameter = 20 };
-        Balls2Dispose.Add(newBall);
-        BallChanged?.Invoke(this, new BallChaneEventArgs() { Ball = newBall });
-      }
+      layerBellow.Start(numberOfBalls, StartHandler);
     }
 
     #endregion ModelAbstractApi
@@ -60,25 +59,43 @@ namespace TP.ConcurrentProgramming.Presentation.Model
 
     #region private
 
-    private IObservable<EventPattern<BallChaneEventArgs>> eventObservable = null;
-    private List<IDisposable> Balls2Dispose = new List<IDisposable>();
+    private bool Disposed = false;
+    private readonly IObservable<EventPattern<BallChaneEventArgs>> eventObservable = null;
+    private readonly UnderneathLayerAPI layerBellow = null;
+
+    private void StartHandler(BusinessLogic.IPosition position, BusinessLogic.IBall ball)
+    {
+      ModelBall newBall = new ModelBall(position.x, position.y, ball) { Diameter = 20.0 };
+      BallChanged.Invoke(this, new BallChaneEventArgs() { Ball = newBall });
+    }
 
     #endregion private
 
     #region TestingInfrastructure
 
     [Conditional("DEBUG")]
-    internal void CheckIfBalls2DisposeIsAssigned(Action<IList<IDisposable>> returnBalls2DisposeList)
+    internal void CheckObjectDisposed(Action<bool> returnInstanceDisposed)
     {
-      returnBalls2DisposeList(Balls2Dispose);
+      returnInstanceDisposed(Disposed);
     }
 
     [Conditional("DEBUG")]
-    internal void CheckBalls2Dispose(Action<int> returnNumberOfBalls)
+    internal void CheckUnderneathLayerAPI(Action<UnderneathLayerAPI> returnNumberOfBalls)
     {
-      returnNumberOfBalls(Balls2Dispose.Count);
+      returnNumberOfBalls(layerBellow);
+    }
+
+    [Conditional("DEBUG")]
+    internal void CheckBallChangedEvent(Action<bool> returnBallChangedIsNull)
+    {
+      returnBallChangedIsNull(BallChanged == null);
     }
 
     #endregion TestingInfrastructure
+  }
+
+  public class BallChaneEventArgs : EventArgs
+  {
+    public IBall Ball { get; init; }
   }
 }
