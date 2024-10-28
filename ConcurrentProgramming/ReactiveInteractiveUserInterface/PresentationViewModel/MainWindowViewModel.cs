@@ -9,10 +9,11 @@
 
 using System;
 using System.Collections.ObjectModel;
-using TP.ConcurrentProgramming.PresentationModel;
-using TP.ConcurrentProgramming.PresentationViewModel.MVVMLight;
+using TP.ConcurrentProgramming.Presentation.Model;
+using TP.ConcurrentProgramming.Presentation.ViewModel.MVVMLight;
+using ModelIBall = TP.ConcurrentProgramming.Presentation.Model.IBall;
 
-namespace TP.ConcurrentProgramming.PresentationViewModel
+namespace TP.ConcurrentProgramming.Presentation.ViewModel
 {
   public class MainWindowViewModel : ViewModelBase, IDisposable
   {
@@ -24,15 +25,18 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
     public MainWindowViewModel(ModelAbstractApi modelLayerAPI)
     {
       ModelLayer = modelLayerAPI == null ? ModelAbstractApi.CreateModel() : modelLayerAPI;
-      Observer = ModelLayer.Subscribe<IBall>(x => Balls.Add(x));
+      Observer = ModelLayer.Subscribe<ModelIBall>(x => Balls.Add(x));
     }
 
     public void Start(int numberOfBalls)
     {
+      if (Disposed)
+        throw new ObjectDisposedException(nameof(MainWindowViewModel));
       ModelLayer.Start(numberOfBalls);
+      Observer.Dispose();
     }
 
-    public ObservableCollection<IBall> Balls { get; } = new ObservableCollection<IBall>();
+    public ObservableCollection<ModelIBall> Balls { get; } = new ObservableCollection<ModelIBall>();
 
     #endregion public API
 
@@ -40,7 +44,7 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
 
     protected virtual void Dispose(bool disposing)
     {
-      if (!disposedValue)
+      if (!Disposed)
       {
         if (disposing)
         {
@@ -51,13 +55,14 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
 
         // TODO: free unmanaged resources (unmanaged objects) and override finalizer
         // TODO: set large fields to null
-        disposedValue = true;
+        Disposed = true;
       }
     }
 
     public void Dispose()
     {
-      // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+      if (Disposed)
+        throw new ObjectDisposedException(nameof(MainWindowViewModel));
       Dispose(disposing: true);
       GC.SuppressFinalize(this);
     }
@@ -68,7 +73,7 @@ namespace TP.ConcurrentProgramming.PresentationViewModel
 
     private IDisposable Observer = null;
     private ModelAbstractApi ModelLayer;
-    private bool disposedValue;
+    private bool Disposed = false;
 
     #endregion private
   }

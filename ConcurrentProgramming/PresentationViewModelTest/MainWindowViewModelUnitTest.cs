@@ -12,10 +12,10 @@ using System;
 using System.ComponentModel;
 using System.Reactive;
 using System.Reactive.Linq;
-using TP.ConcurrentProgramming.PresentationModel;
-using TP.ConcurrentProgramming.PresentationViewModel;
+using TP.ConcurrentProgramming.Presentation.Model;
+using ModelIBall = TP.ConcurrentProgramming.Presentation.Model.IBall;
 
-namespace PresentationViewModelTest
+namespace TP.ConcurrentProgramming.Presentation.ViewModel.Test
 {
   [TestClass]
   public class MainWindowViewModelUnitTest
@@ -62,7 +62,7 @@ namespace PresentationViewModelTest
         Started = numberOfBalls;
       }
 
-      public override IDisposable Subscribe(IObserver<IBall> observer)
+      public override IDisposable Subscribe(IObserver<ModelIBall> observer)
       {
         Subscribed++;
         return new NullDisposable();
@@ -116,7 +116,7 @@ namespace PresentationViewModelTest
 
       #region ModelAbstractApi
 
-      public override IDisposable? Subscribe(IObserver<IBall> observer)
+      public override IDisposable? Subscribe(IObserver<ModelIBall> observer)
       {
         return eventObservable?.Subscribe(x => observer.OnNext(x.EventArgs.Ball), ex => observer.OnError(ex), () => observer.OnCompleted());
       }
@@ -150,12 +150,7 @@ namespace PresentationViewModelTest
       #endregion private
     }
 
-    private class BallChaneEventArgs : EventArgs
-    {
-      public IBall Ball { get; internal set; }
-    }
-
-    private class ModelBall : IBall
+    private class ModelBall : ModelIBall
     {
       public ModelBall(double top, double left)
       { }

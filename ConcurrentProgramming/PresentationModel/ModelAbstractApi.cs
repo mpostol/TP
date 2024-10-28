@@ -10,18 +10,13 @@
 using System;
 using System.ComponentModel;
 
-namespace TP.ConcurrentProgramming.PresentationModel
+namespace TP.ConcurrentProgramming.Presentation.Model
 {
   public interface IBall : INotifyPropertyChanged
   {
     double Top { get; }
     double Left { get; }
     double Diameter { get; }
-  }
-
-  public class BallChaneEventArgs : EventArgs
-  {
-    public IBall Ball { get; internal set; }
   }
 
   public abstract class ModelAbstractApi : IObservable<IBall>, IDisposable
@@ -47,7 +42,7 @@ namespace TP.ConcurrentProgramming.PresentationModel
 
     #region private
 
-    private static Lazy<ModelAbstractApi> modelInstance = new Lazy<ModelAbstractApi>(() => new PresentationModel());
+    private static Lazy<ModelAbstractApi> modelInstance = new Lazy<ModelAbstractApi>(() => new ModelImplementation());
 
     #endregion private
   }

@@ -7,19 +7,23 @@
 //  https://github.com/mpostol/TP/discussions/182
 //
 //_____________________________________________________________________________________________________________________________________
-using TP.ConcurrentProgramming.Presentation.Model;
 
-namespace TP.ConcurrentProgramming.PresentationModelTest
+using TP.ConcurrentProgramming.BusinessLogic;
+
+namespace TP.ConcurrentProgramming.BusinessLogicTest
 {
   [TestClass]
-  public class ModelAbstractAPITest
+  public class PositionUnitTest
   {
     [TestMethod]
-    public void SingletonConstructorTestMethod()
+    public void ConstructorTestMethod()
     {
-      ModelAbstractApi instance1 = ModelAbstractApi.CreateModel();
-      ModelAbstractApi instance2 = ModelAbstractApi.CreateModel();
-      Assert.AreSame<ModelAbstractApi>(instance1, instance2);
+      Random random = new Random();
+      double initialX = random.NextDouble();
+      double initialY = random.NextDouble();
+      IPosition position = new Position(initialX, initialY);
+      Assert.AreEqual<double>(initialX, position.x);
+      Assert.AreEqual<double>(initialY, position.y);
     }
   }
 }
