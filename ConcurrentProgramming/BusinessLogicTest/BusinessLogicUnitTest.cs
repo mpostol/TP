@@ -10,7 +10,7 @@
 
 using TP.ConcurrentProgramming.BusinessLogic;
 
-namespace TP.ConcurrentProgramming.BusinessLogicTest
+namespace TP.ConcurrentProgramming.BusinessLogic.Test
 {
   [TestClass]
   public class BusinessLogicImplementationUnitTest
@@ -19,11 +19,11 @@ namespace TP.ConcurrentProgramming.BusinessLogicTest
     public void ConstructorTestMethod()
     {
       BusinessLogicImplementation newInstance = new BusinessLogicImplementation();
-      IEnumerable<IDisposable>? ballsToDisposeList = null;
-      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
-      Assert.IsNotNull(ballsToDisposeList);
+      IEnumerable<IBall>? ballsList = null;
+      newInstance.CheckBallsList(x => ballsList = x);
+      Assert.IsNotNull(ballsList);
       int numberOfBalls = 0;
-      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
+      newInstance.CheckNumberOfBalls(x => numberOfBalls = x);
       Assert.AreEqual<int>(0, numberOfBalls);
     }
 
@@ -35,14 +35,10 @@ namespace TP.ConcurrentProgramming.BusinessLogicTest
       bool newInstanceDisposed = false;
       newInstance.CheckObjectDisposed(x => newInstanceDisposed = x);
       Assert.IsTrue(newInstanceDisposed);
-      IEnumerable<IBall>? ballsToDisposeList = null;
-      newInstance.CheckIfBalls2DisposeIsAssigned(x => ballsToDisposeList = x);
-      Assert.IsNotNull(ballsToDisposeList);
-      foreach (IBall item in ballsToDisposeList)
-        Assert.ThrowsException<ObjectDisposedException>(() => item.Dispose());
-      int numberOfBalls = 0;
-      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
-      Assert.AreEqual<int>(0, numberOfBalls);
+      IEnumerable<IBall>? ballsList = null;
+      newInstance.CheckBallsList(x => ballsList = x);
+      Assert.IsNotNull(ballsList);
+      newInstance.CheckNumberOfBalls(x => Assert.AreEqual<int>(0,  x));
       Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Dispose());
       Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Start(0, (position, ball) => { }));
     }
@@ -57,9 +53,7 @@ namespace TP.ConcurrentProgramming.BusinessLogicTest
         numberOfBalls2Create, 
         (startingPosition, ball) => { called++; Assert.IsTrue(startingPosition.x >= 0); Assert.IsTrue(startingPosition.y >= 0); Assert.IsNotNull(ball); });
       Assert.AreEqual<int>(numberOfBalls2Create, called);
-      int numberOfBalls = 0;
-      newInstance.CheckBalls2Dispose(x => numberOfBalls = x);
-      Assert.AreEqual<int>(10, numberOfBalls);
+      newInstance.CheckNumberOfBalls(x => Assert.AreEqual<int>(10, x));
     }
   }
 }

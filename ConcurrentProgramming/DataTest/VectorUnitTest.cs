@@ -8,20 +8,20 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.ConcurrentProgramming.BusinessLogic.Test
+namespace TP.ConcurrentProgramming.Data.Test
 {
   [TestClass]
-  public class PositionUnitTest
+  public class VectorUnitTest
   {
     [TestMethod]
     public void ConstructorTestMethod()
     {
-      Random random = new Random();
-      double initialX = random.NextDouble();
-      double initialY = random.NextDouble();
-      IPosition position = new Position(initialX, initialY);
-      Assert.AreEqual<double>(initialX, position.x);
-      Assert.AreEqual<double>(initialY, position.y);
+      Random randomGenerator = new();
+      double XComponent = randomGenerator.NextDouble();
+      double YComponent = randomGenerator.NextDouble();
+      Vector newInstance = new(XComponent, YComponent);
+      Assert.AreEqual<double>(XComponent, newInstance.x);
+      Assert.AreEqual<double>(YComponent, newInstance.y);
     }
   }
 }
