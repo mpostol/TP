@@ -8,28 +8,20 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.ConcurrentProgramming.BusinessLogic
+namespace TP.ConcurrentProgramming.Data.Test
 {
-  internal class Ball : IBall
+  [TestClass]
+  public class VectorUnitTest
   {
-    public Ball(Data.IBall ball)
+    [TestMethod]
+    public void ConstructorTestMethod()
     {
-      ball.NewPositionNotification += RaisePositionChangeEvent;
+      Random randomGenerator = new();
+      double XComponent = randomGenerator.NextDouble();
+      double YComponent = randomGenerator.NextDouble();
+      Vector newInstance = new(XComponent, YComponent);
+      Assert.AreEqual<double>(XComponent, newInstance.x);
+      Assert.AreEqual<double>(YComponent, newInstance.y);
     }
-
-    #region IBall
-
-    public event EventHandler<IPosition>? NewPositionNotification;
-
-    #endregion IBall
-
-    #region private
-
-    private void RaisePositionChangeEvent(object? sender, Data.IVector e)
-    {
-      NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
-    }
-
-    #endregion private
   }
 }

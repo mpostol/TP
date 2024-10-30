@@ -8,46 +8,47 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
-using TP.ConcurrentProgramming.BusinessLogic;
-
-namespace TP.ConcurrentProgramming.BusinessLogicTest
+namespace TP.ConcurrentProgramming.BusinessLogic.Test
 {
   [TestClass]
-  public class BusinessBallUnitTest1
+  public class BallUnitTest
   {
-    //[TestMethod]
-    //public void ConstructorTestMethod()
-    //{
-    //  using (BusinessBall newInstance = new(new Position(0.0, 0.0)))
-    //  { }
-    //}
-
-    //[TestMethod]
-    //public void DisposeTestMethod()
-    //{
-    //  Position initialPosition = new(10.0, 10.0);
-    //  BusinessBall newInstance = new(initialPosition);
-    //  bool disposedClone = true;
-    //  newInstance.CheckIfLocalDisposedVariable(x => disposedClone = x);
-    //  Assert.IsFalse(disposedClone);
-    //  newInstance.Dispose();
-    //  newInstance.CheckIfLocalDisposedVariable(x => disposedClone = x);
-    //  Assert.IsTrue(disposedClone);
-    //  Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Move(new Position(0.0, 0.0)));
-    //  Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Dispose());
-    //}
-
     [TestMethod]
     public void MoveTestMethod()
     {
-      Position initialPosition = new(10.0, 10.0);
-      BusinessBall newInstance = new(initialPosition);
-      IPosition curentPosition = new Position(0.0, 0.0);
-      int callBackCalled = 0;
-      newInstance.NewPositionNotification += (sender, position) => { Assert.IsNotNull(sender); curentPosition = position; callBackCalled++; };
-      newInstance.Move(new Position(0.0, 0.0));
-      Assert.AreEqual<int>(1, callBackCalled);
-      Assert.AreEqual<IPosition>(initialPosition, curentPosition);
+      DataBallFixture dataBallFixture = new DataBallFixture();
+      Ball newInstance = new(dataBallFixture);
+      int numberOfCallBackCalled = 0;
+      newInstance.NewPositionNotification += (sender, position) => { Assert.IsNotNull(sender); Assert.IsNotNull(position); numberOfCallBackCalled++; };
+      dataBallFixture.Move();
+      Assert.AreEqual<int>(1, numberOfCallBackCalled);
     }
+
+    #region testing instrumentation
+
+    private class DataBallFixture : Data.IBall
+    {
+      public Data.IVector Velocity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+      public event EventHandler<Data.IVector>? NewPositionNotification;
+
+      internal void Move()
+      {
+        NewPositionNotification?.Invoke(this, new VectorFixture(0.0, 0.0));
+      }
+    }
+
+    private class VectorFixture : Data.IVector
+    {
+      internal VectorFixture(double X, double Y)
+      {
+        x = X; y = Y;
+      }
+
+      public double x { get; init; }
+      public double y { get; init; }
+    }
+
+    #endregion testing instrumentation
   }
 }

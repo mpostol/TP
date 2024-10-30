@@ -8,27 +8,19 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
-using TP.ConcurrentProgramming.BusinessLogic;
-
-namespace TP.ConcurrentProgramming.BusinessLogic.Test
+namespace TP.ConcurrentProgramming.Data.Test
 {
   [TestClass]
-  public class BusinessLogicAbstractAPIUnitTest
+  public class DataAbstractAPIUnitTest
   {
     [TestMethod]
-    public void BusinessLogicConstructorTestMethod()
+    public void ConstructorTestTestMethod()
     {
-      BusinessLogicAbstractAPI instance1 = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      BusinessLogicAbstractAPI instance2 = BusinessLogicAbstractAPI.GetBusinessLogicLayer();
-      Assert.AreSame(instance1, instance2);
+      DataAbstractAPI instance1 = DataAbstractAPI.GetDataLayer();
+      DataAbstractAPI instance2 = DataAbstractAPI.GetDataLayer();
+      Assert.AreSame<DataAbstractAPI>(instance1, instance2);
       instance1.Dispose();
       Assert.ThrowsException<ObjectDisposedException>(() => instance2.Dispose());
-    }
-
-    [TestMethod]
-    public void GetDimensionsTestMethod()
-    {
-      Assert.AreEqual<Dimensions>(new(10.0, 10.0, 10.0), BusinessLogicAbstractAPI.GetDimensions);
     }
   }
 }

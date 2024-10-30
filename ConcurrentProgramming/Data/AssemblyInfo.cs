@@ -1,3 +1,4 @@
+
 //____________________________________________________________________________________________________________________________________
 //
 //  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
@@ -11,6 +12,6 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: InternalsVisibleTo("BusinessLogicTest")]
+[assembly: InternalsVisibleTo("DataTest")]
 [assembly: ComVisible(false)]
-[assembly: Guid("4a734722-dd89-43c0-ae05-70f53f6dfe4b")]
+[assembly: Guid("bed985f7-aa6b-4c6f-b764-ad81e70f2dd2")]

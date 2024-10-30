@@ -40,6 +40,24 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel.Test
       Assert.AreEqual<int>(1, nullModelFixture.Disposed);
     }
 
+    [TestMethod]
+    public void BehaviorTestMethod()
+    {
+      ModelSimulatorFixture modelSimulator = new();
+      MainWindowViewModel viewModel = new(modelSimulator);
+      Assert.IsNotNull(viewModel.Balls);
+      Assert.AreEqual<int>(0, viewModel.Balls.Count);
+      Random random = new Random();
+      int numberOfBalls = random.Next(1, 10);
+      viewModel.Start(numberOfBalls);
+      Assert.AreEqual<int>(numberOfBalls, viewModel.Balls.Count);
+      viewModel.Dispose();
+      Assert.IsTrue(modelSimulator.Disposed);
+      Assert.AreEqual<int>(0, viewModel.Balls.Count);
+    }
+
+    #region testing infrastructure
+
     private class ModelNullFixture : ModelAbstractApi
     {
       #region Test
@@ -81,23 +99,7 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel.Test
       #endregion private
     }
 
-    [TestMethod]
-    public void BehaviorTestMethod()
-    {
-      ModelSimulator modelSimulator = new();
-      MainWindowViewModel viewModel = new(modelSimulator);
-      Assert.IsNotNull(viewModel.Balls);
-      Assert.AreEqual<int>(0, viewModel.Balls.Count);
-      Random random = new Random();
-      int numberOfBalls = random.Next(1, 10);
-      viewModel.Start(numberOfBalls);
-      Assert.AreEqual<int>(numberOfBalls, viewModel.Balls.Count);
-      viewModel.Dispose();
-      Assert.IsTrue(modelSimulator.Disposed);
-      Assert.AreEqual<int>(0, viewModel.Balls.Count);
-    }
-
-    private class ModelSimulator : ModelAbstractApi
+    private class ModelSimulatorFixture : ModelAbstractApi
     {
       #region Testing indicators
 
@@ -107,14 +109,14 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel.Test
 
       #region ctor
 
-      public ModelSimulator()
+      public ModelSimulatorFixture()
       {
         eventObservable = Observable.FromEventPattern<BallChaneEventArgs>(this, "BallChanged");
       }
 
       #endregion ctor
 
-      #region ModelAbstractApi
+      #region ModelAbstractApi fixture
 
       public override IDisposable? Subscribe(IObserver<ModelIBall> observer)
       {
@@ -147,29 +149,31 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel.Test
 
       private IObservable<EventPattern<BallChaneEventArgs>>? eventObservable = null;
 
+      private class ModelBall : ModelIBall
+      {
+        public ModelBall(double top, double left)
+        { }
+
+        #region IBall
+
+        public double Diameter => throw new NotImplementedException();
+
+        public double Top => throw new NotImplementedException();
+
+        public double Left => throw new NotImplementedException();
+
+        #region INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        #endregion INotifyPropertyChanged
+
+        #endregion IBall
+      }
+
       #endregion private
     }
 
-    private class ModelBall : ModelIBall
-    {
-      public ModelBall(double top, double left)
-      { }
-
-      #region IBall
-
-      public double Diameter => throw new NotImplementedException();
-
-      public double Top => throw new NotImplementedException();
-
-      public double Left => throw new NotImplementedException();
-
-      #region INotifyPropertyChanged
-
-      public event PropertyChangedEventHandler? PropertyChanged;
-
-      #endregion INotifyPropertyChanged
-
-      #endregion IBall
-    }
+    #endregion testing infrastructure
   }
 }

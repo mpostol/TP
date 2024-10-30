@@ -8,9 +8,7 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
-using TP.ConcurrentProgramming.BusinessLogic;
-
-namespace TP.ConcurrentProgramming.BusinessLogicTest
+namespace TP.ConcurrentProgramming.BusinessLogic.Test
 {
   [TestClass]
   public class PositionUnitTest

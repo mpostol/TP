@@ -6,11 +6,12 @@
 //
 //  https://github.com/mpostol/TP/discussions/182
 //
+//  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: InternalsVisibleTo("BusinessLogicTest")]
+[assembly: InternalsVisibleTo("PresentationViewModelTest")]
 [assembly: ComVisible(false)]
-[assembly: Guid("4a734722-dd89-43c0-ae05-70f53f6dfe4b")]
+[assembly: Guid("ddcd2a69-feed-403a-a3c1-747c71bf21ab")]
