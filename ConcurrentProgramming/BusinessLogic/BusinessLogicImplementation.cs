@@ -9,6 +9,7 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System.Diagnostics;
+using UnderneathLayerAPI = TP.ConcurrentProgramming.Data.DataAbstractAPI;
 
 namespace TP.ConcurrentProgramming.BusinessLogic
 {
@@ -16,9 +17,12 @@ namespace TP.ConcurrentProgramming.BusinessLogic
   {
     #region ctor
 
-    public BusinessLogicImplementation()
+    public BusinessLogicImplementation() : this(null)
+    { }
+
+    internal BusinessLogicImplementation(UnderneathLayerAPI? underneathLayer)
     {
-      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
+      layerBellow = underneathLayer == null ? UnderneathLayerAPI.GetDataLayer() : underneathLayer;
     }
 
     #endregion ctor
@@ -29,25 +33,17 @@ namespace TP.ConcurrentProgramming.BusinessLogic
     {
       if (Disposed)
         throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
-      MoveTimer.Dispose();
-      BallsList.Clear();
+      layerBellow.Dispose();
       Disposed = true;
     }
 
     public override void Start(int numberOfBalls, Action<IPosition, IBall> upperLayerHandler)
     {
-      if (Disposed) 
+      if (Disposed)
         throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
-      if (upperLayerHandler == null) 
+      if (upperLayerHandler == null)
         throw new ArgumentNullException(nameof(upperLayerHandler));
-      Random random = new Random();
-      for (int i = 0; i < numberOfBalls; i++)
-      {
-        Position startingPosition = new Position(random.Next(100, 400 - 100), random.Next(100, 400 - 100));
-        Ball newBall = new Ball(startingPosition);
-        upperLayerHandler(startingPosition, newBall);
-        BallsList.Add(newBall);
-      }
+      layerBellow.Start(numberOfBalls, (startingPosition, databall) => upperLayerHandler(new Position(startingPosition.x, startingPosition.x), new Ball(databall)));
     }
 
     #endregion BusinessLogicAbstractAPI
@@ -55,37 +51,19 @@ namespace TP.ConcurrentProgramming.BusinessLogic
     #region private
 
     private bool Disposed = false;
-    private readonly Timer MoveTimer;
-    private Random RandomGenerator = new();
-    private List<Ball> BallsList = new();
 
-    private void Move(object? x)
-    {
-      foreach (Ball item in BallsList)
-        item.Move(new Position((RandomGenerator.NextDouble() - 0.5) * 10, (RandomGenerator.NextDouble() - 0.5) * 10));
-    }
+    private readonly UnderneathLayerAPI layerBellow;
 
     #endregion private
 
     #region TestingInfrastructure
 
     [Conditional("DEBUG")]
-    internal void CheckBallsList(Action<IEnumerable<IBall>> returnBallsList)
-    {
-      returnBallsList(BallsList);
-    }
-
-    [Conditional("DEBUG")]
-    internal void CheckNumberOfBalls(Action<int> returnNumberOfBalls)
-    {
-      returnNumberOfBalls(BallsList.Count);
-    }
-
-    [Conditional("DEBUG")]
     internal void CheckObjectDisposed(Action<bool> returnInstanceDisposed)
     {
       returnInstanceDisposed(Disposed);
     }
+
     #endregion TestingInfrastructure
   }
 }

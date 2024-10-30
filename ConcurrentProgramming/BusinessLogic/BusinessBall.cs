@@ -12,9 +12,9 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 {
   internal class Ball : IBall
   {
-    public Ball(Position startingPosition)
+    public Ball(Data.IBall ball)
     {
-      position = startingPosition;
+      ball.NewPositionNotification += RaisePositionChangeEvent;
     }
 
     #region IBall
@@ -25,13 +25,10 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     #region private
 
-    internal void Move(Position delta)
+    private void RaisePositionChangeEvent(object? sender, Data.IVector e)
     {
-      position = new Position(position.x + delta.x, position.y + delta.y);
-      NewPositionNotification?.Invoke(this, position);
+      NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
     }
-
-    private Position position = new(0.0, 0.0);
 
     #endregion private
   }

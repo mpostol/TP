@@ -17,16 +17,20 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel
 {
   public class MainWindowViewModel : ViewModelBase, IDisposable
   {
-    #region public API
+    #region ctor
 
     public MainWindowViewModel() : this(null)
     { }
 
-    public MainWindowViewModel(ModelAbstractApi modelLayerAPI)
+    internal MainWindowViewModel(ModelAbstractApi modelLayerAPI)
     {
       ModelLayer = modelLayerAPI == null ? ModelAbstractApi.CreateModel() : modelLayerAPI;
       Observer = ModelLayer.Subscribe<ModelIBall>(x => Balls.Add(x));
     }
+
+    #endregion ctor
+
+    #region public API
 
     public void Start(int numberOfBalls)
     {
