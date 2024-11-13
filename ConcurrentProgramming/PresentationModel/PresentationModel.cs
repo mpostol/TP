@@ -1,28 +1,31 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2024, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
 //  https://github.com/mpostol/TP/discussions/182
-//
-//  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Linq;
+using UnderneathLayerAPI = TP.ConcurrentProgramming.BusinessLogic.BusinessLogicAbstractAPI;
 
-namespace TP.ConcurrentProgramming.PresentationModel
+namespace TP.ConcurrentProgramming.Presentation.Model
 {
   /// <summary>
-  /// Class PresentationModel - implements the <see cref="ModelAbstractApi" />
+  /// Class Model - implements the <see cref="ModelAbstractApi" />
   /// </summary>
-  internal class PresentationModel : ModelAbstractApi
+  internal class ModelImplementation : ModelAbstractApi
   {
-    public PresentationModel()
+    internal ModelImplementation() : this(null)
+    { }
+
+    internal ModelImplementation(UnderneathLayerAPI underneathLayer)
     {
+      layerBellow = underneathLayer == null ? UnderneathLayerAPI.GetBusinessLogicLayer() : underneathLayer;
       eventObservable = Observable.FromEventPattern<BallChaneEventArgs>(this, "BallChanged");
     }
 
@@ -30,8 +33,10 @@ namespace TP.ConcurrentProgramming.PresentationModel
 
     public override void Dispose()
     {
-      foreach (ModelBall item in Balls2Dispose)
-        item.Dispose();
+      if (Disposed)
+        throw new ObjectDisposedException(nameof(Model));
+      layerBellow.Dispose();
+      Disposed = true;
     }
 
     public override IDisposable Subscribe(IObserver<IBall> observer)
@@ -39,16 +44,9 @@ namespace TP.ConcurrentProgramming.PresentationModel
       return eventObservable.Subscribe(x => observer.OnNext(x.EventArgs.Ball), ex => observer.OnError(ex), () => observer.OnCompleted());
     }
 
-    public override void Start()
+    public override void Start(int numberOfBalls)
     {
-      Random random = new Random();
-      int ballNumber = random.Next(1, 10);
-      for (int i = 0; i < ballNumber; i++)
-      {
-        ModelBall newBall = new ModelBall(random.Next(100, 400 - 100), random.Next(100, 400 - 100)) { Diameter = 20 };
-        Balls2Dispose.Add(newBall);
-        BallChanged?.Invoke(this, new BallChaneEventArgs() { Ball = newBall });
-      }
+      layerBellow.Start(numberOfBalls, StartHandler);
     }
 
     #endregion ModelAbstractApi
@@ -61,9 +59,43 @@ namespace TP.ConcurrentProgramming.PresentationModel
 
     #region private
 
-    private IObservable<EventPattern<BallChaneEventArgs>> eventObservable = null;
-    private List<IDisposable> Balls2Dispose = new List<IDisposable>();
+    private bool Disposed = false;
+    private readonly IObservable<EventPattern<BallChaneEventArgs>> eventObservable = null;
+    private readonly UnderneathLayerAPI layerBellow = null;
+
+    private void StartHandler(BusinessLogic.IPosition position, BusinessLogic.IBall ball)
+    {
+      ModelBall newBall = new ModelBall(position.x, position.y, ball) { Diameter = 20.0 };
+      BallChanged.Invoke(this, new BallChaneEventArgs() { Ball = newBall });
+    }
 
     #endregion private
+
+    #region TestingInfrastructure
+
+    [Conditional("DEBUG")]
+    internal void CheckObjectDisposed(Action<bool> returnInstanceDisposed)
+    {
+      returnInstanceDisposed(Disposed);
+    }
+
+    [Conditional("DEBUG")]
+    internal void CheckUnderneathLayerAPI(Action<UnderneathLayerAPI> returnNumberOfBalls)
+    {
+      returnNumberOfBalls(layerBellow);
+    }
+
+    [Conditional("DEBUG")]
+    internal void CheckBallChangedEvent(Action<bool> returnBallChangedIsNull)
+    {
+      returnBallChangedIsNull(BallChanged == null);
+    }
+
+    #endregion TestingInfrastructure
+  }
+
+  public class BallChaneEventArgs : EventArgs
+  {
+    public IBall Ball { get; init; }
   }
 }

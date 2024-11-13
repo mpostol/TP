@@ -1,33 +1,40 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2024 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
-//  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
 using System;
 using System.Windows;
-using TP.ConcurrentProgramming.PresentationViewModel;
+using TP.ConcurrentProgramming.Presentation.ViewModel;
 
 namespace TP.ConcurrentProgramming.PresentationView
 {
   /// <summary>
   /// View implementation
   /// </summary>
-  public partial class MainWindow : Window, IDisposable
+  public partial class MainWindow : Window
   {
     public MainWindow()
     {
+      Random random = new Random();
       InitializeComponent();
+      MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
+      viewModel.Start(random.Next(5, 10));
     }
 
-    public void Dispose()
+    /// <summary>
+    /// Raises the <seealso cref="System.Windows.Window.Closed"/> event.
+    /// </summary>
+    /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
+    protected override void OnClosed(EventArgs e)
     {
-      if (this.DataContext is MainWindowViewModel viewModel)
+      if (DataContext is MainWindowViewModel viewModel)
         viewModel.Dispose();
+      base.OnClosed(e);
     }
   }
 }

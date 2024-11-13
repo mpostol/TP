@@ -81,7 +81,7 @@ Because usually the GUI should be recognized as a critical section, its interope
 It is a programming pattern to describe an interaction between a programming entity and an action invoked by it where the method is executed synchronously. In other words, the further execution of the calling entity is postponed until the called one has been finished. The concurrent programming concept deliberately is not applicable to implement this relationship.
 
 **Asynchronous**:
-It is a programming pattern to describe an interaction between a programming entity and an action invoked by it. The called action is executed simultaneously with the invoking one. In other words, the further execution of the calling entity is continued and synchronized with the called one after finishing. 
+It is a programming pattern to describe an interaction between a programming entity and an action invoked by it. The called action is executed simultaneously with the invoking one. In other words, the further execution of the calling entity is continued and synchronized with the called one after finishing.
 
 ✍🏻 It requires concurrent programming.
 
@@ -94,7 +94,7 @@ It is a programming pattern to describe an interaction between programming entit
 <!-- 
 - Event-based Asynchronous Pattern (EAP)
 - DataObservable
-- TickEventArgs 
+- TickEventArgs
 -->
 
 ### 1.3. Concurrent programming ✍🏻

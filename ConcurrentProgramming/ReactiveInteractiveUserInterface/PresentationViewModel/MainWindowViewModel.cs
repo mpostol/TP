@@ -1,50 +1,83 @@
 ﻿//__________________________________________________________________________________________
 //
-//  Copyright 2022 Mariusz Postol LODZ POLAND.
+//  Copyright 2024 Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and to get started
 //  comment using the discussion panel at
 //  https://github.com/mpostol/TP/discussions/182
-//  with an introduction of yourself and tell us about what you do with this community.
 //__________________________________________________________________________________________
 
 using System;
 using System.Collections.ObjectModel;
-using TP.ConcurrentProgramming.PresentationModel;
-using TP.ConcurrentProgramming.PresentationViewModel.MVVMLight;
+using TP.ConcurrentProgramming.Presentation.Model;
+using TP.ConcurrentProgramming.Presentation.ViewModel.MVVMLight;
+using ModelIBall = TP.ConcurrentProgramming.Presentation.Model.IBall;
 
-namespace TP.ConcurrentProgramming.PresentationViewModel
+namespace TP.ConcurrentProgramming.Presentation.ViewModel
 {
   public class MainWindowViewModel : ViewModelBase, IDisposable
-
   {
-    #region public API
+    #region ctor
 
-    public MainWindowViewModel()
+    public MainWindowViewModel() : this(null)
+    { }
+
+    internal MainWindowViewModel(ModelAbstractApi modelLayerAPI)
     {
-      //CP - layers must be tested independently #313
-      //TODO CP - use singleton design pattern to implement ModelAbstractApi factoring #314
-      ModelLayer = ModelAbstractApi.CreateApi();
-      IDisposable observer = ModelLayer.Subscribe<IBall>(x => Balls.Add(x));
-      ModelLayer.Start();
+      ModelLayer = modelLayerAPI == null ? ModelAbstractApi.CreateModel() : modelLayerAPI;
+      Observer = ModelLayer.Subscribe<ModelIBall>(x => Balls.Add(x));
     }
 
-    public ObservableCollection<IBall> Balls { get; } = new ObservableCollection<IBall>();
+    #endregion ctor
+
+    #region public API
+
+    public void Start(int numberOfBalls)
+    {
+      if (Disposed)
+        throw new ObjectDisposedException(nameof(MainWindowViewModel));
+      ModelLayer.Start(numberOfBalls);
+      Observer.Dispose();
+    }
+
+    public ObservableCollection<ModelIBall> Balls { get; } = new ObservableCollection<ModelIBall>();
 
     #endregion public API
 
     #region IDisposable
 
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!Disposed)
+      {
+        if (disposing)
+        {
+          Balls.Clear();
+          Observer.Dispose();
+          ModelLayer.Dispose();
+        }
+
+        // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+        // TODO: set large fields to null
+        Disposed = true;
+      }
+    }
+
     public void Dispose()
     {
-      ModelLayer.Dispose();
+      if (Disposed)
+        throw new ObjectDisposedException(nameof(MainWindowViewModel));
+      Dispose(disposing: true);
+      GC.SuppressFinalize(this);
     }
 
     #endregion IDisposable
 
     #region private
 
+    private IDisposable Observer = null;
     private ModelAbstractApi ModelLayer;
+    private bool Disposed = false;
 
     #endregion private
   }
