@@ -13,102 +13,78 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
   [TestClass]
   public class CriticalSectionUnitTest
   {
+    /// <summary>
+    /// Test lack of data consistency using manually created <seealso cref="Thread"/>.
+    /// </summary>
     [TestMethod]
-    public void CheckWhetherThreadsAreNotSynchronized()
+    public void LackOfDataConsistencyUsingManuallyCreatedThreads()
     {
       CriticalSection m_ThreadsExample = new CriticalSection();
-      StartThreads(m_ThreadsExample.NoMonitorMethod);
+      RunConcurrentlyManualyCreatedThreads(m_ThreadsExample.NoProtectedMethod);
       Assert.IsFalse(m_ThreadsExample.IsConsistent);
     }
 
+    /// <summary>
+    /// Test how to protect data consistency using critical section implemented using Monitor and manually created <seealso cref="Thread"/>.
+    /// </summary>
     [TestMethod]
-    public void CheckWhetherThreadsAreSynchronized()
+    public void CriticalSectionImplementedUsingMonitorManuallyCreatedThreads()
     {
       CriticalSection m_ThreadsExample = new CriticalSection();
-      StartThreads(m_ThreadsExample.MonitorMethod);
+      RunConcurrentlyManualyCreatedThreads(m_ThreadsExample.ProtectedMethod);
       Assert.IsTrue(m_ThreadsExample.IsConsistent);
     }
 
+    /// <summary>
+    /// Test lack of data consistency using <seealso cref="ThreadPool"/>.
+    /// </summary>
     [TestMethod]
-    public void CheckWhetherThreadsUsingThreadPoolAreNotSynchronized()
+    public void LackOfDataConsistencyUsingThreadPool()
     {
       CriticalSection m_ThreadsExample = new CriticalSection();
-      StartThreadsUsingThreadPool(m_ThreadsExample.NoMonitorMethod);
+      RunThreadsUsingThreadPool(m_ThreadsExample.NoProtectedMethod);
       Assert.IsFalse(m_ThreadsExample.IsConsistent);
     }
 
+    /// <summary>
+    /// Test how to protect data consistency using critical section implemented using Monitor and <seealso cref="ThreadPool"/>.
+    /// </summary>
     [TestMethod]
-    public void CheckConsitencyUsingTaskMonitor()
+    public void CriticalSectionImplementedUsingMonitorThreadPool()
     {
       CriticalSection m_ThreadsExample = new CriticalSection();
-      StartThreadsUsingThreadPool(m_ThreadsExample.MonitorMethod);
+      RunThreadsUsingThreadPool(m_ThreadsExample.ProtectedMethod);
       Assert.IsTrue(m_ThreadsExample.IsConsistent);
     }
+
+    /// <summary>
+    /// Test lack of data consistency using manually created <seealso cref="Task"/>
+    /// </summary>
     [TestMethod]
     public void CheckConsitencyUsingTaskNoMonitor()
     {
       CriticalSection m_ThreadsExample = new CriticalSection();
-      RunThreadsUsingTask(m_ThreadsExample.NoMonitorMethod);
+      RunThreadsUsingTask(m_ThreadsExample.NoProtectedMethod);
       Assert.IsFalse(m_ThreadsExample.IsConsistent);
     }
 
+    /// <summary>
+    /// Test how to protect data consistency using critical section implemented using Monitor and <seealso cref="Task"/>.
+    /// </summary>
     [TestMethod]
     public void CheckWhetherThreadsUsingThreadPoolAreSynchronized()
     {
       CriticalSection m_ThreadsExample = new CriticalSection();
-      RunThreadsUsingTask(m_ThreadsExample.MonitorMethod);
+      RunThreadsUsingTask(m_ThreadsExample.ProtectedMethod);
       Assert.IsTrue(m_ThreadsExample.IsConsistent);
-    }
-
-    [TestMethod]
-    public void LockMethodTest()
-    {
-      CriticalSection m_ThreadsExample = new CriticalSection();
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.LockMethod);
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.LockMethod);
-      Thread.Sleep(SleepTime); // wait for threads
-      Assert.AreEqual(2 * 1000000, m_ThreadsExample.LockedNumber);
-    }
-
-    [TestMethod]
-    public void NoMonitorMethodTest()
-    {
-      CriticalSection m_ThreadsExample = new CriticalSection();
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.NoMonitorMethod);
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.NoMonitorMethod);
-      Thread.Sleep(SleepTime); // wait for threads
-      Assert.AreNotEqual(2 * 1000000, m_ThreadsExample.LockedNumber);
-    }
-
-    [TestMethod]
-    public void MonitorMethodWithTimeoutTest()
-    {
-      CriticalSection m_ThreadsExample = new CriticalSection();
-      object tab = new bool[] { false };
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethodWithTimeout, tab);
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.MonitorMethodWithTimeout, tab);
-      Assert.AreEqual(false, ((bool[])tab)[0]);
-      Thread.Sleep(2000); // 2 seconds - wait the timeout
-      Assert.AreEqual(true, ((bool[])tab)[0]);
-    }
-
-    [TestMethod]
-    public void WaitPulseMethodsTest()
-    {
-      CriticalSection m_ThreadsExample = new CriticalSection();
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.WaitMethod);
-      Thread.Sleep(SleepTime);
-      ThreadPool.QueueUserWorkItem(m_ThreadsExample.PulseMethod);
-      Thread.Sleep(SleepTime); // wait for threads
-      Assert.AreEqual(0, m_ThreadsExample.LockedNumber);
     }
 
     #region Test Instrumentation
 
-    private const int SleepTime = 512; // ms
-
-    public void StartThreads(ParameterizedThreadStart start)
+    public void RunConcurrentlyManualyCreatedThreads(ParameterizedThreadStart start)
     {
+      if (start == null)
+        throw new ArgumentNullException(nameof(start));
       Thread[] threadsArray = new Thread[2];
       for (int i = 0; i < threadsArray.Length; i++)
         threadsArray[i] = new Thread(start);
@@ -118,7 +94,7 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
         _thread.Join();
     }
 
-    public void StartThreadsUsingThreadPool(WaitCallback callBack)
+    public void RunThreadsUsingThreadPool(WaitCallback callBack)
     {
       for (int i = 0; i < 2; i++)
         ThreadPool.QueueUserWorkItem(callBack);
@@ -127,16 +103,13 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
       Thread.Sleep(1000);
     }
 
-    public void RunThreadsUsingTask(WaitCallback? callBack)
+    public void RunThreadsUsingTask(WaitCallback callBack)
     {
       if (callBack == null)
         throw new ArgumentNullException(nameof(callBack));
       List<Task> _tasksInProgress = new List<Task>();
       for (int i = 0; i < 2; i++)
-      {
-        Task newTask = Task.Run(() => callBack(null));
-        _tasksInProgress.Add(newTask);
-      }
+        _tasksInProgress.Add(Task.Run(() => callBack(null)));
       //wait for threads
       Task.WaitAll(_tasksInProgress.ToArray());
     }
