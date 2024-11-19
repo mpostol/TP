@@ -10,7 +10,6 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace TP.FunctionalProgramming
