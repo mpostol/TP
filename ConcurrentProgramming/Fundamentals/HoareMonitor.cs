@@ -37,7 +37,7 @@ namespace TP.ConcurrentProgramming.Fundamentals
       void Wait();
 
       /// <summary>
-      /// check if any process is waiting for the specified signal
+      /// Check if any thread is waiting for the specified signal
       /// </summary>
       bool Await();
     }
@@ -66,7 +66,7 @@ namespace TP.ConcurrentProgramming.Fundamentals
       void Wait();
 
       /// <summary>
-      /// check if any process is waiting for the specified signal
+      /// Check if any thread is waiting for the specified signal
       /// </summary>
       bool Await();
     }
