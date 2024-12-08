@@ -26,16 +26,9 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency
 
     public void ProtectedMethod(object? state)
     {
-      if (_lockObj.TryEnter())
+      using (_lockObj.EnterScope())
       {
-        try
-        {
-          CommonDataProcessingSimulator();
-        }
-        finally 
-        { 
-          _lockObj.Exit(); 
-        }
+        CommonDataProcessingSimulator();
       }
     }
 
