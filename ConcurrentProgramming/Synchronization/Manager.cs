@@ -8,6 +8,8 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
+using System.Globalization;
+
 namespace TP.ConcurrentProgramming.Synchronization
 {
   /// <summary>
@@ -80,7 +82,8 @@ namespace TP.ConcurrentProgramming.Synchronization
       {
         Name = name,
         IsBackground = isBackground,
-        Priority = priority
+        Priority = priority, 
+        CurrentCulture = CultureInfo.InvariantCulture
       };
       procToStart.Start();
       return procToStart;
