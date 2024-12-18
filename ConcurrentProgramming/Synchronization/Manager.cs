@@ -18,7 +18,7 @@ namespace TP.ConcurrentProgramming.Synchronization
   /// the assumption that for purpose of the thread-to-thread communication the
   /// well-known monitor concept is used.
   /// </summary>
-  /// <remarks>TBD - now it only provides thread instantiation functionality</remarks>
+  /// <remarks>TBD - now it provides only thread instantiation and starting functionality</remarks>
   public static class Manager
   {
     #region private
@@ -30,42 +30,50 @@ namespace TP.ConcurrentProgramming.Synchronization
     #region public
 
     /// <summary>
-    /// Starts the process.
+    /// Initializes a new instance of the Thread class and causes it to be scheduled for execution.
     /// </summary>
-    /// <param name="thread">The process.</param>
-    /// <returns>thread that is started</returns>
-    public static Thread StartProcess(ThreadStart thread)
+    /// <param name="thread">A <seealso cref="ThreadStart"/> delegate that represents the methods to be invoked when this thread
+    /// begins executing.</param>
+    /// <returns>An instance of <seealso cref="Thread"/>. Thread is either a background thread or a foreground thread. Background threads
+    /// are identical to foreground threads, except that background threads do not prevent a process from
+    /// terminating. Once all foreground threads belonging to a process have terminated, the common language
+    /// runtime ends the process. Any remaining background threads are stopped and do not complete.</returns>
+    public static Thread InstantiateStartThread(ThreadStart thread)
     {
-      return StartProcess(thread, $"Thread {++procNum}");
-    }
-
-    /// <summary>
-    /// Starts the process.
-    /// </summary>
-    /// <param name="thread">The process.</param>
-    /// <param name="name">The name.</param>
-    /// <returns>thread that is started</returns>
-    public static Thread StartProcess(ThreadStart thread, string name)
-    {
-      return StartProcess(thread, name, true, ThreadPriority.Normal);
+      return InstantiateStartThread(thread, $"Thread {++procNum}");
     }
 
     /// <summary>
     /// Initializes a new instance of the Thread class and causes it to be scheduled for execution.
     /// </summary>
-    /// <param name="thread">A ThreadStart delegate that represents the methods to be invoked when this thread
+    /// <param name="thread">A <seealso cref="ThreadStart"/> delegate that represents the methods to be invoked when this thread
+    /// begins executing.</param>
+    /// <param name="name">A string containing the name of the thread, or a null reference if no name was set.</param>
+    /// <returns>An instance of <seealso cref="Thread"/>. Thread is either a background thread or a foreground thread. Background threads
+    /// are identical to foreground threads, except that background threads do not prevent a process from
+    /// terminating. Once all foreground threads belonging to a process have terminated, the common language
+    /// runtime ends the process. Any remaining background threads are stopped and do not complete.</returns>
+    public static Thread InstantiateStartThread(ThreadStart thread, string name)
+    {
+      return InstantiateStartThread(thread, name, true, ThreadPriority.Normal);
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the Thread class and causes it to be scheduled for execution.
+    /// </summary>
+    /// <param name="thread">A <seealso cref="ThreadStart"/>  delegate that represents the methods to be invoked when this thread
     /// begins executing.
     /// </param>
     /// <param name="name">A string containing the name of the thread, or a null reference if no name was set.</param>
     /// <param name="isBackground">A value indicating whether or not a thread is a background thread. </param>
     /// <param name="priority">A value indicating the scheduling priority of a thread.</param>
     /// <returns>An instance of the <see cref="Thread"/> type.</returns>
-    /// <remarks>A thread is either a background thread or a foreground thread. Background threads
+    /// <remarks>An instance of <seealso cref="Thread"/>. Thread is either a background thread or a foreground thread. Background threads
     /// are identical to foreground threads, except that background threads do not prevent a process from
     /// terminating. Once all foreground threads belonging to a process have terminated, the common language
     /// runtime ends the process. Any remaining background threads are stopped and do not complete.
     /// </remarks>
-    public static Thread StartProcess(ThreadStart thread, string name, bool isBackground, ThreadPriority priority)
+    public static Thread InstantiateStartThread(ThreadStart thread, string name, bool isBackground, ThreadPriority priority)
     {
       procNum++;
       Thread procToStart = new Thread(thread)
