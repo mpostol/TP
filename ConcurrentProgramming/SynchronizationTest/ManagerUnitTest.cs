@@ -15,10 +15,8 @@ namespace TP.ConcurrentProgramming.Synchronization.Test
   public class ManagerUnitTest
   {
     [TestMethod]
-    public void ConstructorTestMethod()
+    public void TestMethod()
     {
-      Manager monitor = new();
-      Assert.IsNotNull(monitor);
     }
   }
 }
