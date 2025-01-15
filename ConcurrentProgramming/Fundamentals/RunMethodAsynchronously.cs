@@ -8,46 +8,43 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
+using System.ComponentModel;
+
 namespace TP.ConcurrentProgramming.Fundamentals
 {
   /// <summary>
   /// Class that allows running method asynchronously
   /// </summary>
   /// <remarks>The RunMethodAsynchronously class is designed to run methods asynchronously using delegates.</remarks>
-  public class RunMethodAsynchronously
+  public class RunMethodAsynchronously : IDisposable
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="RunMethodAsynchronously"/> class.
+    ///
     /// </summary>
-    /// <remarks>
-    /// The constructor takes a delegate of type <seealso cref="AsyncOperation"/> and 
-    /// assigns it to a private readonly field AsyncOperationField.
-    /// </remarks>
-    /// <param name="operationToRun">Delegate to method that will be called asynchronously</param>
-    public RunMethodAsynchronously(AsyncOperation operationToRun)
+    /// <param name="operationToRun">Delegate for the method to be executed asynchronously</param>
+    public RunMethodAsynchronously(DoWorkEventHandler operationToRun, RunWorkerCompletedEventHandler completedHandler)
     {
-      AsyncOperationField = operationToRun;
+      worker = new();
+      worker.DoWork += operationToRun;
+      worker.RunWorkerCompleted += completedHandler;
+      worker.WorkerSupportsCancellation = false;
+      worker.WorkerReportsProgress = false;
+    }
+
+    public void Dispose()
+    {
+      // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+      Dispose(disposing: true);
+      GC.SuppressFinalize(this);
     }
 
     /// <summary>
-    /// Delegate for method that will be called asynchronously
+    /// Runs the asynchronously method with parameter
     /// </summary>
-    /// <remarks>
-    /// AsyncOperation is a delegate that represents a method that takes an array of objects as parameters and returns void.
-    /// </remarks>
-    public delegate void AsyncOperation(object[] parameters);
-
-    /// <summary>
-    /// Runs the method asynchronously. Return immediately.
-    /// </summary>
-    /// <remarks>This method starts the asynchronous operation. It creates an AsyncCallback delegate pointing to the 
-    /// MyAsyncCallback method and calls BeginInvoke on the AsyncOperationField delegate, passing the parameters and callback.
-    /// <param name="parameters">parameters for the method to be executed</param>
-    public void RunAsync(object[] parameters)
+    public void RunAsync(object? argument)
     {
-      AsyncCallback callBack = new AsyncCallback(MyAsyncCallback);
-      //TODO: This method is not supported on this platform
-      AsyncOperationField.BeginInvoke(parameters, callBack, null);
+      if (!worker.IsBusy)
+        worker.RunWorkerAsync(argument);
     }
 
     /// <summary>
@@ -55,22 +52,25 @@ namespace TP.ConcurrentProgramming.Fundamentals
     /// </summary>
     public void RunAsync()
     {
-      RunAsync(null);
+      if (!worker.IsBusy)
+        worker.RunWorkerAsync();
     }
 
     #region private
 
-    private readonly AsyncOperation AsyncOperationField;
+    private readonly BackgroundWorker worker;
+    private bool disposedValue;
 
-    /// <summary>
-    /// This method is called after asynchronous call
-    /// </summary>
-    /// <remarks>This private method is called when the asynchronous operation completes. It calls EndInvoke on the AsyncOperationField 
-    /// delegate to complete the asynchronous call and retrieve any results.</remarks>
-    /// <param name="asyncResult">The result captured as the <see cref="IAsyncResult"/> instance.</param>
-    private void MyAsyncCallback(IAsyncResult asyncResult)
+    protected virtual void Dispose(bool disposing)
     {
-      AsyncOperationField.EndInvoke(asyncResult);
+      if (!disposedValue)
+      {
+        if (disposing)
+        {
+          worker.Dispose();
+        }
+        disposedValue = true;
+      }
     }
 
     #endregion private
