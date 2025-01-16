@@ -39,40 +39,46 @@ namespace TP.ConcurrentProgramming.FundamentalsTest
     }
 
     [TestMethod]
-    public void RunAsync_WithoutArgument_ShouldStartWorker()
+    public void RunAsyncWithoutArgument()
     {
       // Arrange
-      RunMethodAsynchronously? doWorkSender = null;
-      RunMethodAsynchronously? completedHandlerSender = null;
       int doWorkHandlerCounter = 0;
-      int completedHandlerCounter = 0;
+      RunMethodAsynchronously? doWorkSender = null;
+      DoWorkEventArgs? doWorkEventArgs = null;
       DoWorkEventHandler doWorkHandler = new DoWorkEventHandler((sender, e) =>
       {
         doWorkSender = sender as RunMethodAsynchronously;
-        Assert.IsNotNull(e);
-        Assert.IsNull(e.Argument);
+        doWorkEventArgs = e;  
         doWorkHandlerCounter++;
       });
+      RunMethodAsynchronously? completedHandlerSender = null;
+      RunWorkerCompletedEventArgs? runWorkerCompletedEventArgs = null;
+      int completedHandlerCounter = 0;
       RunWorkerCompletedEventHandler completedHandler =
         new RunWorkerCompletedEventHandler((sender, e) =>
         {
           completedHandlerSender = sender as RunMethodAsynchronously;
-          Assert.IsNotNull(e);
-          Assert.IsNull(e.Error);
-          Assert.IsFalse(e.Cancelled);
-          Assert.IsNull(e.Result);
+          runWorkerCompletedEventArgs = e;
           completedHandlerCounter++;
         });
       RunMethodAsynchronously runner = new RunMethodAsynchronously(doWorkHandler, completedHandler);
 
       // Act
       runner.RunAsync();
-      //while (completedHandlerCounter == 0)
       Thread.Sleep(1000);
 
-      // Assert
+      // Assert doWork
       Assert.AreEqual<int>(1, doWorkHandlerCounter);
+      Assert.IsNotNull(doWorkEventArgs);
+      Assert.IsNull(doWorkEventArgs.Argument);
+      Assert.IsNull(doWorkEventArgs.Result);
+
+      // Assert completed
       Assert.AreEqual<int>(1, completedHandlerCounter);
+      Assert.IsNotNull(runWorkerCompletedEventArgs);
+      Assert.IsNull(runWorkerCompletedEventArgs.Error);
+      Assert.IsFalse(runWorkerCompletedEventArgs.Cancelled);
+      Assert.IsNull(runWorkerCompletedEventArgs.Result);
       Assert.AreSame<object>(doWorkSender, completedHandlerSender);
       runner.Dispose();
     }
