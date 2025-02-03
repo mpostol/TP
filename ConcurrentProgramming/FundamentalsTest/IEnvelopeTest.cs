@@ -8,6 +8,8 @@
 //
 //_____________________________________________________________________________________________________________________________________
 
+using Moq;
+
 namespace TP.ConcurrentProgramming.Fundamentals.Test
 {
   [TestClass]
@@ -16,31 +18,17 @@ namespace TP.ConcurrentProgramming.Fundamentals.Test
     [TestMethod]
     public void DetachedEnvelopeTest()
     {
-      IEnvelope envelope = new DetachedEnvelope();
-      Assert.IsFalse(envelope.InPool);
-      Assert.ThrowsException<InvalidOperationException>(() => envelope.ReturnEmptyEnvelope());
-      Assert.ThrowsException<NotImplementedException>(() => envelope.GetIEnvelopeManager);
+      Mock<IEnvelopeManager> envelopeManager = new Mock<IEnvelopeManager>();
+      IEnvelope envelope = new EnvelopeFixture(envelopeManager.Object);
     }
 
     #region tests instrumentation
 
-    private abstract class EnvelopeAbstract : IEnvelope
+    private class EnvelopeFixture : Envelope
     {
-      private bool inPool = false;
-
-      public bool InPool => inPool;
-
-      public IEnvelopeManager GetIEnvelopeManager => throw new NotImplementedException();
-
-      public void ReturnEmptyEnvelope()
+      public EnvelopeFixture(IEnvelopeManager manager) : base(manager)
       {
-        if (!inPool)
-          throw new InvalidOperationException("The envelope is not in the pool.");
       }
-    }
-
-    private class DetachedEnvelope : EnvelopeAbstract
-    {
     }
 
     #endregion tests instrumentation
