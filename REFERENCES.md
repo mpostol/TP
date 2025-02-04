@@ -2,6 +2,8 @@
 
 ## Programming in Practice
 
+- Postol Mariusz; [Programming in Practice - LINQ to SQL - Explained](https://www.c-sharpcorner.com/article/programming-in-practice-linq-to-sql-explained/); C# Corner;Jul 29, 2024
+- Postol Mariusz; [Programming in Practice - Structural Data](https://www.c-sharpcorner.com/article/programming-in-practice-structural-data/); C# Corner; May 19, 2024
 - Postol Mariusz; [Programming in Practice - Delegates and Events; video](https://www.c-sharpcorner.com/article/programming-in-practice-delegates-and-events/); C# Corner; Oct 07 2024
 - Postol Mariusz; [Programming in Practice - File Concept](https://www.c-sharpcorner.com/article/programming-in-practice-file-concept/); C# Corner; May 30, 2024
 - Postol Mariusz; [Programming in Practice - Graphical User Interface (GUI)][GUIMasterArticle]; C# Corner; May 30, 2024
