@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTest", "ReactiveInterac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynchronizationTest", "SynchronizationTest\SynchronizationTest.csproj", "{EB493346-6735-4F21-9D42-442778A7B3E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationTest", "CommunicationTest\CommunicationTest.csproj", "{CBAA9B93-A98C-4545-B950-CACF033ECF9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{EB493346-6735-4F21-9D42-442778A7B3E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB493346-6735-4F21-9D42-442778A7B3E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB493346-6735-4F21-9D42-442778A7B3E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBAA9B93-A98C-4545-B950-CACF033ECF9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBAA9B93-A98C-4545-B950-CACF033ECF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBAA9B93-A98C-4545-B950-CACF033ECF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBAA9B93-A98C-4545-B950-CACF033ECF9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,6 +164,7 @@ Global
 		{8760446B-8BD6-4254-9977-475EAEE45B0B} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
 		{FD3FA340-EB7B-4037-B3AB-710E6817AC9D} = {C3B041B9-20C2-4920-B0E5-CFE5784FC6E4}
 		{EB493346-6735-4F21-9D42-442778A7B3E2} = {6D532753-A18A-4AB7-8A6A-830F6668B744}
+		{CBAA9B93-A98C-4545-B950-CACF033ECF9C} = {20429409-B6E9-4781-B409-A0A09A59BFB1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4ACB1EF2-3819-4CE2-9F11-F8DBD7CDDFEC}
