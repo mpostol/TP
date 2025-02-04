@@ -48,5 +48,85 @@ namespace TP.ConcurrentProgramming.Communication.Test
         Assert.IsTrue(_port.Count == 0); //indirectly checking if port is open
       }
     }
+
+    /// <summary>
+    /// Verifies that the port can be closed and indirectly checks if the port is closed by checking the count.
+    /// </summary>
+    [TestMethod]
+    public void Close_ShouldSetOpenedToFalse()
+    {
+      // Arrange
+      using (Port _port = new Port())
+      {
+        _port.Open();
+        // Act
+        _port.Close();
+        // Test
+        Assert.ThrowsException<InvalidOperationException>(() => _port.Count);
+      }
+    }
+
+    /// <summary>
+    /// Verifies that the port can be cleared and all messages are returned to the pool.
+    /// </summary>
+    [TestMethod]
+    public void Clear_ShouldEmptyTheQueue()
+    {
+      // Arrange
+      Mock<IEnvelope> _mockEnvelope = new Mock<IEnvelope>();
+      IEnvelope _envelope = _mockEnvelope.Object;
+      using (Port _port = new Port())
+      {
+        _port.Open();
+        _port.SendMsg(ref _envelope);
+        // Act
+        _port.Clear();
+        // Test
+        Assert.IsNull(_envelope);
+        Assert.AreEqual(0, _port.Count);
+      }
+    }
+
+    /// <summary>
+    /// Verifies that a message can be sent to the port.
+    /// </summary>
+    [TestMethod]
+    public void SendMsg_ShouldAddMessageToQueue()
+    {
+      // Arrange
+      Mock<IEnvelope> _mockEnvelope = new Mock<IEnvelope>();
+      IEnvelope _envelope = _mockEnvelope.Object;
+      using (Port _port = new Port())
+      {
+        _port.Open();
+        // Act
+        _port.SendMsg(ref _envelope);
+        // Test
+        Assert.AreEqual(1, _port.Count);
+      }
+    }
+
+    /// <summary>
+    /// Verifies that a message can be received from the port.
+    /// </summary>
+    [TestMethod]
+    public void WaitMsg_ShouldRetrieveMessageFromQueue()
+    {
+      // Arrange
+      Mock<IEnvelope> _mockEnvelope = new Mock<IEnvelope>();
+      IEnvelope _envelope = _mockEnvelope.Object;
+      IEnvelope? receivedMessage = null;
+      using (Port _port = new Port())
+      {
+        _port.Open();
+        _port.SendMsg(ref _envelope);
+        // Act
+        bool result = _port.WaitMsg(out receivedMessage);
+        // Test
+        Assert.IsTrue(result);
+        Assert.IsNotNull(receivedMessage);
+        Assert.AreSame(_mockEnvelope.Object, receivedMessage);
+      }
+    }
   }
 }
