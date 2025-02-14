@@ -14,10 +14,22 @@ namespace TP.ConcurrentProgramming.Communication
   /// <summary>
   /// It allows synchronizing and exchanging events between concurrent threads on the FIFO basis.
   /// </summary>
-  public class EventsExchange : HoareMonitor
+  /// <remarks>
+  /// The EventsExchange class is designed to facilitate synchronization and event exchange between concurrent threads using a FIFO (First-In-First-Out) basis.
+  /// It extends the HoareMonitor class, which provides the necessary synchronization primitives.
+  /// The EventsExchange class uses condition variables to manage synchronization between threads, ensuring that
+  /// events are exchanged in a FIFO manner.
+  /// </remarks>
+  /// <typeparam name="Event">The type of event to be exchanged. Event is a generic type parameter constrained to be a reference type (class)</typeparam>
+  public class EventsExchange<Event> : HoareMonitor
+    where Event : class
   {
     #region ctor
 
+    /// <summary>
+    /// The constructor initializes two condition variables, m_MarkBuffEmpty and m_MarkNewEvent, using the <seealso cref="HoareMonitor.CreateCondition"/>.
+    /// These condition variables are used to manage the synchronization between threads.
+    /// </summary>
     public EventsExchange()
     {
       m_MarkBuffEmpty = CreateCondition();
@@ -32,13 +44,14 @@ namespace TP.ConcurrentProgramming.Communication
     /// Gets the event.
     /// Deposits or gets new event. If there is any events to be get depositing thread enters wait state.
     /// </summary>
-    /// <returns></returns>
-    public object? GetEvent()
+    /// <remarks>While threads calling GetEvent wait for the buffer to be empty before getting a new event.</remarks>
+    /// <returns>Return last event descriptor.</returns>
+    public Event? GetEvent()
     {
       EnterMonitor();
       try
       {
-        object? lastEvent = null;
+        Event? lastEvent = null;
         if (m_CurrEvent == null)
           m_MarkNewEvent.Wait();
         lastEvent = m_CurrEvent;
@@ -53,12 +66,15 @@ namespace TP.ConcurrentProgramming.Communication
     }
 
     /// <summary>
-    /// Sets the event.
-    /// Adds this event to process list and informs that new event occurs
+    /// Sets the event. Adds the event and informs that new event have been occurred
     /// </summary>
-    /// <param name="newEvent">The new event.</param>
-    public void SetEvent(object newEvent)
+    /// <remarks>While threads calling SetEvent wait for the buffer to be empty before setting a new event.
+    /// <param name="newEvent">The new event descriptor.</param>
+    /// <exception cref="ArgumentNullException">If newEvent is null, an ArgumentNullException is thrown.</exception>
+    public void SetEvent(Event newEvent)
     {
+      if (newEvent == null)
+        throw new ArgumentNullException($"{newEvent} must not be null");
       EnterMonitor();
       try
       {
@@ -77,6 +93,12 @@ namespace TP.ConcurrentProgramming.Communication
 
     #region HoareMonitor
 
+    /// <summary>
+    /// The CreateSignal method is not implemented in this class. It is an abstract method from the HoareMonitor base class that must be implemented
+    /// by derived classes if needed.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
     protected override ISignal CreateSignal()
     {
       throw new NotImplementedException();
@@ -86,7 +108,7 @@ namespace TP.ConcurrentProgramming.Communication
 
     #region private
 
-    private object? m_CurrEvent;
+    private Event? m_CurrEvent;
     private ICondition m_MarkNewEvent;
     private ICondition m_MarkBuffEmpty;
 
