@@ -13,6 +13,9 @@ using TP.ConcurrentProgramming.Fundamentals;
 
 namespace TP.ConcurrentProgramming.Communication.Test
 {
+  /// <summary>
+  /// Test class for the <see cref="Port"/> class. Here are the unit tests for all the methods of the <see cref="Port"/> class:
+  /// </summary>
   [TestClass]
   public class PortTest
   {
