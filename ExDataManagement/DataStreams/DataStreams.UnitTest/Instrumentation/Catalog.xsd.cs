@@ -11,9 +11,9 @@
 
 using System.Diagnostics;
 using System.Xml.Serialization;
-using TP.DataStreams.Serialization;
+using TP.ExDM.DataStreams.Serialization;
 
-namespace TP.DataStreams.Instrumentation
+namespace TP.ExDM.DataStreams.Instrumentation
 {
   /// <summary>
   /// class catalog
@@ -65,7 +65,7 @@ namespace TP.DataStreams.Instrumentation
     }
     public override bool Equals(object obj)
     {
-      CatalogCD _catalogCD = obj as CatalogCD ?? throw new System.ArgumentException(nameof(obj), "wrong parameter type"); 
+      CatalogCD _catalogCD = obj as CatalogCD ?? throw new System.ArgumentException(nameof(obj), "wrong parameter type");
       return ToString() == _catalogCD.ToString();
     }
     public override int GetHashCode()

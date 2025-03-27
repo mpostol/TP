@@ -12,7 +12,7 @@
 using System;
 using System.Diagnostics;
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   public enum State
   { Idle, Active, Error };

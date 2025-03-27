@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.GraphicalData.ViewModel
+namespace TP.ExDM.GraphicalData.ViewModel
 {
   /// <summary>
   /// An interface used to replace any Window and avoid referencing the layer above. 

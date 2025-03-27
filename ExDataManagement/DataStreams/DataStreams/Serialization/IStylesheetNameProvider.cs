@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.DataStreams.Serialization
+namespace TP.ExDM.DataStreams.Serialization
 {
   /// <summary>
   /// Represents XML file style sheet name provider

@@ -10,9 +10,9 @@
 //_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static TP.FunctionalProgramming.FunctionalProgramming;
+using static TP.ExDM.FunctionalProgramming.FunctionalProgramming;
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   /// <summary>
   /// Summary description for FunctionalProgrammingTest
@@ -27,6 +27,6 @@ namespace TP.FunctionalProgramming
       Assert.IsFalse(StringIsLongPredicate("g5F|z"));
     }
 
-    //public TP.FunctionalProgramming.FunctionalProgramming variable; //Error CS0723  Cannot declare a variable of static type 'FunctionalProgramming'
+    //public TP.ExDM.FunctionalProgramming.FunctionalProgramming variable; //Error CS0723  Cannot declare a variable of static type 'FunctionalProgramming'
   }
 }

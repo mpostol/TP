@@ -12,7 +12,7 @@
 using System;
 using System.Windows.Input;
 
-namespace TP.GraphicalData.ViewModel.MVVMLight
+namespace TP.ExDM.GraphicalData.ViewModel.MVVMLight
 {
   /// <summary>
   /// A generic command whose sole purpose is to relay its functionality to other

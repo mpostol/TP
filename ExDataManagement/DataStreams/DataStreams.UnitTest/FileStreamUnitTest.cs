@@ -11,9 +11,9 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using TP.DataStreams.FileAndStream;
+using TP.ExDM.DataStreams.FileAndStream;
 
-namespace TP.DataStreams
+namespace TP.ExDM.DataStreams
 {
   [TestClass]
   public class FileStreamUnitTest

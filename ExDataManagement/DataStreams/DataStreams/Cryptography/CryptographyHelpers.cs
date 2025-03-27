@@ -16,7 +16,7 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Xml;
 
-namespace TP.DataStreams.Cryptography
+namespace TP.ExDM.DataStreams.Cryptography
 {
   public static class CryptographyHelpers
   {

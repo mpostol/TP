@@ -12,10 +12,10 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using TP.GraphicalData.Model;
-using TP.GraphicalData.ViewModel.MVVMLight;
+using TP.ExDM.GraphicalData.Model;
+using TP.ExDM.GraphicalData.ViewModel.MVVMLight;
 
-namespace TP.GraphicalData.ViewModel
+namespace TP.ExDM.GraphicalData.ViewModel
 {
   public class MainViewModel : ViewModelBase
   {

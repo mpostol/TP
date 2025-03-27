@@ -13,9 +13,9 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using TP.DataStreams.Reflection;
+using TP.ExDM.DataStreams.Reflection;
 
-namespace TP.DataStreams
+namespace TP.ExDM.DataStreams
 {
   [TestClass]
   public class ReflectionUnitTest

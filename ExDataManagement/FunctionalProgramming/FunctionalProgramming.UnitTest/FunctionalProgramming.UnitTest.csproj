@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\packages\MSTest.TestAdapter.3.8.3\build\net462\MSTest.TestAdapter.props" Condition="Exists('..\..\..\packages\MSTest.TestAdapter.3.8.3\build\net462\MSTest.TestAdapter.props')" />
   <Import Project="..\..\..\packages\Microsoft.Testing.Extensions.Telemetry.1.6.3\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props" Condition="Exists('..\..\..\packages\Microsoft.Testing.Extensions.Telemetry.1.6.3\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props')" />
@@ -10,8 +10,8 @@
     <ProjectGuid>{F98ED540-8B3D-46DD-B349-E43473986693}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TP.FunctionalProgramming</RootNamespace>
-    <AssemblyName>TP.FunctionalProgramming.UnitTest</AssemblyName>
+    <RootNamespace>TP.ExDM.FunctionalProgramming</RootNamespace>
+    <AssemblyName>TP.ExDM.FunctionalProgramming.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

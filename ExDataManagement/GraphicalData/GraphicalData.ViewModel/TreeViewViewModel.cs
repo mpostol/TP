@@ -12,9 +12,9 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using TP.GraphicalData.ViewModel.MVVMLight;
+using TP.ExDM.GraphicalData.ViewModel.MVVMLight;
 
-namespace TP.GraphicalData.ViewModel
+namespace TP.ExDM.GraphicalData.ViewModel
 {
   /// <summary>
   /// An implementation of the <seealso cref="ViewModelBase"/> to be used as a sublayer for the tree view window rendered by the View sublayer

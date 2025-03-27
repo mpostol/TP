@@ -10,9 +10,9 @@
 //_____________________________________________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TP.StructuralData.LINQQueryAndMethodsSyntax;
+using TP.ExDM.StructuralData.LINQQueryAndMethodsSyntax;
 
-namespace TP.StructuralDataUnitTest
+namespace TP.ExDM.StructuralDataUnitTest
 {
   [TestClass]
   public class LinqMethodSyntaxExamplesUnitTest

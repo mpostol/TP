@@ -12,9 +12,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.ComponentModel;
-using TP.GraphicalData.ViewModel.MVVMLight;
+using TP.ExDM.GraphicalData.ViewModel.MVVMLight;
 
-namespace TP.GraphicalData.ViewModel.Test
+namespace TP.ExDM.GraphicalData.ViewModel.Test
 {
   [TestClass]
   public class MVVMLightUnitTest

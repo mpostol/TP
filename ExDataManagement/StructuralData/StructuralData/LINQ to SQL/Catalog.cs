@@ -12,9 +12,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using TP.StructuralData.Data;
+using TP.ExDM.StructuralData.Data;
 
-namespace TP.StructuralData.LINQ_to_SQL
+namespace TP.ExDM.StructuralData.LINQ_to_SQL
 {
   public partial class CatalogDataContext
   {

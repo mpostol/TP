@@ -11,7 +11,7 @@
 
 using System.Windows;
 
-namespace TP.GraphicalData.View
+namespace TP.ExDM.GraphicalData.View
 {
   /// <summary>
   /// Interaction logic for App.xaml

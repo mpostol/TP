@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.StructuralData.Data
+namespace TP.ExDM.StructuralData.Data
 {
   public interface ICDCatalog
   {
