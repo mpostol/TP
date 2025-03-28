@@ -14,10 +14,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
-using TP.DataStreams.Instrumentation;
-using TP.DataStreams.Serialization;
+using TP.ExDM.DataStreams.Instrumentation;
+using TP.ExDM.DataStreams.Serialization;
 
-namespace TP.DataStreams
+namespace TP.ExDM.DataStreams
 {
   [TestClass]
   public class SerializationUnitTest

@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-namespace TP.GraphicalData.Model
+namespace TP.ExDM.GraphicalData.Model
 {
   /// <summary>
   /// API of the Model sublayer

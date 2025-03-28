@@ -10,9 +10,9 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System.Windows;
-using TP.GraphicalData.ViewModel;
+using TP.ExDM.GraphicalData.ViewModel;
 
-namespace TP.GraphicalData.View
+namespace TP.ExDM.GraphicalData.View
 {
   /// <summary>
   /// Interaction logic for MainWindow.xaml

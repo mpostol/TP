@@ -11,7 +11,7 @@
 
 using System;
 
-namespace TP.DataStreams.Reflection
+namespace TP.ExDM.DataStreams.Reflection
 {
   [CustomAttribute("Description of the class")]
   public class AttributedClass

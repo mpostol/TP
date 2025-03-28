@@ -10,9 +10,9 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System.Collections.Generic;
-using TP.StructuralData.Data;
+using TP.ExDM.StructuralData.Data;
 
-namespace TP.StructuralDataUnitTest.Instrumentation
+namespace TP.ExDM.StructuralDataUnitTest.Instrumentation
 {
   internal static class TestDataGenerator
   {

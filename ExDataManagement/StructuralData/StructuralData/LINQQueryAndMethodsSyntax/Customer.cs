@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.StructuralData.LINQQueryAndMethodsSyntax
+namespace TP.ExDM.StructuralData.LINQQueryAndMethodsSyntax
 {
   internal class Customer
   {

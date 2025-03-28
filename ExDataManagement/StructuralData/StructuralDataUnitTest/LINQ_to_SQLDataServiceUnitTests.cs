@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.IO;
 using System.Linq;
-using TP.StructuralData.LINQ_to_SQL;
-using TP.StructuralDataUnitTest.Instrumentation;
+using TP.ExDM.StructuralData.LINQ_to_SQL;
+using TP.ExDM.StructuralDataUnitTest.Instrumentation;
 
-namespace TP.StructuralDataUnitTest
+namespace TP.ExDM.StructuralDataUnitTest
 {
   [TestClass]
   [DeploymentItem(@"Instrumentation\CDCatalog.mdf", @"Instrumentation")]
@@ -67,7 +67,7 @@ namespace TP.StructuralDataUnitTest
           IEnumerable<Person> _filtered = _newCatalog.FilterPersonsByLastName_ForEach("Person");
           Type _returnedType = _filtered.GetType();
           Assert.AreEqual<string>("System.Collections.Generic.List`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
-          Assert.AreEqual<string>("System.Collections.Generic.List`1[TP.StructuralData.LINQ_to_SQL.Person]", _filtered.ToString(), _filtered.ToString());
+          Assert.AreEqual<string>("System.Collections.Generic.List`1[TP.ExDM.StructuralData.LINQ_to_SQL.Person]", _filtered.ToString(), _filtered.ToString());
           Assert.AreEqual(2, _filtered.Count());
           foreach (Person p in _filtered)
             Assert.AreEqual("Person", p.LastName);

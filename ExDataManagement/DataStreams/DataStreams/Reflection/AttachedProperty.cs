@@ -12,7 +12,7 @@
 using System;
 using System.Reflection;
 
-namespace TP.DataStreams.Reflection
+namespace TP.ExDM.DataStreams.Reflection
 {
   public class AttachedProperty<TypeParameter>
   {

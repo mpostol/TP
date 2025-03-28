@@ -14,10 +14,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using TP.StructuralData.LINQ_to_object;
-using TP.StructuralDataUnitTest.Instrumentation;
+using TP.ExDM.StructuralData.LINQ_to_object;
+using TP.ExDM.StructuralDataUnitTest.Instrumentation;
 
-namespace TP.StructuralDataUnitTest
+namespace TP.ExDM.StructuralDataUnitTest
 {
   [TestClass]
   public class LINQ_to_objectUnitTest
@@ -49,7 +49,7 @@ namespace TP.StructuralDataUnitTest
         IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_ForEach("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Collections.Generic.List`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
-        Assert.AreEqual<string>("System.Collections.Generic.List`1[TP.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
+        Assert.AreEqual<string>("System.Collections.Generic.List`1[TP.ExDM.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
         Assert.AreEqual(2, _filtered.Count());
         foreach (Catalog.PersonRow p in _filtered)
           Assert.AreEqual("Person", p.LastName);
@@ -65,7 +65,7 @@ namespace TP.StructuralDataUnitTest
         IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_QuerySyntax("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Linq.WhereEnumerableIterator`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
-        Assert.AreEqual<string>("System.Linq.Enumerable+WhereEnumerableIterator`1[TP.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
+        Assert.AreEqual<string>("System.Linq.Enumerable+WhereEnumerableIterator`1[TP.ExDM.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
         Assert.AreEqual(2, _filtered.Count());
         foreach (Catalog.PersonRow p in _filtered)
           Assert.AreEqual("Person", p.LastName);
@@ -81,7 +81,7 @@ namespace TP.StructuralDataUnitTest
         IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_MethodSyntax("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Linq.WhereEnumerableIterator`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
-        Assert.AreEqual<string>("System.Linq.Enumerable+WhereEnumerableIterator`1[TP.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
+        Assert.AreEqual<string>("System.Linq.Enumerable+WhereEnumerableIterator`1[TP.ExDM.StructuralData.LINQ_to_object.Catalog+PersonRow]", _filtered.ToString(), _filtered.ToString());
         Assert.AreEqual(2, _filtered.Count());
         foreach (Catalog.PersonRow p in _filtered)
           Assert.AreEqual("Person", p.LastName);

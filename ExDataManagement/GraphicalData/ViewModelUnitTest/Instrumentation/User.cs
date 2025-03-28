@@ -9,9 +9,9 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using TP.GraphicalData.Model;
+using TP.ExDM.GraphicalData.Model;
 
-namespace TP.GraphicalData.ViewMode.Test.Instrumentation
+namespace TP.ExDM.GraphicalData.ViewMode.Test.Instrumentation
 {
   /// <summary>
   /// <seealso cref="IUser"/> implementation for the testing purpose

@@ -11,7 +11,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   [TestClass]
   public class StaticClassTest

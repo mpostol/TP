@@ -11,9 +11,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using TP.StructuralData.Data;
+using TP.ExDM.StructuralData.Data;
 
-namespace TP.StructuralData.LINQ_to_object
+namespace TP.ExDM.StructuralData.LINQ_to_object
 {
   /// <summary>
   /// Class Catalog.
@@ -33,9 +33,9 @@ namespace TP.StructuralData.LINQ_to_object
     }
     /// <summary>
     /// Class PersonDataTable.
-    /// Implements the <see cref="System.Data.TypedTableBase{TP.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
+    /// Implements the <see cref="System.Data.TypedTableBase{TP.ExDM.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
     /// </summary>
-    /// <seealso cref="System.Data.TypedTableBase{TP.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
+    /// <seealso cref="System.Data.TypedTableBase{TP.ExDM.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
     public partial class PersonDataTable
     {
       /// <summary>

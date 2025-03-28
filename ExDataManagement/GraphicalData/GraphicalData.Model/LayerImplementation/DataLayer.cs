@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-namespace TP.GraphicalData.Model.LayerImplementation
+namespace TP.ExDM.GraphicalData.Model.LayerImplementation
 {
   /// <summary>
   /// An example implementation of the model sublayer

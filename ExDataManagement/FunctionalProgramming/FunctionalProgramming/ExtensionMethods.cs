@@ -11,7 +11,7 @@
 
 using System;
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   /// <summary>
   /// Define an example interface named IMyInterface.

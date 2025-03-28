@@ -11,7 +11,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TP.GraphicalData.Model.Test
+namespace TP.ExDM.GraphicalData.Model.Test
 {
   /// <summary>
   /// Place to test the Model sublayer

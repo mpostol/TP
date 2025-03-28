@@ -25,4 +25,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("920227a0-9c72-4f02-88a8-1dda048dc2e6")]
 [assembly: AssemblyVersion("4.1.0.*")]
 [assembly: AssemblyFileVersion("4.1.0.0")]
-[assembly: InternalsVisibleTo("TP.FunctionalProgramming.UnitTest")]
+[assembly: InternalsVisibleTo("TP.ExDM.FunctionalProgramming.UnitTest")]

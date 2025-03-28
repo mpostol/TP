@@ -17,7 +17,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
 
-namespace TP.DataStreams.Cryptography
+namespace TP.ExDM.DataStreams.Cryptography
 {
   [TestClass]
   public class CryptographyHelpersUnitTest

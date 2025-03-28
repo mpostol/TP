@@ -12,7 +12,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace TP.DataStreams.Instrumentation
+namespace TP.ExDM.DataStreams.Instrumentation
 {
   /// <summary>
   /// Class CustomSerialization - Demonstrates custom serialization approach
