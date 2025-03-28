@@ -12,7 +12,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TP.GraphicalData.Model.UnitTest")]
+[assembly: AssemblyTitle("TP.ExDM.GraphicalData.Model.UnitTest")]
 [assembly: AssemblyDescription("Unit test project for the Model sublayer")]
 [assembly: AssemblyConfiguration("Copyright (C) 2023, Mariusz Postol LODZ POLAND")]
 [assembly: AssemblyCompany("MPostol")]

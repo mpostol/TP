@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace TP.StructuralData.LINQQueryAndMethodsSyntax
+namespace TP.ExDM.StructuralData.LINQQueryAndMethodsSyntax
 {
   public static class LinqQuerySyntaxExamples
   {

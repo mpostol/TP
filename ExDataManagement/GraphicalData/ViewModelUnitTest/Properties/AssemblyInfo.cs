@@ -12,7 +12,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TP.GraphicalData.ViewModel.UnitTest")]
+[assembly: AssemblyTitle("TP.ExDM.GraphicalData.ViewModel.UnitTest")]
 [assembly: AssemblyDescription("Collection of unit test targeting ViewModel sublayer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MPostol")]

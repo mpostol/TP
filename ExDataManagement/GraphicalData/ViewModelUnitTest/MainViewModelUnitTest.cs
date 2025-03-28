@@ -12,9 +12,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.ComponentModel;
-using TP.GraphicalData.ViewMode.Test.Instrumentation;
+using TP.ExDM.GraphicalData.ViewMode.Test.Instrumentation;
 
-namespace TP.GraphicalData.ViewModel.Test
+namespace TP.ExDM.GraphicalData.ViewModel.Test
 {
   /// <summary>
   /// The <seealso cref="MainViewModel"/> class unit test

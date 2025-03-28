@@ -12,7 +12,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TP.GraphicalData.ViewModel.MVVMLight
+namespace TP.ExDM.GraphicalData.ViewModel.MVVMLight
 {
   /// <summary>
   /// Notifies clients that a property value has changed.

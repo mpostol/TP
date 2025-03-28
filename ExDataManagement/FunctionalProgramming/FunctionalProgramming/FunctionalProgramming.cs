@@ -10,7 +10,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   public static class FunctionalProgramming
   {

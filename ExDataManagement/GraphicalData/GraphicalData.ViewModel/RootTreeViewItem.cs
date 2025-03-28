@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TP.GraphicalData.ViewModel
+namespace TP.ExDM.GraphicalData.ViewModel
 {
   /// <summary>
   /// Class derived from <see cref="TreeViewModelItem"/> to provide root item for the tree

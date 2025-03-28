@@ -1,1 +1,1 @@
-xsd.exe ..\bin\Debug\TP.DataStreams.UnitTest.dll /t:TP.DataStreams.Instrumentation.Catalog
+xsd.exe ..\bin\Debug\TP.ExDM.DataStreams.UnitTest.dll /t:TP.ExDM.DataStreams.Instrumentation.Catalog

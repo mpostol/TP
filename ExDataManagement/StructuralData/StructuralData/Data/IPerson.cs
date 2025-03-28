@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-namespace TP.StructuralData.Data
+namespace TP.ExDM.StructuralData.Data
 {
   public interface IPerson
   {

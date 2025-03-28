@@ -12,7 +12,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   /// <summary>
   /// This testing class reveals features of delegate.

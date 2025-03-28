@@ -14,7 +14,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace TP.DataStreams.Serialization
+namespace TP.ExDM.DataStreams.Serialization
 {
   /// <summary>
   /// Provides static methods for serialization objects into XML documents and writing the XML document to a file.

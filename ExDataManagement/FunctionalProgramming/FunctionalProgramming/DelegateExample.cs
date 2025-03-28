@@ -11,7 +11,7 @@
 
 using System;
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   public class DelegateExample
   {

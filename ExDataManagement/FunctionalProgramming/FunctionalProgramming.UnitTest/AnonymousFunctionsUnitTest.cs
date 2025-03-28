@@ -14,7 +14,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace TP.FunctionalProgramming
+namespace TP.ExDM.FunctionalProgramming
 {
   [TestClass]
   public class AnonymousFunctionsUnitTest

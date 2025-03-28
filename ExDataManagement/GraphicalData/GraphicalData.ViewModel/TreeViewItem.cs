@@ -11,9 +11,9 @@
 
 using System;
 using System.Collections.ObjectModel;
-using TP.GraphicalData.ViewModel.MVVMLight;
+using TP.ExDM.GraphicalData.ViewModel.MVVMLight;
 
-namespace TP.GraphicalData.ViewModel
+namespace TP.ExDM.GraphicalData.ViewModel
 {
   /// <summary>
   /// An instance of this class is used as the data context to provide a ViewModel sublayer for a Window rendered by the View sublayer.

@@ -10,9 +10,9 @@
 //_____________________________________________________________________________________________________________________________________
 
 using System.Collections.Generic;
-using TP.GraphicalData.Model;
+using TP.ExDM.GraphicalData.Model;
 
-namespace TP.GraphicalData.ViewMode.Test.Instrumentation
+namespace TP.ExDM.GraphicalData.ViewMode.Test.Instrumentation
 {
   /// <summary>
   /// The <seealso cref="ModelSublayerAPI"/> implementation for the testing purpose

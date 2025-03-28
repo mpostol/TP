@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace TP.DataStreams.Serialization
+namespace TP.ExDM.DataStreams.Serialization
 {
   public class CustomFormatter : Formatter
   {
