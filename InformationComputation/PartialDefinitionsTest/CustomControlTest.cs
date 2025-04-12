@@ -9,6 +9,7 @@
 //__________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading;
 
 namespace TP.InformationComputation.PartialDefinitions
 {
@@ -18,8 +19,15 @@ namespace TP.InformationComputation.PartialDefinitions
     [TestMethod]
     public void CustomControlTestMethod()
     {
-      CustomControl newCustomControl = new CustomControl();
-      Assert.IsNotNull(newCustomControl);
+      var thread = new Thread(() =>
+      {
+        CustomControl newCustomControl = new CustomControl();
+        Assert.IsNotNull(newCustomControl);
+      });
+
+      thread.SetApartmentState(ApartmentState.STA); // Set the thread to STA, because WPF controls require it
+      thread.Start();
+      thread.Join();
     }
   }
 }
