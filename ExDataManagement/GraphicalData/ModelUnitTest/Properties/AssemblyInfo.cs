@@ -11,16 +11,7 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-
-[assembly: AssemblyTitle("TP.ExDM.GraphicalData.Model.UnitTest")]
-[assembly: AssemblyDescription("Unit test project for the Model sublayer")]
-[assembly: AssemblyConfiguration("Copyright (C) 2023, Mariusz Postol LODZ POLAND")]
-[assembly: AssemblyCompany("MPostol")]
-[assembly: AssemblyProduct("Programming in Practice")]
-[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("59347fbb-33f5-4b95-90e7-615a209e91d7")]
-[assembly: AssemblyVersion("6.0.*")]
-[assembly: AssemblyFileVersion("6.0.0.0")]
