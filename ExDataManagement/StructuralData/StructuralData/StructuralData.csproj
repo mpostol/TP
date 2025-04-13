@@ -101,6 +101,10 @@
         <Content Include="LINQ to SQL\FilterPersonsByLastName.sql" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="MSTest.Analyzers" Version="3.8.3">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="netcore-System.Data.Linq" Version="8.0.1" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.4" />
         <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />

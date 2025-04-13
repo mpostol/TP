@@ -57,13 +57,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\packages\MSTest.Analyzers.3.8.3\analyzers\dotnet\cs\MSTest.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\..\packages\MSTest.Analyzers.3.8.3\analyzers\dotnet\cs\MSTest.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.23.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" Version="1.6.3" />
     <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" Version="1.6.3" />
     <PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" Version="1.6.3" />
@@ -74,10 +70,10 @@
     <PackageReference Include="MSTest.TestAdapter" Version="3.8.3" />
     <PackageReference Include="MSTest.TestFramework" Version="3.8.3" />
     <PackageReference Include="NuGet.Frameworks" Version="6.13.2" />
-    <PackageReference Include="System.Collections.Immutable" Version="9.0.3" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="9.0.3" />
-    <PackageReference Include="System.Reflection.Metadata" Version="9.0.3" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="9.0.4" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="9.0.4" />
+    <PackageReference Include="System.Reflection.Metadata" Version="9.0.4" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.4" />
   </ItemGroup>
 </Project>

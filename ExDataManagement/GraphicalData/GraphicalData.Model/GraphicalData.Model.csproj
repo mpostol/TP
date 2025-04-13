@@ -12,4 +12,10 @@
     <PackageProjectUrl>https://www.udemy.com/user/mariusz-postol/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mpostol/TP</RepositoryUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MSTest.Analyzers" Version="3.8.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>

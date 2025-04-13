@@ -33,10 +33,6 @@
     <ProjectReference Include="..\GraphicalData.ViewModel\GraphicalData.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\packages\MSTest.Analyzers.3.8.3\analyzers\dotnet\cs\MSTest.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\..\packages\MSTest.Analyzers.3.8.3\analyzers\dotnet\cs\MSTest.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
   </ItemGroup>
   <ItemGroup>
