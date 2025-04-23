@@ -10,16 +10,7 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-
-[assembly: AssemblyTitle("PartialDefinitionsTest")]
-[assembly: AssemblyDescription("Partial Definitions Test Project")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MPostol")]
-[assembly: AssemblyProduct("Programming in Practice - Information Computation")]
-[assembly: AssemblyCopyright("Copyright 2023 Mariusz Postol")]
 [assembly: AssemblyTrademark("Programming in Practice")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("eece36d9-00c1-470c-8c06-80f06292b0a3")]
-[assembly: AssemblyVersion("5.0.0.0")]
-[assembly: AssemblyFileVersion("5.0.0.0")]

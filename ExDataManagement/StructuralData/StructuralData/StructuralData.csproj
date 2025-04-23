@@ -1,138 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6D6E32E9-E410-4090-9C2F-28A1C57B51CD}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>TP.ExDM.StructuralData</RootNamespace>
-    <AssemblyName>TP.ExDM.StructuralData</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>IDE0001,IDE0002,IDE0003,IDE0049</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Data\ICDCatalog.cs" />
-    <Compile Include="Data\IPerson.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="LINQ to object\Catalog.cs">
-      <DependentUpon>Catalog.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LINQ to object\Catalog.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Catalog.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LINQ to SQL\Catalog.cs">
-      <DependentUpon>Catalog.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="LINQ to SQL\Catalog.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Catalog.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="LINQQueryAndMethodsSyntax\Customer.cs" />
-    <Compile Include="LINQQueryAndMethodsSyntax\LinqMethodSyntaxExamples.cs" />
-    <Compile Include="LINQQueryAndMethodsSyntax\LinqQuerySyntaxExamples.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="LINQ to object\Catalog.xsc">
-      <DependentUpon>Catalog.xsd</DependentUpon>
-    </None>
-    <None Include="LINQ to object\Catalog.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Catalog.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="LINQ to object\Catalog.xss">
-      <DependentUpon>Catalog.xsd</DependentUpon>
-    </None>
-    <None Include="LINQ to SQL\Catalog.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Catalog.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.1 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LINQ to SQL\Catalog.dbml.layout">
-      <DependentUpon>Catalog.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="LINQ to SQL\FilterPersonsByLastName.sql" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <OutputType>Library</OutputType>
+        <RootNamespace>TP.ExDM.StructuralData</RootNamespace>
+        <AssemblyName>TP.ExDM.StructuralData</AssemblyName>
+        <PublishUrl>publish\</PublishUrl>
+        <Install>true</Install>
+        <InstallFrom>Disk</InstallFrom>
+        <UpdateEnabled>false</UpdateEnabled>
+        <UpdateMode>Foreground</UpdateMode>
+        <UpdateInterval>7</UpdateInterval>
+        <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+        <UpdatePeriodically>false</UpdatePeriodically>
+        <UpdateRequired>false</UpdateRequired>
+        <MapFileExtensions>true</MapFileExtensions>
+        <ApplicationRevision>0</ApplicationRevision>
+        <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+        <IsWebBootstrapper>false</IsWebBootstrapper>
+        <UseApplicationTrust>false</UseApplicationTrust>
+        <BootstrapperEnabled>true</BootstrapperEnabled>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <NoWarn>IDE0001,IDE0002,IDE0003,IDE0049</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup>
+        <StartupObject />
+        <AssemblyTitle>Structural Data</AssemblyTitle>
+        <Product>StructuralDataUnitTest</Product>
+        <Copyright>Copyright %28c%29 2020 Mariusz Postol</Copyright>
+        <AssemblyVersion>4.1.0.%2a</AssemblyVersion>
+        <FileVersion>4.1.0.0</FileVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Update="LINQ to object\Catalog.cs">
+            <DependentUpon>Catalog.xsd</DependentUpon>
+        </Compile>
+        <Compile Update="LINQ to object\Catalog.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Catalog.xsd</DependentUpon>
+        </Compile>
+        <Compile Update="LINQ to SQL\Catalog.cs">
+            <DependentUpon>Catalog.dbml</DependentUpon>
+        </Compile>
+        <Compile Update="LINQ to SQL\Catalog.designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Catalog.dbml</DependentUpon>
+        </Compile>
+        <Compile Update="Properties\Settings.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="LINQ to object\Catalog.xsc">
+            <DependentUpon>Catalog.xsd</DependentUpon>
+        </None>
+        <None Update="LINQ to object\Catalog.xsd">
+            <SubType>Designer</SubType>
+            <Generator>MSDataSetGenerator</Generator>
+            <LastGenOutput>Catalog.Designer.cs</LastGenOutput>
+        </None>
+        <None Update="LINQ to object\Catalog.xss">
+            <DependentUpon>Catalog.xsd</DependentUpon>
+        </None>
+        <None Update="LINQ to SQL\Catalog.dbml">
+            <Generator>MSLinqToSQLGenerator</Generator>
+            <LastGenOutput>Catalog.designer.cs</LastGenOutput>
+            <SubType>Designer</SubType>
+        </None>
+        <None Update="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    </ItemGroup>
+    <ItemGroup>
+        <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
+            <Visible>False</Visible>
+            <ProductName>Microsoft .NET Framework 4.7.1 %28x86 and x64%29</ProductName>
+            <Install>true</Install>
+        </BootstrapperPackage>
+        <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+            <Visible>False</Visible>
+            <ProductName>.NET Framework 3.5 SP1</ProductName>
+            <Install>false</Install>
+        </BootstrapperPackage>
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="LINQ to SQL\Catalog.dbml.layout">
+            <DependentUpon>Catalog.dbml</DependentUpon>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="LINQ to SQL\FilterPersonsByLastName.sql" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MSTest.Analyzers" Version="3.8.3">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="netcore-System.Data.Linq" Version="8.0.1" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.4" />
+        <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    </ItemGroup>
 </Project>

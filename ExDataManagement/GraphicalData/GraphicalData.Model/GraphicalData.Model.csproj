@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>TP.ExDM.GraphicalData.Model</AssemblyName>
     <RootNamespace>TP.ExDM.GraphicalData.Model</RootNamespace>
     <Title>Graphical Data Model Sublayer</Title>
@@ -13,5 +12,10 @@
     <PackageProjectUrl>https://www.udemy.com/user/mariusz-postol/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mpostol/TP</RepositoryUrl>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="MSTest.Analyzers" Version="3.8.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>
