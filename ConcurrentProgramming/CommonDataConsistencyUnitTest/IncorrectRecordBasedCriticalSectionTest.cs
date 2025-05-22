@@ -8,7 +8,7 @@
 namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
 {
     [TestClass]
-    public class CriticalSectionUnitTest
+    public class IncorrectRecordBasedCriticalSectionTest
     {
         /// <summary>
         /// Test lack of data consistency using manually created <seealso cref="Thread"/>.
@@ -16,7 +16,7 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
         [TestMethod]
         public void LackOfDataConsistencyUsingManuallyCreatedThreads()
         {
-            CriticalSection m_ThreadsExample = new CriticalSection();
+            IncorrectRecordBasedCriticalSection m_ThreadsExample = new IncorrectRecordBasedCriticalSection();
             RunConcurrentlyManualyCreatedThreads(m_ThreadsExample.NoProtectedMethod);
             Assert.IsFalse(m_ThreadsExample.IsConsistent);
         }
@@ -27,7 +27,7 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
         [TestMethod]
         public void CriticalSectionImplementedUsingMonitorManuallyCreatedThreads()
         {
-            CriticalSection m_ThreadsExample = new CriticalSection();
+            IncorrectRecordBasedCriticalSection m_ThreadsExample = new IncorrectRecordBasedCriticalSection();
             RunConcurrentlyManualyCreatedThreads(m_ThreadsExample.ProtectedMethod);
             Assert.IsTrue(m_ThreadsExample.IsConsistent);
         }
@@ -38,7 +38,7 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
         [TestMethod]
         public void LackOfDataConsistencyUsingThreadPool()
         {
-            CriticalSection m_ThreadsExample = new CriticalSection();
+            IncorrectRecordBasedCriticalSection m_ThreadsExample = new IncorrectRecordBasedCriticalSection();
             RunThreadsUsingThreadPool(m_ThreadsExample.NoProtectedMethod);
             Assert.IsFalse(m_ThreadsExample.IsConsistent);
         }
@@ -49,7 +49,7 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
         [TestMethod]
         public void CriticalSectionImplementedUsingMonitorThreadPool()
         {
-            CriticalSection m_ThreadsExample = new CriticalSection();
+            IncorrectRecordBasedCriticalSection m_ThreadsExample = new IncorrectRecordBasedCriticalSection();
             RunThreadsUsingThreadPool(m_ThreadsExample.ProtectedMethod);
             Assert.IsTrue(m_ThreadsExample.IsConsistent);
         }
@@ -60,7 +60,7 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
         [TestMethod]
         public void CheckConsistencyUsingTaskNoMonitor()
         {
-            CriticalSection m_ThreadsExample = new CriticalSection();
+            IncorrectRecordBasedCriticalSection m_ThreadsExample = new IncorrectRecordBasedCriticalSection();
             RunThreadsUsingTask(m_ThreadsExample.NoProtectedMethod);
             Assert.IsFalse(m_ThreadsExample.IsConsistent);
         }
@@ -71,7 +71,7 @@ namespace TP.ConcurrentProgramming.CommonDataConsistency.UnitTest
         [TestMethod]
         public void CheckWhetherThreadsUsingThreadPoolAreSynchronized()
         {
-            CriticalSection m_ThreadsExample = new CriticalSection();
+            IncorrectRecordBasedCriticalSection m_ThreadsExample = new IncorrectRecordBasedCriticalSection();
             RunThreadsUsingTask(m_ThreadsExample.ProtectedMethod);
             Assert.IsTrue(m_ThreadsExample.IsConsistent);
         }
