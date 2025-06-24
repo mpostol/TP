@@ -32,7 +32,7 @@ namespace TP.ExDM.GraphicalData.ViewModel
     /// <param name="dataLayer"></param>
     public MainViewModel(ModelSublayerAPI dataLayer)
     {
-      ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
+      ShowTreeViewMainWindowCommand = new RelayCommand(ShowTreeViewMainWindow);
       FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? ModelSublayerAPI.Create());
       DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
       m_ActionText = "Text to be displayed on the pop-up";
@@ -101,7 +101,7 @@ namespace TP.ExDM.GraphicalData.ViewModel
     /// <summary>
     /// An implementation of the <seealso cref="ICommand"/> bonded with a button to show a new window contaminating a tree view control
     /// </summary>
-    public ICommand ShowTreeViewMainWindowCommend
+    public ICommand ShowTreeViewMainWindowCommand
     {
       get; private set;
     }

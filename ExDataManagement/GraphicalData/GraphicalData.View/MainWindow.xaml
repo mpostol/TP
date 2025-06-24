@@ -39,7 +39,7 @@
             <TextBox Text="{Binding CurrentUser.Age}" Grid.Column="0" Grid.Row="1" />
         </Grid>
         <Button Content="Click the button to load new data" Grid.Column="0" Grid.Row="1" Command="{Binding FetchDataCommend}" />
-        <Button Command="{Binding ShowTreeViewMainWindowCommend}" Content="Click the button to display TreeView Window" Grid.Column="0" Grid.Row="2" Width="Auto" />
+        <Button Command="{Binding ShowTreeViewMainWindowCommand}" Content="Click the button to display TreeView Window" Grid.Column="0" Grid.Row="2" Width="Auto" />
         <Button Content="Click to display text below" Grid.Column="1" Grid.Row="1" Command="{Binding DisplayTextCommand}" />
         <TextBox Text="{Binding ActionText}" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" />
     </Grid>
