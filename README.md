@@ -1,23 +1,28 @@
-# Programming in Practice [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases)
+# 1. Programming in Practice [![release](https://img.shields.io/github/release/mpostol/tp.svg?style=flat)](https://github.com/mpostol/TP/releases)
 
-## Key words
+## 1.1. Key words
 
 software engineering, sequential programming, adaptive programming, concurrent programming, rel-time programming, distributed programming, education, code examples, information computation, external data, information processing, data processing, dependency injection, inversion of control.
 
-## Major Releases
+## 1.2. Major Releases
 
-|   Release    | Title                                                                 |          DOI           |       Date        |
-| :----------: | --------------------------------------------------------------------- | :--------------------: | :---------------: |
-| [5.2][REL52] | [External Data Added to the ebook][REL52]                             | [![DOI][BDG52]][DOI52] |   July 9, 2024    |
-| [5.1][REL51] | [Information Computation Udemy Course Online Publication][udemyPiPIC] | [![DOI][BDG51]][DOI51] |  August 1, 2023   |
-| [4.3][REL43] | TUL IT Classes 2023 Summer Semester                                   | [![DOI][BDG43]][DOI43] |   July 28, 2023   |
-| [4.0][REL40] | Distributed Programming                                               | [![DOI][BDG40]][DOI40] |  October 5, 2020  |
-| [3.0][REL30] | [ExDM VideoBook Helion v1.0.][vdpnt]                                  | [![DOI][BDG30]][DOI30] | February 26, 2019 |
-|     2.0      | Adaptive Programming                                                  |           NA           |                   |
+|       Release       | Title                                                                 |              DOI               |       Date        |
+| :-----------------: | --------------------------------------------------------------------- | :----------------------------: | :---------------: |
+| [5.20.01][REL52001] | [Graphical User Interface; 2025 Summer][REL52001]                     | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
+|    [5.2][REL52]     | [External Data Added to the ebook][REL52]                             |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
+|    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC] |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
+|    [4.3][REL43]     | TUL IT Classes 2023 Summer Semester                                   |     [![DOI][BDG43]][DOI43]     |   July 28, 2023   |
+|    [4.0][REL40]     | Distributed Programming                                               |     [![DOI][BDG40]][DOI40]     |  October 5, 2020  |
+|    [3.0][REL30]     | [ExDM VideoBook Helion v1.0.][vdpnt]                                  |     [![DOI][BDG30]][DOI30]     | February 26, 2019 |
+|         2.0         | Adaptive Programming                                                  |               NA               |                   |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
 > [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
+
+[REL52001]: https://github.com/mpostol/TP/releases/tag/5.20.01
+[DOIL52001]: https://doi.org/10.5281/zenodo.15777747
+[BDGL52001]: https://zenodo.org/badge/DOI/10.5281/zenodo.15777747.svg
 
 [REL52]: https://github.com/mpostol/TP/releases/tag/5.2
 [DOI52]: https://doi.org/10.5281/zenodo.12701909
@@ -41,15 +46,15 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 [TULIT]: https://it.p.lodz.pl/
 
-## Executive Summary
+## 1.3. Executive Summary
 
 In this short video, I present an executive summary (3 min) of the Programming in Practice educational path. To get more, consider enrolling in [Programming in Practice - Executive Summary; free Udemy course][udemyPiPES]; This free course explains the role of this repository as a collection of extended examples that is a foundation for the `Programming in Practice` paradigm. The course is for all serious about improving the software development skills education methodology including but not limited to teachers and lecturers wanting to improve the software development skills education methodology. It is all about engineering atop University knowledge and practical experience as a foundation. Press the play button to open the video on `YouTube`.
 
 [![Programming in Practice - Executive Summary](.Common/PiPREADME.Youtube.png)](https://www.youtube.com/embed/Z0McLzBolhI)
 
-## Repository Content
+## 1.4. Repository Content
 
-### Preface
+### 1.4.1. Preface
 
 > **Programming in Practice** is a contribution to **Code Engineering**. Code Engineering, also known as programming, is the process of designing, developing, testing, and maintaining computer programs. It involves applying engineering principles and methodologies to writing the program text, also referred to as the code to ensure its reliability, efficiency, and scalability. Code engineering encompasses various stages, including requirements analysis, design, implementation, testing, deployment, and maintenance, all aimed at producing high-quality computer software that meets the needs of users or clients.
 > The **main goal** of this repository is to turn today's students into tomorrow's advanced software developers and architects.
@@ -74,7 +79,7 @@ The TP repository collects examples that can serve as a pattern with the broades
 
 The source code is available under a very permissive open-source license to increase broad reach. Hopefully, the samples are easily portable to other development environments.
 
-### Information Computation (IC)
+### 1.4.2. Information Computation (IC)
 
 Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. The repository contains code that is to be used as a set of examples for an online video course and class lectures. The examples can also be used alone. Generally speaking, two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system.  The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 
@@ -82,7 +87,7 @@ The [InformationComputation](InformationComputation/README.md) folder collects e
 
 > **Note**: to open the code samples in the Visual Studio double click the file `InformationComputation`.
 
-### External Data Management (ExDM)
+### 1.4.3. External Data Management (ExDM)
 
 Computer science in general, and especially software development, is a field of knowledge that deals with the automation of information processing. Programs can be recognized as a recipe for that automated behavior. To achieve information processing goals programs have to manage external information engaged to control the graphical user interface (graphical data), stored by database management systems (structure data) and file systems (streaming data). This part of the gathered examples provides ready-to-use code snippets helpful for rendering the graphical data, querying the structural data, and serialization to employ streaming data, that is manage of the external data. The external data is recognized as a process information representation handled outside of the program realm.
 
@@ -90,7 +95,7 @@ The [ExDataManagement](ExDataManagement/README.md) folder collects examples that
 
 > **Note**: to open the code samples in the Visual studio double click the file `ExDataManagement`.
 
-### Adaptive Programming (AP)
+### 1.4.4. Adaptive Programming (AP)
 
 The adaptive programming is presented as a catalog of language constructs, patterns, and frameworks used at the development and deployment stage to increase the adaptability of the program against changing production environment in which it is executed.
 
@@ -98,7 +103,7 @@ The [AdaptiveProgramming](AdaptiveProgramming/README.md) folder collects example
 
 > **Note**: to open the code samples in the Visual studio double click the file `AdaptiveProgramming`.
 
-### Concurrent Programming (CW)
+### 1.4.5. Concurrent Programming (CW)
 
 It is a programming paradigm that allows writing a program that formally describes the execution of instructions as a result of nondeterministic events. Concurrency is when multiple sequences of instructions are run in overlapping periods. In other words, the instructions sequence execution is undetermined in advance. Concurrency may be implemented explicitly using constructs like the Thread type, or implicitly using a concept like asynchronous programming. The gathered examples address selected concepts unique for concurrent programming, namely critical section, race condition, synchronization, communication, and deadlocks, to name only the most important.
 
@@ -106,7 +111,7 @@ The [ConcurrentProgramming](ConcurrentProgramming/README.md) folder collects exa
 
 > **Note**: to open the code samples in the Visual studio double click the file `ConcurrentProgramming`.
 
-### Distributed Programming (DP)
+### 1.4.6. Distributed Programming (DP)
 
 Information and Communication Technology has provided society with a vast diversity of distributed applications. By design, the deployment of this kind of application has to focus primarily on communication. Examples collected in this repository address the systematic approach to the designing of meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, namely Industry 4.0 and Internet of Things (IoT) atop of the M2M communication and composed as multi-vendor cyber-physicals systems.
 
@@ -114,7 +119,7 @@ The [DistributedProgramming](DistributedProgramming/README.md) folder collects e
 
 > **Note**: to open the code samples in the Visual studio double click the file `DistributedProgramming`.
 
-## How to cite the software and associated documentation files
+## 1.5. How to cite the software and associated documentation files
 
 To be compliant with the license of the repository the below copyright notice shall be included in all copies or substantial portions of the software and associated documentation files (the "Software").
 
@@ -130,7 +135,7 @@ or
 
 Replace `year` with the current year and `Target Part Name` with the name (or names) of the files you are referring to.
 
-## How to follow up?
+## 1.6. How to follow up?
 
 GitHub offers `Discussions` as a space to connect with other members of the community. I hope that using the `Discussion` space you:
 
@@ -148,11 +153,11 @@ Consider also enrolling in the following courses:
 - [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 
-## Contributing
+## 1.7. Contributing
 
 I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'. You must agree to the contributor license agreement before I can accept your changes.
 
-## How to reach me
+## 1.8. How to reach me
 
 To get more on my activity and projects currently I am working on:
 
@@ -176,7 +181,7 @@ The following profiles on social media are also a good starting point:
 - [Postół M, profile on wordpress](http://mpostol.wordpress.com/)
 - [Postół M, profile on CSharp Corner](https://www.c-sharpcorner.com/members/mariusz-postol)
 
-## See also
+## 1.9. See also
 
 - [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
 - [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
