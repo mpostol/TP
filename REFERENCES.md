@@ -2,34 +2,35 @@
 
 ## Programming in Practice
 
-- Postol Mariusz; [List of Publications Related to Programming in Practice - External Data Management](https://www.researchgate.net/publication/388581231_List_of_Publications_Related_to_Programming_in_Practice_-_External_Data_Management), February 2025, Research Gate; DOI: 10.13140/RG.2.2.15812.33922
-- Postol Mariusz; [Programming in Practice - Delegates and Events; video](https://www.c-sharpcorner.com/article/programming-in-practice-delegates-and-events/); C# Corner; Oct 07 2024
-- Postol Mariusz; [Programming in Practice - LINQ to SQL - Explained](https://www.c-sharpcorner.com/article/programming-in-practice-linq-to-sql-explained/); C# Corner;Jul 29, 2024
-- Postol Mariusz; [Programming in Practice - Structural Data](https://www.c-sharpcorner.com/article/programming-in-practice-structural-data/); C# Corner; May 19, 2024
-- Postol Mariusz; [Programming in Practice - File Concept](https://www.c-sharpcorner.com/article/programming-in-practice-file-concept/); C# Corner; May 30, 2024
-- Postol Mariusz; [Programming in Practice - Graphical User Interface (GUI)][GUIMasterArticle]; C# Corner; May 30, 2024
-- Postol Mariusz; [Programming in Practice - GUI - MVVM Program Design Pattern][MVVMSecondArticle]; C# Corner; Jul 03, 2024
-- Postol Mariusz; [Programming in Practice - GUI - XAML - Description of the User Interface][GUIXAML]; C# Corner; Jul 09, 2024
-- Postol Mariusz; [Programming in Practice - LINQ Expression](https://www.c-sharpcorner.com/article/programming-in-practice-linq-expression/) C# Corner, May 06, 2024
-- Postol Mariusz; [Information Computation Mastery: Serialization](https://www.c-sharpcorner.com/article/information-computation-mastery-serialization/) C# Corner,  Apr 01, 2024
-- Postol Mariusz; [Information Computation Mastery: Challenges, Concepts, Implementation](https://www.c-sharpcorner.com/article/information-computation-mastery-challenges-concepts-implementation/), C# Corner, Mar 28, 2024
-- Postol Mariusz; [PiP - External Streaming Data - Useful Concepts - Part 1](https://www.c-sharpcorner.com/article/pip-external-streaming-data-useful-concepts-part-1/) C# Corner, Mar 27, 2024
-- Postol Mariusz; [Programming in Practice Discipline](https://www.c-sharpcorner.com/article/programming-in-practice-discipline/) C# Corner,  Feb 27, 2024.
-- Postol Mariusz; [External Streaming Data - Bitstream Format](https://www.c-sharpcorner.com/article/external-streaming-data-bitstream-format/)  C# Corner, Feb 14, 2024.
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Confidentiality][confidentiality] C# Corner, Feb 14, 2024.
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Integrity][CI] C# Corner, Feb 14, 2024.
-- Postol Mariusz; [Cybersecurity of External Streaming Data - Non-repudiation)](https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-non-repudiation/); C# Corner, Feb 14, 2024
-- Postol Mariusz; [External Data Management (ExDM))][ExDM]; C# Corner,  Jan 09, 2024
-- Postol Mariusz; [External Data - Attributes - Profiling Data Access][Attributes]; C# Corner,  Jan 06, 2024
-- Postol Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, Jan 03, 2024
-- Postol Mariusz; [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
-- Postol Mariusz; [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; This free course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
-- Postol Mariusz; [Programming in Practice, Video Playlist of courses description on Youtube, 2023](https://www.youtube.com/playlist?list=PLC7zPvgw-Ybwya54i262_RfG5tEp2FSIt)
-- [Postół. M, Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
-- Postol Mariusz; [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
-- [GitHub repository mpostol/TP][TP] - C# in Practice - set of C# examples targeting education purpose
-- [Discussion panel on mpostol/TP][Discussion]
-- Postol Mariusz; [Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
+- Postół, Mariusz; [Programming in Practice - Graphical User Interface; Udemy Video Course;  2025][udemyGUI]
+- Postół Mariusz; [List of Publications Related to Programming in Practice - External Data Management](https://www.researchgate.net/publication/388581231_List_of_Publications_Related_to_Programming_in_Practice_-_External_Data_Management), February 2025, Research Gate; DOI: 10.13140/RG.2.2.15812.33922
+- Postół Mariusz; [Programming in Practice - Delegates and Events; video](https://www.c-sharpcorner.com/article/programming-in-practice-delegates-and-events/); C# Corner; Oct 07 2024
+- Postół Mariusz; [Programming in Practice - LINQ to SQL - Explained](https://www.c-sharpcorner.com/article/programming-in-practice-linq-to-sql-explained/); C# Corner;Jul 29, 2024
+- Postół Mariusz; [Programming in Practice - Structural Data](https://www.c-sharpcorner.com/article/programming-in-practice-structural-data/); C# Corner; May 19, 2024
+- Postół Mariusz; [Programming in Practice - File Concept](https://www.c-sharpcorner.com/article/programming-in-practice-file-concept/); C# Corner; May 30, 2024
+- Postół Mariusz; [Programming in Practice - Graphical User Interface (GUI)][GUIMasterArticle]; C# Corner; May 30, 2024
+- Postół Mariusz; [Programming in Practice - GUI - MVVM Program Design Pattern][MVVMSecondArticle]; C# Corner; Jul 03, 2024
+- Postół Mariusz; [Programming in Practice - GUI - XAML - Description of the User Interface][GUIXAML]; C# Corner; Jul 09, 2024
+- Postół Mariusz; [Programming in Practice - LINQ Expression](https://www.c-sharpcorner.com/article/programming-in-practice-linq-expression/) C# Corner, May 06, 2024
+- Postół Mariusz; [Information Computation Mastery: Serialization](https://www.c-sharpcorner.com/article/information-computation-mastery-serialization/) C# Corner,  Apr 01, 2024
+- Postół Mariusz; [Information Computation Mastery: Challenges, Concepts, Implementation](https://www.c-sharpcorner.com/article/information-computation-mastery-challenges-concepts-implementation/), C# Corner, Mar 28, 2024
+- Postół Mariusz; [PiP - External Streaming Data - Useful Concepts - Part 1](https://www.c-sharpcorner.com/article/pip-external-streaming-data-useful-concepts-part-1/) C# Corner, Mar 27, 2024
+- Postół Mariusz; [Programming in Practice Discipline](https://www.c-sharpcorner.com/article/programming-in-practice-discipline/) C# Corner,  Feb 27, 2024.
+- Postół Mariusz; [External Streaming Data - Bitstream Format](https://www.c-sharpcorner.com/article/external-streaming-data-bitstream-format/)  C# Corner, Feb 14, 2024.
+- Postół Mariusz; [Cybersecurity of External Streaming Data - Confidentiality][confidentiality] C# Corner, Feb 14, 2024.
+- Postół Mariusz; [Cybersecurity of External Streaming Data - Integrity][CI] C# Corner, Feb 14, 2024.
+- Postół Mariusz; [Cybersecurity of External Streaming Data - Non-repudiation)](https://www.c-sharpcorner.com/article/cybersecurity-of-external-streaming-data-non-repudiation/); C# Corner, Feb 14, 2024
+- Postół Mariusz; [External Data Management (ExDM))][ExDM]; C# Corner,  Jan 09, 2024
+- Postół Mariusz; [External Data - Attributes - Profiling Data Access][Attributes]; C# Corner,  Jan 06, 2024
+- Postół Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, Jan 03, 2024
+- Postół Mariusz; [Programming in Practice - Information Computation; Udemy Video Course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
+- Postół Mariusz; [Programming in Practice - Executive Summary; Udemy Video Course; 2021][udemyPiPES]; This course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+- Postół Mariusz; [Programming in Practice, Video Playlist of courses description on Youtube, 2023](https://www.youtube.com/playlist?list=PLC7zPvgw-Ybwya54i262_RfG5tEp2FSIt)
+- Postół Mariusz; [Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
+- Postół Mariusz; [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
+- [GitHub TP repository][TP] - C# in Practice - set of C# examples targeting education purpose
+- [Discussion panel on GitHub TP repository][Discussion]
+- Postół Mariusz; [Język C# w praktyce. Kurs video. Przetwarzanie danych zewnętrznych][vdpnt]; 2019, Helion (in polish).
 
 ## How to reach me
 
@@ -90,6 +91,7 @@
 [MPUdemy]:             https://www.udemy.com/user/mariusz-postol/
 [udemyPiPIC]:          https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
 [udemyPiPES]:          https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
+[udemyGUI]:            https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
 
 [TP]:                  https://github.com/mpostol/TP
 [Discussion]:          https://github.com/mpostol/TP/discussions
