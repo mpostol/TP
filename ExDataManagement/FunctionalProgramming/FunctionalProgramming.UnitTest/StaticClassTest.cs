@@ -19,9 +19,7 @@ namespace TP.ExDM.FunctionalProgramming
     [TestMethod]
     public void StaticClassTestMethod()
     {
-      // StaticClass staticClassVariable; //Cannot declare a variable of static type 'StaticClass'
-
-      //StaticClass staticVariable;
+      // StaticClass staticClassVariable = new StaticClass(); //Cannot declare a variable of static type 'StaticClass'
       Assert.AreEqual(123456.789, StaticClass.MinIncome);
       Assert.AreEqual(987654.321, StaticClass.MaxIncome);
       StaticClass.StaticClassInitializer(3.0, 1.0);
