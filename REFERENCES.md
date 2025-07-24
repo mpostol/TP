@@ -44,6 +44,7 @@
 - [Postół M, profile on facebook](https://www.facebook.com/mariusz.postol/)
 - [Postół M, profile on wordpress](http://mpostol.wordpress.com/)
 - [Postół M, profile on c-sharpcorner](https://www.c-sharpcorner.com/members/mariusz-postol)
+- [Programming in Practice Education on LinkedIn](https://www.linkedin.com/groups/7478959/?lipi=urn%3Ali%3Apage%3Ad_flagship3_groups_index%3B5I8YDiDHRK2rYN7H36la9w%3D%3D)
 
 ## C\#
 
