@@ -13,7 +13,28 @@
 
 # Functional Programming
 
-Programming styles, also known as coding styles or code styles, are sets of rules or guidelines that govern the templating of source code. These styles help programmers read and understand code, maintain it, and reduce the likelihood of introducing errors. Let’s explore functional programming as one of them. It is a paradigm that emphasizes treating data processing as resembling mathematical functions. In other words, functions are first-class citizens in functional programming. Functional programming is recognized as a foundation for processing external structural data governed by a Database Management System (DBMS). The DBMS is software executed atop an appropriate platform or technology used to organize, store, retrieve, and manipulate data in an organized manner.
+Functional programming (FP) is widely recognized in academic literature as a declarative programming paradigm that emphasizes the use of mathematical functions to construct software. Domain-specific programming languages (DSLs) often implement this paradigm through coding styles, also known as code styles. These styles are developed based on rules or guidelines that govern the structure and templating of source code. They help programmers read and understand code more easily, maintain it effectively, and reduce the likelihood of introducing errors.
+
+Functional programming is recognized as a foundational paradigm for managing structured external data, particularly when interfacing with a Database Management System (DBMS). A DBMS is software that runs on a suitable platform or technology, used to organize, store, retrieve, and manipulate data in a systematic manner.
+
+### 1.1. Functional Programming Preface  
+
+Functional programming (FP) is widely recognized in academic literature as a declarative programming paradigm that emphasizes the use of mathematical functions to construct software [@bird1988introduction, @hughes1989functional, @wadler1992essence, @zebaCodingStandards]. Dedicated domain-specific programming languages (DSLs) often implement this paradigm through coding styles, also known as code styles. These styles are developed based on rules or guidelines that govern the structure and templating of source code. They help programmers read and understand code more easily, maintain it effectively, and reduce the likelihood of introducing errors.
+
+FP emphasizes treating data processing as a series of mathematical functions. In this paradigm, functions are first-class citizens—meaning they can be passed as arguments [@wikipediaFunctionalProgramming], returned from other functions, and assigned to variables. Functional programming treats computation as the evaluation of mathematical functions and avoids changing state and mutable data. A mutable object is one whose state can be modified after it is created, whereas an immutable object cannot be modified once created.
+
+One of the most important properties of a function in the context of functional programming is that its output depends solely on the actual parameter values passed during the call. In other words, the function's behavior does not rely on any local or global state. Therefore, calling a function twice with the same parameter values will produce the same result each time. An example of the function conforming to this paradigm is for example:
+
+```C#
+    public static bool StringIsLongPredicate(string stringToTest)
+    {
+      return stringToTest.Length > 10;
+    }
+```
+
+The predicate always returns true if the current string assigned to `stringToTest` is longer than 10 characters. It represents a method that defines a set of criteria and determines whether a specified object meets those criteria. This approach eliminates side effects—one of the key motivations for using functional programming to manage external data.
+
+Functional programming also serves as a foundation for managing structured external data, especially when interfacing with a Database Management System (DBMS). A DBMS is software that runs on a suitable platform or technology and is used to organize, store, retrieve, and manipulate data in a systematic manner.
 
 Because  DBMS handles concurrent access to data, thanks to functional programming data consistency can be protected by reducing side effects. While managing data using DBMS the following operation may be distinguished:
 
@@ -25,6 +46,7 @@ Because  DBMS handles concurrent access to data, thanks to functional programmin
 The operations are described by a Domain-specific Language (SQL for example) and executed by the DBMS. Functional programming constructs of the main programming language are a good candidate to be used as an equivalent solution to define these operations that can be integrated with the rest of the program. Let's delve into the details of this approach.
 
 Functional programming is a style of developing the computer programs that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data. A mutable data is an object whose state can be modified after it is created. An immutable object is an object whose state cannot be modified after it is created.
+
 
 The most important behavior of a function in the context of functional programming paradigm is that its output value depends only on the actual parameter values that are passed to while calling it. In other words, the function behavior doesn't depend on the local or global state. So calling a function f twice with the same value for a parameter x produces the same result f(x) each time. An example of the function conforming to this paradigm is for example:
 
