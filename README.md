@@ -6,17 +6,17 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 ## 1.2. Major Releases
 
-|       Release       | Title                                                                 |              DOI               |       Date        |
-|:-------------------:|-----------------------------------------------------------------------|:------------------------------:|:-----------------:|
-| [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][REL52004]    | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
-| [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                             | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
-| [5.20.01][REL52001] | [Graphical User Interface; 2025 Summer][REL52001]                     | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
-|    [5.2][REL52]     | [External Data Added to the ebook][REL52]                             |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
-|    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC] |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
-|    [4.3][REL43]     | TUL IT Classes 2023 Summer Semester                                   |     [![DOI][BDG43]][DOI43]     |   July 28, 2023   |
-|    [4.0][REL40]     | Distributed Programming                                               |     [![DOI][BDG40]][DOI40]     |  October 5, 2020  |
-|    [3.0][REL30]     | [ExDM VideoBook Helion v1.0.][vdpnt]                                  |     [![DOI][BDG30]][DOI30]     | February 26, 2019 |
-|         2.0         | Adaptive Programming                                                  |               NA               |                   |
+|       Release       | Title                                                                     |              DOI               |       Date        |
+|:-------------------:|---------------------------------------------------------------------------|:------------------------------:|:-----------------:|
+| [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][udemyBitStreams] | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
+| [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                                 | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
+| [5.20.01][REL52001] | [Graphical User Interface-Video Course; 2025 Summer][udemyGUI]            | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
+|    [5.2][REL52]     | [External Data Added to the ebook][REL52]                                 |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
+|    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC]     |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
+|    [4.3][REL43]     | TUL IT Classes 2023 Summer Semester                                       |     [![DOI][BDG43]][DOI43]     |   July 28, 2023   |
+|    [4.0][REL40]     | Distributed Programming                                                   |     [![DOI][BDG40]][DOI40]     |  October 5, 2020  |
+|    [3.0][REL30]     | [ExDM VideoBook Helion v1.0.][vdpnt]                                      |     [![DOI][BDG30]][DOI30]     | February 26, 2019 |
+|         2.0         | Adaptive Programming                                                      |               NA               |                   |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
@@ -202,12 +202,14 @@ You may check out the document [References](REFERENCES.md) to encounter other re
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578244.svg)](https://doi.org/10.5281/zenodo.2578244) - This DOI represents all versions, and will always resolve to the latest one.
 
-[MPGitHub]:   https://github.com/mpostol
-[MPUdemy]:    https://www.udemy.com/user/mariusz-postol/
-[udemyPiPIC]: https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
-[udemyPiPES]: https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
-[Discussion]: https://github.com/mpostol/TP/discussions
-[vdpnt]:      https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
+[MPGitHub]:          https://github.com/mpostol
+[MPUdemy]:           https://www.udemy.com/user/mariusz-postol/
+[udemyBitStreams]:   https://www.udemy.com/course/pip-streaming-data/?referralCode=2FA98432EDF44274DA71
+[udemyGUI]:          https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
+[udemyPiPIC]:        https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
+[udemyPiPES]:        https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
+[Discussion]:        https://github.com/mpostol/TP/discussions
+[vdpnt]:             https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
 
 <!--
 //____________________________________________________________________________________________________________________________________
