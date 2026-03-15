@@ -7,8 +7,9 @@ software engineering, sequential programming, adaptive programming, concurrent p
 ## 1.2. Major Releases
 
 |       Release       | Title                                                                 |              DOI               |       Date        |
-| :-----------------: | --------------------------------------------------------------------- | :----------------------------: | :---------------: |
-| [5.20.02][REL52002] | [Toward Functional Programming][REL52002]                             | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
+|:-------------------:|-----------------------------------------------------------------------|:------------------------------:|:-----------------:|
+| [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][REL52004]    | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
+| [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                             | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
 | [5.20.01][REL52001] | [Graphical User Interface; 2025 Summer][REL52001]                     | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
 |    [5.2][REL52]     | [External Data Added to the ebook][REL52]                             |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
 |    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC] |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
@@ -20,6 +21,10 @@ software engineering, sequential programming, adaptive programming, concurrent p
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
 > [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
+
+[REL52004]: https://github.com/mpostol/TP/releases/tag/5.20.04
+[DOIL52004]: https://doi.org/10.5281/zenodo.2578244
+[BDGL52004]: https://zenodo.org/badge/DOI/10.5281/zenodo.2578244.svg
 
 [REL52002]: https://github.com/mpostol/TP/releases/tag/5.20.02
 [DOIL52002]: https://doi.org/10.5281/zenodo.16414132

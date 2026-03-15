@@ -12,8 +12,8 @@
     <AssemblyTitle>DataStreams.UnitTest</AssemblyTitle>
     <Product>DataStreams.UnitTest</Product>
     <Copyright>Copyright %28c%29 2020 Mariusz Postol</Copyright>
-    <AssemblyVersion>4.1.0.%2a</AssemblyVersion>
-    <FileVersion>4.1.0.0</FileVersion>
+    <AssemblyVersion>5.20.04.%2a</AssemblyVersion>
+    <FileVersion>5.20.04.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="Instrumentation\Catalog.cs">

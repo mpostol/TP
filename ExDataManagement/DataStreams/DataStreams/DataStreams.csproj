@@ -39,8 +39,8 @@
         <Company>CAS</Company>
         <Product>XML Example</Product>
         <Copyright>Copyright %28c%29 2020 Mariusz Postol</Copyright>
-        <AssemblyVersion>4.1.0.%2a</AssemblyVersion>
-        <FileVersion>4.1.0.0</FileVersion>
+        <AssemblyVersion>5.20.40.%2a</AssemblyVersion>
+        <FileVersion>5.20.40.0</FileVersion>
     </PropertyGroup>
     <ItemGroup>
         <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
