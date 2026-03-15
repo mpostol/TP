@@ -2,10 +2,11 @@
 
 ## Programming in Practice
 
+- Postół, Mariusz; [Programming in Practice - Streaming Data; Video Course;  2026][udemyBitStreams]
 - Postół, Mariusz; [Toward Functional Programming](https://doi.org/10.22541/au.175915460.00864426/v1) Authorea. September 29, 2025; Wiley; DOI: 10.22541/au.175915460.00864426/v1; Preprint - Submitted to Software: Practice and Experience
 - Postół, Mariusz; [Information, Knowledge, Algorithm versus Data and Program](http://dx.doi.org/10.22541/au.175647887.76173269/v1); 2025; Wiley; DOI: 10.22541/au.175647887.76173269/v1; Preprint - Submitted to Software: Practice and Experience
 - Postół, Mariusz; [Monitor Concept Deployment](http://dx.doi.org/10.22541/au.175455728.80471091/v1); 2025; Wiley; DOI: 10.22541/au.175455728.80471091/v1; Preprint - Submitted to Software: Practice and Experience
-- Postół, Mariusz; [Programming in Practice - Graphical User Interface; Udemy Video Course;  2025][udemyGUI]
+- Postół, Mariusz; [Programming in Practice - Graphical User Interface; Video Course;  2025][udemyGUI]
 - Postół Mariusz; [List of Publications Related to Programming in Practice - External Data Management](https://www.researchgate.net/publication/388581231_List_of_Publications_Related_to_Programming_in_Practice_-_External_Data_Management), February 2025, Research Gate; DOI: 10.13140/RG.2.2.15812.33922
 - Postół Mariusz; [Programming in Practice - Delegates and Events; video](https://www.c-sharpcorner.com/article/programming-in-practice-delegates-and-events/); C# Corner; Oct 07 2024
 - Postół Mariusz; [Programming in Practice - LINQ to SQL - Explained](https://www.c-sharpcorner.com/article/programming-in-practice-linq-to-sql-explained/); C# Corner;Jul 29, 2024
@@ -26,8 +27,8 @@
 - Postół Mariusz; [External Data Management (ExDM))][ExDM]; C# Corner,  Jan 09, 2024
 - Postół Mariusz; [External Data - Attributes - Profiling Data Access][Attributes]; C# Corner,  Jan 06, 2024
 - Postół Mariusz; [External Data - File and Stream Concepts][FileStream]; C# Corner, Jan 03, 2024
-- Postół Mariusz; [Programming in Practice - Information Computation; Udemy Video Course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
-- Postół Mariusz; [Programming in Practice - Executive Summary; Udemy Video Course; 2021][udemyPiPES]; This course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+- Postół Mariusz; [Programming in Practice - Information Computation; Video Course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
+- Postół Mariusz; [Programming in Practice - Executive Summary; Video Course; 2021][udemyPiPES]; This course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 - Postół Mariusz; [Programming in Practice, Video Playlist of courses description on Youtube, 2023](https://www.youtube.com/playlist?list=PLC7zPvgw-Ybwya54i262_RfG5tEp2FSIt)
 - Postół Mariusz; [Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
 - Postół Mariusz; [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
@@ -96,6 +97,7 @@
 [udemyPiPIC]:          https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
 [udemyPiPES]:          https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
 [udemyGUI]:            https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
+[udemyBitStreams]:     https://www.udemy.com/course/pip-streaming-data/?referralCode=2FA98432EDF44274DA71
 
 [TP]:                  https://github.com/mpostol/TP
 [Discussion]:          https://github.com/mpostol/TP/discussions
