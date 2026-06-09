@@ -62,20 +62,25 @@ namespace TP.ExDM.FunctionalProgramming
       Assert.IsTrue(_testResult);
     }
 
-    [TestMethod]
-    public void LambdaSyntaxTest()
-    {
-      const int _length = 10000;
-      Random _newRandom = new Random();
-      int[] _buffer = new int[_length];
-      for (int i = 0; i < _length; i++)
-        _buffer[i] = _newRandom.Next(0, 100);
-      int _count = _buffer.Count((int x) => { return x >= 50; });
-      const int _tolerance = 130;
-      Assert.IsTrue(_count > _length / 2 - _tolerance && _count < _length / 2 + _tolerance, $"{nameof(_count)}={_count}");
-    }
+        [TestMethod]
+        public void LambdaSyntaxTest()
+        {
+            const int _length = 10000;
 
-    [TestMethod]
+            int[] _buffer = Enumerable
+              .Range(0, _length)
+              .Select(index => index % 2 == 0 ? 49 : 50)
+              .ToArray();
+
+            int _count = _buffer.Count((int x) =>
+            {
+                return x >= 50;
+            });
+
+            Assert.AreEqual(_length / 2, _count, $"{nameof(_count)}={_count}");
+        }
+
+        [TestMethod]
     public void DelegateVsExpressionTest()
     {
       //delegate
