@@ -15,15 +15,29 @@ using TP.ExDM.StructuralData.Data;
 
 namespace TP.ExDM.StructuralData.LINQ_to_object
 {
-  /// <summary>
-  /// Class Catalog.
-  /// Implements the <see cref="System.Data.DataSet" />
-  /// </summary>
-  public partial class Catalog
-  {
-    //TODO ExDM Add DI to the Catalog #385
-    public void AddContent(IEnumerable<IPerson> persons)
+    /// <summary>
+    /// Class Catalog.
+    /// Implements the <see cref="System.Data.DataSet" />
+    /// </summary>
+    public partial class Catalog
     {
+        // Added constructor injection and property injection for issue #385.
+
+        
+
+        public Catalog(IEnumerable<IPerson> persons)
+        {
+            AddContent(persons);
+        }
+
+        public IEnumerable<IPerson> Content
+        {
+            set => AddContent(value);
+        }
+
+        public void AddContent(IEnumerable<IPerson> persons)
+        {
+            
       foreach (IPerson _item in persons)
       {
         PersonRow _newPersonROw = Person.AddPersonRow(_item.FirstName, _item.LastName, _item.Age);
