@@ -2,11 +2,12 @@
 
 ## Programming in Practice
 
-- Postół, Mariusz; [Programming in Practice - Streaming Data; Video Course;  2026][udemyBitStreams]
+- Postół, Mariusz; [Programming in Practice - External Data Management - Structural Data; Video Course;  2026][udemyStructuralData]
+- Postół, Mariusz; [Programming in Practice - External Data Management - Streaming Data; Video Course;  2026][udemyBitStreams]
 - Postół, Mariusz; [Toward Functional Programming](https://doi.org/10.22541/au.175915460.00864426/v1) Authorea. September 29, 2025; Wiley; DOI: 10.22541/au.175915460.00864426/v1; Preprint - Submitted to Software: Practice and Experience
 - Postół, Mariusz; [Information, Knowledge, Algorithm versus Data and Program](http://dx.doi.org/10.22541/au.175647887.76173269/v1); 2025; Wiley; DOI: 10.22541/au.175647887.76173269/v1; Preprint - Submitted to Software: Practice and Experience
 - Postół, Mariusz; [Monitor Concept Deployment](http://dx.doi.org/10.22541/au.175455728.80471091/v1); 2025; Wiley; DOI: 10.22541/au.175455728.80471091/v1; Preprint - Submitted to Software: Practice and Experience
-- Postół, Mariusz; [Programming in Practice - Graphical User Interface; Video Course;  2025][udemyGUI]
+- Postół, Mariusz; [Programming in Practice - External Data Management - Graphical Data; Video Course;  2025][udemyGUI]
 - Postół Mariusz; [List of Publications Related to Programming in Practice - External Data Management](https://www.researchgate.net/publication/388581231_List_of_Publications_Related_to_Programming_in_Practice_-_External_Data_Management), February 2025, Research Gate; DOI: 10.13140/RG.2.2.15812.33922
 - Postół Mariusz; [Programming in Practice - Delegates and Events; video](https://www.c-sharpcorner.com/article/programming-in-practice-delegates-and-events/); C# Corner; Oct 07 2024
 - Postół Mariusz; [Programming in Practice - LINQ to SQL - Explained](https://www.c-sharpcorner.com/article/programming-in-practice-linq-to-sql-explained/); C# Corner;Jul 29, 2024
@@ -98,6 +99,7 @@
 [udemyPiPES]:          https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
 [udemyGUI]:            https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
 [udemyBitStreams]:     https://www.udemy.com/course/pip-streaming-data/?referralCode=2FA98432EDF44274DA71
+[udemyStructuralData]: https://www.udemy.com/course/structural-data/?referralCode=62723DA72C4748A817DF
 
 [TP]:                  https://github.com/mpostol/TP
 [Discussion]:          https://github.com/mpostol/TP/discussions

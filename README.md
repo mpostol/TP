@@ -6,21 +6,26 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 ## 1.2. Major Releases
 
-|       Release       | Title                                                                     |              DOI               |       Date        |
-|:-------------------:|---------------------------------------------------------------------------|:------------------------------:|:-----------------:|
-| [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][udemyBitStreams] | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
-| [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                                 | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
-| [5.20.01][REL52001] | [Graphical User Interface-Video Course; 2025 Summer][udemyGUI]            | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
-|    [5.2][REL52]     | [External Data Added to the ebook][REL52]                                 |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
-|    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC]     |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
-|    [4.3][REL43]     | TUL IT Classes 2023 Summer Semester                                       |     [![DOI][BDG43]][DOI43]     |   July 28, 2023   |
-|    [4.0][REL40]     | Distributed Programming                                                   |     [![DOI][BDG40]][DOI40]     |  October 5, 2020  |
-|    [3.0][REL30]     | [ExDM VideoBook Helion v1.0.][vdpnt]                                      |     [![DOI][BDG30]][DOI30]     | February 26, 2019 |
-|         2.0         | Adaptive Programming                                                      |               NA               |                   |
+|       Release       | Title                                                                                                    |              DOI               |       Date        |
+|:-------------------:|----------------------------------------------------------------------------------------------------------|:------------------------------:|:-----------------:|
+| [5.20.05][REL52005] | [Programming in Practice - External Data Management - Structural Data Udemy Course][udemyStructuralData] | [![DOI][BDGL52005]][DOIL52005] |   Jun 16, 2026    |
+| [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][udemyBitStreams]                                | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
+| [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                                                                | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
+| [5.20.01][REL52001] | [Graphical User Interface-Video Course; 2025 Summer][udemyGUI]                                           | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
+|    [5.2][REL52]     | [External Data Added to the ebook][REL52]                                                                |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
+|    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC]                                    |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
+|    [4.3][REL43]     | TUL IT Classes 2023 Summer Semester                                                                      |     [![DOI][BDG43]][DOI43]     |   July 28, 2023   |
+|    [4.0][REL40]     | Distributed Programming                                                                                  |     [![DOI][BDG40]][DOI40]     |  October 5, 2020  |
+|    [3.0][REL30]     | [ExDM VideoBook Helion v1.0.][vdpnt]                                                                     |     [![DOI][BDG30]][DOI30]     | February 26, 2019 |
+|         2.0         | Adaptive Programming                                                                                     |               NA               |                   |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
 > [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
+
+[REL52005]: https://github.com/mpostol/TP/releases/tag/5.20.05
+[DOIL52005]: https://doi.org/10.5281/zenodo.20720700
+[BDGL52005]: https://zenodo.org/badge/DOI/10.5281/zenodo.20720700.svg
 
 [REL52004]: https://github.com/mpostol/TP/releases/tag/5.20.04
 [DOIL52004]: https://doi.org/10.5281/zenodo.2578244
@@ -160,17 +165,22 @@ To follow any activity in the repository, switch on the `Watch` functionality. I
 
 Consider also enrolling in the following courses:
 
-- [Programming in Practice - Streaming Data; Video Course; 2026][udemyBitStreams] - In general, depending on the use case, the external data may be grouped as follows:
-  - **streaming** - bitstream embedded as the content of files, or network payload
-  - **structural** - data fetched from and pushed to external database management systems using queries
-  - **graphical** - data rendered on Graphical User Interface
-Bitstreams are low-level sequences of binary bits used for encoding and transmitting binary content, such as audio or video. A bitstream is a sequence of bits that represents data at the lowest level. In such a sequence, the first and last bits are defined, and each intermediate bit is accessible in order.
+- [Programming in Practice - External Data Management - Streaming Data; Video Course; 2026][udemyBitStreams]
+- [Programming in Practice - External Data Management - Structural Data; Video course, 2026][udemyStructuralData]
+- [Programming in Practice - External Data Management - Graphical Data; Video Course;  2025][udemyGUI]
+
+In general, depending on the use case, the external data may be grouped as follows:
+
+- **streaming** - bitstream embedded as the content of files, or network payload. Bitstreams are low-level sequences of binary bits used for encoding and transmitting binary content, such as audio or video. A bitstream is a sequence of bits that represents data at the lowest level. In such a sequence, the first and last bits are defined, and each intermediate bit is accessible in order.
+- **structural** - data fetched from and pushed to external database management systems using queries
+- **graphical** - data rendered on Graphical User Interface
+
 - [Programming in Practice - Information Computation; Video Course; 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
-- [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+- [Programming in Practice - Executive Summary; Video course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 
 ## 1.7. Contributing
 
-I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'. You must agree to the contributor license agreement before I can accept your changes.
+I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a `pull request`. You must agree to the contributor license agreement before I can accept your changes.
 
 ## 1.8. How to reach me
 
@@ -180,7 +190,7 @@ To get more on my activity and projects currently I am working on:
 - 👀 [follow me on YouTube](https://youtu.be/YPdL0bc0Xmo)
 - :cloud_with_lightning: [visit the discussion][Discussion]
 - 🔭 I’m currently working on: Programming in Practice education path
-- 👯 I’m looking to collaborate on **External Data Management**
+- 👯 I’m looking to collaborate on **Concurrent Programming**
 - 💬 ask me about sequential, concurrent, parallel, real-time, and distributed program engineering including but not limited to design patterns, agile management, and testing.
 
 The following profiles on social media are also a good starting point:
@@ -198,8 +208,10 @@ The following profiles on social media are also a good starting point:
 
 ## 1.9. See also
 
-- [Programming in Practice - Information Computation; Udemy course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
-- [Programming in Practice - Executive Summary; Udemy course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
+- [Programming in Practice - External Data Management - Structural Data; Video course, 2026][udemyStructuralData]
+- [Programming in Practice - External Data Management - Streaming Data; Video Course; 2026][udemyBitStreams]
+- [Programming in Practice - Information Computation; Video course, 2023][udemyPiPIC] - Information Computation means a process engaging a computer (a physical device) to process information as a series of actions or steps taken to achieve a particular result or help to fulfill a task. The main challenge is that information is abstract. Precisely speaking, it is a kind of knowledge that cannot be processed directly by any physical device. Generally speaking, To resolve this inconsistency two main topics are covered. The first one refers to selected aspects of information modeling using types as descendants of a coding system. The second one covers program architecture design patterns to improve the design and deployment of the computer behavior description using a program implementing an algorithm.
+- [Programming in Practice - Executive Summary; Video course; 2021][udemyPiPES]; The course explains the role of this repository as the extended examples storage that is a foundation for the Programming in Practice paradigm. The course is for all serious about the improvement of the software development skills education methodology.
 - [Programming in Practice; GitBook eBook](https://mpostol.gitbook.io/pip/) - The content of this eBook is auto-generated using the Markdown files collected in this repository. It is distributed online upon the open access rules.
 - [Discussion panel][Discussion]
 - [Postół. M, Object-Oriented Internet](https://youtube.com/playlist?list=PLC7zPvgw-YbyWss-0j_waddacgroLFTzi) This playlist on YouTube addresses research results on the systematic approach to the design of the meaningful Machine to Machine (M2M) communication targeting distributed mobile applications in the context of new emerging disciplines, i.e. Industry 4.0 and Internet of Things.
@@ -207,14 +219,15 @@ You may check out the document [References](REFERENCES.md) to encounter other re
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2578244.svg)](https://doi.org/10.5281/zenodo.2578244) - This DOI represents all versions, and will always resolve to the latest one.
 
-[MPGitHub]:          https://github.com/mpostol
-[MPUdemy]:           https://www.udemy.com/user/mariusz-postol/
-[udemyBitStreams]:   https://www.udemy.com/course/pip-streaming-data/?referralCode=2FA98432EDF44274DA71
-[udemyGUI]:          https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
-[udemyPiPIC]:        https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
-[udemyPiPES]:        https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
-[Discussion]:        https://github.com/mpostol/TP/discussions
-[vdpnt]:             https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
+[MPGitHub]:            https://github.com/mpostol
+[MPUdemy]:             https://www.udemy.com/user/mariusz-postol/
+[udemyStructuralData]: https://www.udemy.com/course/structural-data/?referralCode=62723DA72C4748A817DF
+[udemyBitStreams]:     https://www.udemy.com/course/pip-streaming-data/?referralCode=2FA98432EDF44274DA71
+[udemyGUI]:            https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
+[udemyPiPIC]:          https://www.udemy.com/course/information-computation/?referralCode=9003E3EF42419C6E6B21
+[udemyPiPES]:          https://www.udemy.com/course/pipintroduction/?referralCode=E1B8E460A82ECB36A835
+[Discussion]:          https://github.com/mpostol/TP/discussions
+[vdpnt]:               https://videopoint.pl/kurs/jezyk-c-w-praktyce-kurs-video-przetwarzanie-danych-zewnetrznych-mariusz-postol,vjcprv.htm#format/w
 
 <!--
 //____________________________________________________________________________________________________________________________________
