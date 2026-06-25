@@ -1,0 +1,3 @@
+﻿A construção começou em 14:49...
+========== Compilação: 0 bem-sucedida, 0 com falha, 11 atualizada, 0 ignorada ==========
+========== Compilação concluído às 14:49 e levou 00,156 segundos ==========
