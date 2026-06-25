@@ -15,41 +15,22 @@ using TP.ExDM.StructuralData.Data;
 
 namespace TP.ExDM.StructuralData.LINQ_to_object
 {
+  /// <summary>
+  /// Class Catalog.
+  /// Implements the <see cref="System.Data.DataSet" />
+  /// </summary>
+  public partial class Catalog
+  {
     /// <summary>
-    /// Class Catalog.
-    /// Implements the <see cref="System.Data.DataSet" />
+    /// Initializes a new instance of the <see cref="Catalog"/> class with the specified enumeration of persons.
     /// </summary>
-    public partial class Catalog
-    {
-        // Added constructor injection and property injection for issue #385.
-
-        
-
-        public Catalog(IEnumerable<IPerson> persons)
-        {
-            AddContent(persons);
-        }
-
-        public IEnumerable<IPerson> Content
-        {
-            set => AddContent(value);
-        }
-
-        public void AddContent(IEnumerable<IPerson> persons)
-        {
-            
-      foreach (IPerson _item in persons)
-      {
-        PersonRow _newPersonROw = Person.AddPersonRow(_item.FirstName, _item.LastName, _item.Age);
-        foreach (ICDCatalog _cdEntity in _item.CDs)
-          this.CDCatalogEntity.AddCDCatalogEntityRow(_cdEntity.Title, _newPersonROw, _cdEntity.Country, _cdEntity.Price, _cdEntity.Year);
-      }
-    }
+    /// <param name="persons">The enumeration of <see cref="IPerson"/> objects to be added to the catalog.</param>
+    public Catalog(IEnumerable<IPerson> persons) : this() => AddContent(persons);
     /// <summary>
     /// Class PersonDataTable.
-    /// Implements the <see cref="System.Data.TypedTableBase{TP.ExDM.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
+    /// Implements the <see cref="System.Data.TypedTableBase{Catalog.PersonRow}" />
     /// </summary>
-    /// <seealso cref="System.Data.TypedTableBase{TP.ExDM.StructuralData.LINQ_to_object.Catalog.PersonRow}" />
+    /// <seealso cref="System.Data.TypedTableBase{Catalog.PersonRow}" />
     public partial class PersonDataTable
     {
       /// <summary>
@@ -83,5 +64,18 @@ namespace TP.ExDM.StructuralData.LINQ_to_object
         return this.Where(_person => _person.LastName.Equals(lastName));
       }
     }
+
+    #region private
+    private void AddContent(IEnumerable<IPerson> persons)
+    {
+
+      foreach (IPerson _item in persons)
+      {
+        PersonRow _newPersonROw = Person.AddPersonRow(_item.FirstName, _item.LastName, _item.Age);
+        foreach (ICDCatalog _cdEntity in _item.CDs)
+          this.CDCatalogEntity.AddCDCatalogEntityRow(_cdEntity.Title, _newPersonROw, _cdEntity.Country, _cdEntity.Price, _cdEntity.Year);
+      }
+    }
+    #endregion  
   }
 }

@@ -20,32 +20,38 @@ using TP.ExDM.StructuralDataUnitTest.Instrumentation;
 namespace TP.ExDM.StructuralDataUnitTest
 {
   [TestClass]
+  /// <summary>
+  /// Unit tests for LINQ to object operations in the Catalog class.
+  /// </summary>
+  /// <remarks>
+  /// These tests cover the filtering methods in the Catalog.PersonDataTable class. It relies on TestDataGenerator.PrepareData() to create consistent test data.
+  /// </remarks>
   public class LINQ_to_objectUnitTest
   {
     [TestMethod]
     public void CatalogConstructorTest()
     {
-      using (Catalog _newCatalog = new Catalog())
+      using (Catalog _newCatalog = new Catalog(TestDataGenerator.PrepareData()))
       {
-        Assert.AreEqual<int>(0, _newCatalog.Person.Count);
-        Assert.AreEqual<int>(0, _newCatalog.CDCatalogEntity.Count);
-        Assert.AreEqual<int>(1, _newCatalog.Relations.Count);
         DataRelation _relation = _newCatalog.Relations["ArtistRelation"];
         Assert.IsNotNull(_relation);
         Assert.AreEqual<string>(_newCatalog.Person.TableName, _relation.ParentTable.TableName);
         Assert.AreEqual<string>(_newCatalog.CDCatalogEntity.TableName, _relation.ChildTable.TableName);
-        _newCatalog.AddContent(TestDataGenerator.PrepareData());
         Assert.AreEqual<int>(3, _newCatalog.Person.Count);
         Assert.AreEqual<int>(15, _newCatalog.CDCatalogEntity.Count);
       }
     }
-
     [TestMethod]
+    /// <summary>
+    /// Tests the FilterPersonsByLastName_ForEach method in the Catalog.PersonDataTable class.
+    /// </summary>
+    /// <remarks>
+    /// This test verifies that the method correctly filters persons by their last name using a foreach loop.
+    /// </remarks>
     public void FilterPersonsByLastName_ForEachTest()
     {
-      using (Catalog _newCatalog = new Catalog())
+      using (Catalog _newCatalog = new Catalog(TestDataGenerator.PrepareData()))
       {
-        _newCatalog.AddContent(TestDataGenerator.PrepareData());
         IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_ForEach("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Collections.Generic.List`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
@@ -55,13 +61,14 @@ namespace TP.ExDM.StructuralDataUnitTest
           Assert.AreEqual("Person", p.LastName);
       }
     }
-
     [TestMethod]
+    /// <summary>
+    /// Tests the FilterPersonsByLastName_QuerySyntax method in the Catalog.PersonDataTable class.
+    /// </summary>
     public void FilterPersonsByLastName_QuerySyntaxTest()
     {
-      using (Catalog _newCatalog = new Catalog())
+      using (Catalog _newCatalog = new Catalog(TestDataGenerator.PrepareData()))
       {
-        _newCatalog.AddContent(TestDataGenerator.PrepareData());
         IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_QuerySyntax("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Linq.WhereEnumerableIterator`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
@@ -71,13 +78,14 @@ namespace TP.ExDM.StructuralDataUnitTest
           Assert.AreEqual("Person", p.LastName);
       }
     }
-
     [TestMethod]
+    /// <summary>
+    /// Tests the FilterPersonsByLastName_MethodSyntax method in the Catalog.PersonDataTable class.   
+    /// </summary>
     public void FilterPersonsByLastName_MethodSyntaxTest()
     {
-      using (Catalog _newCatalog = new Catalog())
+      using (Catalog _newCatalog = new Catalog(TestDataGenerator.PrepareData()))
       {
-        _newCatalog.AddContent(TestDataGenerator.PrepareData());
         IEnumerable<Catalog.PersonRow> _filtered = _newCatalog.Person.FilterPersonsByLastName_MethodSyntax("Person");
         Type _returnedType = _filtered.GetType();
         Assert.AreEqual<string>("System.Linq.WhereEnumerableIterator`1", $"{_returnedType.Namespace}.{_returnedType.Name}");
