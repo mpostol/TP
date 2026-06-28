@@ -50,23 +50,23 @@ namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
     /// <returns>System.Object.</returns>
     /// <exception cref="System.NotImplementedException">Is thrown if the value cannot be converted to the requested canonical value.</exception>
     /// <exception cref="System.ArgumentOutOfRangeException">Is thrown if the requested address index is out of range.</exception>
-    public type ReadValue<type>(int regAddress)
+    public typeParameter ReadValue<typeParameter>(int regAddress)
     {
       object _retValue;
       string _value = Tags[regAddress];
-      if (typeof(type) == typeof(string))
+      if (typeof(typeParameter) == typeof(string))
         _retValue = _value;
-      else if (typeof(type) == typeof(float))
+      else if (typeof(typeParameter) == typeof(float))
         _retValue = float.Parse(_value, CultureInfo.InvariantCulture);
-      else if (typeof(type) == typeof(long))
+      else if (typeof(typeParameter) == typeof(long))
         _retValue = long.Parse(_value, CultureInfo.InvariantCulture);
-      else if (typeof(type) == typeof(int))
+      else if (typeof(typeParameter) == typeof(int))
         _retValue = int.Parse(_value, CultureInfo.InvariantCulture);
-      else if (typeof(type) == typeof(short))
+      else if (typeof(typeParameter) == typeof(short))
         _retValue = short.Parse(_value, CultureInfo.InvariantCulture);
       else
-        throw new NotImplementedException($"The canonical type {typeof(type).ToString()} is not supported");
-      return (type)_retValue;
+        throw new NotImplementedException($"The canonical type {typeof(typeParameter).ToString()} is not supported");
+      return (typeParameter)_retValue;
     }
 
     #endregion IDataEntity

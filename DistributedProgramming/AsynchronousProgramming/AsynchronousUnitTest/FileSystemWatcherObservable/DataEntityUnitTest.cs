@@ -21,12 +21,11 @@ namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
     #region test methods
 
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
     public void ReadValueArgumentOutOfRangeTest()
     {
       DataEntity _instance = null;
       DataEntity.ReadFile(x => _instance = x, DateTime.Now, GetData());
-      float _value = _instance.ReadValue<float>(8);
+      Assert.Throws<IndexOutOfRangeException>(() => _instance.ReadValue<float>(8));
     }
 
     [TestMethod]
@@ -65,12 +64,11 @@ namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FormatException))]
     public void ReadValueLongFormatExceptionTest()
     {
       DataEntity _instance = null;
       DataEntity.ReadFile(x => _instance = x, DateTime.Now, GetData());
-      long _value = _instance.ReadValue<long>(2);
+      Assert.Throws<FormatException>(() => _instance.ReadValue<long>(2));
     }
 
     [TestMethod]
@@ -83,12 +81,11 @@ namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FormatException))]
     public void ReadValueIntFormatExceptionTest()
     {
       DataEntity _instance = null;
       DataEntity.ReadFile(x => _instance = x, DateTime.Now, GetData());
-      object _value = _instance.ReadValue<int>(0);
+      Assert.Throws<FormatException>(() => _instance.ReadValue<int>(0));
     }
 
     [TestMethod]
@@ -101,21 +98,19 @@ namespace TPD.AsynchronousProgramming.FileSystemWatcherObservable
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FormatException))]
     public void ReadValueShortFormatExceptionTest()
     {
       DataEntity _instance = null;
       DataEntity.ReadFile(x => _instance = x, DateTime.Now, GetData());
-      short _value = _instance.ReadValue<short>(2);
+      Assert.Throws<FormatException>(() => _instance.ReadValue<short>(2));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(FormatException))]
     public void ReadValueWrongFormatTest()
     {
       DataEntity _instance = null;
       DataEntity.ReadFile(x => _instance = x, DateTime.Now, GetData());
-      float _value = _instance.ReadValue<float>(0);
+      Assert.Throws<FormatException>(() => _instance.ReadValue<float>(0));
     }
 
     [TestMethod]
