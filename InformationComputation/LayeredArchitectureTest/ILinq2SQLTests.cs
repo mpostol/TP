@@ -20,7 +20,7 @@ namespace TP.InformationComputation.LayeredArchitecture
     {
       DataLayerAbstract linq2SQL = DataLayerAbstract.CreateLinq2SQL();
       Assert.IsNotNull(linq2SQL);
-      Assert.ThrowsException<NotImplementedException>(() => linq2SQL.Connect());
+      Assert.Throws<NotImplementedException>(() => linq2SQL.Connect());
     }
   }
 }

@@ -66,7 +66,7 @@ namespace TP.InformationComputation.AnonymousTypes
       dynamic += 1.5f; //conversion of the value of the float type to string is expected. The result is concatenated with the current value of the variable.
       Assert.AreEqual("String1.5", dynamic);
       Assert.AreEqual("1.5", 1.5f.ToString());
-      Assert.ThrowsException<RuntimeBinderException>(() => dynamic /= 1);
+      Assert.Throws<RuntimeBinderException>(() => dynamic /= 1);
     }
   }
 }

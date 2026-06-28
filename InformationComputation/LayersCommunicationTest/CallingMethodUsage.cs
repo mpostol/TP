@@ -34,7 +34,7 @@ namespace TP.InformationComputation.LayersCommunication
       callingMethod.Charlie();//the wrong sequence of calls, Bravo should be called before Charlie
       callingMethod.Bravo();
       callingMethod.Delta();
-      Assert.ThrowsException<ApplicationException>(() => callingMethod.CheckConsistency());
+      Assert.Throws<ApplicationException>(() => callingMethod.CheckConsistency());
     }
   }
 }

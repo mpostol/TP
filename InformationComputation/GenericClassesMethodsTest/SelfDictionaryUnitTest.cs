@@ -22,8 +22,8 @@ namespace TP.InformationComputation.GenericClassesMethods
       EquatableNotImplemented EquatableNotImplementedInstance = new EquatableNotImplemented();
       dictionary.AddIfNotPresent(EquatableNotImplementedInstance);
       Assert.AreEqual<int>(2, dictionary.Count);
-      Assert.ThrowsException<NotImplementedException>(() => dictionary.AddIfNotPresent(EquatableNotImplementedInstance));
-      Assert.ThrowsException<NotImplementedException>(() => dictionary.ContainsKey(EquatableNotImplementedInstance));
+      Assert.Throws<NotImplementedException>(() => dictionary.AddIfNotPresent(EquatableNotImplementedInstance));
+      Assert.Throws<NotImplementedException>(() => dictionary.ContainsKey(EquatableNotImplementedInstance));
     }
 
     //instrumentation

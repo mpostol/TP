@@ -20,15 +20,15 @@ namespace TP.InformationComputation.PartialDefinitions
     public void RegularMethodsCallTest()
     {
       PartialClass _newObject = new PartialClass();
-      Assert.ThrowsException<NotImplementedException>(() => _newObject.MethodPart1());
-      Assert.ThrowsException<NotImplementedException>(() => _newObject.MethodPart2());
+      Assert.Throws<NotImplementedException>(() => _newObject.MethodPart1());
+      Assert.Throws<NotImplementedException>(() => _newObject.MethodPart2());
     }
 
     [TestMethod]
     public void PartialMethodsCallTest()
     {
       PartialClass _newObject = new PartialClass();
-      Assert.ThrowsException<NotImplementedException>(() => _newObject.PartialMethodCall());
+      Assert.Throws<NotImplementedException>(() => _newObject.PartialMethodCall());
     }
 
     [TestMethod]
