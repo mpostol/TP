@@ -102,7 +102,7 @@ namespace TP.ConcurrentProgramming.Communication
     /// will be resumed from the 'port' queue. If there is no process, the message will be queued.
     /// </summary>
     /// <param name="mess">Message to be sent</param>
-    public void SendMsg(ref IEnvelope mess)
+    public void SendMsg(ref IEnvelope? mess)
     {
       EnterMonitor();
       try

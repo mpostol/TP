@@ -38,8 +38,8 @@ namespace TP.ConcurrentProgramming.BusinessLogic.Test
       newInstance.Dispose();
       newInstance.CheckObjectDisposed(x => newInstanceDisposed = x);
       Assert.IsTrue(newInstanceDisposed);
-      Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Dispose());
-      Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Start(0, (position, ball) => { }));
+      Assert.Throws<ObjectDisposedException>(() => newInstance.Dispose());
+      Assert.Throws<ObjectDisposedException>(() => newInstance.Start(0, (position, ball) => { }));
       Assert.IsTrue(dataLayerFixcure.Disposed);
     }
 

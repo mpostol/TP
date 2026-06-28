@@ -30,7 +30,7 @@ namespace TP.ConcurrentProgramming.Presentation.Model.Test
       newInstance.CheckObjectDisposed(x => Assert.IsTrue(x));
       newInstance.CheckUnderneathLayerAPI(x => Assert.AreSame(underneathLayerFixture, x));
       Assert.IsTrue(underneathLayerFixture.Disposed);
-      Assert.ThrowsException<ObjectDisposedException>(() => newInstance.Dispose());
+      Assert.Throws<ObjectDisposedException>(() => newInstance.Dispose());
     }
 
     [TestMethod]

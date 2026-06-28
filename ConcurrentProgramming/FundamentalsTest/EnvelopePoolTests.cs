@@ -29,7 +29,7 @@ namespace TP.ConcurrentProgramming.Fundamentals.Test
       EnvelopePool<IEnvelope> envelopePool = new(source => new Mock<IEnvelope>().Object);
 
       // Act & Assert
-      Assert.ThrowsException<NullReferenceException>(() => envelopePool.ReturnEmptyEnvelope(null));
+      Assert.Throws<NullReferenceException>(() => envelopePool.ReturnEmptyEnvelope(null));
     }
 
     [TestMethod]
@@ -80,7 +80,7 @@ namespace TP.ConcurrentProgramming.Fundamentals.Test
       IEnvelopeManager envelopePool = new EnvelopePool<IEnvelope>(source => mockEnvelope.Object);
 
       // Act & Assert
-      Assert.ThrowsException<InvalidOperationException>(() => envelopePool.ReturnEmptyEnvelope(mockEnvelope.Object));
+      Assert.Throws<InvalidOperationException>(() => envelopePool.ReturnEmptyEnvelope(mockEnvelope.Object));
     }
 
     [TestMethod]
@@ -92,7 +92,7 @@ namespace TP.ConcurrentProgramming.Fundamentals.Test
       envelopePool.ReturnEmptyEnvelope(mockEnvelope);
 
       // Act & Assert
-      Assert.ThrowsException<InvalidOperationException>(() => envelopePool.ReturnEmptyEnvelope(mockEnvelope));
+      Assert.Throws<InvalidOperationException>(() => envelopePool.ReturnEmptyEnvelope(mockEnvelope));
     }
 
     #region test instrumentation
