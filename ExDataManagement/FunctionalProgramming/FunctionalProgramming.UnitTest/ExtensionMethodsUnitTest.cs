@@ -50,7 +50,7 @@ namespace TP.ExDM.FunctionalProgramming
     {
       string testString = "Hello Extension Methods";
       Assert.IsTrue(testString.Contains("Hello")); //An extension method with the same name and signature as an interface or class method will never be called.
-      Assert.ThrowsException<NotImplementedException>(() => ExtensionMethods.Contains(testString, "Hello"));
+      Assert.Throws<NotImplementedException>(() => ExtensionMethods.Contains(testString, "Hello"));
     }
 
     /// <summary>
@@ -60,8 +60,8 @@ namespace TP.ExDM.FunctionalProgramming
     public void NullCallExceptionTest()
     {
       IMyInterface _myInterface = null;
-      Assert.ThrowsException<NullReferenceException>(() => _myInterface.MyInterfaceMethod()); //Here the runtime throws the exception NullReferenceException.
-      Assert.ThrowsException<ArgumentNullException>(() => _myInterface.ProtectedMyInterfaceMethodCall()); //Here the ProtectedMyInterfaceMethodCall method is executed despite the reference being null.
+      Assert.Throws<NullReferenceException>(() => _myInterface.MyInterfaceMethod()); //Here the runtime throws the exception NullReferenceException.
+      Assert.Throws<ArgumentNullException>(() => _myInterface.ProtectedMyInterfaceMethodCall()); //Here the ProtectedMyInterfaceMethodCall method is executed despite the reference being null.
     }
   }
 }

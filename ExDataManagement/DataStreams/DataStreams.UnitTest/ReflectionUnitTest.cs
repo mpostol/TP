@@ -57,9 +57,9 @@ namespace TP.ExDM.DataStreams
     public void AttachedPropertyTest()
     {
       Siyova16 _dataSource = new Siyova16(); //Create an instance of any class
-      Assert.ThrowsException<ArgumentNullException>(() => new AttachedProperty<double>(null, "Rewoca75"), "The exception must be thrown if dataSource is null");
-      Assert.ThrowsException<ArgumentException>(() => new AttachedProperty<string>(_dataSource, "Rewoca75"), "The exception must be thrown if properties types don't match");
-      Assert.ThrowsException<ArgumentException>(() => new AttachedProperty<double>(_dataSource, "Rewoca75" + "A"), "The exception must be thrown if property name is wrong");
+      Assert.Throws<ArgumentNullException>(() => new AttachedProperty<double>(null, "Rewoca75"), "The exception must be thrown if dataSource is null");
+      Assert.Throws<ArgumentException>(() => new AttachedProperty<string>(_dataSource, "Rewoca75"), "The exception must be thrown if properties types don't match");
+      Assert.Throws<ArgumentException>(() => new AttachedProperty<double>(_dataSource, "Rewoca75" + "A"), "The exception must be thrown if property name is wrong");
       AttachedProperty<double> _newProperty = new AttachedProperty<double>(_dataSource, "Rewoca75");
       _dataSource.Rewoca75 = 123456789.987;
       Assert.AreEqual<double>(123456789.987, _newProperty.Value);

@@ -4,7 +4,7 @@
     <AssemblyName>TP.ExDM.GraphicalData.ViewModel</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MSTest.Analyzers" Version="3.8.3">
+    <PackageReference Include="MSTest.Analyzers" Version="4.2.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

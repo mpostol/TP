@@ -114,7 +114,7 @@ namespace TP.ExDM.DataStreams.Cryptography
       Assert.IsNotNull(_signedXmlDocument2);
       const string _signedModifiedFileName = "SignedXmlFileWithSpace.xml";
       AddSpace(_signedFileName, _signedModifiedFileName);
-      Assert.ThrowsException<CryptographicException>(() => { XmlDocument _ = CryptographyHelpers.LoadVerifyXml(_rsaKeys, _signedModifiedFileName); });
+      Assert.Throws<CryptographicException>(() => { XmlDocument _ = CryptographyHelpers.LoadVerifyXml(_rsaKeys, _signedModifiedFileName); });
     }
 
     #region instrumentation

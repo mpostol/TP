@@ -52,7 +52,7 @@ namespace TP.ExDM.FunctionalProgramming
     {
       DelegateExample _newInstance = new DelegateExample();
       _newInstance.PerformCalculationVar = null;
-      Assert.ThrowsException<NullReferenceException>(() => _newInstance.PerformCalculationVar(0, 0));
+      Assert.Throws<NullReferenceException>(() => _newInstance.PerformCalculationVar(0, 0));
       _newInstance.PerformCalculationVar?.Invoke(0, 0); //thanks to the null-conditional operator nothing is invoked
     }
 
@@ -66,12 +66,12 @@ namespace TP.ExDM.FunctionalProgramming
     }
 
     [TestMethod]
-    [ExpectedException(typeof(OverflowException))]
+    //[ExpectedException(typeof(OverflowException))]
     public void OverflowTestMethod()
     {
       DelegateExample _newInstance = new DelegateExample();
       _newInstance.PerformCalculationVar = _newInstance.PerformSumMethod;
-      int _result = _newInstance.PerformCalculationVar(int.MaxValue, int.MaxValue);
+      Assert.Throws< OverflowException>(() => { int _result = _newInstance.PerformCalculationVar(int.MaxValue, int.MaxValue); });
     }
 
     [TestMethod]

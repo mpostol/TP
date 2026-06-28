@@ -8,7 +8,7 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 |       Release       | Title                                                                                                    |              DOI               |       Date        |
 |:-------------------:|----------------------------------------------------------------------------------------------------------|:------------------------------:|:-----------------:|
-| [5.20.05][REL52005] | [Programming in Practice - External Data Management - Structural Data Udemy Course][udemyStructuralData] | [![DOI][BDGL52005]][DOIL52005] |   June 16, 2026    |
+| [5.20.05][REL52005] | [Programming in Practice - External Data Management - Structural Data Udemy Course][udemyStructuralData] | [![DOI][BDGL52005]][DOIL52005] |   June 16, 2026   |
 | [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][udemyBitStreams]                                | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
 | [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                                                                | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
 | [5.20.01][REL52001] | [Graphical User Interface-Video Course; 2025 Summer][udemyGUI]                                           | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
