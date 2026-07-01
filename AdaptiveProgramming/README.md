@@ -1,4 +1,4 @@
-# C# in Practice - Adaptive Programming (AP)
+#  Programming in Practice - Adaptive Programming (AP)
 
 ## Key words
 
