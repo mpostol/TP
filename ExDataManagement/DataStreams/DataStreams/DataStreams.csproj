@@ -64,11 +64,11 @@
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.9" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.Bcl.Cryptography" Version="10.0.9" />
-        <PackageReference Include="System.Formats.Asn1" Version="10.0.9" />
+        <PackageReference Include="Microsoft.Bcl.Cryptography" Version="10.0.10" />
+        <PackageReference Include="System.Formats.Asn1" Version="10.0.10" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
         <PackageReference Include="System.Security.AccessControl" Version="6.0.1" />
-        <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.9" />
+        <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
         <PackageReference Include="System.Security.Permissions" Version="10.0.9" />
     </ItemGroup>
 </Project>
