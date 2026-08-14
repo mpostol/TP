@@ -1,6 +1,6 @@
 ---
 name: AP Refactoring
-about: Suggest an idea for the AP project
+about: Suggest an idea for the AdaptiveProgramming solution
 title: 'AP ....'
 labels: 'Refactoring'
 assignees: ''

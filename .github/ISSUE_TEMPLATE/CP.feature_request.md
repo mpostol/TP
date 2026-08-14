@@ -1,6 +1,6 @@
 ---
 name: CP Refactoring
-about: Suggest an idea for the CP project
+about: Suggest an idea for the ConcurrentProgramming solution
 title: 'CP ....'
 labels: 'Refactoring'
 assignees: ''

@@ -1,6 +1,6 @@
 ---
 name: ExDM Refactoring
-about: Suggest an idea for the ExDM project
+about: Suggest an idea for the ExDataManagement solution
 title: 'ExDM ....'
 labels: 'Refactoring'
 assignees: ''

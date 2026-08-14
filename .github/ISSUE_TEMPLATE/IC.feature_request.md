@@ -1,7 +1,7 @@
 ---
-name: IP Refactoring
-about: Suggest an idea for the IP project
-title: 'IP ....'
+name: IC Refactoring
+about: Suggest an idea for the InformationComputation solution
+title: 'IC ....'
 labels: 'Refactoring'
 assignees: ''
 ---

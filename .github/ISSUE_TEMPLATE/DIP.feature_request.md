@@ -1,6 +1,6 @@
 ---
 name: DP Refactoring
-about: Suggest an idea for the DP project
+about: Suggest an idea for the DistributedProgramming solution
 title: 'DP ....'
 labels: 'Refactoring'
 assignees: ''

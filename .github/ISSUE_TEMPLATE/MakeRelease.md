@@ -1,6 +1,6 @@
 ---
 name: Release new version
-about: Release new version after a milestone
+about: Release new version
 title: 'Release new version'
 labels: 'Refactoring'
 assignees: 'mpostol'
