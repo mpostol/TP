@@ -24,24 +24,24 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="3.1.2" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
-    <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Testing.Platform" Version="2.2.3" />
-    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" Version="2.2.3" />
-    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="18.7.0" />
-    <PackageReference Include="MSTest.Analyzers" Version="4.2.3">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" Version="2.3.3" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" Version="2.3.3" />
+    <PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" Version="2.3.3" />
+    <PackageReference Include="Microsoft.Testing.Platform" Version="2.3.3" />
+    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" Version="2.3.3" />
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="18.9.0" />
+    <PackageReference Include="MSTest.Analyzers" Version="4.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MSTest.TestAdapter" Version="4.2.3" />
-    <PackageReference Include="MSTest.TestFramework" Version="4.2.3" />
-    <PackageReference Include="NuGet.Frameworks" Version="7.6.0" />
-    <PackageReference Include="System.Collections.Immutable" Version="10.0.9" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="10.0.9" />
-    <PackageReference Include="System.Reflection.Metadata" Version="10.0.9" />
+    <PackageReference Include="MSTest.TestAdapter" Version="4.3.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="4.3.3" />
+    <PackageReference Include="NuGet.Frameworks" Version="7.9.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="10.0.11" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="10.0.11" />
+    <PackageReference Include="System.Reflection.Metadata" Version="10.0.11" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.9" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.11" />
   </ItemGroup>
 </Project>
