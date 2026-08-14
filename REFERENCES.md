@@ -2,8 +2,10 @@
 
 ## Programming in Practice
 
-- Postół, Mariusz; [Programming in Practice - External Data Management - Structural Data; Video Course;  2026][udemyStructuralData]
-- Postół, Mariusz; [Programming in Practice - External Data Management - Streaming Data; Video Course;  2026][udemyBitStreams]
+- Postół, Mariusz; [Programming in Practice - External Data Management - Toward Functional Programming; Video Course; 2026][udemyFP]
+- Postół, Mariusz; [Functional Programming Fundamentals](https://doi.org/10.13140/RG.2.2.20882.62404) Research Gate. July 2026; DOI: 10.13140/RG.2.2.20882.62404; Preprint (Preprints may not have been peer reviewed yet.)
+- Postół, Mariusz; [Programming in Practice - External Data Management - Structural Data; Video Course; 2026][udemyStructuralData]
+- Postół, Mariusz; [Programming in Practice - External Data Management - Streaming Data; Video Course; 2026][udemyBitStreams]
 - Postół, Mariusz; [Toward Functional Programming](https://doi.org/10.22541/au.175915460.00864426/v1) Authorea. September 29, 2025; Wiley; DOI: 10.22541/au.175915460.00864426/v1; Preprint - Submitted to Software: Practice and Experience
 - Postół, Mariusz; [Information, Knowledge, Algorithm versus Data and Program](http://dx.doi.org/10.22541/au.175647887.76173269/v1); 2025; Wiley; DOI: 10.22541/au.175647887.76173269/v1; Preprint - Submitted to Software: Practice and Experience
 - Postół, Mariusz; [Monitor Concept Deployment](http://dx.doi.org/10.22541/au.175455728.80471091/v1); 2025; Wiley; DOI: 10.22541/au.175455728.80471091/v1; Preprint - Submitted to Software: Practice and Experience
@@ -100,6 +102,7 @@
 [udemyGUI]:            https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
 [udemyBitStreams]:     https://www.udemy.com/course/pip-streaming-data/?referralCode=2FA98432EDF44274DA71
 [udemyStructuralData]: https://www.udemy.com/course/structural-data/?referralCode=62723DA72C4748A817DF
+[udemyFP]:             https://www.udemy.com/course/functional-programming/?referralCode=C115CFC61EC4C66C2739
 
 [TP]:                  https://github.com/mpostol/TP
 [Discussion]:          https://github.com/mpostol/TP/discussions
