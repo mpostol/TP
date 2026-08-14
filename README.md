@@ -6,22 +6,27 @@ software engineering, sequential programming, adaptive programming, concurrent p
 
 ## 1.2. Major Releases
 
-|       Release       | Title                                                                                                    |              DOI               |       Date        |
-|:-------------------:|----------------------------------------------------------------------------------------------------------|:------------------------------:|:-----------------:|
-| [5.20.05][REL52005] | [Programming in Practice - External Data Management - Structural Data Udemy Course][udemyStructuralData] | [![DOI][BDGL52005]][DOIL52005] |   June 16, 2026   |
-| [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][udemyBitStreams]                                | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
-| [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                                                                | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
-| [5.20.01][REL52001] | [Graphical User Interface-Video Course; 2025 Summer][udemyGUI]                                           | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
-|    [5.2][REL52]     | [External Data Added to the ebook][REL52]                                                                |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
-|    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC]                                    |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
-|    [4.3][REL43]     | TUL IT Classes 2023 Summer Semester                                                                      |     [![DOI][BDG43]][DOI43]     |   July 28, 2023   |
-|    [4.0][REL40]     | Distributed Programming                                                                                  |     [![DOI][BDG40]][DOI40]     |  October 5, 2020  |
-|    [3.0][REL30]     | [ExDM VideoBook Helion v1.0.][vdpnt]                                                                     |     [![DOI][BDG30]][DOI30]     | February 26, 2019 |
-|         2.0         | Adaptive Programming                                                                                     |               NA               |                   |
+|       Release       | Title                                                                                                       |              DOI               |       Date        |
+|:-------------------:|-------------------------------------------------------------------------------------------------------------|:------------------------------:|:-----------------:|
+| [5.20.06][REL52006] | [Programming in Practice - External Data Management - Toward Functional Programming; Udemy Course][udemyFP] | [![DOI][BDGL52006]][DOIL52006] |   Fri 8/14/2026   |
+| [5.20.05][REL52005] | [Programming in Practice - External Data Management - Structural Data Udemy Course][udemyStructuralData]    | [![DOI][BDGL52005]][DOIL52005] |   June 16, 2026   |
+| [5.20.04][REL52004] | [Programming in Practice - Streaming Data; Video Course][udemyBitStreams]                                   | [![DOI][BDGL52004]][DOIL52004] |  March 15, 2026   |
+| [5.20.03][REL52002] | [Toward Functional Programming][REL52002]                                                                   | [![DOI][BDGL52002]][DOIL52002] |   July 24, 2025   |
+| [5.20.01][REL52001] | [Graphical User Interface-Video Course; 2025 Summer][udemyGUI]                                              | [![DOI][BDGL52001]][DOIL52001] |   July 1, 2025    |
+|    [5.2][REL52]     | [External Data Added to the ebook][REL52]                                                                   |     [![DOI][BDG52]][DOI52]     |   July 9, 2024    |
+|    [5.1][REL51]     | [Information Computation Udemy Course Online Publication][udemyPiPIC]                                       |     [![DOI][BDG51]][DOI51]     |  August 1, 2023   |
+|    [4.3][REL43]     | TUL IT Classes 2023 Summer Semester                                                                         |     [![DOI][BDG43]][DOI43]     |   July 28, 2023   |
+|    [4.0][REL40]     | Distributed Programming                                                                                     |     [![DOI][BDG40]][DOI40]     |  October 5, 2020  |
+|    [3.0][REL30]     | [ExDM VideoBook Helion v1.0.][vdpnt]                                                                        |     [![DOI][BDG30]][DOI30]     | February 26, 2019 |
+|         2.0         | Adaptive Programming                                                                                        |               NA               |                   |
 
 >[**DOI**](https://www.doi.org/hb.html): Digital Object Identifiers (DOI) are the backbone of the academic reference and metrics system. It is aimed at researchers who want to cite GitHub repositories in academic literature. Use the [DOI](https://www.doi.org/) System to resolve a DOI name.
 >
 > [**TUL IT**][TULIT]: stands for Institute of Information Technology, Lodz University of Technology
+
+[REL52006]:  https://github.com/mpostol/TP/releases/tag/5.20.06
+[DOIL52006]: https://doi.org/10.5281/zenodo.21930874
+[BDGL52006]: https://zenodo.org/badge/DOI/10.5281/zenodo.21930874.svg
 
 [REL52005]: https://github.com/mpostol/TP/releases/tag/5.20.05
 [DOIL52005]: https://doi.org/10.5281/zenodo.20720700
@@ -31,7 +36,7 @@ software engineering, sequential programming, adaptive programming, concurrent p
 [DOIL52004]: https://doi.org/10.5281/zenodo.2578244
 [BDGL52004]: https://zenodo.org/badge/DOI/10.5281/zenodo.2578244.svg
 
-[REL52002]: https://github.com/mpostol/TP/releases/tag/5.20.02
+[REL52002]:  https://github.com/mpostol/TP/releases/tag/5.20.02
 [DOIL52002]: https://doi.org/10.5281/zenodo.16414132
 [BDGL52002]: https://zenodo.org/badge/DOI/10.5281/zenodo.16414132.svg
 
@@ -221,6 +226,7 @@ You may check out the document [References](REFERENCES.md) to encounter other re
 
 [MPGitHub]:            https://github.com/mpostol
 [MPUdemy]:             https://www.udemy.com/user/mariusz-postol/
+[udemyFP]:             https://www.udemy.com/course/functional-programming/?referralCode=C115CFC61EC4C66C2739
 [udemyStructuralData]: https://www.udemy.com/course/structural-data/?referralCode=62723DA72C4748A817DF
 [udemyBitStreams]:     https://www.udemy.com/course/pip-streaming-data/?referralCode=2FA98432EDF44274DA71
 [udemyGUI]:            https://www.udemy.com/course/graphical-data/?referralCode=D5A8424AF850FC91DEED
