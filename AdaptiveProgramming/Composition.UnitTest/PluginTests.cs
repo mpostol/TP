@@ -9,8 +9,6 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using System.Configuration;
 using TPA.Composition.Plugins.PluginContract;
 
@@ -56,7 +54,7 @@ namespace TPA.Composition.UnitTest
     {
       public StringContext(string currentText)
       {
-        this.m_Text = currentText;
+        m_Text = currentText;
       }
 
       public string Text { get => m_Text; set => m_Text = value; }

@@ -9,10 +9,10 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.ComponentModel.Composition;
+//using MSTest = Microsoft.VisualStudio.TestTools.UnitTesting; // Alias to resolve ambiguity
+
+using Microsoft.Testing.Platform.Logging;
 using System.ComponentModel.Composition.Hosting;
-using System.IO;
 
 namespace TPA.Composition.UnitTest
 {
@@ -32,25 +32,33 @@ namespace TPA.Composition.UnitTest
 
     private void ComposeParts(object attributedParts)
     {
-      //An aggregate catalog that combines multiple catalogs
       AggregateCatalog _catalog = new AggregateCatalog();
-      //Create the CompositionContainer with the parts in the catalog
       _catalog.Catalogs.Add(new DirectoryCatalog(Path.GetDirectoryName(typeof(MEFServiceLocatorUserUnitTest).Assembly.Location)));
       m_Container = new CompositionContainer(_catalog);
-      //Fill the imports of this object
-      //TODO AP `CompositionTestMethod1` sometime fails #166
       Assert.Inconclusive("AP `CompositionTestMethod1` sometime fails #166");
-      m_Container.ComposeParts(attributedParts);
+      // m_Container.ComposeParts(attributedParts);
     }
 
     private CompositionContainer m_Container = null;
   }
 
-  [Export(typeof(ILogger))]
   public class MEFILogger : ILogger
   {
-    internal static string LastLog { get; private set; }
 
+    internal static string? LastLog { get; private set; }
     public void Log(string msg) { LastLog = msg; }
+
+    public bool IsEnabled(LogLevel logLevel)
+    {
+      throw new NotImplementedException();
+    }
+    public void Log<TState>(LogLevel logLevel, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+    {
+      throw new NotImplementedException();
+    }
+    public Task LogAsync<TState>(LogLevel logLevel, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

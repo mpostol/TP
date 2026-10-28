@@ -9,8 +9,6 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using System.ComponentModel.Composition;
-
 namespace TPA.Composition
 {
   public class MEFServiceLocatorUser
@@ -21,7 +19,7 @@ namespace TPA.Composition
         Logger.Log("Executing DataProcessingWithSimpleLog");
     }
 
-    [Import(typeof(ILogger))]
-    public ILogger Logger { get; set; }
+    //[Import(typeof(ILogger))]
+    public ILogger? Logger { get; set; }
   }
 }

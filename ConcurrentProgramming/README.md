@@ -217,7 +217,7 @@ Ref [WaitHandle class and lightweight synchronization types](https://learn.micro
 
 ## 6. Real-Time Programming ✍🏻
 
-- **Definition**: Real-time programming involves writing software that guarantees response within strict timing constraints.
+- **Definition**: Real-time programming involves writing software that guarantees a response within strict timing constraints. ASAP - as soon as possible doesn't mean execution within strict timing constraints.
 - **Types**:
   - **Hard Real-Time**: Systems where missing a deadline can lead to catastrophic failures (e.g., medical devices, automotive systems).
   - **Soft Real-Time**: Systems where deadlines are important but not critical (e.g., video streaming).

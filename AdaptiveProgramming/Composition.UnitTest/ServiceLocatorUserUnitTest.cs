@@ -10,8 +10,6 @@
 //_____________________________________________________________________________________________________________________________________
 
 using CommonServiceLocator;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
 
 namespace TPA.Composition.UnitTest

@@ -9,10 +9,8 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
+
 using CommonServiceLocator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
 {

@@ -9,11 +9,9 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Xml;
 using TPA.Composition.Plugins.PluginContract;
+using System.Configuration;
 
 namespace TPA.Composition.Plugins.Handler
 {
@@ -29,8 +27,8 @@ namespace TPA.Composition.Plugins.Handler
       {
         try
         {
-          object _plugObject = Activator.CreateInstance(Type.GetType(node.Attributes["type"].Value));
-          IPlugin _plugin = (IPlugin)_plugObject;
+          object? _plugObject = Activator.CreateInstance(Type.GetType(node.Attributes["type"].Value));
+          IPlugin? _plugin = (IPlugin)_plugObject;
           _plugins.Add(_plugin);
         }
         catch (Exception) { }
