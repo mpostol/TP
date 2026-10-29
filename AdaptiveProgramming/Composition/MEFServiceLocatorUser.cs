@@ -11,6 +11,9 @@
 
 namespace TPA.Composition
 {
+  /// <summary>
+  /// Provides data processing functionality with optional logging support.
+  /// </summary>
   public class MEFServiceLocatorUser
   {
     public void DataProcessing()
@@ -19,7 +22,6 @@ namespace TPA.Composition
         Logger.Log("Executing DataProcessingWithSimpleLog");
     }
 
-    //[Import(typeof(ILogger))]
     public ILogger? Logger { get; set; }
   }
 }

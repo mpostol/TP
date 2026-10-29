@@ -11,8 +11,14 @@
 
 namespace TPA.Composition.Plugins.PluginContract
 {
+  /// <summary>
+  /// Plugin context interface. It is used to pass data between the host application and the plugin.
+  /// </summary>
   public interface IPluginContext
   {
+    /// <summary>
+    /// Gets or sets the text data for the plugin context.
+    /// </summary>
     string Text { get; set; }
   }
 }

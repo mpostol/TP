@@ -11,7 +11,10 @@
 
 namespace TPA.Composition
 {
-  public interface ILogger
+  /// <summary>
+  /// Logger interface for logging messages.
+  /// </summary>
+  public interface ILogger : IDisposable
   {
     void Log(string msg);
   }

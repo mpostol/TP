@@ -13,6 +13,9 @@ using Microsoft.Testing.Platform.Logging;
 
 namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
 {
+  /// <summary>
+  /// Logger implementation that stores log messages in memory. It implements the ILogger interface and provides a singleton instance for logging.
+  /// </summary>
   public class Logger : ILogger
   {
     public List<string> MemoryLog = new List<string>();
@@ -44,13 +47,29 @@ namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
       //return ((ILogger)LoggerInstance).IsEnabled(logLevel);
     }
 
+    #region IDisposable
+    public void Dispose()
+    {
+      throw new NotImplementedException();
+    }
+    #endregion
+
     #endregion
 
     private Logger() { }
   }
-
+  /// <summary>
+  /// Advanced logger implementation that provides additional logging functionality. It implements the ILogger interface and can be used for more complex logging scenarios.
+  /// </summary>
   public class AdvancedLogger : ILogger
   {
+    #region IDisposable
+    public void Dispose()
+    {
+      throw new NotImplementedException();
+    }
+    #endregion
+
     public bool IsEnabled(LogLevel logLevel)
     {
       throw new NotImplementedException();

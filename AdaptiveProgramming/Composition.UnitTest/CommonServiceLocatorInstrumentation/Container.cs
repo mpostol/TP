@@ -14,8 +14,15 @@ using CommonServiceLocator;
 
 namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
 {
+  /// <summary>
+  /// Container class that implements the ServiceLocator pattern using a collection of objects.
+  /// </summary>
   internal class Container : ServiceLocatorImplBase
   {
+    /// <summary>
+    /// Initializes a new instance of the Container class with the specified collection of objects.
+    /// </summary>
+    /// <param name="list">A collection of objects to include in the container.</param>
     public Container(IEnumerable<object> list)
     {
       m_ObjectsContainer = list;

@@ -30,6 +30,8 @@ namespace TPA.Composition.UnitTest
       Assert.IsFalse(string.IsNullOrEmpty(MEFILogger.LastLog));
     }
 
+    #region private instrumentation
+
     private void ComposeParts(object attributedParts)
     {
       AggregateCatalog _catalog = new AggregateCatalog();
@@ -38,8 +40,9 @@ namespace TPA.Composition.UnitTest
       Assert.Inconclusive("AP `CompositionTestMethod1` sometime fails #166");
       // m_Container.ComposeParts(attributedParts);
     }
+    private CompositionContainer? m_Container = null;
 
-    private CompositionContainer m_Container = null;
+    #endregion
   }
 
   public class MEFILogger : ILogger
@@ -48,6 +51,7 @@ namespace TPA.Composition.UnitTest
     internal static string? LastLog { get; private set; }
     public void Log(string msg) { LastLog = msg; }
 
+    #region ILogger
     public bool IsEnabled(LogLevel logLevel)
     {
       throw new NotImplementedException();
@@ -60,5 +64,13 @@ namespace TPA.Composition.UnitTest
     {
       throw new NotImplementedException();
     }
+    #endregion
+
+    #region IDisposable
+    public void Dispose()
+    {
+      throw new NotImplementedException();
+    }
+    #endregion  
   }
 }
