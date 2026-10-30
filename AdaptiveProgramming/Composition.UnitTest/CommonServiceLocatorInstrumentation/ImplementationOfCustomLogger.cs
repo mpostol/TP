@@ -9,8 +9,6 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using System.ComponentModel.Composition.Hosting;
-
 namespace TPA.Composition.UnitTest
 {
   /// <summary>

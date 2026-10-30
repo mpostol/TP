@@ -35,22 +35,4 @@ namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
     private Logger() { }
     #endregion  
   }
-  //  /// <summary>
-  //  /// Advanced logger implementation that provides additional logging functionality. It implements the ILogger interface and can be used for more complex logging scenarios.
-  //  /// </summary>
-  //  public class AdvancedLogger : ICustomILogger
-  //  {
-
-  //    //public bool IsEnabled(Microsoft.Testing.Platform.Logging.LogLevel logLevel)
-  //    //{
-  //    //  throw new NotImplementedException();
-  //    //}
-
-  //    public void Log(string msg)
-  //    {
-  //      throw new NotImplementedException();
-  //    }
-
-  //  }
-  //}
 }
