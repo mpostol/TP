@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2026, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -23,16 +23,16 @@ namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
     /// Initializes a new instance of the Container class with the specified collection of objects.
     /// </summary>
     /// <param name="list">A collection of objects to include in the container.</param>
-    public Container(IEnumerable<object> list)
+    public Container(IEnumerable<object>? list)
     {
-      m_ObjectsContainer = list;
+      m_ObjectsContainer = list ?? Enumerable.Empty<object>();
     }
 
     #region ServiceLocatorImplBase
 
     protected override object DoGetInstance(Type requestedType, string key)
     {
-      return String.IsNullOrEmpty(key) ? m_ObjectsContainer.First(o => requestedType.IsAssignableFrom(o.GetType()))
+      return string.IsNullOrEmpty(key) ? m_ObjectsContainer.First(o => requestedType.IsAssignableFrom(o.GetType()))
                                        : m_ObjectsContainer.First(o => requestedType.IsAssignableFrom(o.GetType()) && Equals(key, o.GetType().FullName));
     }
 

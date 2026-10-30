@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2026, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -24,14 +24,14 @@ namespace TPA.Composition
     public void DataProcessing()
     {
       IServiceLocator _locator = ServiceLocator.Current;
-      ILogger _logger = _locator.GetInstance<ILogger>();
+      ICustomILogger _logger = _locator.GetInstance<ICustomILogger>();
       _logger.Log("Executing DataProcessingWithSimpleLog");
     }
 
-    public void DataProcessing(string fullName)
+    public void DataProcessing(string? fullName)
     {
       IServiceLocator _locator = ServiceLocator.Current;
-      ILogger _logger = _locator.GetInstance<ILogger>(fullName);
+      ICustomILogger _logger = _locator.GetInstance<ICustomILogger>(fullName);
     }
 
     public void DataProcessingNullReferenceException()

@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2026, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -18,10 +18,10 @@ namespace TPA.Composition
   {
     public void DataProcessing()
     {
-      if (Logger != null)
-        Logger.Log("Executing DataProcessingWithSimpleLog");
+      if (logger != null)
+        logger.Log("Executing DataProcessingWithSimpleLog");
     }
 
-    public ILogger? Logger { get; set; }
+    public ICustomILogger? logger { get; set; }
   }
 }

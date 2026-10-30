@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2026, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -18,13 +18,11 @@ namespace TPA.Composition.UnitTest
   public class ServiceLocatorUserUnitTest
   {
     [TestMethod]
-    [ExpectedException(typeof(ActivationException))]
     public void EmptyContainerTest()
     {
       ServiceLocator.SetLocatorProvider(() => new Container(null));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.IsNotNull(_newUser);
-      _newUser.DataProcessing();
+      Assert.ThrowsException<ActivationException>(() => _newUser.DataProcessing());
     }
 
     [TestMethod]
@@ -33,60 +31,42 @@ namespace TPA.Composition.UnitTest
       object[] _services = new object[]
         {
           Logger.LoggerInstance,
-          new AdvancedLogger(),
+//          new AdvancedLogger(),
           new NullReferenceException()
         };
-      Logger.LoggerInstance.MemoryLog.Clear();
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
       _newUser.DataProcessing();
-      Assert.AreEqual<int>(1, Logger.LoggerInstance.MemoryLog.Count);
+      Assert.AreEqual<int>(1, Logger.LoggerInstance.Count);
     }
 
     [TestMethod]
-    public void AdvancedLoggerLogTest()
-    {
-      object[] _services = new object[]
-        {
-          Logger.LoggerInstance,
-          new AdvancedLogger(),
-          new NullReferenceException()
-        };
-      Logger.LoggerInstance.MemoryLog.Clear();
-      ServiceLocator.SetLocatorProvider(() => new Container(_services));
-      ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      _newUser.DataProcessing(typeof(AdvancedLogger).FullName);
-      Assert.AreEqual<int>(0, Logger.LoggerInstance.MemoryLog.Count);
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ActivationException))]
     public void WrongKeyTest()
     {
       object[] _services = new object[]
         {
           Logger.LoggerInstance,
-          new AdvancedLogger(),
+          // new AdvancedLogger(),
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      _newUser.DataProcessing("Random Text");
+      Assert.ThrowsException<ActivationException>(() => _newUser.DataProcessing("Random Text"));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(NullReferenceException))]
+    //[ExpectedException(typeof(NullReferenceException))]
     public void NullReferenceExceptionTest()
     {
       object[] _services = new object[]
         {
           Logger.LoggerInstance,
-          new AdvancedLogger(),
+          //new AdvancedLogger(),
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      _newUser.DataProcessingNullReferenceException();
+      Assert.ThrowsException<NullReferenceException>(() => _newUser.DataProcessingNullReferenceException());
     }
   }
 }

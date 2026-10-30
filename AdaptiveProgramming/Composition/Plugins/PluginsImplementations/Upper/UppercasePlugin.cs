@@ -1,6 +1,6 @@
 ﻿//____________________________________________________________________________________________________________________________________
 //
-//  Copyright (C) 2023, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2026, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community by pressing the `Watch` button and get started commenting using the discussion panel at
 //
@@ -13,7 +13,10 @@ using TPA.Composition.Plugins.PluginContract;
 
 namespace TPA.Composition.Plugins.PluginsImplementations.Upper
 {
-  class UppercasePlugin : IPlugin
+  /// <summary>
+  /// Represents a plugin (user service) that converts text to uppercase.
+  /// </summary>
+  internal class UppercasePlugin : IPlugin
   {
     public string Name { get => "Uppercase Plugin"; }
 
