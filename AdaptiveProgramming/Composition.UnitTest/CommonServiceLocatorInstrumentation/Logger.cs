@@ -14,7 +14,7 @@ namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
   /// <summary>
   /// Logger implementation that stores log messages in memory. It implements the ILogger interface and provides a singleton instance for logging.
   /// </summary>
-  public class Logger : ICustomILogger
+  public class Logger : ICustomLogger
   {
     /// <summary>
     /// Singleton instance of the Logger class. It provides a single point of access to the logger functionality.

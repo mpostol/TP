@@ -24,14 +24,14 @@ namespace TPA.Composition
     public void DataProcessing()
     {
       IServiceLocator _locator = ServiceLocator.Current;
-      ICustomILogger _logger = _locator.GetInstance<ICustomILogger>();
+      ICustomLogger _logger = _locator.GetInstance<ICustomLogger>();
       _logger.Log("Executing DataProcessingWithSimpleLog");
     }
 
     public void DataProcessing(string? fullName)
     {
       IServiceLocator _locator = ServiceLocator.Current;
-      ICustomILogger _logger = _locator.GetInstance<ICustomILogger>(fullName);
+      ICustomLogger _logger = _locator.GetInstance<ICustomLogger>(fullName);
     }
 
     public void DataProcessingNullReferenceException()

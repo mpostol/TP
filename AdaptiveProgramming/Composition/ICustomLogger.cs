@@ -14,7 +14,7 @@ namespace TPA.Composition
   /// <summary>
   /// Logger interface for logging messages.
   /// </summary>
-  public interface ICustomILogger
+  public interface ICustomLogger
   {
     void Log(string msg);
   }
