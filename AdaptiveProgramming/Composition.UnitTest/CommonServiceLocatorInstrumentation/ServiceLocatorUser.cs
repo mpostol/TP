@@ -21,23 +21,24 @@ namespace TPA.Composition
         throw new ActivationException("I cannot compose my stuff because the ServiceLocator.Current is null");
     }
 
-    public void DataProcessing()
+    public TService DataProcessing<TService>()
     {
       IServiceLocator _locator = ServiceLocator.Current;
-      ICustomLogger _logger = _locator.GetInstance<ICustomLogger>();
-      _logger.Log("Executing DataProcessingWithSimpleLog");
+      return _locator.GetInstance<TService>() ?? throw new ArgumentNullException("Service", "The logger instance is null");
+      //_logger.Log("Executing DataProcessingWithSimpleLog");
     }
 
     public void DataProcessing(string? fullName)
     {
       IServiceLocator _locator = ServiceLocator.Current;
-      ICustomLogger _logger = _locator.GetInstance<ICustomLogger>(fullName);
+      ICustomLogger _logger = _locator.GetInstance<ICustomLogger>(fullName) ?? throw new ArgumentNullException(nameof(_logger), "The logger instance is null");
+      _logger.Log("Executing DataProcessingWithSimpleLog");
     }
 
     public void DataProcessingNullReferenceException()
     {
       IServiceLocator _locator = ServiceLocator.Current;
-      Exception _exception = _locator.GetInstance<Exception>();
+      Exception _exception = _locator.GetInstance<Exception>() ?? throw new ArgumentNullException(nameof(_exception), "The exception instance is null");
       throw _exception;
     }
   }

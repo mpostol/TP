@@ -17,6 +17,7 @@ namespace TPA.Composition.UnitTest
   public class ImplementationOfCustomLogger : ICustomLogger
   {
 
+    internal static ImplementationOfCustomLogger LoggerInstance { get; } = new ImplementationOfCustomLogger();
     internal static string? LastLog { get; private set; }
 
     #region ICustomLogger

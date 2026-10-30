@@ -10,6 +10,7 @@
 //_____________________________________________________________________________________________________________________________________
 
 using CommonServiceLocator;
+using Composition.UnitTest.CommonServiceLocatorInstrumentation;
 using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
 
 namespace TPA.Composition.UnitTest
@@ -22,7 +23,7 @@ namespace TPA.Composition.UnitTest
     {
       ServiceLocator.SetLocatorProvider(() => new Container(null));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.ThrowsException<ActivationException>(() => _newUser.DataProcessing());
+      Assert.ThrowsException<ActivationException>(() => _newUser.DataProcessing<ICustomLogger>());
     }
 
     [TestMethod]
@@ -31,12 +32,15 @@ namespace TPA.Composition.UnitTest
       object[] _services = new object[]
         {
           Logger.LoggerInstance,
-//          new AdvancedLogger(),
+          ImplementationOfCustomLogger.LoggerInstance,
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      _newUser.DataProcessing();
+
+      ICustomLogger _logger = _newUser.DataProcessing<ICustomLogger>();
+      Assert.IsNotNull(_logger);
+      _logger.Log("Random Text");
       Assert.AreEqual<int>(1, Logger.LoggerInstance.Count);
     }
 
