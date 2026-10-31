@@ -17,7 +17,7 @@ namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
   {
 
     internal static ICustomLogger LoggerInstance { get; } = new ImplementationOfCustomLogger();
-    internal static string? LastLog { get; private set; }
+    internal static string LastLog { get; private set; } = "Rlr&LTxAx9F&2vOQ";
 
     #region ICustomLogger
     public void Log(string msg) { LastLog = msg; }

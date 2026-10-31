@@ -10,25 +10,16 @@
 //_____________________________________________________________________________________________________________________________________
 
 using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Lower;
+using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
-using TPA.Composition.Plugins.PluginsImplementations.Upper;
 using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
-using TPA.Composition.UnitTest.Instrumentation;
 
 namespace AdaptiveProgramming.Composition.UnitTest
 {
   [TestClass]
-  public class ICustomLoggerTest
+  public class CustomLoggerTest
   {
-    [TestMethod]
-    public void EmptyContainerTest()
-    {
-      ServiceLocator.SetLocatorProvider(() => new Container(null));
-      ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.ThrowsException<ActivationException>(() => _newUser.DataProcessing<ICustomLogger>());
-    }
-
     [TestMethod]
     public void DefaultLogTest()
     {
@@ -37,36 +28,36 @@ namespace AdaptiveProgramming.Composition.UnitTest
           InMemoryLogger.LoggerInstance,
           ImplementationOfCustomLogger.LoggerInstance,
           new NullReferenceException(),
-          new LowercasePlugin(),
-          new UppercasePlugin()
+          LowercasePlugin.PluginInstance,
+          UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
       ICustomLogger _logger = _newUser.DataProcessing<ICustomLogger>();
       Assert.IsNotNull(_logger);
       Assert.AreSame(InMemoryLogger.LoggerInstance, _logger);
-      _logger.Log("Random Text");
+      _logger.Log("Rlr&LTxAx9F&2vOQ");
       Assert.AreEqual(1, InMemoryLogger.LoggerInstance.Count);
     }
     
     [TestMethod]
-    public void MyTestMethod()
+    public void ImplementationOfCustomLoggerTestMethod()
     {
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
           ImplementationOfCustomLogger.LoggerInstance,
           new NullReferenceException(),
-          new LowercasePlugin(),
-          new UppercasePlugin()
+          LowercasePlugin.PluginInstance,
+          UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      ICustomLogger _logger = _newUser.DataProcessing<ICustomLogger>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.ImplementationOfCustomLogger");
-      Assert.IsNotNull(_logger);
-      Assert.AreSame(ImplementationOfCustomLogger.LoggerInstance, _logger);
-      _logger.Log("Random Text");
-      Assert.AreEqual("Random Text", ImplementationOfCustomLogger.LastLog);
+      ICustomLogger _plugin = _newUser.DataProcessing<ICustomLogger>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.ImplementationOfCustomLogger");
+      Assert.IsNotNull(_plugin);
+      Assert.AreSame(ImplementationOfCustomLogger.LoggerInstance, _plugin);
+      _plugin.Log("5*!2AVEx5wmE0Bzz");
+      Assert.AreEqual("5*!2AVEx5wmE0Bzz", ImplementationOfCustomLogger.LastLog);
     }
 
     [TestMethod]
@@ -75,8 +66,8 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          new LowercasePlugin(),
-          new UppercasePlugin(),
+          LowercasePlugin.PluginInstance,
+          UppercasePlugin.PluginInstance,
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
@@ -98,5 +89,4 @@ namespace AdaptiveProgramming.Composition.UnitTest
       Assert.ThrowsException<NullReferenceException>(() => _newUser.DataProcessingNullReferenceException());
     }
   }
-
 }

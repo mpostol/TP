@@ -9,9 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using AdaptiveProgramming.Composition;
-
-namespace TPA.Composition.UnitTest.Instrumentation
+namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
 {
   /// <summary>
   /// Logger implementation that stores log messages in memory. It implements the ILogger interface and provides a singleton instance for logging.

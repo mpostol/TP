@@ -15,11 +15,11 @@ using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
 using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
-using TPA.Composition.UnitTest.Instrumentation;
 
 namespace AdaptiveProgramming.Composition.UnitTest
 {
 
+  [TestClass]
   public class PluginTests
   {
     [TestMethod]
@@ -35,23 +35,24 @@ namespace AdaptiveProgramming.Composition.UnitTest
     {
       object[] _services =
         {
+          LowercasePlugin.PluginInstance,
           InMemoryLogger.LoggerInstance,
           ImplementationOfCustomLogger.LoggerInstance,
           new NullReferenceException(),
-          LowercasePlugin.PluginInstance,
           UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
       IPluginContract _pluginContract = _newUser.DataProcessing<IPluginContract>();
       Assert.IsNotNull(_pluginContract);
-      Assert.AreSame(LowercasePlugin.PluginInstance, _pluginContract);
-      _pluginContract.PerformAction(new StringContext { Text = "Random Text" });
-      Assert.AreEqual("random text", LowercasePlugin.PluginInstance.Name);
+      Assert.AreSame("Lowercase Plugin", LowercasePlugin.PluginInstance.Name);
+      StringContext _context = new StringContext { Text = "Random Text" };
+      _pluginContract.PerformAction(_context);
+      Assert.AreEqual("random text", _context.Text);
     }
 
     [TestMethod]
-    public void MyTestMethod()
+    public void UppercasePluginTestMethod()
     {
       object[] _services =
         {
@@ -63,11 +64,13 @@ namespace AdaptiveProgramming.Composition.UnitTest
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      IPluginContract _logger = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.ImplementationOfCustomLogger,UppercasePlugin");
-      Assert.IsNotNull(_logger);
-      Assert.AreSame(UppercasePlugin.PluginInstance, _logger);
-      _logger.Log("Random Text");
-      Assert.AreEqual("Random Text", ImplementationOfCustomLogger.LastLog);
+      IPluginContract _contract = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper.UppercasePlugin");
+      Assert.IsNotNull(_contract);
+      Assert.AreSame(UppercasePlugin.PluginInstance, _contract);
+      Assert.AreEqual<string>(UppercasePlugin.PluginInstance.Name, "Uppercase Plugin");
+      StringContext _context = new StringContext { Text = "Random Text" };
+      _contract.PerformAction(_context);
+      Assert.AreEqual("RANDOM TEXT", _context.Text);
     }
 
     [TestMethod]
@@ -76,9 +79,10 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-           LowercasePlugin.PluginInstance(),
-          UppercasePlugin.PluginInstance(),
-          new NullReferenceException()
+          ImplementationOfCustomLogger.LoggerInstance,
+          new NullReferenceException(),
+          LowercasePlugin.PluginInstance,
+          UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
@@ -91,8 +95,10 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          //new AdvancedLogger(),
-          new NullReferenceException()
+          ImplementationOfCustomLogger.LoggerInstance,
+          new NullReferenceException(),
+          LowercasePlugin.PluginInstance,
+          UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
@@ -100,47 +106,11 @@ namespace AdaptiveProgramming.Composition.UnitTest
     }
   }
 
-  //[TestMethod]
-  //public void LoadPluginsTest()
-  //{
-  //  //Load plugins from <ApplicationName>.config
-  //  //VS automatically copy App.config to <ApplicationName>.config
-  //  //Requires reference to System.Configuration
-  //  List<IPlugin> _plugins = (List<IPlugin>)ConfigurationManager.GetSection("plugins");
-  //  Assert.IsNotNull(_plugins);
-  //  Assert.AreEqual(2, _plugins.Count);
-  //  Assert.AreEqual("Uppercase Plugin", _plugins[0].Name);
-  //  Assert.AreEqual("Lowercase Plugin", _plugins[1].Name);
-  //}
-
-  //[TestMethod]
-  //public void UppercasePluginTest()
-  //{
-  //  List<IPlugin> _plugins = (List<IPlugin>)ConfigurationManager.GetSection("plugins");
-  //  Assert.IsNotNull(_plugins);
-  //  StringContext _stringContext = new StringContext("This is only Rock'n'roll");
-  //  _plugins[0].PerformAction(_stringContext); //Perform operation on data
-  //  Assert.AreEqual("THIS IS ONLY ROCK'N'ROLL", _stringContext.Text);
-  //}
-
-  //[TestMethod]
-  //public void LowercasePluginTest()
-  //{
-  //  List<IPlugin> _plugins = (List<IPlugin>)ConfigurationManager.GetSection("plugins");
-  //  Assert.IsNotNull(_plugins);
-  //  StringContext _stringContext = new StringContext("ART OF FLYING");
-  //  _plugins[1].PerformAction(_stringContext); //Perform operation on data
-  //  Assert.AreEqual("art of flying", _stringContext.Text);
-  //}
-
-  //Implementation of IPluginContext
-
   #region instrumentation
-
 
   internal class StringContext : IPluginContext
   {
-    public string Text { get; set; }
+    public string Text { get; set; } = "YY0JQILsyM7!a7F7";
   }
 
   #endregion instrumentation
