@@ -9,14 +9,14 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using TPA.Composition.Plugins.PluginContract;
+using AdaptiveProgramming.Composition.Plugins.PluginContract;
 
 namespace TPA.Composition.Plugins.PluginsImplementations.Upper
 {
   /// <summary>
   /// Represents a plugin (user service) that converts text to uppercase.
   /// </summary>
-  public class UppercasePlugin : IPlugin
+  public class UppercasePlugin : IPluginContract
   {
     public string Name { get => "Uppercase Plugin"; }
 

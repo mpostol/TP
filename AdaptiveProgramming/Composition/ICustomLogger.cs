@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TPA.Composition
+namespace AdaptiveProgramming.Composition
 {
   /// <summary>
   /// Logger interface for logging messages.

@@ -9,6 +9,8 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
+using AdaptiveProgramming.Composition;
+
 namespace TPA.Composition.UnitTest.Instrumentation
 {
   /// <summary>

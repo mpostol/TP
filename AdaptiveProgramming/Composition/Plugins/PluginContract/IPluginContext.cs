@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TPA.Composition.Plugins.PluginContract
+namespace AdaptiveProgramming.Composition.Plugins.PluginContract
 {
   /// <summary>
   /// Plugin context interface. It is used to pass data between the host application and the plugin.

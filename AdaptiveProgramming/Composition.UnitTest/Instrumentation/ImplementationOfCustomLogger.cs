@@ -8,10 +8,7 @@
 //
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
-
-using TPA.Composition;
-
-namespace TPA.Composition.UnitTest.Instrumentation
+namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
 {
   /// <summary>
   /// Implementation of <see cref="ICustomLogger"/> for unit testing purposes.
