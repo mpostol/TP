@@ -9,19 +9,17 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using TPA.Composition;
-
-namespace Composition.UnitTest.CommonServiceLocatorInstrumentation
+namespace TPA.Composition.UnitTest.Instrumentation
 {
   /// <summary>
   /// Logger implementation that stores log messages in memory. It implements the ILogger interface and provides a singleton instance for logging.
   /// </summary>
-  public class Logger : ICustomLogger
+  public class InMemoryLogger : ICustomLogger
   {
     /// <summary>
     /// Singleton instance of the Logger class. It provides a single point of access to the logger functionality.
     /// </summary>
-    public static Logger LoggerInstance { get; } = new Logger();
+    public static InMemoryLogger LoggerInstance { get; } = new InMemoryLogger();
 
     public void Log(string msg)
     {
@@ -33,8 +31,8 @@ namespace Composition.UnitTest.CommonServiceLocatorInstrumentation
     #endregion
 
     #region private
-    private List<string> MemoryLog = new List<string>();
-    private Logger() { }
+    private readonly List<string> MemoryLog = [];
+    private InMemoryLogger() { }
     #endregion  
   }
 }

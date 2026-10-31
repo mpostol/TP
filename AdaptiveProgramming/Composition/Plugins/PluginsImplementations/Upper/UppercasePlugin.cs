@@ -16,7 +16,7 @@ namespace TPA.Composition.Plugins.PluginsImplementations.Upper
   /// <summary>
   /// Represents a plugin (user service) that converts text to uppercase.
   /// </summary>
-  internal class UppercasePlugin : IPlugin
+  public class UppercasePlugin : IPlugin
   {
     public string Name { get => "Uppercase Plugin"; }
 

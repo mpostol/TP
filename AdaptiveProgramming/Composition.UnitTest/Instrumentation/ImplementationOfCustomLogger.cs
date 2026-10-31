@@ -9,7 +9,9 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace TPA.Composition.UnitTest
+using TPA.Composition;
+
+namespace TPA.Composition.UnitTest.Instrumentation
 {
   /// <summary>
   /// Implementation of <see cref="ICustomLogger"/> for unit testing purposes.
@@ -17,7 +19,7 @@ namespace TPA.Composition.UnitTest
   public class ImplementationOfCustomLogger : ICustomLogger
   {
 
-    internal static ImplementationOfCustomLogger LoggerInstance { get; } = new ImplementationOfCustomLogger();
+    internal static ICustomLogger LoggerInstance { get; } = new ImplementationOfCustomLogger();
     internal static string? LastLog { get; private set; }
 
     #region ICustomLogger

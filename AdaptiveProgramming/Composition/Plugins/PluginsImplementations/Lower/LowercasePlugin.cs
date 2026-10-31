@@ -16,7 +16,7 @@ namespace TPA.Composition.Plugins.PluginsImplementations.Lower
   /// <summary>
   /// Represents a plugin (user service) that converts text to lowercase.
   /// </summary>
-  internal class LowercasePlugin : IPlugin
+  public class LowercasePlugin : IPlugin
   {
     public string Name { get => "Lowercase Plugin"; }
 
