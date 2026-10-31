@@ -11,9 +11,9 @@
 
 using AdaptiveProgramming.Composition.Plugins.PluginContract;
 using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Lower;
+using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
-using TPA.Composition.Plugins.PluginsImplementations.Upper;
 using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
 using TPA.Composition.UnitTest.Instrumentation;
 
@@ -27,7 +27,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
     {
       ServiceLocator.SetLocatorProvider(() => new Container(null));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      Assert.ThrowsException<ActivationException>(() => _newUser.DataProcessing<ICustomLogger>());
+      Assert.ThrowsException<ActivationException>(() => _newUser.DataProcessing<IPluginContract>());
     }
 
     [TestMethod]
@@ -38,16 +38,16 @@ namespace AdaptiveProgramming.Composition.UnitTest
           InMemoryLogger.LoggerInstance,
           ImplementationOfCustomLogger.LoggerInstance,
           new NullReferenceException(),
-          new LowercasePlugin(),
-          new UppercasePlugin()
+          LowercasePlugin.PluginInstance,
+          UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      ICustomLogger _logger = _newUser.DataProcessing<ICustomLogger>();
-      Assert.IsNotNull(_logger);
-      Assert.AreSame(InMemoryLogger.LoggerInstance, _logger);
-      _logger.Log("Random Text");
-      Assert.AreEqual(1, InMemoryLogger.LoggerInstance.Count);
+      IPluginContract _pluginContract = _newUser.DataProcessing<IPluginContract>();
+      Assert.IsNotNull(_pluginContract);
+      Assert.AreSame(LowercasePlugin.PluginInstance, _pluginContract);
+      _pluginContract.PerformAction(new StringContext { Text = "Random Text" });
+      Assert.AreEqual("random text", LowercasePlugin.PluginInstance.Name);
     }
 
     [TestMethod]
@@ -58,14 +58,14 @@ namespace AdaptiveProgramming.Composition.UnitTest
           InMemoryLogger.LoggerInstance,
           ImplementationOfCustomLogger.LoggerInstance,
           new NullReferenceException(),
-          new LowercasePlugin(),
-          new UppercasePlugin()
+          LowercasePlugin.PluginInstance,
+          UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      ICustomLogger _logger = _newUser.DataProcessing<ICustomLogger>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.ImplementationOfCustomLogger");
+      IPluginContract _logger = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.ImplementationOfCustomLogger,UppercasePlugin");
       Assert.IsNotNull(_logger);
-      Assert.AreSame(ImplementationOfCustomLogger.LoggerInstance, _logger);
+      Assert.AreSame(UppercasePlugin.PluginInstance, _logger);
       _logger.Log("Random Text");
       Assert.AreEqual("Random Text", ImplementationOfCustomLogger.LastLog);
     }
@@ -76,8 +76,8 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          new LowercasePlugin(),
-          new UppercasePlugin(),
+           LowercasePlugin.PluginInstance(),
+          UppercasePlugin.PluginInstance(),
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
@@ -100,33 +100,6 @@ namespace AdaptiveProgramming.Composition.UnitTest
     }
   }
 
-  internal class ServiceLocatorUser
-  {
-    public ServiceLocatorUser()
-    {
-      if (!ServiceLocator.IsLocationProviderSet)
-        throw new ActivationException("I cannot compose my stuff because the ServiceLocator.Current is null");
-    }
-
-    public TService DataProcessing<TService>()
-    {
-      IServiceLocator _locator = ServiceLocator.Current;
-      return _locator.GetInstance<TService>() ?? throw new ArgumentNullException("Service", "The logger instance is null");
-    }
-
-    public TService DataProcessing<TService>(string? fullName)
-    {
-      IServiceLocator _locator = ServiceLocator.Current;
-      return _locator.GetInstance<TService>(fullName) ?? throw new ArgumentNullException("Service", "The service instance is null");
-    }
-
-    public void DataProcessingNullReferenceException()
-    {
-      IServiceLocator _locator = ServiceLocator.Current;
-      Exception _exception = _locator.GetInstance<Exception>() ?? throw new ArgumentNullException(nameof(_exception), "The exception instance is null");
-      throw _exception;
-    }
-  }
   //[TestMethod]
   //public void LoadPluginsTest()
   //{
@@ -160,21 +133,15 @@ namespace AdaptiveProgramming.Composition.UnitTest
   //  Assert.AreEqual("art of flying", _stringContext.Text);
   //}
 
+  //Implementation of IPluginContext
+
   #region instrumentation
 
-  //Implementation of IPluginContext
+
   internal class StringContext : IPluginContext
   {
-    public StringContext(string currentText)
-    {
-      m_Text = currentText;
-    }
-
-    public string Text { get => m_Text; set => m_Text = value; }
-
-    private string m_Text;
+    public string Text { get; set; }
   }
 
   #endregion instrumentation
-}
 }

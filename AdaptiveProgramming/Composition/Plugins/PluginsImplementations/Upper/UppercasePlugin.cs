@@ -11,7 +11,7 @@
 
 using AdaptiveProgramming.Composition.Plugins.PluginContract;
 
-namespace TPA.Composition.Plugins.PluginsImplementations.Upper
+namespace AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper
 {
   /// <summary>
   /// Represents a plugin (user service) that converts text to uppercase.
@@ -24,5 +24,16 @@ namespace TPA.Composition.Plugins.PluginsImplementations.Upper
     {
       context.Text = context.Text.ToUpper();
     }
+    #region Singleton implementation
+    /// <summary>
+    /// Singleton instance of the UppercasePlugin class. It provides a single point of access to the plugin functionality.
+    /// </summary>
+    public static IPluginContract PluginInstance { get; } = new UppercasePlugin();
+    /// <summary>
+    /// Constructor for the LowercasePlugin class. It is private to enforce the singleton pattern and prevent direct instantiation from outside the class.
+    /// </summary>
+    private UppercasePlugin() { }
+    #endregion
+
   }
 }

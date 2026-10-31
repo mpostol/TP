@@ -24,5 +24,15 @@ namespace AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Lower
     {
       context.Text = context.Text.ToLower();
     }
+    #region Singleton implementation
+    /// <summary>
+    /// Singleton instance of the LowercasePlugin class. It provides a single point of access to the plugin functionality.
+    /// </summary>
+    public static IPluginContract PluginInstance { get; } = new LowercasePlugin();
+    /// <summary>
+    /// Constructor for the LowercasePlugin class. It is private to enforce the singleton pattern and prevent direct instantiation from outside the class.
+    /// </summary>
+    private LowercasePlugin() { } 
+    #endregion
   }
 }

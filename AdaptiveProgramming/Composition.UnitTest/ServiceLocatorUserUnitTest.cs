@@ -94,36 +94,9 @@ namespace AdaptiveProgramming.Composition.UnitTest
           new NullReferenceException()
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
-      ServiceLocatorUser _newUser = new ServiceLocatorUser();
+      ServiceLocatorUser _newUser = new ();
       Assert.ThrowsException<NullReferenceException>(() => _newUser.DataProcessingNullReferenceException());
     }
   }
 
-  internal class ServiceLocatorUser
-  {
-    public ServiceLocatorUser()
-    {
-      if (!ServiceLocator.IsLocationProviderSet)
-        throw new ActivationException("I cannot compose my stuff because the ServiceLocator.Current is null");
-    }
-
-    public TService DataProcessing<TService>()
-    {
-      IServiceLocator _locator = ServiceLocator.Current;
-      return _locator.GetInstance<TService>() ?? throw new ArgumentNullException("Service", "The logger instance is null");
-    }
-
-    public TService DataProcessing<TService>(string? fullName)
-    {
-      IServiceLocator _locator = ServiceLocator.Current;
-      return _locator.GetInstance<TService>(fullName) ?? throw new ArgumentNullException("Service", "The service instance is null");
-    }
-
-    public void DataProcessingNullReferenceException()
-    {
-      IServiceLocator _locator = ServiceLocator.Current;
-      Exception _exception = _locator.GetInstance<Exception>() ?? throw new ArgumentNullException(nameof(_exception), "The exception instance is null");
-      throw _exception;
-    }
-  }
 }
