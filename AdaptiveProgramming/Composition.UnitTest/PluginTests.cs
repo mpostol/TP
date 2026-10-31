@@ -67,7 +67,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
       IPluginContract _contract = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper.UppercasePlugin");
       Assert.IsNotNull(_contract);
       Assert.AreSame(UppercasePlugin.PluginInstance, _contract);
-      Assert.AreEqual<string>(UppercasePlugin.PluginInstance.Name, "Uppercase Plugin");
+      Assert.AreEqual(UppercasePlugin.PluginInstance.Name, "Uppercase Plugin");
       StringContext _context = new StringContext { Text = "Random Text" };
       _contract.PerformAction(_context);
       Assert.AreEqual("RANDOM TEXT", _context.Text);
