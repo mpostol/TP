@@ -11,6 +11,7 @@
 
 using AdaptiveProgramming.Composition.Contracts;
 using AdaptiveProgramming.Composition.PluginsImplementations;
+using AdaptiveProgramming.Composition.UnitTest.Implementation;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
 

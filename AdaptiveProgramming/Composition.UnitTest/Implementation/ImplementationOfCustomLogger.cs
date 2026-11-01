@@ -8,9 +8,10 @@
 //
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
+
 using AdaptiveProgramming.Composition.Contracts;
 
-namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
+namespace AdaptiveProgramming.Composition.UnitTest.Implementation
 {
   /// <summary>
   /// Implementation of <see cref="ICustomLogger"/> for unit testing purposes.

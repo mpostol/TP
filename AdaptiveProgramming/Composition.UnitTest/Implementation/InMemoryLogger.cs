@@ -10,8 +10,9 @@
 //_____________________________________________________________________________________________________________________________________
 
 using AdaptiveProgramming.Composition.Contracts;
+using System.Diagnostics;
 
-namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
+namespace AdaptiveProgramming.Composition.UnitTest.Implementation
 {
   /// <summary>
   /// Logger implementation that stores log messages in memory. It implements the ILogger interface and provides a singleton instance for logging.
@@ -29,12 +30,14 @@ namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
     }
 
     #region Debug infrastructure
-    internal int Count => MemoryLog.Count;
+    [Conditional("DEBUG")]
+    internal void Count(Action<int> result) { result(MemoryLog.Count); }
     #endregion
 
     #region private
     private readonly List<string> MemoryLog = [];
     private InMemoryLogger() { }
     #endregion  
+
   }
 }

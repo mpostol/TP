@@ -11,6 +11,7 @@
 
 using AdaptiveProgramming.Composition.Contracts;
 using AdaptiveProgramming.Composition.PluginsImplementations;
+using AdaptiveProgramming.Composition.UnitTest.Implementation;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
 
@@ -36,7 +37,9 @@ namespace AdaptiveProgramming.Composition.UnitTest
       Assert.IsNotNull(_logger);
       Assert.AreSame(InMemoryLogger.LoggerInstance, _logger);
       _logger.Log("Rlr&LTxAx9F&2vOQ");
-      Assert.AreEqual(1, InMemoryLogger.LoggerInstance.Count);
+      int _count = -1;
+      InMemoryLogger.LoggerInstance.Count(x => _count = x );
+      Assert.AreEqual(1, _count);
     }
     
     [TestMethod]
