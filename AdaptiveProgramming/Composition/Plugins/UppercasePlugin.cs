@@ -9,9 +9,9 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using AdaptiveProgramming.Composition.Plugins.PluginContract;
+using AdaptiveProgramming.Composition.Contracts;
 
-namespace AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper
+namespace AdaptiveProgramming.Composition.Plugins
 {
   /// <summary>
   /// Represents a plugin (user service) that converts text to uppercase.
@@ -24,6 +24,7 @@ namespace AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper
     {
       context.Text = context.Text.ToUpper();
     }
+
     #region Singleton implementation
     /// <summary>
     /// Singleton instance of the UppercasePlugin class. It provides a single point of access to the plugin functionality.

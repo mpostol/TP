@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace AdaptiveProgramming.Composition
+namespace AdaptiveProgramming.Composition.Contracts
 {
   /// <summary>
   /// Logger interface for logging messages.

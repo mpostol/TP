@@ -9,9 +9,8 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-using AdaptiveProgramming.Composition.Plugins.PluginContract;
-using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Lower;
-using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper;
+using AdaptiveProgramming.Composition.Contracts;
+using AdaptiveProgramming.Composition.Plugins;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
 
@@ -63,7 +62,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      IPluginContract _contract = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper.UppercasePlugin");
+      IPluginContract _contract = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.Plugins.UppercasePlugin");
       Assert.IsNotNull(_contract);
       Assert.AreSame(UppercasePlugin.PluginInstance, _contract);
       Assert.AreEqual(UppercasePlugin.PluginInstance.Name, "Uppercase Plugin");
@@ -113,4 +112,5 @@ namespace AdaptiveProgramming.Composition.UnitTest
   }
 
   #endregion instrumentation
+
 }

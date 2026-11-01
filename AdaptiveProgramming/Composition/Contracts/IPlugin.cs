@@ -9,7 +9,7 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
-namespace AdaptiveProgramming.Composition.Plugins.PluginContract
+namespace AdaptiveProgramming.Composition.Contracts
 {
   /// <summary>
   /// Service contract for a plugin. A plugin is a component that can be dynamically loaded and executed by the host application. 
