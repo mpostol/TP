@@ -17,7 +17,7 @@ using CommonServiceLocator;
 namespace AdaptiveProgramming.Composition.UnitTest
 {
   [TestClass]
-  public class CustomLoggerTest
+  public class CustomLoggerTests
   {
     [TestMethod]
     public void DefaultLogTest()
@@ -25,7 +25,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          ImplementationOfCustomLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance,
           new NullReferenceException(),
           LowercasePlugin.PluginInstance,
           UppercasePlugin.PluginInstance
@@ -40,23 +40,23 @@ namespace AdaptiveProgramming.Composition.UnitTest
     }
     
     [TestMethod]
-    public void ImplementationOfCustomLoggerTestMethod()
+    public void InStringCustomLoggerTestMethod()
     {
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          ImplementationOfCustomLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance,
           new NullReferenceException(),
           LowercasePlugin.PluginInstance,
           UppercasePlugin.PluginInstance
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      ICustomLogger _plugin = _newUser.DataProcessing<ICustomLogger>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.ImplementationOfCustomLogger");
+      ICustomLogger _plugin = _newUser.DataProcessing<ICustomLogger>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.InStringCustomLogger");
       Assert.IsNotNull(_plugin);
-      Assert.AreSame(ImplementationOfCustomLogger.LoggerInstance, _plugin);
+      Assert.AreSame(InStringCustomLogger.LoggerInstance, _plugin);
       _plugin.Log("5*!2AVEx5wmE0Bzz");
-      Assert.AreEqual("5*!2AVEx5wmE0Bzz", ImplementationOfCustomLogger.LastLog);
+      Assert.AreEqual("5*!2AVEx5wmE0Bzz", InStringCustomLogger.LastLog);
     }
 
     [TestMethod]
@@ -65,6 +65,8 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance, 
+          new NullReferenceException(),
           LowercasePlugin.PluginInstance,
           UppercasePlugin.PluginInstance,
           new NullReferenceException()
@@ -80,6 +82,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance, LowercasePlugin.PluginInstance,  
           //new AdvancedLogger(),
           new NullReferenceException()
         };

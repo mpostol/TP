@@ -35,7 +35,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
         {
           LowercasePlugin.PluginInstance,
           InMemoryLogger.LoggerInstance,
-          ImplementationOfCustomLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance,
           new NullReferenceException(),
           UppercasePlugin.PluginInstance
         };
@@ -55,7 +55,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          ImplementationOfCustomLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance,
           new NullReferenceException(),
           LowercasePlugin.PluginInstance,
           UppercasePlugin.PluginInstance
@@ -77,7 +77,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          ImplementationOfCustomLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance,
           new NullReferenceException(),
           LowercasePlugin.PluginInstance,
           UppercasePlugin.PluginInstance
@@ -93,7 +93,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
       object[] _services =
         {
           InMemoryLogger.LoggerInstance,
-          ImplementationOfCustomLogger.LoggerInstance,
+          InStringCustomLogger.LoggerInstance,
           new NullReferenceException(),
           LowercasePlugin.PluginInstance,
           UppercasePlugin.PluginInstance

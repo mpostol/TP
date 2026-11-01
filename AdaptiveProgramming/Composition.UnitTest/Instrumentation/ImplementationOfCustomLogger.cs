@@ -15,14 +15,15 @@ namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
   /// <summary>
   /// Implementation of <see cref="ICustomLogger"/> for unit testing purposes.
   /// </summary>
-  public class ImplementationOfCustomLogger : ICustomLogger
+  public class InStringCustomLogger : ICustomLogger
   {
 
-    internal static ICustomLogger LoggerInstance { get; } = new ImplementationOfCustomLogger();
+    internal static ICustomLogger LoggerInstance { get; } = new InStringCustomLogger();
     internal static string LastLog { get; private set; } = "Rlr&LTxAx9F&2vOQ";
 
     #region ICustomLogger
     public void Log(string msg) { LastLog = msg; }
-    #endregion  
+    #endregion
+
   }
 }
