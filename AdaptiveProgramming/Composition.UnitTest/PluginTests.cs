@@ -10,7 +10,7 @@
 //_____________________________________________________________________________________________________________________________________
 
 using AdaptiveProgramming.Composition.Contracts;
-using AdaptiveProgramming.Composition.Plugins;
+using AdaptiveProgramming.Composition.PluginsImplementations;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
 
@@ -62,7 +62,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      IPluginContract _contract = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.Plugins.UppercasePlugin");
+      IPluginContract _contract = _newUser.DataProcessing<IPluginContract>("AdaptiveProgramming.Composition.PluginsImplementations.UppercasePlugin");
       Assert.IsNotNull(_contract);
       Assert.AreSame(UppercasePlugin.PluginInstance, _contract);
       Assert.AreEqual(UppercasePlugin.PluginInstance.Name, "Uppercase Plugin");

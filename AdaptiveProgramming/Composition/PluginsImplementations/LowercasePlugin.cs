@@ -11,7 +11,7 @@
 
 using AdaptiveProgramming.Composition.Contracts;
 
-namespace AdaptiveProgramming.Composition.Plugins
+namespace AdaptiveProgramming.Composition.PluginsImplementations
 {
   /// <summary>
   /// Represents a plugin (user service) that converts text to lowercase.

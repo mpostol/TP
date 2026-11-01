@@ -10,7 +10,7 @@
 //_____________________________________________________________________________________________________________________________________
 
 using AdaptiveProgramming.Composition.Contracts;
-using AdaptiveProgramming.Composition.Plugins;
+using AdaptiveProgramming.Composition.PluginsImplementations;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
 
