@@ -55,7 +55,7 @@ namespace AdaptiveProgramming.Composition.UnitTest
         };
       ServiceLocator.SetLocatorProvider(() => new Container(_services));
       ServiceLocatorUser _newUser = new ServiceLocatorUser();
-      ICustomLogger _plugin = _newUser.DataProcessing<ICustomLogger>("AdaptiveProgramming.Composition.UnitTest.Instrumentation.InStringCustomLogger");
+      ICustomLogger _plugin = _newUser.DataProcessing<ICustomLogger>("AdaptiveProgramming.Composition.UnitTest.Implementation.InStringCustomLogger");
       Assert.IsNotNull(_plugin);
       Assert.AreSame(InStringCustomLogger.LoggerInstance, _plugin);
       _plugin.Log("5*!2AVEx5wmE0Bzz");
