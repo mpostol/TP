@@ -14,7 +14,6 @@ using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Lower;
 using AdaptiveProgramming.Composition.Plugins.PluginsImplementations.Upper;
 using AdaptiveProgramming.Composition.UnitTest.Instrumentation;
 using CommonServiceLocator;
-using TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation;
 
 namespace AdaptiveProgramming.Composition.UnitTest
 {

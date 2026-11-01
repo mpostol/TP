@@ -12,7 +12,7 @@
 
 using CommonServiceLocator;
 
-namespace TPA.Composition.UnitTest.CommonServiceLocatorInstrumentation
+namespace AdaptiveProgramming.Composition.UnitTest.Instrumentation
 {
   /// <summary>
   /// Container class that implements the ServiceLocator pattern using a collection of objects.
