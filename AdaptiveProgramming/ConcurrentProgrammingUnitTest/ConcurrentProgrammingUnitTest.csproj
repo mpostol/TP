@@ -74,7 +74,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CriticalSectionExampleUnitTest.cs" />
     <Compile Include="ProducerConsumerUnitTest.cs" />
     <Compile Include="ProducerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
