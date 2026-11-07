@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Logging</Title>
+    <Version>5.0.0</Version>
+    <Authors>Mariusz Postol</Authors>
+    <RootNamespace>AdaptiveProgramming.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyName>AP.$(MSBuildProjectName)</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+</Project>
