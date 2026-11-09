@@ -25,6 +25,17 @@ namespace AdaptiveProgramming.Logging
     }
 
     #region ITelemetry
+    /// <summary>
+    /// Send information about an external dependency (outgoing call) in the application.
+    /// </summary>
+    /// <param name="dependencyTypeName"> External dependency type. Very low cardinality value for logical grouping and interpretation of fields. Examples are SQL, Azure table, and HTTP.</param>
+    /// <param name="target">External dependency target.</param>
+    /// <param name="dependencyName">Name of the command initiated with this dependency call. Low cardinality value. Examples are stored procedure name and URL path template.</param>
+    /// <param name="data"> Command initiated by this dependency call. Examples are SQL statement and HTTP URL's with all query parameters.</param>
+    /// <param name="startTime">The time when the dependency was called.</param>
+    /// <param name="duration">The time taken by the external dependency to handle the call.</param>
+    /// <param name="resultCode">Result code of dependency call execution.</param>
+    /// <param name="success">True if the dependency call was handled successfully.</param>
     public void TrackDependency(string dependencyTypeName, string target, string dependencyName, string data, DateTimeOffset startTime, TimeSpan duration, string resultCode, bool success)
     {
       try
