@@ -19,33 +19,27 @@ namespace AdaptiveProgramming.Logging
     /// Pages, screens, blades, or forms
     /// </summary>
     /// <param name="name"></param>
-    void TrackPageView(string name);
-
+    //void TrackPageView(string name);
     /// <summary>
     /// User actions and other events. Used to track user behavior or to monitor performance.
     /// </summary>
-    void TrackEvent(string eventName, Dictionary<string, string> properties = null, IDictionary<string, double> metrics = null);
-
+    void TrackEvent(string eventName, Dictionary<string, string> properties);
     /// <summary>
     /// Performance measurements such as queue lengths not related to specific events.
     /// </summary>
-    void TrackMetric(string name, double value, IDictionary<string, string> properties = null);
-
+    void TrackMetric(string name, double value, IDictionary<string, string> properties);
     /// <summary>
     /// Logging exceptions for diagnosis. Trace where they occur in relation to other events and examine stack traces.
     /// </summary>
-    void TrackException(Exception exception, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null);
-
+    void TrackException(Exception exception, IDictionary<string, string> properties);
     /// <summary>
     /// Logging the frequency and duration of server requests for performance analysis.
     /// </summary>
     void TrackRequest(string name, DateTimeOffset startTime, TimeSpan duration, string responseCode, bool success);
-
     /// <summary>
     /// Diagnostic log messages. You can also capture third-party logs.
     /// </summary>
     void TrackTrace(string message, IDictionary<string, string> properties);
-
     /// <summary>
     /// Logging the duration and frequency of calls to external components that your app depends on.
     /// </summary>
