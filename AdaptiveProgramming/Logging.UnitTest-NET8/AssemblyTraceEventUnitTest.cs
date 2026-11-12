@@ -10,6 +10,9 @@
 //  by introducing yourself and telling us what you do with this community.
 //_____________________________________________________________________________________________________________________________________
 
+using System.Diagnostics;
+using System.Reflection;
+
 namespace AdaptiveProgramming.Logging.UnitTest
 {
   [TestClass]
@@ -18,7 +21,22 @@ namespace AdaptiveProgramming.Logging.UnitTest
     [TestMethod]
     public void AssemblyTraceEventTestMethod()
     {
-
+      TraceSource _tracer = AssemblyTraceEvent.Tracer;
+      Assert.IsNotNull(_tracer);
+      Assert.AreEqual<string>("TPA.Logging.Consumer", _tracer.Name, $"Actual tracer name: {_tracer.Name}");
+      Assert.AreEqual(1, _tracer.Listeners.Count);
+      Dictionary<string, TraceListener> _listeners = _tracer.Listeners.Cast<TraceListener>().ToDictionary<TraceListener, string>(x => x.Name);
+      Assert.IsTrue(_listeners.ContainsKey("LogFile"));
+      TraceListener _listener = _listeners["LogFile"];
+      Assert.IsNotNull(_listener);
+      Assert.IsInstanceOfType(_listener, typeof(DelimitedListTraceListener));
+      DelimitedListTraceListener _advancedListener = _listener as DelimitedListTraceListener;
+      Assert.IsNotNull(_advancedListener.Filter);
+      Assert.IsInstanceOfType(_advancedListener.Filter, typeof(EventTypeFilter));
+      EventTypeFilter _eventTypeFilter = _advancedListener.Filter as EventTypeFilter;
+      Assert.AreEqual(SourceLevels.All, _eventTypeFilter.EventType);
+      string _testPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+      Assert.AreEqual<string>(Path.Combine(_testPath, @"TPA.Logging.Consumer.log"), _advancedListener.GetFileName());
     }
   }
 }
