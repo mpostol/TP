@@ -119,44 +119,6 @@ namespace AdaptiveProgramming.Logging.UnitTest
       string output = reader.ReadToEnd();
       StringAssert.Contains(output, "LogFileExistsTest is executed");
     }
-    //[TestMethod]
-    //public void ConfigurationAssemblyTraceEventTestMethod()
-    //{
-    //  TraceSource _tracer = AssemblyTraceEvent.Tracer;
-    //  Assert.IsNotNull(_tracer);
-    //  Assert.AreEqual<string>("LoggingSourse", _tracer.Name, $"Actual tracer name: {_tracer.Name}");
-    //  Assert.AreEqual(1, _tracer.Listeners.Count);
-    //  Dictionary<string, TraceListener> _listeners = _tracer.Listeners.Cast<TraceListener>().ToDictionary<TraceListener, string>(x => x.Name);
-    //  Assert.AreEqual(1, _listeners.Count);
 
-    //  Assert.Inconclusive("The test is inconclusive because the configuration file is not loaded.");
-
-    //  Assert.AreEqual<string>("LogFile", _listeners.First().Key);
-    //  TraceListener _listener = _listeners["LogFile"];
-    //  Assert.IsNotNull(_listener);
-    //  Assert.IsInstanceOfType(_listener, typeof(DelimitedListTraceListener));
-    //  DelimitedListTraceListener? _advancedListener = _listener as DelimitedListTraceListener;
-    //  Assert.IsNotNull(_advancedListener);
-
-    //  string _testPath = Directory.GetCurrentDirectory();
-    //  Assert.IsFalse(String.IsNullOrEmpty(_testPath));
-    //  string _logFilePath = Path.Combine(_testPath, @"LoggingConsumer.log");
-    //  Assert.IsTrue(_logFilePath.Contains(@"LoggingConsumer.log"));
-    //  string _LogFileNeme = _advancedListener.GetFileName() ?? _logFilePath;
-    //  Assert.IsFalse(String.IsNullOrEmpty(_LogFileNeme));
-    //  FileInfo _logFileInfo = new FileInfo(_advancedListener.GetFileName() ?? _logFilePath);
-    //  long _startLength = _logFileInfo.Exists ? _logFileInfo.Length : 0;
-    //  // filter test
-    //  Assert.IsNotNull(_advancedListener.Filter);
-    //  EventTypeFilter? _filter = _advancedListener.Filter as EventTypeFilter;
-    //  Assert.IsNotNull(_filter);
-    //  Assert.AreEqual<SourceLevels>(SourceLevels.All, _filter.EventType);
-
-    //  _tracer.TraceEvent(TraceEventType.Information, 0, "LogFileExistsTest is executed");
-    //  _tracer.Flush();
-    //  _logFileInfo.Refresh();
-    //  Assert.IsTrue(_logFileInfo.Exists);
-    //  Assert.IsTrue(_logFileInfo.Length > _startLength);
-    //}
   }
 }
