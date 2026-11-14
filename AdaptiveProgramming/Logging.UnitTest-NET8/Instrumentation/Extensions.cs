@@ -20,7 +20,7 @@ namespace AdaptiveProgramming.Logging.UnitTest.Instrumentation
   {
     internal static string? GetFileName(this DelimitedListTraceListener _listener)
     {
-      FieldInfo? fi = typeof(TextWriterTraceListener).GetField("fileName", BindingFlags.NonPublic | BindingFlags.Instance);
+      FieldInfo? fi = typeof(TextWriterTraceListener).GetField("_fileName", BindingFlags.NonPublic | BindingFlags.Instance);
       if (fi == null)
         throw new NullReferenceException(nameof(fi));
       return (string?)fi.GetValue(_listener);
